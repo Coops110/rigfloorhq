@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+<BaseLayout
+  title="Oil Rig Safety — Hazards, PPE, and Emergency Systems"
+  description="Complete oil rig safety reference: major hazard categories, required PPE, H2S safety, and emergency response systems."
+  breadcrumbs={[{ label: 'Safety', href: '/safety' }]}
+>
+  <Nav slot="nav" />
+  <Footer slot="footer" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">10 — HSE</div>
+    <h1>Safety <span>on the Rig</span></h1>
+    <p class="page-hero-sub">The hazards, the equipment, and the systems that keep people alive on one of the most demanding industrial worksites in the world.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <h2 class="section-title" style="font-size:28px;">Major <span>Hazard Categories</span></h2>
+        <div class="card-grid" style="grid-template-columns:1fr;">
+          <div class="card">
+            <span class="card-icon">💨</span>
+            <h3>H₂S (Hydrogen Sulfide)</h3>
+            <p>Colorless gas heavier than air. At 100 ppm causes rapid incapacitation; at 500+ ppm, one breath can be fatal. High concentrations kill your sense of smell instantly.</p>
+            <a href="/safety/h2s" class="card-link">Full H₂S Safety Guide →</a>
+          </div>
+          <div class="card">
+            <span class="card-icon">🔥</span>
+            <h3>Fire & Explosion</h3>
+            <p>Hydrocarbons from the wellbore, fuel tanks, and process equipment create constant fire risk. Hot work requires a permit and gas testing immediately before starting.</p>
+          </div>
+          <div class="card">
+            <span class="card-icon">⬇️</span>
+            <h3>Dropped Objects</h3>
+            <p>The leading cause of injury and fatality on rigs. Tools and equipment can fall from derrick height. All tools must be tethered on height work.</p>
+          </div>
+          <div class="card">
+            <span class="card-icon">🔧</span>
+            <h3>Stored Energy / LOTO</h3>
+            <p>Hydraulic, pneumatic, electrical, and mechanical energy stored in rig systems. Lockout/Tagout (LOTO) procedures must be followed for all maintenance.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="section-title" style="font-size:28px;">PPE <span>Requirements</span></h2>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:28px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--steel);border-radius:3px;"><span style="font-size:13px;color:var(--mist);">Hard Hat (EN 397 / ANSI Z89.1)</span><span class="status-badge status-safe">Always Required</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--steel);border-radius:3px;"><span style="font-size:13px;color:var(--mist);">Steel-Toe Boots (S3 rating)</span><span class="status-badge status-safe">Always Required</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--steel);border-radius:3px;"><span style="font-size:13px;color:var(--mist);">FR Coveralls</span><span class="status-badge status-safe">Always Required</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--steel);border-radius:3px;"><span style="font-size:13px;color:var(--mist);">Safety Glasses / Face Shield</span><span class="status-badge status-safe">Always Required</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--steel);border-radius:3px;"><span style="font-size:13px;color:var(--mist);">H₂S Personal Monitor</span><span class="status-badge status-warn">Sour Wells</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--steel);border-radius:3px;"><span style="font-size:13px;color:var(--mist);">SCBA</span><span class="status-badge status-warn">Sour Wells / Fire</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--steel);border-radius:3px;"><span style="font-size:13px;color:var(--mist);">Fall Arrest Harness</span><span class="status-badge status-warn">Working at Height</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--steel);border-radius:3px;"><span style="font-size:13px;color:var(--mist);">Welding Helmet (Shade 10+)</span><span class="status-badge status-warn">Hot Work Only</span></div>
+        </div>
+
+        <h3 style="font-family:var(--cond);font-weight:700;font-size:16px;text-transform:uppercase;color:var(--white);letter-spacing:0.04em;margin-bottom:12px;">Key Safety Systems</h3>
+        <p style="color:var(--fog);font-size:13px;line-height:1.7;">Every offshore installation has a documented Emergency Response Plan including muster point assignment, lifeboat/liferaft stations, evacuation routes, fire and gas detection with automatic shutdown, and helicopter emergency procedures. Know yours before your first shift.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Explore</div>
+    <h2 class="section-title">Safety <span>Deep Dives</span></h2>
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-icon">💨</span>
+        <h3>H₂S Safety</h3>
+        <p>Detection, exposure limits, escape procedures, and personal monitoring requirements for sour gas.</p>
+        <a href="/safety/h2s" class="card-link">Read More →</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+<BaseLayout
+  title="Rig Equipment — Rig Types, Drill String, BOP Explained"
+  description="Complete reference for oil rig equipment: rig types, the drill string, blowout preventers, and every major mechanical system on a rig."
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }]}
+>
+  <Nav slot="nav" />
+  <Footer slot="footer" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">02 — Equipment</div>
+    <h1>Rig <span>Equipment</span></h1>
+    <p class="page-hero-sub">Every core mechanical system on a drilling rig, from the rig itself down to the bit thousands of feet below.</p>
+  </div>
+
+  <section class="block">
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-icon">🏗️</span>
+        <h3>Types of Drilling Rigs</h3>
+        <p>Land rigs, jack-ups, semi-submersibles, drillships, platforms, and barges compared with specs and day rates.</p>
+        <a href="/equipment/rig-types" class="card-link">Read More →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔩</span>
+        <h3>The Drill String</h3>
+        <p>Every component from top drive to bit — drill pipe, collars, BHA, MWD tools, and bit types.</p>
+        <a href="/equipment/drill-string" class="card-link">Read More →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔒</span>
+        <h3>Blowout Preventers</h3>
+        <p>How a BOP stack seals the well — annular preventers, rams, pressure ratings, and testing requirements.</p>
+        <a href="/equipment/bop" class="card-link">Read More →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Core Systems</div>
+    <h2 class="section-title">Every Rig's <span>Six Systems</span></h2>
+    <div class="card-grid grid-2">
+      <div class="card">
+        <span class="card-icon">🏗️</span>
+        <h3 style="font-size:14px;">Hoisting System</h3>
+        <p>Derrick, crown block, travelling block, and drawworks raise and lower the drill string.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔄</span>
+        <h3 style="font-size:14px;">Rotating System</h3>
+        <p>Top drive or rotary table turns the drill string and bit at controlled RPM.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">💧</span>
+        <h3 style="font-size:14px;">Fluid Circulation</h3>
+        <p>Mud pumps force drilling fluid down-hole. Returns carry cuttings to surface shakers.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔒</span>
+        <h3 style="font-size:14px;">Pressure Control</h3>
+        <p>Blowout preventers (BOPs) seal the wellbore during kicks and emergencies.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">⚡</span>
+        <h3 style="font-size:14px;">Power Generation</h3>
+        <p>Diesel generators or SCR systems supply the massive electrical loads of rig equipment.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🛢️</span>
+        <h3 style="font-size:14px;">Mud Pit System</h3>
+        <p>Shale shakers, desanders, desilters, and degassers process returned drilling fluid.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

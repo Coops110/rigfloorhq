@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+<BaseLayout
+  title="Hydrostatic Pressure Calculator — Mud Weight & Overbalance"
+  description="Free hydrostatic pressure calculator for drilling. Enter mud weight, TVD, pore pressure and fracture gradients to get instant psi results and a safe/unsafe drilling status."
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Hydrostatic Pressure', href: '/calculators/hydrostatic' }]}
+>
+  <Nav slot="nav" />
+  <Footer slot="footer" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Hydrostatic <span>Pressure Calculator</span></h1>
+    <p class="page-hero-sub">Uses the standard formula HP = 0.052 × MW × TVD. Compares your result against pore and fracture pressure to flag kick or lost-circulation risk.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">⚙ Hydrostatic Pressure</div>
+
+          <div class="input-row">
+            <div class="input-group">
+              <label for="mw">Mud Weight (ppg)</label>
+              <input type="number" id="mw" placeholder="e.g. 12.0" step="0.1" min="7" max="22">
+            </div>
+            <div class="input-group">
+              <label for="tvd">True Vertical Depth (ft)</label>
+              <input type="number" id="tvd" placeholder="e.g. 10000" step="100" min="100">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="ppg_input">Pore Pressure Gradient (psi/ft)</label>
+              <input type="number" id="ppg_input" placeholder="e.g. 0.433" step="0.001" min="0.3" max="1.0">
+            </div>
+            <div class="input-group">
+              <label for="fg_input">Fracture Gradient (psi/ft)</label>
+              <input type="number" id="fg_input" placeholder="e.g. 0.78" step="0.001" min="0.4" max="1.2">
+            </div>
+          </div>
+
+          <button class="btn btn-primary" id="calc-hydro-btn" style="width:100%;text-align:center;">Calculate</button>
+
+          <div class="calc-output" id="hydro-output">
+            <div class="output-line"><span class="output-label">Hydrostatic Pressure</span><span class="output-value" id="out-hp">—</span></div>
+            <div class="output-line"><span class="output-label">Pore Pressure</span><span class="output-value" id="out-pp">—</span></div>
+            <div class="output-line"><span class="output-label">Fracture Pressure</span><span class="output-value" id="out-fp">—</span></div>
+            <div class="output-line"><span class="output-label">Overbalance</span><span class="output-value" id="out-ob">—</span></div>
+            <div class="output-line" style="border-bottom:none;"><span class="output-label">Drilling Status</span><span id="out-status">—</span></div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Not sure what to enter?</strong> Freshwater pore pressure gradient ≈ <span class="highlight">0.433 psi/ft</span>. Seawater ≈ <span class="highlight">0.445 psi/ft</span>. A typical fracture gradient in normally pressured formations runs <span class="highlight">0.7–0.85 psi/ft</span> but varies significantly by basin and depth — always use actual leak-off test (LOT) data for real operations.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>How This Calculator Works</h2>
+        <p>This tool applies the standard hydrostatic pressure formula used throughout the drilling industry:</p>
+        <div class="formula-block">
+          <div class="formula-label">Hydrostatic Pressure</div>
+          <div class="formula-eq">HP (psi) = 0.052 × MW (ppg) × TVD (ft)</div>
+          <div class="formula-note">0.052 is the unit conversion constant relating pounds per gallon and feet to psi.</div>
+        </div>
+        <p>It then compares your hydrostatic pressure against the pore pressure and fracture pressure at the same depth (calculated from the gradients you enter) to determine whether your mud weight sits safely inside the mud weight window.</p>
+
+        <h3>Reading Your Results</h3>
+        <ul>
+          <li><strong style="color:var(--safe);">Safe Drilling Window</strong> — hydrostatic pressure is comfortably between pore and fracture pressure.</li>
+          <li><strong style="color:var(--caution);">Very Low Overbalance</strong> — under 100 psi margin above pore pressure. Kick risk if pressure fluctuates.</li>
+          <li><strong style="color:var(--warn);">High Overbalance</strong> — over 1,500 psi margin. Watch ECD carefully; risk of formation damage or differential sticking.</li>
+          <li><strong style="color:var(--danger);">Underbalanced / Overbalanced (critical)</strong> — hydrostatic pressure has crossed pore or fracture pressure entirely. Immediate review required.</li>
+        </ul>
+
+        <p>For full formula derivations and worked examples, see the <a href="/drilling/mud-weight">mud weight and pressure reference page</a>. If you're working through an active kick, use the <a href="/calculators/kill-sheet">kill sheet calculator</a> instead.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const btn = document.getElementById('calc-hydro-btn');
+  btn?.addEventListener('click', () => {
+    const mw = parseFloat((document.getElementById('mw') as HTMLInputElement).value);
+    const tvd = parseFloat((document.getElementById('tvd') as HTMLInputElement).value);
+    const ppg = parseFloat((document.getElementById('ppg_input') as HTMLInputElement).value);
+    const fg = parseFloat((document.getElementById('fg_input') as HTMLInputElement).value);
+
+    if (!mw || !tvd || !ppg || !fg) {
+      alert('Please fill in all four fields.');
+      return;
+    }
+
+    const hp = 0.052 * mw * tvd;
+    const pp = ppg * tvd;
+    const fp = fg * tvd;
+    const ob = hp - pp;
+
+    (document.getElementById('out-hp') as HTMLElement).textContent = hp.toFixed(0) + ' psi';
+    (document.getElementById('out-pp') as HTMLElement).textContent = pp.toFixed(0) + ' psi';
+    (document.getElementById('out-fp') as HTMLElement).textContent = fp.toFixed(0) + ' psi';
+    (document.getElementById('out-ob') as HTMLElement).textContent = ob.toFixed(0) + ' psi';
+
+    const statusEl = document.getElementById('out-status') as HTMLElement;
+    if (hp < pp) {
+      statusEl.innerHTML = '<span class="status-badge status-danger">🚨 UNDERBALANCED — Kick Risk</span>';
+    } else if (hp > fp) {
+      statusEl.innerHTML = '<span class="status-badge status-danger">⛔ OVERBALANCED — Lost Circ. Risk</span>';
+    } else if (ob < 100) {
+      statusEl.innerHTML = '<span class="status-badge status-caution">⚠ Very Low Overbalance</span>';
+    } else if (ob > 1500) {
+      statusEl.innerHTML = '<span class="status-badge status-warn">⚠ High Overbalance — Monitor ECD</span>';
+    } else {
+      statusEl.innerHTML = '<span class="status-badge status-safe">✅ Safe Drilling Window</span>';
+    }
+
+    document.getElementById('hydro-output')?.classList.add('visible');
+  });
+</script>

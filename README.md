@@ -26,6 +26,10 @@ site: 'https://rigfloorhq-yourname.vercel.app'
 ```
 This matters because the sitemap and canonical URLs are generated from this value — if it's wrong, Harbor (and Google) will crawl broken links.
 
+## Sitemap generation
+
+Uses `@astrojs/sitemap`, pinned to **v3.6.0** exactly (not a caret range). Version 3.7.1 has a known bug that crashes the build with `Cannot read properties of undefined (reading 'reduce')` during the `astro:build:done` step — see [withastro/astro#15894](https://github.com/withastro/astro/issues/15894). If a future version fixes this, you can loosen the pin, but test the build before deploying.
+
 ## Getting your sitemap URL for Harbor
 
 Once deployed, your sitemap will automatically be live at:

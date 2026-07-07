@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+<BaseLayout
+  title="How Drilling Works — Oil Well Drilling Process Explained"
+  description="The complete oil well drilling process from spud to completion: casing programs, mud circulation, pressure control, and every phase explained."
+  breadcrumbs={[{ label: 'Drilling', href: '/drilling' }]}
+>
+  <Nav slot="nav" />
+  <Footer slot="footer" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">05 — Operations</div>
+    <h1>How <span>Drilling Works</span></h1>
+    <p class="page-hero-sub">From rigging up to reaching total depth, a well is drilled in a methodical sequence. Each phase must be completed safely before the next begins.</p>
+  </div>
+
+  <section class="block">
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-icon">💧</span>
+        <h3>Mud Weight & Pressure</h3>
+        <p>Hydrostatic pressure, pore pressure, fracture gradient, and the mud weight window explained with real formulas.</p>
+        <a href="/drilling/mud-weight" class="card-link">Read More →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🚨</span>
+        <h3>Well Control</h3>
+        <p>Kick recognition, shut-in procedures, and the driller's method vs wait-and-weight kill methods.</p>
+        <a href="/drilling/well-control" class="card-link">Read More →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🧭</span>
+        <h3>Directional Drilling</h3>
+        <p>How MWD/LWD tools and downhole motors steer a wellbore to a precise target thousands of feet away.</p>
+        <a href="/drilling/directional" class="card-link">Read More →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔩</span>
+        <h3>Casing Design</h3>
+        <p>Why wells are drilled in stages, how casing points are chosen, and what each casing string protects.</p>
+        <a href="/drilling/casing" class="card-link">Read More →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Process</div>
+    <h2 class="section-title">Drilling a Well, <span>Step by Step</span></h2>
+
+    <div class="process-steps" style="max-width:800px;">
+      <div class="step-row" style="display:flex;gap:24px;border-bottom:1px solid var(--iron);padding:24px 0;">
+        <div class="step-num" style="font-family:var(--cond);font-weight:900;font-size:38px;color:rgba(201,74,31,0.25);min-width:44px;">01</div>
+        <div><h4 style="font-family:var(--cond);font-weight:700;font-size:17px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Location Preparation</h4><p style="font-size:13px;color:var(--fog);line-height:1.65;">Pad construction, cellar digging, conductor casing set. Offshore: rig towed to location, legs jacked down or anchors set.</p></div>
+      </div>
+      <div class="step-row" style="display:flex;gap:24px;border-bottom:1px solid var(--iron);padding:24px 0;">
+        <div class="step-num" style="font-family:var(--cond);font-weight:900;font-size:38px;color:rgba(201,74,31,0.25);min-width:44px;">02</div>
+        <div><h4 style="font-family:var(--cond);font-weight:700;font-size:17px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Spud & Surface Hole</h4><p style="font-size:13px;color:var(--fog);line-height:1.65;">Drilling begins with a large-diameter bit. Conductor and surface casing set and cemented to protect freshwater zones.</p></div>
+      </div>
+      <div class="step-row" style="display:flex;gap:24px;border-bottom:1px solid var(--iron);padding:24px 0;">
+        <div class="step-num" style="font-family:var(--cond);font-weight:900;font-size:38px;color:rgba(201,74,31,0.25);min-width:44px;">03</div>
+        <div><h4 style="font-family:var(--cond);font-weight:700;font-size:17px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">BOP Installation & Test</h4><p style="font-size:13px;color:var(--fog);line-height:1.65;">The <a href="/equipment/bop" style="color:var(--amber);">blowout preventer</a> stack is installed and function-tested to its rated pressure before drilling resumes.</p></div>
+      </div>
+      <div class="step-row" style="display:flex;gap:24px;border-bottom:1px solid var(--iron);padding:24px 0;">
+        <div class="step-num" style="font-family:var(--cond);font-weight:900;font-size:38px;color:rgba(201,74,31,0.25);min-width:44px;">04</div>
+        <div><h4 style="font-family:var(--cond);font-weight:700;font-size:17px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Intermediate Sections</h4><p style="font-size:13px;color:var(--fog);line-height:1.65;">Drilling continues in stages, each with a smaller bit. At casing points, casing is run, cemented, and drilling continues. See <a href="/drilling/casing" style="color:var(--amber);">casing design</a>.</p></div>
+      </div>
+      <div class="step-row" style="display:flex;gap:24px;border-bottom:1px solid var(--iron);padding:24px 0;">
+        <div class="step-num" style="font-family:var(--cond);font-weight:900;font-size:38px;color:rgba(201,74,31,0.25);min-width:44px;">05</div>
+        <div><h4 style="font-family:var(--cond);font-weight:700;font-size:17px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Drilling the Reservoir Section</h4><p style="font-size:13px;color:var(--fog);line-height:1.65;">Mud weight is carefully managed within the <a href="/drilling/mud-weight" style="color:var(--amber);">mud weight window</a> — above pore pressure, below fracture pressure.</p></div>
+      </div>
+      <div class="step-row" style="display:flex;gap:24px;padding:24px 0;">
+        <div class="step-num" style="font-family:var(--cond);font-weight:900;font-size:38px;color:rgba(201,74,31,0.25);min-width:44px;">06</div>
+        <div><h4 style="font-family:var(--cond);font-weight:700;font-size:17px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Completion or Abandonment</h4><p style="font-size:13px;color:var(--fog);line-height:1.65;">Productive wells are completed for production. Dry wells are plugged and abandoned per regulatory standards.</p></div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
