@@ -1,3 +1,7 @@
 {
-  "installCommand": "npm install --legacy-peer-deps && find node_modules/.bin -type f -exec chmod +x {} +"
+  "installCommand": "npm install --legacy-peer-deps && find node_modules/.bin -type f -exec chmod +x {} +",
+  "dependencies": {
+    "@astrojs/vercel": "^11.0.2",
+    "astro": "^7.0.6"
+  }
 }
