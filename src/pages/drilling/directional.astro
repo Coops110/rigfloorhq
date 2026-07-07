@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+<BaseLayout
+  title="Directional Drilling Explained — MWD, LWD & Steering the Bit"
+  description="How directional drilling works: MWD/LWD tools, downhole motors, steering methods, and why horizontal drilling transformed the industry."
+  breadcrumbs={[{ label: 'Drilling', href: '/drilling' }, { label: 'Directional Drilling', href: '/drilling/directional' }]}
+>
+  <Nav slot="nav" />
+  <Footer slot="footer" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Drilling — Advanced Techniques</div>
+    <h1>Directional <span>Drilling</span></h1>
+    <p class="page-hero-sub">Steering a drill bit thousands of feet underground to hit a target the size of a small room. Here's how it actually works.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2>Why Drill Directionally?</h2>
+        <p>Vertical wells only contact a reservoir where they pass directly through it. Directional and horizontal drilling let a single wellbore travel laterally through a reservoir, dramatically increasing the surface area in contact with hydrocarbon-bearing rock. This is the technology, combined with hydraulic fracturing, that unlocked shale plays like the Permian and Eagle Ford.</p>
+        <p>Directional drilling is also used to reach reservoirs positioned under obstacles — city infrastructure, protected areas, or neighboring leases — from a surface location that wouldn't otherwise have access, and to drill multiple wells from a single offshore platform in different directions.</p>
+
+        <h2>How the Bit Is Steered</h2>
+        <p>A directional well is steered using a combination of:</p>
+        <ul>
+          <li><strong>Downhole (mud) motor</strong> — a turbine-like tool near the bit that converts drilling fluid flow into rotational power, allowing the bit to turn independently of the drill string above it.</li>
+          <li><strong>Bent sub / bent housing</strong> — a slight mechanical bend that, combined with the motor, lets the driller build angle by "sliding" (not rotating the whole string) in a chosen direction.</li>
+          <li><strong>Rotary steerable systems (RSS)</strong> — modern tools that steer while continuously rotating the entire string, which improves hole cleaning and ROP compared to sliding with a motor.</li>
+        </ul>
+
+        <h2>MWD and LWD — Seeing Underground</h2>
+        <p><strong>MWD (Measurement While Drilling)</strong> tools sit in the BHA and continuously measure the wellbore's inclination and azimuth, transmitting that data to surface in real time — typically via mud pulse telemetry, which encodes data as pressure pulses in the drilling fluid.</p>
+        <p><strong>LWD (Logging While Drilling)</strong> tools add formation evaluation data — resistivity, density, gamma ray — to that same real-time stream, letting the directional driller and wellsite geologist actually see what kind of rock the bit is in without waiting for a wireline log run.</p>
+
+        <div class="formula-block">
+          <div class="formula-label">Dogleg Severity</div>
+          <div class="formula-eq">DLS (°/100ft) = (Total Angle Change) ÷ (Course Length / 100)</div>
+          <div class="formula-note">Measures how sharply the wellbore curves. Excessive DLS increases torque/drag and risks pipe fatigue at connections.</div>
+        </div>
+
+        <h2>The Directional Driller Role</h2>
+        <p>Directional drillers are specialists, usually employed by a service company rather than the drilling contractor. They monitor the MWD data stream continuously — often from a control cabin — making steering adjustments to keep the well on its planned trajectory. It's one of the higher-paying specialist tracks in drilling; see the <a href="/careers/salary">salary guide</a> for current figures.</p>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#">Why Drill Directionally</a>
+          <a href="#">How the Bit Is Steered</a>
+          <a href="#">MWD and LWD</a>
+          <a href="#">The Directional Driller Role</a>
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/drill-string" class="card-link">→ The Drill String</a><br><br>
+          <a href="/drilling/casing" class="card-link">→ Casing Design</a><br><br>
+          <a href="/careers/salary" class="card-link">→ Salary Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

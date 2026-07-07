@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+<BaseLayout
+  title="Types of Oil Drilling Rigs — Land, Jack-Up, Semi-Sub, Drillship"
+  description="Every type of oil and gas drilling rig explained: land rigs, jack-ups, semi-submersibles, drillships, platform rigs, and submersibles, with depth capacity and specs."
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Rig Types', href: '/equipment/rig-types' }]}
+>
+  <Nav slot="nav" />
+  <Footer slot="footer" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Rig Classification</div>
+    <h1>Types of <span>Drilling Rigs</span></h1>
+    <p class="page-hero-sub">Different environments require fundamentally different rig designs. Water depth, geological conditions, and economics determine which type is deployed.</p>
+  </div>
+
+  <section class="block">
+    <div class="rig-types grid-auto-300">
+      <div class="rig-card" style="border:1px solid var(--iron);border-radius:3px;padding:24px;background:var(--ink);position:relative;overflow:hidden;">
+        <h3 style="font-family:var(--cond);font-weight:700;font-size:20px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Land Rig</h3>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:12px;">Onshore</span>
+        <p style="font-size:13px;color:var(--fog);line-height:1.65;margin-bottom:12px;">Truck-mounted or skid-mounted rigs that drill on land. Range from shallow exploration wells to deep shale plays. The most common rig type worldwide.</p>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Depth capacity</span><span style="font-family:var(--mono);color:var(--mist);">500 – 35,000 ft</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Mob cost</span><span style="font-family:var(--mono);color:var(--mist);">$10K – $500K</span></div>
+        </div>
+      </div>
+
+      <div class="rig-card" style="border:1px solid var(--iron);border-radius:3px;padding:24px;background:var(--ink);">
+        <h3 style="font-family:var(--cond);font-weight:700;font-size:20px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Jack-up Rig</h3>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:12px;">Shallow Offshore</span>
+        <p style="font-size:13px;color:var(--fog);line-height:1.65;margin-bottom:12px;">Three or four retractable steel legs punch into the seabed, jacking the hull above wave height. The workhorse of shallow-water drilling.</p>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Depth capacity</span><span style="font-family:var(--mono);color:var(--mist);">up to 35,000 ft</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Water depth</span><span style="font-family:var(--mono);color:var(--mist);">≤ 400 ft</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Day rate</span><span style="font-family:var(--mono);color:var(--mist);">$80K – $180K/day</span></div>
+        </div>
+      </div>
+
+      <div class="rig-card" style="border:1px solid var(--iron);border-radius:3px;padding:24px;background:var(--ink);">
+        <h3 style="font-family:var(--cond);font-weight:700;font-size:20px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Semi-submersible</h3>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:12px;">Deepwater</span>
+        <p style="font-size:13px;color:var(--fog);line-height:1.65;margin-bottom:12px;">Pontoons flooded with seawater provide stability below the wave zone. Anchored or dynamically positioned. Used in deepwater plays.</p>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Depth capacity</span><span style="font-family:var(--mono);color:var(--mist);">up to 40,000 ft</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Water depth</span><span style="font-family:var(--mono);color:var(--mist);">up to 12,000 ft</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Day rate</span><span style="font-family:var(--mono);color:var(--mist);">$250K – $500K/day</span></div>
+        </div>
+      </div>
+
+      <div class="rig-card" style="border:1px solid var(--iron);border-radius:3px;padding:24px;background:var(--ink);">
+        <h3 style="font-family:var(--cond);font-weight:700;font-size:20px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Drillship</h3>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:12px;">Ultra-deepwater</span>
+        <p style="font-size:13px;color:var(--fog);line-height:1.65;margin-bottom:12px;">A purpose-built ship with a moon pool for the drill string. Dynamic positioning keeps it on location without anchors.</p>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Depth capacity</span><span style="font-family:var(--mono);color:var(--mist);">40,000+ ft</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Water depth</span><span style="font-family:var(--mono);color:var(--mist);">up to 15,000 ft</span></div>
+        </div>
+      </div>
+
+      <div class="rig-card" style="border:1px solid var(--iron);border-radius:3px;padding:24px;background:var(--ink);">
+        <h3 style="font-family:var(--cond);font-weight:700;font-size:20px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Platform Rig</h3>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:12px;">Fixed / Production</span>
+        <p style="font-size:13px;color:var(--fog);line-height:1.65;margin-bottom:12px;">Fixed to the seabed via steel jacket or concrete gravity base. Permanently installed, drilling dozens of wells from one location.</p>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Water depth</span><span style="font-family:var(--mono);color:var(--mist);">up to 1,500 ft</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Well capacity</span><span style="font-family:var(--mono);color:var(--mist);">20 – 60+ wells</span></div>
+        </div>
+      </div>
+
+      <div class="rig-card" style="border:1px solid var(--iron);border-radius:3px;padding:24px;background:var(--ink);">
+        <h3 style="font-family:var(--cond);font-weight:700;font-size:20px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Submersible / Barge</h3>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:12px;">Swamp / Shallow</span>
+        <p style="font-size:13px;color:var(--fog);line-height:1.65;margin-bottom:12px;">Flooded hull rests on the seabed in very shallow water — bays, swamps, and marshes. Common along the Gulf Coast and Southeast Asia.</p>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Water depth</span><span style="font-family:var(--mono);color:var(--mist);">≤ 70 ft</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Terrain</span><span style="font-family:var(--mono);color:var(--mist);">Marsh, bay, lake</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Comparison</div>
+    <h2 class="section-title">Jack-Up vs <span>Semi-Submersible</span></h2>
+    <p style="color:var(--fog);max-width:640px;margin-bottom:24px;">The two most common offshore rig types are often compared directly since they can overlap in shallower water depths.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th></th><th>Jack-up Rig</th><th>Semi-Submersible</th></tr></thead>
+        <tbody>
+          <tr><td>Water Depth</td><td>Up to ~400 ft</td><td>400 – 12,000 ft</td></tr>
+          <tr><td>Stability Method</td><td>Legs rest on seabed</td><td>Floats, held by anchors or DP</td></tr>
+          <tr><td>Mobility</td><td>Towed, legs must jack down/up</td><td>Can reposition more easily</td></tr>
+          <tr><td>Day Rate</td><td>Lower ($80K–$180K)</td><td>Higher ($250K–$500K)</td></tr>
+          <tr><td>Best For</td><td>Shallow shelf drilling</td><td>Deepwater exploration & development</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</BaseLayout>

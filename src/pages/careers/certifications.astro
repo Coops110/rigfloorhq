@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+<BaseLayout
+  title="Oil Rig Certifications Explained — BOSIET, IWCF, H2S, NEBOSH"
+  description="Every certification required to work on an oil rig, explained: BOSIET, HUET, IWCF well control levels, H2S safety, NEBOSH, and which roles need which certs."
+  breadcrumbs={[{ label: 'Careers', href: '/careers' }, { label: 'Certifications', href: '/careers/certifications' }]}
+>
+  <Nav slot="nav" />
+  <Footer slot="footer" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Careers — Requirements</div>
+    <h1>Rig <span>Certifications</span> Explained</h1>
+    <p class="page-hero-sub">What each certification actually covers, how long it takes, and which roles require it. Certifications are the fastest way to accelerate your career progression.</p>
+  </div>
+
+  <section class="block">
+    <div class="card-grid">
+      <div class="card">
+        <h3>BOSIET / FOET</h3>
+        <p><strong>Basic Offshore Safety Induction & Emergency Training.</strong> Mandatory for anyone going offshore. Covers helicopter underwater escape (HUET), sea survival, firefighting, and first aid. Valid for 4 years; FOET (Further Offshore Emergency Training) is the renewal course.</p>
+        <span class="card-tag">Required — All Offshore Roles</span>
+      </div>
+      <div class="card">
+        <h3>IWCF Well Control</h3>
+        <p><strong>International Well Control Forum certification.</strong> Level 2 for rig floor crews, Level 3 for drillers, Level 4 for supervisors/OIM. Covers kick recognition, shut-in procedures, and well kill methods. Renewed every 2 years via exam.</p>
+        <span class="card-tag">Required — Driller & Above</span>
+      </div>
+      <div class="card">
+        <h3>IADC WellSharp</h3>
+        <p>The other globally recognized well control certification body, functionally equivalent to IWCF. Most operators accept either. Same tiered structure from drill floor through supervisor level.</p>
+        <span class="card-tag">Alternative to IWCF</span>
+      </div>
+      <div class="card">
+        <h3>H₂S Safety</h3>
+        <p><strong>Hydrogen sulfide (sour gas) awareness and escape training.</strong> Required on any well that may encounter H₂S. Covers detector use, SCBA donning, and emergency response. Typically a 1-day course.</p>
+        <span class="card-tag">Required — Sour Gas Wells</span>
+      </div>
+      <div class="card">
+        <h3>NEBOSH IGC</h3>
+        <p><strong>National Examination Board in Occupational Safety and Health.</strong> Globally recognized safety management qualification. The standard credential for HSE/safety officer roles internationally.</p>
+        <span class="card-tag">HSE Roles</span>
+      </div>
+      <div class="card">
+        <h3>OSHA 30</h3>
+        <p>30-hour general industry or construction safety course. The North American standard for safety-focused roles, often paired with or as an alternative to NEBOSH depending on region.</p>
+        <span class="card-tag">HSE Roles — North America</span>
+      </div>
+      <div class="card">
+        <h3>OPITO IMIST</h3>
+        <p><strong>International Minimum Industry Safety Training.</strong> A baseline safety awareness qualification required by most major operators for all rig personnel, regardless of role.</p>
+        <span class="card-tag">Required — Most Operators</span>
+      </div>
+      <div class="card">
+        <h3>Offshore Medical</h3>
+        <p>A medical fitness examination specific to offshore work — more rigorous than a standard physical. Required before any offshore deployment and renewed periodically (typically every 2 years).</p>
+        <span class="card-tag">Required — All Offshore Roles</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">By Role</div>
+    <h2 class="section-title">What You Need, <span>By Position</span></h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Role</th><th>Required Certifications</th></tr></thead>
+        <tbody>
+          <tr><td>Roustabout</td><td>BOSIET (offshore only), basic safety orientation</td></tr>
+          <tr><td>Roughneck</td><td>BOSIET (offshore), H₂S awareness recommended</td></tr>
+          <tr><td>Derrickhand</td><td>BOSIET, IWCF Level 2 (or working toward it)</td></tr>
+          <tr><td>Assistant Driller</td><td>BOSIET, IWCF Level 2, offshore medical</td></tr>
+          <tr><td>Driller</td><td>BOSIET, IWCF Level 3 (Driller), offshore medical</td></tr>
+          <tr><td>Toolpusher</td><td>BOSIET, IWCF Level 4 (Supervisor), offshore medical</td></tr>
+          <tr><td>HSE Officer</td><td>NEBOSH IGC or OSHA 30, BOSIET if offshore</td></tr>
+          <tr><td>Rig Welder</td><td>AWS CW, API 1104 and/or AWS D1.1, BOSIET if offshore</td></tr>
+          <tr><td>Underwater Welder</td><td>AWS D3.6M, ADCI commercial diving certification</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-box mt-24">
+      <strong>Strategy tip:</strong> Completing the next-level certification before it's strictly required for your current role signals readiness for promotion and is consistently noted by supervisors. It's one of the few genuinely controllable levers you have over how fast you advance.
+    </div>
+  </section>
+</BaseLayout>

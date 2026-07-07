@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+<BaseLayout
+  title="Drilling Calculators — Hydrostatic Pressure, Kill Sheet, Mud Weight"
+  description="Free interactive drilling calculators: hydrostatic pressure, kill sheet / kill mud weight, and mud weight window calculators using real industry formulas."
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }]}
+>
+  <Nav slot="nav" />
+  <Footer slot="footer" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">07 — Interactive Tools</div>
+    <h1>Drilling <span>Calculators</span></h1>
+    <p class="page-hero-sub">Run real drilling pressure calculations using the exact formulas taught in IWCF and IADC well control certification. Enter your well parameters and get instant results.</p>
+  </div>
+
+  <section class="block">
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-icon">⚙</span>
+        <h3>Hydrostatic Pressure Calculator</h3>
+        <p>Calculate hydrostatic pressure, compare against pore and fracture pressure, and get an instant safe/unsafe status.</p>
+        <a href="/calculators/hydrostatic" class="card-link">Open Calculator →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🚨</span>
+        <h3>Kill Sheet Calculator</h3>
+        <p>Calculate kill mud weight, formation pressure, and initial/final circulating pressure after shutting in on a kick.</p>
+        <a href="/calculators/kill-sheet" class="card-link">Open Calculator →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">📊</span>
+        <h3>Mud Weight Window Calculator</h3>
+        <p>Visualize your safe drilling window between pore pressure and fracture pressure gradients at any depth.</p>
+        <a href="/calculators/mud-weight-window" class="card-link">Open Calculator →</a>
+      </div>
+    </div>
+
+    <div class="note-box mt-40" style="max-width:800px;">
+      <strong>Important:</strong> These calculators are for educational and reference purposes. Always follow your company's approved procedures and consult your certified well control supervisor for actual operational decisions. Never make live well control decisions based solely on a reference tool.
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+<BaseLayout
+  title="Oil Rig Welding — Processes, Certifications & Career Path"
+  description="Complete guide to welding on oil rigs: SMAW, TIG, FCAW, and underwater welding processes, required certifications, and the career path from junior welder to CWI."
+  breadcrumbs={[{ label: 'Welding', href: '/welding' }]}
+>
+  <Nav slot="nav" />
+  <Footer slot="footer" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">09 — Trades</div>
+    <h1>Rig <span>Welding</span></h1>
+    <p class="page-hero-sub">Welding is one of the most critical trades on any oil rig. Structural failures in an offshore environment can be catastrophic — every weld matters.</p>
+  </div>
+
+  <section class="block">
+    <div class="section-eyebrow">Processes</div>
+    <h2 class="section-title">Welding <span>Processes Used on Rigs</span></h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Process</th><th>Full Name</th><th>Best Used For</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>SMAW</td><td>Shielded Metal Arc (Stick)</td><td>Structural repairs, pipe, windy conditions</td><td>Workhorse of rig welding. Works outdoors. Simple equipment.</td></tr>
+          <tr><td>GTAW</td><td>Gas Tungsten Arc (TIG)</td><td>Stainless steel, exotic alloys, precision</td><td>Highest quality weld. Slow. Requires clean conditions.</td></tr>
+          <tr><td>FCAW</td><td>Flux-Cored Arc Welding</td><td>Fast structural welds, windy outdoor work</td><td>Self-shielded variant works in wind where MIG fails.</td></tr>
+          <tr><td>GMAW</td><td>Gas Metal Arc (MIG)</td><td>Shop fabrication, indoor repairs</td><td>Fast and clean, but shielding gas disrupted by wind.</td></tr>
+          <tr><td>Hyperbaric</td><td>Dry Underwater Welding</td><td>Subsea structural repair</td><td>Done inside pressurized dry habitat. Best quality underwater weld, down to ~1,000m. See <a href="/welding/underwater-welding" style="color:var(--amber);">full guide</a>.</td></tr>
+          <tr><td>Wet</td><td>Wet Underwater Welding</td><td>Emergency repairs, 30–400 ft depth</td><td>Welder is directly in water. Lower quality than hyperbaric.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <h2 class="section-title" style="font-size:28px;">Key <span>Certifications</span></h2>
+        <div class="card-grid grid-2">
+          <div class="card">
+            <h3 style="font-size:14px;">API 1104</h3>
+            <p>Pipeline welding standard. Mandatory for most rig pipeline positions. Tests welding in multiple positions.</p>
+            <span class="card-tag">Pipeline — Essential</span>
+          </div>
+          <div class="card">
+            <h3 style="font-size:14px;">AWS D1.1</h3>
+            <p>Structural steel welding standard. Required for platform, derrick, and structural work. 6G pipe is the highest standard.</p>
+            <span class="card-tag">Structural — Essential</span>
+          </div>
+          <div class="card">
+            <h3 style="font-size:14px;">AWS D3.6M</h3>
+            <p>Underwater welding certification. Required for any subsea welding work.</p>
+            <span class="card-tag">Underwater Welding</span>
+          </div>
+          <div class="card">
+            <h3 style="font-size:14px;">ASME Section IX</h3>
+            <p>Pressure vessel and boiler welding qualification. Required for high-pressure vessel and piping work.</p>
+            <span class="card-tag">Pressure Vessels</span>
+          </div>
+        </div>
+        <a href="/welding/certifications" class="card-link" style="display:inline-block;margin-top:16px;">Full Certification Guide & Career Path →</a>
+      </div>
+
+      <div>
+        <h2 class="section-title" style="font-size:28px;">Explore <span>Welding</span></h2>
+        <div class="card-grid" style="grid-template-columns:1fr;">
+          <div class="card">
+            <span class="card-icon">🌊</span>
+            <h3>Underwater Welding</h3>
+            <p>How hyperbaric and wet welding actually work, what it pays, and how to become a commercial diver-welder.</p>
+            <a href="/welding/underwater-welding" class="card-link">Read More →</a>
+          </div>
+          <div class="card">
+            <span class="card-icon">📜</span>
+            <h3>Certifications & Career Path</h3>
+            <p>The complete progression from junior welder to CWI inspector, with pay at every stage.</p>
+            <a href="/welding/certifications" class="card-link">Read More →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

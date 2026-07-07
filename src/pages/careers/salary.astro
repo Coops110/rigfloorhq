@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+<BaseLayout
+  title="Oil Rig Salary Guide 2026 — Every Role, Onshore & Offshore"
+  description="Real 2026 salary data for every oil rig position: roustabout, roughneck, derrickman, driller, toolpusher, welder, and engineer. Onshore vs offshore pay compared."
+  breadcrumbs={[{ label: 'Careers', href: '/careers' }, { label: 'Salary Guide', href: '/careers/salary' }]}
+>
+  <Nav slot="nav" />
+  <Footer slot="footer" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Careers — Compensation</div>
+    <h1>Oil Rig <span>Salary Guide</span></h1>
+    <p class="page-hero-sub">What every position actually pays in 2026, and why offshore consistently pays more than the equivalent onshore role.</p>
+  </div>
+
+  <section class="block">
+    <div class="section-eyebrow">By Position</div>
+    <h2 class="section-title">2026 Pay <span>Ranges</span></h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Position</th><th>Entry / Low</th><th>Typical</th><th>Senior / High</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Roustabout</td><td>$38,000</td><td>$50,000</td><td>$60,000</td><td>No experience required</td></tr>
+          <tr><td>Roughneck / Floorhand</td><td>$45,000</td><td>$70,000</td><td>$82,000+</td><td>1–3 yrs experience typical</td></tr>
+          <tr><td>Derrickhand</td><td>$55,000</td><td>$75,000</td><td>$90,000</td><td>Works at height, mud system responsibility</td></tr>
+          <tr><td>Assistant Driller</td><td>$60,000</td><td>$78,000</td><td>$95,000</td><td>IWCF Level 2 required</td></tr>
+          <tr><td>Driller</td><td>$70,000</td><td>$95,000</td><td>$120,000</td><td>IWCF Level 3 / Driller required</td></tr>
+          <tr><td>Toolpusher</td><td>$90,000</td><td>$130,000</td><td>$180,000</td><td>Manages entire rig operation</td></tr>
+          <tr><td>OIM / Rig Manager</td><td>$150,000</td><td>$210,000</td><td>$280,000+</td><td>Top operational role on installation</td></tr>
+          <tr><td>Mud Engineer</td><td>$80,000</td><td>$105,000</td><td>$140,000</td><td>Employed by service company</td></tr>
+          <tr><td>Directional Driller</td><td>$100,000</td><td>$150,000</td><td>$200,000+</td><td>MWD/LWD specialization</td></tr>
+          <tr><td>Wellsite Geologist</td><td>$80,000</td><td>$115,000</td><td>$160,000</td><td>Geology degree required</td></tr>
+          <tr><td>HSE / Safety Officer</td><td>$65,000</td><td>$85,000</td><td>$110,000</td><td>NEBOSH or OSHA 30</td></tr>
+          <tr><td>Rig Welder (Junior)</td><td>$45,000</td><td>$55,000</td><td>$65,000</td><td>See <a href="/welding" style="color:var(--amber);">full welding guide</a></td></tr>
+          <tr><td>Rig Welder (Senior)</td><td>$90,000</td><td>$110,000</td><td>$130,000</td><td>All-position pipe welding</td></tr>
+          <tr><td>Underwater Welder</td><td>$60,000</td><td>$100,000</td><td>$150,000+</td><td>Plus depth/saturation pay</td></tr>
+          <tr><td>Company Man</td><td>$150,000</td><td>$220,000</td><td>$300,000+</td><td>Operator's representative</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-box">
+      <strong>Note on figures:</strong> These are US-market annual salary estimates based on aggregated 2025–2026 industry salary data. Actual pay varies significantly by region, employer, rig type, and market conditions. Rates in the Gulf of Mexico, North Sea, and Middle East tend to sit at the higher end; land rig rates in slower basins sit lower.
+    </div>
+  </section>
+
+  <section class="block" id="offshore-vs-onshore">
+    <div class="section-eyebrow">Comparison</div>
+    <h2 class="section-title">Offshore vs <span>Onshore</span></h2>
+
+    <div class="two-col">
+      <div class="prose">
+        <p>Offshore roles pay <strong>15–40% more</strong> than the equivalent onshore position. The premium compensates for several real tradeoffs:</p>
+        <ul>
+          <li><strong>Isolation:</strong> You're living on the installation for the full rotation, away from family and normal life.</li>
+          <li><strong>Rotation schedule:</strong> Common patterns are 14 days on / 14 off, or 28/28 for deepwater. You work long stretches, then have extended time off — a real lifestyle tradeoff, not just a pay difference.</li>
+          <li><strong>Risk profile:</strong> Helicopter transport, marine conditions, and confined-space work environments carry different risks than land operations.</li>
+          <li><strong>Physical conditions:</strong> No leaving site during your hitch. Weather, sea state, and confined living quarters for weeks at a time.</li>
+        </ul>
+        <p>In exchange, offshore workers typically get free room and board during the hitch (meaning most of your pay is disposable income), plus the extended time off that a 14/14 or 28/28 rotation provides — effectively 26 weeks of the year free for a 26/26 schedule.</p>
+      </div>
+
+      <div>
+        <h3 style="font-family:var(--cond);font-weight:700;font-size:18px;text-transform:uppercase;color:var(--white);letter-spacing:0.04em;margin-bottom:16px;">Example: Roughneck Pay Comparison</h3>
+        <div style="display:flex;flex-direction:column;gap:1px;background:var(--iron);border:1px solid var(--iron);">
+          <div style="background:var(--steel);padding:18px 20px;display:flex;justify-content:space-between;">
+            <span style="font-size:13px;color:var(--fog);">Onshore Roughneck</span>
+            <span class="mono" style="font-family:var(--mono);color:var(--white);">$50,000/yr</span>
+          </div>
+          <div style="background:var(--steel);padding:18px 20px;display:flex;justify-content:space-between;">
+            <span style="font-size:13px;color:var(--fog);">Offshore Roughneck</span>
+            <span style="font-family:var(--mono);color:var(--amber);">$65,000–$70,000/yr</span>
+          </div>
+          <div style="background:var(--iron);padding:18px 20px;display:flex;justify-content:space-between;">
+            <span style="font-size:13px;color:var(--mist);font-weight:600;">Premium</span>
+            <span style="font-family:var(--mono);color:var(--safe);">+30–40%</span>
+          </div>
+        </div>
+
+        <div class="note-box" style="margin-top:24px;">
+          <strong>Which is right for you?</strong> If you have family obligations at home and prefer daily routine, onshore work with predictable local schedules may suit you better. If you can handle extended time away and want to maximize savings, offshore's higher pay plus extended blocks of time off is hard to beat financially.
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

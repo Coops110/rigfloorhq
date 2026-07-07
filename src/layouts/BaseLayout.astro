@@ -1,0 +1,124 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  articleTag?: boolean;
+  publishDate?: string;
+  modifiedDate?: string;
+  breadcrumbs?: { label: string; href: string }[];
+  jsonLd?: Record<string, any>;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = '/og-default.png',
+  articleTag = false,
+  publishDate,
+  modifiedDate,
+  breadcrumbs = [],
+  jsonLd
+} = Astro.props;
+
+const siteUrl = 'https://rigfloorhq.com';
+const canonicalURL = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.url.pathname}`;
+const fullTitle = title.includes('RigFloorHQ') ? title : `${title} | RigFloorHQ`;
+
+const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl },
+    ...breadcrumbs.map((b, i) => ({
+      "@type": "ListItem",
+      "position": i + 2,
+      "name": b.label,
+      "item": `${siteUrl}${b.href}`
+    }))
+  ]
+} : null;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="RigFloorHQ" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content={articleTag ? 'article' : 'website'} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:site_name" content="RigFloorHQ" />
+  <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+  {publishDate && <meta property="article:published_time" content={publishDate} />}
+  {modifiedDate && <meta property="article:modified_time" content={modifiedDate} />}
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Structured Data: Organization -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "RigFloorHQ",
+    "url": siteUrl,
+    "description": "The complete oil and gas field reference for drilling, welding, and well control operations.",
+    "logo": `${siteUrl}/favicon.svg`
+  })} />
+
+  {breadcrumbJsonLd && (
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  )}
+
+  {jsonLd && (
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  )}
+
+  <style is:global>
+    @import "../styles/global.css";
+  </style>
+</head>
+<body>
+  <slot name="nav" />
+
+  {breadcrumbs.length > 0 && (
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      {breadcrumbs.map((b, i) => (
+        <>
+          <span class="sep">/</span>
+          {i === breadcrumbs.length - 1
+            ? <span class="current">{b.label}</span>
+            : <a href={b.href}>{b.label}</a>}
+        </>
+      ))}
+    </nav>
+  )}
+
+  <main>
+    <slot />
+  </main>
+
+  <slot name="footer" />
+</body>
+</html>

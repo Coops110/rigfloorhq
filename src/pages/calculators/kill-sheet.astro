@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+<BaseLayout
+  title="Kill Sheet Calculator — Kill Mud Weight & Circulating Pressure"
+  description="Free kill sheet calculator for well control. Enter SIDPP, original mud weight, TVD, and slow pump rate to calculate kill mud weight, ICP, and FCP."
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Kill Sheet', href: '/calculators/kill-sheet' }]}
+>
+  <Nav slot="nav" />
+  <Footer slot="footer" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Kill Sheet <span>Calculator</span></h1>
+    <p class="page-hero-sub">Use this after shutting in on a kick to calculate kill mud weight and circulating pressures — the same core math taught in IWCF and IADC well control certification.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🚨 Kill Sheet Calculator</div>
+          <p style="font-size:12px;color:var(--fog);margin-bottom:20px;line-height:1.65;">Requires the well to already be shut in with SIDPP recorded. See the <a href="/drilling/well-control" style="color:var(--amber);">shut-in procedure</a> if you haven't done this yet.</p>
+
+          <div class="input-row">
+            <div class="input-group">
+              <label for="omw">Original Mud Weight (ppg)</label>
+              <input type="number" id="omw" placeholder="e.g. 11.5" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="sidpp">SIDPP (psi)</label>
+              <input type="number" id="sidpp" placeholder="Shut-in DP pressure">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="kill-tvd">TVD at Bit (ft)</label>
+              <input type="number" id="kill-tvd" placeholder="e.g. 12000">
+            </div>
+            <div class="input-group">
+              <label for="spr">Slow Pump Rate Pressure (psi)</label>
+              <input type="number" id="spr" placeholder="SCR pressure">
+            </div>
+          </div>
+
+          <button class="btn btn-primary" id="calc-kill-btn" style="width:100%;text-align:center;">Calculate Kill Sheet</button>
+
+          <div class="calc-output" id="kill-output">
+            <div class="output-line"><span class="output-label">Formation Pressure</span><span class="output-value" id="out-fpp">—</span></div>
+            <div class="output-line"><span class="output-label">Kill Mud Weight</span><span class="output-value" id="out-kmw">—</span></div>
+            <div class="output-line"><span class="output-label">Initial Circ. Pressure (ICP)</span><span class="output-value" id="out-icp">—</span></div>
+            <div class="output-line" style="border-bottom:none;"><span class="output-label">Final Circ. Pressure (FCP)</span><span class="output-value" id="out-fcp">—</span></div>
+          </div>
+        </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>This is a reference tool, not an operational authority.</strong> Real well control decisions must be made by your certified well control supervisor following your company's approved procedures. Never act on a kill sheet calculation from a website alone during an actual well control event.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formulas Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">Formation Pore Pressure</div>
+          <div class="formula-eq">FPP = SIDPP + (OMW × 0.052 × TVD)</div>
+          <div class="formula-note">Direct measurement of excess formation pressure above hydrostatic once the well is shut in.</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Kill Mud Weight</div>
+          <div class="formula-eq">KMW = OMW + (SIDPP ÷ (0.052 × TVD))</div>
+          <div class="formula-note">The mud weight required to exactly balance formation pressure at the bit.</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Initial Circulating Pressure</div>
+          <div class="formula-eq">ICP = SIDPP + Slow Pump Rate Pressure</div>
+          <div class="formula-note">The standpipe pressure to hold at the start of the kill circulation.</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Final Circulating Pressure</div>
+          <div class="formula-eq">FCP = (KMW ÷ OMW) × Slow Pump Rate Pressure</div>
+          <div class="formula-note">The standpipe pressure once kill mud has fully displaced the wellbore.</div>
+        </div>
+
+        <h3>What Is Slow Pump Rate Pressure?</h3>
+        <p>SPR (also called SCR — slow circulating rate pressure) is the standpipe pressure recorded at a reduced, standardized pump rate — measured routinely during normal operations specifically so it's available if a kick occurs. Without a current SPR reading, ICP and FCP can't be calculated accurately, which is why crews record it every shift as standard practice.</p>
+
+        <p>For the full step-by-step shut-in procedure and the difference between the Driller's Method and Wait-and-Weight, see the <a href="/drilling/well-control">well control reference page</a>.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const btn = document.getElementById('calc-kill-btn');
+  btn?.addEventListener('click', () => {
+    const omw = parseFloat((document.getElementById('omw') as HTMLInputElement).value);
+    const sidpp = parseFloat((document.getElementById('sidpp') as HTMLInputElement).value);
+    const tvd = parseFloat((document.getElementById('kill-tvd') as HTMLInputElement).value);
+    const spr = parseFloat((document.getElementById('spr') as HTMLInputElement).value);
+
+    if (!omw || !sidpp || !tvd || !spr) {
+      alert('Please fill in all four fields.');
+      return;
+    }
+
+    const fpp = sidpp + (omw * 0.052 * tvd);
+    const kmw = omw + (sidpp / (0.052 * tvd));
+    const icp = sidpp + spr;
+    const fcp = (kmw / omw) * spr;
+
+    (document.getElementById('out-fpp') as HTMLElement).textContent = fpp.toFixed(0) + ' psi';
+    (document.getElementById('out-kmw') as HTMLElement).textContent = kmw.toFixed(2) + ' ppg';
+    (document.getElementById('out-icp') as HTMLElement).textContent = icp.toFixed(0) + ' psi';
+    (document.getElementById('out-fcp') as HTMLElement).textContent = fcp.toFixed(0) + ' psi';
+
+    document.getElementById('kill-output')?.classList.add('visible');
+  });
+</script>

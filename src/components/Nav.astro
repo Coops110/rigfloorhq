@@ -1,0 +1,20 @@
+---
+const path = Astro.url.pathname;
+const isActive = (href: string) => path === href || (href !== '/' && path.startsWith(href));
+
+const links = [
+  { href: '/careers', label: 'Careers' },
+  { href: '/equipment', label: 'Equipment' },
+  { href: '/drilling', label: 'Drilling' },
+  { href: '/calculators', label: 'Calculators' },
+  { href: '/welding', label: 'Welding' },
+  { href: '/safety', label: 'Safety' },
+  { href: '/glossary', label: 'Glossary' },
+];
+---
+<nav class="site-nav">
+  <a href="/" class="nav-logo">RigFloorHQ</a>
+  {links.map(link => (
+    <a href={link.href} class={`nav-link ${isActive(link.href) ? 'active' : ''}`}>{link.label}</a>
+  ))}
+</nav>

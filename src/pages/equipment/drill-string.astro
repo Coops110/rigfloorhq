@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+<BaseLayout
+  title="The Drill String Explained — Drill Pipe, Collars, BHA, Bits"
+  description="Every component of the drill string from top drive to drill bit: drill pipe, heavy weight drill pipe, drill collars, BHA, and bit types explained."
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Drill String', href: '/equipment/drill-string' }]}
+>
+  <Nav slot="nav" />
+  <Footer slot="footer" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole</div>
+    <h1>The <span>Drill String</span></h1>
+    <p class="page-hero-sub">A single connected system running from the rig floor to the bit, sometimes miles below — transmitting rotation, weight, and drilling fluid the entire way.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2>What the Drill String Does</h2>
+        <p>The drill string transmits rotation and weight to the bit while providing a conduit for drilling fluid to travel from surface, down through the pipe, out through the bit nozzles, and back up the annulus carrying rock cuttings. Every joint is threaded and torqued to precise specifications — a failed connection thousands of feet down is a serious and expensive problem.</p>
+
+        <h2>Components, Top to Bottom</h2>
+        <div style="display:flex;flex-direction:column;gap:8px;margin:24px 0;">
+          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--iron);border-radius:3px;align-items:center;">
+            <span style="font-family:var(--mono);font-size:11px;color:var(--rust);min-width:56px;">TOP</span>
+            <div><strong style="color:var(--white);font-size:14px;">Top Drive</strong><br><span style="font-size:12px;color:var(--fog);">Modern rigs use a top drive motor instead of a kelly and rotary table, allowing full rotation while adding stands, rather than only 90-ft increments.</span></div>
+          </div>
+          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
+            <div><strong style="color:var(--white);font-size:14px;">Drill Pipe</strong><br><span style="font-size:12px;color:var(--fog);">Main body of the string — 5" OD, 30 ft joints threaded together. Can run thousands of feet deep.</span></div>
+          </div>
+          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
+            <div><strong style="color:var(--white);font-size:14px;">Heavy Weight Drill Pipe (HWDP)</strong><br><span style="font-size:12px;color:var(--fog);">Thicker-walled transition pipe between drill pipe and drill collars, reducing fatigue failures at the point of maximum stress.</span></div>
+          </div>
+          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
+            <div><strong style="color:var(--white);font-size:14px;">Drill Collars</strong><br><span style="font-size:12px;color:var(--fog);">Heavy thick-walled pipe providing weight on bit (WOB) — the downward force needed for the bit to cut rock.</span></div>
+          </div>
+          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
+            <div><strong style="color:var(--white);font-size:14px;">MWD/LWD Tools</strong><br><span style="font-size:12px;color:var(--fog);">Measurement and logging tools transmitting directional and formation data to surface in real time. See <a href="/drilling/directional" style="color:var(--amber);">directional drilling</a>.</span></div>
+          </div>
+          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
+            <div><strong style="color:var(--white);font-size:14px;">Stabilizers</strong><br><span style="font-size:12px;color:var(--fog);">Keep the BHA centered in the hole to control trajectory and reduce vibration.</span></div>
+          </div>
+          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--iron);border-radius:3px;align-items:center;">
+            <span style="font-family:var(--mono);font-size:11px;color:var(--rust);min-width:56px;">BOTTOM</span>
+            <div><strong style="color:var(--white);font-size:14px;">Drill Bit</strong><br><span style="font-size:12px;color:var(--fog);">Cuts the rock. Type is chosen based on formation hardness — see comparison below.</span></div>
+          </div>
+        </div>
+
+        <h2>Bit Types</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Bit Type</th><th>Cutting Action</th><th>Best For</th></tr></thead>
+            <tbody>
+              <tr><td>PDC</td><td>Shearing (fixed cutters)</td><td>Soft to medium formations, fast ROP, most common bit type today</td></tr>
+              <tr><td>Roller Cone (Tricone)</td><td>Crushing/gouging (rotating cones)</td><td>Hard, abrasive, or interbedded formations</td></tr>
+              <tr><td>Diamond Impregnated</td><td>Grinding</td><td>Extremely hard formations where PDC cutters would fail</td></tr>
+              <tr><td>Hybrid</td><td>Combined shearing + crushing</td><td>Variable/interbedded formations needing both mechanisms</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Drilling Parameters Monitored Through the String</h2>
+        <p>The driller watches several parameters continuously, all tied to how the string is performing downhole: <strong>WOB</strong> (weight on bit), <strong>RPM</strong> (rotation speed), <strong>ROP</strong> (rate of penetration), <strong>torque</strong> (resistance to rotation), and <strong>standpipe pressure</strong> (pump pressure at surface). A sudden change in any of these — particularly a sharp torque increase or ROP spike — is often the first sign of a problem downhole, from a formation change to the early signs of a stuck pipe or kick.</p>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#">What the Drill String Does</a>
+          <a href="#">Components Top to Bottom</a>
+          <a href="#">Bit Types</a>
+          <a href="#">Parameters Monitored</a>
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/drilling" class="card-link">→ How Drilling Works</a><br><br>
+          <a href="/drilling/directional" class="card-link">→ Directional Drilling</a><br><br>
+          <a href="/equipment/bop" class="card-link">→ Blowout Preventers</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

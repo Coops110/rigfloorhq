@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "RigFloorHQ",
+  "url": "https://rigfloorhq.com",
+  "description": "The complete oil and gas field reference for drilling, welding, well control, and careers.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://rigfloorhq.com/glossary?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
+---
+<BaseLayout
+  title="RigFloorHQ — The Complete Oil & Gas Field Reference"
+  description="Everything about working on an oil rig: career paths from roustabout to toolpusher, drilling pressure calculators, well control procedures, welding certifications, and a full field glossary."
+  jsonLd={jsonLd}
+>
+  <Nav slot="nav" />
+  <Footer slot="footer" />
+
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+
+    <div class="hero-eyebrow">⚙ Field Reference — Drilling · Welding · Well Control · Careers</div>
+    <h1>Everything<br>on the <span>Rig.</span></h1>
+    <p class="hero-sub">From your first day as a roustabout to running your own kill sheet — the complete technical and career reference for oil and gas field operations.</p>
+
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">30K+</span><span class="stat-label">Active rigs worldwide</span></div>
+      <div class="stat"><span class="stat-num">$50K</span><span class="stat-label">Entry salary / yr</span></div>
+      <div class="stat"><span class="stat-num">0.052</span><span class="stat-label">Hydrostatic constant</span></div>
+      <div class="stat"><span class="stat-num">8–12</span><span class="stat-label">Yrs to Toolpusher</span></div>
+    </div>
+
+    <div class="hero-cta">
+      <a href="/careers/roughneck" class="btn btn-primary">How to Get Hired</a>
+      <a href="/calculators" class="btn btn-outline">Open Calculators</a>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Start Here</div>
+    <h2 class="section-title">Pick Your <span>Path</span></h2>
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-icon">🪜</span>
+        <h3>New to the Industry</h3>
+        <p>No experience needed. Learn the roles, the hierarchy, and exactly what it takes to land your first job as a roustabout.</p>
+        <a href="/careers/roughneck" class="card-link">How to Become a Roughneck →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🧮</span>
+        <h3>Working Rig Hand</h3>
+        <p>Run real hydrostatic pressure, mud weight, and kill sheet calculations. Formulas explained the way a driller would explain them.</p>
+        <a href="/calculators" class="card-link">Open Calculators →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎓</span>
+        <h3>Engineer or Supervisor</h3>
+        <p>Deep technical reference on pore pressure prediction, ECD, casing design, and well control theory.</p>
+        <a href="/drilling/well-control" class="card-link">Well Control Reference →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔥</span>
+        <h3>Welder / Trades</h3>
+        <p>Every welding process used on a rig, the certifications that matter, and the career path from junior welder to CWI.</p>
+        <a href="/welding" class="card-link">Rig Welding Guide →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Explore</div>
+    <h2 class="section-title">Full <span>Reference Library</span></h2>
+    <div class="related-links">
+      <a href="/careers" class="related-link"><div class="rl-label">Careers</div><div class="rl-title">Roles & Hierarchy</div></a>
+      <a href="/careers/salary" class="related-link"><div class="rl-label">Careers</div><div class="rl-title">Salary Guide 2026</div></a>
+      <a href="/careers/certifications" class="related-link"><div class="rl-label">Careers</div><div class="rl-title">Certifications (BOSIET, IWCF)</div></a>
+      <a href="/equipment/rig-types" class="related-link"><div class="rl-label">Equipment</div><div class="rl-title">Types of Drilling Rigs</div></a>
+      <a href="/equipment/bop" class="related-link"><div class="rl-label">Equipment</div><div class="rl-title">Blowout Preventers</div></a>
+      <a href="/equipment/drill-string" class="related-link"><div class="rl-label">Equipment</div><div class="rl-title">The Drill String</div></a>
+      <a href="/drilling" class="related-link"><div class="rl-label">Drilling</div><div class="rl-title">How Drilling Works</div></a>
+      <a href="/drilling/mud-weight" class="related-link"><div class="rl-label">Drilling</div><div class="rl-title">Mud Weight & Pressure</div></a>
+      <a href="/drilling/well-control" class="related-link"><div class="rl-label">Drilling</div><div class="rl-title">Well Control & Kicks</div></a>
+      <a href="/drilling/directional" class="related-link"><div class="rl-label">Drilling</div><div class="rl-title">Directional Drilling</div></a>
+      <a href="/calculators/hydrostatic" class="related-link"><div class="rl-label">Tools</div><div class="rl-title">Hydrostatic Pressure Calc</div></a>
+      <a href="/calculators/kill-sheet" class="related-link"><div class="rl-label">Tools</div><div class="rl-title">Kill Sheet Calculator</div></a>
+      <a href="/welding/underwater-welding" class="related-link"><div class="rl-label">Welding</div><div class="rl-title">Underwater Welding</div></a>
+      <a href="/safety/h2s" class="related-link"><div class="rl-label">Safety</div><div class="rl-title">H₂S Safety</div></a>
+      <a href="/glossary" class="related-link"><div class="rl-label">Reference</div><div class="rl-title">Full Glossary A–Z</div></a>
+    </div>
+  </section>
+</BaseLayout>
