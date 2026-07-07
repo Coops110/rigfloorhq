@@ -1,5 +1,6 @@
 {
   "installCommand": "npm install --legacy-peer-deps",
-  "buildCommand": "npx astro build",
-  "outputDirectory": "dist"
+  "dependencies": {
+    "astro": "^7.0.6"
+  }
 }
