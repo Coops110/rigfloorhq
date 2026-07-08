@@ -1,0 +1,124 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const posts = allPosts.sort((a, b) =>
+  new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
+);
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+---
+<BaseLayout
+  title="Blog — Oil & Gas Industry Insights, Well Control, Careers"
+  description="RigFloorHQ's blog covers well control, drilling operations, career progression, and practical field guidance for anyone working in oil and gas."
+  breadcrumbs={[{ label: 'Blog', href: '/blog' }]}
+>
+  <Nav slot="nav" />
+  <Footer slot="footer" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Blog</div>
+    <h1>Field <span>Notes</span></h1>
+    <p class="page-hero-sub">Deeper dives, practical guidance, and industry perspective — beyond the core reference pages.</p>
+  </div>
+
+  <section class="block">
+    <div class="blog-list">
+      {posts.map(post => (
+        <a href={`/blog/${post.slug}`} class="blog-card">
+          <div class="blog-card-meta">
+            <span class="blog-card-category">{post.data.category}</span>
+            <span class="blog-card-date">{formatDate(post.data.publishDate)}</span>
+          </div>
+          <h2 class="blog-card-title">{post.data.title}</h2>
+          <p class="blog-card-desc">{post.data.description}</p>
+          <span class="blog-card-link">Read more →</span>
+        </a>
+      ))}
+    </div>
+
+    {posts.length === 0 && (
+      <p style="color:var(--fog);">No posts published yet — check back soon.</p>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--iron);
+    border: 1px solid var(--iron);
+    max-width: 800px;
+  }
+
+  .blog-card {
+    display: block;
+    background: var(--steel);
+    padding: 28px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .blog-card:hover { background: var(--iron); }
+
+  .blog-card-meta {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .blog-card-category {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid rgba(232,160,32,0.3);
+    padding: 2px 8px;
+    border-radius: 2px;
+  }
+
+  .blog-card-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--fog);
+  }
+
+  .blog-card-title {
+    font-family: var(--cond);
+    font-weight: 700;
+    font-size: 22px;
+    text-transform: uppercase;
+    color: var(--white);
+    letter-spacing: 0.01em;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+
+  .blog-card-desc {
+    font-size: 14px;
+    color: var(--fog);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  .blog-card-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--rust);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 640px) {
+    .blog-card-title { font-size: 26px; }
+  }
+</style>

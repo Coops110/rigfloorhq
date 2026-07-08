@@ -41,7 +41,6 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
   ]
 } : null;
 ---
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,7 +76,7 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Structured Data -->
+  <!-- Structured Data: Organization -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -98,13 +97,6 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
   <style is:global>
     @import "../styles/global.css";
   </style>
-
-  <!-- Harbor SEO Script -->
-  <script
-  data-harbor-site="nd7e7f4edba47fk8pzfx03gkhn8a3mmy"
-  src="https://outgoing-oyster-428.convex.site/api/harbor-seo.js?siteId=nd7e7f4edba47fk8pzfx03gkhn8a3mmy"
-  async>
-</script>
 </head>
 <body>
   <slot name="nav" />

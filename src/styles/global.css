@@ -36,7 +36,8 @@ body {
 }
 
 img, table, .table-wrap, pre, code { max-width: 100%; }
-h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
+h1, h2, h3, h4 { overflow-wrap: normal; word-break: normal; }
+.hero h1, .page-hero h1 { overflow-wrap: normal; word-break: keep-all; hyphens: none; }
 
 a { color: inherit; }
 img { max-width: 100%; display: block; }
