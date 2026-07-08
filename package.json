@@ -1,16 +1,9 @@
 {
-  "name": "rigfloorhq",
-  "type": "module",
-  "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/sitemap": "^3.6.0",
-    "astro": "^4.16.0"
+    "postinstall": "chmod +x ./node_modules/.bin/astro"
   }
 }
