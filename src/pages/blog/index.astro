@@ -30,7 +30,7 @@ function formatDate(dateStr: string) {
   <section class="block">
     <div class="blog-list">
       {posts.map(post => (
-        <a href={`/blog/${post.slug}`} class="blog-card">
+        <a href={`/blog/${post.id}`} class="blog-card">
           <div class="blog-card-meta">
             <span class="blog-card-category">{post.data.category}</span>
             <span class="blog-card-date">{formatDate(post.data.publishDate)}</span>
