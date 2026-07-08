@@ -3,7 +3,9 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
-    "prepare": "chmod +x ./node_modules/.bin/astro || true"
+    "preview": "astro preview"
+  },
+  "devDependencies": {
+    "astro": "^7.0.6"
   }
 }
