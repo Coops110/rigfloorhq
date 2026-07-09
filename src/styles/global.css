@@ -68,16 +68,18 @@ nav.site-nav {
 nav.site-nav::-webkit-scrollbar { display: none; }
 
 .nav-logo {
-  font-family: var(--cond);
-  font-weight: 900;
-  font-size: 17px;
-  color: var(--rust);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  display: flex;
+  align-items: center;
   white-space: nowrap;
   margin-right: 16px;
   flex-shrink: 0;
   text-decoration: none;
+  height: 32px;
+}
+.nav-logo-img {
+  height: 100%;
+  width: auto;
+  display: block;
 }
 
 nav.site-nav a.nav-link {
@@ -100,7 +102,7 @@ nav.site-nav a.nav-link {
 
 @media (min-width: 640px) {
   nav.site-nav { padding: 0 24px; height: 52px; }
-  .nav-logo { font-size: 20px; margin-right: 24px; }
+  .nav-logo { height: 36px; margin-right: 24px; }
   nav.site-nav a.nav-link { font-size: 12px; letter-spacing: 0.08em; padding: 0 11px; }
 }
 nav.site-nav a.nav-link:hover,

@@ -14,7 +14,7 @@ const links = [
 ];
 ---
 <nav class="site-nav">
-  <a href="/" class="nav-logo">RigFloorHQ</a>
+  <a href="/" class="nav-logo"><img src="/logo.svg" alt="RigFloorHQ" class="nav-logo-img" /></a>
   {links.map(link => (
     <a href={link.href} class={`nav-link ${isActive(link.href) ? 'active' : ''}`}>{link.label}</a>
   ))}
