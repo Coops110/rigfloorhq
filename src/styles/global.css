@@ -91,7 +91,7 @@ nav.site-nav a.nav-link {
   color: var(--fog);
   text-decoration: none;
   padding: 0 11px;
-  height: 52px;
+  height: 100%;
   display: flex;
   align-items: center;
   border-bottom: 2px solid transparent;
@@ -163,10 +163,11 @@ nav.site-nav a.nav-link.active { color: var(--amber); border-bottom-color: var(-
 .nav-mobile-link.active { color: var(--amber); background: rgba(201,74,31,0.08); }
 
 /* Desktop: show horizontal links, hide hamburger + mobile menu */
-@media (min-width: 900px) {
-  nav.site-nav { padding: 0 24px; height: 52px; justify-content: flex-start; }
-  .nav-logo { height: 36px; margin-right: 24px; }
+@media (min-width: 950px) {
+  nav.site-nav { padding: 0 24px; height: 60px; justify-content: flex-start; }
+  .nav-logo { height: 52px; margin-right: 20px; }
   .nav-links-desktop { display: flex; align-items: center; height: 100%; }
+  .nav-links-desktop a.nav-link { font-size: 13px; padding: 0 9px; }
   .nav-hamburger { display: none; }
   .nav-mobile-menu { display: none; }
 }
