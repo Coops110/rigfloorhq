@@ -36,7 +36,8 @@ body {
 }
 
 img, table, .table-wrap, pre, code { max-width: 100%; }
-h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; }
+h1, h2, h3, h4 { overflow-wrap: normal; word-break: normal; }
+.hero h1, .page-hero h1 { overflow-wrap: normal; word-break: keep-all; hyphens: none; }
 
 a { color: inherit; }
 img { max-width: 100%; display: block; }
@@ -55,40 +56,42 @@ nav.site-nav {
   border-bottom: 1px solid rgba(201,74,31,0.3);
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 0;
   padding: 0 16px;
   height: 48px;
   max-width: 100vw;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
 }
-nav.site-nav::-webkit-scrollbar { display: none; }
 
 .nav-logo {
-  font-family: var(--cond);
-  font-weight: 900;
-  font-size: 17px;
-  color: var(--rust);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  display: flex;
+  align-items: center;
   white-space: nowrap;
-  margin-right: 16px;
   flex-shrink: 0;
   text-decoration: none;
+  height: 32px;
+}
+.nav-logo-img {
+  height: 100%;
+  width: auto;
+  display: block;
+}
+
+/* Desktop link row - hidden on mobile */
+.nav-links-desktop {
+  display: none;
 }
 
 nav.site-nav a.nav-link {
   font-family: var(--cond);
   font-weight: 600;
-  font-size: 11px;
-  letter-spacing: 0.06em;
+  font-size: 12px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--fog);
   text-decoration: none;
-  padding: 0 9px;
-  height: 100%;
+  padding: 0 11px;
+  height: 52px;
   display: flex;
   align-items: center;
   border-bottom: 2px solid transparent;
@@ -96,14 +99,77 @@ nav.site-nav a.nav-link {
   white-space: nowrap;
   flex-shrink: 0;
 }
-
-@media (min-width: 640px) {
-  nav.site-nav { padding: 0 24px; height: 52px; }
-  .nav-logo { font-size: 20px; margin-right: 24px; }
-  nav.site-nav a.nav-link { font-size: 12px; letter-spacing: 0.08em; padding: 0 11px; }
-}
 nav.site-nav a.nav-link:hover,
 nav.site-nav a.nav-link.active { color: var(--amber); border-bottom-color: var(--amber); }
+
+/* Hamburger button */
+.nav-hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.nav-hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--amber);
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.25s;
+}
+.nav-hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.active span:nth-child(2) { opacity: 0; }
+.nav-hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile dropdown menu */
+.nav-mobile-menu {
+  position: sticky;
+  top: 48px;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  background: rgba(14,15,17,0.98);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(201,74,31,0.3);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  max-width: 100vw;
+}
+.nav-mobile-menu.open {
+  max-height: 100vh;
+}
+.nav-mobile-link {
+  font-family: var(--cond);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mist);
+  text-decoration: none;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--iron);
+  transition: background 0.15s, color 0.15s;
+}
+.nav-mobile-link:last-child { border-bottom: none; }
+.nav-mobile-link:hover,
+.nav-mobile-link.active { color: var(--amber); background: rgba(201,74,31,0.08); }
+
+/* Desktop: show horizontal links, hide hamburger + mobile menu */
+@media (min-width: 900px) {
+  nav.site-nav { padding: 0 24px; height: 52px; justify-content: flex-start; }
+  .nav-logo { height: 36px; margin-right: 24px; }
+  .nav-links-desktop { display: flex; align-items: center; height: 100%; }
+  .nav-hamburger { display: none; }
+  .nav-mobile-menu { display: none; }
+}
 
 /* ── BREADCRUMB ──────────────────────────────────────── */
 .breadcrumb {

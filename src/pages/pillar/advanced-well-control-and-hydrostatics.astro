@@ -1,0 +1,166 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Advanced Well Control & Hydrostatics",
+  "description": "Pressure management reference for supervisors and engineers: TVD vs MD, pressure gradients, ECD, kill methods, and regional well control considerations.",
+  "about": "Well control engineering"
+};
+---
+<BaseLayout
+  title="Advanced Well Control & Hydrostatics — Supervisor & Engineer Reference"
+  description="Mastering pressure management for supervisors and engineers: TVD vs MD, pressure gradients, ECD, Driller's Method vs Wait and Weight, volumetric method, and MPD."
+  breadcrumbs={[{ label: 'Advanced Well Control & Hydrostatics', href: '/pillars/advanced-well-control-and-hydrostatics' }]}
+  jsonLd={jsonLd}
+>
+  <Nav slot="nav" />
+  <Footer slot="footer" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Advanced Technical Series</div>
+    <h1>Advanced <span>Well Control</span> &amp; Hydrostatics</h1>
+    <p class="page-hero-sub">Mastering pressure management for supervisors and engineers across the Permian Basin, Gulf Coast, and global offshore operations.</p>
+    <div class="page-meta">
+      <a href="/calculators/kill-sheet" class="btn btn-primary" style="margin-top:8px;">Access Digital Kill Sheets</a>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="prose" style="max-width:800px;margin:0 auto;text-align:left;">
+      <h2 style="text-align:center;">The Science of Pressure in the Field</h2>
+      <p>From the high-pressure reservoirs of the Delaware Basin to the deepwater challenges of the Gulf of Mexico, advanced well control and hydrostatics form the backbone of drilling safety. This reference covers the technical ground required for personnel moving from Level 2/3 basic certification to Level 4/5 supervisory and engineering roles.</p>
+      <p>In the oil and gas sector, a kick isn't just an operational delay — it's a high-stakes physics problem. Managing hydrostatic pressure effectively prevents formation fluids from entering the wellbore, protecting both the crew and the integrity of the rig equipment.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Foundations</div>
+    <h2 class="section-title">Core Hydrostatic <span>Foundations</span></h2>
+    <p style="color:var(--fog);max-width:700px;margin-bottom:24px;">Before moving into complex kill procedures, every driller and engineer must master the governing formula — the primary barrier against blowouts.</p>
+
+    <div class="formula-block" style="max-width:600px;">
+      <div class="formula-label">Hydrostatic Pressure</div>
+      <div class="formula-eq">P = 0.052 × Mud Weight (ppg) × TVD (ft)</div>
+    </div>
+
+    <div class="card-grid mt-24">
+      <div class="card">
+        <h3>True Vertical Depth (TVD)</h3>
+        <p>Advanced hydrostatics strictly distinguishes Measured Depth (MD) from TVD. In directional and horizontal wells, hydrostatic pressure is generated only by the vertical column of fluid, not the total length of pipe — critical for offshore operators in the Gulf and land-based directional drillers in the Permian.</p>
+      </div>
+      <div class="card">
+        <h3>Pressure Gradients</h3>
+        <p>Standard saltwater gradients sit around 0.465 psi/ft. When formation pressures exceed this — abnormal pressure — hydrostatic management through high-density mud systems becomes necessary. See the <a href="/drilling/mud-weight">mud weight guide</a> for the full breakdown.</p>
+      </div>
+      <div class="card">
+        <h3>Equivalent Circulating Density</h3>
+        <p>ECD accounts for the added pressure exerted by fluid friction during circulation. In narrow mud weight windows, managing ECD is the difference between maintaining well control and fracturing the formation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Kill Methods</div>
+    <h2 class="section-title">Secondary Well Control <span>&amp; Kill Methods</span></h2>
+    <p style="color:var(--fog);max-width:700px;margin-bottom:24px;">When primary barriers fail and a kick is detected, supervisors choose the appropriate circulation method based on well conditions and equipment limits.</p>
+
+    <div class="two-col">
+      <div>
+        <h3 style="font-family:var(--cond);font-weight:700;font-size:19px;text-transform:uppercase;color:var(--white);margin-bottom:10px;">The Driller's Method</h3>
+        <p style="color:var(--fog);font-size:14px;margin-bottom:12px;">Commonly used when the kick is discovered immediately. Involves two complete circulations:</p>
+        <ul style="padding-left:20px;">
+          <li style="color:var(--mist);margin-bottom:8px;">First circulation: remove the influx using original mud weight</li>
+          <li style="color:var(--mist);margin-bottom:8px;">Second circulation: pump kill mud to stabilize the well</li>
+          <li style="color:var(--mist);margin-bottom:8px;">Benefit: allows immediate response without waiting for kill mud to be weighted up</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-family:var(--cond);font-weight:700;font-size:19px;text-transform:uppercase;color:var(--white);margin-bottom:10px;">Wait and Weight Method</h3>
+        <p style="color:var(--fog);font-size:14px;margin-bottom:12px;">Often preferred to minimize pressure on the casing and BOP stack. Requires only one circulation:</p>
+        <ul style="padding-left:20px;">
+          <li style="color:var(--mist);margin-bottom:8px;">Kill mud is prepared before circulation begins</li>
+          <li style="color:var(--mist);margin-bottom:8px;">Influx is circulated out while kill mud is pumped in</li>
+          <li style="color:var(--mist);margin-bottom:8px;">Benefit: reduces total time the well is under pressure and maintains lower shoe pressure</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="color:var(--fog);margin-top:24px;">For automated calculations, use the <a href="/calculators/kill-sheet" style="color:var(--amber);">kill sheet calculator</a>.</p>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Regional Context</div>
+    <h2 class="section-title">Local Operational <span>Context</span></h2>
+    <p style="color:var(--fog);max-width:700px;margin-bottom:24px;">Different regions present distinct hydrostatic challenges.</p>
+
+    <div class="two-col">
+      <div>
+        <ul style="padding-left:20px;">
+          <li style="color:var(--mist);margin-bottom:12px;"><strong style="color:var(--white);">The Permian Basin (TX/NM):</strong> narrow windows between pore pressure and fracture gradients in horizontal lateral sections</li>
+          <li style="color:var(--mist);margin-bottom:12px;"><strong style="color:var(--white);">The Gulf Coast:</strong> hydrostatic pressure management in high-temperature environments and complex salt dome formations</li>
+          <li style="color:var(--mist);margin-bottom:12px;"><strong style="color:var(--white);">Offshore Deepwater:</strong> subsea well control, including riser margins and the effect of cold ocean temperatures on mud rheology</li>
+        </ul>
+      </div>
+      <div class="card" style="border:1px solid var(--iron);border-radius:4px;">
+        <h3>Equipment Spotlight: The BOP</h3>
+        <p>The blowout preventer is the final line of defense. Understanding the pressure ratings of rams and annular preventers is a core component of advanced well control. See the full <a href="/equipment/bop" style="color:var(--amber);">BOP components guide</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+
+    <div class="accordion">
+      <div class="acc-item">
+        <button class="acc-header"><h4>How do I calculate Kill Mud Weight (KMW)?</h4><span class="acc-arrow">▼</span></button>
+        <div class="acc-body"><p>KMW = (SIDPP ÷ (0.052 × TVD)) + Original Mud Weight. See the <a href="/calculators/hydrostatic" style="color:var(--amber);">hydrostatic calculator suite</a> for the full worked calculation.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-header"><h4>What are the primary warning signs of a kick?</h4><span class="acc-arrow">▼</span></button>
+        <div class="acc-body"><p>Common indicators include an increase in pit volume, a flow rate increase while drilling, and a decrease in pump pressure. Full breakdown in <a href="/blog/five-warning-signs-of-a-kick" style="color:var(--amber);">five warning signs of a kick</a>.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-header"><h4>What is the Volumetric Method?</h4><span class="acc-arrow">▼</span></button>
+        <div class="acc-body"><p>A non-circulative well control technique used when the drill string is off-bottom or pumps have failed. It relies on allowing gas to expand while bleeding off specific volumes of mud at the surface to keep bottomhole pressure constant.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-header"><h4>What is Managed Pressure Drilling (MPD)?</h4><span class="acc-arrow">▼</span></button>
+        <div class="acc-body"><p>An advanced drilling process used to precisely control the annular pressure profile throughout the wellbore, allowing operators to drill wells where the margin between pore pressure and fracture gradient is extremely tight.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="note-box" style="max-width:800px;margin:0 auto 32px;text-align:center;">
+      <strong>Advance your drilling career.</strong> Whether preparing for IOGP supervisor certification or needing real-time reference in the field, this is your complete technical starting point.
+    </div>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="/drilling/well-control" class="btn btn-primary">Well Control Procedures</a>
+      <a href="/calculators" class="btn btn-outline">All Drilling Calculators</a>
+    </div>
+    <p style="text-align:center;margin-top:20px;font-size:13px;color:var(--fog);">Explore the <a href="/glossary" style="color:var(--amber);">full field glossary</a> for oilfield terminology.</p>
+  </section>
+</BaseLayout>
+
+<script>
+function toggleAcc(btn: HTMLElement) {
+  const body = btn.nextElementSibling as HTMLElement;
+  const arrow = btn.querySelector('.acc-arrow') as HTMLElement;
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.acc-arrow').forEach(a => (a as HTMLElement).style.transform = '');
+  if (!isOpen) {
+    body.classList.add('open');
+    arrow.style.transform = 'rotate(180deg)';
+  }
+}
+document.querySelectorAll('.acc-header').forEach(btn => {
+  btn.addEventListener('click', () => toggleAcc(btn as HTMLElement));
+});
+</script>

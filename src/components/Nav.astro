@@ -15,7 +15,39 @@ const links = [
 ---
 <nav class="site-nav">
   <a href="/" class="nav-logo"><img src="/logo.svg" alt="RigFloorHQ" class="nav-logo-img" /></a>
-  {links.map(link => (
-    <a href={link.href} class={`nav-link ${isActive(link.href) ? 'active' : ''}`}>{link.label}</a>
-  ))}
+
+  <div class="nav-links-desktop">
+    {links.map(link => (
+      <a href={link.href} class={`nav-link ${isActive(link.href) ? 'active' : ''}`}>{link.label}</a>
+    ))}
+  </div>
+
+  <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" id="nav-hamburger">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<div class="nav-mobile-menu" id="nav-mobile-menu">
+  {links.map(link => (
+    <a href={link.href} class={`nav-mobile-link ${isActive(link.href) ? 'active' : ''}`}>{link.label}</a>
+  ))}
+</div>
+
+<script>
+  const hamburger = document.getElementById('nav-hamburger');
+  const mobileMenu = document.getElementById('nav-mobile-menu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('active', isOpen);
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>
