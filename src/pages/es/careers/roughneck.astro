@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Cómo Convertirte en Roughneck",
+  "description": "Guía paso a paso para comenzar una carrera como roughneck en un taladro petrolero sin experiencia previa.",
+  "step": [
+    { "@type": "HowToStep", "name": "Cumple los requisitos básicos", "text": "Obtén un diploma de bachillerato o su equivalente, mantente en buena condición física, y pasa una verificación de antecedentes y prueba de drogas." },
+    { "@type": "HowToStep", "name": "Obtén certificación de seguridad", "text": "Completa BOSIET/HUET para roles costa afuera o entrenamiento básico de seguridad OSHA para roles en tierra." },
+    { "@type": "HowToStep", "name": "Aplica a roles de obrero de piso de nivel inicial", "text": "Apunta directamente a operadores de taladros terrestres o contratistas de perforación costa afuera, o trabaja con una agencia de personal energético." },
+    { "@type": "HowToStep", "name": "Trabaja primero como obrero de piso (roustabout)", "text": "Pasa de 1 a 2 años haciendo trabajo general para aprender las operaciones del taladro antes de pasar al piso de perforación." },
+    { "@type": "HowToStep", "name": "Asciende a roughneck", "text": "Demuestra confiabilidad y aptitud mecánica para ganarte una promoción al piso de perforación." }
+  ]
+};
+---
+<BaseLayout
+  title="Cómo Convertirte en Roughneck (Sin Experiencia Requerida) — Guía 2026"
+  description="Guía paso a paso para convertirte en roughneck de taladro petrolero con cero experiencia: requisitos, certificaciones, exigencias físicas, salario, y cómo conseguir el trabajo."
+  breadcrumbs={[{ label: 'Carreras', href: '/es/careers' }, { label: 'Roughneck', href: '/es/careers/roughneck' }]}
+  jsonLd={jsonLd}
+  lang="es"
+  alternateHref="/careers/roughneck"
+>
+  <Nav slot="nav" lang="es" alternateHref="/careers/roughneck" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Carreras — Nivel Inicial</div>
+    <h1>Cómo Convertirte en <span>Roughneck</span></h1>
+    <p class="page-hero-sub">No se requiere experiencia. Este es el punto de entrada de oficio calificado más accesible en la industria petrolera y de gas — aquí está exactamente cómo entrar, cuánto paga, y qué implica realmente el trabajo.</p>
+    <div class="page-meta">
+      <span class="page-meta-item">Pago Inicial: <strong>$45K–$70K/año</strong></span>
+      <span class="page-meta-item">Tiempo para Contratación: <strong>2–8 semanas</strong></span>
+      <span class="page-meta-item">Educación: <strong>Bachillerato / Equivalente</strong></span>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2>Qué Hace Realmente un Roughneck</h2>
+        <p>Un roughneck trabaja directamente en el piso de perforación, manejando cada parte del proceso de perforación que involucra la tubería misma. Eso significa operar las llaves de fuerza (tongs) y el iron roughneck para hacer y deshacer conexiones de tubería, operar el catwalk que alimenta la tubería hacia el piso, manejar los lastrabarrenas y componentes del BHA, y mantener el piso de perforación limpio y seguro durante las operaciones.</p>
+        <p>Es trabajo físicamente exigente — espera levantar, jalar, y cargar equipo pesado en turnos de 12 horas, a menudo en calor extremo, frío, o condiciones costa afuera. Pero también es la base de toda carrera en perforación. Casi todo toolpusher, perforador, y gerente de taladro comenzó exactamente aquí.</p>
+
+        <h2>Roughneck vs. Roustabout — ¿Cuál es la Diferencia?</h2>
+        <p>Estos dos títulos se confunden constantemente. Un <strong>roustabout (obrero de piso)</strong> es la posición verdaderamente de nivel inicial: trabajo general, limpieza, pintura, movimiento de suministros, y ayuda a otros oficios. Un <strong>roughneck</strong> (también llamado floorhand) trabaja específicamente en el piso de perforación manejando tubería y equipo de perforación. La mayoría de las personas comienzan como roustabout y son promovidas a un rol de roughneck dentro de 1 a 2 años.</p>
+
+        <h2>Paso a Paso: Cómo Conseguir el Trabajo</h2>
+        <h3>1. Cumple los Requisitos Básicos</h3>
+        <p>Necesitarás un diploma de bachillerato o su equivalente, tener al menos 18 años, pasar una evaluación de aptitud física, y superar una verificación de antecedentes y prueba de drogas. No se requiere título universitario ni experiencia previa en el campo petrolero.</p>
+
+        <h3>2. Obtén tus Certificaciones de Seguridad</h3>
+        <p>Para trabajo costa afuera, necesitarás <a href="/es/careers/certifications">BOSIET (Entrenamiento Básico de Inducción de Seguridad y Emergencia Costa Afuera)</a>, que cubre entrenamiento de escape submarino de helicóptero (HUET), supervivencia en el mar, y combate de incendios. Los roles en tierra típicamente requieren entrenamiento básico de seguridad OSHA en su lugar, que a menudo es proporcionado por el empleador. Algunas empresas patrocinarán tu BOSIET una vez contratado — vale la pena preguntar durante la entrevista.</p>
+
+        <h3>3. Aplica Directamente o a Través de una Agencia de Personal</h3>
+        <p>Los contratistas de perforación (Nabors, Helmerich & Payne, Transocean, Noble, Patterson-UTI) contratan directamente para cuadrillas terrestres y costa afuera. Las agencias de personal energético (Airswift, Brunel, NES Fircroft) también colocan trabajadores de nivel inicial y pueden ayudar a acelerar tu primera colocación, especialmente costa afuera.</p>
+
+        <h3>4. Comienza como Roustabout</h3>
+        <p>La mayoría de las personas no entran directamente a un rol de roughneck. Típicamente pasarás de 1 a 2 años como roustabout primero — trabajo general que te enseña cómo funciona el taladro antes de que se te confíe el piso con tubería bajo tensión.</p>
+
+        <h3>5. Gánate la Promoción a Roughneck</h3>
+        <p>Preséntate de forma confiable, sigue los procedimientos de seguridad sin atajos, y demuestra aptitud mecánica. Las promociones en un taladro son casi enteramente basadas en mérito — los toolpushers notan quién está prestando atención y quién no.</p>
+
+        <div class="note-box">
+          <strong>Camino más rápido:</strong> Los roles de roustabout en taladros terrestres en cuencas activas (Permian, Eagle Ford, Bakken) típicamente tienen el tiempo de contratación más corto — a menudo 2–4 semanas desde la solicitud. Los roles costa afuera toman más tiempo debido a la programación de BOSIET y requisitos médicos, pero pagan significativamente más una vez que estás dentro.
+        </div>
+
+        <h2>Cuánto Te Pagarán Realmente</h2>
+        <p>Los roustabouts de nivel inicial ganan aproximadamente <span class="highlight">$38,000–$55,000/año</span> en tierra. Los roughnecks en el piso de perforación ganan <span class="highlight">$45,000–$70,000/año</span>. Los roles costa afuera pagan 20–40% más que los equivalentes en tierra debido a primas de aislamiento y horarios rotacionales (comúnmente 14/14 o 28/28 — dos o cuatro semanas trabajando, igualado por tiempo libre). El tiempo extra es común y puede aumentar significativamente las ganancias anuales más allá del salario base.</p>
+
+        <h2>La Realidad Física</h2>
+        <p>Este trabajo no es para todos. Trabajarás turnos de 12 horas, a menudo durante la noche, en clima extremo — calor desértico en el Permian, frío glacial en Dakota del Norte, humedad costa afuera en el Golfo. Levantarás equipo pesado repetidamente. Las caídas, puntos de pellizco, y objetos caídos son peligros reales, por lo cual la cultura de seguridad en un taladro se toma extremadamente en serio — no como una formalidad.</p>
+
+        <h2>Qué Sigue Después</h2>
+        <p>Después de 1 a 3 años como roughneck, el siguiente paso es <strong>encuellador (derrickman)</strong> — trabajando desde el monkey board en lo alto del mástil y manejando el sistema de lodo. De ahí, la trayectoria continúa hacia asistente de perforador y eventualmente perforador. Ver la <a href="/es/careers/driller">trayectoria completa hacia convertirte en perforador</a> para lo que viene después de esta etapa.</p>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#">Qué Hace un Roughneck</a>
+          <a href="#">Roughneck vs. Roustabout</a>
+          <a href="#">Guía Paso a Paso</a>
+          <a href="#">Salario Esperado</a>
+          <a href="#">Requisitos Físicos</a>
+          <a href="#">Qué Sigue Después</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Certificaciones Requeridas</h3>
+          <p style="margin-bottom:12px;">✅ Diploma de Bachillerato / Equivalente<br>✅ BOSIET (solo costa afuera)<br>✅ Primeros auxilios básicos / RCP (a menudo proporcionado)<br>⬜ Control de Pozos IWCF (no requerido a nivel inicial)</p>
+          <a href="/es/careers/certifications" class="card-link">Guía Completa de Certificación →</a>
+        </div>
+
+        <div class="card" style="margin-top:1px;border:1px solid var(--iron);border-radius:0 0 4px 4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/careers/salary" class="card-link">→ Guía Salarial Completa</a><br><br>
+          <a href="/es/careers/driller" class="card-link">→ Cómo Convertirte en Perforador</a><br><br>
+          <a href="/es/safety" class="card-link">→ Resumen de Seguridad del Taladro</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

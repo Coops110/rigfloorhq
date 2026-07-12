@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+---
+<BaseLayout
+  title="Guía Salarial de Taladros Petroleros 2026 — Cada Rol, en Tierra y Costa Afuera"
+  description="Datos salariales reales de 2026 para cada posición en taladros petroleros: roustabout, roughneck, encuellador, perforador, toolpusher, soldador, e ingeniero. Comparación de pago en tierra vs. costa afuera."
+  breadcrumbs={[{ label: 'Carreras', href: '/es/careers' }, { label: 'Guía Salarial', href: '/es/careers/salary' }]}
+  lang="es"
+  alternateHref="/careers/salary"
+>
+  <Nav slot="nav" lang="es" alternateHref="/careers/salary" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Carreras — Compensación</div>
+    <h1>Guía Salarial de <span>Taladros Petroleros</span></h1>
+    <p class="page-hero-sub">Cuánto paga realmente cada posición en 2026, y por qué costa afuera consistentemente paga más que el rol equivalente en tierra.</p>
+  </div>
+
+  <section class="block">
+    <div class="section-eyebrow">Por Posición</div>
+    <h2 class="section-title">Rangos Salariales <span>2026</span></h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Posición</th><th>Inicial / Bajo</th><th>Típico</th><th>Senior / Alto</th><th>Notas</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Roustabout</td><td>$38,000</td><td>$50,000</td><td>$60,000</td><td>No se requiere experiencia</td></tr>
+          <tr><td>Roughneck / Floorhand</td><td>$45,000</td><td>$70,000</td><td>$82,000+</td><td>Típicamente 1–3 años de experiencia</td></tr>
+          <tr><td>Encuellador (Derrickhand)</td><td>$55,000</td><td>$75,000</td><td>$90,000</td><td>Trabaja en altura, responsabilidad del sistema de lodo</td></tr>
+          <tr><td>Asistente de Perforador</td><td>$60,000</td><td>$78,000</td><td>$95,000</td><td>Se requiere IWCF Nivel 2</td></tr>
+          <tr><td>Perforador</td><td>$70,000</td><td>$95,000</td><td>$120,000</td><td>Se requiere IWCF Nivel 3 / Perforador</td></tr>
+          <tr><td>Toolpusher</td><td>$90,000</td><td>$130,000</td><td>$180,000</td><td>Administra toda la operación del taladro</td></tr>
+          <tr><td>OIM / Gerente de Taladro</td><td>$150,000</td><td>$210,000</td><td>$280,000+</td><td>Rol operativo más alto en la instalación</td></tr>
+          <tr><td>Ingeniero de Lodo</td><td>$80,000</td><td>$105,000</td><td>$140,000</td><td>Empleado por compañía de servicio</td></tr>
+          <tr><td>Perforador Direccional</td><td>$100,000</td><td>$150,000</td><td>$200,000+</td><td>Especialización MWD/LWD</td></tr>
+          <tr><td>Geólogo de Sitio de Pozo</td><td>$80,000</td><td>$115,000</td><td>$160,000</td><td>Se requiere título en geología</td></tr>
+          <tr><td>Oficial de HSE / Seguridad</td><td>$65,000</td><td>$85,000</td><td>$110,000</td><td>NEBOSH u OSHA 30</td></tr>
+          <tr><td>Soldador de Taladro (Junior)</td><td>$45,000</td><td>$55,000</td><td>$65,000</td><td>Ver <a href="/es/welding" style="color:var(--amber);">guía completa de soldadura</a></td></tr>
+          <tr><td>Soldador de Taladro (Senior)</td><td>$90,000</td><td>$110,000</td><td>$130,000</td><td>Soldadura de tubería en todas las posiciones</td></tr>
+          <tr><td>Soldador Submarino</td><td>$60,000</td><td>$100,000</td><td>$150,000+</td><td>Más pago por profundidad/saturación</td></tr>
+          <tr><td>Company Man</td><td>$150,000</td><td>$220,000</td><td>$300,000+</td><td>Representante del operador</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-box">
+      <strong>Nota sobre las cifras:</strong> Estas son estimaciones de salario anual del mercado de EE. UU. basadas en datos salariales de la industria de 2025–2026. El pago real varía significativamente según la región, el empleador, el tipo de taladro, y las condiciones del mercado. Las tarifas en el Golfo de México, Mar del Norte, y Medio Oriente tienden a estar en el extremo más alto; las tarifas de taladros terrestres en cuencas más lentas son más bajas.
+    </div>
+  </section>
+
+  <section class="block" id="offshore-vs-onshore">
+    <div class="section-eyebrow">Comparación</div>
+    <h2 class="section-title">Costa Afuera vs. <span>Tierra</span></h2>
+
+    <div class="two-col">
+      <div class="prose">
+        <p>Los roles costa afuera pagan <strong>15–40% más</strong> que la posición equivalente en tierra. La prima compensa varias compensaciones reales:</p>
+        <ul>
+          <li><strong>Aislamiento:</strong> Vives en la instalación durante toda la rotación, lejos de la familia y la vida normal.</li>
+          <li><strong>Horario de rotación:</strong> Los patrones comunes son 14 días trabajando / 14 libres, o 28/28 para aguas profundas. Trabajas períodos largos, luego tienes tiempo libre extendido — una verdadera compensación de estilo de vida, no solo una diferencia salarial.</li>
+          <li><strong>Perfil de riesgo:</strong> El transporte en helicóptero, condiciones marinas, y entornos de trabajo en espacios confinados conllevan riesgos diferentes a las operaciones terrestres.</li>
+          <li><strong>Condiciones físicas:</strong> No puedes salir del sitio durante tu turno. Clima, estado del mar, y alojamiento confinado durante semanas seguidas.</li>
+        </ul>
+        <p>A cambio, los trabajadores costa afuera típicamente reciben alojamiento y comida gratis durante el turno (lo que significa que la mayor parte de tu salario es ingreso disponible), más el tiempo libre extendido que proporciona una rotación 14/14 o 28/28 — efectivamente 26 semanas del año libres para un horario 26/26.</p>
+      </div>
+
+      <div>
+        <h3 style="font-family:var(--cond);font-weight:700;font-size:18px;text-transform:uppercase;color:var(--white);letter-spacing:0.04em;margin-bottom:16px;">Ejemplo: Comparación de Salario de Roughneck</h3>
+        <div style="display:flex;flex-direction:column;gap:1px;background:var(--iron);border:1px solid var(--iron);">
+          <div style="background:var(--steel);padding:18px 20px;display:flex;justify-content:space-between;">
+            <span style="font-size:13px;color:var(--fog);">Roughneck en Tierra</span>
+            <span class="mono" style="font-family:var(--mono);color:var(--white);">$50,000/año</span>
+          </div>
+          <div style="background:var(--steel);padding:18px 20px;display:flex;justify-content:space-between;">
+            <span style="font-size:13px;color:var(--fog);">Roughneck Costa Afuera</span>
+            <span style="font-family:var(--mono);color:var(--amber);">$65,000–$70,000/año</span>
+          </div>
+          <div style="background:var(--iron);padding:18px 20px;display:flex;justify-content:space-between;">
+            <span style="font-size:13px;color:var(--mist);font-weight:600;">Prima</span>
+            <span style="font-family:var(--mono);color:var(--safe);">+30–40%</span>
+          </div>
+        </div>
+
+        <div class="note-box" style="margin-top:24px;">
+          <strong>¿Cuál es la mejor opción para ti?</strong> Si tienes obligaciones familiares en casa y prefieres una rutina diaria, el trabajo en tierra con horarios locales predecibles puede convenirte mejor. Si puedes manejar tiempo extendido lejos y quieres maximizar ahorros, el salario más alto de costa afuera más los bloques extendidos de tiempo libre es difícil de superar financieramente.
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

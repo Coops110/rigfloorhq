@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+---
+<BaseLayout
+  title="Perforación Direccional Explicada — MWD, LWD y Dirección de la Barrena"
+  description="Cómo funciona la perforación direccional: herramientas MWD/LWD, motores de fondo, métodos de dirección, y por qué la perforación horizontal transformó la industria."
+  breadcrumbs={[{ label: 'Perforación', href: '/es/drilling' }, { label: 'Perforación Direccional', href: '/es/drilling/directional' }]}
+  lang="es"
+  alternateHref="/drilling/directional"
+>
+  <Nav slot="nav" lang="es" alternateHref="/drilling/directional" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Perforación — Técnicas Avanzadas</div>
+    <h1>Perforación <span>Direccional</span></h1>
+    <p class="page-hero-sub">Dirigir una barrena de perforación miles de pies bajo tierra para dar en un objetivo del tamaño de una habitación pequeña. Aquí está cómo funciona realmente.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2>¿Por Qué Perforar Direccionalmente?</h2>
+        <p>Los pozos verticales solo contactan un yacimiento donde pasan directamente a través de él. La perforación direccional y horizontal permite que un solo pozo viaje lateralmente a través de un yacimiento, aumentando dramáticamente el área de superficie en contacto con roca portadora de hidrocarburos. Esta es la tecnología, combinada con la fracturación hidráulica, que desbloqueó yacimientos de lutita como el Permian y Eagle Ford.</p>
+        <p>La perforación direccional también se usa para alcanzar yacimientos ubicados bajo obstáculos — infraestructura urbana, áreas protegidas, o concesiones vecinas — desde una ubicación de superficie que de otra forma no tendría acceso, y para perforar múltiples pozos desde una sola plataforma costa afuera en diferentes direcciones.</p>
+
+        <h2>Cómo se Dirige la Barrena</h2>
+        <p>Un pozo direccional se dirige usando una combinación de:</p>
+        <ul>
+          <li><strong>Motor de fondo (de lodo)</strong> — una herramienta similar a una turbina cerca de la barrena que convierte el flujo de fluido de perforación en potencia rotacional, permitiendo que la barrena gire independientemente de la sarta de perforación arriba de ella.</li>
+          <li><strong>Bent sub / carcasa doblada</strong> — una ligera curvatura mecánica que, combinada con el motor, permite al perforador construir ángulo "deslizando" (sin rotar toda la sarta) en una dirección elegida.</li>
+          <li><strong>Sistemas rotativos direccionables (RSS)</strong> — herramientas modernas que dirigen mientras rotan continuamente toda la sarta, lo cual mejora la limpieza del hoyo y el ROP comparado con deslizar con un motor.</li>
+        </ul>
+
+        <h2>MWD y LWD — Viendo Bajo Tierra</h2>
+        <p><strong>Las herramientas MWD (Medición Durante la Perforación)</strong> se ubican en el BHA y miden continuamente la inclinación y azimut del pozo, transmitiendo esos datos a superficie en tiempo real — típicamente vía telemetría de pulso de lodo, que codifica datos como pulsos de presión en el fluido de perforación.</p>
+        <p><strong>Las herramientas LWD (Registro Durante la Perforación)</strong> agregan datos de evaluación de formación — resistividad, densidad, rayos gamma — a ese mismo flujo en tiempo real, permitiendo que el perforador direccional y el geólogo de sitio de pozo realmente vean en qué tipo de roca está la barrena sin esperar una corrida de registro con cable.</p>
+
+        <div class="formula-block">
+          <div class="formula-label">Severidad de Dogleg</div>
+          <div class="formula-eq">DLS (°/100ft) = (Cambio Total de Ángulo) ÷ (Longitud de Curso / 100)</div>
+          <div class="formula-note">Mide qué tan pronunciadamente se curva el pozo. Un DLS excesivo aumenta el torque/arrastre y arriesga fatiga de tubería en las conexiones.</div>
+        </div>
+
+        <h2>El Rol del Perforador Direccional</h2>
+        <p>Los perforadores direccionales son especialistas, usualmente empleados por una compañía de servicio en lugar del contratista de perforación. Monitorean el flujo de datos MWD continuamente — a menudo desde una cabina de control — haciendo ajustes de dirección para mantener el pozo en su trayectoria planeada. Es una de las trayectorias especializadas mejor pagadas en perforación; ver la <a href="/es/careers/salary">guía salarial</a> para cifras actuales.</p>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#">Por Qué Perforar Direccionalmente</a>
+          <a href="#">Cómo se Dirige la Barrena</a>
+          <a href="#">MWD y LWD</a>
+          <a href="#">El Rol del Perforador Direccional</a>
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/drill-string" class="card-link">→ La Sarta de Perforación</a><br><br>
+          <a href="/es/drilling/casing" class="card-link">→ Diseño de Revestimiento</a><br><br>
+          <a href="/es/careers/salary" class="card-link">→ Guía Salarial</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

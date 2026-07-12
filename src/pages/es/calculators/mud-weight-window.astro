@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+---
+<BaseLayout
+  title="Calculadora de Ventana de Peso de Lodo — Visualiza Tu Rango Seguro de Perforación"
+  description="Calcula y visualiza tu ventana de peso de lodo entre la presión de poro y el gradiente de fractura a cualquier profundidad, con análisis de margen en psi y ppg."
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Ventana de Peso de Lodo', href: '/es/calculators/mud-weight-window' }]}
+  lang="es"
+  alternateHref="/calculators/mud-weight-window"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/mud-weight-window" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Calculadora de Ventana de <span>Peso de Lodo</span></h1>
+    <p class="page-hero-sub">Visualiza qué tan amplia — o estrecha — es tu ventana segura de perforación a una profundidad dada, y ve tu peso de lodo actual graficado dentro de ella.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">📊 Ventana de Peso de Lodo</div>
+
+          <div class="input-row">
+            <div class="input-group">
+              <label for="mww-tvd">TVD (ft)</label>
+              <input type="number" id="mww-tvd" placeholder="ej. 10000" step="100" min="100">
+            </div>
+            <div class="input-group">
+              <label for="mww-current">Peso de Lodo Actual (ppg)</label>
+              <input type="number" id="mww-current" placeholder="ej. 12.0" step="0.1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="mww-pp">Gradiente de Presión de Poro (equiv. ppg)</label>
+              <input type="number" id="mww-pp" placeholder="ej. 9.2" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="mww-fg">Gradiente de Fractura (equiv. ppg)</label>
+              <input type="number" id="mww-fg" placeholder="ej. 15.0" step="0.1">
+            </div>
+          </div>
+
+          <button class="btn btn-primary" id="calc-mww-btn" style="width:100%;text-align:center;">Calcular Ventana</button>
+
+          <div class="calc-output" id="mww-output">
+            <div class="output-line"><span class="output-label">Ancho de Ventana</span><span class="output-value" id="out-window">—</span></div>
+            <div class="output-line"><span class="output-label">Margen Sobre Presión de Poro</span><span class="output-value" id="out-margin-low">—</span></div>
+            <div class="output-line"><span class="output-label">Margen Bajo Fractura</span><span class="output-value" id="out-margin-high">—</span></div>
+            <div class="output-line" style="border-bottom:none;"><span class="output-label">Posición</span><span id="out-position">—</span></div>
+          </div>
+
+          <div id="mww-visual" style="display:none;margin-top:20px;">
+            <div style="height:36px;border-radius:3px;overflow:hidden;position:relative;background:var(--iron);">
+              <div id="mww-bar-fill" style="height:100%;background:linear-gradient(90deg, var(--danger), var(--safe), var(--danger));position:relative;"></div>
+              <div id="mww-marker" style="position:absolute;top:-6px;width:3px;height:48px;background:var(--white);box-shadow:0 0 6px rgba(255,255,255,0.6);"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-top:6px;">
+              <span style="font-family:var(--mono);font-size:10px;color:var(--fog);">Presión de Poro</span>
+              <span style="font-family:var(--mono);font-size:10px;color:var(--fog);">Presión de Fractura</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>¿Qué es la Ventana de Peso de Lodo?</h2>
+        <p>La ventana de peso de lodo es el rango de pesos de lodo (expresado aquí en equivalente-ppg por simplicidad) que mantiene tu pozo de forma segura entre dos límites: suficientemente pesado para prevenir la entrada de fluido de formación (una surgencia), y suficientemente ligero para evitar fracturar la formación y perder circulación.</p>
+        <p>En formaciones de presión normal y geológicamente simples, esta ventana puede tener varios ppg de ancho — espacio cómodo para error. En yacimientos agotados, lutitas sobrepresurizadas, o pozos de aguas profundas, la ventana puede estrecharse a menos de 0.5 ppg, requiriendo control de peso de lodo extremadamente estricto y a menudo técnicas de perforación de presión controlada (MPD).</p>
+
+        <h3>Cómo Leer la Visualización</h3>
+        <p>La barra representa tu ventana desde la presión de poro (izquierda, rojo) a través de la zona segura (centro, verde) hasta la presión de fractura (derecha, rojo). El marcador blanco muestra exactamente dónde se ubica tu peso de lodo actual. Un marcador cerca de cualquier borde significa muy poco margen para error — una pequeña fluctuación de presión podría llevarte a territorio de surgencia o pérdida de circulación.</p>
+
+        <h2>Dónde Obtener Datos Reales de Poro y Fractura</h2>
+        <p>Esta calculadora usa cifras que tú proporcionas — para la planificación real del pozo, la presión de poro se predice a partir de datos de pozos vecinos, análisis de velocidad sísmica, e indicadores durante la perforación (como el método del exponente-d), mientras que el gradiente de fractura se mide directamente mediante una Prueba de Fuga (LOT) en cada zapato de revestimiento. Ver la <a href="/es/drilling/casing">página de diseño de revestimiento</a> para cómo estas cifras determinan la selección de puntos de revestimiento.</p>
+
+        <p>Para cálculos directos de presión vs. profundidad, usa la <a href="/es/calculators/hydrostatic">calculadora de presión hidrostática</a>. Si ya tienes el pozo cerrado por una surgencia, ve directamente a la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a>.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const btn = document.getElementById('calc-mww-btn');
+  btn?.addEventListener('click', () => {
+    const current = parseFloat((document.getElementById('mww-current') as HTMLInputElement).value);
+    const pp = parseFloat((document.getElementById('mww-pp') as HTMLInputElement).value);
+    const fg = parseFloat((document.getElementById('mww-fg') as HTMLInputElement).value);
+
+    if (!current || !pp || !fg) {
+      alert('Por favor completa los campos de peso de lodo, presión de poro, y gradiente de fractura.');
+      return;
+    }
+
+    if (fg <= pp) {
+      alert('El gradiente de fractura debe ser mayor que el gradiente de presión de poro.');
+      return;
+    }
+
+    const window = fg - pp;
+    const marginLow = current - pp;
+    const marginHigh = fg - current;
+
+    (document.getElementById('out-window') as HTMLElement).textContent = window.toFixed(2) + ' ppg';
+    (document.getElementById('out-margin-low') as HTMLElement).textContent = marginLow.toFixed(2) + ' ppg';
+    (document.getElementById('out-margin-high') as HTMLElement).textContent = marginHigh.toFixed(2) + ' ppg';
+
+    const statusEl = document.getElementById('out-position') as HTMLElement;
+    if (current < pp) {
+      statusEl.innerHTML = '<span class="status-badge status-danger">🚨 Bajo la Presión de Poro</span>';
+    } else if (current > fg) {
+      statusEl.innerHTML = '<span class="status-badge status-danger">⛔ Sobre la Presión de Fractura</span>';
+    } else if (marginLow < 0.3 || marginHigh < 0.3) {
+      statusEl.innerHTML = '<span class="status-badge status-caution">⚠ Margen Estrecho</span>';
+    } else {
+      statusEl.innerHTML = '<span class="status-badge status-safe">✅ Dentro de la Ventana Segura</span>';
+    }
+
+    // Visual marker position
+    const pct = Math.max(0, Math.min(100, ((current - pp) / window) * 100));
+    const marker = document.getElementById('mww-marker') as HTMLElement;
+    marker.style.left = `calc(${pct}% - 1.5px)`;
+    (document.getElementById('mww-visual') as HTMLElement).style.display = 'block';
+
+    document.getElementById('mww-output')?.classList.add('visible');
+  });
+</script>

@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+---
+<BaseLayout
+  title="Certificaciones de Taladros Petroleros Explicadas — BOSIET, IWCF, H2S, NEBOSH"
+  description="Cada certificación requerida para trabajar en un taladro petrolero, explicada: BOSIET, HUET, niveles de control de pozos IWCF, seguridad de H2S, NEBOSH, y qué roles necesitan qué certificaciones."
+  breadcrumbs={[{ label: 'Carreras', href: '/es/careers' }, { label: 'Certificaciones', href: '/es/careers/certifications' }]}
+  lang="es"
+  alternateHref="/careers/certifications"
+>
+  <Nav slot="nav" lang="es" alternateHref="/careers/certifications" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Carreras — Requisitos</div>
+    <h1>Certificaciones de <span>Taladro</span> Explicadas</h1>
+    <p class="page-hero-sub">Qué cubre realmente cada certificación, cuánto tiempo toma, y qué roles la requieren. Las certificaciones son la forma más rápida de acelerar tu progresión profesional.</p>
+  </div>
+
+  <section class="block">
+    <div class="card-grid">
+      <div class="card">
+        <h3>BOSIET / FOET</h3>
+        <p><strong>Entrenamiento Básico de Inducción de Seguridad y Emergencia Costa Afuera.</strong> Obligatorio para cualquiera que vaya costa afuera. Cubre escape submarino de helicóptero (HUET), supervivencia en el mar, combate de incendios, y primeros auxilios. Válido por 4 años; FOET (Entrenamiento Adicional de Emergencia Costa Afuera) es el curso de renovación.</p>
+        <span class="card-tag">Requerido — Todos los Roles Costa Afuera</span>
+      </div>
+      <div class="card">
+        <h3>Control de Pozos IWCF</h3>
+        <p><strong>Certificación del International Well Control Forum.</strong> Nivel 2 para cuadrillas del piso de perforación, Nivel 3 para perforadores, Nivel 4 para supervisores/OIM. Cubre reconocimiento de surgencias, procedimientos de cierre, y métodos de matanza de pozo. Se renueva cada 2 años mediante examen.</p>
+        <span class="card-tag">Requerido — Perforador y Superior</span>
+      </div>
+      <div class="card">
+        <h3>IADC WellSharp</h3>
+        <p>El otro organismo de certificación de control de pozos globalmente reconocido, funcionalmente equivalente a IWCF. La mayoría de los operadores aceptan cualquiera de los dos. Misma estructura escalonada desde el piso de perforación hasta nivel supervisor.</p>
+        <span class="card-tag">Alternativa a IWCF</span>
+      </div>
+      <div class="card">
+        <h3>Seguridad de H₂S</h3>
+        <p><strong>Entrenamiento de concientización y escape de sulfuro de hidrógeno (gas amargo).</strong> Requerido en cualquier pozo que pueda encontrar H₂S. Cubre uso de detectores, colocación de SCBA, y respuesta a emergencias. Típicamente un curso de 1 día.</p>
+        <span class="card-tag">Requerido — Pozos de Gas Amargo</span>
+      </div>
+      <div class="card">
+        <h3>NEBOSH IGC</h3>
+        <p><strong>National Examination Board in Occupational Safety and Health.</strong> Calificación de gestión de seguridad reconocida globalmente. La credencial estándar para roles de oficial de HSE/seguridad internacionalmente.</p>
+        <span class="card-tag">Roles de HSE</span>
+      </div>
+      <div class="card">
+        <h3>OSHA 30</h3>
+        <p>Curso de seguridad de industria general o construcción de 30 horas. El estándar norteamericano para roles enfocados en seguridad, a menudo combinado con o como alternativa a NEBOSH dependiendo de la región.</p>
+        <span class="card-tag">Roles de HSE — Norteamérica</span>
+      </div>
+      <div class="card">
+        <h3>OPITO IMIST</h3>
+        <p><strong>International Minimum Industry Safety Training.</strong> Una calificación básica de concientización de seguridad requerida por la mayoría de los operadores principales para todo el personal del taladro, sin importar el rol.</p>
+        <span class="card-tag">Requerido — La Mayoría de Operadores</span>
+      </div>
+      <div class="card">
+        <h3>Examen Médico Costa Afuera</h3>
+        <p>Un examen de aptitud médica específico para trabajo costa afuera — más riguroso que un examen físico estándar. Requerido antes de cualquier despliegue costa afuera y renovado periódicamente (típicamente cada 2 años).</p>
+        <span class="card-tag">Requerido — Todos los Roles Costa Afuera</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Por Rol</div>
+    <h2 class="section-title">Qué Necesitas, <span>Por Posición</span></h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Rol</th><th>Certificaciones Requeridas</th></tr></thead>
+        <tbody>
+          <tr><td>Roustabout</td><td>BOSIET (solo costa afuera), orientación básica de seguridad</td></tr>
+          <tr><td>Roughneck</td><td>BOSIET (costa afuera), se recomienda concientización de H₂S</td></tr>
+          <tr><td>Encuellador (Derrickhand)</td><td>BOSIET, IWCF Nivel 2 (o trabajando hacia ello)</td></tr>
+          <tr><td>Asistente de Perforador</td><td>BOSIET, IWCF Nivel 2, examen médico costa afuera</td></tr>
+          <tr><td>Perforador</td><td>BOSIET, IWCF Nivel 3 (Perforador), examen médico costa afuera</td></tr>
+          <tr><td>Toolpusher</td><td>BOSIET, IWCF Nivel 4 (Supervisor), examen médico costa afuera</td></tr>
+          <tr><td>Oficial de HSE</td><td>NEBOSH IGC u OSHA 30, BOSIET si es costa afuera</td></tr>
+          <tr><td>Soldador de Taladro</td><td>AWS CW, API 1104 y/o AWS D1.1, BOSIET si es costa afuera</td></tr>
+          <tr><td>Soldador Submarino</td><td>AWS D3.6M, certificación de buceo comercial ADCI</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-box mt-24">
+      <strong>Consejo estratégico:</strong> Completar la certificación del siguiente nivel antes de que sea estrictamente requerida para tu rol actual señala disposición para la promoción y es notado consistentemente por los supervisores. Es una de las pocas palancas genuinamente controlables que tienes sobre qué tan rápido avanzas.
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+---
+<BaseLayout
+  title="La Sarta de Perforación Explicada — Tubería, Lastrabarrenas, BHA, Barrenas"
+  description="Cada componente de la sarta de perforación desde el top drive hasta la barrena: tubería de perforación, tubería pesada, lastrabarrenas, BHA, y tipos de barrena explicados."
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Sarta de Perforación', href: '/es/equipment/drill-string' }]}
+  lang="es"
+  alternateHref="/equipment/drill-string"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/drill-string" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Fondo de Pozo</div>
+    <h1>La <span>Sarta de Perforación</span></h1>
+    <p class="page-hero-sub">Un sistema único conectado que va desde el piso de perforación hasta la barrena, a veces millas debajo — transmitiendo rotación, peso, y fluido de perforación todo el trayecto.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2>Qué Hace la Sarta de Perforación</h2>
+        <p>La sarta de perforación transmite rotación y peso a la barrena mientras proporciona un conducto para que el fluido de perforación viaje desde superficie, baje por la tubería, salga por las boquillas de la barrena, y regrese por el espacio anular llevando los recortes de roca. Cada junta está roscada y apretada a especificaciones precisas — una conexión fallida a miles de pies de profundidad es un problema serio y costoso.</p>
+
+        <h2>Componentes, de Arriba a Abajo</h2>
+        <div style="display:flex;flex-direction:column;gap:8px;margin:24px 0;">
+          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--iron);border-radius:3px;align-items:center;">
+            <span style="font-family:var(--mono);font-size:11px;color:var(--rust);min-width:56px;">ARRIBA</span>
+            <div><strong style="color:var(--white);font-size:14px;">Top Drive</strong><br><span style="font-size:12px;color:var(--fog);">Los taladros modernos usan un motor top drive en lugar de un kelly y mesa rotaria, permitiendo rotación completa mientras se agregan paradas, en lugar de solo incrementos de 90 pies.</span></div>
+          </div>
+          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
+            <div><strong style="color:var(--white);font-size:14px;">Tubería de Perforación</strong><br><span style="font-size:12px;color:var(--fog);">Cuerpo principal de la sarta — 5" de diámetro exterior, juntas de 30 pies roscadas entre sí. Puede llegar a miles de pies de profundidad.</span></div>
+          </div>
+          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
+            <div><strong style="color:var(--white);font-size:14px;">Tubería Pesada (HWDP)</strong><br><span style="font-size:12px;color:var(--fog);">Tubería de transición de pared más gruesa entre la tubería de perforación y los lastrabarrenas, reduciendo fallas por fatiga en el punto de máximo esfuerzo.</span></div>
+          </div>
+          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
+            <div><strong style="color:var(--white);font-size:14px;">Lastrabarrenas (Drill Collars)</strong><br><span style="font-size:12px;color:var(--fog);">Tubería pesada de pared gruesa que proporciona peso sobre la barrena (WOB) — la fuerza descendente necesaria para que la barrena corte la roca.</span></div>
+          </div>
+          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
+            <div><strong style="color:var(--white);font-size:14px;">Herramientas MWD/LWD</strong><br><span style="font-size:12px;color:var(--fog);">Herramientas de medición y registro que transmiten datos direccionales y de formación a superficie en tiempo real. Ver <a href="/es/drilling/directional" style="color:var(--amber);">perforación direccional</a>.</span></div>
+          </div>
+          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
+            <div><strong style="color:var(--white);font-size:14px;">Estabilizadores</strong><br><span style="font-size:12px;color:var(--fog);">Mantienen el BHA centrado en el hoyo para controlar la trayectoria y reducir la vibración.</span></div>
+          </div>
+          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--iron);border-radius:3px;align-items:center;">
+            <span style="font-family:var(--mono);font-size:11px;color:var(--rust);min-width:56px;">ABAJO</span>
+            <div><strong style="color:var(--white);font-size:14px;">Barrena</strong><br><span style="font-size:12px;color:var(--fog);">Corta la roca. El tipo se elige según la dureza de la formación — ver comparación abajo.</span></div>
+          </div>
+        </div>
+
+        <h2>Tipos de Barrena</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tipo de Barrena</th><th>Acción de Corte</th><th>Mejor Para</th></tr></thead>
+            <tbody>
+              <tr><td>PDC</td><td>Cizallamiento (cortadores fijos)</td><td>Formaciones blandas a medias, ROP rápido, el tipo de barrena más común hoy</td></tr>
+              <tr><td>Cono Rodante (Tricono)</td><td>Trituración/excavación (conos giratorios)</td><td>Formaciones duras, abrasivas, o interestratificadas</td></tr>
+              <tr><td>Impregnada de Diamante</td><td>Esmerilado</td><td>Formaciones extremadamente duras donde los cortadores PDC fallarían</td></tr>
+              <tr><td>Híbrida</td><td>Cizallamiento + trituración combinados</td><td>Formaciones variables/interestratificadas que necesitan ambos mecanismos</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Parámetros de Perforación Monitoreados a Través de la Sarta</h2>
+        <p>El perforador vigila varios parámetros continuamente, todos ligados a cómo se está desempeñando la sarta en el fondo: <strong>WOB</strong> (peso sobre la barrena), <strong>RPM</strong> (velocidad de rotación), <strong>ROP</strong> (tasa de penetración), <strong>torque</strong> (resistencia a la rotación), y <strong>presión de standpipe</strong> (presión de bombeo en superficie). Un cambio súbito en cualquiera de estos — particularmente un aumento agudo de torque o un pico de ROP — a menudo es la primera señal de un problema en el fondo, desde un cambio de formación hasta los primeros signos de una tubería atascada o una surgencia.</p>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#">Qué Hace la Sarta de Perforación</a>
+          <a href="#">Componentes de Arriba a Abajo</a>
+          <a href="#">Tipos de Barrena</a>
+          <a href="#">Parámetros Monitoreados</a>
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/drilling" class="card-link">→ Cómo Funciona la Perforación</a><br><br>
+          <a href="/es/drilling/directional" class="card-link">→ Perforación Direccional</a><br><br>
+          <a href="/es/equipment/bop" class="card-link">→ Preventores de Reventones</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

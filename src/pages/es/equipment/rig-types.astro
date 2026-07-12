@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+---
+<BaseLayout
+  title="Tipos de Taladros de Perforación Petrolera — Terrestre, Jack-Up, Semisumergible, Buque de Perforación"
+  description="Cada tipo de taladro de perforación petrolera y de gas explicado: taladros terrestres, jack-ups, semisumergibles, buques de perforación, plataformas, y sumergibles, con capacidad de profundidad y especificaciones."
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Tipos de Taladro', href: '/es/equipment/rig-types' }]}
+  lang="es"
+  alternateHref="/equipment/rig-types"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/rig-types" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Clasificación de Taladros</div>
+    <h1>Tipos de <span>Taladros de Perforación</span></h1>
+    <p class="page-hero-sub">Diferentes entornos requieren diseños de taladro fundamentalmente distintos. La profundidad del agua, condiciones geológicas, y economía determinan qué tipo se despliega.</p>
+  </div>
+
+  <section class="block">
+    <div class="rig-types grid-auto-300">
+      <div class="rig-card" style="border:1px solid var(--iron);border-radius:3px;padding:24px;background:var(--ink);position:relative;overflow:hidden;">
+        <h3 style="font-family:var(--cond);font-weight:700;font-size:20px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Taladro Terrestre</h3>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:12px;">En Tierra</span>
+        <p style="font-size:13px;color:var(--fog);line-height:1.65;margin-bottom:12px;">Taladros montados en camión o sobre patines que perforan en tierra. Van desde pozos exploratorios someros hasta yacimientos profundos de lutita. El tipo de taladro más común en el mundo.</p>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Capacidad de profundidad</span><span style="font-family:var(--mono);color:var(--mist);">500 – 35,000 ft</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Costo de movilización</span><span style="font-family:var(--mono);color:var(--mist);">$10K – $500K</span></div>
+        </div>
+      </div>
+
+      <div class="rig-card" style="border:1px solid var(--iron);border-radius:3px;padding:24px;background:var(--ink);">
+        <h3 style="font-family:var(--cond);font-weight:700;font-size:20px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Taladro Jack-Up</h3>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:12px;">Costa Afuera Somero</span>
+        <p style="font-size:13px;color:var(--fog);line-height:1.65;margin-bottom:12px;">Tres o cuatro patas de acero retráctiles se clavan en el lecho marino, elevando el casco por encima de la altura de las olas. El caballo de batalla de la perforación en aguas someras.</p>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Capacidad de profundidad</span><span style="font-family:var(--mono);color:var(--mist);">hasta 35,000 ft</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Profundidad del agua</span><span style="font-family:var(--mono);color:var(--mist);">≤ 400 ft</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Tarifa diaria</span><span style="font-family:var(--mono);color:var(--mist);">$80K – $180K/día</span></div>
+        </div>
+      </div>
+
+      <div class="rig-card" style="border:1px solid var(--iron);border-radius:3px;padding:24px;background:var(--ink);">
+        <h3 style="font-family:var(--cond);font-weight:700;font-size:20px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Semisumergible</h3>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:12px;">Aguas Profundas</span>
+        <p style="font-size:13px;color:var(--fog);line-height:1.65;margin-bottom:12px;">Pontones inundados con agua de mar proporcionan estabilidad bajo la zona de olas. Anclado o posicionado dinámicamente. Usado en yacimientos de aguas profundas.</p>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Capacidad de profundidad</span><span style="font-family:var(--mono);color:var(--mist);">hasta 40,000 ft</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Profundidad del agua</span><span style="font-family:var(--mono);color:var(--mist);">hasta 12,000 ft</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Tarifa diaria</span><span style="font-family:var(--mono);color:var(--mist);">$250K – $500K/día</span></div>
+        </div>
+      </div>
+
+      <div class="rig-card" style="border:1px solid var(--iron);border-radius:3px;padding:24px;background:var(--ink);">
+        <h3 style="font-family:var(--cond);font-weight:700;font-size:20px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Buque de Perforación</h3>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:12px;">Ultra-Aguas Profundas</span>
+        <p style="font-size:13px;color:var(--fog);line-height:1.65;margin-bottom:12px;">Un buque construido específicamente con una piscina de perforación (moon pool) para la sarta de perforación. El posicionamiento dinámico lo mantiene en ubicación sin anclas.</p>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Capacidad de profundidad</span><span style="font-family:var(--mono);color:var(--mist);">40,000+ ft</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Profundidad del agua</span><span style="font-family:var(--mono);color:var(--mist);">hasta 15,000 ft</span></div>
+        </div>
+      </div>
+
+      <div class="rig-card" style="border:1px solid var(--iron);border-radius:3px;padding:24px;background:var(--ink);">
+        <h3 style="font-family:var(--cond);font-weight:700;font-size:20px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Taladro de Plataforma</h3>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:12px;">Fijo / Producción</span>
+        <p style="font-size:13px;color:var(--fog);line-height:1.65;margin-bottom:12px;">Fijo al lecho marino mediante una estructura de acero o base de gravedad de concreto. Instalado permanentemente, perforando docenas de pozos desde una ubicación.</p>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Profundidad del agua</span><span style="font-family:var(--mono);color:var(--mist);">hasta 1,500 ft</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Capacidad de pozos</span><span style="font-family:var(--mono);color:var(--mist);">20 – 60+ pozos</span></div>
+        </div>
+      </div>
+
+      <div class="rig-card" style="border:1px solid var(--iron);border-radius:3px;padding:24px;background:var(--ink);">
+        <h3 style="font-family:var(--cond);font-weight:700;font-size:20px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Sumergible / Barcaza</h3>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:12px;">Pantano / Somero</span>
+        <p style="font-size:13px;color:var(--fog);line-height:1.65;margin-bottom:12px;">Casco inundado descansa en el lecho marino en aguas muy someras — bahías, pantanos, y ciénagas. Común a lo largo de la Costa del Golfo y el Sudeste Asiático.</p>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Profundidad del agua</span><span style="font-family:var(--mono);color:var(--mist);">≤ 70 ft</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--fog);">Terreno</span><span style="font-family:var(--mono);color:var(--mist);">Pantano, bahía, lago</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Comparación</div>
+    <h2 class="section-title">Jack-Up vs. <span>Semisumergible</span></h2>
+    <p style="color:var(--fog);max-width:640px;margin-bottom:24px;">Los dos tipos de taladro costa afuera más comunes a menudo se comparan directamente ya que pueden superponerse en profundidades de agua más someras.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th></th><th>Taladro Jack-Up</th><th>Semisumergible</th></tr></thead>
+        <tbody>
+          <tr><td>Profundidad del Agua</td><td>Hasta ~400 ft</td><td>400 – 12,000 ft</td></tr>
+          <tr><td>Método de Estabilidad</td><td>Patas descansan en el lecho marino</td><td>Flota, sostenido por anclas o DP</td></tr>
+          <tr><td>Movilidad</td><td>Remolcado, las patas deben subir/bajar</td><td>Puede reposicionarse más fácilmente</td></tr>
+          <tr><td>Tarifa Diaria</td><td>Más baja ($80K–$180K)</td><td>Más alta ($250K–$500K)</td></tr>
+          <tr><td>Mejor Para</td><td>Perforación en plataforma continental somera</td><td>Exploración y desarrollo en aguas profundas</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</BaseLayout>

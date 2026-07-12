@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+---
+<BaseLayout
+  title="Preventor de Reventones (BOP) Explicado — Tipos, Función, Clasificaciones de Presión"
+  description="Cómo funciona un preventor de reventones: preventores anulares, tipos de arietes, configuración del stack, clasificaciones de presión, y requisitos de prueba diaria."
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'BOP', href: '/es/equipment/bop' }]}
+  lang="es"
+  alternateHref="/equipment/bop"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/bop" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Control de Presión</div>
+    <h1>Preventores de <span>Reventones</span></h1>
+    <p class="page-hero-sub">La última línea de defensa entre un pozo controlado y un reventón. Aquí está exactamente cómo funciona un stack de BOP y qué hace cada componente.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2>Qué Hace un BOP</h2>
+        <p>Un preventor de reventones es un sistema de válvulas de alta presión instalado encima del cabezal del pozo, capaz de sellar el pozo en segundos si los fluidos de formación amenazan con fluir a superficie de forma incontrolada. Es el hardware físico que hace posibles los <a href="/es/drilling/well-control">procedimientos de control de pozos</a> — sin un BOP funcional, no hay forma de cerrar una surgencia.</p>
+        <p>Todo stack de BOP es una combinación de varios elementos de sellado apilados uno sobre otro, cada uno diseñado para un escenario diferente — sellar alrededor de tubería, sellar un hoyo abierto, o cortar completamente la tubería en una emergencia.</p>
+
+        <h2>Los Componentes Principales</h2>
+        <div style="display:flex;flex-direction:column;gap:8px;margin:24px 0;">
+          <div style="padding:16px 18px;background:var(--steel);border-radius:3px;">
+            <strong style="color:var(--white);font-size:14px;">Preventor Anular</strong>
+            <p style="font-size:12px;color:var(--fog);margin-top:4px;">Se ubica en la parte superior del stack. Usa un elemento de goma en forma de dona que puede sellar alrededor de tubería de casi cualquier tamaño y forma, o cerrar sobre hoyo abierto. El elemento más flexible pero de menor clasificación de presión.</p>
+          </div>
+          <div style="padding:16px 18px;background:var(--steel);border-radius:3px;">
+            <strong style="color:var(--white);font-size:14px;">Arietes de Tubería (Pipe Rams)</strong>
+            <p style="font-size:12px;color:var(--fog);margin-top:4px;">Arietes de acero que cierran alrededor de un diámetro de tubería específico, sellando el espacio anular mientras permiten que la tubería permanezca en el hoyo. Un componente de "cierre duro".</p>
+          </div>
+          <div style="padding:16px 18px;background:var(--steel);border-radius:3px;">
+            <strong style="color:var(--white);font-size:14px;">Arietes Ciegos (Blind Rams)</strong>
+            <p style="font-size:12px;color:var(--fog);margin-top:4px;">Sellan un hoyo completamente abierto cuando no hay tubería presente — caras de acero planas se cierran completamente a través del pozo.</p>
+          </div>
+          <div style="padding:16px 18px;background:var(--steel);border-radius:3px;">
+            <strong style="color:var(--white);font-size:14px;">Arietes de Corte (Blind Shear Rams)</strong>
+            <p style="font-size:12px;color:var(--fog);margin-top:4px;">La opción de emergencia — literalmente corta la tubería de perforación y sella el pozo simultáneamente. Se usa solo cuando la tubería no puede despejarse del BOP a tiempo.</p>
+          </div>
+          <div style="padding:16px 18px;background:var(--steel);border-radius:3px;">
+            <strong style="color:var(--white);font-size:14px;">Líneas de Choke y Matanza</strong>
+            <p style="font-size:12px;color:var(--fog);margin-top:4px;">Tubería que permite circular fluido fuera del pozo, o bombear lodo de matanza hacia el pozo, mientras el BOP permanece cerrado — esencial para ejecutar una hoja de control de pozo.</p>
+          </div>
+        </div>
+
+        <h2>Stacks de BOP Superficiales vs. Submarinos</h2>
+        <p>En taladros terrestres y plataformas, el BOP se ubica directamente sobre el cabezal del pozo en superficie. En taladros flotantes costa afuera (semisumergibles, buques de perforación), el stack de BOP se ubica en el lecho marino, conectado al taladro por un riser marino — lo que significa que el stack mismo puede estar operando bajo miles de pies de agua, con líneas de control hidráulico que recorren toda la profundidad del agua de vuelta al taladro.</p>
+
+        <h2>Clasificaciones de Presión y Clases</h2>
+        <p>Los stacks de BOP se clasifican por clase de presión de trabajo: 3,000, 5,000, 10,000, y 15,000 psi son las clases comunes, elegidas según la presión máxima anticipada en superficie (MASP) para el pozo que se está perforando. Un pozo que se espera produzca presiones de formación altas requiere un stack de clasificación correspondientemente más alta.</p>
+
+        <div class="note-box">
+          <strong>Verificaciones Diarias de Presión del BOP:</strong> Presión del acumulador: <span class="highlight">3,000 psi</span> · Presión del manifold: <span class="highlight">1,500 psi</span> · Presión de operación anular: <span class="highlight">700–1,500 psi</span> · Suministro de aire a las bombas: <span class="highlight">125 psi</span>. Estas verificaciones se registran cada turno sin excepción en un taladro conforme.
+        </div>
+
+        <h2>Requisitos de Prueba</h2>
+        <p>Los BOP se prueban funcionalmente (ciclados a través de apertura/cierre sin presión) al menos una vez por semana, y se prueban a presión (sellados contra presión de prueba real) como mínimo cada 21 días o según la jurisdicción regulatoria específica — con mayor frecuencia después de cualquier evento de control de pozos o cambio de equipo. Una secuencia de prueba completa verifica cada ariete y el anular individualmente antes de que pueda continuar la perforación.</p>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#">Qué Hace un BOP</a>
+          <a href="#">Componentes Principales</a>
+          <a href="#">Superficial vs. Submarino</a>
+          <a href="#">Clasificaciones de Presión</a>
+          <a href="#">Requisitos de Prueba</a>
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/drilling/well-control" class="card-link">→ Control de Pozos y Surgencias</a><br><br>
+          <a href="/es/calculators/kill-sheet" class="card-link">→ Calculadora de Hoja de Control de Pozo</a><br><br>
+          <a href="/es/equipment/drill-string" class="card-link">→ La Sarta de Perforación</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

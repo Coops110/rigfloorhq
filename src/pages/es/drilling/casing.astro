@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+---
+<BaseLayout
+  title="Diseño de Revestimiento Explicado — Por Qué los Pozos se Perforan en Etapas"
+  description="Cómo funcionan los programas de revestimiento: sartas de conductor, superficial, intermedio, y de producción, por qué se necesitan, y cómo se eligen los puntos de revestimiento."
+  breadcrumbs={[{ label: 'Perforación', href: '/es/drilling' }, { label: 'Diseño de Revestimiento', href: '/es/drilling/casing' }]}
+  lang="es"
+  alternateHref="/drilling/casing"
+>
+  <Nav slot="nav" lang="es" alternateHref="/drilling/casing" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Perforación — Arquitectura del Pozo</div>
+    <h1>Diseño de <span>Revestimiento</span></h1>
+    <p class="page-hero-sub">Por qué un pozo no se perfora en un solo hoyo continuo — y cómo cada sarta de revestimiento protege el pozo y a las personas que trabajan en él.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2>Por Qué los Pozos se Perforan en Etapas</h2>
+        <p>Un pozo se perfora en múltiples secciones, cada una cubierta con una sarta de revestimiento de acero cementada en su lugar antes de continuar la perforación a la siguiente profundidad. Este enfoque escalonado existe porque la ventana segura de peso de lodo cambia con la profundidad — un peso de lodo que es seguro a 5,000 ft podría fracturar una formación más somera o fallar en controlar una más profunda. El revestimiento aísla cada sección para que se pueda usar un peso de lodo diferente debajo de ella sin arriesgar la roca ya perforada.</p>
+
+        <h2>Las Cuatro Sartas de Revestimiento Principales</h2>
+        <div style="display:flex;flex-direction:column;gap:8px;margin:24px 0;">
+          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--iron);border-radius:3px;align-items:center;">
+            <div><strong style="color:var(--white);font-size:14px;">Revestimiento Conductor</strong><br><span style="font-size:12px;color:var(--fog);">El más somero, de mayor diámetro. Previene que el pozo se derrumbe cerca de la superficie y soporta el cabezal del pozo.</span></div>
+          </div>
+          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
+            <div><strong style="color:var(--white);font-size:14px;">Revestimiento Superficial</strong><br><span style="font-size:12px;color:var(--fog);">Protege los acuíferos de agua dulce de la contaminación y proporciona integridad estructural para instalar el stack de BOP.</span></div>
+          </div>
+          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
+            <div><strong style="color:var(--white);font-size:14px;">Revestimiento Intermedio</strong><br><span style="font-size:12px;color:var(--fog);">Aísla zonas inestables o de presión anormal encontradas en el camino hacia el yacimiento. Un pozo puede tener una o varias de estas sartas.</span></div>
+          </div>
+          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--iron);border-radius:3px;align-items:center;">
+            <div><strong style="color:var(--white);font-size:14px;">Revestimiento de Producción</strong><br><span style="font-size:12px;color:var(--fog);">La sarta final, corrida a través del yacimiento. Esto es a través de lo cual el pozo se completa y produce.</span></div>
+          </div>
+        </div>
+
+        <h2>Cómo se Eligen los Puntos de Revestimiento</h2>
+        <p>La profundidad a la cual se fija cada sarta de revestimiento — el "punto de revestimiento" — se elige según dónde las curvas de presión de poro y gradiente de fractura hacen inseguro continuar con el peso de lodo actual. Esto se determina usando datos de pozos vecinos, una Prueba de Fuga (LOT) en el zapato anterior, y predicción de presión en tiempo real durante la perforación (usando herramientas como el método del exponente-d).</p>
+        <p>Fijar el revestimiento demasiado somero significa más sartas y mayor costo. Fijarlo demasiado profundo arriesga perforar hacia un régimen de presión que el peso de lodo actual no puede manejar de forma segura — causando una surgencia o fracturando la formación. Esta compensación está en el corazón de la planificación del pozo, estrechamente ligada a los conceptos en la <a href="/es/drilling/mud-weight">página de peso de lodo y presión</a>.</p>
+
+        <h2>Cementación</h2>
+        <p>Una vez corrida, cada sarta de revestimiento se cementa en su lugar — el cemento se bombea por dentro del revestimiento y regresa por el espacio anular entre el revestimiento y la pared del pozo. Esto logra tres cosas: une el revestimiento estructuralmente a la formación, aísla diferentes zonas de presión entre sí, y previene que los fluidos migren hacia arriba o abajo por el espacio anular fuera de la tubería. Los trabajos de cementación deficientes son una causa raíz principal de fallas de integridad del pozo.</p>
+
+        <div class="note-box">
+          <strong>Escala del mundo real:</strong> Un pozo de aguas profundas podría tener cuatro o cinco sartas de revestimiento separadas para cuando alcanza la profundidad total, con el diámetro del hoyo reduciéndose de 36 pulgadas en la parte superior hasta tan pequeño como 6 pulgadas en la profundidad total.
+        </div>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#">Por Qué los Pozos se Perforan en Etapas</a>
+          <a href="#">Las Cuatro Sartas de Revestimiento</a>
+          <a href="#">Elección de Puntos de Revestimiento</a>
+          <a href="#">Cementación</a>
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/drilling/mud-weight" class="card-link">→ Peso de Lodo y Presión</a><br><br>
+          <a href="/es/drilling" class="card-link">→ Cómo Funciona la Perforación</a><br><br>
+          <a href="/es/equipment/bop" class="card-link">→ Preventores de Reventones</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

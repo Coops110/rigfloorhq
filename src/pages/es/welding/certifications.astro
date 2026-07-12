@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+---
+<BaseLayout
+  title="Cómo Convertirte en Soldador de Taladro Petrolero — Certificaciones y Trayectoria Profesional"
+  description="La trayectoria completa para convertirte en soldador de taladro: certificaciones requeridas, calificaciones de proceso, y progresión profesional de soldador junior a inspector CWI."
+  breadcrumbs={[{ label: 'Soldadura', href: '/es/welding' }, { label: 'Certificaciones', href: '/es/welding/certifications' }]}
+  lang="es"
+  alternateHref="/welding/certifications"
+>
+  <Nav slot="nav" lang="es" alternateHref="/welding/certifications" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Soldadura — Trayectoria Profesional</div>
+    <h1>Cómo Convertirte en <span>Soldador de Taladro</span></h1>
+    <p class="page-hero-sub">Las certificaciones que realmente importan, y la progresión realista de soldador junior a especialista o inspector.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <h2 class="section-title" style="font-size:28px;">Trayectoria <span>Profesional</span></h2>
+        <div class="career-path">
+          <div class="career-step">
+            <h4>Soldador Junior <span class="inline-badge badge-entry">Inicial</span></h4>
+            <div class="cs-meta"><span class="cs-years">0–3 años</span><span class="cs-salary">$45K–$65K/año</span></div>
+            <p>Habilidades fundamentales de soldadura, entrenamiento básico de seguridad costa afuera (BOSIET). Limitado a reparaciones supervisadas. Trabajando hacia la certificación AWS CW.</p>
+          </div>
+          <div class="career-step">
+            <h4>Soldador Oficial (Journey) <span class="inline-badge badge-mid">Medio</span></h4>
+            <div class="cs-meta"><span class="cs-years">3–7 años</span><span class="cs-salary">$65K–$95K/año</span></div>
+            <p>Múltiples calificaciones de proceso (SMAW, GTAW, FCAW). Certificado en API 1104 y AWS D1.1. Trabaja independientemente en trabajo estructural y de tuberías.</p>
+          </div>
+          <div class="career-step">
+            <h4>Soldador Senior / Especialista <span class="inline-badge badge-senior">Senior</span></h4>
+            <div class="cs-meta"><span class="cs-years">7–12 años</span><span class="cs-salary">$90K–$130K/año</span></div>
+            <p>Soldadura de tubería en todas las posiciones, experiencia en aleaciones exóticas. Interpreta planos de ingeniería y trabaja a partir del WPS sin supervisión.</p>
+          </div>
+          <div class="career-step">
+            <h4>Soldador Submarino / Buzo <span class="inline-badge badge-expert">Experto</span></h4>
+            <div class="cs-meta"><span class="cs-years">5+ años combinados</span><span class="cs-salary">$80K–$150K+/año</span></div>
+            <p>Buzo comercial y soldador combinado. Ver la <a href="/es/welding/underwater-welding">guía completa de soldadura submarina</a>.</p>
+          </div>
+          <div class="career-step">
+            <h4>Inspector de Soldadura (CWI) <span class="inline-badge badge-expert">Experto</span></h4>
+            <div class="cs-meta"><span class="cs-years">5+ años + examen AWS</span><span class="cs-salary">$80K–$140K/año</span></div>
+            <p>El Inspector de Soldadura Certificado por AWS verifica la calidad de la soldadura y aprueba procedimientos. Demanda consistente sin importar los ciclos de precio del petróleo.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="section-title" style="font-size:28px;">Certificaciones <span>Explicadas</span></h2>
+        <div class="card-grid" style="grid-template-columns:1fr;">
+          <div class="card">
+            <h3>Soldador Certificado AWS (CW)</h3>
+            <p>Calificación de desempeño de nivel inicial que prueba tu capacidad de producir soldaduras sólidas en posiciones y procesos específicos. La credencial de partida para la mayoría de trabajos de soldadura en taladros.</p>
+          </div>
+          <div class="card">
+            <h3>API 1104</h3>
+            <p>Estándar de soldadura de tuberías. Prueba la soldadura en múltiples posiciones (incluyendo la exigente posición de tubería 6G) usando procedimientos calificados según este código. Esencial para trabajo de tuberías.</p>
+          </div>
+          <div class="card">
+            <h3>AWS D1.1</h3>
+            <p>Código de soldadura de acero estructural. Requerido para trabajo de fabricación y reparación de plataformas, mástiles, y estructuras.</p>
+          </div>
+          <div class="card">
+            <h3>ASME Sección IX</h3>
+            <p>Rige el procedimiento de soldadura y calificación del soldador para recipientes a presión y sistemas de tuberías — requerido para trabajo de recipientes de alta presión en taladros.</p>
+          </div>
+          <div class="card">
+            <h3>AWS D3.6M</h3>
+            <p>El código de soldadura submarina, cubriendo las clases de calificación tanto de soldadura húmeda como hiperbárica (A, B, y O).</p>
+          </div>
+          <div class="card">
+            <h3>AWS CWI</h3>
+            <p>Inspector de Soldadura Certificado — requiere experiencia en soldadura más un examen riguroso. Te mueve de soldar a inspeccionar y aprobar el trabajo de otros.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="note-box" style="max-width:800px;">
+      <strong>Nota de supervivencia costa afuera:</strong> Además de las certificaciones de soldadura, los soldadores costa afuera requieren BOSIET (escape submarino de helicóptero, supervivencia en el mar, combate de incendios) y HUET — ver la <a href="/es/careers/certifications" style="color:var(--amber);">guía completa de certificaciones</a>. Los soldadores que realizan trabajo en caliente estructural también necesitan concientización de Permiso de Trabajo en Caliente y entrenamiento de entrada a espacios confinados.
+    </div>
+  </section>
+</BaseLayout>

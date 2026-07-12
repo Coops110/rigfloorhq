@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+---
+<BaseLayout
+  title="Seguridad de H2S en Taladros Petroleros — Límites de Exposición y Procedimientos de Escape"
+  description="Guía de seguridad de sulfuro de hidrógeno (H2S) para trabajadores de taladros petroleros: niveles de exposición, detección, monitores personales, uso de SCBA, y procedimientos de escape de emergencia."
+  breadcrumbs={[{ label: 'Seguridad', href: '/es/safety' }, { label: 'Seguridad de H2S', href: '/es/safety/h2s' }]}
+  lang="es"
+  alternateHref="/safety/h2s"
+>
+  <Nav slot="nav" lang="es" alternateHref="/safety/h2s" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Seguridad — Gas Amargo</div>
+    <h1>Seguridad de <span>H₂S</span></h1>
+    <p class="page-hero-sub">El sulfuro de hidrógeno es uno de los peligros más letales en petróleo y gas — incoloro, más pesado que el aire, y capaz de incapacitar a una persona en un solo respiro a alta concentración.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2>Qué Hace al H₂S Tan Peligroso</h2>
+        <p>El sulfuro de hidrógeno es un gas de origen natural que se encuentra en yacimientos de petróleo crudo y gas natural "amargos". Es incoloro, inflamable, y más pesado que el aire — lo que significa que se acumula en áreas bajas, cellars, y espacios confinados en lugar de dispersarse. Su propiedad más peligrosa es la fatiga olfativa: a bajas concentraciones huele a huevo podrido, pero a concentraciones más altas y peligrosas anula tu sentido del olfato casi instantáneamente, eliminando la misma señal de advertencia que de otra forma te alertaría.</p>
+
+        <h2>Niveles de Exposición y Efectos</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Concentración</th><th>Efecto</th></tr></thead>
+            <tbody>
+              <tr><td>0.5–5 ppm</td><td>Olor perceptible a huevo podrido</td></tr>
+              <tr><td>10–20 ppm</td><td>Irritación ocular y respiratoria; nivel de acción de OSHA</td></tr>
+              <tr><td>50–100 ppm</td><td>Pérdida del olfato (fatiga olfativa) en minutos; riesgo serio de daño ocular</td></tr>
+              <tr><td>100–150 ppm</td><td>Tos, pérdida total del olfato; inmediatamente peligroso para la vida y la salud (IDLH)</td></tr>
+              <tr><td>500–700 ppm</td><td>Pérdida de consciencia en minutos; riesgo de falla respiratoria</td></tr>
+              <tr><td>700+ ppm</td><td>Inconsciencia rápida y muerte, potencialmente dentro de un solo respiro</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="danger-box">
+          <strong>Punto crítico de seguridad:</strong> Nunca confíes únicamente en el olfato para juzgar la concentración de H₂S. El gas desactiva tu capacidad de olerlo mucho antes de que alcance niveles letales. Los detectores de gas personales y fijos son el único método confiable de monitorear la exposición.
+        </div>
+
+        <h2>Detección y Monitoreo</h2>
+        <p>Los taladros que operan en campos de gas amargo conocidos o sospechados despliegan detección por capas: sistemas fijos de detección de gas por todo el taladro (particularmente cerca del cabezal del pozo, zarandas, y cualquier área baja o cerrada), más monitores personales de H₂S usados por cada individuo en el sitio. Los monitores personales alarman audible y visualmente mucho antes de que las concentraciones se vuelvan peligrosas, dando a los trabajadores tiempo para evacuar a un área de reunión o colocarse el SCBA.</p>
+
+        <h2>Equipo de Respuesta a Emergencias</h2>
+        <p><strong>El SCBA (Equipo de Respiración Autónomo)</strong> proporciona un suministro de aire completamente independiente y es el equipo estándar de respuesta a emergencias para incidentes de H₂S — ubicado estratégicamente en el taladro para acceso rápido. Los sistemas de aire en cascada y los paquetes de escape (unidades SCBA más pequeñas y de menor duración) también son comunes, dando a los trabajadores suficiente aire para llegar a un punto de reunión seguro en lugar de un suministro de duración completa.</p>
+
+        <h2>Requisitos de Entrenamiento</h2>
+        <p>Cualquiera que trabaje en un pozo designado con potencial de H₂S debe completar el entrenamiento de seguridad de H₂S antes de estar en el sitio — típicamente un curso de un día cubriendo los efectos fisiológicos, uso de detectores, colocación de SCBA bajo presión de tiempo, y procedimientos de respuesta a emergencias específicos del sitio. Esto es separado del entrenamiento general de seguridad costa afuera como <a href="/es/careers/certifications">BOSIET</a>, y se requiere específicamente siempre que el gas amargo sea un riesgo creíble, en tierra o costa afuera.</p>
+
+        <h2>Si Sospechas una Liberación de H₂S</h2>
+        <ul>
+          <li>Muévete inmediatamente a favor del viento y hacia terreno más alto si estás al aire libre — el H₂S se hunde y se acumula en áreas bajas.</li>
+          <li>No intentes rescatar a un compañero caído sin SCBA — los incidentes de H₂S con múltiples víctimas comúnmente ocurren cuando un posible rescatista es vencido al intentar un rescate sin protección.</li>
+          <li>Activa la alarma y procede al punto de reunión designado inmediatamente.</li>
+          <li>Repórtate con un supervisor y sigue el plan de respuesta a emergencias de H₂S específico del sitio.</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#">Por Qué el H₂S Es Tan Peligroso</a>
+          <a href="#">Niveles de Exposición</a>
+          <a href="#">Detección y Monitoreo</a>
+          <a href="#">Equipo de Emergencia</a>
+          <a href="#">Requisitos de Entrenamiento</a>
+          <a href="#">Si Sospechas una Liberación</a>
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/safety" class="card-link">→ Todos los Temas de Seguridad del Taladro</a><br><br>
+          <a href="/es/careers/certifications" class="card-link">→ Todas las Certificaciones</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <p style="font-size:12px;color:var(--fog);max-width:700px;">Esta página es material de referencia educativo, no un sustituto del entrenamiento certificado de seguridad de H₂S. Si estás experimentando una crisis de salud mental o una emergencia, este contenido no está destinado a orientación médica o de emergencia — siempre sigue el plan de respuesta a emergencias de tu sitio y contacta a los servicios de emergencia directamente.</p>
+  </section>
+</BaseLayout>
