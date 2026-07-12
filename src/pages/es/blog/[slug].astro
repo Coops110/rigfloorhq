@@ -1,11 +1,11 @@
 ---
 import { getCollection, render } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Nav from '../../components/Nav.astro';
-import Footer from '../../components/Footer.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const posts = await getCollection('blogEs', ({ data }) => !data.draft);
   return posts.map(post => ({
     params: { slug: post.id },
     props: { post },
@@ -16,7 +16,7 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 
 function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  return new Date(dateStr).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
 const jsonLd = {
@@ -29,33 +29,31 @@ const jsonLd = {
   "author": { "@type": "Organization", "name": post.data.author },
 };
 
-// Only link to a specific Spanish post if a real translation with a matching
-// filename exists; otherwise fall back to the Spanish blog hub rather than a 404.
-const spanishPosts = await getCollection('blogEs', ({ data }) => !data.draft);
-const hasSpanishVersion = spanishPosts.some(p => p.id === post.id);
-const alternateUrl = hasSpanishVersion ? `/es/blog/${post.id}` : '/es/blog';
+// Post filenames match exactly between the English and Spanish collections,
+// so the English equivalent URL can be derived directly from the same id.
+const englishEquivalent = `/blog/${post.id}`;
 ---
 <BaseLayout
   title={post.data.title}
   description={post.data.description}
-  canonical={`/blog/${post.id}`}
-  breadcrumbs={[{ label: 'Blog', href: '/blog' }, { label: post.data.title, href: `/blog/${post.id}` }]}
+  canonical={`/es/blog/${post.id}`}
+  breadcrumbs={[{ label: 'Blog', href: '/es/blog' }, { label: post.data.title, href: `/es/blog/${post.id}` }]}
   articleTag={true}
   publishDate={post.data.publishDate}
   modifiedDate={post.data.modifiedDate}
   jsonLd={jsonLd}
-  lang="en"
-  alternateHref={alternateUrl}
+  lang="es"
+  alternateHref={englishEquivalent}
 >
-  <Nav slot="nav" lang="en" alternateHref={alternateUrl} />
-  <Footer slot="footer" lang="en" />
+  <Nav slot="nav" lang="es" alternateHref={englishEquivalent} />
+  <Footer slot="footer" lang="es" />
 
   <div class="page-hero">
     <div class="page-hero-eyebrow">Blog — {post.data.category}</div>
     <h1>{post.data.title}</h1>
     <p class="page-hero-sub">{post.data.description}</p>
     <div class="page-meta">
-      <span class="page-meta-item">By <strong>{post.data.author}</strong></span>
+      <span class="page-meta-item">Por <strong>{post.data.author}</strong></span>
       <span class="page-meta-item">{formatDate(post.data.publishDate)}</span>
       {post.data.tags.length > 0 && (
         <span class="page-meta-item">{post.data.tags.join(' · ')}</span>
@@ -69,7 +67,7 @@ const alternateUrl = hasSpanishVersion ? `/es/blog/${post.id}` : '/es/blog';
     </div>
 
     <div class="note-box mt-40" style="max-width:700px;">
-      <strong>Want more like this?</strong> Browse all posts on the <a href="/blog" style="color:var(--amber);">blog index</a>, or head back to the <a href="/" style="color:var(--amber);">main reference library</a>.
+      <strong>¿Quieres más como esto?</strong> Explora todos los artículos en el <a href="/es/blog" style="color:var(--amber);">índice del blog</a>, o regresa a la <a href="/es" style="color:var(--amber);">biblioteca de referencia principal</a>.
     </div>
   </section>
 </BaseLayout>

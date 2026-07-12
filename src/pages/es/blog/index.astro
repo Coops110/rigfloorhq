@@ -4,7 +4,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 
-const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const allPosts = await getCollection('blogEs', ({ data }) => !data.draft);
 const posts = allPosts.sort((a, b) =>
   new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
 );
@@ -27,20 +27,19 @@ function formatDate(dateStr: string) {
     <div class="page-hero-eyebrow">Blog</div>
     <h1>Notas de <span>Campo</span></h1>
     <p class="page-hero-sub">Análisis más profundos, orientación práctica, y perspectiva de la industria — más allá de las páginas de referencia principales.</p>
-    <p style="color:var(--fog);font-size:13px;margin-top:12px;">Los artículos del blog están actualmente disponibles en inglés. Traducciones al español llegarán progresivamente.</p>
   </div>
 
   <section class="block">
     <div class="blog-list">
       {posts.map(post => (
-        <a href={`/blog/${post.id}`} class="blog-card">
+        <a href={`/es/blog/${post.id}`} class="blog-card">
           <div class="blog-card-meta">
             <span class="blog-card-category">{post.data.category}</span>
             <span class="blog-card-date">{formatDate(post.data.publishDate)}</span>
           </div>
           <h2 class="blog-card-title">{post.data.title}</h2>
           <p class="blog-card-desc">{post.data.description}</p>
-          <span class="blog-card-link">Leer más (inglés) →</span>
+          <span class="blog-card-link">Leer más →</span>
         </a>
       ))}
     </div>
