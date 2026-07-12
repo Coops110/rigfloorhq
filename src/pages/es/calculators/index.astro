@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+---
+<BaseLayout
+  title="Calculadoras de Perforación — Presión Hidrostática, Hoja de Control de Pozo, Peso de Lodo"
+  description="Calculadoras interactivas gratuitas de perforación: presión hidrostática, hoja de control de pozo / peso de lodo de matanza, y calculadora de ventana de peso de lodo usando fórmulas reales de la industria."
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }]}
+  lang="es"
+  alternateHref="/calculators"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">07 — Herramientas Interactivas</div>
+    <h1>Calculadoras de <span>Perforación</span></h1>
+    <p class="page-hero-sub">Realiza cálculos reales de presión de perforación usando las fórmulas exactas enseñadas en la certificación de control de pozos de IWCF e IADC. Ingresa los parámetros de tu pozo y obtén resultados instantáneos.</p>
+  </div>
+
+  <section class="block">
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-icon">⚙</span>
+        <h3>Calculadora de Presión Hidrostática</h3>
+        <p>Calcula la presión hidrostática, compárala con la presión de poro y fractura, y obtén un estado instantáneo de seguro/inseguro.</p>
+        <a href="/es/calculators/hydrostatic" class="card-link">Abrir Calculadora →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🚨</span>
+        <h3>Calculadora de Hoja de Control de Pozo</h3>
+        <p>Calcula el peso de lodo de matanza, la presión de formación, y la presión de circulación inicial/final después de cerrar el pozo por una surgencia.</p>
+        <a href="/es/calculators/kill-sheet" class="card-link">Abrir Calculadora →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">📊</span>
+        <h3>Calculadora de Ventana de Peso de Lodo</h3>
+        <p>Visualiza tu ventana segura de perforación entre los gradientes de presión de poro y de fractura a cualquier profundidad.</p>
+        <a href="/calculators/mud-weight-window" class="card-link">Abrir Calculadora (inglés) →</a>
+      </div>
+    </div>
+
+    <div class="note-box mt-40" style="max-width:800px;">
+      <strong>Importante:</strong> Estas calculadoras son para fines educativos y de referencia. Siga siempre los procedimientos aprobados por su empresa y consulte a su supervisor certificado de control de pozos para decisiones operativas reales. Nunca tome decisiones de control de pozos en vivo basándose únicamente en una herramienta de referencia.
+    </div>
+    <p style="color:var(--fog);font-size:13px;margin-top:16px;">La calculadora de ventana de peso de lodo aún está disponible solo en inglés. Una versión en español está planeada.</p>
+  </section>
+</BaseLayout>

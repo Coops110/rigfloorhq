@@ -102,6 +102,23 @@ nav.site-nav a.nav-link {
 nav.site-nav a.nav-link:hover,
 nav.site-nav a.nav-link.active { color: var(--amber); border-bottom-color: var(--amber); }
 
+/* Language switcher */
+.nav-lang-switch {
+  font-family: var(--mono) !important;
+  font-size: 11px !important;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--amber) !important;
+  border: 1px solid rgba(232,160,32,0.35);
+  border-radius: 3px;
+  padding: 4px 10px !important;
+  height: auto !important;
+  margin-left: 6px;
+  flex-shrink: 0;
+}
+.nav-lang-switch:hover { background: rgba(232,160,32,0.1); border-color: var(--amber); }
+.nav-lang-switch-mobile { color: var(--amber) !important; }
+
 /* Hamburger button */
 .nav-hamburger {
   display: flex;

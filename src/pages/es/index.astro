@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "RigFloorHQ",
+  "url": "https://rigfloorhq.com/es",
+  "description": "La referencia completa del campo petrolero y de gas para perforación, soldadura, control de pozos y carreras profesionales.",
+};
+---
+<BaseLayout
+  title="RigFloorHQ — La Referencia Completa del Campo Petrolero y de Gas"
+  description="Todo sobre trabajar en un taladro petrolero: trayectorias profesionales desde obrero de piso hasta toolpusher, calculadoras de presión de perforación, procedimientos de control de pozos, certificaciones de soldadura y un glosario completo de campo."
+  jsonLd={jsonLd}
+  lang="es"
+  alternateHref="/"
+>
+  <Nav slot="nav" lang="es" alternateHref="/" />
+  <Footer slot="footer" lang="es" />
+
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+
+    <div class="hero-eyebrow">⚙ Referencia de Campo — Perforación · Soldadura · Control de Pozos · Carreras</div>
+    <h1>Todo<br>Sobre el <span>Taladro.</span></h1>
+    <p class="hero-sub">Desde tu primer día como obrero de piso hasta manejar tu propia hoja de control de pozo — la referencia técnica y profesional completa para operaciones petroleras y de gas.</p>
+
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">30K+</span><span class="stat-label">Taladros activos en el mundo</span></div>
+      <div class="stat"><span class="stat-num">$50K</span><span class="stat-label">Salario inicial / año (USD)</span></div>
+      <div class="stat"><span class="stat-num">0.052</span><span class="stat-label">Constante hidrostática</span></div>
+      <div class="stat"><span class="stat-num">8–12</span><span class="stat-label">Años a Toolpusher</span></div>
+    </div>
+
+    <div class="hero-cta">
+      <a href="/es/careers" class="btn btn-primary">Cómo Conseguir Trabajo</a>
+      <a href="/es/calculators" class="btn btn-outline">Abrir Calculadoras</a>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Empieza Aquí</div>
+    <h2 class="section-title">Elige Tu <span>Camino</span></h2>
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-icon">🪜</span>
+        <h3>Nuevo en la Industria</h3>
+        <p>No se necesita experiencia. Aprende los roles, la jerarquía y exactamente lo que se necesita para conseguir tu primer trabajo como obrero de piso.</p>
+        <a href="/es/careers" class="card-link">Cómo Empezar en el Piso de Perforación →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🧮</span>
+        <h3>Trabajador Activo del Taladro</h3>
+        <p>Realiza cálculos reales de presión hidrostática, peso de lodo y hoja de control de pozo. Fórmulas explicadas como te las explicaría un perforador.</p>
+        <a href="/es/calculators" class="card-link">Abrir Calculadoras →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎓</span>
+        <h3>Ingeniero o Supervisor</h3>
+        <p>Referencia técnica profunda sobre predicción de presión de poro, ECD, diseño de revestimiento y teoría de control de pozos.</p>
+        <a href="/es/drilling" class="card-link">Referencia de Perforación →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔥</span>
+        <h3>Soldador / Oficios</h3>
+        <p>Todos los procesos de soldadura usados en un taladro, las certificaciones que importan, y la trayectoria profesional de soldador junior a CWI.</p>
+        <a href="/es/welding" class="card-link">Guía de Soldadura de Taladro →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Explora</div>
+    <h2 class="section-title">Biblioteca de <span>Referencia</span></h2>
+    <div class="related-links">
+      <a href="/es/careers" class="related-link"><div class="rl-label">Carreras</div><div class="rl-title">Roles y Jerarquía</div></a>
+      <a href="/es/equipment" class="related-link"><div class="rl-label">Equipo</div><div class="rl-title">Equipo del Taladro</div></a>
+      <a href="/es/drilling" class="related-link"><div class="rl-label">Perforación</div><div class="rl-title">Cómo Funciona la Perforación</div></a>
+      <a href="/es/calculators" class="related-link"><div class="rl-label">Herramientas</div><div class="rl-title">Calculadoras de Perforación</div></a>
+      <a href="/es/welding" class="related-link"><div class="rl-label">Soldadura</div><div class="rl-title">Soldadura de Taladro</div></a>
+      <a href="/es/safety" class="related-link"><div class="rl-label">Seguridad</div><div class="rl-title">Seguridad y EPP</div></a>
+      <a href="/es/blog" class="related-link"><div class="rl-label">Blog</div><div class="rl-title">Notas de Campo</div></a>
+      <a href="/glossary" class="related-link"><div class="rl-label">Referencia</div><div class="rl-title">Glosario Completo (inglés)</div></a>
+    </div>
+    <p style="color:var(--fog);font-size:13px;margin-top:20px;">Las guías técnicas más detalladas están siendo traducidas progresivamente. Mientras tanto, están disponibles en <a href="/" style="color:var(--amber);">inglés</a>.</p>
+  </section>
+</BaseLayout>

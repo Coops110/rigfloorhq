@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+---
+<BaseLayout
+  title="Equipo de Taladro — Tipos de Taladro, Sarta de Perforación, BOP Explicados"
+  description="Referencia completa del equipo de taladros petroleros: tipos de taladro, la sarta de perforación, preventores de reventones, y todo sistema mecánico principal en un taladro."
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }]}
+  lang="es"
+  alternateHref="/equipment"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">02 — Equipo</div>
+    <h1>Equipo del <span>Taladro</span></h1>
+    <p class="page-hero-sub">Cada sistema mecánico central en un taladro de perforación, desde el taladro mismo hasta la barrena miles de pies debajo.</p>
+  </div>
+
+  <section class="block">
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-icon">🏗️</span>
+        <h3>Tipos de Taladros de Perforación</h3>
+        <p>Taladros terrestres, jack-ups, semisumergibles, buques de perforación, plataformas y barcazas comparados con especificaciones y tarifas diarias.</p>
+        <a href="/equipment/rig-types" class="card-link">Leer Más (inglés) →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔩</span>
+        <h3>La Sarta de Perforación</h3>
+        <p>Cada componente desde el top drive hasta la barrena — tubería de perforación, lastrabarrenas, BHA, herramientas MWD, y tipos de barrena.</p>
+        <a href="/equipment/drill-string" class="card-link">Leer Más (inglés) →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔒</span>
+        <h3>Preventores de Reventones</h3>
+        <p>Cómo un stack de BOP sella el pozo — preventores anulares, arietes, clasificaciones de presión, y requisitos de prueba.</p>
+        <a href="/equipment/bop" class="card-link">Leer Más (inglés) →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Sistemas Centrales</div>
+    <h2 class="section-title">Los Seis Sistemas de Todo <span>Taladro</span></h2>
+    <div class="card-grid grid-2">
+      <div class="card">
+        <span class="card-icon">🏗️</span>
+        <h3 style="font-size:14px;">Sistema de Izaje</h3>
+        <p>El mástil, la corona, el bloque viajero y el malacate suben y bajan la sarta de perforación.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔄</span>
+        <h3 style="font-size:14px;">Sistema de Rotación</h3>
+        <p>El top drive o la mesa rotaria giran la sarta de perforación y la barrena a RPM controlado.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">💧</span>
+        <h3 style="font-size:14px;">Circulación de Fluido</h3>
+        <p>Las bombas de lodo fuerzan el fluido de perforación hacia el fondo del pozo. Los retornos llevan los recortes a las zarandas en superficie.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔒</span>
+        <h3 style="font-size:14px;">Control de Presión</h3>
+        <p>Los preventores de reventones (BOP) sellan el pozo durante surgencias y emergencias.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">⚡</span>
+        <h3 style="font-size:14px;">Generación de Energía</h3>
+        <p>Generadores diésel o sistemas SCR suministran las enormes cargas eléctricas del equipo del taladro.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🛢️</span>
+        <h3 style="font-size:14px;">Sistema de Piletas de Lodo</h3>
+        <p>Zarandas, desarenadores, desilters y desgasificadores procesan el fluido de perforación de retorno.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

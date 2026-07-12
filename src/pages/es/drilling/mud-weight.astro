@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Peso de Lodo, Presión Hidrostática y la Ventana de Peso de Lodo",
+  "description": "Cómo calcular la presión hidrostática, presión de poro, presión de fractura, y manejar de forma segura la ventana de peso de lodo durante la perforación.",
+  "about": "Ingeniería de perforación"
+};
+---
+<BaseLayout
+  title="Cálculo de Peso de Lodo y Presión Hidrostática — Guía Completa de Fórmulas"
+  description="Guía completa de presión hidrostática, presión de poro, gradiente de fractura, y la ventana de peso de lodo. Incluye las fórmulas exactas que usan los ingenieros de perforación: P = 0.052 × MW × TVD."
+  breadcrumbs={[{ label: 'Perforación', href: '/es/drilling' }, { label: 'Peso de Lodo y Presión', href: '/es/drilling/mud-weight' }]}
+  jsonLd={jsonLd}
+  lang="es"
+  alternateHref="/drilling/mud-weight"
+>
+  <Nav slot="nav" lang="es" alternateHref="/drilling/mud-weight" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Perforación — Ingeniería de Presión</div>
+    <h1>Peso de Lodo y <span>Presión Hidrostática</span></h1>
+    <p class="page-hero-sub">Entender y controlar la presión del pozo es la base de la perforación segura. Cada decisión — peso de lodo, programa de revestimiento, velocidad de perforación — vuelve al manejo de presión.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2>Las Cuatro Presiones Clave</h2>
+        <p>Cada decisión de perforación equilibra cuatro presiones distintas que actúan sobre el pozo. Entender cómo interactúan es el concepto más importante en ingeniería de pozos.</p>
+
+        <div style="display:flex;flex-direction:column;gap:14px;margin:24px 0;">
+          <div style="padding:18px 20px;background:var(--steel);border-radius:3px;border-left:3px solid var(--safe);">
+            <h4 style="font-family:var(--cond);font-weight:700;font-size:15px;text-transform:uppercase;color:var(--safe);letter-spacing:0.04em;margin-bottom:6px;">Presión Hidrostática (HP)</h4>
+            <p style="font-size:13px;color:var(--fog);line-height:1.65;margin:0;">La presión ejercida por la columna de fluido de perforación en el pozo. La herramienta principal para controlar las presiones de formación — determinada por el peso de lodo y la profundidad.</p>
+          </div>
+          <div style="padding:18px 20px;background:var(--steel);border-radius:3px;border-left:3px solid var(--amber);">
+            <h4 style="font-family:var(--cond);font-weight:700;font-size:15px;text-transform:uppercase;color:var(--amber);letter-spacing:0.04em;margin-bottom:6px;">Presión de Poro (PP)</h4>
+            <p style="font-size:13px;color:var(--fog);line-height:1.65;margin:0;">La presión de los fluidos en los poros de la roca del yacimiento. Gradiente normal ≈ 0.433–0.465 psi/pie. La presión de poro anormalmente alta causa surgencias.</p>
+          </div>
+          <div style="padding:18px 20px;background:var(--steel);border-radius:3px;border-left:3px solid var(--caution);">
+            <h4 style="font-family:var(--cond);font-weight:700;font-size:15px;text-transform:uppercase;color:var(--caution);letter-spacing:0.04em;margin-bottom:6px;">Presión de Fractura (FP)</h4>
+            <p style="font-size:13px;color:var(--fog);line-height:1.65;margin:0;">La presión a la cual la formación se agrieta y se pierde fluido hacia la roca. Se determina con una Prueba de Fuga (LOT) en cada zapato de revestimiento.</p>
+          </div>
+          <div style="padding:18px 20px;background:var(--steel);border-radius:3px;border-left:3px solid var(--danger);">
+            <h4 style="font-family:var(--cond);font-weight:700;font-size:15px;text-transform:uppercase;color:var(--danger);letter-spacing:0.04em;margin-bottom:6px;">Presión de Sobrecarga (OB)</h4>
+            <p style="font-size:13px;color:var(--fog);line-height:1.65;margin:0;">La presión del peso total de roca por encima de una profundidad dada, típicamente ~1.0 psi/pie — el techo absoluto.</p>
+          </div>
+        </div>
+
+        <h2>Las Fórmulas Centrales</h2>
+
+        <div class="formula-block">
+          <div class="formula-label">Presión Hidrostática</div>
+          <div class="formula-eq">HP (psi) = 0.052 × MW (ppg) × TVD (ft)</div>
+          <div class="formula-note">MW = peso de lodo en libras por galón · TVD = profundidad vertical verdadera en pies · 0.052 = constante de conversión de unidades</div>
+        </div>
+
+        <div class="formula-block">
+          <div class="formula-label">Gradiente de Presión</div>
+          <div class="formula-eq">Gradiente (psi/ft) = MW (ppg) × 0.052</div>
+          <div class="formula-note">Agua dulce = 0.433 psi/pie (8.33 ppg) · Agua de mar ≈ 0.445 psi/pie (8.55 ppg) · Lodo pesado típico: 0.52–0.78 psi/pie</div>
+        </div>
+
+        <div class="formula-block">
+          <div class="formula-label">Densidad Equivalente de Circulación (ECD)</div>
+          <div class="formula-eq">ECD = MW + (APL ÷ (0.052 × TVD))</div>
+          <div class="formula-note">APL = pérdidas de presión anular por fricción durante el bombeo. El ECD siempre es mayor que el peso de lodo estático — puede causar pérdida de circulación en ventanas estrechas.</div>
+        </div>
+
+        <div class="formula-block">
+          <div class="formula-label">Sobrebalance</div>
+          <div class="formula-eq">OB (psi) = HP − Presión de Poro</div>
+          <div class="formula-note">Sobrebalance seguro típico: 200–500 psi. Muy bajo = riesgo de surgencia. Muy alto = daño de formación o pegadura diferencial.</div>
+        </div>
+
+        <div class="note-box">
+          <strong>Ejemplo resuelto:</strong> Pozo a 10,000 pies TVD con lodo de 12 ppg. HP = 0.052 × 12 × 10,000 = <span class="highlight">6,240 psi</span>. Presión de poro normal de agua dulce a la misma profundidad = 0.433 × 10,000 = 4,330 psi. Sobrebalance = 6,240 − 4,330 = <span class="highlight">1,910 psi</span>.
+        </div>
+
+        <h2>La Ventana de Peso de Lodo</h2>
+        <p>La "ventana de peso de lodo" es el rango de pesos de lodo que mantendrá la presión hidrostática por encima de la presión de poro (previniendo una surgencia) mientras se mantiene por debajo de la presión de fractura (previniendo pérdida de circulación). En formaciones de presión normal esta ventana es cómodamente amplia. En campos sobrepresurizados o agotados, puede estrecharse a menos de 0.5 ppg — requiriendo técnicas de perforación de presión controlada (MPD) para mantener el control.</p>
+
+        <p>¿Quieres ejecutar estos cálculos con los datos de tu propio pozo? Usa la <a href="/es/calculators/hydrostatic">calculadora interactiva de presión hidrostática</a>.</p>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#">Las Cuatro Presiones Clave</a>
+          <a href="#">Fórmulas Centrales</a>
+          <a href="#">Ejemplo Resuelto</a>
+          <a href="#">La Ventana de Peso de Lodo</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>🧮 Prueba la Calculadora</h3>
+          <p>Ejecuta estas fórmulas con los parámetros de tu propio pozo y obtén un estado instantáneo de seguro/inseguro.</p>
+          <a href="/es/calculators/hydrostatic" class="card-link">Abrir Calculadora Hidrostática →</a>
+        </div>
+
+        <div class="card" style="margin-top:1px;border:1px solid var(--iron);border-radius:0 0 4px 4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/drilling/well-control" class="card-link">→ Control de Pozos y Surgencias</a><br><br>
+          <a href="/drilling/casing" class="card-link">→ Diseño de Revestimiento (inglés)</a><br><br>
+          <a href="/es/calculators/kill-sheet" class="card-link">→ Calculadora de Hoja de Control de Pozo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -9,6 +9,8 @@ export interface Props {
   modifiedDate?: string;
   breadcrumbs?: { label: string; href: string }[];
   jsonLd?: Record<string, any>;
+  lang?: 'en' | 'es';
+  alternateHref?: string;
 }
 
 const {
@@ -20,18 +22,27 @@ const {
   publishDate,
   modifiedDate,
   breadcrumbs = [],
-  jsonLd
+  jsonLd,
+  lang = 'en',
+  alternateHref
 } = Astro.props;
 
 const siteUrl = 'https://rigfloorhq.com';
 const canonicalURL = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.url.pathname}`;
 const fullTitle = title.includes('RigFloorHQ') ? title : `${title} | RigFloorHQ`;
 
+const otherLang = lang === 'es' ? 'en' : 'es';
+const alternateURL = alternateHref ? `${siteUrl}${alternateHref}` : null;
+// x-default always points to the English version (the site's default language)
+const englishURL = lang === 'en' ? canonicalURL : alternateURL;
+const homeHref = lang === 'es' ? '/es' : '/';
+const homeLabel = lang === 'es' ? 'Inicio' : 'Home';
+
 const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl },
+    { "@type": "ListItem", "position": 1, "name": homeLabel, "item": `${siteUrl}${homeHref}` },
     ...breadcrumbs.map((b, i) => ({
       "@type": "ListItem",
       "position": i + 2,
@@ -42,13 +53,15 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
 } : null;
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang={lang}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalURL} />
+  {alternateURL && <link rel="alternate" hreflang={otherLang} href={alternateURL} />}
+  {englishURL && <link rel="alternate" hreflang="x-default" href={englishURL} />}
   <meta name="robots" content="index, follow" />
   <meta name="author" content="RigFloorHQ" />
 
@@ -70,6 +83,8 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -103,7 +118,7 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
 
   {breadcrumbs.length > 0 && (
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="/">Home</a>
+      <a href={homeHref}>{homeLabel}</a>
       {breadcrumbs.map((b, i) => (
         <>
           <span class="sep">/</span>

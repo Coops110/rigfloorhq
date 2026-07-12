@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+---
+<BaseLayout
+  title="Calculadora de Presión Hidrostática — Peso de Lodo y Sobrebalance"
+  description="Calculadora gratuita de presión hidrostática para perforación. Ingresa peso de lodo, TVD, gradientes de presión de poro y fractura para obtener resultados instantáneos en psi y un estado de perforación seguro/inseguro."
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Presión Hidrostática', href: '/es/calculators/hydrostatic' }]}
+  lang="es"
+  alternateHref="/calculators/hydrostatic"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/hydrostatic" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Calculadora de <span>Presión Hidrostática</span></h1>
+    <p class="page-hero-sub">Usa la fórmula estándar HP = 0.052 × MW × TVD. Compara tu resultado con la presión de poro y fractura para señalar riesgo de surgencia o pérdida de circulación.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">⚙ Presión Hidrostática</div>
+
+          <div class="input-row">
+            <div class="input-group">
+              <label for="mw">Peso de Lodo (ppg)</label>
+              <input type="number" id="mw" placeholder="ej. 12.0" step="0.1" min="7" max="22">
+            </div>
+            <div class="input-group">
+              <label for="tvd">Profundidad Vertical Verdadera (ft)</label>
+              <input type="number" id="tvd" placeholder="ej. 10000" step="100" min="100">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="ppg_input">Gradiente de Presión de Poro (psi/ft)</label>
+              <input type="number" id="ppg_input" placeholder="ej. 0.433" step="0.001" min="0.3" max="1.0">
+            </div>
+            <div class="input-group">
+              <label for="fg_input">Gradiente de Fractura (psi/ft)</label>
+              <input type="number" id="fg_input" placeholder="ej. 0.78" step="0.001" min="0.4" max="1.2">
+            </div>
+          </div>
+
+          <button class="btn btn-primary" id="calc-hydro-btn" style="width:100%;text-align:center;">Calcular</button>
+
+          <div class="calc-output" id="hydro-output">
+            <div class="output-line"><span class="output-label">Presión Hidrostática</span><span class="output-value" id="out-hp">—</span></div>
+            <div class="output-line"><span class="output-label">Presión de Poro</span><span class="output-value" id="out-pp">—</span></div>
+            <div class="output-line"><span class="output-label">Presión de Fractura</span><span class="output-value" id="out-fp">—</span></div>
+            <div class="output-line"><span class="output-label">Sobrebalance</span><span class="output-value" id="out-ob">—</span></div>
+            <div class="output-line" style="border-bottom:none;"><span class="output-label">Estado de Perforación</span><span id="out-status">—</span></div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>¿No sabes qué ingresar?</strong> El gradiente de presión de poro de agua dulce ≈ <span class="highlight">0.433 psi/ft</span>. Agua de mar ≈ <span class="highlight">0.445 psi/ft</span>. Un gradiente de fractura típico en formaciones de presión normal es de <span class="highlight">0.7–0.85 psi/ft</span> pero varía significativamente según la cuenca y profundidad — siempre usa datos reales de prueba de fuga (LOT) para operaciones reales.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Cómo Funciona Esta Calculadora</h2>
+        <p>Esta herramienta aplica la fórmula estándar de presión hidrostática usada en toda la industria de perforación:</p>
+        <div class="formula-block">
+          <div class="formula-label">Presión Hidrostática</div>
+          <div class="formula-eq">HP (psi) = 0.052 × MW (ppg) × TVD (ft)</div>
+          <div class="formula-note">0.052 es la constante de conversión de unidades que relaciona libras por galón y pies con psi.</div>
+        </div>
+        <p>Luego compara tu presión hidrostática con la presión de poro y de fractura a la misma profundidad (calculadas a partir de los gradientes que ingresas) para determinar si tu peso de lodo está de forma segura dentro de la ventana de peso de lodo.</p>
+
+        <h3>Interpretando Tus Resultados</h3>
+        <ul>
+          <li><strong style="color:var(--safe);">Ventana de Perforación Segura</strong> — la presión hidrostática está cómodamente entre la presión de poro y de fractura.</li>
+          <li><strong style="color:var(--caution);">Sobrebalance Muy Bajo</strong> — menos de 100 psi de margen sobre la presión de poro. Riesgo de surgencia si la presión fluctúa.</li>
+          <li><strong style="color:var(--warn);">Sobrebalance Alto</strong> — más de 1,500 psi de margen. Vigila el ECD cuidadosamente; riesgo de daño de formación o pegadura diferencial.</li>
+          <li><strong style="color:var(--danger);">Subbalanceado / Sobrebalanceado (crítico)</strong> — la presión hidrostática ha cruzado completamente la presión de poro o de fractura. Se requiere revisión inmediata.</li>
+        </ul>
+
+        <p>Para derivaciones completas de fórmulas y ejemplos resueltos, ver la <a href="/es/drilling/mud-weight">página de referencia de peso de lodo y presión</a>. Si estás trabajando con una surgencia activa, usa la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> en su lugar.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const btn = document.getElementById('calc-hydro-btn');
+  btn?.addEventListener('click', () => {
+    const mw = parseFloat((document.getElementById('mw') as HTMLInputElement).value);
+    const tvd = parseFloat((document.getElementById('tvd') as HTMLInputElement).value);
+    const ppg = parseFloat((document.getElementById('ppg_input') as HTMLInputElement).value);
+    const fg = parseFloat((document.getElementById('fg_input') as HTMLInputElement).value);
+
+    if (!mw || !tvd || !ppg || !fg) {
+      alert('Por favor completa los cuatro campos.');
+      return;
+    }
+
+    const hp = 0.052 * mw * tvd;
+    const pp = ppg * tvd;
+    const fp = fg * tvd;
+    const ob = hp - pp;
+
+    (document.getElementById('out-hp') as HTMLElement).textContent = hp.toFixed(0) + ' psi';
+    (document.getElementById('out-pp') as HTMLElement).textContent = pp.toFixed(0) + ' psi';
+    (document.getElementById('out-fp') as HTMLElement).textContent = fp.toFixed(0) + ' psi';
+    (document.getElementById('out-ob') as HTMLElement).textContent = ob.toFixed(0) + ' psi';
+
+    const statusEl = document.getElementById('out-status') as HTMLElement;
+    if (hp < pp) {
+      statusEl.innerHTML = '<span class="status-badge status-danger">🚨 SUBBALANCEADO — Riesgo de Surgencia</span>';
+    } else if (hp > fp) {
+      statusEl.innerHTML = '<span class="status-badge status-danger">⛔ SOBREBALANCEADO — Riesgo de Pérdida de Circ.</span>';
+    } else if (ob < 100) {
+      statusEl.innerHTML = '<span class="status-badge status-caution">⚠ Sobrebalance Muy Bajo</span>';
+    } else if (ob > 1500) {
+      statusEl.innerHTML = '<span class="status-badge status-warn">⚠ Sobrebalance Alto — Vigilar ECD</span>';
+    } else {
+      statusEl.innerHTML = '<span class="status-badge status-safe">✅ Ventana de Perforación Segura</span>';
+    }
+
+    document.getElementById('hydro-output')?.classList.add('visible');
+  });
+</script>

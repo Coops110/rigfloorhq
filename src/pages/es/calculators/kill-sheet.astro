@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+---
+<BaseLayout
+  title="Calculadora de Hoja de Control de Pozo — Peso de Lodo de Matanza y Presión de Circulación"
+  description="Calculadora gratuita de hoja de control de pozo para control de pozos. Ingresa SIDPP, peso de lodo original, TVD, y presión de bombeo lento para calcular el peso de lodo de matanza, ICP, y FCP."
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Hoja de Control de Pozo', href: '/es/calculators/kill-sheet' }]}
+  lang="es"
+  alternateHref="/calculators/kill-sheet"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/kill-sheet" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Calculadora de <span>Hoja de Control de Pozo</span></h1>
+    <p class="page-hero-sub">Úsala después de cerrar el pozo por una surgencia para calcular el peso de lodo de matanza y las presiones de circulación — la misma matemática central enseñada en la certificación de control de pozos de IWCF e IADC.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🚨 Calculadora de Hoja de Control de Pozo</div>
+          <p style="font-size:12px;color:var(--fog);margin-bottom:20px;line-height:1.65;">Requiere que el pozo ya esté cerrado con el SIDPP registrado. Ver el <a href="/es/drilling/well-control" style="color:var(--amber);">procedimiento de cierre</a> si aún no lo has hecho.</p>
+
+          <div class="input-row">
+            <div class="input-group">
+              <label for="omw">Peso de Lodo Original (ppg)</label>
+              <input type="number" id="omw" placeholder="ej. 11.5" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="sidpp">SIDPP (psi)</label>
+              <input type="number" id="sidpp" placeholder="Presión de DP con pozo cerrado">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="kill-tvd">TVD en la Barrena (ft)</label>
+              <input type="number" id="kill-tvd" placeholder="ej. 12000">
+            </div>
+            <div class="input-group">
+              <label for="spr">Presión de Bombeo Lento (psi)</label>
+              <input type="number" id="spr" placeholder="Presión SCR">
+            </div>
+          </div>
+
+          <button class="btn btn-primary" id="calc-kill-btn" style="width:100%;text-align:center;">Calcular Hoja de Control</button>
+
+          <div class="calc-output" id="kill-output">
+            <div class="output-line"><span class="output-label">Presión de Formación</span><span class="output-value" id="out-fpp">—</span></div>
+            <div class="output-line"><span class="output-label">Peso de Lodo de Matanza</span><span class="output-value" id="out-kmw">—</span></div>
+            <div class="output-line"><span class="output-label">Presión de Circ. Inicial (ICP)</span><span class="output-value" id="out-icp">—</span></div>
+            <div class="output-line" style="border-bottom:none;"><span class="output-label">Presión de Circ. Final (FCP)</span><span class="output-value" id="out-fcp">—</span></div>
+          </div>
+        </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>Esta es una herramienta de referencia, no una autoridad operativa.</strong> Las decisiones reales de control de pozos deben ser tomadas por tu supervisor certificado de control de pozos siguiendo los procedimientos aprobados de tu empresa. Nunca actúes basándote únicamente en un cálculo de hoja de control de pozo de un sitio web durante un evento real de control de pozos.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Las Fórmulas Usadas</h2>
+        <div class="formula-block">
+          <div class="formula-label">Presión de Poro de Formación</div>
+          <div class="formula-eq">FPP = SIDPP + (OMW × 0.052 × TVD)</div>
+          <div class="formula-note">Medición directa del exceso de presión de formación por encima de la hidrostática una vez que el pozo está cerrado.</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Peso de Lodo de Matanza</div>
+          <div class="formula-eq">KMW = OMW + (SIDPP ÷ (0.052 × TVD))</div>
+          <div class="formula-note">El peso de lodo requerido para equilibrar exactamente la presión de formación en la barrena.</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Presión de Circulación Inicial</div>
+          <div class="formula-eq">ICP = SIDPP + Presión de Bombeo Lento</div>
+          <div class="formula-note">La presión de standpipe a mantener al inicio de la circulación de matanza.</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Presión de Circulación Final</div>
+          <div class="formula-eq">FCP = (KMW ÷ OMW) × Presión de Bombeo Lento</div>
+          <div class="formula-note">La presión de standpipe una vez que el lodo de matanza ha desplazado completamente el pozo.</div>
+        </div>
+
+        <h3>¿Qué es la Presión de Bombeo Lento?</h3>
+        <p>La SPR (también llamada SCR — presión de tasa de circulación lenta) es la presión de standpipe registrada a un caudal de bombeo reducido y estandarizado — medida rutinariamente durante operaciones normales específicamente para que esté disponible si ocurre una surgencia. Sin una lectura de SPR actual, el ICP y FCP no se pueden calcular con precisión, por lo que las cuadrillas la registran cada turno como práctica estándar.</p>
+
+        <p>Para el procedimiento completo de cierre paso a paso y la diferencia entre el Método del Perforador y Wait-and-Weight, ver la <a href="/es/drilling/well-control">página de referencia de control de pozos</a>.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const btn = document.getElementById('calc-kill-btn');
+  btn?.addEventListener('click', () => {
+    const omw = parseFloat((document.getElementById('omw') as HTMLInputElement).value);
+    const sidpp = parseFloat((document.getElementById('sidpp') as HTMLInputElement).value);
+    const tvd = parseFloat((document.getElementById('kill-tvd') as HTMLInputElement).value);
+    const spr = parseFloat((document.getElementById('spr') as HTMLInputElement).value);
+
+    if (!omw || !sidpp || !tvd || !spr) {
+      alert('Por favor completa los cuatro campos.');
+      return;
+    }
+
+    const fpp = sidpp + (omw * 0.052 * tvd);
+    const kmw = omw + (sidpp / (0.052 * tvd));
+    const icp = sidpp + spr;
+    const fcp = (kmw / omw) * spr;
+
+    (document.getElementById('out-fpp') as HTMLElement).textContent = fpp.toFixed(0) + ' psi';
+    (document.getElementById('out-kmw') as HTMLElement).textContent = kmw.toFixed(2) + ' ppg';
+    (document.getElementById('out-icp') as HTMLElement).textContent = icp.toFixed(0) + ' psi';
+    (document.getElementById('out-fcp') as HTMLElement).textContent = fcp.toFixed(0) + ' psi';
+
+    document.getElementById('kill-output')?.classList.add('visible');
+  });
+</script>

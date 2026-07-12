@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+---
+<BaseLayout
+  title="Control de Pozos y Surgencias — Reconocimiento, Cierre, Procedimientos de Matanza"
+  description="Referencia completa de control de pozos: señales de reconocimiento de surgencias, procedimientos de cierre, el método del perforador vs. wait-and-weight, y cálculos de hoja de control de pozo."
+  breadcrumbs={[{ label: 'Perforación', href: '/es/drilling' }, { label: 'Control de Pozos', href: '/es/drilling/well-control' }]}
+  lang="es"
+  alternateHref="/drilling/well-control"
+>
+  <Nav slot="nav" lang="es" alternateHref="/drilling/well-control" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Perforación — Procedimientos de Emergencia</div>
+    <h1>Control de <span>Pozos</span></h1>
+    <p class="page-hero-sub">Una surgencia es una entrada de fluido de formación al pozo porque la presión de formación ha superado la presión hidrostática. Todo miembro de la cuadrilla debe conocer las señales de advertencia — la detección temprana significa una situación manejable.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <h2 class="section-title" style="font-size:28px;">Reconocimiento de <span>Surgencias</span></h2>
+        <div class="safety-matrix">
+          <div class="safety-item green">
+            <h4>✅ Normal — Continuar Perforando</h4>
+            <p>Volumen de pileta estable. Los retornos coinciden con el caudal de bombeo. Niveles de gas normales. ROP y torque estables.</p>
+          </div>
+          <div class="safety-item yellow">
+            <h4>⚠ Señales de Advertencia</h4>
+            <p>Aumento del volumen de pileta (0.5–2 bbls). Drilling break (aumento súbito de ROP). Aumento del flujo de retorno mientras las bombas están constantes.</p>
+          </div>
+          <div class="safety-item orange">
+            <h4>🔶 Cerrar el Pozo Ahora</h4>
+            <p>Ganancia de pileta mayor a 2 bbls. Pozo fluyendo con bombas apagadas. Cualquier SIDPP/SICP positivo después del cierre.</p>
+          </div>
+          <div class="safety-item red">
+            <h4>🚨 Emergencia</h4>
+            <p>Flujo incontrolado en superficie. Falla del BOP. Evacuar y activar el plan de respuesta a emergencias inmediatamente.</p>
+          </div>
+        </div>
+
+        <div class="danger-box mt-24">
+          <strong>Nunca perfores a través de una surgencia sospechada.</strong> En el momento que aparezca cualquier señal de advertencia, detén la perforación y levanta la sarta del fondo inmediatamente. La vacilación es el factor más grande que convierte una surgencia manejable en un reventón.
+        </div>
+      </div>
+
+      <div>
+        <h2 class="section-title" style="font-size:28px;">Procedimiento de <span>Cierre</span></h2>
+        <div class="accordion">
+          <div class="acc-item">
+            <button class="acc-header"><h4>Paso 1 — Detectar y Detener la Perforación</h4><span class="acc-arrow">▼</span></button>
+            <div class="acc-body"><p>Levanta la sarta del fondo inmediatamente. Detén la perforación en el momento que se sospeche una surgencia. Sube la sarta para despejar el kelly/top drive.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-header"><h4>Paso 2 — Cerrar el Pozo</h4><span class="acc-arrow">▼</span></button>
+            <div class="acc-body"><p>Cierra el BOP anular (cierre suave) o el ariete de tubería (cierre duro) según el procedimiento de la empresa. Cierra el choke. Notifica al toolpusher y al company man inmediatamente.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-header"><h4>Paso 3 — Leer las Presiones</h4><span class="acc-arrow">▼</span></button>
+            <div class="acc-body"><p>Permite que las presiones se estabilicen (15–30 min). Registra el SIDPP, SICP, y el volumen de ganancia de pileta — tus datos para la hoja de control de pozo.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-header"><h4>Paso 4 — Calcular el Peso de Lodo de Matanza</h4><span class="acc-arrow">▼</span></button>
+            <div class="acc-body"><p>KMW = OMW + (SIDPP ÷ (0.052 × TVD)). Agrega margen de seguridad según la política de la empresa. Calcula el ICP y FCP para la hoja de control de pozo.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-header"><h4>Paso 5 — Matar el Pozo</h4><span class="acc-arrow">▼</span></button>
+            <div class="acc-body"><p>Método del Perforador o Wait-and-Weight — ambos son válidos, sigue el procedimiento aprobado de tu empresa. Ver comparación abajo.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-header"><h4>Paso 6 — Verificar y Reanudar</h4><span class="acc-arrow">▼</span></button>
+            <div class="acc-body"><p>Confirma presión cero y sin flujo antes de reanudar. Investiga la causa raíz antes de continuar perforando.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Métodos de Matanza</div>
+    <h2 class="section-title">Método del Perforador vs. <span>Wait-and-Weight</span></h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Método</th><th>Proceso</th><th>Ventaja</th><th>Desventaja</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Método del Perforador</td>
+            <td>Circula la surgencia primero con el peso de lodo original mientras mantiene la presión de revestimiento constante, luego aumenta el peso y circula hasta TD en una segunda circulación.</td>
+            <td>Puede comenzar de inmediato — sin tiempo dedicado a mezclar lodo de matanza primero</td>
+            <td>Se requieren dos circulaciones completas; más tiempo total en el pozo</td>
+          </tr>
+          <tr>
+            <td>Wait-and-Weight (Método del Ingeniero)</td>
+            <td>Prepara el lodo con peso de matanza primero, luego circula el pozo en una sola etapa usando el lodo ya pesado.</td>
+            <td>Una sola circulación — a menudo más rápido en general, menor exposición a presión anular</td>
+            <td>Requiere tiempo para mezclar suficiente volumen de lodo de matanza antes de comenzar</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="color:var(--fog);font-size:13px;margin-top:20px;max-width:700px;">Ambos métodos son aceptados por la industria y enseñados en la certificación de control de pozos de IWCF/IADC. Cuál se usa depende de la política de la empresa, la severidad de la surgencia, y el lodo de matanza disponible en el sitio. Usa la <a href="/es/calculators/kill-sheet" style="color:var(--amber);">calculadora de hoja de control de pozo</a> para calcular los números reales de cualquiera de los dos métodos.</p>
+
+    <div class="note-box mt-24">
+      <strong>Verificaciones Diarias de Presión del BOP:</strong> Presión del acumulador: <span class="highlight">3,000 psi</span> · Presión del manifold: <span class="highlight">1,500 psi</span> · Operación anular: <span class="highlight">700–1,500 psi</span> · Suministro de aire a las bombas: <span class="highlight">125 psi</span>. Detalle completo en la <a href="/equipment/bop" style="color:var(--amber);">página de equipo BOP (inglés)</a>.
+    </div>
+
+    <p style="color:var(--fog);font-size:14px;margin-top:24px;max-width:700px;">¿Quieres profundizar más? La guía <a href="/pillars/advanced-well-control-and-hydrostatics" style="color:var(--amber);">Control de Pozos e Hidrostática Avanzada (inglés)</a> cubre TVD vs MD, ECD, el método volumétrico, perforación de presión controlada, y consideraciones regionales para certificación de nivel supervisor e ingeniero.</p>
+  </section>
+</BaseLayout>
+
+<script>
+function toggleAcc(btn: HTMLElement) {
+  const body = btn.nextElementSibling as HTMLElement;
+  const arrow = btn.querySelector('.acc-arrow') as HTMLElement;
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.acc-arrow').forEach(a => (a as HTMLElement).style.transform = '');
+  if (!isOpen) {
+    body.classList.add('open');
+    arrow.style.transform = 'rotate(180deg)';
+  }
+}
+document.querySelectorAll('.acc-header').forEach(btn => {
+  btn.addEventListener('click', () => toggleAcc(btn as HTMLElement));
+});
+</script>

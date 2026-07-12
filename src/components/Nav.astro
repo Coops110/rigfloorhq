@@ -1,8 +1,14 @@
 ---
-const path = Astro.url.pathname;
-const isActive = (href: string) => path === href || (href !== '/' && path.startsWith(href));
+export interface Props {
+  lang?: 'en' | 'es';
+  alternateHref?: string;
+}
+const { lang = 'en', alternateHref } = Astro.props as Props;
 
-const links = [
+const path = Astro.url.pathname;
+const isActive = (href: string) => path === href || (href !== '/' && href !== '/es' && path.startsWith(href));
+
+const linksEn = [
   { href: '/careers', label: 'Careers' },
   { href: '/equipment', label: 'Equipment' },
   { href: '/drilling', label: 'Drilling' },
@@ -12,14 +18,32 @@ const links = [
   { href: '/glossary', label: 'Glossary' },
   { href: '/blog', label: 'Blog' },
 ];
+
+// Glossary has no Spanish version yet, so it's intentionally excluded from the Spanish nav
+// rather than linking out to an English-only page from within a Spanish page.
+const linksEs = [
+  { href: '/es/careers', label: 'Carreras' },
+  { href: '/es/equipment', label: 'Equipo' },
+  { href: '/es/drilling', label: 'Perforación' },
+  { href: '/es/calculators', label: 'Calculadoras' },
+  { href: '/es/welding', label: 'Soldadura' },
+  { href: '/es/safety', label: 'Seguridad' },
+  { href: '/es/blog', label: 'Blog' },
+];
+
+const links = lang === 'es' ? linksEs : linksEn;
+const homeHref = lang === 'es' ? '/es' : '/';
+const switcherHref = alternateHref ?? (lang === 'es' ? '/' : '/es');
+const switcherLabel = lang === 'es' ? 'EN' : 'ES';
 ---
 <nav class="site-nav">
-  <a href="/" class="nav-logo"><img src="/logo.svg" alt="RigFloorHQ" class="nav-logo-img" /></a>
+  <a href={homeHref} class="nav-logo"><img src="/logo.svg" alt="RigFloorHQ" class="nav-logo-img" /></a>
 
   <div class="nav-links-desktop">
     {links.map(link => (
       <a href={link.href} class={`nav-link ${isActive(link.href) ? 'active' : ''}`}>{link.label}</a>
     ))}
+    <a href={switcherHref} class="nav-lang-switch" aria-label="Switch language">{switcherLabel}</a>
   </div>
 
   <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" id="nav-hamburger">
@@ -31,6 +55,7 @@ const links = [
   {links.map(link => (
     <a href={link.href} class={`nav-mobile-link ${isActive(link.href) ? 'active' : ''}`}>{link.label}</a>
   ))}
+  <a href={switcherHref} class="nav-mobile-link nav-lang-switch-mobile">{lang === 'es' ? 'English' : 'Español'}</a>
 </div>
 
 <script>

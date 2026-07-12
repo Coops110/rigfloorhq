@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+---
+<BaseLayout
+  title="Soldadura en Taladros Petroleros — Procesos, Certificaciones y Trayectoria Profesional"
+  description="Guía completa de soldadura en taladros petroleros: procesos SMAW, TIG, FCAW y soldadura submarina, certificaciones requeridas, y la trayectoria profesional de soldador junior a CWI."
+  breadcrumbs={[{ label: 'Soldadura', href: '/es/welding' }]}
+  lang="es"
+  alternateHref="/welding"
+>
+  <Nav slot="nav" lang="es" alternateHref="/welding" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">09 — Oficios</div>
+    <h1>Soldadura de <span>Taladro</span></h1>
+    <p class="page-hero-sub">La soldadura es uno de los oficios más críticos en cualquier taladro petrolero. Las fallas estructurales en un entorno costa afuera pueden ser catastróficas — cada soldadura importa.</p>
+  </div>
+
+  <section class="block">
+    <div class="section-eyebrow">Procesos</div>
+    <h2 class="section-title">Procesos de Soldadura <span>Usados en Taladros</span></h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Proceso</th><th>Nombre Completo</th><th>Mejor Uso</th><th>Notas</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>SMAW</td><td>Arco Metálico Protegido (Electrodo)</td><td>Reparaciones estructurales, tubería, condiciones de viento</td><td>El caballo de batalla de la soldadura en taladros. Funciona al aire libre. Equipo simple.</td></tr>
+          <tr><td>GTAW</td><td>Arco de Tungsteno con Gas (TIG)</td><td>Acero inoxidable, aleaciones exóticas, precisión</td><td>Soldadura de más alta calidad. Lento. Requiere condiciones limpias.</td></tr>
+          <tr><td>FCAW</td><td>Soldadura de Arco con Núcleo Fundente</td><td>Soldaduras estructurales rápidas, trabajo al aire libre con viento</td><td>La variante autoprotegida funciona con viento donde el MIG falla.</td></tr>
+          <tr><td>GMAW</td><td>Arco Metálico con Gas (MIG)</td><td>Fabricación en taller, reparaciones en interiores</td><td>Rápido y limpio, pero el gas de protección se ve afectado por el viento.</td></tr>
+          <tr><td>Hiperbárica</td><td>Soldadura Submarina en Seco</td><td>Reparación estructural submarina</td><td>Se realiza dentro de un hábitat seco presurizado. La soldadura submarina de mejor calidad, hasta ~1,000m. Ver <a href="/welding/underwater-welding" style="color:var(--amber);">guía completa (inglés)</a>.</td></tr>
+          <tr><td>Húmeda</td><td>Soldadura Submarina en Húmedo</td><td>Reparaciones de emergencia, profundidad de 30–400 pies</td><td>El soldador está directamente en el agua. Calidad menor que la hiperbárica.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <h2 class="section-title" style="font-size:28px;">Certificaciones <span>Clave</span></h2>
+        <div class="card-grid grid-2">
+          <div class="card">
+            <h3 style="font-size:14px;">API 1104</h3>
+            <p>Estándar de soldadura de tuberías. Obligatorio para la mayoría de posiciones de tubería en taladros. Prueba la soldadura en múltiples posiciones.</p>
+            <span class="card-tag">Tubería — Esencial</span>
+          </div>
+          <div class="card">
+            <h3 style="font-size:14px;">AWS D1.1</h3>
+            <p>Estándar de soldadura de acero estructural. Requerido para trabajo en plataformas, mástiles y estructuras. La tubería 6G es el estándar más alto.</p>
+            <span class="card-tag">Estructural — Esencial</span>
+          </div>
+          <div class="card">
+            <h3 style="font-size:14px;">AWS D3.6M</h3>
+            <p>Certificación de soldadura submarina. Requerida para cualquier trabajo de soldadura submarina.</p>
+            <span class="card-tag">Soldadura Submarina</span>
+          </div>
+          <div class="card">
+            <h3 style="font-size:14px;">ASME Sección IX</h3>
+            <p>Calificación de soldadura de recipientes a presión y calderas. Requerida para trabajo de recipientes y tuberías de alta presión.</p>
+            <span class="card-tag">Recipientes a Presión</span>
+          </div>
+        </div>
+        <a href="/welding/certifications" class="card-link" style="display:inline-block;margin-top:16px;">Guía Completa de Certificación y Trayectoria (inglés) →</a>
+      </div>
+
+      <div>
+        <h2 class="section-title" style="font-size:28px;">Explora <span>Soldadura</span></h2>
+        <div class="card-grid" style="grid-template-columns:1fr;">
+          <div class="card">
+            <span class="card-icon">🌊</span>
+            <h3>Soldadura Submarina</h3>
+            <p>Cómo funciona realmente la soldadura hiperbárica y húmeda, cuánto paga, y cómo convertirte en buzo-soldador comercial.</p>
+            <a href="/welding/underwater-welding" class="card-link">Leer Más (inglés) →</a>
+          </div>
+          <div class="card">
+            <span class="card-icon">📜</span>
+            <h3>Certificaciones y Trayectoria Profesional</h3>
+            <p>La progresión completa de soldador junior a inspector CWI, con el salario en cada etapa.</p>
+            <a href="/welding/certifications" class="card-link">Leer Más (inglés) →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

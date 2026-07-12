@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+---
+<BaseLayout
+  title="Cómo Funciona la Perforación — Proceso de Perforación de Pozos Explicado"
+  description="El proceso completo de perforación de pozos petroleros desde el spud hasta la terminación: programas de revestimiento, circulación de lodo, control de presión, y cada fase explicada."
+  breadcrumbs={[{ label: 'Perforación', href: '/es/drilling' }]}
+  lang="es"
+  alternateHref="/drilling"
+>
+  <Nav slot="nav" lang="es" alternateHref="/drilling" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">05 — Operaciones</div>
+    <h1>Cómo Funciona la <span>Perforación</span></h1>
+    <p class="page-hero-sub">Desde el armado del equipo hasta alcanzar la profundidad total, un pozo se perfora en una secuencia metódica. Cada fase debe completarse de forma segura antes de que comience la siguiente.</p>
+  </div>
+
+  <section class="block">
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-icon">💧</span>
+        <h3>Peso de Lodo y Presión</h3>
+        <p>Presión hidrostática, presión de poro, gradiente de fractura, y la ventana de peso de lodo explicada con fórmulas reales.</p>
+        <a href="/es/drilling/mud-weight" class="card-link">Leer Más →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🚨</span>
+        <h3>Control de Pozos</h3>
+        <p>Reconocimiento de surgencias, procedimientos de cierre, y los métodos del perforador vs. wait-and-weight.</p>
+        <a href="/es/drilling/well-control" class="card-link">Leer Más →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🧭</span>
+        <h3>Perforación Direccional</h3>
+        <p>Cómo las herramientas MWD/LWD y motores de fondo dirigen un pozo hacia un objetivo preciso a miles de pies de distancia.</p>
+        <a href="/drilling/directional" class="card-link">Leer Más (inglés) →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔩</span>
+        <h3>Diseño de Revestimiento</h3>
+        <p>Por qué los pozos se perforan en etapas, cómo se eligen los puntos de revestimiento, y qué protege cada sarta de revestimiento.</p>
+        <a href="/drilling/casing" class="card-link">Leer Más (inglés) →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Proceso</div>
+    <h2 class="section-title">Perforar un Pozo, <span>Paso a Paso</span></h2>
+
+    <div class="process-steps" style="max-width:800px;">
+      <div class="step-row" style="display:flex;gap:24px;border-bottom:1px solid var(--iron);padding:24px 0;">
+        <div class="step-num" style="font-family:var(--cond);font-weight:900;font-size:38px;color:rgba(201,74,31,0.25);min-width:44px;">01</div>
+        <div><h4 style="font-family:var(--cond);font-weight:700;font-size:17px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Preparación del Sitio</h4><p style="font-size:13px;color:var(--fog);line-height:1.65;">Construcción de la plataforma, excavación del cellar, instalación del conductor. Costa afuera: el taladro es remolcado al sitio, las patas se bajan o se fijan las anclas.</p></div>
+      </div>
+      <div class="step-row" style="display:flex;gap:24px;border-bottom:1px solid var(--iron);padding:24px 0;">
+        <div class="step-num" style="font-family:var(--cond);font-weight:900;font-size:38px;color:rgba(201,74,31,0.25);min-width:44px;">02</div>
+        <div><h4 style="font-family:var(--cond);font-weight:700;font-size:17px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Spud y Hoyo Superficial</h4><p style="font-size:13px;color:var(--fog);line-height:1.65;">La perforación comienza con una barrena de gran diámetro. El conductor y el revestimiento superficial se instalan y cementan para proteger las zonas de agua dulce.</p></div>
+      </div>
+      <div class="step-row" style="display:flex;gap:24px;border-bottom:1px solid var(--iron);padding:24px 0;">
+        <div class="step-num" style="font-family:var(--cond);font-weight:900;font-size:38px;color:rgba(201,74,31,0.25);min-width:44px;">03</div>
+        <div><h4 style="font-family:var(--cond);font-weight:700;font-size:17px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Instalación y Prueba del BOP</h4><p style="font-size:13px;color:var(--fog);line-height:1.65;">El stack del <a href="/equipment/bop" style="color:var(--amber);">preventor de reventones</a> se instala y se prueba funcionalmente a su presión nominal antes de reanudar la perforación.</p></div>
+      </div>
+      <div class="step-row" style="display:flex;gap:24px;border-bottom:1px solid var(--iron);padding:24px 0;">
+        <div class="step-num" style="font-family:var(--cond);font-weight:900;font-size:38px;color:rgba(201,74,31,0.25);min-width:44px;">04</div>
+        <div><h4 style="font-family:var(--cond);font-weight:700;font-size:17px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Secciones Intermedias</h4><p style="font-size:13px;color:var(--fog);line-height:1.65;">La perforación continúa en etapas, cada una con una barrena más pequeña. En los puntos de revestimiento, se corre el revestimiento, se cementa, y la perforación continúa. Ver <a href="/drilling/casing" style="color:var(--amber);">diseño de revestimiento</a>.</p></div>
+      </div>
+      <div class="step-row" style="display:flex;gap:24px;border-bottom:1px solid var(--iron);padding:24px 0;">
+        <div class="step-num" style="font-family:var(--cond);font-weight:900;font-size:38px;color:rgba(201,74,31,0.25);min-width:44px;">05</div>
+        <div><h4 style="font-family:var(--cond);font-weight:700;font-size:17px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Perforación de la Sección del Yacimiento</h4><p style="font-size:13px;color:var(--fog);line-height:1.65;">El peso de lodo se maneja cuidadosamente dentro de la <a href="/es/drilling/mud-weight" style="color:var(--amber);">ventana de peso de lodo</a> — por encima de la presión de poro, por debajo de la presión de fractura.</p></div>
+      </div>
+      <div class="step-row" style="display:flex;gap:24px;padding:24px 0;">
+        <div class="step-num" style="font-family:var(--cond);font-weight:900;font-size:38px;color:rgba(201,74,31,0.25);min-width:44px;">06</div>
+        <div><h4 style="font-family:var(--cond);font-weight:700;font-size:17px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Terminación o Abandono</h4><p style="font-size:13px;color:var(--fog);line-height:1.65;">Los pozos productivos se terminan para producción. Los pozos secos se taponan y abandonan según los estándares regulatorios.</p></div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

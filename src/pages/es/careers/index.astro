@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+---
+<BaseLayout
+  title="Trabajos y Carreras en Taladros Petroleros — Roles, Jerarquía, Salario"
+  description="Guía completa de carreras en taladros petroleros: cada rol desde obrero de piso hasta toolpusher, rangos salariales, certificaciones requeridas y la trayectoria completa de progresión."
+  breadcrumbs={[{ label: 'Carreras', href: '/es/careers' }]}
+  lang="es"
+  alternateHref="/careers"
+>
+  <Nav slot="nav" lang="es" alternateHref="/careers" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">03 — Personas</div>
+    <h1>Carreras en el <span>Taladro</span></h1>
+    <p class="page-hero-sub">Cada posición en un taladro, cuánto paga, y cómo llegar ahí. No se requiere experiencia para empezar — solo la voluntad de aprender desde cero.</p>
+  </div>
+
+  <section class="block">
+    <div class="section-eyebrow">Guías</div>
+    <h2 class="section-title">Guías de <span>Carrera</span></h2>
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-icon">🪜</span>
+        <h3>Cómo Convertirte en Roughneck</h3>
+        <p>La trayectoria completa de nivel inicial — no se necesita experiencia. Certificaciones, requisitos físicos, y cómo conseguir el trabajo.</p>
+        <a href="/careers/roughneck" class="card-link">Leer la Guía (inglés) →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎛️</span>
+        <h3>Cómo Convertirte en Perforador</h3>
+        <p>La trayectoria de obrero de piso a manejar la consola. Qué niveles de IWCF necesitas y cuánto tiempo realmente toma.</p>
+        <a href="/careers/driller" class="card-link">Leer la Guía (inglés) →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔥</span>
+        <h3>Cómo Convertirte en Soldador de Taladro</h3>
+        <p>Certificaciones de soldadura, calificaciones de proceso, y la trayectoria hacia soldadura submarina o inspector CWI.</p>
+        <a href="/welding/certifications" class="card-link">Leer la Guía (inglés) →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">💰</span>
+        <h3>Guía Salarial de Taladros Petroleros</h3>
+        <p>Rangos de pago reales para cada posición, en tierra vs. costa afuera, y cómo las tarifas diarias y rotaciones afectan el salario neto.</p>
+        <a href="/careers/salary" class="card-link">Ver Salarios (inglés) →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">📜</span>
+        <h3>Certificaciones Explicadas</h3>
+        <p>BOSIET, IWCF, NEBOSH, H₂S — qué cubre cada certificación y qué roles las requieren.</p>
+        <a href="/careers/certifications" class="card-link">Ver Certificaciones (inglés) →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🌊</span>
+        <h3>Costa Afuera vs. Tierra</h3>
+        <p>Diferencias salariales, horarios de rotación, compensaciones de estilo de vida, y cómo decidir qué trayectoria te conviene.</p>
+        <a href="/careers/salary#offshore-vs-onshore" class="card-link">Comparar (inglés) →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Resumen</div>
+    <h2 class="section-title">Jerarquía del <span>Taladro</span></h2>
+    <p style="color:var(--fog);max-width:640px;margin-bottom:32px;">Cada persona en un taladro tiene una función específica. Las cuadrillas de perforación operan en turnos de 8 o 12 horas, con líneas claras de autoridad desde obrero de piso hasta el representante de la compañía.</p>
+
+    <div class="hierarchy">
+      <div class="hier-row header">
+        <span>Posición</span><span>Responsabilidades</span><span>Rango Salarial (EE. UU.)</span><span>Experiencia</span>
+      </div>
+      <div class="hier-row">
+        <div><span class="role-name">Company Man</span><span class="role-level">Representante del Cliente</span></div>
+        <div class="role-desc">Representante en sitio de la compañía petrolera que financia las operaciones. Autoridad final en decisiones del programa del pozo.</div>
+        <div class="role-pay">$150K–$300K</div>
+        <div class="role-exp">15+ años</div>
+      </div>
+      <div class="hier-row">
+        <div><span class="role-name">Toolpusher</span><span class="role-level">Supervisor del Taladro</span></div>
+        <div class="role-desc">Supervisor general de las operaciones del contratista del taladro. Administra todas las cuadrillas, herramientas y equipo.</div>
+        <div class="role-pay">$90K–$180K</div>
+        <div class="role-exp">10–15 años</div>
+      </div>
+      <div class="hier-row">
+        <div><span class="role-name">Perforador (Driller)</span><span class="role-level">Supervisor de Cuadrilla</span></div>
+        <div class="role-desc">Controla la perforación desde la consola. Monitorea WOB, RPM, torque, presión de bomba. Supervisa la cuadrilla.</div>
+        <div class="role-pay">$70K–$120K</div>
+        <div class="role-exp">5–8 años</div>
+      </div>
+      <div class="hier-row">
+        <div><span class="role-name">Encuellador (Derrickman)</span><span class="role-level">Especialista</span></div>
+        <div class="role-desc">Trabaja en el monkey board a 90–100 pies de altura guiando las paradas de tubería. Opera las bombas de lodo y monitorea los volúmenes de las piletas.</div>
+        <div class="role-pay">$55K–$90K</div>
+        <div class="role-exp">3–5 años</div>
+      </div>
+      <div class="hier-row">
+        <div><span class="role-name">Roughneck</span><span class="role-level">Cuadrilla del Piso</span></div>
+        <div class="role-desc">Hace y deshace las conexiones de tubería. Opera el catwalk. La columna vertebral de las operaciones de perforación.</div>
+        <div class="role-pay">$45K–$70K</div>
+        <div class="role-exp">1–3 años</div>
+      </div>
+      <div class="hier-row">
+        <div><span class="role-name">Obrero de Piso (Roustabout)</span><span class="role-level">Nivel Inicial</span></div>
+        <div class="role-desc">Trabajo general: pintura, limpieza, movimiento de suministros, asistencia en operaciones de grúa. Punto de entrada para la mayoría de las carreras.</div>
+        <div class="role-pay">$38K–$55K</div>
+        <div class="role-exp">Sin experiencia requerida</div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

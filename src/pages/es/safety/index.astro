@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+---
+<BaseLayout
+  title="Seguridad en Taladros Petroleros — Peligros, EPP, y Sistemas de Emergencia"
+  description="Referencia completa de seguridad en taladros petroleros: categorías principales de peligros, EPP requerido, seguridad de H2S, y sistemas de respuesta a emergencias."
+  breadcrumbs={[{ label: 'Seguridad', href: '/es/safety' }]}
+  lang="es"
+  alternateHref="/safety"
+>
+  <Nav slot="nav" lang="es" alternateHref="/safety" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">10 — HSE</div>
+    <h1>Seguridad en el <span>Taladro</span></h1>
+    <p class="page-hero-sub">Los peligros, el equipo, y los sistemas que mantienen a las personas con vida en uno de los sitios de trabajo industriales más exigentes del mundo.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <h2 class="section-title" style="font-size:28px;">Principales <span>Categorías de Peligro</span></h2>
+        <div class="card-grid" style="grid-template-columns:1fr;">
+          <div class="card">
+            <span class="card-icon">💨</span>
+            <h3>H₂S (Sulfuro de Hidrógeno)</h3>
+            <p>Gas incoloro más pesado que el aire. A 100 ppm causa incapacitación rápida; a 500+ ppm, un solo respiro puede ser fatal. Las concentraciones altas eliminan el sentido del olfato instantáneamente.</p>
+            <a href="/safety/h2s" class="card-link">Guía Completa de Seguridad de H₂S (inglés) →</a>
+          </div>
+          <div class="card">
+            <span class="card-icon">🔥</span>
+            <h3>Incendio y Explosión</h3>
+            <p>Los hidrocarburos del pozo, tanques de combustible, y equipo de proceso crean un riesgo constante de incendio. El trabajo en caliente requiere un permiso y prueba de gas inmediatamente antes de comenzar.</p>
+          </div>
+          <div class="card">
+            <span class="card-icon">⬇️</span>
+            <h3>Objetos Caídos</h3>
+            <p>La principal causa de lesiones y muertes en taladros. Las herramientas y el equipo pueden caer desde la altura del mástil. Todas las herramientas deben estar amarradas en trabajo en altura.</p>
+          </div>
+          <div class="card">
+            <span class="card-icon">🔧</span>
+            <h3>Energía Almacenada / LOTO</h3>
+            <p>Energía hidráulica, neumática, eléctrica y mecánica almacenada en los sistemas del taladro. Los procedimientos de Bloqueo/Etiquetado (LOTO) deben seguirse en todo mantenimiento.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="section-title" style="font-size:28px;">Requisitos de <span>EPP</span></h2>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:28px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--steel);border-radius:3px;"><span style="font-size:13px;color:var(--mist);">Casco (EN 397 / ANSI Z89.1)</span><span class="status-badge status-safe">Siempre Requerido</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--steel);border-radius:3px;"><span style="font-size:13px;color:var(--mist);">Botas con Punta de Acero (clasificación S3)</span><span class="status-badge status-safe">Siempre Requerido</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--steel);border-radius:3px;"><span style="font-size:13px;color:var(--mist);">Overol Resistente al Fuego (FR)</span><span class="status-badge status-safe">Siempre Requerido</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--steel);border-radius:3px;"><span style="font-size:13px;color:var(--mist);">Lentes de Seguridad / Careta</span><span class="status-badge status-safe">Siempre Requerido</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--steel);border-radius:3px;"><span style="font-size:13px;color:var(--mist);">Monitor Personal de H₂S</span><span class="status-badge status-warn">Pozos Amargos</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--steel);border-radius:3px;"><span style="font-size:13px;color:var(--mist);">SCBA (Equipo de Respiración Autónomo)</span><span class="status-badge status-warn">Pozos Amargos / Incendio</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--steel);border-radius:3px;"><span style="font-size:13px;color:var(--mist);">Arnés Anticaídas</span><span class="status-badge status-warn">Trabajo en Altura</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--steel);border-radius:3px;"><span style="font-size:13px;color:var(--mist);">Careta de Soldar (Sombra 10+)</span><span class="status-badge status-warn">Solo Trabajo en Caliente</span></div>
+        </div>
+
+        <h3 style="font-family:var(--cond);font-weight:700;font-size:16px;text-transform:uppercase;color:var(--white);letter-spacing:0.04em;margin-bottom:12px;">Sistemas Clave de Seguridad</h3>
+        <p style="color:var(--fog);font-size:13px;line-height:1.7;">Toda instalación costa afuera tiene un Plan de Respuesta a Emergencias documentado que incluye asignación de puntos de reunión, estaciones de botes/balsas salvavidas, rutas de evacuación, detección de fuego y gas con apagado automático, y procedimientos de emergencia con helicóptero. Conoce el tuyo antes de tu primer turno.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Explora</div>
+    <h2 class="section-title">Análisis <span>Profundos de Seguridad</span></h2>
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-icon">💨</span>
+        <h3>Seguridad de H₂S</h3>
+        <p>Detección, límites de exposición, procedimientos de escape, y requisitos de monitoreo personal para gas amargo.</p>
+        <a href="/safety/h2s" class="card-link">Leer Más (inglés) →</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

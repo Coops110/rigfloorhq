@@ -1,8 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Nav from '../../components/Nav.astro';
-import Footer from '../../components/Footer.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
 
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
 const posts = allPosts.sort((a, b) =>
@@ -10,23 +10,24 @@ const posts = allPosts.sort((a, b) =>
 );
 
 function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  return new Date(dateStr).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 ---
 <BaseLayout
-  title="Blog — Oil & Gas Industry Insights, Well Control, Careers"
-  description="RigFloorHQ's blog covers well control, drilling operations, career progression, and practical field guidance for anyone working in oil and gas."
-  breadcrumbs={[{ label: 'Blog', href: '/blog' }]}
-  lang="en"
-  alternateHref="/es/blog"
+  title="Blog — Perspectivas de la Industria Petrolera y de Gas, Control de Pozos, Carreras"
+  description="El blog de RigFloorHQ cubre control de pozos, operaciones de perforación, progresión profesional, y orientación práctica de campo para cualquiera que trabaje en petróleo y gas."
+  breadcrumbs={[{ label: 'Blog', href: '/es/blog' }]}
+  lang="es"
+  alternateHref="/blog"
 >
-  <Nav slot="nav" lang="en" alternateHref="/es/blog" />
-  <Footer slot="footer" lang="en" />
+  <Nav slot="nav" lang="es" alternateHref="/blog" />
+  <Footer slot="footer" lang="es" />
 
   <div class="page-hero">
     <div class="page-hero-eyebrow">Blog</div>
-    <h1>Field <span>Notes</span></h1>
-    <p class="page-hero-sub">Deeper dives, practical guidance, and industry perspective — beyond the core reference pages.</p>
+    <h1>Notas de <span>Campo</span></h1>
+    <p class="page-hero-sub">Análisis más profundos, orientación práctica, y perspectiva de la industria — más allá de las páginas de referencia principales.</p>
+    <p style="color:var(--fog);font-size:13px;margin-top:12px;">Los artículos del blog están actualmente disponibles en inglés. Traducciones al español llegarán progresivamente.</p>
   </div>
 
   <section class="block">
@@ -39,13 +40,13 @@ function formatDate(dateStr: string) {
           </div>
           <h2 class="blog-card-title">{post.data.title}</h2>
           <p class="blog-card-desc">{post.data.description}</p>
-          <span class="blog-card-link">Read more →</span>
+          <span class="blog-card-link">Leer más (inglés) →</span>
         </a>
       ))}
     </div>
 
     {posts.length === 0 && (
-      <p style="color:var(--fog);">No posts published yet — check back soon.</p>
+      <p style="color:var(--fog);">Aún no hay artículos publicados — vuelve pronto.</p>
     )}
   </section>
 </BaseLayout>
