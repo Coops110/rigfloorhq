@@ -1,0 +1,37 @@
+# RigFloorHQ
+
+> RigFloorHQ is a free technical and career reference for the oil and gas drilling industry, covering rig operations, well control, drilling equipment, career progression, welding, and safety. Content is written for rig floor crews, engineers, and supervisors, and includes six interactive drilling calculators using formulas taught in IWCF/IADC well control certification. The site is available in English and Spanish (/es).
+
+## Core Reference
+
+- [Home](https://rigfloorhq.com/): Site overview, career paths, and links into every section.
+- [Careers](https://rigfloorhq.com/careers): Rig job roles and hierarchy, from roustabout to company man.
+- [Equipment](https://rigfloorhq.com/equipment): Rig types, drill string components, and blowout preventers.
+- [Drilling Operations](https://rigfloorhq.com/drilling): How a well is drilled, well control, mud weight, casing design, directional drilling.
+- [Calculators](https://rigfloorhq.com/calculators): Hydrostatic pressure, kill sheet, and mud weight window calculators.
+- [Welding](https://rigfloorhq.com/welding): Rig welding processes, certifications, and underwater welding.
+- [Safety](https://rigfloorhq.com/safety): Rig floor hazards, PPE requirements, and H2S safety.
+- [Glossary](https://rigfloorhq.com/glossary): 44-term A-Z reference of oilfield terminology.
+- [Blog](https://rigfloorhq.com/blog): Field notes on well control, careers, and drilling operations.
+
+## Well Control & Pressure (Advanced)
+
+- [Advanced Well Control & Hydrostatics](https://rigfloorhq.com/pillars/advanced-well-control-and-hydrostatics): Pressure management reference for supervisors and engineers — TVD vs MD, ECD, kill methods, regional considerations.
+- [Well Control & Kicks](https://rigfloorhq.com/drilling/well-control): Kick recognition, shut-in procedure, driller's method vs wait-and-weight.
+- [Mud Weight & Pressure](https://rigfloorhq.com/drilling/mud-weight): Hydrostatic pressure, pore pressure, fracture gradient formulas.
+- [Kill Sheet Calculator](https://rigfloorhq.com/calculators/kill-sheet): Interactive kill mud weight and circulating pressure calculator.
+
+## Careers
+
+- [Roughneck](https://rigfloorhq.com/careers/roughneck): No-experience-required entry path onto the rig floor.
+- [Driller](https://rigfloorhq.com/careers/driller): Path from roughneck to running the driller's console, IWCF certification levels.
+- [Salary Guide](https://rigfloorhq.com/careers/salary): Real pay ranges by role, onshore vs offshore.
+- [Certifications](https://rigfloorhq.com/careers/certifications): BOSIET, IWCF, NEBOSH, and H2S certifications explained.
+
+## Spanish (Español)
+
+- [RigFloorHQ en Español](https://rigfloorhq.com/es): Full Spanish translation of every hub section (Careers, Equipment, Drilling, Calculators, Welding, Safety) plus all blog posts.
+
+## Notes
+
+All calculator formulas and safety figures (H2S exposure thresholds, BOP pressure ratings) are cross-checked against published industry references. Content is for educational and reference purposes; well control decisions should always follow company-approved procedures and certified supervisor guidance.
