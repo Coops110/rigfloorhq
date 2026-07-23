@@ -28,6 +28,12 @@
 - [Salary Guide](https://rigfloorhq.com/careers/salary): Real pay ranges by role, onshore vs offshore.
 - [Certifications](https://rigfloorhq.com/careers/certifications): BOSIET, IWCF, NEBOSH, and H2S certifications explained.
 
+## Safety Systems
+
+- [STOP Card System](https://rigfloorhq.com/blog/stop-card-system): How behavior-based safety observation cards work on rigs — writing specific observations, the review cycle, and no-blame near-miss reporting.
+- [Permit to Work System](https://rigfloorhq.com/blog/permit-to-work-system): PTW on drilling rigs — hot work, confined space entry, electrical isolation/LOTO, and SIMOPS permits, step-by-step.
+- [H2S Safety](https://rigfloorhq.com/safety/h2s): Exposure thresholds, detection, and sour service protocols.
+
 ## Spanish (Español)
 
 - [RigFloorHQ en Español](https://rigfloorhq.com/es): Full Spanish translation of every hub section (Careers, Equipment, Drilling, Calculators, Welding, Safety) plus all blog posts.
