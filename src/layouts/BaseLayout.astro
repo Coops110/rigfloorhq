@@ -60,6 +60,7 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalURL} />
+  {alternateURL && <link rel="alternate" hreflang={lang} href={canonicalURL} />}
   {alternateURL && <link rel="alternate" hreflang={otherLang} href={alternateURL} />}
   {englishURL && <link rel="alternate" hreflang="x-default" href={englishURL} />}
   <meta name="robots" content="index, follow" />

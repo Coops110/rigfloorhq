@@ -4,8 +4,8 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 ---
 <BaseLayout
-  title="Calculadoras de Perforación — Presión Hidrostática, Hoja de Control de Pozo, Peso de Lodo"
-  description="Calculadoras interactivas gratuitas de perforación: presión hidrostática, hoja de control de pozo / peso de lodo de matanza, y calculadora de ventana de peso de lodo usando fórmulas reales de la industria."
+  title="Calculadoras de Perforación — Presión Hidrostática, Hoja de Control de Pozo"
+  description="Calculadoras de perforación gratuitas con fórmulas IWCF e IADC: presión hidrostática, hoja de control de pozo y ventana de peso de lodo. Cada fórmula explicada. Sin registro."
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }]}
   lang="es"
   alternateHref="/calculators"
@@ -16,34 +16,176 @@ import Footer from '../../../components/Footer.astro';
   <div class="page-hero">
     <div class="page-hero-eyebrow">07 — Herramientas Interactivas</div>
     <h1>Calculadoras de <span>Perforación</span></h1>
-    <p class="page-hero-sub">Realiza cálculos reales de presión de perforación usando las fórmulas exactas enseñadas en la certificación de control de pozos de IWCF e IADC. Ingresa los parámetros de tu pozo y obtén resultados instantáneos.</p>
+    <p class="page-hero-sub">Realiza cálculos reales de presión de perforación usando las fórmulas exactas enseñadas en la certificación de control de pozos de IWCF e IADC. Cada calculadora muestra la fórmula que utiliza, para que puedas verificar el cálculo a mano en lugar de confiar ciegamente en un número en pantalla.</p>
   </div>
 
   <section class="block">
+    <h2 id="que-calculadora">¿Qué Calculadora Necesitas?</h2>
+    <p>La mayoría llega aquí a mitad de un problema. Encuentra tu situación:</p>
+
+    <table class="calc-table">
+      <thead>
+        <tr><th>Tu situación</th><th>Usa esta</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Necesitas la presión de la columna de lodo a cierta profundidad</td>
+          <td><a href="/es/calculators/hydrostatic">Presión Hidrostática</a></td>
+        </tr>
+        <tr>
+          <td>El pozo está cerrado y tienes la SIDPP registrada</td>
+          <td><a href="/es/calculators/kill-sheet">Hoja de Control de Pozo</a></td>
+        </tr>
+        <tr>
+          <td>Estás planificando puntos de revestimiento o eligiendo peso de lodo</td>
+          <td><a href="/es/calculators/mud-weight-window">Ventana de Peso de Lodo</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Si eres nuevo y no sabes cuál aplica, empieza con la <a href="/es/calculators/hydrostatic">calculadora de presión hidrostática</a> — todos los demás cálculos de esta página se construyen sobre ella.</p>
+  </section>
+
+  <section class="block">
+    <h2 id="las-calculadoras">Las Calculadoras</h2>
     <div class="card-grid">
       <div class="card">
         <span class="card-icon">⚙</span>
         <h3>Calculadora de Presión Hidrostática</h3>
         <p>Calcula la presión hidrostática, compárala con la presión de poro y fractura, y obtén un estado instantáneo de seguro/inseguro.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> PH = PL × 0.052 × TVD</p>
         <a href="/es/calculators/hydrostatic" class="card-link">Abrir Calculadora →</a>
       </div>
       <div class="card">
         <span class="card-icon">🚨</span>
         <h3>Calculadora de Hoja de Control de Pozo</h3>
         <p>Calcula el peso de lodo de matanza, la presión de formación, y la presión de circulación inicial/final después de cerrar el pozo por una surgencia.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> PLM = PLO + (SIDPP ÷ (0.052 × TVD))</p>
         <a href="/es/calculators/kill-sheet" class="card-link">Abrir Calculadora →</a>
       </div>
       <div class="card">
         <span class="card-icon">📊</span>
         <h3>Calculadora de Ventana de Peso de Lodo</h3>
         <p>Visualiza tu ventana segura de perforación entre los gradientes de presión de poro y de fractura a cualquier profundidad.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> Gradiente de poro &lt; PL &lt; Gradiente de fractura</p>
         <a href="/es/calculators/mud-weight-window" class="card-link">Abrir Calculadora →</a>
       </div>
     </div>
+  </section>
+
+  <section class="block">
+    <h2 id="unidades">Unidades y Convenciones</h2>
+    <p>Todas las calculadoras de esta página usan unidades de campo petrolero como estándar:</p>
+    <ul>
+      <li><strong>Peso de lodo</strong> — libras por galón (ppg)</li>
+      <li><strong>Presión</strong> — libras por pulgada cuadrada (psi)</li>
+      <li><strong>Profundidad</strong> — pies, <strong>profundidad vertical verdadera (TVD)</strong>, no profundidad medida</li>
+      <li><strong>Gradiente</strong> — psi por pie</li>
+    </ul>
+    <p>La distinción de profundidad importa más que cualquier otro punto de esta lista. La presión hidrostática depende únicamente de la altura vertical de la columna de fluido, por lo que un pozo desviado u horizontal puede tener una profundidad medida muy superior a su TVD mientras que la presión de fondo sigue solo al TVD. Introducir la profundidad medida en cualquiera de estas calculadoras en un pozo desviado sobreestimará tu presión, a veces gravemente.</p>
+  </section>
+
+  <section class="block">
+    <h2 id="preguntas-frecuentes">Preguntas Frecuentes</h2>
+
+    <h3>¿De dónde viene la constante 0.052?</h3>
+    <p>Convierte libras por galón en psi por pie. Una columna de fluido de un pie de altura sobre una pulgada cuadrada de área contiene 12 pulgadas cúbicas, que equivalen a 12 ÷ 231 = 0.05195 galones. Multiplica el peso del lodo en ppg por esa cifra y obtienes la presión que ejerce esa columna en psi por pie. La industria la redondea a 0.052.</p>
+
+    <h3>¿Debo usar TVD o profundidad medida?</h3>
+    <p>Siempre profundidad vertical verdadera para cualquier cálculo de presión. La profundidad medida se usa para volúmenes de tubería, emboladas y tiempo de retraso — no para presión hidrostática.</p>
+
+    <h3>¿Puedo usar estas herramientas durante un evento real de control de pozos?</h3>
+    <p>No. Son herramientas de referencia y capacitación. Las decisiones de control de pozos en vivo corresponden a tu supervisor certificado de control de pozos, trabajando con los procedimientos aprobados de tu empresa y una hoja de control física. Usa estas calculadoras para estudiar, para verificar tu comprensión, o para revisar un número después del hecho.</p>
+
+    <h3>¿Coinciden con las fórmulas de los exámenes IWCF e IADC?</h3>
+    <p>Sí — las fórmulas mostradas son las estándar enseñadas en la certificación de control de pozos. Resolverlas a mano y comparar con la calculadora es una forma razonable de prepararse, pero ningún sitio web reemplaza un curso acreditado.</p>
+
+    <h3>¿Soportan unidades métricas?</h3>
+    <p>Por ahora no. Todo funciona en unidades de campo petrolero (ppg, psi, pies). Para trabajo en SI, la constante hidrostática equivalente es 0.0981 usando gravedad específica y metros para obtener bar.</p>
+
+    <h3>¿Se guardan mis datos?</h3>
+    <p>No. Cada cálculo se ejecuta del lado del cliente en tu navegador. No se transmite ni se guarda nada.</p>
 
     <div class="note-box mt-40" style="max-width:800px;">
       <strong>Importante:</strong> Estas calculadoras son para fines educativos y de referencia. Siga siempre los procedimientos aprobados por su empresa y consulte a su supervisor certificado de control de pozos para decisiones operativas reales. Nunca tome decisiones de control de pozos en vivo basándose únicamente en una herramienta de referencia.
     </div>
-    
   </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ItemList",
+        "name": "Calculadoras de Perforación",
+        "description": "Calculadoras gratuitas de perforación y control de pozos con fórmulas IWCF e IADC.",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Calculadora de Presión Hidrostática", "url": "https://rigfloorhq.com/es/calculators/hydrostatic" },
+          { "@type": "ListItem", "position": 2, "name": "Calculadora de Hoja de Control de Pozo", "url": "https://rigfloorhq.com/es/calculators/kill-sheet" },
+          { "@type": "ListItem", "position": 3, "name": "Calculadora de Ventana de Peso de Lodo", "url": "https://rigfloorhq.com/es/calculators/mud-weight-window" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "inLanguage": "es",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿De dónde viene la constante 0.052?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Convierte libras por galón en psi por pie. Una columna de fluido de un pie de altura sobre una pulgada cuadrada de área contiene 12 pulgadas cúbicas, que equivalen a 12 dividido entre 231 = 0.05195 galones. Multiplica el peso del lodo en ppg por esa cifra y obtienes la presión que ejerce esa columna en psi por pie. La industria la redondea a 0.052." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Debo usar TVD o profundidad medida?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Siempre profundidad vertical verdadera para cualquier cálculo de presión. La profundidad medida se usa para volúmenes de tubería, emboladas y tiempo de retraso, no para presión hidrostática." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Puedo usar estas herramientas durante un evento real de control de pozos?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. Son herramientas de referencia y capacitación. Las decisiones de control de pozos en vivo corresponden a tu supervisor certificado de control de pozos, trabajando con los procedimientos aprobados de tu empresa y una hoja de control física." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Coinciden con las fórmulas de los exámenes IWCF e IADC?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Sí. Las fórmulas mostradas son las estándar enseñadas en la certificación de control de pozos. Resolverlas a mano y comparar con la calculadora es una forma razonable de prepararse, pero ningún sitio web reemplaza un curso acreditado." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Soportan unidades métricas?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Por ahora no. Todo funciona en unidades de campo petrolero: ppg, psi y pies. Para trabajo en SI, la constante hidrostática equivalente es 0.0981 usando gravedad específica y metros para obtener bar." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Se guardan mis datos?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. Cada cálculo se ejecuta del lado del cliente en tu navegador. No se transmite ni se guarda nada." }
+          }
+        ]
+      }
+    ]
+  })} />
 </BaseLayout>
+
+<style>
+  .calc-table {
+    width: 100%;
+    max-width: 800px;
+    border-collapse: collapse;
+    margin: 24px 0;
+  }
+  .calc-table th,
+  .calc-table td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+  }
+  .calc-table th {
+    font-weight: 600;
+    opacity: 0.75;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .card-formula {
+    font-size: 0.9em;
+    opacity: 0.8;
+  }
+</style>
