@@ -28,7 +28,11 @@ This matters because the sitemap and canonical URLs are generated from this valu
 
 ## Sitemap generation
 
-Uses `@astrojs/sitemap`, pinned to **v3.6.0** exactly (not a caret range). Version 3.7.1 has a known bug that crashes the build with `Cannot read properties of undefined (reading 'reduce')` during the `astro:build:done` step — see [withastro/astro#15894](https://github.com/withastro/astro/issues/15894). If a future version fixes this, you can loosen the pin, but test the build before deploying.
+Uses `@astrojs/sitemap`, pinned to **v3.7.3** exactly (not a caret range).
+
+Version 3.7.1 had a bug that crashed the build with `Cannot read properties of undefined (reading 'reduce')` during the `astro:build:done` step — see [withastro/astro#15894](https://github.com/withastro/astro/issues/15894). That is fixed as of 3.7.3, which is what the build runs on now.
+
+The exact pin is deliberate: sitemap breakage is silent from the site's point of view (pages still render, only `sitemap-index.xml` is affected), so it is worth upgrading on purpose rather than by caret drift. To move up a version, bump it here, run `npm install && npm run build`, and confirm `dist/sitemap-index.xml` exists before deploying.
 
 ## Getting your sitemap URL for Harbor
 
