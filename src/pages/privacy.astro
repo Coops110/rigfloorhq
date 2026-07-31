@@ -1,0 +1,211 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, LEGAL, PROCESSORS } from '../lib/site.js';
+
+const host = SITE.domain.replace(/^https?:\/\//, '');
+---
+<BaseLayout
+  title="Privacy Policy"
+  description="What RigFloorHQ collects, what it does not, and your rights over your data. This site sets no cookies and runs no analytics."
+  breadcrumbs={[{ label: 'Privacy Policy', href: '/privacy' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Legal</div>
+    <h1>Privacy <span>Policy</span></h1>
+    <p class="page-hero-sub">What we collect, what we don't, and what you can ask us to do about it.</p>
+    <div class="page-meta">
+      <span class="page-meta-item">Last updated <strong>{LEGAL.lastUpdated}</strong></span>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="prose">
+      <div class="note-box">
+        <strong>The short version.</strong> {SITE.name} is a static reference site. It sets
+        no cookies, runs no analytics, has no accounts, no forms and no advertising. We
+        cannot identify you, and there is nothing here for you to opt out of. The detail
+        below explains the small amount of data that is unavoidably processed to serve you
+        a web page.
+      </div>
+
+      <h2>Who we are</h2>
+      <p>
+        {SITE.name} ({host}) is a free reference site covering drilling, well control,
+        rig equipment, welding and oilfield careers.
+      </p>
+      <p>
+        The data controller responsible for your personal data is
+        <strong>{LEGAL.legalName}</strong>{LEGAL.address ? `, ${LEGAL.address}` : ''}. You
+        can contact us about anything in this policy at
+        <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a>.
+      </p>
+
+      <h2>What we collect</h2>
+      <p>Only two things, and neither is collected deliberately:</p>
+      <ul>
+        <li>
+          <strong>Server logs.</strong> Our host records standard technical information
+          when it delivers a page — your IP address, browser and operating system, the page
+          requested, the time, and the page you came from. This is how any web server
+          works; it is used to deliver pages and to protect against abuse and attack.
+        </li>
+        <li>
+          <strong>Correspondence.</strong> If you email us, we hold your email address and
+          whatever you wrote, for as long as it takes to deal with it.
+        </li>
+      </ul>
+
+      <h2>What we do not collect</h2>
+      <p>
+        We want to be specific here, because most privacy policies are vague in ways that
+        favour the site. As of the date above, {SITE.name} does
+        <strong> not</strong>:
+      </p>
+      <ul>
+        <li>set any cookies, or store anything in your browser — see our <a href="/cookies">Cookie Policy</a>;</li>
+        <li>run Google Analytics or any other analytics or tracking product;</li>
+        <li>operate user accounts, logins, newsletters or contact forms;</li>
+        <li>display advertising, or work with advertising or data brokers;</li>
+        <li>use tracking pixels, fingerprinting, session recording or heatmaps;</li>
+        <li>collect payment details — nothing on this site is for sale;</li>
+        <li>build profiles, or make automated decisions about you;</li>
+        <li>sell, rent or share personal data for anyone else's marketing.</li>
+      </ul>
+      <p>
+        The calculators on this site — kill sheet, hydrostatic pressure, mud weight window
+        — run entirely in your browser. The figures you type are never transmitted to us or
+        to anyone else, and nothing is saved when you leave the page.
+      </p>
+
+      <h2>Web fonts</h2>
+      <p>
+        Our pages load typefaces hosted by Google Fonts. When a font loads, Google receives
+        your IP address and browser details. Google states that it does not set cookies on
+        the Google Fonts service or use these requests for advertising, but the request
+        does leave your browser and we cannot control what Google does with it. Their
+        handling is governed by
+        <a href="https://policies.google.com/privacy" rel="noopener noreferrer" target="_blank">Google's privacy policy</a>.
+      </p>
+      <p>
+        This is the only third-party request our pages make. If you would rather it did not
+        happen, a content blocker will stop it and the site will still work — you will just
+        see your system's default typefaces.
+      </p>
+
+      <h2>Our lawful basis</h2>
+      <ul>
+        <li>
+          <strong>Server logs and web fonts — legitimate interests.</strong> We have a
+          legitimate interest in delivering the site reliably, keeping it secure, and
+          having it render as designed. The impact on you is minimal and no profile is
+          built.
+        </li>
+        <li>
+          <strong>Correspondence — legitimate interests.</strong> If you email us, we use
+          your details to reply to you.
+        </li>
+      </ul>
+      <p>
+        Because we set no cookies and run no analytics, there is no processing here that
+        requires your consent, and therefore no consent banner. That is deliberate.
+      </p>
+
+      <h2>Who we share data with</h2>
+      <div class="table-wrap">
+        <table>
+          <caption class="page-hero-sub" style="text-align:left;margin-bottom:10px;">Service providers involved in running this site</caption>
+          <thead>
+            <tr><th>Provider</th><th>What they do</th><th>Location</th></tr>
+          </thead>
+          <tbody>
+            {PROCESSORS.map((p) => (
+              <tr><td>{p[0]}</td><td>{p[1]}</td><td>{p[2]}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p>
+        We may also disclose data where the law requires it. That is the complete list —
+        there are no analytics vendors, ad networks or data brokers to add to it.
+      </p>
+
+      <h2>International transfers</h2>
+      <p>
+        We operate from {LEGAL.governingLaw} and our providers are based mainly in the
+        United States, so if you are in the UK or European Economic Area your data is
+        transferred outside that area. Where it is, we rely on appropriate safeguards
+        including the UK International Data Transfer Addendum and the European Commission's
+        Standard Contractual Clauses. Several of these providers are also certified under
+        the EU–US Data Privacy Framework.
+      </p>
+
+      <h2>How long we keep it</h2>
+      <ul>
+        <li><strong>Server logs</strong> — retained by our host for a short rolling period and then deleted automatically. We do not copy them or keep our own archive.</li>
+        <li><strong>Correspondence</strong> — kept for as long as needed to deal with your message and for a reasonable period afterwards, then deleted.</li>
+      </ul>
+
+      <h2>Your rights</h2>
+      <p>Under UK and EU data protection law you have the right to:</p>
+      <ul>
+        <li>ask what personal data we hold about you and get a copy of it;</li>
+        <li>have inaccurate data corrected;</li>
+        <li>ask us to delete your data;</li>
+        <li>object to, or ask us to restrict, our processing;</li>
+        <li>receive data you gave us in a portable format;</li>
+        <li>withdraw consent at any time, where we rely on it.</li>
+      </ul>
+      <p>
+        Email <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a> to exercise
+        any of these. We will respond within one month, and it is free.
+      </p>
+      <p>
+        In practice, if you have only read the site and never emailed us, we hold nothing
+        that could identify you and there is nothing for us to return or delete. We would
+        rather say that plainly than imply we are sitting on a file we do not have.
+      </p>
+
+      <h2>Children</h2>
+      <p>
+        This site publishes industrial reference material for working adults and people
+        entering the trade. It is not directed at children and we do not knowingly collect
+        data from them.
+      </p>
+
+      <h2>Complaints</h2>
+      <p>
+        If you are unhappy with how we have handled your data, please tell us first so we
+        can put it right. You also have the right to complain to the UK Information
+        Commissioner's Office at
+        <a href="https://ico.org.uk" rel="noopener noreferrer" target="_blank">ico.org.uk</a>,
+        or to your local supervisory authority if you are in the EEA.
+      </p>
+
+      <h2>Security</h2>
+      <p>
+        The site is served entirely over encrypted HTTPS. It is a static site with no
+        database, no user accounts and no payment processing, which keeps the amount of
+        personal data at risk close to zero.
+      </p>
+
+      <h2>Changes to this policy</h2>
+      <p>
+        We may update this policy as the site develops — in particular if we ever introduce
+        analytics or advertising. If we do, we will change the date above, update the
+        <a href="/cookies">Cookie Policy</a>, and ask for your consent before any tracking
+        technology is used.
+      </p>
+
+      <p style="font-size:13px;">
+        See also our <a href="/terms">Terms of Service</a>,
+        <a href="/cookies">Cookie Policy</a> and <a href="/about">About</a> page.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

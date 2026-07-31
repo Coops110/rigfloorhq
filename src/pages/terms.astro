@@ -1,0 +1,183 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, LEGAL } from '../lib/site.js';
+
+const host = SITE.domain.replace(/^https?:\/\//, '');
+---
+<BaseLayout
+  title="Terms of Service"
+  description="The terms governing your use of RigFloorHQ, including the limits of our educational content, the well control calculators, and liability."
+  breadcrumbs={[{ label: 'Terms of Service', href: '/terms' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Legal</div>
+    <h1>Terms of <span>Service</span></h1>
+    <p class="page-hero-sub">The agreement between you and us — and, more importantly, the limits of what this site is for.</p>
+    <div class="page-meta">
+      <span class="page-meta-item">Last updated <strong>{LEGAL.lastUpdated}</strong></span>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="prose">
+      <h2>About these terms</h2>
+      <p>
+        These terms are an agreement between you and <strong>{LEGAL.legalName}</strong>{LEGAL.address ? `, ${LEGAL.address}` : ''}
+        ("we", "us"), and govern your use of {host} (the "Service"). By using the Service
+        you accept them. If you do not accept them, please do not use the Service.
+      </p>
+
+      <h2>Reference material, not operational instruction</h2>
+      <div class="danger-box">
+        <strong>Read this section before using anything on this site at work.</strong>
+        {SITE.name} publishes educational and reference material about drilling, well
+        control, rig equipment, welding and oilfield careers. It is <strong>not</strong> an
+        operating procedure, a well plan, a training qualification, or a substitute for
+        any of them. Nothing here authorises, approves or certifies any action on a rig.
+      </div>
+      <p>
+        Well control and rig floor work are safety-critical. Decisions must be made under
+        your employer's approved procedures, the applicable regulatory requirements, the
+        specific well programme, and the direction of your certified well control
+        supervisor and competent supervision on site. Where anything on this site differs
+        from those, <strong>those govern and this site does not</strong>.
+      </p>
+      <p>
+        Reading this site does not make anyone competent to perform a task. Formal
+        competence comes from accredited training and assessment — for example IWCF or IADC
+        WellSharp certification for well control — together with supervised experience.
+        We do not assess anyone, and we issue no certification of any kind.
+      </p>
+
+      <h2>The calculators</h2>
+      <p>
+        The Service includes calculators covering hydrostatic pressure, kill sheets and mud
+        weight windows. They exist so people can learn how the arithmetic works and check
+        their understanding while studying. They run in your browser, we never see what you
+        enter, and we never see what they output.
+      </p>
+      <div class="danger-box">
+        <strong>Do not use these calculators to make decisions on a live well.</strong>
+        They are unverified teaching tools. They use simplified assumptions, they do not
+        know your well, your fluid, your equipment or your conditions, and their output is
+        not checked by anyone. Use the kill sheet and calculation methods approved by your
+        operator, verified by your well control supervisor.
+      </div>
+      <p>
+        Any figure produced by a calculator on this site is an illustration. You are
+        responsible for verifying every number you rely on, by an approved method.
+      </p>
+
+      <h2>Accuracy and currency</h2>
+      <p>
+        We take care to describe standards, practices and equipment accurately, but
+        standards are revised, regulations change and practice varies between operators,
+        contractors and jurisdictions. Where we reference a standard or regulation, always
+        work from the current published version rather than our summary of it. We do not
+        warrant that any part of the Service is complete, current or free from error.
+      </p>
+      <p>
+        Career, pay and certification information is general and indicative. Rates and
+        requirements vary by region, employer, contract and market conditions.
+      </p>
+
+      <h2>Translations</h2>
+      <p>
+        Parts of the Service are published in Spanish for convenience. Where a translation
+        and the English original differ in meaning, the English version prevails. Our legal
+        pages are published in English only.
+      </p>
+
+      <h2>Your use of our content</h2>
+      <p>
+        The content on this Service was researched, written, compiled and arranged by us,
+        and is protected by copyright and other intellectual property laws. We provide it
+        for your personal, non-commercial use.
+      </p>
+      <p>
+        You may not use, or authorise anyone else to use, the Service or its content in any
+        manner that acts as a substitute for it, competes with it, or affects our ability to
+        operate it. These restrictions apply equally to robots, spiders, scrapers, crawlers,
+        automated collection of any kind, and to the bulk reproduction of our material for
+        training or republication. You agree not to bypass measures used to limit automated
+        access, and to respect the directives in our
+        <a href="/robots.txt">robots.txt</a>.
+      </p>
+      <p>
+        You may quote short extracts for comment, review, teaching or news reporting,
+        provided you credit {SITE.name} and link to the page you took them from. If you want
+        to use something more substantially — in a training pack, for instance — email us
+        and we will usually say yes.
+      </p>
+
+      <h2>Third-party links</h2>
+      <p>
+        The Service links to third-party sites, standards bodies and training providers. We
+        do not control them, we are not responsible for their content or accuracy, and a
+        link is not an endorsement. Following an external link is at your own risk.
+      </p>
+
+      <h2>Availability</h2>
+      <p>
+        We provide the Service on an "as is" and "as available" basis. We do not guarantee
+        it will be uninterrupted, error-free or continuously available, and we may change,
+        suspend or discontinue any part of it at any time without notice.
+      </p>
+
+      <h2>Limitation of liability</h2>
+      <p>
+        To the fullest extent permitted by law, we exclude all warranties, express or
+        implied, as to the accuracy, completeness or fitness for purpose of the Service and
+        its content.
+      </p>
+      <p>
+        To the fullest extent permitted by law, we are not liable for any loss, damage,
+        injury or cost arising from your use of, or reliance on, the Service — including
+        any operational decision, any calculation, any well control action, any equipment
+        or procedure choice, and any career or financial decision. Reliance on this
+        material in an operational setting is at your own risk and, where you are at work,
+        remains subject to your employer's procedures and supervision.
+      </p>
+      <p>
+        Nothing in these terms excludes or limits liability where it would be unlawful to do
+        so, including for death or personal injury caused by negligence, or for fraud. Some
+        jurisdictions do not allow certain exclusions, so parts of this section may not
+        apply to you.
+      </p>
+
+      <h2>Privacy</h2>
+      <p>
+        Our <a href="/privacy">Privacy Policy</a> explains what we collect — very little —
+        and our <a href="/cookies">Cookie Policy</a> explains why there is no cookie banner.
+        Both form part of these terms.
+      </p>
+
+      <h2>Changes to these terms</h2>
+      <p>
+        We may update these terms from time to time. The current version is always the one
+        published on this page, with the date shown above. Continuing to use the Service
+        after a change means you accept the updated terms.
+      </p>
+
+      <h2>Governing law</h2>
+      <p>
+        These terms are governed by the laws of {LEGAL.governingLaw}, and the courts of
+        {LEGAL.governingLaw} have jurisdiction over any dispute. If you are a consumer, this
+        does not deprive you of the protection of any mandatory consumer rights available
+        under the law of the country where you live.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about these terms:
+        <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

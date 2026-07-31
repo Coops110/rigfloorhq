@@ -1,0 +1,141 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, LEGAL } from '../lib/site.js';
+
+// Real counts, read from the content collections, so the page cannot drift
+// out of date as posts are added.
+const posts = (await getCollection('blog')).filter((p) => !p.data.draft);
+const postsEs = (await getCollection('blogEs')).filter((p) => !p.data.draft);
+---
+<BaseLayout
+  title="About RigFloorHQ"
+  description="What RigFloorHQ is, who runs it, how we approach safety-critical material, and how to tell us when we've got something wrong."
+  breadcrumbs={[{ label: 'About', href: '/about' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">About</div>
+    <h1>The rig floor, <span>explained properly</span></h1>
+    <p class="page-hero-sub">Plain-language reference for drilling, well control, welding and oilfield careers — free, independent, and honest about its limits.</p>
+    <div class="page-meta">
+      <span class="page-meta-item"><strong>{posts.length}</strong> articles published</span>
+      <span class="page-meta-item"><strong>{postsEs.length}</strong> in Spanish</span>
+      <span class="page-meta-item">No ads, no paid placement</span>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="prose">
+      <h2>Why this site exists</h2>
+      <p>
+        Most oilfield knowledge lives in three places: company manuals you only see once
+        you're hired, training courses that cost thousands, and the heads of people who
+        have been doing it for twenty years. None of those are much use if you are trying
+        to work out what a toolpusher actually does, why shut-in drill pipe pressure
+        matters, or whether underwater welding is a realistic career.
+      </p>
+      <p>
+        {SITE.name} fills that gap. We explain how the work actually functions — the
+        equipment, the pressures, the procedures, the career ladder — in language that
+        assumes you are capable but not that you already know. It is free to read, there is
+        no signup, and there is nothing to buy.
+      </p>
+
+      <h2>Who runs it</h2>
+      <p>
+        {SITE.name} is an independent site run by <strong>{LEGAL.legalName}</strong>. It is
+        not owned by a drilling contractor, an operator, an equipment manufacturer, a
+        training provider or a recruitment agency — which matters, because each of those has
+        an interest in what you conclude about training, equipment or employers.
+      </p>
+      <p>
+        We carry no advertising, take no payment for coverage, and run no affiliate links
+        or referral commissions. Nothing on this site is placed because someone paid for it
+        to be there.
+      </p>
+
+      <h2>How we handle safety-critical material</h2>
+      <p>
+        A lot of what we write about can hurt people if it is misapplied. We take that
+        seriously, and it shapes how the site is written:
+      </p>
+      <ul>
+        <li>
+          <strong>Reference, never instruction.</strong> We explain how something works and
+          why. We never tell you what to do on a live well. Your employer's procedures,
+          the well programme, the regulations and your certified supervisor decide that —
+          always, and without exception.
+        </li>
+        <li>
+          <strong>Calculators are teaching tools.</strong> The kill sheet, hydrostatic and
+          mud weight window calculators exist so you can see the arithmetic and check your
+          understanding while studying. They are not approved for operational use, and we
+          say so on the page rather than burying it in the terms.
+        </li>
+        <li>
+          <strong>Standards are named, not paraphrased into fact.</strong> Where API, IADC,
+          IWCF, OSHA or similar requirements apply, we name them and point you at them.
+          Standards get revised; our summary of one is a starting point, not the authority.
+        </li>
+        <li>
+          <strong>We say when something varies.</strong> Practice differs between operators,
+          contractors, regions and rig types. Where there is no single right answer, we say
+          so instead of inventing one.
+        </li>
+      </ul>
+
+      <h2>In Spanish</h2>
+      <p>
+        A large part of the global drilling workforce works in Spanish. Most of the
+        technical content here is published in both languages, with the
+        <a href="/es">Spanish edition</a> maintained alongside the English rather than
+        machine-translated and abandoned. Where a translation and the English differ, the
+        English is the original.
+      </p>
+
+      <h2>Corrections</h2>
+      <p>
+        If something here is wrong, out of date, or explained in a way that would mislead
+        someone on a rig, tell us and we will fix it. On a site about safety-critical work,
+        accuracy is the only thing that makes it worth publishing at all.
+      </p>
+      <p>
+        Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> with the page and what is
+        wrong. Corrections from people who do this work for a living are especially
+        welcome — if you have spotted something that reads like it was written by someone
+        who has never been on a rig, we would rather hear it from you than not.
+      </p>
+
+      <h2>Using our material</h2>
+      <p>
+        Instructors, trainers and writers are welcome to quote us with a credit and a link
+        back. If you want to use something more substantially — in a training pack, an
+        induction, or a course — email and ask; the answer is usually yes.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        {LEGAL.legalName}<br />
+        {LEGAL.address && <>{LEGAL.address}<br /></>}
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      </p>
+
+      <div class="note-box">
+        <strong>One thing worth repeating.</strong> Nothing on this site replaces accredited
+        training, your company's procedures, or the judgement of your supervisor. It is here
+        to help you understand the work — not to authorise any part of it.
+      </div>
+
+      <p style="font-size:13px;">
+        See also our <a href="/privacy">Privacy Policy</a>,
+        <a href="/terms">Terms of Service</a> and <a href="/cookies">Cookie Policy</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -570,6 +570,9 @@ footer.site-footer {
   grid-column: 1 / -1; border-top: 1px solid var(--iron); margin-top: 8px; padding-top: 20px;
   font-size: 11px; color: var(--fog); line-height: 1.6;
 }
+.footer-legal { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-bottom: 14px; }
+.footer-legal a { font-size: 12px; color: var(--mist); text-decoration: none; }
+.footer-legal a:hover { color: var(--amber); }
 
 @media (min-width: 560px) {
   footer.site-footer { grid-template-columns: 1fr 1fr; padding: 40px 24px; }

@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, LEGAL } from '../lib/site.js';
+---
+<BaseLayout
+  title="Cookie Policy"
+  description="RigFloorHQ sets no cookies and stores nothing in your browser. This page explains exactly what that means and how to verify it yourself."
+  breadcrumbs={[{ label: 'Cookie Policy', href: '/cookies' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Legal</div>
+    <h1>Cookie <span>Policy</span></h1>
+    <p class="page-hero-sub">This site does not use cookies. Here is what that means, and how to check it yourself.</p>
+    <div class="page-meta">
+      <span class="page-meta-item">Last updated <strong>{LEGAL.lastUpdated}</strong></span>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="prose">
+      <div class="note-box">
+        <strong>{SITE.name} sets no cookies.</strong> Not necessary ones, not analytics
+        ones, not advertising ones. Nothing is written to your browser's cookie store,
+        local storage or session storage. That is also why you have never seen a cookie
+        banner here.
+      </div>
+
+      <h2>What a cookie is</h2>
+      <p>
+        A cookie is a small file a website asks your browser to store, so it can recognise
+        your browser on a later page or a later visit. Related technologies — local
+        storage, session storage, pixels and fingerprinting — do much the same job by
+        different means. Together they are how most of the web remembers who you are.
+      </p>
+
+      <h2>What we use</h2>
+      <p>
+        None of it. There is no cookie table on this page because there are no cookies to
+        list. Specifically, this site does not use:
+      </p>
+      <ul>
+        <li><strong>Strictly necessary cookies</strong> — we have no logins, baskets or preferences to remember, so none are needed;</li>
+        <li><strong>Analytics cookies</strong> — we run no analytics product at all, so we do not know how many people visit or which pages they read;</li>
+        <li><strong>Functionality cookies</strong> — the language switch works by linking to a different URL, not by storing a preference;</li>
+        <li><strong>Advertising or targeting cookies</strong> — we carry no advertising and are not part of any ad network;</li>
+        <li><strong>Local or session storage</strong> — the calculators run entirely in the page and keep nothing once you navigate away.</li>
+      </ul>
+
+      <h2>Why there is no cookie banner</h2>
+      <p>
+        Under UK and EU rules a site must obtain consent before storing anything on your
+        device that is not strictly necessary. We store nothing, so there is nothing to ask
+        you about. A banner here would be theatre.
+      </p>
+      <p>
+        It also means there is no consent choice for you to manage, change or withdraw —
+        a "cookie settings" link would have nothing to control.
+      </p>
+
+      <h2>Third-party requests</h2>
+      <p>
+        One thing does leave your browser: our pages load typefaces from Google Fonts.
+        Google receives your IP address and browser details in order to serve the font
+        files. Google states it does not set cookies on the Google Fonts service, but the
+        request itself is a transfer of data to a third party and we would rather name it
+        than leave it out. This is covered in more detail in our
+        <a href="/privacy">Privacy Policy</a>.
+      </p>
+      <p>
+        Beyond fonts, our pages make no third-party requests — no analytics beacons, no ad
+        calls, no embedded video, no social widgets, no maps.
+      </p>
+
+      <h2>Check it yourself</h2>
+      <p>
+        You do not have to take our word for any of this. In your browser, press
+        <span class="highlight">F12</span> to open developer tools, then look at the
+        <strong>Application</strong> tab (Chrome and Edge) or <strong>Storage</strong> tab
+        (Firefox). Under Cookies, Local Storage and Session Storage for this domain you
+        will find nothing. The <strong>Network</strong> tab will show you every request the
+        page makes.
+      </p>
+      <div class="note-box">
+        <strong>Worth knowing.</strong> If you ever find a cookie set by this domain, that
+        is a bug or a change we failed to document — either way we want to hear about it at
+        <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a>.
+      </div>
+
+      <h2>If this changes</h2>
+      <p>
+        If we ever add analytics or advertising, we will update this page with a full table
+        of what is set and why, update the <a href="/privacy">Privacy Policy</a>, and put a
+        proper consent banner in place before anything non-essential is stored. Nothing
+        will be switched on quietly.
+      </p>
+
+      <p style="font-size:13px;">
+        See also our <a href="/privacy">Privacy Policy</a>,
+        <a href="/terms">Terms of Service</a> and <a href="/about">About</a> page.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
