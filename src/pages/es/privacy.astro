@@ -1,0 +1,224 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE, LEGAL, PROCESSORS_ES } from '../../lib/site.js';
+
+const host = SITE.domain.replace(/^https?:\/\//, '');
+---
+<BaseLayout
+  title="Política de Privacidad"
+  description="Qué recopila RigFloorHQ, qué no recopila y cuáles son sus derechos. Este sitio no usa cookies ni herramientas de analítica."
+  breadcrumbs={[{ label: 'Política de Privacidad', href: '/es/privacy' }]}
+  lang="es"
+  alternateHref="/privacy"
+>
+  <Nav slot="nav" lang="es" alternateHref="/privacy" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Legal</div>
+    <h1>Política de <span>Privacidad</span></h1>
+    <p class="page-hero-sub">Qué recopilamos, qué no, y qué puede pedirnos al respecto.</p>
+    <div class="page-meta">
+      <span class="page-meta-item">Última actualización <strong>{LEGAL.lastUpdatedEs}</strong></span>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="prose">
+      <div class="note-box">
+        <strong>Versión resumida.</strong> {SITE.name} es un sitio estático de referencia.
+        No usa cookies, no ejecuta herramientas de analítica y no tiene cuentas,
+        formularios ni publicidad. No podemos identificarle y no hay nada que usted deba
+        rechazar. A continuación explicamos los pocos datos que se procesan de forma
+        inevitable para poder mostrarle una página web.
+      </div>
+
+      <h2>Quiénes somos</h2>
+      <p>
+        {SITE.name} ({host}) es un sitio de referencia gratuito sobre perforación, control
+        de pozos, equipo de perforación, soldadura y carreras en el sector petrolero.
+      </p>
+      <p>
+        El responsable del tratamiento de sus datos personales es
+        <strong>{LEGAL.legalName}</strong>{LEGAL.address ? `, ${LEGAL.address}` : ''}. Puede
+        contactarnos sobre cualquier punto de esta política en
+        <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a>.
+      </p>
+
+      <h2>Qué recopilamos</h2>
+      <p>Solamente dos cosas, y ninguna se recopila de forma deliberada:</p>
+      <ul>
+        <li>
+          <strong>Registros del servidor.</strong> Nuestro proveedor de alojamiento registra
+          información técnica estándar al entregar una página: su dirección IP, el navegador
+          y sistema operativo, la página solicitada, la hora y la página de procedencia. Así
+          funciona cualquier servidor web; sirve para entregar las páginas y para proteger
+          el sitio frente a abusos y ataques.
+        </li>
+        <li>
+          <strong>Correspondencia.</strong> Si nos escribe, conservamos su dirección de
+          correo y lo que nos haya escrito durante el tiempo necesario para atenderlo.
+        </li>
+      </ul>
+
+      <h2>Qué no recopilamos</h2>
+      <p>
+        Queremos ser concretos, porque la mayoría de las políticas de privacidad son vagas
+        de un modo que favorece al sitio. A la fecha indicada arriba, {SITE.name}
+        <strong> no</strong>:
+      </p>
+      <ul>
+        <li>instala cookies ni almacena nada en su navegador — consulte nuestra <a href="/es/cookies">Política de Cookies</a>;</li>
+        <li>utiliza Google Analytics ni ninguna otra herramienta de analítica o seguimiento;</li>
+        <li>gestiona cuentas de usuario, inicios de sesión, boletines ni formularios de contacto;</li>
+        <li>muestra publicidad ni colabora con redes publicitarias o intermediarios de datos;</li>
+        <li>emplea píxeles de seguimiento, huella digital del navegador, grabación de sesiones ni mapas de calor;</li>
+        <li>recopila datos de pago — en este sitio no se vende nada;</li>
+        <li>elabora perfiles ni toma decisiones automatizadas sobre usted;</li>
+        <li>vende, alquila ni comparte datos personales para la mercadotecnia de terceros.</li>
+      </ul>
+      <p>
+        Las calculadoras de este sitio — hoja de matar el pozo, presión hidrostática y
+        ventana de peso de lodo — funcionan íntegramente en su navegador. Las cifras que
+        introduzca nunca se transmiten a nosotros ni a nadie más, y no se guarda nada al
+        abandonar la página.
+      </p>
+
+      <h2>Tipografías web</h2>
+      <p>
+        Nuestras páginas cargan tipografías alojadas por Google Fonts. Al cargarse una
+        fuente, Google recibe su dirección IP y los datos de su navegador. Google indica que
+        no instala cookies en el servicio de Google Fonts ni utiliza estas solicitudes con
+        fines publicitarios, pero la solicitud sale de su navegador y no podemos controlar
+        qué hace Google con ella. Su tratamiento se rige por la
+        <a href="https://policies.google.com/privacy" rel="noopener noreferrer" target="_blank">política de privacidad de Google</a>.
+      </p>
+      <p>
+        Esta es la única solicitud a terceros que realizan nuestras páginas. Si prefiere
+        evitarla, un bloqueador de contenido la detendrá y el sitio seguirá funcionando:
+        simplemente verá las tipografías predeterminadas de su sistema.
+      </p>
+
+      <h2>Base jurídica</h2>
+      <ul>
+        <li>
+          <strong>Registros del servidor y tipografías — interés legítimo.</strong> Tenemos
+          un interés legítimo en entregar el sitio de forma fiable, mantenerlo seguro y que
+          se muestre como fue diseñado. El impacto sobre usted es mínimo y no se elabora
+          ningún perfil.
+        </li>
+        <li>
+          <strong>Correspondencia — interés legítimo.</strong> Si nos escribe, usamos sus
+          datos para responderle.
+        </li>
+      </ul>
+      <p>
+        Dado que no instalamos cookies ni usamos analítica, no existe ningún tratamiento que
+        requiera su consentimiento y, por tanto, no hay banner de cookies. Es una decisión
+        deliberada.
+      </p>
+
+      <h2>Con quién compartimos los datos</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Proveedor</th><th>Qué hace</th><th>Ubicación</th></tr>
+          </thead>
+          <tbody>
+            {PROCESSORS_ES.map((p) => (
+              <tr><td>{p[0]}</td><td>{p[1]}</td><td>{p[2]}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p>
+        También podremos revelar datos cuando la ley lo exija. Esa es la lista completa: no
+        hay proveedores de analítica, redes publicitarias ni intermediarios de datos que
+        añadir.
+      </p>
+
+      <h2>Transferencias internacionales</h2>
+      <p>
+        Operamos desde {LEGAL.governingLawEs} y nuestros proveedores se encuentran
+        principalmente en Estados Unidos, de modo que si usted está en el Reino Unido o en
+        el Espacio Económico Europeo sus datos se transfieren fuera de esa zona. Cuando así
+        ocurre, aplicamos las garantías adecuadas, incluidas la Adenda de Transferencia
+        Internacional de Datos del Reino Unido y las Cláusulas Contractuales Tipo de la
+        Comisión Europea. Varios de estos proveedores están además certificados en el Marco
+        de Privacidad de Datos UE–EE. UU.
+      </p>
+
+      <h2>Cuánto tiempo los conservamos</h2>
+      <ul>
+        <li><strong>Registros del servidor</strong> — los conserva nuestro proveedor durante un periodo breve y renovable, tras el cual se eliminan automáticamente. No los copiamos ni mantenemos un archivo propio.</li>
+        <li><strong>Correspondencia</strong> — se conserva el tiempo necesario para atender su mensaje y un periodo razonable posterior; después se elimina.</li>
+      </ul>
+
+      <h2>Sus derechos</h2>
+      <p>Conforme a la normativa de protección de datos del Reino Unido y de la UE, usted tiene derecho a:</p>
+      <ul>
+        <li>saber qué datos personales tenemos sobre usted y obtener una copia;</li>
+        <li>que se corrijan los datos inexactos;</li>
+        <li>solicitar que eliminemos sus datos;</li>
+        <li>oponerse a nuestro tratamiento o solicitar que lo limitemos;</li>
+        <li>recibir en un formato portátil los datos que nos haya facilitado;</li>
+        <li>retirar su consentimiento en cualquier momento, cuando nos basemos en él.</li>
+      </ul>
+      <p>
+        Escriba a <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a> para
+        ejercer cualquiera de ellos. Responderemos en el plazo de un mes y es gratuito.
+      </p>
+      <p>
+        En la práctica, si solo ha leído el sitio y nunca nos ha escrito, no tenemos nada que
+        pueda identificarle y no hay nada que devolver ni eliminar. Preferimos decirlo
+        claramente antes que dar a entender que guardamos un expediente que no existe.
+      </p>
+
+      <h2>Menores</h2>
+      <p>
+        Este sitio publica material técnico de referencia dirigido a personas adultas que
+        trabajan en el sector o que se incorporan a él. No está dirigido a menores y no
+        recopilamos datos de ellos de forma consciente.
+      </p>
+
+      <h2>Reclamaciones</h2>
+      <p>
+        Si no está conforme con cómo hemos tratado sus datos, díganoslo primero a nosotros
+        para poder corregirlo. También tiene derecho a reclamar ante la Oficina del
+        Comisionado de Información del Reino Unido en
+        <a href="https://ico.org.uk" rel="noopener noreferrer" target="_blank">ico.org.uk</a>,
+        o ante la autoridad de control de su país si se encuentra en el EEE.
+      </p>
+
+      <h2>Seguridad</h2>
+      <p>
+        El sitio se sirve íntegramente mediante conexiones cifradas HTTPS. Es un sitio
+        estático, sin base de datos, sin cuentas de usuario y sin procesamiento de pagos, lo
+        que reduce prácticamente a cero la cantidad de datos personales en riesgo.
+      </p>
+
+      <h2>Cambios en esta política</h2>
+      <p>
+        Podremos actualizar esta política a medida que el sitio evolucione, en particular si
+        alguna vez incorporamos analítica o publicidad. Si lo hacemos, cambiaremos la fecha
+        indicada arriba, actualizaremos la <a href="/es/cookies">Política de Cookies</a> y
+        solicitaremos su consentimiento antes de utilizar cualquier tecnología de
+        seguimiento.
+      </p>
+
+      <div class="note-box">
+        <strong>Nota sobre el idioma.</strong> Esta es una traducción de la
+        <a href="/privacy">versión en inglés</a>, que es el original. En caso de
+        discrepancia entre ambas, prevalece la versión en inglés.
+      </div>
+
+      <p style="font-size:13px;">
+        Consulte también nuestros <a href="/es/terms">Términos del Servicio</a>,
+        la <a href="/es/cookies">Política de Cookies</a> y la página
+        <a href="/es/about">Acerca de</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

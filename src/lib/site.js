@@ -37,7 +37,9 @@ export const LEGAL = {
   // Operator is based in Thailand, so Thai law governs the terms. UK/EU data
   // protection duties still apply to UK/EEA visitors regardless.
   governingLaw: 'Thailand',
+  governingLawEs: 'Tailandia',
   lastUpdated: '31 July 2026',
+  lastUpdatedEs: '31 de julio de 2026',
 };
 
 // ── What the site actually does with data ───────────────────
@@ -65,5 +67,31 @@ export const PROCESSORS = [
     'Proton AG',
     'Hosts the mailbox that receives correspondence sent to our contact address.',
     'Switzerland',
+  ],
+];
+
+// Spanish rendering of the table above. Kept as a parallel array rather than
+// translated inline so the two versions cannot drift apart unnoticed — if you
+// add a processor, add it in both places.
+export const PROCESSORS_ES = [
+  [
+    'Vercel Inc.',
+    'Alojamiento del sitio y entrega de contenido. Los registros del servidor pueden incluir direcciones IP.',
+    'Estados Unidos',
+  ],
+  [
+    'Google LLC',
+    'Sirve las tipografías web utilizadas en el sitio. Recibe su dirección IP al cargarse una fuente.',
+    'Estados Unidos',
+  ],
+  [
+    'Namecheap, Inc.',
+    'Registro del dominio y reenvío de correo de nuestra dirección de contacto.',
+    'Estados Unidos',
+  ],
+  [
+    'Proton AG',
+    'Aloja el buzón que recibe la correspondencia enviada a nuestra dirección de contacto.',
+    'Suiza',
   ],
 ];

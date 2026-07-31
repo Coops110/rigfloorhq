@@ -15,8 +15,9 @@ const postsEs = (await getCollection('blogEs')).filter((p) => !p.data.draft);
   description="What RigFloorHQ is, who runs it, how we approach safety-critical material, and how to tell us when we've got something wrong."
   breadcrumbs={[{ label: 'About', href: '/about' }]}
   lang="en"
+  alternateHref="/es/about"
 >
-  <Nav slot="nav" lang="en" />
+  <Nav slot="nav" lang="en" alternateHref="/es/about" />
   <Footer slot="footer" lang="en" />
 
   <div class="page-hero">

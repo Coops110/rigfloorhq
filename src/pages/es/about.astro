@@ -1,0 +1,148 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE, LEGAL } from '../../lib/site.js';
+
+// Cifras reales leídas de las colecciones de contenido, para que la página no
+// quede desactualizada a medida que se publican artículos.
+const posts = (await getCollection('blog')).filter((p) => !p.data.draft);
+const postsEs = (await getCollection('blogEs')).filter((p) => !p.data.draft);
+---
+<BaseLayout
+  title="Acerca de RigFloorHQ"
+  description="Qué es RigFloorHQ, quién lo gestiona, cómo tratamos el material crítico para la seguridad y cómo avisarnos cuando algo está mal."
+  breadcrumbs={[{ label: 'Acerca de', href: '/es/about' }]}
+  lang="es"
+  alternateHref="/about"
+>
+  <Nav slot="nav" lang="es" alternateHref="/about" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Acerca de</div>
+    <h1>El piso de perforación, <span>bien explicado</span></h1>
+    <p class="page-hero-sub">Referencia en lenguaje claro sobre perforación, control de pozos, soldadura y carreras del sector — gratuita, independiente y honesta sobre sus límites.</p>
+    <div class="page-meta">
+      <span class="page-meta-item"><strong>{postsEs.length}</strong> artículos en español</span>
+      <span class="page-meta-item"><strong>{posts.length}</strong> en inglés</span>
+      <span class="page-meta-item">Sin publicidad ni contenido pagado</span>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="prose">
+      <h2>Por qué existe este sitio</h2>
+      <p>
+        La mayor parte del conocimiento del sector petrolero vive en tres sitios: manuales de
+        empresa que solo se ven una vez contratado, cursos de formación que cuestan miles de
+        dólares, y la cabeza de quienes llevan veinte años haciéndolo. Ninguno sirve de mucho
+        cuando uno intenta entender qué hace realmente un jefe de equipo, por qué importa la
+        presión de cierre en la tubería de perforación, o si la soldadura submarina es una
+        salida profesional realista.
+      </p>
+      <p>
+        {SITE.name} cubre ese hueco. Explicamos cómo funciona el trabajo — el equipo, las
+        presiones, los procedimientos, la progresión profesional — en un lenguaje que da por
+        supuesta su capacidad, pero no que ya sepa. Es gratuito, no hay que registrarse y no
+        hay nada que comprar.
+      </p>
+
+      <h2>Quién lo gestiona</h2>
+      <p>
+        {SITE.name} es un sitio independiente gestionado por
+        <strong>{LEGAL.legalName}</strong>. No pertenece a ninguna contratista de
+        perforación, operadora, fabricante de equipos, proveedor de formación ni agencia de
+        selección de personal — lo cual importa, porque cada uno de ellos tiene intereses en
+        lo que usted concluya sobre formación, equipos o empleadores.
+      </p>
+      <p>
+        No mostramos publicidad, no cobramos por cobertura y no utilizamos enlaces de
+        afiliación ni comisiones por recomendación. Nada de lo que hay en este sitio está
+        aquí porque alguien haya pagado por ello.
+      </p>
+
+      <h2>Cómo tratamos el material crítico para la seguridad</h2>
+      <p>
+        Buena parte de lo que publicamos puede causar daño si se aplica mal. Nos lo tomamos
+        en serio, y eso determina cómo está escrito el sitio:
+      </p>
+      <ul>
+        <li>
+          <strong>Referencia, nunca instrucción.</strong> Explicamos cómo funciona algo y por
+          qué. Nunca le decimos qué hacer en un pozo activo. Eso lo deciden los
+          procedimientos de su empresa, el programa del pozo, la normativa y su supervisor
+          certificado: siempre y sin excepción.
+        </li>
+        <li>
+          <strong>Las calculadoras son material didáctico.</strong> Las de hoja de matar el
+          pozo, presión hidrostática y ventana de peso de lodo existen para que vea el
+          cálculo y compruebe su comprensión mientras estudia. No están aprobadas para uso
+          operativo, y lo decimos en la propia página en lugar de esconderlo en los términos.
+        </li>
+        <li>
+          <strong>Las normas se citan, no se convierten en dogma.</strong> Cuando son de
+          aplicación requisitos de API, IADC, IWCF, OSHA u organismos similares, los citamos
+          y le remitimos a ellos. Las normas se revisan; nuestro resumen es un punto de
+          partida, no la autoridad.
+        </li>
+        <li>
+          <strong>Decimos cuándo algo varía.</strong> La práctica difiere entre operadoras,
+          contratistas, regiones y tipos de equipo. Cuando no hay una única respuesta
+          correcta, lo decimos en lugar de inventarla.
+        </li>
+      </ul>
+
+      <h2>En español</h2>
+      <p>
+        Una parte importante de la mano de obra mundial de perforación trabaja en español.
+        La mayor parte del contenido técnico se publica en ambos idiomas, y la
+        <a href="/es">edición en español</a> se mantiene junto a la inglesa en lugar de
+        traducirse automáticamente y abandonarse. Cuando una traducción y el inglés difieran,
+        el inglés es el original.
+      </p>
+
+      <h2>Correcciones</h2>
+      <p>
+        Si algo aquí es incorrecto, está desactualizado o está explicado de forma que pueda
+        inducir a error a alguien en un equipo de perforación, díganoslo y lo corregiremos.
+        En un sitio sobre trabajo crítico para la seguridad, la exactitud es lo único que
+        hace que merezca la pena publicarlo.
+      </p>
+      <p>
+        Escriba a <a href={`mailto:${SITE.email}`}>{SITE.email}</a> indicando la página y qué
+        está mal. Las correcciones de quienes se dedican a esto profesionalmente son
+        especialmente bienvenidas: si ha detectado algo que suena a escrito por alguien que
+        nunca ha pisado un equipo, preferimos que nos lo diga.
+      </p>
+
+      <h2>Uso de nuestro material</h2>
+      <p>
+        Instructores, formadores y periodistas pueden citarnos con una atribución y un enlace
+        de vuelta. Si desea utilizar algo de forma más extensa — en material de formación, en
+        una inducción o en un curso — escríbanos y pregunte; la respuesta suele ser que sí.
+      </p>
+
+      <h2>Contacto</h2>
+      <p>
+        {LEGAL.legalName}<br />
+        {LEGAL.address && <>{LEGAL.address}<br /></>}
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      </p>
+
+      <div class="note-box">
+        <strong>Una cosa que conviene repetir.</strong> Nada en este sitio sustituye a la
+        formación acreditada, a los procedimientos de su empresa ni al criterio de su
+        supervisor. Está aquí para ayudarle a entender el trabajo, no para autorizar ninguna
+        parte de él.
+      </div>
+
+      <p style="font-size:13px;">
+        Consulte también nuestra <a href="/es/privacy">Política de Privacidad</a>,
+        los <a href="/es/terms">Términos del Servicio</a> y la
+        <a href="/es/cookies">Política de Cookies</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

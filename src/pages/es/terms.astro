@@ -1,0 +1,200 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE, LEGAL } from '../../lib/site.js';
+
+const host = SITE.domain.replace(/^https?:\/\//, '');
+---
+<BaseLayout
+  title="Términos del Servicio"
+  description="Los términos que rigen el uso de RigFloorHQ, incluidos los límites del contenido educativo, las calculadoras de control de pozos y la responsabilidad."
+  breadcrumbs={[{ label: 'Términos del Servicio', href: '/es/terms' }]}
+  lang="es"
+  alternateHref="/terms"
+>
+  <Nav slot="nav" lang="es" alternateHref="/terms" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Legal</div>
+    <h1>Términos del <span>Servicio</span></h1>
+    <p class="page-hero-sub">El acuerdo entre usted y nosotros y, más importante aún, los límites de para qué sirve este sitio.</p>
+    <div class="page-meta">
+      <span class="page-meta-item">Última actualización <strong>{LEGAL.lastUpdatedEs}</strong></span>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="prose">
+      <h2>Sobre estos términos</h2>
+      <p>
+        Estos términos constituyen un acuerdo entre usted y
+        <strong>{LEGAL.legalName}</strong>{LEGAL.address ? `, ${LEGAL.address}` : ''}
+        («nosotros»), y rigen el uso que usted haga de {host} (el «Servicio»). Al utilizar el
+        Servicio, usted los acepta. Si no los acepta, le rogamos que no utilice el Servicio.
+      </p>
+
+      <h2>Material de referencia, no instrucciones operativas</h2>
+      <div class="danger-box">
+        <strong>Lea esta sección antes de utilizar cualquier contenido de este sitio en su
+        trabajo.</strong> {SITE.name} publica material educativo y de referencia sobre
+        perforación, control de pozos, equipo de perforación, soldadura y carreras en el
+        sector petrolero. <strong>No</strong> constituye un procedimiento operativo, un
+        programa de pozo, una titulación de formación ni un sustituto de ninguno de ellos.
+        Nada de lo aquí publicado autoriza, aprueba ni certifica actuación alguna en un
+        equipo de perforación.
+      </div>
+      <p>
+        El control de pozos y el trabajo en el piso de perforación son actividades críticas
+        para la seguridad. Las decisiones deben tomarse conforme a los procedimientos
+        aprobados por su empresa, los requisitos normativos aplicables, el programa
+        específico del pozo y las indicaciones de su supervisor certificado de control de
+        pozos y de la supervisión competente en el emplazamiento. Cuando algo de este sitio
+        difiera de todo lo anterior, <strong>prevalece aquello y no este sitio</strong>.
+      </p>
+      <p>
+        Leer este sitio no capacita a nadie para ejecutar una tarea. La competencia formal
+        se obtiene mediante formación y evaluación acreditadas — por ejemplo la
+        certificación IWCF o IADC WellSharp para control de pozos — junto con experiencia
+        supervisada. Nosotros no evaluamos a nadie ni emitimos certificación de ningún tipo.
+      </p>
+
+      <h2>Las calculadoras</h2>
+      <p>
+        El Servicio incluye calculadoras de presión hidrostática, hojas de matar el pozo y
+        ventana de peso de lodo. Existen para que se pueda aprender cómo funciona el cálculo
+        y comprobar la propia comprensión durante el estudio. Funcionan en su navegador;
+        nunca vemos lo que introduce ni lo que producen.
+      </p>
+      <div class="danger-box">
+        <strong>No utilice estas calculadoras para tomar decisiones en un pozo activo.</strong>
+        Son herramientas didácticas no verificadas. Emplean supuestos simplificados,
+        desconocen su pozo, su fluido, su equipo y sus condiciones, y nadie comprueba sus
+        resultados. Utilice la hoja de matar el pozo y los métodos de cálculo aprobados por
+        su operadora y verificados por su supervisor de control de pozos.
+      </div>
+      <p>
+        Cualquier cifra producida por una calculadora de este sitio es una ilustración.
+        Usted es responsable de verificar por un método aprobado cada número en el que se
+        base.
+      </p>
+
+      <h2>Exactitud y vigencia</h2>
+      <p>
+        Ponemos cuidado en describir con precisión las normas, prácticas y equipos, pero las
+        normas se revisan, la reglamentación cambia y la práctica varía entre operadoras,
+        contratistas y jurisdicciones. Cuando citemos una norma o reglamento, trabaje siempre
+        con la versión vigente publicada y no con nuestro resumen. No garantizamos que
+        ninguna parte del Servicio sea completa, actual o esté libre de errores.
+      </p>
+      <p>
+        La información sobre carreras, salarios y certificaciones es general y orientativa.
+        Las tarifas y los requisitos varían según la región, la empresa, el contrato y las
+        condiciones del mercado.
+      </p>
+
+      <h2>Traducciones</h2>
+      <p>
+        Gran parte del Servicio, incluidos estos términos, se publica en español por
+        comodidad. La versión en inglés es el original. Cuando una traducción y el inglés
+        difieran en su significado, <strong>prevalece la versión en inglés</strong>.
+      </p>
+
+      <h2>Uso de nuestro contenido</h2>
+      <p>
+        El contenido de este Servicio ha sido investigado, redactado, recopilado y ordenado
+        por nosotros, y está protegido por la legislación de derechos de autor y demás
+        normativa de propiedad intelectual. Lo facilitamos para su uso personal y no
+        comercial.
+      </p>
+      <p>
+        No podrá utilizar, ni autorizar a terceros a utilizar, el Servicio ni su contenido de
+        forma que actúe como sustituto del mismo, compita con él o afecte a nuestra
+        capacidad de operarlo. Estas restricciones se aplican igualmente a robots, arañas,
+        rastreadores, extracción automatizada de cualquier tipo y a la reproducción masiva de
+        nuestro material con fines de entrenamiento o republicación. Usted se compromete a no
+        eludir las medidas empleadas para limitar el acceso automatizado y a respetar las
+        directivas de nuestro <a href="/robots.txt">robots.txt</a>.
+      </p>
+      <p>
+        Puede citar extractos breves con fines de comentario, reseña, docencia o información
+        periodística, siempre que acredite a {SITE.name} y enlace a la página de la que los
+        haya tomado. Si desea utilizar algo de forma más extensa — por ejemplo en un material
+        de formación — escríbanos: normalmente diremos que sí.
+      </p>
+
+      <h2>Enlaces a terceros</h2>
+      <p>
+        El Servicio enlaza a sitios de terceros, organismos de normalización y proveedores de
+        formación. No los controlamos, no somos responsables de su contenido ni de su
+        exactitud, y un enlace no constituye una recomendación. Seguir un enlace externo es
+        responsabilidad suya.
+      </p>
+
+      <h2>Disponibilidad</h2>
+      <p>
+        Prestamos el Servicio «tal cual» y «según disponibilidad». No garantizamos que sea
+        ininterrumpido, libre de errores ni continuamente accesible, y podremos modificar,
+        suspender o discontinuar cualquier parte de él en cualquier momento y sin previo
+        aviso.
+      </p>
+
+      <h2>Limitación de responsabilidad</h2>
+      <p>
+        En la máxima medida permitida por la ley, excluimos toda garantía, expresa o
+        implícita, sobre la exactitud, integridad o idoneidad para un fin determinado del
+        Servicio y de su contenido.
+      </p>
+      <p>
+        En la máxima medida permitida por la ley, no seremos responsables de ninguna pérdida,
+        daño, lesión o coste derivado del uso del Servicio o de la confianza depositada en él
+        — incluida cualquier decisión operativa, cualquier cálculo, cualquier actuación de
+        control de pozos, cualquier elección de equipo o procedimiento y cualquier decisión
+        profesional o económica. Basarse en este material en un entorno operativo es
+        responsabilidad suya y, cuando usted se encuentre trabajando, queda sujeto a los
+        procedimientos y a la supervisión de su empresa.
+      </p>
+      <p>
+        Nada en estos términos excluye ni limita la responsabilidad cuando hacerlo fuera
+        ilícito, incluida la derivada de fallecimiento o lesiones personales causadas por
+        negligencia, o de fraude. Algunas jurisdicciones no permiten determinadas exclusiones,
+        por lo que partes de esta sección podrían no ser aplicables en su caso.
+      </p>
+
+      <h2>Privacidad</h2>
+      <p>
+        Nuestra <a href="/es/privacy">Política de Privacidad</a> explica qué recopilamos —
+        muy poco — y nuestra <a href="/es/cookies">Política de Cookies</a> explica por qué no
+        hay banner de cookies. Ambas forman parte de estos términos.
+      </p>
+
+      <h2>Cambios en estos términos</h2>
+      <p>
+        Podremos actualizar estos términos periódicamente. La versión vigente es siempre la
+        publicada en esta página, con la fecha indicada arriba. Continuar utilizando el
+        Servicio tras un cambio supone la aceptación de los términos actualizados.
+      </p>
+
+      <h2>Legislación aplicable</h2>
+      <p>
+        Estos términos se rigen por la legislación de {LEGAL.governingLawEs}, y los
+        tribunales de {LEGAL.governingLawEs} serán competentes para conocer de cualquier
+        controversia. Si usted es consumidor, esto no le priva de la protección de los
+        derechos imperativos que le reconozca la legislación del país en el que resida.
+      </p>
+
+      <h2>Contacto</h2>
+      <p>
+        Consultas sobre estos términos:
+        <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a>.
+      </p>
+
+      <div class="note-box">
+        <strong>Nota sobre el idioma.</strong> Esta es una traducción de la
+        <a href="/terms">versión en inglés</a>, que es el original y prevalece en caso de
+        discrepancia.
+      </div>
+    </div>
+  </section>
+</BaseLayout>
