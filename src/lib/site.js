@@ -55,13 +55,17 @@ export const CONSENT_STORAGE_KEY = 'rigfloorhq_consent_v1';
 export const CONSENT_BANNER_SCOPE = 'all';
 
 // ── Legal identity ──────────────────────────────────────────
-// TODO(confirm): these are carried over from the sister site AirProHQ on the
-// assumption RigFloorHQ is run by the same operator. If the entity, address or
-// governing law differ, change them here — every legal page reads from this
-// object, so one edit updates all of them.
+// Confirmed by the operator on 3 August 2026: same operator and same trading
+// address as the sister site AirProHQ, but RigFloorHQ trades under its own
+// name rather than AirProHQ's. Governing law follows the operator's location.
+//
+// Every legal page reads from this object, so one edit here updates all ten of
+// them. If the entity ever changes, this is the only place to touch.
 export const LEGAL = {
   // 'company' → registered company; 'sole-trader' → operated by an individual.
   entityType: 'sole-trader',
+  // Deliberately RigFloorHQ, not AirProHQ — the two sites share an operator
+  // and an address but are named separately.
   legalName: 'RigFloorHQ',
   // Set to '' to omit the postal address from the published pages. Naming a
   // controller is required; publishing a street address is not, though it does
