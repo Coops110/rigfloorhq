@@ -14,6 +14,7 @@ export interface Props {
   jsonLd?: Record<string, any>;
   lang?: 'en' | 'es';
   alternateHref?: string;
+  noindex?: boolean;
 }
 
 const {
@@ -27,7 +28,8 @@ const {
   breadcrumbs = [],
   jsonLd,
   lang = 'en',
-  alternateHref
+  alternateHref,
+  noindex = false
 } = Astro.props;
 
 const siteUrl = 'https://rigfloorhq.com';
@@ -70,7 +72,9 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
   {alternateURL && <link rel="alternate" hreflang={lang} href={canonicalURL} />}
   {alternateURL && <link rel="alternate" hreflang={otherLang} href={alternateURL} />}
   {alternateURL && englishURL && <link rel="alternate" hreflang="x-default" href={englishURL} />}
-  <meta name="robots" content="index, follow" />
+  {/* follow is kept on noindexed pages: they should stay out of the index but
+      still pass their links on, so anything they point at is not orphaned. */}
+  <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
   <meta name="author" content="RigFloorHQ" />
 
   <!-- Open Graph -->

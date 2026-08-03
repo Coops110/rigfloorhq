@@ -30,10 +30,13 @@ const jsonLd = {
 };
 
 // Only link to a specific Spanish post if a real translation with a matching
-// filename exists; otherwise fall back to the Spanish blog hub rather than a 404.
+// filename exists. When there is none, the switcher falls back to the Spanish
+// blog hub, but no hreflang is declared — the hub is not a translation of this
+// post, and a non-reciprocal annotation would be ignored anyway.
 const spanishPosts = await getCollection('blogEs', ({ data }) => !data.draft);
 const hasSpanishVersion = spanishPosts.some(p => p.id === post.id);
-const alternateUrl = hasSpanishVersion ? `/es/blog/${post.id}` : '/es/blog';
+const alternateUrl = hasSpanishVersion ? `/es/blog/${post.id}` : undefined;
+const switcherUrl = hasSpanishVersion ? `/es/blog/${post.id}` : '/es/blog';
 ---
 <BaseLayout
   title={post.data.title}
@@ -46,8 +49,9 @@ const alternateUrl = hasSpanishVersion ? `/es/blog/${post.id}` : '/es/blog';
   jsonLd={jsonLd}
   lang="en"
   alternateHref={alternateUrl}
+  noindex={post.data.noindex}
 >
-  <Nav slot="nav" lang="en" alternateHref={alternateUrl} />
+  <Nav slot="nav" lang="en" alternateHref={switcherUrl} />
   <Footer slot="footer" lang="en" />
 
   <div class="page-hero">

@@ -44,6 +44,7 @@ const englishEquivalent = `/blog/${post.id}`;
   jsonLd={jsonLd}
   lang="es"
   alternateHref={englishEquivalent}
+  noindex={post.data.noindex}
 >
   <Nav slot="nav" lang="es" alternateHref={englishEquivalent} />
   <Footer slot="footer" lang="es" />

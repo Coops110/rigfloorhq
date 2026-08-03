@@ -10,6 +10,10 @@ const blogSchema = z.object({
   category: z.string().default('Industry'),
   tags: z.array(z.string()).default([]),
   draft: z.boolean().default(false),
+  // Keeps a post published and linkable but out of the index. For posts that
+  // exist for readers who are already here — announcements, housekeeping —
+  // rather than to answer a search. Also drops the URL from the sitemap.
+  noindex: z.boolean().default(false),
 });
 
 const blog = defineCollection({

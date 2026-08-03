@@ -5,6 +5,9 @@ publishDate: "2026-07-07"
 author: "RigFloorHQ Team"
 category: "Anuncios"
 tags: ["anuncio", "noticias del sitio"]
+# Anuncio del sitio, no material de referencia. Ver la nota en la versión en
+# inglés: se mantiene publicado y enlazable, pero fuera del índice.
+noindex: true
 ---
 
 ## Por Qué Existe Este Sitio

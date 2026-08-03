@@ -5,6 +5,10 @@ publishDate: "2026-07-07"
 author: "RigFloorHQ Team"
 category: "Announcements"
 tags: ["announcement", "site news"]
+# Site announcement, not reference material. Stays published and linkable for
+# anyone who lands on it, but it answers no search query, and at 424 words it
+# would only dilute the topical signal if indexed.
+noindex: true
 ---
 
 ## Why This Site Exists
