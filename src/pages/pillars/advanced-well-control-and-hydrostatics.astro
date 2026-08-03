@@ -17,9 +17,13 @@ const jsonLd = {
   breadcrumbs={[{ label: 'Advanced Well Control & Hydrostatics', href: '/pillars/advanced-well-control-and-hydrostatics' }]}
   jsonLd={jsonLd}
   lang="en"
-  alternateHref="/es/drilling/well-control"
 >
-  <Nav slot="nav" lang="en" alternateHref="/es/drilling/well-control" />
+  {/* No alternateHref: this page has no Spanish equivalent. It previously
+      pointed at /es/drilling/well-control, which reciprocates to
+      /drilling/well-control instead — so the annotation was ignored by search
+      engines anyway, while also asserting that this page and
+      /drilling/well-control were translations of one another. */}
+  <Nav slot="nav" lang="en" />
   <Footer slot="footer" lang="en" />
 
   <div class="page-hero">

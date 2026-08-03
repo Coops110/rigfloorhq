@@ -63,9 +63,13 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalURL} />
+  {/* All three are gated on alternateURL. A page with no translation should
+      emit no hreflang at all — x-default on its own says nothing, since it
+      only means "use this when no other listed language matches" and there
+      are no other languages listed. */}
   {alternateURL && <link rel="alternate" hreflang={lang} href={canonicalURL} />}
   {alternateURL && <link rel="alternate" hreflang={otherLang} href={alternateURL} />}
-  {englishURL && <link rel="alternate" hreflang="x-default" href={englishURL} />}
+  {alternateURL && englishURL && <link rel="alternate" hreflang="x-default" href={englishURL} />}
   <meta name="robots" content="index, follow" />
   <meta name="author" content="RigFloorHQ" />
 

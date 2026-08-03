@@ -55,8 +55,15 @@ const terms = [
   description="Complete glossary of oil rig and drilling terminology, from BHA to WOB. Every term explained in plain language for new hands and experienced crew alike."
   breadcrumbs={[{ label: 'Glossary', href: '/glossary' }]}
   lang="en"
-  alternateHref="/es"
 >
+  {/* No alternateHref on the layout: the glossary has no Spanish version, and
+      declaring hreflang es -> /es claimed the Spanish homepage as its
+      translation. /es reciprocates to /, so the annotation was ignored, and it
+      misdescribed two unrelated pages as a language pair.
+
+      Nav still gets alternateHref so the language switcher keeps sending
+      Spanish readers to the Spanish homepage — that is a navigation choice and
+      does not assert a translation relationship. */}
   <Nav slot="nav" lang="en" alternateHref="/es" />
   <Footer slot="footer" lang="en" />
 
