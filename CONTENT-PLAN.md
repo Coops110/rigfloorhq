@@ -80,7 +80,9 @@ pages than any single new post would have.
 
 well-control-basics · five-warning-signs-of-a-kick · rig-floor-ppe-guide ·
 permit-to-work-system · stop-card-system · real-time-drilling-data ·
-roustabout-to-driller-timeline · welcome-to-rigfloorhq *(noindex)*
+roustabout-to-driller-timeline · hole-cleaning-high-angle-wells ·
+differential-sticking-explained · drilling-jars-explained ·
+torque-and-drag-early-warning · welcome-to-rigfloorhq *(noindex)*
 
 ### Already covered — do not write these again
 
@@ -97,24 +99,33 @@ roustabout-to-driller-timeline · welcome-to-rigfloorhq *(noindex)*
 | Build rate, profiles, dogleg severity | `/drilling/directional` |
 | Welding positions, WPS/PQR/WPQ, continuity | `/welding/certifications` |
 | Differential vs mechanical sticking, fishing | the stuck pipe pillar |
+| Cuttings transport, beds, critical angle | `/blog/hole-cleaning-high-angle-wells` |
+| The three sticking conditions, spotting fluids | `/blog/differential-sticking-explained` |
+| Jar cocking and firing, up vs down, accelerators | `/blog/drilling-jars-explained` |
+| Friction factor, modelled vs measured, three weights | `/blog/torque-and-drag-early-warning` |
 
 ---
 
 ## Queue
 
-### Now — complete the stuck pipe cluster
+### Done — stuck pipe cluster complete (3 August 2026)
 
-A pillar without a cluster is half-built. These support
-`/pillars/stuck-pipe-and-fishing-operations` and each links back to it.
+All four supporting posts published EN and ES, each with an SVG diagram and
+FAQPage markup, each linked both ways with the pillar:
 
-1. Hole cleaning in high-angle wells — cuttings beds, the 50–60° threshold,
-   flow rate and rheology. *Links: directional, mud-weight, the pillar.*
-2. Differential sticking — the three conditions, and removing any one.
-   *Links: mud-weight, drill-string, the pillar.*
-3. Jarring explained — why impact beats steady overpull, up vs down jars,
-   fatigue cost. *Links: drill-string, the pillar.*
-4. Torque and drag as early warning — reading trend rather than value.
-   *Links: real-time-drilling-data, directional, the pillar.*
+1. ✅ Hole cleaning in high-angle wells
+2. ✅ Differential sticking explained
+3. ✅ Drilling jars explained
+4. ✅ Torque and drag as early warning
+
+### Next — a maintenance week
+
+Per the cycle, no new URLs. Search Console review, check the four new posts are
+indexing, verify internal links, and confirm nothing has drifted.
+
+Do not start the next pillar until this has happened. The point of the
+maintenance week is that it catches the problems the August audit found, and
+skipping it is how they accumulated in the first place.
 
 ### Next pillars, in priority order
 

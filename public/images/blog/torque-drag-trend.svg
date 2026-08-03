@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 440" role="img" aria-labelledby="tdTitle tdDesc">
+  <title id="tdTitle">Measured torque diverging from the modelled friction line</title>
+  <desc id="tdDesc">A chart of torque against depth over successive connections. A straight modelled line shows what torque should be for the planned friction factor, rising steadily as the well deepens. The measured line follows it closely at first, then begins to separate, and the gap widens with each connection until the string sticks. The point where the two lines start to diverge is marked as the real warning, several connections before the absolute torque value looks alarming.</desc>
+
+  <rect width="920" height="440" fill="#0e0f11"/>
+
+  <!-- plot frame -->
+  <line x1="90" y1="60" x2="90" y2="330" stroke="#2a3347" stroke-width="2"/>
+  <line x1="90" y1="330" x2="840" y2="330" stroke="#2a3347" stroke-width="2"/>
+
+  <!-- gridlines -->
+  <g stroke="#1c2130" stroke-width="1">
+    <line x1="90" y1="270" x2="840" y2="270"/>
+    <line x1="90" y1="210" x2="840" y2="210"/>
+    <line x1="90" y1="150" x2="840" y2="150"/>
+    <line x1="90" y1="90"  x2="840" y2="90"/>
+  </g>
+
+  <!-- axis labels -->
+  <text x="18" y="200" fill="#8892a4" font-family="monospace" font-size="12" transform="rotate(-90 30 200)">TORQUE</text>
+  <text x="430" y="366" fill="#8892a4" font-family="monospace" font-size="12">DEPTH / SUCCESSIVE CONNECTIONS →</text>
+
+  <!-- modelled line (straight, expected) -->
+  <path d="M100 300 L830 150" stroke="#22c55e" stroke-width="2.5" fill="none" stroke-dasharray="7 5"/>
+  <text x="700" y="196" fill="#22c55e" font-family="monospace" font-size="11">MODELLED (planned friction factor)</text>
+
+  <!-- measured line: tracks, then diverges upward -->
+  <path d="M100 300 L190 282 L280 264 L370 244 L440 226 L500 202 L560 172 L610 140 L650 108 L680 84"
+        stroke="#e8a020" stroke-width="3" fill="none"/>
+  <text x="120" y="288" fill="#e8a020" font-family="monospace" font-size="11">MEASURED</text>
+
+  <!-- divergence shading -->
+  <path d="M370 244 L440 226 L500 202 L560 172 L610 140 L650 108 L680 84 L680 116 L650 122 L610 139 L560 156 L500 173 L440 187 L370 202 Z"
+        fill="#c94a1f" opacity="0.16"/>
+
+  <!-- divergence marker -->
+  <line x1="370" y1="60" x2="370" y2="330" stroke="#c94a1f" stroke-width="1.6" stroke-dasharray="4 5"/>
+  <circle cx="370" cy="244" r="6" fill="#c94a1f"/>
+  <text x="382" y="82" fill="#c94a1f" font-family="monospace" font-size="12">DIVERGENCE STARTS</text>
+  <text x="382" y="99" fill="#8892a4" font-family="monospace" font-size="10.5">the actual warning</text>
+
+  <!-- "looks alarming" marker, much later -->
+  <line x1="650" y1="60" x2="650" y2="330" stroke="#ef4444" stroke-width="1.6" stroke-dasharray="4 5"/>
+  <circle cx="650" cy="108" r="6" fill="#ef4444"/>
+  <text x="662" y="300" fill="#ef4444" font-family="monospace" font-size="12">VALUE LOOKS HIGH</text>
+  <text x="662" y="317" fill="#8892a4" font-family="monospace" font-size="10.5">usually far too late</text>
+
+  <!-- gap annotation -->
+  <path d="M560 156 L560 172" stroke="#c94a1f" stroke-width="1.4"/>
+  <path d="M556 156 L564 156 M556 172 L564 172" stroke="#c94a1f" stroke-width="1.4"/>
+  <text x="500" y="146" fill="#c94a1f" font-family="monospace" font-size="10">GAP = RISING FRICTION</text>
+
+  <!-- footer note -->
+  <text x="90" y="404" fill="#d1d8e4" font-family="sans-serif" font-size="13.5">The absolute number never looked wrong until it was almost over.</text>
+  <text x="90" y="424" fill="#8892a4" font-family="sans-serif" font-size="12.5">What changed first was the gap between what the model predicted and what the string actually did.</text>
+</svg>
