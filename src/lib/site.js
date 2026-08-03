@@ -17,6 +17,43 @@ export const SITE = {
   email: 'contact@rigfloorhq.com',
 };
 
+// ── Analytics ───────────────────────────────────────────────
+// Google Analytics 4 measurement ID. Find it in GA: Admin → Data streams →
+// your web stream → "MEASUREMENT ID". Format is G-XXXXXXXXXX.
+//
+// LEAVE EMPTY TO DISABLE. Everything downstream is gated on this value: no
+// gtag, no consent banner, no "Cookie settings" footer link, and the privacy
+// and cookie pages render their no-cookies wording. Paste an ID in and all of
+// that flips together, in both languages. That coupling is deliberate — it is
+// what stops the published policy from describing a site you no longer run.
+//
+// Only injected in production builds, so `npm run dev` never reaches the
+// property.
+export const GA_ID = '';
+
+// ── Cookie consent (GDPR / UK PECR) ─────────────────────────
+// Where opt-in consent is legally required before analytics storage. Google
+// resolves the visitor's region server-side from IP, so this drives Consent
+// Mode v2 reliably rather than guessing in the browser.
+// UK + all 27 EU states + the 3 remaining EEA states + Switzerland.
+export const CONSENT_REQUIRED_REGIONS = [
+  'GB',
+  'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR',
+  'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK',
+  'SI', 'ES', 'SE',
+  'IS', 'LI', 'NO',
+  'CH',
+];
+
+// Bump the version suffix to re-prompt everyone (e.g. if a new vendor is added
+// that the old consent did not cover).
+export const CONSENT_STORAGE_KEY = 'rigfloorhq_consent_v1';
+
+// 'all' shows the banner to every visitor; 'eu' only where consent is legally
+// required. 'all' is the safer default and gives non-EU visitors an opt-out
+// too, which US state privacy laws increasingly expect.
+export const CONSENT_BANNER_SCOPE = 'all';
+
 // ── Legal identity ──────────────────────────────────────────
 // TODO(confirm): these are carried over from the sister site AirProHQ on the
 // assumption RigFloorHQ is run by the same operator. If the entity, address or
@@ -43,10 +80,10 @@ export const LEGAL = {
 };
 
 // ── What the site actually does with data ───────────────────
-// Verified against src/ on 31 July 2026: no analytics, no cookies, no
-// localStorage, no consent banner, no forms. The only third parties that
-// receive anything are the host and the font CDN. If any of that changes,
-// update the privacy and cookie pages at the same time.
+// The privacy and cookie pages branch on GA_ID above, so they describe the
+// site as configured. This table is the fixed part: the providers involved
+// regardless of whether analytics is on. If you add one, add it to
+// PROCESSORS_ES too.
 export const PROCESSORS = [
   [
     'Vercel Inc.',

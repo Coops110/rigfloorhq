@@ -1,0 +1,276 @@
+---
+// ─────────────────────────────────────────────────────────────
+//  COOKIE CONSENT BANNER (GDPR / UK PECR)
+//
+//  Pairs with the Consent Mode v2 defaults in BaseLayout. Storage starts
+//  denied in UK/EEA/CH, so GA sends cookieless pings until the visitor
+//  accepts — coarse traffic numbers without a cookie, full data after opt-in.
+//
+//  Legal points baked into the markup:
+//   • Decline is exactly as prominent as Accept. A reject buried in a
+//     submenu is a standard enforcement finding.
+//   • Nothing is pre-ticked, and scrolling is not treated as consent.
+//   • Consent is withdrawable — the footer link reopens this banner.
+// ─────────────────────────────────────────────────────────────
+import { GA_ID, CONSENT_STORAGE_KEY, CONSENT_BANNER_SCOPE } from '../lib/site.js';
+
+export interface Props {
+  lang?: 'en' | 'es';
+}
+const { lang = 'en' } = Astro.props as Props;
+
+// No analytics configured → nothing to consent to, so render nothing at all.
+const active = Boolean(GA_ID);
+
+const t = lang === 'es'
+  ? {
+      title: 'Cookies en RigFloorHQ',
+      body: 'Usamos cookies de analítica para saber qué contenido resulta útil y poder mejorarlo. Son opcionales: si las rechaza, el sitio funciona exactamente igual. No vendemos sus datos. Consulte nuestra',
+      privacy: 'Política de Privacidad',
+      privacyHref: '/es/privacy',
+      reject: 'Rechazar',
+      accept: 'Aceptar',
+    }
+  : {
+      title: 'Cookies on RigFloorHQ',
+      body: 'We use analytics cookies to understand which pages people find useful, so we can improve them. These are optional — decline and the site works exactly the same. We don\'t sell your data. See our',
+      privacy: 'Privacy Policy',
+      privacyHref: '/privacy',
+      reject: 'Decline',
+      accept: 'Accept',
+    };
+---
+{active && (
+  <>
+    <div
+      id="consent-banner"
+      class="consent-banner"
+      role="dialog"
+      aria-modal="false"
+      aria-labelledby="consent-title"
+      aria-describedby="consent-body"
+      hidden
+    >
+      <div class="consent-inner">
+        <div class="consent-copy">
+          <h2 id="consent-title">{t.title}</h2>
+          <p id="consent-body">
+            {t.body} <a href={t.privacyHref}>{t.privacy}</a>.
+          </p>
+        </div>
+        <div class="consent-actions">
+          <button type="button" id="consent-reject" class="consent-btn consent-btn-ghost">
+            {t.reject}
+          </button>
+          <button type="button" id="consent-accept" class="consent-btn consent-btn-solid">
+            {t.accept}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script is:inline define:vars={{ CONSENT_STORAGE_KEY, CONSENT_BANNER_SCOPE }}>
+      (function () {
+        var banner = document.getElementById('consent-banner');
+        if (!banner) return;
+
+        var acceptBtn = document.getElementById('consent-accept');
+        var rejectBtn = document.getElementById('consent-reject');
+        var lastFocused = null;
+
+        function read() {
+          try {
+            return JSON.parse(localStorage.getItem(CONSENT_STORAGE_KEY) || 'null');
+          } catch (e) { return null; }
+        }
+
+        function save(choice) {
+          try {
+            localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify({
+              choice: choice,
+              at: new Date().toISOString(),
+            }));
+          } catch (e) { /* private mode — choice applies to this page view only */ }
+        }
+
+        // Rough client-side region check, used only to decide whether to SHOW
+        // the banner. Whether storage is actually allowed is handled by Consent
+        // Mode's server-side region matching, so a wrong guess here cannot
+        // cause a consent violation.
+        function probablyNeedsBanner() {
+          if (CONSENT_BANNER_SCOPE === 'all') return true;
+          try {
+            var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+            return /^(Europe|Atlantic\/(Canary|Madeira|Faroe|Azores)|Arctic\/Longyearbyen)/.test(tz);
+          } catch (e) {
+            return true; // uncertain → show it
+          }
+        }
+
+        // Consent Mode stops sending identifiers but does NOT remove cookies
+        // already written. Withdrawing consent should actually clear them, so
+        // wipe Google's analytics cookies on decline. They are set on the
+        // registrable domain, so expire against both host and .domain.
+        function clearAnalyticsCookies() {
+          var host = location.hostname;
+          var parent = host.replace(/^www\./, '');
+          var domains = [host, '.' + parent, parent];
+          document.cookie.split(';').forEach(function (raw) {
+            var name = raw.split('=')[0].trim();
+            if (!/^(_ga|_gid|_gat|_gcl)/.test(name)) return;
+            domains.forEach(function (d) {
+              document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=' + d;
+            });
+            document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+          });
+        }
+
+        function apply(choice) {
+          var state = choice === 'accepted' ? 'granted' : 'denied';
+          if (typeof window.gtag === 'function') {
+            window.gtag('consent', 'update', {
+              ad_storage: state,
+              ad_user_data: state,
+              ad_personalization: state,
+              analytics_storage: state,
+            });
+          }
+          if (state === 'denied') clearAnalyticsCookies();
+        }
+
+        function show() {
+          lastFocused = document.activeElement;
+          banner.hidden = false;
+          requestAnimationFrame(function () { banner.classList.add('is-visible'); });
+          if (acceptBtn) acceptBtn.focus();
+        }
+
+        function hide() {
+          banner.classList.remove('is-visible');
+          var done = function () {
+            banner.hidden = true;
+            banner.removeEventListener('transitionend', done);
+            if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+          };
+          banner.addEventListener('transitionend', done);
+          setTimeout(done, 400); // fallback if transitions are disabled
+        }
+
+        function choose(choice) {
+          save(choice);
+          apply(choice);
+          hide();
+        }
+
+        if (acceptBtn) acceptBtn.addEventListener('click', function () { choose('accepted'); });
+        if (rejectBtn) rejectBtn.addEventListener('click', function () { choose('declined'); });
+
+        // Esc dismisses without consenting — same effect as Decline for this
+        // visit, but deliberately not saved, so we ask again next time.
+        banner.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') { apply('declined'); hide(); }
+        });
+
+        // Right to withdraw consent — the footer link calls this.
+        window.rigFloorHQOpenConsent = function () { show(); };
+
+        if (!read() && probablyNeedsBanner()) show();
+      })();
+    </script>
+  </>
+)}
+
+<style>
+  .consent-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    background: var(--steel);
+    color: var(--white);
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.45);
+    border-top: 2px solid var(--rust);
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .consent-banner.is-visible { opacity: 1; transform: translateY(0); }
+  .consent-banner[hidden] { display: none; }
+
+  .consent-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .consent-copy { flex: 1 1 auto; min-width: 0; }
+  .consent-copy h2 {
+    font-family: var(--cond);
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin: 0 0 4px;
+    color: var(--white);
+  }
+  .consent-copy p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--mist);
+    max-width: 68ch;
+  }
+  .consent-copy a { color: var(--amber); text-decoration: underline; }
+
+  /* Both buttons get an identical footprint — declining must be no harder
+     than accepting. Only the fill differs. */
+  .consent-actions {
+    flex: 0 0 auto;
+    display: flex;
+    gap: 10px;
+  }
+  .consent-btn {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 11px 24px;
+    border-radius: 2px;
+    cursor: pointer;
+    min-width: 120px;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .consent-btn-solid {
+    background: var(--rust);
+    color: var(--white);
+    border: 1px solid var(--rust);
+  }
+  .consent-btn-solid:hover { background: #e05a2a; border-color: #e05a2a; }
+  .consent-btn-ghost {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+  }
+  .consent-btn-ghost:hover { background: rgba(255, 255, 255, 0.08); border-color: var(--white); }
+  .consent-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+  @media (max-width: 720px) {
+    .consent-inner {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 14px;
+      padding: 16px 16px 18px;
+    }
+    .consent-actions { gap: 8px; }
+    .consent-btn { flex: 1 1 0; min-width: 0; padding: 12px 10px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .consent-banner { transition: none; }
+  }
+</style>

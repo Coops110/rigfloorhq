@@ -1,5 +1,5 @@
 ---
-import { SITE } from '../lib/site.js';
+import { SITE, GA_ID } from '../lib/site.js';
 
 export interface Props {
   lang?: 'en' | 'es';
@@ -36,6 +36,9 @@ const year = new Date().getFullYear();
         <a href="/es/privacy">Privacidad</a>
         <a href="/es/terms">Términos</a>
         <a href="/es/cookies">Cookies</a>
+        {GA_ID && (
+          <button type="button" class="footer-legal-btn" onclick="window.rigFloorHQOpenConsent && window.rigFloorHQOpenConsent()">Configuración de cookies</button>
+        )}
         <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
       </div>
       © {year} RigFloorHQ. Contenido educativo y de referencia únicamente. Siga siempre los procedimientos aprobados por su empresa, los requisitos regulatorios y las instrucciones de su supervisor certificado de control de pozos. Las decisiones de control de pozos nunca deben tomarse basándose únicamente en material de referencia.
@@ -80,6 +83,9 @@ const year = new Date().getFullYear();
         <a href="/privacy">Privacy Policy</a>
         <a href="/terms">Terms of Service</a>
         <a href="/cookies">Cookie Policy</a>
+        {GA_ID && (
+          <button type="button" class="footer-legal-btn" onclick="window.rigFloorHQOpenConsent && window.rigFloorHQOpenConsent()">Cookie settings</button>
+        )}
         <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
       </div>
       © {year} RigFloorHQ. Educational and reference content only. Always follow your company's approved procedures, regulatory requirements, and the instructions of your certified well control supervisor. Well control decisions must never be made solely from reference materials.

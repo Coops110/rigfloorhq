@@ -2,9 +2,19 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import { SITE, LEGAL, PROCESSORS } from '../lib/site.js';
+import { SITE, LEGAL, PROCESSORS, GA_ID } from '../lib/site.js';
 
 const host = SITE.domain.replace(/^https?:\/\//, '');
+// Sections branch on this so the policy describes the site as configured,
+// rather than needing a manual rewrite whenever analytics is switched on.
+const analytics = Boolean(GA_ID);
+const processors = analytics
+  ? PROCESSORS.map((p) =>
+      p[0] === 'Google LLC'
+        ? [p[0], 'Google Analytics, and the web fonts used across the site. Receives your IP address in both cases.', p[2]]
+        : p
+    )
+  : PROCESSORS;
 ---
 <BaseLayout
   title="Privacy Policy"
@@ -27,13 +37,22 @@ const host = SITE.domain.replace(/^https?:\/\//, '');
 
   <section class="block">
     <div class="prose">
-      <div class="note-box">
-        <strong>The short version.</strong> {SITE.name} is a static reference site. It sets
-        no cookies, runs no analytics, has no accounts, no forms and no advertising. We
-        cannot identify you, and there is nothing here for you to opt out of. The detail
-        below explains the small amount of data that is unavoidably processed to serve you
-        a web page.
-      </div>
+      {analytics ? (
+        <div class="note-box">
+          <strong>The short version.</strong> {SITE.name} is a static reference site with no
+          accounts, no forms and no advertising. The only optional thing we do is measure
+          which pages get read, and we ask before doing it — decline and nothing is stored
+          on your device. We cannot identify you either way, and we never sell data.
+        </div>
+      ) : (
+        <div class="note-box">
+          <strong>The short version.</strong> {SITE.name} is a static reference site. It sets
+          no cookies, runs no analytics, has no accounts, no forms and no advertising. We
+          cannot identify you, and there is nothing here for you to opt out of. The detail
+          below explains the small amount of data that is unavoidably processed to serve you
+          a web page.
+        </div>
+      )}
 
       <h2>Who we are</h2>
       <p>
@@ -48,8 +67,21 @@ const host = SITE.domain.replace(/^https?:\/\//, '');
       </p>
 
       <h2>What we collect</h2>
-      <p>Only two things, and neither is collected deliberately:</p>
+      <p>
+        {analytics
+          ? 'Very little, and none of it identifies you by name:'
+          : 'Only two things, and neither is collected deliberately:'}
+      </p>
       <ul>
+        {analytics && (
+          <li>
+            <strong>Analytics data, only if you accept.</strong> Which pages are viewed, how
+            long you stay, roughly where in the world you are, and what device and browser
+            you used. This is collected by Google Analytics and tied to a randomly generated
+            identifier, not to you. If you decline, none of it is stored on your device and
+            Google receives only an anonymous signal that a page was viewed.
+          </li>
+        )}
         <li>
           <strong>Server logs.</strong> Our host records standard technical information
           when it delivers a page — your IP address, browser and operating system, the page
@@ -69,8 +101,17 @@ const host = SITE.domain.replace(/^https?:\/\//, '');
         <strong> not</strong>:
       </p>
       <ul>
-        <li>set any cookies, or store anything in your browser — see our <a href="/cookies">Cookie Policy</a>;</li>
-        <li>run Google Analytics or any other analytics or tracking product;</li>
+        {analytics ? (
+          <>
+            <li>set any cookies without asking you first — see our <a href="/cookies">Cookie Policy</a>;</li>
+            <li>use tracking beyond the page analytics described above;</li>
+          </>
+        ) : (
+          <>
+            <li>set any cookies, or store anything in your browser — see our <a href="/cookies">Cookie Policy</a>;</li>
+            <li>run Google Analytics or any other analytics or tracking product;</li>
+          </>
+        )}
         <li>operate user accounts, logins, newsletters or contact forms;</li>
         <li>display advertising, or work with advertising or data brokers;</li>
         <li>use tracking pixels, fingerprinting, session recording or heatmaps;</li>
@@ -101,6 +142,14 @@ const host = SITE.domain.replace(/^https?:\/\//, '');
 
       <h2>Our lawful basis</h2>
       <ul>
+        {analytics && (
+          <li>
+            <strong>Analytics — consent.</strong> We use Google Analytics to see which pages
+            are useful and how people find us. Analytics storage is used only where you have
+            consented, and you can withdraw that consent at any time through
+            <strong> Cookie settings</strong> in the footer.
+          </li>
+        )}
         <li>
           <strong>Server logs and web fonts — legitimate interests.</strong> We have a
           legitimate interest in delivering the site reliably, keeping it secure, and
@@ -112,10 +161,18 @@ const host = SITE.domain.replace(/^https?:\/\//, '');
           your details to reply to you.
         </li>
       </ul>
-      <p>
-        Because we set no cookies and run no analytics, there is no processing here that
-        requires your consent, and therefore no consent banner. That is deliberate.
-      </p>
+      {analytics ? (
+        <p>
+          Analytics is the only processing here that requires consent, which is why the
+          banner exists and why declining is exactly as easy as accepting. Everything else
+          is what any web server must do to send you a page.
+        </p>
+      ) : (
+        <p>
+          Because we set no cookies and run no analytics, there is no processing here that
+          requires your consent, and therefore no consent banner. That is deliberate.
+        </p>
+      )}
 
       <h2>Who we share data with</h2>
       <div class="table-wrap">
@@ -125,7 +182,7 @@ const host = SITE.domain.replace(/^https?:\/\//, '');
             <tr><th>Provider</th><th>What they do</th><th>Location</th></tr>
           </thead>
           <tbody>
-            {PROCESSORS.map((p) => (
+            {processors.map((p) => (
               <tr><td>{p[0]}</td><td>{p[1]}</td><td>{p[2]}</td></tr>
             ))}
           </tbody>
@@ -149,6 +206,13 @@ const host = SITE.domain.replace(/^https?:\/\//, '');
       <h2>How long we keep it</h2>
       <ul>
         <li><strong>Server logs</strong> — retained by our host for a short rolling period and then deleted automatically. We do not copy them or keep our own archive.</li>
+        {analytics && (
+          <>
+            <li><strong>Analytics data</strong> — retained by Google Analytics for the period set on our property, after which it is deleted automatically.</li>
+            <li><strong>Analytics cookies</strong> — up to 2 years, or until you decline or clear them.</li>
+            <li><strong>Your consent choice</strong> — stored in your browser until you clear it.</li>
+          </>
+        )}
         <li><strong>Correspondence</strong> — kept for as long as needed to deal with your message and for a reasonable period afterwards, then deleted.</li>
       </ul>
 
@@ -197,10 +261,11 @@ const host = SITE.domain.replace(/^https?:\/\//, '');
 
       <h2>Changes to this policy</h2>
       <p>
-        We may update this policy as the site develops — in particular if we ever introduce
-        analytics or advertising. If we do, we will change the date above, update the
-        <a href="/cookies">Cookie Policy</a>, and ask for your consent before any tracking
-        technology is used.
+        {analytics
+          ? 'We may update this policy as the site develops — in particular if we ever introduce advertising. If we do, we will change the date above, update the '
+          : 'We may update this policy as the site develops — in particular if we ever introduce analytics or advertising. If we do, we will change the date above, update the '}
+        <a href="/cookies">Cookie Policy</a>, and ask for your consent again before any new
+        tracking technology is used.
       </p>
 
       <p style="font-size:13px;">

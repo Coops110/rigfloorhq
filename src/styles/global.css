@@ -573,6 +573,14 @@ footer.site-footer {
 .footer-legal { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-bottom: 14px; }
 .footer-legal a { font-size: 12px; color: var(--mist); text-decoration: none; }
 .footer-legal a:hover { color: var(--amber); }
+/* Consent reopen control. A button for correct semantics and keyboard access,
+   styled to sit inline with the legal links beside it. */
+.footer-legal-btn {
+  font-family: inherit; font-size: 12px; color: var(--mist); background: none;
+  border: 0; padding: 0; cursor: pointer; line-height: inherit;
+}
+.footer-legal-btn:hover { color: var(--amber); }
+.footer-legal-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
 
 @media (min-width: 560px) {
   footer.site-footer { grid-template-columns: 1fr 1fr; padding: 40px 24px; }

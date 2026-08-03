@@ -2,11 +2,41 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import { SITE, LEGAL } from '../../lib/site.js';
+import { SITE, LEGAL, GA_ID } from '../../lib/site.js';
+
+// Misma bifurcación que la versión en inglés: sin ID de medición el sitio no
+// almacena nada y la página lo dice; al pegar un ID, se reescribe sola.
+const analytics = Boolean(GA_ID);
+
+const cookies = [
+  {
+    name: 'rigfloorhq_consent_v1',
+    type: 'Estrictamente necesaria',
+    purpose:
+      'Recuerda si aceptó o rechazó las cookies de analítica, para no preguntárselo en cada página. Se guarda en el almacenamiento local de su navegador y contiene únicamente su elección y la fecha.',
+    expiry: 'Hasta que borre el almacenamiento del navegador',
+  },
+  {
+    name: '_ga',
+    type: 'Analítica',
+    purpose:
+      'Google Analytics. Distingue a un visitante de otro para poder contar visitantes únicos en lugar de cargas de página. Solo se instala si usted acepta.',
+    expiry: '2 años',
+  },
+  {
+    name: `_ga_${GA_ID.replace(/^G-/, '')}`,
+    type: 'Analítica',
+    purpose:
+      'Google Analytics. Mantiene el estado de la sesión para que una visita no se contabilice como varias. Solo se instala si usted acepta.',
+    expiry: '2 años',
+  },
+];
 ---
 <BaseLayout
   title="Política de Cookies"
-  description="RigFloorHQ no instala cookies ni almacena nada en su navegador. Esta página explica qué significa eso y cómo comprobarlo usted mismo."
+  description={analytics
+    ? 'Qué cookies instala RigFloorHQ, por qué, y cómo cambiar o retirar su elección en cualquier momento.'
+    : 'RigFloorHQ no instala cookies ni almacena nada en su navegador. Esta página explica qué significa eso y cómo comprobarlo usted mismo.'}
   breadcrumbs={[{ label: 'Política de Cookies', href: '/es/cookies' }]}
   lang="es"
   alternateHref="/cookies"
@@ -17,7 +47,11 @@ import { SITE, LEGAL } from '../../lib/site.js';
   <div class="page-hero">
     <div class="page-hero-eyebrow">Legal</div>
     <h1>Política de <span>Cookies</span></h1>
-    <p class="page-hero-sub">Este sitio no utiliza cookies. Aquí explicamos qué significa y cómo puede comprobarlo.</p>
+    <p class="page-hero-sub">
+      {analytics
+        ? 'Qué instalamos, por qué, y cómo cambiar de opinión en cualquier momento.'
+        : 'Este sitio no utiliza cookies. Aquí explicamos qué significa y cómo puede comprobarlo.'}
+    </p>
     <div class="page-meta">
       <span class="page-meta-item">Última actualización <strong>{LEGAL.lastUpdatedEs}</strong></span>
     </div>
@@ -25,61 +59,125 @@ import { SITE, LEGAL } from '../../lib/site.js';
 
   <section class="block">
     <div class="prose">
-      <div class="note-box">
-        <strong>{SITE.name} no instala cookies.</strong> Ni necesarias, ni de analítica, ni
-        publicitarias. No se escribe nada en el almacén de cookies de su navegador, ni en el
-        almacenamiento local, ni en el de sesión. Por eso tampoco ha visto nunca aquí un
-        banner de cookies.
-      </div>
+      {analytics ? (
+        <>
+          <div class="note-box">
+            <strong>Versión resumida.</strong> Instalamos un pequeño conjunto de cookies de
+            analítica, y solo si usted acepta. Si las rechaza, no se almacena nada que no sea
+            esencial y el sitio funciona exactamente igual. Puede cambiar de opinión cuando
+            quiera desde <strong>Configuración de cookies</strong>, en el pie de página.
+          </div>
 
-      <h2>Qué es una cookie</h2>
-      <p>
-        Una cookie es un pequeño archivo que un sitio web pide a su navegador que guarde,
-        para poder reconocerlo en una página posterior o en una visita futura. Otras
-        tecnologías relacionadas — almacenamiento local, almacenamiento de sesión, píxeles y
-        huella digital del navegador — hacen prácticamente lo mismo por otros medios. En
-        conjunto, así es como la mayor parte de la web recuerda quién es usted.
-      </p>
+          <h2>Qué es una cookie</h2>
+          <p>
+            Una cookie es un pequeño archivo que un sitio web pide a su navegador que guarde,
+            para poder reconocerlo en una página posterior o en una visita futura. Otras
+            tecnologías relacionadas — almacenamiento local, de sesión y píxeles — hacen
+            prácticamente lo mismo por otros medios.
+          </p>
 
-      <h2>Qué utilizamos</h2>
-      <p>
-        Nada de eso. En esta página no hay una tabla de cookies porque no hay cookies que
-        enumerar. En concreto, este sitio no utiliza:
-      </p>
-      <ul>
-        <li><strong>Cookies estrictamente necesarias</strong> — no hay inicios de sesión, carritos ni preferencias que recordar, así que no hacen falta;</li>
-        <li><strong>Cookies de analítica</strong> — no usamos ninguna herramienta de analítica, por lo que no sabemos cuántas personas nos visitan ni qué páginas leen;</li>
-        <li><strong>Cookies de funcionalidad</strong> — el cambio de idioma funciona enlazando a otra dirección, no guardando una preferencia;</li>
-        <li><strong>Cookies publicitarias o de segmentación</strong> — no mostramos publicidad ni formamos parte de ninguna red publicitaria;</li>
-        <li><strong>Almacenamiento local o de sesión</strong> — las calculadoras funcionan íntegramente en la página y no conservan nada al salir de ella.</li>
-      </ul>
+          <h2>Qué instalamos</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Nombre</th><th>Tipo</th><th>Finalidad</th><th>Caduca</th></tr>
+              </thead>
+              <tbody>
+                {cookies.map((c) => (
+                  <tr>
+                    <td><span class="highlight">{c.name}</span></td>
+                    <td>{c.type}</td>
+                    <td>{c.purpose}</td>
+                    <td>{c.expiry}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            No usamos cookies de funcionalidad ni publicitarias, y no formamos parte de
+            ninguna red publicitaria. La analítica nos dice qué páginas se leen; no nos dice
+            quién es usted, y no intentamos averiguarlo.
+          </p>
 
-      <h2>Por qué no hay banner de cookies</h2>
-      <p>
-        Conforme a la normativa del Reino Unido y de la UE, un sitio debe obtener su
-        consentimiento antes de almacenar en su dispositivo cualquier cosa que no sea
-        estrictamente necesaria. Nosotros no almacenamos nada, así que no hay nada que
-        preguntarle. Un banner aquí sería puro teatro.
-      </p>
-      <p>
-        Esto también significa que no hay ninguna preferencia de consentimiento que usted
-        deba gestionar, modificar o retirar: un enlace de «configuración de cookies» no
-        tendría nada que controlar.
-      </p>
+          <h2>Su elección</h2>
+          <p>
+            Preguntamos antes de instalar nada opcional. Hasta que usted acepte, Google
+            Analytics recibe únicamente una señal anónima y sin cookies de que se ha visto
+            una página, sin almacenar nada en su dispositivo.
+          </p>
+          <p>
+            Si rechaza, no se instala ninguna cookie de analítica y las que existieran se
+            eliminan activamente, no simplemente se ignoran. Si acepta, puede retirar su
+            consentimiento más adelante: el enlace <strong>Configuración de cookies</strong>
+            del pie de página vuelve a abrir el aviso, y al rechazar se borran las cookies en
+            ese momento.
+          </p>
+          <div class="note-box">
+            <strong>Rechazar no le cuesta nada.</strong> No hay una versión reducida de este
+            sitio, no insistimos en visitas posteriores y no hay nada restringido tras el
+            consentimiento.
+          </div>
+        </>
+      ) : (
+        <>
+          <div class="note-box">
+            <strong>{SITE.name} no instala cookies.</strong> Ni necesarias, ni de analítica,
+            ni publicitarias. No se escribe nada en el almacén de cookies de su navegador, ni
+            en el almacenamiento local, ni en el de sesión. Por eso tampoco ha visto nunca
+            aquí un banner de cookies.
+          </div>
+
+          <h2>Qué es una cookie</h2>
+          <p>
+            Una cookie es un pequeño archivo que un sitio web pide a su navegador que guarde,
+            para poder reconocerlo en una página posterior o en una visita futura. Otras
+            tecnologías relacionadas — almacenamiento local, almacenamiento de sesión,
+            píxeles y huella digital del navegador — hacen prácticamente lo mismo por otros
+            medios. En conjunto, así es como la mayor parte de la web recuerda quién es usted.
+          </p>
+
+          <h2>Qué utilizamos</h2>
+          <p>
+            Nada de eso. En esta página no hay una tabla de cookies porque no hay cookies que
+            enumerar. En concreto, este sitio no utiliza:
+          </p>
+          <ul>
+            <li><strong>Cookies estrictamente necesarias</strong> — no hay inicios de sesión, carritos ni preferencias que recordar, así que no hacen falta;</li>
+            <li><strong>Cookies de analítica</strong> — no usamos ninguna herramienta de analítica, por lo que no sabemos cuántas personas nos visitan ni qué páginas leen;</li>
+            <li><strong>Cookies de funcionalidad</strong> — el cambio de idioma funciona enlazando a otra dirección, no guardando una preferencia;</li>
+            <li><strong>Cookies publicitarias o de segmentación</strong> — no mostramos publicidad ni formamos parte de ninguna red publicitaria;</li>
+            <li><strong>Almacenamiento local o de sesión</strong> — las calculadoras funcionan íntegramente en la página y no conservan nada al salir de ella.</li>
+          </ul>
+
+          <h2>Por qué no hay banner de cookies</h2>
+          <p>
+            Conforme a la normativa del Reino Unido y de la UE, un sitio debe obtener su
+            consentimiento antes de almacenar en su dispositivo cualquier cosa que no sea
+            estrictamente necesaria. Nosotros no almacenamos nada, así que no hay nada que
+            preguntarle. Un banner aquí sería puro teatro.
+          </p>
+          <p>
+            Esto también significa que no hay ninguna preferencia de consentimiento que usted
+            deba gestionar, modificar o retirar: un enlace de «configuración de cookies» no
+            tendría nada que controlar.
+          </p>
+        </>
+      )}
 
       <h2>Solicitudes a terceros</h2>
       <p>
-        Hay una cosa que sí sale de su navegador: nuestras páginas cargan tipografías desde
-        Google Fonts. Google recibe su dirección IP y los datos de su navegador para poder
-        servir los archivos de fuente. Google indica que no instala cookies en el servicio
-        de Google Fonts, pero la solicitud en sí constituye una transferencia de datos a un
-        tercero y preferimos mencionarla antes que omitirla. Lo explicamos con más detalle
-        en nuestra <a href="/es/privacy">Política de Privacidad</a>.
+        Nuestras páginas cargan tipografías desde Google Fonts. Google recibe su dirección IP
+        y los datos de su navegador para poder servir los archivos de fuente. Google indica
+        que no instala cookies en el servicio de Google Fonts, pero la solicitud en sí
+        constituye una transferencia de datos a un tercero y preferimos mencionarla antes que
+        omitirla. Lo explicamos con más detalle en nuestra
+        <a href="/es/privacy">Política de Privacidad</a>.
       </p>
       <p>
-        Aparte de las tipografías, nuestras páginas no realizan ninguna otra solicitud a
-        terceros: sin balizas de analítica, sin llamadas publicitarias, sin vídeo incrustado,
-        sin widgets de redes sociales y sin mapas.
+        {analytics
+          ? 'Aparte de las tipografías y de la analítica descrita arriba, nuestras páginas no realizan ninguna otra solicitud a terceros: sin llamadas publicitarias, sin vídeo incrustado, sin widgets de redes sociales y sin mapas.'
+          : 'Aparte de las tipografías, nuestras páginas no realizan ninguna otra solicitud a terceros: sin balizas de analítica, sin llamadas publicitarias, sin vídeo incrustado, sin widgets de redes sociales y sin mapas.'}
       </p>
 
       <h2>Compruébelo usted mismo</h2>
@@ -87,24 +185,22 @@ import { SITE, LEGAL } from '../../lib/site.js';
         No tiene por qué creernos. En su navegador, pulse
         <span class="highlight">F12</span> para abrir las herramientas de desarrollo y vaya a
         la pestaña <strong>Aplicación</strong> (Chrome y Edge) o <strong>Almacenamiento</strong>
-        (Firefox). En Cookies, Almacenamiento local y Almacenamiento de sesión de este
-        dominio no encontrará nada. La pestaña <strong>Red</strong> le mostrará todas las
-        solicitudes que hace la página.
+        (Firefox). La pestaña <strong>Red</strong> le mostrará todas las solicitudes que hace
+        la página.
       </p>
       <div class="note-box">
-        <strong>Conviene saberlo.</strong> Si alguna vez encuentra una cookie instalada por
-        este dominio, se tratará de un error o de un cambio que no hemos documentado; en
-        cualquier caso, queremos saberlo en
-        <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a>.
+        {analytics ? (
+          <><strong>Conviene saberlo.</strong> Si rechaza y aun así encuentra una cookie <span class="highlight">_ga</span> instalada por este dominio, se trata de un error: díganoslo en <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a>.</>
+        ) : (
+          <><strong>Conviene saberlo.</strong> Si alguna vez encuentra una cookie instalada por este dominio, se tratará de un error o de un cambio que no hemos documentado; en cualquier caso, queremos saberlo en <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a>.</>
+        )}
       </div>
 
       <h2>Si esto cambia</h2>
       <p>
-        Si algún día incorporamos analítica o publicidad, actualizaremos esta página con una
-        tabla completa de lo que se instala y por qué, actualizaremos la
-        <a href="/es/privacy">Política de Privacidad</a> y pondremos un banner de
-        consentimiento en condiciones antes de almacenar nada que no sea esencial. Nada se
-        activará de forma silenciosa.
+        {analytics
+          ? 'Si incorporamos cualquier otra tecnología de seguimiento, actualizaremos esta tabla, actualizaremos la Política de Privacidad y volveremos a solicitar su consentimiento antes de almacenar nada nuevo. Nada se activará de forma silenciosa.'
+          : 'Si algún día incorporamos analítica o publicidad, actualizaremos esta página con una tabla completa de lo que se instala y por qué, actualizaremos la Política de Privacidad y pondremos un banner de consentimiento en condiciones antes de almacenar nada que no sea esencial. Nada se activará de forma silenciosa.'}
       </p>
 
       <div class="note-box">
