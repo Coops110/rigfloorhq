@@ -67,6 +67,29 @@ import Footer from '../../components/Footer.astro';
 
         <h2 id="drilling-parameters-monitored-through-the-string">Drilling Parameters Monitored Through the String</h2>
         <p>The driller watches several parameters continuously, all tied to how the string is performing downhole: <strong>WOB</strong> (weight on bit), <strong>RPM</strong> (rotation speed), <strong>ROP</strong> (rate of penetration), <strong>torque</strong> (resistance to rotation), and <strong>standpipe pressure</strong> (pump pressure at surface). A sudden change in any of these — particularly a sharp torque increase or ROP spike — is often the first sign of a problem downhole, from a formation change to the early signs of a stuck pipe or kick.</p>
+
+        <h2 id="the-neutral-point">The Neutral Point — Why Collars Push and Pipe Pulls</h2>
+        <p>This is the single idea that explains the string's layout, and it is the one most often skipped. Drill pipe is designed to be in <strong>tension</strong>. Drill collars are designed to be in <strong>compression</strong>. The boundary between the two is the neutral point.</p>
+        <p>Weight on bit does not come from pushing down from surface. It comes from letting part of the string's own weight rest on the bit, while the rest hangs in tension from the hook. The neutral point is the depth where those cancel — above it the string is being stretched, below it the string is being squashed.</p>
+        <p>The rule that follows is simple and non-negotiable: <strong>the neutral point must stay inside the drill collars.</strong> Collars are thick-walled and built to take compression. Drill pipe is comparatively thin-walled and is not. Put drill pipe into compression and it buckles — it bows out against the wellbore, which drives fatigue at the tool joints, wears one side of the pipe, causes crooked hole, and eventually parts the string.</p>
+        <p>In practice that means running enough collar weight for the WOB you intend to use, with margin. A common working figure is to size collar weight so that no more than about 80–85% of the collars' buoyed weight is ever applied to the bit, keeping the neutral point comfortably below the top of the collar section rather than at its limit.</p>
+        <p>Buoyancy matters here too. A string hanging in mud weighs less than it does in air, and heavier mud means more buoyancy and less effective collar weight — which is one of the less obvious ways <a href="/drilling/mud-weight">mud weight</a> couples to drilling mechanics.</p>
+
+        <h2 id="pipe-grades-and-inspection">Pipe Grades and Inspection Classes</h2>
+        <p>Drill pipe is not one product. Grade denotes the minimum yield strength of the tube body, and it determines what the string can be asked to carry:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Grade</th><th>Minimum yield</th><th>Typical use</th></tr></thead>
+            <tbody>
+              <tr><td>E75</td><td>75,000 psi</td><td>Shallow and moderate-depth wells; the baseline grade</td></tr>
+              <tr><td>X95</td><td>95,000 psi</td><td>Deeper wells where E75 tensile capacity runs short</td></tr>
+              <tr><td>G105</td><td>105,000 psi</td><td>Deep and extended-reach work with high hook loads</td></tr>
+              <tr><td>S135</td><td>135,000 psi</td><td>Deep, high-torque and extended-reach wells; the common premium grade</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Higher grade is not automatically better. Higher-strength steels are generally less tolerant of sour service, where hydrogen sulphide can drive sulphide stress cracking — so a string chosen purely for tensile capacity can be the wrong string for a sour well. Where H&#8322;S is expected, material selection is a metallurgical decision, not a load calculation. See <a href="/safety/h2s">H&#8322;S safety</a> for the exposure side of the same problem.</p>
+        <p>Separately from grade, used pipe carries an <strong>inspection class</strong> — commonly Premium, Class 2 and so on — reflecting measured wall thickness remaining after wear. A joint of S135 worn to Class 2 has less capacity than its grade suggests, which is why load calculations are run against the inspected class of the pipe actually on the rack, not the grade stencilled on it.</p>
       </div>
 
       <div>
@@ -76,6 +99,8 @@ import Footer from '../../components/Footer.astro';
           <a href="#components-top-to-bottom">Components Top to Bottom</a>
           <a href="#bit-types">Bit Types</a>
           <a href="#drilling-parameters-monitored-through-the-string">Parameters Monitored</a>
+          <a href="#the-neutral-point">The Neutral Point</a>
+          <a href="#pipe-grades-and-inspection">Pipe Grades &amp; Inspection</a>
         </div>
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
           <h3>Related Reading</h3>

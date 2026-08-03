@@ -4,8 +4,8 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 ---
 <BaseLayout
-  title="Oil Rig Welding — Processes, Certifications & Career Path"
-  description="Complete guide to welding on oil rigs: SMAW, TIG, FCAW, and underwater welding processes, required certifications, and the career path from junior welder to CWI."
+  title="Oil Rig Welding — SMAW, TIG & FCAW Processes Explained"
+  description="What welders actually do on a drilling rig: the SMAW, TIG and FCAW processes, where each is used, the four jobs rig welding splits into, and the conditions the work is done in."
   breadcrumbs={[{ label: 'Welding', href: '/welding' }]}
   lang="en"
   alternateHref="/es/welding"
@@ -43,7 +43,8 @@ import Footer from '../../components/Footer.astro';
   <section class="block">
     <div class="two-col">
       <div>
-        <h2 class="section-title" style="font-size:28px;">Key <span>Certifications</span></h2>
+        <h2 class="section-title" style="font-size:28px;">Which Standard <span>Applies to What</span></h2>
+        <p style="color:var(--fog);font-size:13px;margin-bottom:16px;max-width:520px;">Rig welding is not governed by one standard. Which one applies depends on what you are welding, not who you work for — and a ticket to one does not qualify you for another.</p>
         <div class="card-grid grid-2">
           <div class="card">
             <h3 style="font-size:14px;">API 1104</h3>
@@ -85,6 +86,54 @@ import Footer from '../../components/Footer.astro';
             <a href="/welding/certifications" class="card-link">Read More →</a>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">The Work</div>
+    <h2 class="section-title">Four Different <span>Jobs</span></h2>
+    <p style="color:var(--fog);max-width:720px;margin-bottom:24px;">"Rig welder" covers four fairly different jobs. They use overlapping processes but different standards, different hours, and in practice different people — a hand who is excellent at one is not automatically employable in another.</p>
+
+    <div class="card-grid grid-2">
+      <div class="card">
+        <h3>Maintenance and Repair</h3>
+        <p>The day-to-day: handrails, walkways, skid frames, cracked brackets, worn wear plates. Usually SMAW, usually awkward positions, often around live operations with a hot work permit in force. This is where most rig welders spend most of their time.</p>
+        <span class="card-tag">Most Common</span>
+      </div>
+      <div class="card">
+        <h3>Structural</h3>
+        <p>Derrick members, substructure, crane pedestals, platform steel. Governed by AWS D1.1, inspected properly, and the work most likely to be scrutinised after the fact — because a failure here does not stay local.</p>
+        <span class="card-tag">AWS D1.1</span>
+      </div>
+      <div class="card">
+        <h3>Pipework and Pressure</h3>
+        <p>Mud lines, choke and kill lines, pressure piping, vessels. API 1104 or ASME Section IX depending on the system. Root pass quality matters more than appearance, and radiography will find what a grinder hides.</p>
+        <span class="card-tag">API 1104 / ASME IX</span>
+      </div>
+      <div class="card">
+        <h3>Subsea</h3>
+        <p>A different trade that happens to involve welding. You are a commercial diver first and a welder second, working to AWS D3.6M. Covered separately on the <a href="/welding/underwater-welding" style="color:var(--amber);">underwater welding page</a>.</p>
+        <span class="card-tag">AWS D3.6M</span>
+      </div>
+    </div>
+
+    <div class="note-box mt-24" style="max-width:760px;">
+      <strong>Position matters more than process.</strong> Anyone can run a flat bead on a bench. What gets you hired is welding overhead, in the vertical, and around the back of a pipe you cannot see — which is why qualification tests are defined by position (1G through 6G) rather than by how good the weld looks in a photograph. The <a href="/welding/certifications" style="color:var(--amber);">certification guide</a> breaks the positions down.
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Conditions</div>
+    <h2 class="section-title">What the Job Is <span>Actually Like</span></h2>
+    <div class="two-col">
+      <div>
+        <p style="color:var(--mist);line-height:1.8;font-size:15px;">Rig welding is outdoor work on a steel structure that moves. Offshore, the deck is never entirely still, and wind pulls the shielding gas off a TIG puddle badly enough that a lot of subsea and topside work reverts to stick for that reason alone.</p>
+        <p style="color:var(--mist);line-height:1.8;font-size:15px;">Almost every job requires a hot work permit, a fire watch, and a gas test before an arc is struck — the whole system is described in the <a href="/blog/permit-to-work-system" style="color:var(--amber);">permit to work guide</a>. On a live rig, the permit is often the constraint on when you can work, not the welding itself.</p>
+      </div>
+      <div>
+        <p style="color:var(--mist);line-height:1.8;font-size:15px;">The hazards are the usual ones concentrated into a small space: arc flash, hexavalent chromium in stainless fume, confined space entry, hot work next to hydrocarbon systems, and working at height on the derrick. Respiratory protection and the correct shade are not optional, and are covered in the <a href="/blog/rig-floor-ppe-guide" style="color:var(--amber);">PPE guide</a>.</p>
+        <p style="color:var(--mist);line-height:1.8;font-size:15px;">Schedules follow the rig, not the trade — offshore rotations rather than day shifts. Pay reflects that, and is broken down by role in the <a href="/careers/salary" style="color:var(--amber);">salary guide</a>.</p>
       </div>
     </div>
   </section>

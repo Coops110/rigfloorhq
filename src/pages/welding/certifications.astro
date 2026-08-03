@@ -85,8 +85,69 @@ import Footer from '../../components/Footer.astro';
   </section>
 
   <section class="block">
+    <div class="section-eyebrow">Test Positions</div>
+    <h2 class="section-title">What 1G Through <span>6G</span> Actually Mean</h2>
+    <p style="color:var(--fog);max-width:740px;margin-bottom:24px;">Welder qualification is defined by <strong style="color:var(--white);">position</strong>, not by process or appearance. The position you test in determines the positions you are qualified to weld in production — which is why 6G is the one worth having.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Position</th><th>Pipe or Plate</th><th>What it means</th><th>Qualifies you for</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1G</td><td>Pipe, rolled</td><td>Pipe rotates while you weld; you stay in the flat position throughout.</td><td>Flat only</td></tr>
+          <tr><td>2G</td><td>Pipe, vertical</td><td>Pipe axis vertical, weld runs horizontally around it. Fixed, no rotation.</td><td>Flat, horizontal</td></tr>
+          <tr><td>5G</td><td>Pipe, horizontal fixed</td><td>Pipe axis horizontal and fixed. You weld overhead, vertical and flat in a single joint as you travel round.</td><td>Flat, vertical, overhead</td></tr>
+          <tr><td>6G</td><td>Pipe, 45° fixed</td><td>Pipe fixed at 45°. Every position in one weld, with no comfortable place to start. The hardest of the four.</td><td>All positions</td></tr>
+          <tr><td>6GR</td><td>Pipe, 45° with restriction ring</td><td>6G with a plate obstructing access, simulating welding next to structure you cannot move.</td><td>All positions, restricted access</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-box mt-24" style="max-width:800px;">
+      <strong>Why employers ask for 6G.</strong> Passing 6G qualifies you for every position below it, so one test covers the range. On a rig, joints are wherever the pipework happens to be — you cannot rotate a mud line to suit yourself. A 6G ticket says you can weld the joint in the position you find it.
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">The Paperwork</div>
+    <h2 class="section-title">WPS, PQR and <span>WPQ</span></h2>
+    <p style="color:var(--fog);max-width:740px;margin-bottom:20px;">Three documents that get confused constantly, and that any inspector will ask for. They answer three different questions.</p>
+
+    <div class="card-grid grid-3">
+      <div class="card">
+        <h3>WPS</h3>
+        <p><strong>Welding Procedure Specification.</strong> The recipe: process, material, joint design, filler, amperage range, preheat, travel speed. It tells you how the weld is to be made. It is a document about the <em>procedure</em>, not about you.</p>
+      </div>
+      <div class="card">
+        <h3>PQR</h3>
+        <p><strong>Procedure Qualification Record.</strong> The evidence that the recipe works — a test weld made to the WPS and then destructively tested. One PQR supports the WPS. It proves the <em>procedure</em> is sound.</p>
+      </div>
+      <div class="card">
+        <h3>WPQ</h3>
+        <p><strong>Welder Performance Qualification.</strong> The evidence that <em>you</em> can execute the WPS. This is your ticket, tied to position, process, material group and thickness range. It is what expires.</p>
+      </div>
+    </div>
+
+    <p style="color:var(--mist);line-height:1.8;font-size:15px;max-width:740px;margin-top:22px;">The practical consequence: turning up with a valid WPQ is not enough on its own. The job needs an approved WPS backed by a PQR for the material and joint in question, and your qualification has to fall within its range. A ticket in carbon steel does not carry over to duplex, and a qualification on 10&nbsp;mm wall does not automatically cover 25&nbsp;mm.</p>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Keeping It</div>
+    <h2 class="section-title">Continuity and <span>Renewal</span></h2>
+    <p style="color:var(--mist);line-height:1.8;font-size:15px;max-width:740px;">A welder qualification is not a permanent award. Under most codes it stays valid only while you keep using the process — commonly a six month continuity window, after which an unused qualification lapses. Employers usually maintain a continuity log for exactly this reason, and it is worth keeping your own copy rather than relying on a former employer's records.</p>
+    <p style="color:var(--mist);line-height:1.8;font-size:15px;max-width:740px;">Requalification means retesting. That is time and money, so a hand who moves between contractors is generally better off keeping tickets live on the processes they actually intend to work, rather than collecting qualifications they will let lapse.</p>
+    <p style="color:var(--mist);line-height:1.8;font-size:15px;max-width:740px;">Test costs vary by region and test house, and are frequently paid by the employer once you are on a contract — but rarely before. Budget for funding your own first ticket, and treat any employer who pays for requalification as a reason to stay.</p>
+
     <div class="note-box" style="max-width:800px;">
       <strong>Offshore survival note:</strong> In addition to welding certs, offshore welders require BOSIET (helicopter underwater escape, sea survival, fire fighting) and HUET — see the <a href="/careers/certifications" style="color:var(--amber);">full certifications guide</a>. Welders performing structural hot work also need Hot Work Permit awareness and confined space entry training.
+    </div>
+
+    <div class="related-links" style="max-width:900px;">
+      <a href="/welding" class="related-link"><div class="rl-label">Overview</div><div class="rl-title">Rig Welding Processes</div></a>
+      <a href="/welding/underwater-welding" class="related-link"><div class="rl-label">Specialism</div><div class="rl-title">Underwater Welding</div></a>
+      <a href="/careers/salary" class="related-link"><div class="rl-label">Pay</div><div class="rl-title">Salary Guide 2026</div></a>
+      <a href="/blog/permit-to-work-system" class="related-link"><div class="rl-label">Hot Work</div><div class="rl-title">Permit to Work System</div></a>
     </div>
   </section>
 </BaseLayout>
