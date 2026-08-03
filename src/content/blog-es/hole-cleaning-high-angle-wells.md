@@ -5,6 +5,19 @@ publishDate: "2026-08-03"
 author: "RigFloorHQ Team"
 category: "Perforación"
 tags: ["limpieza del pozo", "camas de recortes", "alto ángulo", "perforación direccional", "pega de tubería", "ECD"]
+faq:
+  - q: "¿A qué ángulo se vuelve problemática la limpieza del pozo?"
+    a: "Alrededor de 30 grados los recortes empiezan a asentarse de forma apreciable. Hacia los 50 a 60 grados las camas se forman con facilidad. La banda de 45 a 60 grados se considera la más problemática porque las camas se forman y además pueden deslizarse pozo abajo como un tapón de sólidos."
+  - q: "¿Más caudal siempre limpia mejor?"
+    a: "Más caudal generalmente limpia mejor, pero está limitado por la densidad equivalente de circulación, la capacidad de bombeo y la caída de presión en la barrena y el motor. En una ventana de peso de lodo estrecha el techo de ECD suele alcanzarse antes que el caudal ideal de limpieza."
+  - q: "¿La rotación de la sarta marca tanta diferencia en la limpieza?"
+    a: "Sí. La rotación perturba mecánicamente la cama y mueve material hacia el flujo más rápido. Un pozo que no limpia deslizando puede limpiar aceptablemente rotando al mismo caudal, lo que constituye uno de los costes ocultos de los tramos largos deslizando con motor de housing curvo."
+  - q: "¿Un barrido viscoso resuelve una cama de recortes?"
+    a: "Un barrido puede movilizar sólidos acumulados, pero es una herramienta y no una solución. Si el caudal y la rotación son inadecuados, los barridos ganan tiempo sin resolver la causa, y una viscosidad muy alta puede suprimir la turbulencia que ayuda a retirar las camas."
+  - q: "¿Cómo sé si están quedando recortes en el fondo?"
+    a: "Compare el volumen de recortes en las zarandas con lo que implican el avance perforado y el diámetro del pozo. Un déficit persistente es la indicación más clara. El aumento de torque, arrastre y presión de standpipe lo respaldan, y un exceso de llenado en los viajes lo confirma."
+  - q: "¿Puede una limpieza deficiente provocar una surgencia?"
+    a: "No directamente, pero eleva la densidad equivalente de circulación, lo que puede fracturar la formación y causar pérdidas. Perder lodo hacia la formación reduce la presión hidrostática, lo que puede permitir un influjo. La conexión es indirecta pero real."
 ---
 
 La limpieza del pozo suena a tarea de mantenimiento y resulta ser la razón por la que un pozo se pegó. En un pozo vertical se resuelve prácticamente sola. A partir de unos 50 grados deja de ser automática, y la diferencia no es de grado: cambia el mecanismo por completo.
@@ -21,6 +34,8 @@ La limpieza del pozo suena a tarea de mantenimiento y resulta ser la razón por 
 | ¿Qué más provoca una cama? | Aumento de la ECD, porque el anular efectivo es menor — lo que puede superar la presión de fractura. Ver [peso de lodo e hidrostática](/drilling/mud-weight). |
 
 ## Por Qué el Ángulo Cambia el Problema
+
+![Tres secciones de pozo comparadas. Vertical: los recortes que no son elevados vuelven a caer al flujo y tienen otra oportunidad, por lo que la limpieza se autocorrige. Entre 45 y 60 grados: los recortes se asientan sobre el lado bajo y forman una cama que luego puede deslizarse pozo abajo como un tapón de sólidos. Cerca de la horizontal: las camas se forman con facilidad pero tienden a quedarse quietas, porque hay poca pendiente por la que deslizarse.](/images/blog/cuttings-beds-by-angle.svg)
 
 En un pozo vertical, un recorte debe ser elevado en contra de la gravedad. Si la velocidad anular supera la velocidad de asentamiento de la partícula, sale. Si no, vuelve a caer al flujo y tiene otra oportunidad. El modo de falla es gradual y se autocorrige.
 

@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 430" role="img" aria-labelledby="cbTitle cbDesc">
+  <title id="cbTitle">How cuttings transport changes with hole angle</title>
+  <desc id="cbDesc">Three wellbore sections. In a vertical hole, cuttings that are not lifted fall back into the flow and get another chance, so cleaning is self-correcting. Between 45 and 60 degrees, cuttings settle onto the low side and form a bed which can then avalanche down the hole as a slug of solids. Near horizontal, beds form readily but tend to sit still because there is little downhole slope for them to slide along.</desc>
+
+  <rect width="920" height="430" fill="#0e0f11"/>
+
+  <!-- ============ 1. VERTICAL ============ -->
+  <g transform="translate(20,0)">
+    <text x="0" y="30" fill="#22c55e" font-family="monospace" font-size="12.5" letter-spacing="1.2">VERTICAL — SELF-CORRECTING</text>
+    <!-- formation -->
+    <rect x="0" y="46" width="30" height="300" fill="#2a3347"/>
+    <rect x="180" y="46" width="30" height="300" fill="#2a3347"/>
+    <!-- annulus -->
+    <rect x="30" y="46" width="150" height="300" fill="#16202e"/>
+    <!-- pipe -->
+    <rect x="90" y="46" width="30" height="300" fill="#5b6577" stroke="#8892a4" stroke-width="1.5"/>
+    <!-- flow arrows up -->
+    <g stroke="#e8a020" stroke-width="2" fill="none">
+      <path d="M55 330 L55 70" marker-end="url(#aUp)"/>
+      <path d="M155 330 L155 70" marker-end="url(#aUp)"/>
+    </g>
+    <!-- suspended cuttings -->
+    <g fill="#b99a5e">
+      <circle cx="48" cy="120" r="4"/><circle cx="62" cy="185" r="4"/><circle cx="52" cy="250" r="4"/>
+      <circle cx="150" cy="150" r="4"/><circle cx="162" cy="220" r="4"/><circle cx="152" cy="290" r="4"/>
+    </g>
+    <!-- fall-back arrow -->
+    <path d="M70 205 L70 240" stroke="#8892a4" stroke-width="1.4" fill="none" marker-end="url(#aGrey)"/>
+    <text x="0" y="372" fill="#d1d8e4" font-family="sans-serif" font-size="12.5">Gravity opposes flow.</text>
+    <text x="0" y="392" fill="#8892a4" font-family="sans-serif" font-size="12">A cutting that is not lifted falls</text>
+    <text x="0" y="408" fill="#8892a4" font-family="sans-serif" font-size="12">back into the stream and retries.</text>
+  </g>
+
+  <!-- ============ 2. CRITICAL 45-60 ============ -->
+  <g transform="translate(320,0)">
+    <text x="0" y="30" fill="#c94a1f" font-family="monospace" font-size="12.5" letter-spacing="1.2">45–60° — WORST CASE</text>
+    <!-- inclined wellbore -->
+    <g transform="rotate(-38 105 200)">
+      <rect x="20" y="60" width="170" height="26" fill="#2a3347"/>
+      <rect x="20" y="300" width="170" height="26" fill="#2a3347"/>
+      <rect x="20" y="86" width="170" height="214" fill="#16202e"/>
+      <rect x="20" y="168" width="170" height="26" fill="#5b6577" stroke="#8892a4" stroke-width="1.5"/>
+      <!-- bed on low side -->
+      <rect x="20" y="272" width="170" height="28" fill="#6b5b3e"/>
+      <g fill="#8a7550">
+        <circle cx="45" cy="286" r="4"/><circle cx="80" cy="282" r="4"/><circle cx="115" cy="288" r="4"/><circle cx="152" cy="283" r="4"/>
+      </g>
+      <path d="M40 240 L40 268" stroke="#c94a1f" stroke-width="1.8" fill="none" marker-end="url(#aRust)"/>
+      <path d="M120 236 L120 266" stroke="#c94a1f" stroke-width="1.8" fill="none" marker-end="url(#aRust)"/>
+    </g>
+    <!-- avalanche arrow -->
+    <path d="M60 300 L150 356" stroke="#ef4444" stroke-width="3" fill="none" marker-end="url(#aRed)"/>
+    <text x="150" y="352" fill="#ef4444" font-family="monospace" font-size="11">AVALANCHE</text>
+    <text x="0" y="392" fill="#d1d8e4" font-family="sans-serif" font-size="12.5">Bed forms — and has a slope</text>
+    <text x="0" y="408" fill="#d1d8e4" font-family="sans-serif" font-size="12.5">to slide down.</text>
+  </g>
+
+  <!-- ============ 3. HORIZONTAL ============ -->
+  <g transform="translate(620,0)">
+    <text x="0" y="30" fill="#f59e0b" font-family="monospace" font-size="12.5" letter-spacing="1.2">NEAR HORIZONTAL — STABLE BED</text>
+    <rect x="0" y="120" width="280" height="24" fill="#2a3347"/>
+    <rect x="0" y="256" width="280" height="24" fill="#2a3347"/>
+    <rect x="0" y="144" width="280" height="112" fill="#16202e"/>
+    <!-- pipe lying low -->
+    <rect x="0" y="196" width="280" height="26" fill="#5b6577" stroke="#8892a4" stroke-width="1.5"/>
+    <!-- bed under pipe -->
+    <rect x="0" y="232" width="280" height="24" fill="#6b5b3e"/>
+    <g fill="#8a7550">
+      <circle cx="35" cy="244" r="4"/><circle cx="95" cy="240" r="4"/><circle cx="160" cy="246" r="4"/><circle cx="225" cy="241" r="4"/>
+    </g>
+    <!-- flow above -->
+    <g stroke="#e8a020" stroke-width="2" fill="none">
+      <path d="M20 170 L250 170" marker-end="url(#aRight)"/>
+    </g>
+    <text x="14" y="163" fill="#e8a020" font-family="monospace" font-size="10">FLOW PASSES OVER THE BED</text>
+    <text x="0" y="392" fill="#d1d8e4" font-family="sans-serif" font-size="12.5">Bed forms readily but stays put.</text>
+    <text x="0" y="408" fill="#8892a4" font-family="sans-serif" font-size="12">Rotation is what lifts it into the flow.</text>
+  </g>
+
+  <defs>
+    <marker id="aUp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#e8a020"/></marker>
+    <marker id="aRight" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#e8a020"/></marker>
+    <marker id="aGrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8892a4"/></marker>
+    <marker id="aRust" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c94a1f"/></marker>
+    <marker id="aRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#ef4444"/></marker>
+  </defs>
+</svg>

@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 400" role="img" aria-labelledby="jarTitle jarDesc">
+  <title id="jarTitle">How a drilling jar converts steady overpull into an impact blow</title>
+  <desc id="jarDesc">Three stages. First, steady overpull alone: tension is applied smoothly to the stuck string and the force never exceeds the sticking force, so nothing moves. Second, cocking the jar: overpull stretches the drill pipe above the jar like a spring, storing energy while a detent holds the jar closed. Third, firing: the detent releases, the stored stretch snaps the hammer up into the anvil, and a short high force impact is delivered at the stuck point.</desc>
+
+  <rect width="940" height="400" fill="#0e0f11"/>
+
+  <!-- ========== STAGE 1 ========== -->
+  <g transform="translate(20,0)">
+    <text x="0" y="28" fill="#8892a4" font-family="monospace" font-size="12" letter-spacing="1.2">1 — STEADY PULL ONLY</text>
+    <rect x="0" y="44" width="26" height="270" fill="#2a3347"/>
+    <rect x="184" y="44" width="26" height="270" fill="#2a3347"/>
+    <rect x="26" y="44" width="158" height="270" fill="#16202e"/>
+    <!-- pipe -->
+    <rect x="88" y="44" width="34" height="200" fill="#5b6577" stroke="#8892a4" stroke-width="1.5"/>
+    <!-- stuck zone -->
+    <rect x="70" y="244" width="70" height="70" fill="#3d2a26" stroke="#c94a1f" stroke-width="2"/>
+    <rect x="88" y="244" width="34" height="70" fill="#5b6577"/>
+    <text x="146" y="284" fill="#c94a1f" font-family="monospace" font-size="10">STUCK</text>
+    <!-- steady pull arrow -->
+    <path d="M105 100 L105 52" stroke="#e8a020" stroke-width="3" fill="none" marker-end="url(#jUp)"/>
+    <text x="118" y="80" fill="#e8a020" font-family="monospace" font-size="10">PULL</text>
+    <text x="0" y="344" fill="#d1d8e4" font-family="sans-serif" font-size="12.5">Force rises smoothly and plateaus.</text>
+    <text x="0" y="362" fill="#8892a4" font-family="sans-serif" font-size="11.5">Never exceeds the sticking force.</text>
+    <text x="0" y="378" fill="#8892a4" font-family="sans-serif" font-size="11.5">Nothing moves.</text>
+  </g>
+
+  <!-- ========== STAGE 2 ========== -->
+  <g transform="translate(340,0)">
+    <text x="0" y="28" fill="#e8a020" font-family="monospace" font-size="12" letter-spacing="1.2">2 — COCKING: STORING ENERGY</text>
+    <rect x="0" y="44" width="26" height="270" fill="#2a3347"/>
+    <rect x="184" y="44" width="26" height="270" fill="#2a3347"/>
+    <rect x="26" y="44" width="158" height="270" fill="#16202e"/>
+    <!-- pipe above jar, drawn as a stretched spring -->
+    <path d="M105 52 L105 70 M95 78 L115 86 M115 86 L95 96 M95 96 L115 106 M115 106 L95 116 M95 116 L115 126 M115 126 L95 136 M95 136 L115 146 M115 146 L105 154 L105 168"
+          stroke="#8892a4" stroke-width="3" fill="none"/>
+    <text x="122" y="112" fill="#8892a4" font-family="monospace" font-size="9.5">PIPE STRETCHES</text>
+    <!-- jar body -->
+    <rect x="86" y="168" width="38" height="60" rx="3" fill="#39424f" stroke="#e8a020" stroke-width="2"/>
+    <text x="130" y="196" fill="#e8a020" font-family="monospace" font-size="10">JAR</text>
+    <!-- detent -->
+    <rect x="86" y="192" width="38" height="8" fill="#e8a020"/>
+    <text x="130" y="212" fill="#8892a4" font-family="monospace" font-size="9">DETENT HOLDS</text>
+    <!-- pipe below jar into stuck zone -->
+    <rect x="88" y="228" width="34" height="16" fill="#5b6577" stroke="#8892a4" stroke-width="1.5"/>
+    <rect x="70" y="244" width="70" height="70" fill="#3d2a26" stroke="#c94a1f" stroke-width="2"/>
+    <rect x="88" y="244" width="34" height="70" fill="#5b6577"/>
+    <path d="M105 46 L105 30" stroke="#e8a020" stroke-width="3" fill="none" marker-end="url(#jUp)"/>
+    <text x="0" y="344" fill="#d1d8e4" font-family="sans-serif" font-size="12.5">Overpull stretches the pipe above</text>
+    <text x="0" y="362" fill="#d1d8e4" font-family="sans-serif" font-size="12.5">the jar — a loaded spring.</text>
+    <text x="0" y="378" fill="#8892a4" font-family="sans-serif" font-size="11.5">The detent keeps it closed.</text>
+  </g>
+
+  <!-- ========== STAGE 3 ========== -->
+  <g transform="translate(670,0)">
+    <text x="0" y="28" fill="#ef4444" font-family="monospace" font-size="12" letter-spacing="1.2">3 — FIRING: IMPACT</text>
+    <rect x="0" y="44" width="26" height="270" fill="#2a3347"/>
+    <rect x="184" y="44" width="26" height="270" fill="#2a3347"/>
+    <rect x="26" y="44" width="158" height="270" fill="#16202e"/>
+    <!-- relaxed pipe -->
+    <rect x="88" y="44" width="34" height="120" fill="#5b6577" stroke="#8892a4" stroke-width="1.5"/>
+    <!-- hammer travelling up into anvil -->
+    <rect x="82" y="164" width="46" height="20" fill="#c94a1f"/>
+    <text x="134" y="178" fill="#c94a1f" font-family="monospace" font-size="10">HAMMER</text>
+    <rect x="82" y="188" width="46" height="14" fill="#39424f" stroke="#8892a4" stroke-width="1.5"/>
+    <text x="134" y="199" fill="#8892a4" font-family="monospace" font-size="10">ANVIL</text>
+    <!-- impact burst -->
+    <g stroke="#ef4444" stroke-width="2.5" fill="none">
+      <path d="M74 176 L58 166"/><path d="M74 186 L56 188"/><path d="M136 176 L152 166"/><path d="M136 186 L154 188"/>
+    </g>
+    <!-- shock travels down -->
+    <path d="M105 206 L105 248" stroke="#ef4444" stroke-width="3" fill="none" marker-end="url(#jDown)"/>
+    <rect x="88" y="206" width="34" height="38" fill="#5b6577" stroke="#8892a4" stroke-width="1.5"/>
+    <rect x="70" y="244" width="70" height="70" fill="#3d2a26" stroke="#ef4444" stroke-width="2.5"/>
+    <rect x="88" y="244" width="34" height="70" fill="#5b6577"/>
+    <text x="146" y="284" fill="#ef4444" font-family="monospace" font-size="10">SHOCK</text>
+    <text x="0" y="344" fill="#d1d8e4" font-family="sans-serif" font-size="12.5">Stored stretch releases at once.</text>
+    <text x="0" y="362" fill="#d1d8e4" font-family="sans-serif" font-size="12.5">Short, very high peak force.</text>
+    <text x="0" y="378" fill="#8892a4" font-family="sans-serif" font-size="11.5">Breaks the bond that pull could not.</text>
+  </g>
+
+  <defs>
+    <marker id="jUp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#e8a020"/></marker>
+    <marker id="jDown" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#ef4444"/></marker>
+  </defs>
+</svg>

@@ -5,6 +5,19 @@ publishDate: "2026-08-03"
 author: "RigFloorHQ Team"
 category: "Drilling"
 tags: ["hole cleaning", "cuttings beds", "high angle", "directional drilling", "stuck pipe", "ECD"]
+faq:
+  - q: "At what angle does hole cleaning become a problem?"
+    a: "Around 30 degrees cuttings start settling measurably. By 50 to 60 degrees, beds form readily. The 45 to 60 degree band is generally treated as the most troublesome because beds both form and can then slide downhole as a slug of solids."
+  - q: "Is higher flow rate always better for hole cleaning?"
+    a: "More flow generally cleans better, but it is bounded by equivalent circulating density, pump capacity and pressure drop across the bit and motor. In a narrow mud weight window the ECD ceiling is often reached before the ideal cleaning rate, which is why hole cleaning is an optimisation rather than a maximisation."
+  - q: "Does pipe rotation really make that much difference to hole cleaning?"
+    a: "Yes. Rotation mechanically disturbs the bed and moves material into faster flow. A hole that will not clean while sliding can clean acceptably while rotating at the same flow rate, which is one of the hidden costs of extended sliding intervals with a bent housing motor."
+  - q: "Will a viscous sweep fix a cuttings bed?"
+    a: "A sweep can mobilise accumulated solids, but it is a tool rather than a fix. If flow rate and rotation are inadequate, sweeps buy time without solving the cause, and very high viscosity can suppress the turbulence that helps clear beds in the first place."
+  - q: "How do I know cuttings are being left downhole?"
+    a: "Compare cuttings volume at the shakers against what the drilled footage and hole size imply should be arriving. A persistent shortfall is the clearest indication. Rising torque, drag and standpipe pressure support it, and excess hole fill on trips confirms it."
+  - q: "Can poor hole cleaning cause a kick?"
+    a: "Not directly, but it raises equivalent circulating density, which can fracture the formation and cause losses. Losing mud to the formation reduces hydrostatic pressure, which can allow an influx. The connection is indirect but real."
 ---
 
 Hole cleaning is one of those subjects that sounds like housekeeping and turns out to be the reason a well got stuck. In a vertical hole it more or less takes care of itself. Past about 50 degrees it stops being automatic, and the difference is not a matter of degree — the mechanism changes entirely.
@@ -21,6 +34,8 @@ Hole cleaning is one of those subjects that sounds like housekeeping and turns o
 | What else does a bed cause? | Rising ECD, because the effective annulus is smaller — which can push you past fracture pressure. See [mud weight and hydrostatics](/drilling/mud-weight). |
 
 ## Why Angle Changes the Problem
+
+![Three wellbore sections compared. Vertical: cuttings that are not lifted fall back into the flow and get another chance, so cleaning is self-correcting. Between 45 and 60 degrees: cuttings settle onto the low side and form a bed which can then avalanche down the hole as a slug of solids. Near horizontal: beds form readily but tend to sit still, because there is little downhole slope for them to slide along.](/images/blog/cuttings-beds-by-angle.svg)
 
 In a vertical well, a cutting has to be lifted against gravity. If the annular velocity beats the particle's slip velocity, it comes out. If it does not, it falls back into the flow and gets another chance. The failure mode is gradual and self-correcting.
 
