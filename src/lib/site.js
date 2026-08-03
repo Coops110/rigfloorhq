@@ -75,6 +75,11 @@ export const LEGAL = {
   // protection duties still apply to UK/EEA visitors regardless.
   governingLaw: 'Thailand',
   governingLawEs: 'Tailandia',
+  // Must match GA4 → Admin → Data retention. Stating the actual figure is
+  // better than "the period set on our property"; if you change it in GA,
+  // change it here too.
+  analyticsRetention: '14 months',
+  analyticsRetentionEs: '14 meses',
   lastUpdated: '31 July 2026',
   lastUpdatedEs: '31 de julio de 2026',
 };

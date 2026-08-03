@@ -208,7 +208,7 @@ const processors = analytics
         <li><strong>Server logs</strong> — retained by our host for a short rolling period and then deleted automatically. We do not copy them or keep our own archive.</li>
         {analytics && (
           <>
-            <li><strong>Analytics data</strong> — retained by Google Analytics for the period set on our property, after which it is deleted automatically.</li>
+            <li><strong>Analytics data</strong> — retained by Google Analytics for <strong>{LEGAL.analyticsRetention}</strong>, after which it is deleted automatically.</li>
             <li><strong>Analytics cookies</strong> — up to 2 years, or until you decline or clear them.</li>
             <li><strong>Your consent choice</strong> — stored in your browser until you clear it.</li>
           </>
