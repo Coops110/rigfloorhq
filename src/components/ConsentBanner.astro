@@ -138,11 +138,21 @@ const t = lang === 'es'
           if (state === 'denied') clearAnalyticsCookies();
         }
 
-        function show() {
+        // takeFocus is true only when the visitor deliberately reopens this
+        // from the footer. On the automatic first-visit show we deliberately
+        // do NOT move focus: yanking a keyboard user out of the page they just
+        // opened is hostile, and nothing here is urgent enough to justify it.
+        function show(takeFocus) {
           lastFocused = document.activeElement;
           banner.hidden = false;
-          requestAnimationFrame(function () { banner.classList.add('is-visible'); });
-          if (acceptBtn) acceptBtn.focus();
+          // Force a reflow so the transition still runs from the hidden state,
+          // then reveal synchronously. requestAnimationFrame would be cleaner,
+          // but it is paused while the tab is in the background — a page opened
+          // in a background tab would leave the banner permanently at opacity 0
+          // while still being exposed to assistive tech as an open dialog.
+          void banner.offsetWidth;
+          banner.classList.add('is-visible');
+          if (takeFocus && acceptBtn) acceptBtn.focus();
         }
 
         function hide() {
@@ -171,10 +181,11 @@ const t = lang === 'es'
           if (e.key === 'Escape') { apply('declined'); hide(); }
         });
 
-        // Right to withdraw consent — the footer link calls this.
-        window.rigFloorHQOpenConsent = function () { show(); };
+        // Right to withdraw consent — the footer link calls this. Reopening is
+        // a deliberate action, so here we do move focus into the dialog.
+        window.rigFloorHQOpenConsent = function () { show(true); };
 
-        if (!read() && probablyNeedsBanner()) show();
+        if (!read() && probablyNeedsBanner()) show(false);
       })();
     </script>
   </>
