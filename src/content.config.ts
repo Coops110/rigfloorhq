@@ -14,6 +14,15 @@ const blogSchema = z.object({
   // exist for readers who are already here — announcements, housekeeping —
   // rather than to answer a search. Also drops the URL from the sitemap.
   noindex: z.boolean().default(false),
+  // Social share image for this post. Falls back to /og-default.png when unset
+  // or when set to an SVG, because social scrapers do not render SVG previews.
+  // Must be a real file in public/ — a broken og:image is worse than none,
+  // since some scrapers abandon the preview entirely rather than falling back.
+  image: z.string().optional(),
+  // Question and answer pairs, rendered as FAQPage structured data. These must
+  // match questions actually answered in the body — marking up content that is
+  // not on the page is a structured data violation, not a shortcut.
+  faq: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
 });
 
 const blog = defineCollection({

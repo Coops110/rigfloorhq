@@ -94,8 +94,10 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
   <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
 
   <!-- Favicon -->
+  {/* No /favicon.ico link: the file does not exist and every modern browser
+      uses the SVG. Browsers still probe /favicon.ico automatically, which 404s
+      harmlessly — declaring it would just be a link to a missing file. */}
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
   <!-- Fonts -->
