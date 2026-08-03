@@ -86,6 +86,19 @@ const jsonLd = {
         <h2 id="the-mud-weight-window">The Mud Weight Window</h2>
         <p>The "mud weight window" is the range of mud weights that will keep hydrostatic pressure above pore pressure (preventing a kick) while staying below fracture pressure (preventing lost circulation). In normally pressured formations this window is comfortably wide. In overpressured or depleted fields, it can narrow to less than 0.5 ppg — requiring managed pressure drilling (MPD) techniques to maintain control.</p>
 
+        <h2 id="swab-and-surge">Swab and Surge — Pressure You Create by Moving Pipe</h2>
+        <p>Every formula above assumes the string is sitting still. Move it, and the hydrostatic pressure the formation sees changes — without the mud weight changing at all.</p>
+        <p><strong>Swab</strong> happens pulling out of hole. The string drags mud up with it and the bit acts loosely like a piston, momentarily <em>reducing</em> bottomhole pressure. If the reduction takes you below pore pressure, you have swabbed in a kick — and the classic case is a well that was perfectly stable while drilling and starts flowing on a trip.</p>
+        <p><strong>Surge</strong> is the reverse, running in hole: pressure is pushed ahead of the string, momentarily <em>increasing</em> bottomhole pressure. Surge past fracture pressure and you break down the formation and lose circulation, which is why casing is run slowly.</p>
+        <p>Both scale with tripping speed, how closely the string fits the hole, and mud rheology — thick mud in a tight annulus swabs and surges hardest. The practical controls are simple: pull slowly out of the shoe, keep the hole full, and watch the trip tank. A well that will not take the correct fill volume is telling you something entered the hole while you were pulling.</p>
+        <p>This is why <a href="/drilling/well-control">kick detection</a> during trips relies on trip tank volumes rather than pit levels, and why trip sheets exist at all.</p>
+
+        <h2 id="what-makes-mud-heavy">What Actually Makes Mud Heavy</h2>
+        <p>Mud weight is a number in the formulas, but on the rig it is a material that has to be mixed, maintained and disposed of.</p>
+        <p>Density comes mostly from <strong>barite</strong>, a high specific gravity weighting agent suspended in the base fluid. The base fluid itself is water-based, oil-based or synthetic, and that choice affects far more than density: shale stability, lubricity in high-angle hole, temperature tolerance, environmental handling and cost all move with it.</p>
+        <p>Two consequences matter for pressure control. First, weighting up takes time and pit capacity — which is exactly the constraint behind choosing the Driller's Method over Wait and Weight during a kill. Second, solids have to be removed continuously by the shakers and centrifuges, because drilled solids raise density in an uncontrolled way while degrading the mud's other properties. Mud weight that climbs on its own is not good news; it is a solids control problem.</p>
+        <p>Weighted mud also increases buoyancy on the string, reducing effective collar weight available for weight on bit — covered on the <a href="/equipment/drill-string">drill string page</a>.</p>
+
         <p>Want to run these calculations on your own well data? Use the <a href="/calculators/hydrostatic">interactive hydrostatic pressure calculator</a>.</p>
       </div>
 
@@ -96,6 +109,8 @@ const jsonLd = {
           <a href="#the-core-formulas">Core Formulas</a>
           <a href="#worked-example">Worked Example</a>
           <a href="#the-mud-weight-window">The Mud Weight Window</a>
+          <a href="#swab-and-surge">Swab &amp; Surge</a>
+          <a href="#what-makes-mud-heavy">What Makes Mud Heavy</a>
         </div>
 
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">

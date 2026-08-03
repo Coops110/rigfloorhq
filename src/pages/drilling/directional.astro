@@ -44,6 +44,27 @@ import Footer from '../../components/Footer.astro';
           <div class="formula-note">Measures how sharply the wellbore curves. Excessive DLS increases torque/drag and risks pipe fatigue at connections.</div>
         </div>
 
+        <h2 id="well-profiles">Well Profiles and Build Rate</h2>
+        <p>Directional wells are not freehand. The path is planned as a profile, and the shape is chosen to keep torque, drag and casing wear manageable rather than to take the shortest route.</p>
+        <p><strong>Build rate</strong> — expressed in degrees per 100&nbsp;ft — is the governing number. A conventional well might build at 2–3°/100&nbsp;ft. Medium and short-radius wells build far harder, and every degree of build adds contact between string and wellbore, which turns into drag on the way in and torque while rotating.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Profile</th><th>Shape</th><th>Typical use</th></tr></thead>
+            <tbody>
+              <tr><td>Build and Hold</td><td>Kick off, build to angle, hold to target</td><td>The standard slant well; simplest to drill and to case</td></tr>
+              <tr><td>S-Curve</td><td>Build, hold, then drop back toward vertical</td><td>Where the target must be entered near-vertically, or to avoid a shallow hazard</td></tr>
+              <tr><td>Horizontal</td><td>Build to roughly 90° and stay in the reservoir</td><td>Unconventional and thin-reservoir development; maximises reservoir contact</td></tr>
+              <tr><td>Extended Reach</td><td>High angle held over very long departure</td><td>Reaching targets far from the surface location, often from an offshore platform</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Two limits show up in practice. <strong>Torque and drag</strong> rise with angle and departure until the string cannot be rotated or slid reliably. <strong>Hole cleaning</strong> gets harder above about 50–60°, because cuttings settle out of the flow onto the low side of the hole and form beds instead of being carried out — which is a mud property and flow rate problem as much as a geometry one, and ties back to <a href="/drilling/mud-weight">mud weight and hydraulics</a>.</p>
+
+        <h2 id="dogleg-severity">Dogleg Severity</h2>
+        <p>Dogleg severity is the actual measured change in hole direction per 100&nbsp;ft, combining build and turn. Planned build rate is the intention; dogleg severity is what the hole really did.</p>
+        <p>It matters because doglegs are where things wear and break. A sharp dogleg concentrates bending stress on drill pipe every single rotation, which is a fatigue mechanism rather than an overload one — the string can be well within its tensile rating and still fail there over time. The same bend drives casing wear as pipe rotates against it, and can make casing difficult to run at all.</p>
+        <p>This is one of the clearest cases where the <a href="/equipment/drill-string">drill string</a> and the well path are the same problem: the profile decides the loads the string will live with for the rest of the well.</p>
+
         <h2 id="the-directional-driller-role">The Directional Driller Role</h2>
         <p>Directional drillers are specialists, usually employed by a service company rather than the drilling contractor. They monitor the MWD data stream continuously — often from a control cabin — making steering adjustments to keep the well on its planned trajectory. It's one of the higher-paying specialist tracks in drilling; see the <a href="/careers/salary">salary guide</a> for current figures.</p>
       </div>
@@ -54,6 +75,8 @@ import Footer from '../../components/Footer.astro';
           <a href="#why-drill-directionally">Why Drill Directionally</a>
           <a href="#how-the-bit-is-steered">How the Bit Is Steered</a>
           <a href="#mwd-and-lwd-seeing-underground">MWD and LWD</a>
+          <a href="#well-profiles">Well Profiles &amp; Build Rate</a>
+          <a href="#dogleg-severity">Dogleg Severity</a>
           <a href="#the-directional-driller-role">The Directional Driller Role</a>
         </div>
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">

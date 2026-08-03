@@ -45,6 +45,16 @@ import Footer from '../../components/Footer.astro';
         <p>The depth at which each casing string is set — the "casing point" — is chosen based on where the pore pressure and fracture gradient curves make it unsafe to continue with the current mud weight. This is determined using offset well data, a Leak-Off Test (LOT) at the previous shoe, and real-time pressure prediction while drilling (using tools like the d-exponent method).</p>
         <p>Setting casing too shallow means more strings and higher cost. Setting it too deep risks drilling into a pressure regime the current mud weight can't safely handle — either causing a kick or fracturing the formation. This tradeoff is at the heart of well planning, closely tied to the concepts on the <a href="/drilling/mud-weight">mud weight and pressure page</a>.</p>
 
+        <h2 id="casing-vs-liner">Casing or Liner — and Why It Matters</h2>
+        <p>Not every string runs back to surface. A <strong>liner</strong> is a string hung off the bottom of the previous casing rather than extending to the wellhead, typically overlapping the shoe above it by a few hundred feet.</p>
+        <p>The reason is usually cost and load. A liner uses far less steel than a full string, and it takes weight off the wellhead and the derrick — on a deep well, hanging every string from surface eventually exceeds what the rig can pick up. The trade is complexity: a liner needs a liner hanger and a packer, and the overlap has to be cemented and pressure-tested, because that overlap is now a barrier in its own right.</p>
+        <p>A liner can be tied back to surface later with a tieback string if the well is completed for production and full-length casing is wanted. The decision is made in the well design, not on the fly.</p>
+
+        <h2 id="why-shoe-integrity-tests-matter">Shoe Integrity — LOT and FIT</h2>
+        <p>After cementing a string and drilling out the shoe, the formation just below it is tested. This is not a formality; it sets the pressure ceiling for everything drilled below that point.</p>
+        <p>A <strong>Leak-Off Test (LOT)</strong> pressures the formation until it begins to take fluid, giving the actual fracture pressure at the shoe. A <strong>Formation Integrity Test (FIT)</strong> stops at a predetermined value, confirming the formation will hold at least that much without deliberately fracturing it. LOTs give more information; FITs avoid damaging the formation to get it.</p>
+        <p>Either way the result defines the top of the <a href="/drilling/mud-weight">mud weight window</a> for the next hole section, and it is what a Maximum Allowable Annular Surface Pressure is calculated from — the figure that limits how much casing pressure can be held during a kill without breaking down the shoe. Shoe strength is the constraint that turns <a href="/drilling/well-control">well control</a> from arithmetic into a real limit.</p>
+
         <h2 id="cementing">Cementing</h2>
         <p>Once run, each casing string is cemented in place — cement is pumped down the casing and back up the annulus between the casing and the borehole wall. This achieves three things: it bonds the casing structurally to the formation, it isolates different pressure zones from each other, and it prevents fluids from migrating up or down the annulus outside the pipe. Poor cement jobs are a leading root cause of well integrity failures.</p>
 
@@ -59,6 +69,8 @@ import Footer from '../../components/Footer.astro';
           <a href="#why-wells-are-drilled-in-stages">Why Wells Are Staged</a>
           <a href="#the-four-main-casing-strings">The Four Casing Strings</a>
           <a href="#how-casing-points-are-chosen">Choosing Casing Points</a>
+          <a href="#casing-vs-liner">Casing vs Liner</a>
+          <a href="#why-shoe-integrity-tests-matter">Shoe Integrity: LOT &amp; FIT</a>
           <a href="#cementing">Cementing</a>
         </div>
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
