@@ -1,0 +1,232 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Stuck Pipe and Fishing Operations",
+  "description": "Why drill pipe gets stuck, how to tell differential sticking from mechanical sticking before acting, and how jarring, back-off and fishing operations recover the hole.",
+  "about": "Drilling operations — stuck pipe and fishing"
+};
+---
+<BaseLayout
+  title="Stuck Pipe & Fishing Operations — Diagnosis, Freeing, Recovery"
+  description="Why pipe sticks, how to tell differential from mechanical sticking before you act, and what happens next: jarring, free point and back-off, fishing tools, and when a sidetrack is the cheaper answer."
+  breadcrumbs={[{ label: 'Stuck Pipe & Fishing Operations', href: '/pillars/stuck-pipe-and-fishing-operations' }]}
+  jsonLd={jsonLd}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Advanced Technical Series</div>
+    <h1>Stuck Pipe &amp; <span>Fishing Operations</span></h1>
+    <p class="page-hero-sub">Stuck pipe is one of the most expensive things that can happen in a well that has not otherwise gone wrong. The mechanism is usually obvious afterwards — and the first ten minutes decide whether it stays cheap.</p>
+    <div class="page-meta">
+      <span class="page-meta-item">Diagnosis before action</span>
+      <span class="page-meta-item">Reference material — not an operating procedure</span>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <div class="danger-box">
+        <strong>This page explains mechanisms, not what to do on your well.</strong> Stuck pipe response is governed by your operator's procedures and the direction of the drilling supervisor on site. The wrong first action can convert a recoverable situation into a lost hole, which is precisely why the decision does not belong to a reference page.
+      </div>
+
+      <h2 id="why-it-matters">Why It Matters</h2>
+      <p>Stuck pipe rarely destroys a well on its own. What it does is consume time, and rig time is billed whether the string is moving or not — the rig, plus every service company, vessel and helicopter running alongside it. A stuck pipe event that takes three days to resolve is three days of full spread rate for zero footage.</p>
+      <p>It is also unusual among drilling problems in being largely preventable. Most sticking mechanisms give warning: rising torque and drag, poor hole cleaning indicators, tight spots on connections, overpull on trips. The events that become expensive are usually the ones where those signals were visible for some time and treated as normal.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Diagnosis</div>
+    <h2 class="section-title">Two Mechanisms, <span>Opposite Responses</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:24px;">Almost all stuck pipe falls into one of two families. They are not variations on a theme — the correct response to one can make the other considerably worse, which is why identification comes before action.</p>
+
+    <div class="card-grid grid-2">
+      <div class="card">
+        <h3>Differential Sticking</h3>
+        <p>The pipe is held against a permeable formation by the pressure difference between the mud column and the formation. Nothing has collapsed and the hole is not blocked — the string is simply pinned to the wall like a suction cup.</p>
+        <p><strong>Signature:</strong> circulation is completely unaffected. You can pump normally. The string will not move, and usually cannot be rotated either.</p>
+        <span class="card-tag">Pressure-driven</span>
+      </div>
+      <div class="card">
+        <h3>Mechanical Sticking</h3>
+        <p>Something physically obstructs the string — collapsed hole, packed-off cuttings, a keyseat, undergauge hole, junk or cement. The wellbore geometry has changed.</p>
+        <p><strong>Signature:</strong> circulation is restricted or lost entirely, with pump pressure rising. Movement may be possible in one direction only.</p>
+        <span class="card-tag">Geometry-driven</span>
+      </div>
+    </div>
+
+    <h2 class="section-title" style="font-size:26px;margin-top:36px;">The Diagnostic Question</h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:18px;">Three observations separate them, and the first is the most reliable:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Observation</th><th>Differential</th><th>Mechanical</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Circulation</td><td>Normal, full returns, pressure unchanged</td><td>Restricted or lost, standpipe pressure rising</td></tr>
+          <tr><td>String movement</td><td>None, in either direction</td><td>Often free in one direction — commonly the way you came from</td></tr>
+          <tr><td>Rotation</td><td>Usually impossible</td><td>Varies with the mechanism</td></tr>
+          <tr><td>When it happened</td><td>After the string sat still — a connection, a survey, a repair</td><td>While tripping, or while drilling with deteriorating hole condition</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-box mt-24" style="max-width:800px;">
+      <strong>Circulation is the tell.</strong> If you can still circulate freely, the hole is open and the problem is pressure holding the pipe to the wall. If pump pressure is climbing and returns are dropping, something is physically in the way. Establishing this before doing anything else is the single most useful habit in a stuck pipe event.
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Mechanism One</div>
+    <h2 class="section-title">Differential <span>Sticking</span></h2>
+    <div class="prose" style="max-width:820px;">
+      <p>Differential sticking needs three things at once. Remove any one and it cannot happen:</p>
+      <ul>
+        <li><strong>Overbalance</strong> — mud hydrostatic pressure meaningfully above formation pore pressure;</li>
+        <li><strong>A permeable formation</strong> — typically sandstone, where a filter cake builds against the wall;</li>
+        <li><strong>A stationary string in contact with that wall</strong> — the pipe has to sit still long enough for the seal to form.</li>
+      </ul>
+      <p>The mechanism is straightforward. Where the pipe rests against the filter cake, mud cannot circulate between pipe and wall, so the contact area is exposed to formation pressure while the rest of the string sees full hydrostatic. The resulting force is the overbalance multiplied by the contact area — and contact area grows the longer the string sits and the deeper it beds into the cake.</p>
+
+      <div class="formula-block" style="max-width:620px;">
+        <div class="formula-label">Sticking Force</div>
+        <div class="formula-eq">F = ΔP × Contact Area</div>
+        <div class="formula-note">ΔP = overbalance (psi). Both terms grow with time as the cake thickens and the pipe beds in — which is why the force is far lower in the first minutes than it is an hour later.</div>
+      </div>
+
+      <p>That time dependence is the practical point. Differential sticking that is recognised immediately is often recoverable with ordinary string manipulation. The same event left for an hour while the cause is debated may need a spotting fluid and considerably more time.</p>
+
+      <h3>Why drill collars are usually the culprit</h3>
+      <p>Contact area is what makes the force large, so the sticking almost always occurs across the <a href="/equipment/drill-string">drill collars</a> rather than the drill pipe — they are the largest diameter in the string and sit in the section most likely to be against the wall. Spiral collars exist specifically to reduce this: the grooves break the seal and cut contact area substantially for a modest loss of weight.</p>
+
+      <h3>Prevention</h3>
+      <ul>
+        <li><strong>Keep overbalance no higher than it needs to be.</strong> Excess overbalance is the direct driver of sticking force, which is one of the practical costs of running heavier mud than the <a href="/drilling/mud-weight">mud weight window</a> requires.</li>
+        <li><strong>Do not let the string sit still against a permeable zone.</strong> Where the hole is known to be prone, connections are kept short and the string is worked rather than parked.</li>
+        <li><strong>Manage filter cake quality.</strong> A thick, soft cake sticks pipe. Fluid loss control is the mud engineer's contribution to not getting stuck.</li>
+      </ul>
+
+      <div class="note-box">
+        <strong>The counterintuitive part.</strong> Freeing differentially stuck pipe generally involves <em>reducing</em> hydrostatic pressure — a controlled reduction in mud weight, or spotting a lighter pill across the stuck interval. Every psi of overbalance removed is a proportional reduction in sticking force. This is also why it is a well control decision and not a driller's decision: you are deliberately moving toward the bottom of the mud weight window, and <a href="/drilling/well-control">kick risk</a> rises as you do.
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Mechanism Two</div>
+    <h2 class="section-title">Mechanical <span>Sticking</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:24px;">Mechanical sticking is a family rather than a single failure. The response depends on which member you have, and on which direction the string will still move.</p>
+
+    <div class="card-grid grid-2">
+      <div class="card">
+        <h3>Pack-Off and Cuttings Beds</h3>
+        <p>Cuttings that were never carried out of the hole settle onto the low side and eventually collapse around the string. Strongly associated with high-angle hole, where beds form above roughly 50–60° — see <a href="/drilling/directional" style="color:var(--amber);">directional drilling</a>.</p>
+        <p><strong>Signature:</strong> rising standpipe pressure and reduced returns before the string sticks. It is the mechanism that most often announces itself.</p>
+      </div>
+      <div class="card">
+        <h3>Keyseating</h3>
+        <p>At a dogleg, rotating drill pipe wears a narrow slot into the wall. The slot is pipe-sized, so the string passes through it freely — until the larger tool joints or collars reach it on the way out and jam.</p>
+        <p><strong>Signature:</strong> free while drilling, sudden overpull at a consistent depth while pulling out. Down is usually still free.</p>
+      </div>
+      <div class="card">
+        <h3>Wellbore Instability</h3>
+        <p>Reactive shales swell or slough into the hole, or a stressed formation collapses. Time-dependent — a section stable when drilled may close in hours later.</p>
+        <p><strong>Signature:</strong> oversize cuttings or cavings over the shakers, hole taking more fill than expected, repeated tight spots at the same interval.</p>
+      </div>
+      <div class="card">
+        <h3>Undergauge Hole and Junk</h3>
+        <p>An abrasive formation wears the bit undergauge, so the next bit will not pass. Or something falls in — a hand tool, a bit cone, part of a downhole assembly.</p>
+        <p><strong>Signature:</strong> sticking at a specific depth on the way in, with the previous bit's gauge measurement as the clue.</p>
+      </div>
+    </div>
+
+    <div class="danger-box mt-24" style="max-width:820px;">
+      <strong>Direction of free movement matters.</strong> With a keyseat, the string will usually still go down; forcing it further up drives the tool joint harder into the slot. With a pack-off, working down can worsen the bridge. Which way the string is free is diagnostic information, and it is worth establishing carefully rather than by pulling hard and seeing what happens.
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Recovery</div>
+    <h2 class="section-title">Jarring, Free Point <span>and Back-Off</span></h2>
+    <div class="prose" style="max-width:820px;">
+      <h3 id="jarring">Jarring</h3>
+      <p>A drilling jar is a tool run in the string that stores energy and releases it suddenly, delivering an impact rather than a steady pull. Steady overpull applies force smoothly and is often ineffective against a pipe that is stuck fast; an impact load can break the bond where sustained tension will not.</p>
+      <p>Jars are directional. An <strong>up jar</strong> is cocked by pulling tension and fires upward — the usual choice when the string is stuck going up. A <strong>down jar</strong> fires downward, used where the obstruction is above. Many strings run both, plus an accelerator to improve the impact.</p>
+      <p>The critical constraint is that jarring is a designed operation, not brute force. Jar impact loads pass through the string, and repeated jarring is a fatigue mechanism on tool joints in the same way a <a href="/drilling/directional">dogleg</a> is. Overpull limits come from the weakest component in the string, which for used pipe is set by its inspected class rather than its stencilled grade.</p>
+
+      <h3 id="free-point">Free Point</h3>
+      <p>If jarring does not work, the next question is where the string is stuck. A free point indicator is run on wireline inside the pipe and measures where applied stretch and torque stop being transmitted — above that depth the pipe is moving, below it is not.</p>
+      <p>This matters because it defines what can be recovered. Everything above the free point can be pulled out and reused; everything below it is the fish.</p>
+
+      <h3 id="back-off">Back-Off</h3>
+      <p>Once the free point is known, the string is separated at a connection just above it. Conventionally this is done by applying left-hand torque and detonating a small string shot at the chosen joint, which jars the connection loose at the moment torque is applied.</p>
+      <p>The result is a clean, known top of fish — a proper connection thread rather than a torn-off end. That distinction decides how straightforward the fishing job is, which is why deliberate back-off is greatly preferred over parting the string by overpull.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Fishing</div>
+    <h2 class="section-title">Getting the <span>Fish Back</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:24px;">A "fish" is anything left in the hole that has to come out. Tool selection depends almost entirely on the condition of the top of it.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Tool</th><th>Grips</th><th>Used when</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Overshot</td><td>Outside of the fish</td><td>The workhorse. Swallows the top of the fish and grips externally with a grapple. Needs a reasonably intact outer surface.</td></tr>
+          <tr><td>Spear</td><td>Inside of the fish</td><td>Where the outside is damaged or the fish is large-bore — casing, tubing, washpipe. Enters the bore and expands.</td></tr>
+          <tr><td>Taper tap</td><td>Inside, by cutting thread</td><td>A last resort on a damaged top. Cuts its own thread into the fish. Committing — hard to release if the fish will not move.</td></tr>
+          <tr><td>Junk mill</td><td>Destroys rather than retrieves</td><td>For junk that cannot be gripped. Grinds it into fragments small enough to circulate out or push aside.</td></tr>
+          <tr><td>Junk basket / magnet</td><td>Collects debris</td><td>Recovering small metal fragments, often after milling.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-box mt-24" style="max-width:820px;">
+      <strong>Fishing is a time-boxed decision, not an open-ended effort.</strong> Operators normally set an economic limit in advance — a number of days, or a cost — after which the job stops and the alternative is taken. Without that limit, fishing can consume more rig time than drilling a replacement section would have.
+    </div>
+
+    <h2 class="section-title" style="font-size:26px;margin-top:36px;">When to Stop: <span>Sidetracking</span></h2>
+    <p style="color:var(--mist);max-width:800px;line-height:1.8;font-size:15px;">If the fish cannot be recovered inside the limit, the hole below it is abandoned. A cement plug is set above the fish, and a new hole is kicked off from the side of the existing wellbore above the plug — a sidetrack.</p>
+    <p style="color:var(--mist);max-width:800px;line-height:1.8;font-size:15px;">The lost section has to be redrilled, so a sidetrack is expensive. It is frequently still cheaper than continued fishing, and the cement plug becomes part of the well's permanent barrier arrangement, which brings it under the same integrity requirements as any other <a href="/drilling/casing" style="color:var(--amber);">cemented barrier</a>.</p>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Prevention</div>
+    <h2 class="section-title">The Signals That <span>Come First</span></h2>
+    <div class="two-col">
+      <div>
+        <p style="color:var(--mist);line-height:1.8;font-size:15px;">Most stuck pipe is preceded by trend changes rather than a sudden event. <strong style="color:var(--white);">Torque and drag</strong> creeping up over successive connections says the hole is getting harder to move through. <strong style="color:var(--white);">Overpull on connections</strong> at a consistent depth points at a specific interval.</p>
+        <p style="color:var(--mist);line-height:1.8;font-size:15px;"><strong style="color:var(--white);">Shaker returns</strong> are the cheapest diagnostic on the rig. Cavings rather than cuttings mean the wellbore is failing. Volumes lower than the drilled rate implies means cuttings are staying downhole, and a bed is building somewhere.</p>
+      </div>
+      <div>
+        <p style="color:var(--mist);line-height:1.8;font-size:15px;"><strong style="color:var(--white);">Hole fill</strong> on trips is a direct measurement: a hole that consistently takes more fill than calculated is giving something up. <strong style="color:var(--white);">Trend, not absolute value,</strong> is what matters in all of these — a torque figure that would be unremarkable on one well is a warning on another if it has doubled over a shift.</p>
+        <p style="color:var(--mist);line-height:1.8;font-size:15px;">This is exactly where <a href="/blog/real-time-drilling-data" style="color:var(--amber);">real-time drilling data</a> earns its cost. The trends are visible well before the event, but only if someone is watching the trend rather than the instantaneous number.</p>
+      </div>
+    </div>
+
+    <div class="danger-box mt-24" style="max-width:820px;">
+      <strong>Reference material, not operating instruction.</strong> Nothing on this page authorises any action on a live well. Stuck pipe response is set by your operator's procedures and directed by the drilling supervisor on site. If anything here differs from those, those govern.
+    </div>
+
+    <div class="related-links" style="max-width:960px;">
+      <a href="/equipment/drill-string" class="related-link"><div class="rl-label">Equipment</div><div class="rl-title">The Drill String</div></a>
+      <a href="/drilling/mud-weight" class="related-link"><div class="rl-label">Pressure</div><div class="rl-title">Mud Weight &amp; Hydrostatics</div></a>
+      <a href="/drilling/directional" class="related-link"><div class="rl-label">Well Path</div><div class="rl-title">Directional Drilling</div></a>
+      <a href="/drilling/well-control" class="related-link"><div class="rl-label">Safety Critical</div><div class="rl-title">Well Control &amp; Kicks</div></a>
+      <a href="/drilling/casing" class="related-link"><div class="rl-label">Barriers</div><div class="rl-title">Casing &amp; Cementing</div></a>
+      <a href="/glossary" class="related-link"><div class="rl-label">Reference</div><div class="rl-title">Field Glossary</div></a>
+    </div>
+  </section>
+</BaseLayout>
