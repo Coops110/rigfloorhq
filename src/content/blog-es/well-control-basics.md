@@ -1,6 +1,6 @@
 ---
-title: "Fundamentos de Control de Pozos: Detección de Surgencias y Procedimientos de BOP para Cuadrillas de Taladro"
-description: "Cómo las cuadrillas de taladro detectan una surgencia temprano, ejecutan procedimientos de cierre, y realizan cálculos de hoja de control de pozo — los fundamentos que todo miembro de la cuadrilla necesita saber de memoria, no solo el perforador."
+title: "¿Qué es una Surgencia? Control de Pozos Explicado para Cuadrillas Nuevas"
+description: "Qué es realmente una surgencia, por qué falla la presión hidrostática, cómo un chequeo de flujo confirma un influjo, y por qué existen el cierre duro y el suave — el razonamiento detrás de los procedimientos, para quienes los están aprendiendo."
 publishDate: "2026-07-09"
 author: "RigFloorHQ Team"
 category: "Control de Pozos"

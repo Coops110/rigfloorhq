@@ -1,6 +1,6 @@
 ---
-title: "Well Control Basics: Kick Detection and BOP Procedures for Rig Crews"
-description: "How rig crews detect a kick early, execute shut-in procedures, and run kill sheet calculations — the fundamentals every crew member needs cold, not just the driller."
+title: "What Is a Kick? Well Control Explained for New Rig Crews"
+description: "What a kick actually is, why hydrostatic pressure fails, how a flow check confirms an influx, and why hard and soft shut-in exist — the reasoning behind the procedures, for people learning them."
 publishDate: "2026-07-09"
 author: "RigFloorHQ Team"
 category: "Well Control"
@@ -31,18 +31,17 @@ Once formation pressure wins that battle, fluid moves into the annulus and start
 
 Well control isn't a single skill. It's kick detection, mud weight discipline, and BOP readiness working together, and a weak link anywhere in that chain increases risk everywhere else.
 
-## Kick Detection: Early Warning Signs Every Rig Crew Must Catch
+## Kick Detection: What You Are Actually Watching For
 
-Early kick detection depends on crews watching the right indicators continuously, not just when something feels off. The primary warning signs rig crews are trained to catch include:
+Early detection depends on crews watching the right indicators continuously, not just when something feels off. The signs fall into two groups, and the distinction matters more than the list does.
 
-- Increased flow rate out compared to flow rate in, without a corresponding change in pump rate
-- Pit gain — an increase in total mud pit volume that isn't explained by additions
-- Decrease in pump pressure paired with an increase in pump stroke rate
-- Well flowing with pumps off, one of the clearest confirmations of an influx
-- A drilling break — a sudden increase in rate of penetration that can indicate a pressure transition
-- Gas-cut mud returning to surface, visible on mud loggers or by a drop in mud weight
+**Volume signs** — pit gain, and flow out exceeding flow in — mean something has entered the wellbore that you did not pump into it. These are the ones that confirm an influx, because mud does not appear from nowhere.
 
-None of these signs alone confirms a kick with certainty. Together — especially flow increase and pit gain — they demand an immediate flow check.
+**Pressure and drilling signs** — a drilling break, falling pump pressure with rising stroke rate, gas-cut mud — mean formation properties have changed. These are warnings that conditions *could* produce a kick, not proof that one has started.
+
+That is why a pit gain is treated more urgently than a drilling break. One is evidence, the other is a forecast.
+
+Each of the individual indicators is broken down, with the reasoning and the numbers, in [five warning signs of a kick](/blog/five-warning-signs-of-a-kick). Together — especially flow increase and pit gain — they demand an immediate flow check.
 
 ## Conducting a Flow Check: The First Response
 
@@ -81,28 +80,19 @@ A standard BOP stack, from top to bottom, typically includes:
 
 Choke and kill lines run off the side of the stack, allowing circulation while the BOP remains closed — the entire basis for both kill methods discussed below.
 
-Whether you're working a surface stack on a land rig or a subsea stack on a semi-submersible or drillship affects response time and redundancy requirements considerably, tied directly to the [rig type you're working on](/equipment/rig-types). For a full breakdown of ram configurations, pressure ratings, and choke and kill line specifications, see the dedicated [BOP equipment page](/equipment/bop).
+Whether you're working a surface stack on a land rig or a subsea stack on a semi-submersible or drillship affects response time and redundancy requirements considerably, tied directly to the [rig type you're working on](/equipment/rig-types).
 
-## Daily BOP Pressure Checks Every Crew Must Verify
+A stack that isn't tested to schedule isn't a stack you can trust in a live kick. Ram configurations, pressure ratings, choke and kill line specifications, and the daily pressure figures crews verify at the start of every tour are all on the [BOP equipment page](/equipment/bop).
 
-BOPs are only reliable if they're maintained and tested to spec, starting with daily pressure checks at the start of every tour. Reference figures crews confirm against include:
+## Why There Are Two Kill Methods
 
-- Accumulator pressure: 3,000 psi
-- Manifold pressure: 1,500 psi
-- Annular operating pressure: 700 to 1,500 psi
-- Air supply to pumps: 125 psi
+Once the well is shut in and SIDPP, SICP and pit gain are recorded, someone has to choose between the Driller's Method and Wait and Weight. Both are taught in IWCF and IADC certification, and the side-by-side comparison is on the [well control reference](/drilling/well-control).
 
-Beyond daily checks, BOPs undergo weekly function tests at minimum, plus full pressure tests on a schedule set by the operator and regulatory body. A stack that isn't tested to these intervals isn't a stack you can trust in a live kick scenario, full stop.
+What is worth understanding here is *why* the choice exists at all. It is a trade between two risks.
 
-## Driller's Method vs Wait and Weight: Choosing a Kill Method
+Driller's Method starts circulating immediately, so the influx begins moving out sooner — but it needs two full circulations, which means longer overall with the well in a critical state. Wait and Weight spends time mixing kill mud first, leaving the influx in the hole longer, but then kills the well in one circulation.
 
-Once the well is shut in and SIDPP, SICP, and pit gain are recorded, the crew and well control supervisor decide between two kill methods.
-
-**Driller's Method** circulates the influx out of the wellbore first, using the original mud weight, then circulates a second time with weighted kill mud once the kick is out. It's simpler procedurally but requires two full circulations, meaning more time with the well in a critical state.
-
-**Wait and Weight Method** weights up the mud to kill weight before starting circulation, killing the well in a single circulation. It requires more upfront calculation and mixing time, but reduces total time the well spends under kick conditions.
-
-Neither method is universally better. The choice depends on rig capability, mud plant capacity, formation sensitivity, and company policy — exactly why a certified well control supervisor makes this call, not a generic checklist.
+So you are choosing between getting started sooner and finishing sooner. Which matters more depends on rig capability, mud plant capacity, how much the formation will tolerate, and company policy. That is precisely why the decision sits with a certified well control supervisor rather than a rule of thumb — there is no answer that is correct on every well.
 
 ## Kill Sheet Calculations: Getting the Numbers Right
 
