@@ -29,7 +29,7 @@ export const SITE = {
 //
 // Only injected in production builds, so `npm run dev` never reaches the
 // property.
-export const GA_ID = '';
+export const GA_ID = 'G-YGCX22M94L';
 
 // ── Cookie consent (GDPR / UK PECR) ─────────────────────────
 // Where opt-in consent is legally required before analytics storage. Google
