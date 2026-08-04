@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../lib/site.js';
+
+// Link-in-bio landing page for social profiles.
+//
+// Deliberately NOT given Nav or Footer: someone arriving from a 30 second
+// video has one decision to make, and site chrome is not it.
+//
+// noindex because this is a navigation utility, not content. It would compete
+// with nothing and add nothing to the index, and thin hub pages of outbound
+// links are exactly what Google's guidance is unenthusiastic about.
+//
+// UTM note: tags belong on the INBOUND link only — the bio URL. Do not add
+// them to the internal links below. A UTM on an internal link restarts the
+// session in GA4 and destroys the attribution you added it for.
+const links = [
+  {
+    group: 'Free Tools',
+    items: [
+      { href: '/calculators/kill-sheet', title: 'Kill Sheet Calculator', note: 'Kill mud weight, ICP and FCP. Runs in your browser.' },
+      { href: '/calculators/hydrostatic', title: 'Hydrostatic Pressure Calculator', note: 'Mud weight against TVD, with overbalance.' },
+      { href: '/calculators/mud-weight-window', title: 'Mud Weight Window', note: 'Pore pressure to fracture pressure, visualised.' },
+    ],
+  },
+  {
+    group: 'Most Read',
+    items: [
+      { href: '/pillars/stuck-pipe-and-fishing-operations', title: 'Stuck Pipe & Fishing Operations', note: 'Diagnosis before action — and why it matters.' },
+      { href: '/drilling/well-control', title: 'Well Control & Kicks', note: 'Recognition, shut-in, kill methods.' },
+      { href: '/careers/roughneck', title: 'How to Become a Roughneck', note: 'No experience required. What the job actually is.' },
+      { href: '/careers/salary', title: 'Salary Guide', note: 'Every role, onshore and offshore.' },
+    ],
+  },
+  {
+    group: 'Everything Else',
+    items: [
+      { href: '/glossary', title: 'Field Glossary', note: 'Every term on the rig, in plain language.' },
+      { href: '/blog', title: 'All Guides', note: 'Drilling, well control, safety, careers.' },
+      { href: '/es', title: 'Español', note: 'La edición en español.' },
+      { href: '/about', title: 'About RigFloorHQ', note: 'Who runs it, and how it is written.' },
+    ],
+  },
+];
+---
+<BaseLayout
+  title="RigFloorHQ — Start Here"
+  description="Free drilling calculators, well control reference and oilfield career guides. Start here."
+  lang="en"
+  noindex={true}
+>
+  <div class="bio-wrap">
+    <header class="bio-head">
+      <img src="/logo.svg" alt="RigFloorHQ" class="bio-logo" width="200" height="48" />
+      <p class="bio-strap">The complete oil &amp; gas field reference — free, no signup.</p>
+    </header>
+
+    {links.map((section) => (
+      <section class="bio-section">
+        <h2 class="bio-group">{section.group}</h2>
+        {section.items.map((l) => (
+          <a href={l.href} class="bio-link">
+            <span class="bio-link-title">{l.title}</span>
+            <span class="bio-link-note">{l.note}</span>
+          </a>
+        ))}
+      </section>
+    ))}
+
+    <p class="bio-foot">
+      Educational and reference content only. Always follow your company's approved
+      procedures and the instructions of your certified supervisor.
+      <br /><br />
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a> ·
+      <a href="/privacy">Privacy</a> ·
+      <a href="/terms">Terms</a>
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  /* Mobile-first by necessity: essentially all of this traffic is on a phone,
+     held one-handed, arriving from a video. Tap targets are sized for thumbs. */
+  .bio-wrap {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 32px 18px 56px;
+  }
+  .bio-head { text-align: center; margin-bottom: 30px; }
+  .bio-logo { height: 44px; width: auto; }
+  .bio-strap {
+    margin-top: 12px;
+    color: var(--fog);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .bio-section { margin-bottom: 26px; }
+  .bio-group {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 10px;
+  }
+  .bio-link {
+    display: block;
+    padding: 15px 18px;
+    margin-bottom: 9px;
+    background: var(--steel);
+    border: 1px solid var(--iron);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .bio-link:hover, .bio-link:focus-visible {
+    border-color: var(--rust);
+    background: var(--iron);
+  }
+  .bio-link-title {
+    display: block;
+    font-family: var(--cond);
+    font-weight: 700;
+    font-size: 17px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--white);
+  }
+  .bio-link-note {
+    display: block;
+    margin-top: 3px;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--fog);
+  }
+  .bio-foot {
+    margin-top: 34px;
+    text-align: center;
+    font-size: 11.5px;
+    line-height: 1.7;
+    color: var(--fog);
+  }
+  .bio-foot a { color: var(--mist); }
+</style>

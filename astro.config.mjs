@@ -5,6 +5,10 @@ import sitemap from '@astrojs/sitemap';
 // sync by hand — see the filter comment below for why.
 const NOINDEX_SLUGS = ['welcome-to-rigfloorhq'];
 
+// Whole paths that are noindexed for reasons other than blog frontmatter.
+// /links is the social bio landing page: a navigation utility, not content.
+const NOINDEX_PATHS = ['/links'];
+
 export default defineConfig({
   site: 'https://rigfloorhq.com',
   trailingSlash: 'never',
@@ -21,7 +25,9 @@ export default defineConfig({
       // marked `noindex: true` in src/content have to be repeated here. Both
       // language versions share a slug, so one entry covers /blog/<slug> and
       // /es/blog/<slug>.
-      filter: (page) => !NOINDEX_SLUGS.some((slug) => page.includes(`/blog/${slug}`)),
+      filter: (page) =>
+        !NOINDEX_SLUGS.some((slug) => page.includes(`/blog/${slug}`)) &&
+        !NOINDEX_PATHS.some((path) => page.replace(/\/$/, '').endsWith(path)),
     }),
   ],
 });
