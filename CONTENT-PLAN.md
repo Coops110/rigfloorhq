@@ -44,10 +44,11 @@ pages than any single new post would have.
 
 ## Rules for every publish
 
-1. **Link it in before it goes live.** Minimum two contextual inbound links
-   from relevant existing pages, in body content — not nav or footer. Never
-   publish an orphan. Both existing pillars had to be retro-fitted because this
-   was skipped.
+1. **Ship the page and its inbound links in the same commit.** Minimum two
+   contextual inbound links from relevant existing pages, in body content —
+   not nav or footer. They build and deploy together, so no link is ever live
+   ahead of its target. Never publish an orphan: both existing pillars had to
+   be retro-fitted because this was skipped.
 2. **Check overlap first.** Use the inventory below. If an existing page
    already targets the query, the job is differentiating or expanding it, not
    adding a page.
@@ -74,7 +75,8 @@ Established from the stuck pipe cluster and worth repeating. Each post gets:
   hole cleaning" is useless.
 - **Six FAQ pairs** in frontmatter, repeated in the body. They render as
   FAQPage structured data. The duplication is deliberate — see `CLAUDE.md`.
-- **Two or more inbound links** added to existing pages *in the same commit*.
+- **Two or more inbound links** added to existing pages *in the same commit*,
+  so the links and their target go live together.
 - **The Spanish version**, or a deliberate decision not to.
 
 Do not set `image:` to an SVG. It becomes `og:image` and social scrapers will

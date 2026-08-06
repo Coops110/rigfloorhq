@@ -92,10 +92,21 @@ as broken. Compare reciprocity, not counts.
 
 ## Publishing
 
-**Link a new page in before it goes live, not after.** Two inbound editorial
-links minimum, in body content, from pages that are genuinely related. Every
-blog post on this site once had exactly one inbound link — the blog index —
-so four posts of 2,200+ words were earning nothing at all.
+**Ship a new page and its inbound links in the same commit.** Two editorial
+links minimum, in body content, from pages that are genuinely related.
+
+To be exact about the ordering, because it matters: the new page and the links
+pointing at it go into **one build and one deploy**. There is never a moment
+where a link is live and its target is not. Adding links to a page that has not
+been created yet would produce 404s, and is not what this rule says.
+
+The failure this prevents is the opposite one — a page going live with nothing
+pointing at it. Every blog post on this site once had exactly one inbound link,
+the blog index, so four posts of 2,200+ words were earning nothing at all.
+
+Before committing, verify every internal link resolves against `dist/`. Run
+`npm run build` first or there is nothing to check against. The site currently
+has 3,889 internal links and zero broken.
 
 Check `CONTENT-PLAN.md`'s "already covered" table first. Four pages were
 competing on well control and two on welding certifications, all written
