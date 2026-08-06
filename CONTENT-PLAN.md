@@ -4,6 +4,9 @@ Working document for what gets published, in what order, and what has to be
 true before anything goes live. Kept in the repo so it is version-controlled
 alongside the site it describes.
 
+Engineering rules — hreflang, metadata, PowerShell traps, deploy behaviour —
+are in `CLAUDE.md`. Read that too before touching anything structural.
+
 Last reviewed: 3 August 2026
 
 ---
@@ -58,6 +61,24 @@ pages than any single new post would have.
    instruction. Company procedure and the certified supervisor govern.
 6. **Run `npm run build` and check the page renders** before committing. Verify
    any TOC anchors resolve against real heading ids.
+
+## Per-post pattern
+
+Established from the stuck pipe cluster and worth repeating. Each post gets:
+
+- **An SVG diagram** in `public/images/blog/`. A few KB, crisp at any size, and
+  it carries the mechanism better than prose. Give it `<title>` and `<desc>`
+  as well as alt text.
+- **Alt text that conveys the mechanism**, not the picture. Someone who cannot
+  see it should still learn why a bed forms at 50° and not at 5°. "Diagram of
+  hole cleaning" is useless.
+- **Six FAQ pairs** in frontmatter, repeated in the body. They render as
+  FAQPage structured data. The duplication is deliberate — see `CLAUDE.md`.
+- **Two or more inbound links** added to existing pages *in the same commit*.
+- **The Spanish version**, or a deliberate decision not to.
+
+Do not set `image:` to an SVG. It becomes `og:image` and social scrapers will
+not render it. Leave it unset and the PNG fallback is used.
 
 ---
 
