@@ -5,6 +5,10 @@ publishDate: "2026-08-03"
 author: "RigFloorHQ Team"
 category: "Drilling"
 tags: ["hole cleaning", "cuttings beds", "high angle", "directional drilling", "stuck pipe", "ECD"]
+diagrams:
+  - src: "/images/blog/cuttings-beds-by-angle.svg"
+    alt: "Three wellbore sections compared. Vertical: cuttings that are not lifted fall back into the flow and get another chance, so cleaning is self-correcting. Between 45 and 60 degrees: cuttings settle onto the low side and form a bed which can then avalanche down the hole as a slug of solids. Near horizontal: beds form readily but tend to sit still, because there is little downhole slope for them to slide along."
+    title: "How cuttings transport changes with hole angle"
 faq:
   - q: "At what angle does hole cleaning become a problem?"
     a: "Around 30 degrees cuttings start settling measurably. By 50 to 60 degrees, beds form readily. The 45 to 60 degree band is generally treated as the most troublesome because beds both form and can then slide downhole as a slug of solids."

@@ -6,6 +6,10 @@ author: "RigFloorHQ Team"
 category: "Drilling"
 tags: ["differential sticking", "stuck pipe", "overbalance", "filter cake", "drill collars", "spotting fluid"]
 image: "/images/blog/differential-sticking.svg"
+diagrams:
+  - src: "/images/blog/differential-sticking.svg"
+    alt: "Cross-section comparison showing why differential sticking occurs. On the left a centred drill string surrounded by mud, with pressure acting evenly and no net force. On the right the string resting against filter cake on a permeable formation, where mud is sealed out of the contact area so full hydrostatic pressure acts on the open side while only formation pressure acts on the contact face, producing a large net force pinning the pipe to the wall."
+    title: "How differential sticking pins the drill string to the wellbore wall"
 faq:
   - q: "What causes differential sticking?"
     a: "Three conditions have to be present at once: hydrostatic pressure meaningfully above formation pore pressure, a permeable formation where a filter cake builds, and a stationary string resting against that cake. Remove any one of the three and differential sticking cannot occur."

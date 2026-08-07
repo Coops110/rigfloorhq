@@ -5,6 +5,10 @@ publishDate: "2026-08-03"
 author: "RigFloorHQ Team"
 category: "Perforación"
 tags: ["torque y arrastre", "factor de fricción", "pega de tubería", "limpieza del pozo", "peso al gancho", "datos de perforación"]
+diagrams:
+  - src: "/images/blog/torque-drag-trend.svg"
+    alt: "Gráfico de torque frente a profundidad a lo largo de conexiones sucesivas. Una línea modelada discontinua sube de forma constante. La línea medida la sigue de cerca al principio, luego empieza a separarse, y la diferencia se ensancha con cada conexión hasta que la sarta se pega. El punto donde ambas divergen está marcado como el aviso real."
+    title: "Torque medido divergiendo de la línea de fricción modelada"
 faq:
   - q: "¿Cuál es la diferencia entre torque y arrastre?"
     a: "El torque es la resistencia rotacional que se siente al girar la sarta, medida en superficie como la carga necesaria para rotar. El arrastre es la resistencia axial al mover la sarta a lo largo del pozo, visible en la diferencia entre el peso al gancho al levantar, al asentar y al rotar fuera del fondo. Ambos provienen del contacto entre la sarta y la pared del pozo."

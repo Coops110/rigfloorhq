@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import DiagramEmbed from '../../../components/DiagramEmbed.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blogEs', ({ data }) => !data.draft);
@@ -92,6 +93,15 @@ const englishEquivalent = `/blog/${post.id}`;
   <section class="block">
     <div class="prose blog-content">
       <Content />
+
+      {post.data.diagrams.length > 0 && (
+        <>
+          <h2>Reutilizar los diagramas</h2>
+          {post.data.diagrams.map((d) => (
+            <DiagramEmbed src={d.src} alt={d.alt} title={d.title} pagePath={`/es/blog/${post.id}`} lang="es" />
+          ))}
+        </>
+      )}
     </div>
 
     <div class="note-box mt-40" style="max-width:700px;">

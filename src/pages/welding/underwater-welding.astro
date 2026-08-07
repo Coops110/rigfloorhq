@@ -2,6 +2,9 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import DiagramEmbed from '../../components/DiagramEmbed.astro';
+
+const chamberAlt = "Four dry hyperbaric welding arrangements compared. Habitat welding encloses the whole joint and the welder works fully inside at ambient pressure. Dry chamber welding uses a smaller enclosure admitting the welder's upper body while the legs remain in water. Dry spot welding places a small cup over the weld area only, with the diver outside in the water. One atmosphere welding seals the joint in a rigid vessel held at surface pressure, so the operator needs no decompression.";
 
 // DEPTH FIGURES — CHECK BEFORE CHANGING
 // This page previously said hyperbaric welding is "used down to roughly 1,000
@@ -158,6 +161,15 @@ const jsonLd = {
 
         <h2 id="how-to-get-into-it">How to Get Into It</h2>
         <p>The typical path is to become certified and experienced in one discipline first — usually welding via <a href="/welding/certifications">standard welding certifications</a> — then attend a dedicated commercial diving school with an underwater welding program, several of which combine both curricula into a single 7–10 month course. From there, most divers start with inland or inspection work to build hours before moving into offshore hyperbaric welding roles.</p>
+
+        <h2 id="reuse">Reuse the diagram</h2>
+        <DiagramEmbed
+          src="/images/blog/hyperbaric-welding-chambers.svg"
+          alt={chamberAlt}
+          title="The four dry hyperbaric welding chamber arrangements"
+          pagePath="/welding/underwater-welding"
+          lang="en"
+        />
 
         <h2 id="faq">Frequently Asked Questions</h2>
         {faq.map((item) => (

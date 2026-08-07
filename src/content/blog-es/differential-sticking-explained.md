@@ -6,6 +6,10 @@ author: "RigFloorHQ Team"
 category: "Perforación"
 tags: ["pega diferencial", "pega de tubería", "sobrebalance", "revoque", "portamechas", "píldora liberadora"]
 image: "/images/blog/differential-sticking.svg"
+diagrams:
+  - src: "/images/blog/differential-sticking.svg"
+    alt: "Comparación en sección transversal de por qué se produce la pega diferencial. A la izquierda, una sarta centrada rodeada de lodo, con la presión actuando por igual y sin fuerza neta. A la derecha, la sarta apoyada contra el revoque de una formación permeable, donde el lodo queda sellado fuera del área de contacto, de modo que la presión hidrostática completa actúa sobre el lado abierto mientras que solo la presión de formación actúa sobre la cara de contacto."
+    title: "Cómo la pega diferencial fija la sarta contra la pared del pozo"
 faq:
   - q: "¿Qué causa la pega diferencial?"
     a: "Deben darse tres condiciones a la vez: presión hidrostática apreciablemente superior a la presión de poro, una formación permeable donde se forma un revoque, y una sarta estática apoyada contra ese revoque. Si se elimina cualquiera de las tres, la pega diferencial no puede producirse."

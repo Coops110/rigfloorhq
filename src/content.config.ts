@@ -23,6 +23,15 @@ const blogSchema = z.object({
   // match questions actually answered in the body — marking up content that is
   // not on the page is a structured data violation, not a shortcut.
   faq: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
+  // Diagrams in this post that other sites may republish. Each one renders an
+  // embed block with a copy-paste snippet crediting back to the post.
+  // Declared explicitly rather than parsed out of the body, so an image is
+  // only offered for reuse when that is intended.
+  diagrams: z.array(z.object({
+    src: z.string(),
+    alt: z.string(),
+    title: z.string(),
+  })).default([]),
 });
 
 const blog = defineCollection({

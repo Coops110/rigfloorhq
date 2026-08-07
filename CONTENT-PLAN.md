@@ -75,6 +75,11 @@ Established from the stuck pipe cluster and worth repeating. Each post gets:
   hole cleaning" is useless.
 - **Six FAQ pairs** in frontmatter, repeated in the body. They render as
   FAQPage structured data. The duplication is deliberate — see `CLAUDE.md`.
+- **A `diagrams:` frontmatter entry** for each diagram, which renders a
+  copy-paste embed block offering the image for reuse with attribution back.
+  This is the site's main standing mechanism for earning links: a diagram is
+  something other people want, and every reuse credits the page. Declare it
+  explicitly — an image is only offered for reuse when that is intended.
 - **Two or more inbound links** added to existing pages *in the same commit*,
   so the links and their target go live together.
 - **The Spanish version**, or a deliberate decision not to.

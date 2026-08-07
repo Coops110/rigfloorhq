@@ -5,6 +5,10 @@ publishDate: "2026-08-03"
 author: "RigFloorHQ Team"
 category: "Perforación"
 tags: ["limpieza del pozo", "camas de recortes", "alto ángulo", "perforación direccional", "pega de tubería", "ECD"]
+diagrams:
+  - src: "/images/blog/cuttings-beds-by-angle.svg"
+    alt: "Tres secciones de pozo comparadas. Vertical: los recortes que no son elevados vuelven a caer al flujo y tienen otra oportunidad. Entre 45 y 60 grados: los recortes se asientan sobre el lado bajo y forman una cama que luego puede deslizarse pozo abajo como un tapón de sólidos. Cerca de la horizontal: las camas se forman con facilidad pero tienden a quedarse quietas."
+    title: "Cómo cambia el transporte de recortes con el ángulo del pozo"
 faq:
   - q: "¿A qué ángulo se vuelve problemática la limpieza del pozo?"
     a: "Alrededor de 30 grados los recortes empiezan a asentarse de forma apreciable. Hacia los 50 a 60 grados las camas se forman con facilidad. La banda de 45 a 60 grados se considera la más problemática porque las camas se forman y además pueden deslizarse pozo abajo como un tapón de sólidos."

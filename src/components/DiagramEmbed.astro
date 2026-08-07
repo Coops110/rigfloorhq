@@ -1,0 +1,158 @@
+---
+// ─────────────────────────────────────────────────────────────
+//  EMBEDDABLE DIAGRAM
+//
+//  Offers a copy-paste snippet so other sites can republish a diagram with
+//  attribution back to the page it came from. That attribution link is the
+//  point — it is a normal editorial credit, not a scheme, and it turns a
+//  diagram we have already paid to produce into a standing reason for other
+//  people to link here.
+//
+//  Deliberately no rel="nofollow" and no tracking parameters. This is a
+//  genuine credit for genuine reuse. Equally, nothing here obliges anyone to
+//  link: the licence line asks for attribution, it does not demand a followed
+//  link in exchange for use, which would be a link scheme.
+// ─────────────────────────────────────────────────────────────
+import { SITE } from '../lib/site.js';
+
+export interface Props {
+  src: string;        // absolute path, e.g. /images/blog/foo.svg
+  alt: string;        // the same descriptive alt used in the article
+  title: string;      // human title for the credit line
+  pagePath: string;   // absolute path of the page being credited
+  lang?: 'en' | 'es';
+}
+
+const { src, alt, title, pagePath, lang = 'en' } = Astro.props as Props;
+
+const origin = SITE.domain.replace(/\/$/, '');
+const imgUrl = `${origin}${src}`;
+const pageUrl = `${origin}${pagePath}`;
+
+// Built as a single string so what the user copies is exactly what they see.
+const snippet =
+  `<a href="${pageUrl}">\n` +
+  `  <img src="${imgUrl}" alt="${alt}" width="900" style="max-width:100%;height:auto;" />\n` +
+  `</a>\n` +
+  `<p>Diagram: <a href="${pageUrl}">${title} — ${SITE.name}</a></p>`;
+
+const t = lang === 'es'
+  ? {
+      heading: 'Usar este diagrama',
+      blurb: 'Puede publicar este diagrama en su propio sitio, presentación o material de formación de forma gratuita. Solo pedimos una atribución con enlace de vuelta.',
+      copy: 'Copiar código',
+      copied: 'Copiado',
+      manual: 'Seleccione y copie el código si el botón no funciona.',
+    }
+  : {
+      heading: 'Use this diagram',
+      blurb: 'You are free to republish this diagram on your own site, in a presentation, or in training material. All we ask is a credit linking back.',
+      copy: 'Copy embed code',
+      copied: 'Copied',
+      manual: 'Select and copy the code if the button does not work.',
+    };
+---
+<div class="embed-offer">
+  <div class="embed-head">
+    <span class="embed-label">{t.heading}</span>
+  </div>
+  <p class="embed-blurb">{t.blurb}</p>
+  <textarea class="embed-code" readonly rows="4" spellcheck="false" aria-label={t.heading}>{snippet}</textarea>
+  <div class="embed-actions">
+    <button type="button" class="embed-copy" data-copied={t.copied}>{t.copy}</button>
+    <span class="embed-manual">{t.manual}</span>
+  </div>
+</div>
+
+<script>
+  // Delegated so it works for any number of embed blocks on a page, including
+  // ones rendered inside a content collection.
+  document.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement)?.closest('.embed-copy') as HTMLButtonElement | null;
+    if (!btn) return;
+    const box = btn.closest('.embed-offer')?.querySelector('.embed-code') as HTMLTextAreaElement | null;
+    if (!box) return;
+
+    const done = () => {
+      const original = btn.textContent;
+      btn.textContent = btn.dataset.copied || 'Copied';
+      btn.classList.add('is-copied');
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.classList.remove('is-copied');
+      }, 1800);
+    };
+
+    // Clipboard API needs a secure context. Fall back to selecting the text so
+    // the user can copy manually rather than the button silently doing nothing.
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(box.value).then(done).catch(() => { box.select(); });
+    } else {
+      box.select();
+      try { document.execCommand('copy'); done(); } catch { /* selection is the fallback */ }
+    }
+  });
+</script>
+
+<style>
+  .embed-offer {
+    border: 1px solid var(--iron);
+    border-left: 3px solid var(--ember);
+    border-radius: 4px;
+    background: var(--steel);
+    padding: 16px 18px;
+    margin: 22px 0 28px;
+  }
+  .embed-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ember);
+  }
+  .embed-blurb {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--mist);
+    margin: 8px 0 12px;
+  }
+  .embed-code {
+    width: 100%;
+    background: var(--ink);
+    border: 1px solid var(--iron);
+    border-radius: 3px;
+    color: var(--mist);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    line-height: 1.6;
+    padding: 10px 12px;
+    resize: vertical;
+    white-space: pre;
+    overflow-x: auto;
+  }
+  .embed-code:focus { outline: 2px solid var(--amber); outline-offset: 1px; }
+  .embed-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .embed-copy {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 9px 16px;
+    border-radius: 2px;
+    cursor: pointer;
+    background: var(--rust);
+    color: var(--white);
+    border: 1px solid var(--rust);
+    transition: background 0.15s ease;
+  }
+  .embed-copy:hover { background: #e05a2a; border-color: #e05a2a; }
+  .embed-copy.is-copied { background: var(--safe); border-color: var(--safe); color: var(--ink); }
+  .embed-copy:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .embed-manual { font-size: 11.5px; color: var(--fog); }
+</style>

@@ -5,6 +5,10 @@ publishDate: "2026-08-03"
 author: "RigFloorHQ Team"
 category: "Perforación"
 tags: ["martillos de perforación", "pega de tubería", "martilleo", "acelerador", "sarta de perforación", "fatiga"]
+diagrams:
+  - src: "/images/blog/drilling-jar-cycle.svg"
+    alt: "Tres etapas del funcionamiento de un martillo de perforación. Primero, solo tracción constante: la tensión sube hasta una meseta por debajo de la fuerza de pega y nada se mueve. Segundo, armado: la sobretensión estira la tubería por encima del martillo como un resorte cargado mientras un retén lo mantiene cerrado. Tercero, disparo: el retén se libera y el estiramiento acumulado lanza el martillo contra el yunque."
+    title: "Cómo un martillo convierte la sobretensión constante en un golpe de impacto"
 faq:
   - q: "¿Cómo funciona un martillo de perforación?"
     a: "Un martillo se mantiene cerrado por un retén mientras la sobretensión estira la tubería situada por encima, almacenando energía como un resorte. Cuando el retén se libera, ese estiramiento acumulado lanza una sección de martillo contra un yunque, entregando un impacto breve y de gran fuerza en el punto de pega en lugar de una tracción constante."

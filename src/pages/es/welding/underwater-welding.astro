@@ -2,6 +2,9 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import DiagramEmbed from '../../../components/DiagramEmbed.astro';
+
+const chamberAlt = 'Comparación de cuatro disposiciones de soldadura hiperbárica en seco. La soldadura en hábitat encierra toda la unión y el soldador trabaja completamente dentro a presión ambiente. La cámara seca usa un recinto menor que admite el torso del soldador mientras las piernas permanecen en el agua. La soldadura de punto seco coloca una pequeña campana solo sobre el área de soldadura, con el buzo fuera en el agua. La soldadura a una atmósfera sella la unión en un recipiente rígido a presión de superficie, sin necesidad de descompresión.';
 
 // CIFRAS DE PROFUNDIDAD — VERIFICAR ANTES DE CAMBIAR
 // Esta página decía antes "hasta aproximadamente 1,000 metros". No se pudo
@@ -158,6 +161,15 @@ const jsonLd = {
 
         <h2 id="como-entrar-en-este-campo">Cómo Entrar en Este Campo</h2>
         <p>La trayectoria típica es certificarte y ganar experiencia en una disciplina primero — usualmente soldadura mediante <a href="/es/welding/certifications">certificaciones estándar de soldadura</a> — luego asistir a una escuela de buceo comercial dedicada con un programa de soldadura submarina, varias de las cuales combinan ambos currículos en un solo curso de 7 a 10 meses. Desde ahí, la mayoría de los buzos comienzan con trabajo tierra adentro o de inspección para acumular horas antes de pasar a roles de soldadura hiperbárica costa afuera.</p>
+
+        <h2 id="reutilizar">Reutilizar el diagrama</h2>
+        <DiagramEmbed
+          src="/images/blog/hyperbaric-welding-chambers.svg"
+          alt={chamberAlt}
+          title="Las cuatro disposiciones de cámara en soldadura hiperbárica en seco"
+          pagePath="/es/welding/underwater-welding"
+          lang="es"
+        />
 
         <h2 id="faq">Preguntas Frecuentes</h2>
         {faq.map((item) => (

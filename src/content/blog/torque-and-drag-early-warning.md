@@ -5,6 +5,10 @@ publishDate: "2026-08-03"
 author: "RigFloorHQ Team"
 category: "Drilling"
 tags: ["torque and drag", "friction factor", "stuck pipe", "hole cleaning", "hookload", "drilling data"]
+diagrams:
+  - src: "/images/blog/torque-drag-trend.svg"
+    alt: "A chart of torque against depth over successive connections. A dashed modelled line rises steadily, showing expected torque for the planned friction factor. The measured line tracks it closely at first, then begins to separate, and the gap widens with each connection until the string sticks. The point where the two lines first diverge is marked as the real warning, several connections before the absolute value ever looks alarming."
+    title: "Measured torque diverging from the modelled friction line"
 faq:
   - q: "What is the difference between torque and drag?"
     a: "Torque is the rotational resistance felt when turning the string, measured at surface as the load required to rotate. Drag is the axial resistance felt when moving the string along the hole, seen as the difference between hookload while picking up, slacking off and rotating off bottom. Both come from contact between the string and the wellbore."
