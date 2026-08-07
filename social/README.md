@@ -119,12 +119,47 @@ Swap `bio` for the video id when you want to tell them apart.
 
 ---
 
-## Also worth filming
+---
 
-**Calculator screen recordings.** Highest conversion of anything here and
-almost no production — record your phone, enter numbers, say what each output
-means. Must carry the disclaimer: learning tool only, use your company's
-approved sheet on a live well. It is already in the terms.
+## Calculator screen recordings (06–08)
+
+Highest conversion of anything here, and almost no production. These frames
+bookend a screen recording rather than standing alone:
+
+```
+frame1   hook                     ~2s
+[ screen recording of the calculator   20-30s ]
+frame2   WARNING                  ~3s   hold it long enough to actually read
+frame3   close + domain           ~3s
+```
+
+**The warning frame is not optional.** Publishing a kill sheet demo without it
+contradicts the site's own terms, which state the calculators are unverified
+teaching tools that must not drive decisions on a live well. It has a red bar
+and rule so it reads as a safety card at a glance, not just in wording.
+
+If you shorten anything, shorten the hook. Never the warning.
+
+### 06 — Kill sheet
+**Target:** `/calculators/kill-sheet`
+Record: enter original mud weight, SIDPP, TVD, slow pump rate. Say in one line
+what kill mud weight, ICP and FCP each mean as they appear.
+**Caption:** Free kill sheet calculator — runs in your browser
+**Tags:** #wellcontrol #drilling #oilfield #iwcf #drillingrig
+
+### 07 — Hydrostatic pressure
+**Target:** `/calculators/hydrostatic`
+Record: mud weight and TVD in, hydrostatic and overbalance out. Show what
+happens when you push mud weight up.
+**Caption:** Check a mud weight against TVD in ten seconds
+**Tags:** #drilling #mudengineer #oilfield #oilandgas
+
+### 08 — Mud weight window
+**Target:** `/calculators/mud-weight-window`
+Record: set pore and fracture pressure, show the window, then narrow it until
+there is almost nothing left. That narrowing is the story.
+**Caption:** The gap you have to drill inside — and how narrow it gets
+**Tags:** #drilling #wellcontrol #oilfield #mpd #oilandgas
 
 ---
 

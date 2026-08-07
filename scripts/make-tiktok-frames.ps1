@@ -22,11 +22,12 @@ $steel = [System.Drawing.ColorTranslator]::FromHtml('#1c2130')
 $rust  = [System.Drawing.ColorTranslator]::FromHtml('#c94a1f')
 $ember = [System.Drawing.ColorTranslator]::FromHtml('#f07038')
 $amber = [System.Drawing.ColorTranslator]::FromHtml('#e8a020')
-$mist  = [System.Drawing.ColorTranslator]::FromHtml('#d1d8e4')
-$white = [System.Drawing.Color]::White
+$mist   = [System.Drawing.ColorTranslator]::FromHtml('#d1d8e4')
+$danger = [System.Drawing.ColorTranslator]::FromHtml('#ef4444')
+$white  = [System.Drawing.Color]::White
 
 function New-Frame {
-  param($Path, $Eyebrow, $Headline, $Body, $Footer, $Accent)
+  param($Path, $Eyebrow, $Headline, $Body, $Footer, $Accent, [switch]$Warning)
 
   $W = 1080; $H = 1920
   $bmp = New-Object System.Drawing.Bitmap($W, $H)
@@ -37,7 +38,14 @@ function New-Frame {
   $rect = New-Object System.Drawing.Rectangle(0, 0, $W, $H)
   $grad = New-Object System.Drawing.Drawing2D.LinearGradientBrush($rect, $script:ink, $script:steel, 60)
   $g.FillRectangle($grad, $rect)
-  $g.FillRectangle((New-Object System.Drawing.SolidBrush($script:rust)), 0, 0, $W, 14)
+
+  # Warning frames get a red bar and a red rule, so the safety card is visually
+  # distinct from the content cards at a glance rather than only in wording.
+  $barCol = if ($Warning) { $script:danger } else { $script:rust }
+  $g.FillRectangle((New-Object System.Drawing.SolidBrush($barCol)), 0, 0, $W, 14)
+  if ($Warning) {
+    $g.FillRectangle((New-Object System.Drawing.SolidBrush($script:danger)), 80, 320, 140, 8)
+  }
 
   # Derrick lines, placed right where the TikTok buttons sit so they read as
   # texture rather than competing with anything.
@@ -102,6 +110,32 @@ $topics = @(
     @{ e = 'THE MISTAKE'; h = 'Watching the number.'; b = 'Torque depends on depth, angle, mud and hole size. The value alone tells you nothing.'; f = $null; a = $white },
     @{ e = 'THE SIGNAL'; h = 'The gap between measured and modelled.'; b = 'It opens several connections before the number ever looks alarming.'; f = $null; a = $ember },
     @{ e = 'READ THE TREND'; h = 'Most stuck pipe was visible in this data for hours.'; b = $null; f = 'rigfloorhq.com'; a = $white }
+  ) },
+
+  # ── CALCULATOR SCREEN RECORDINGS ─────────────────────────────
+  # These bookend a screen recording rather than standing alone:
+  #   frame1  hook            (~2s)
+  #   [ screen recording of the calculator, 20-30s ]
+  #   frame2  WARNING         (~3s, hold it long enough to read)
+  #   frame3  close           (~3s)
+  #
+  # The warning frame is not optional. Publishing a kill sheet demo without it
+  # contradicts the site's own terms, which state the calculators are unverified
+  # teaching tools and must not drive decisions on a live well.
+  @{ id = '06-kill-sheet'; frames = @(
+    @{ e = 'FREE TOOL'; h = 'Shut-in pressures recorded. Where does kill mud weight come from?'; b = $null; f = $null; a = $white },
+    @{ e = 'BEFORE YOU USE IT'; h = 'Learning tool only.'; b = 'Unverified. It does not know your well, your fluid or your equipment. On a live well, use your company approved kill sheet, verified by your well control supervisor.'; f = $null; a = $danger; w = $true },
+    @{ e = 'FREE, NO SIGNUP'; h = 'Runs in your browser. Nothing you type leaves your phone.'; b = $null; f = 'rigfloorhq.com'; a = $white }
+  ) },
+  @{ id = '07-hydrostatic'; frames = @(
+    @{ e = 'FREE TOOL'; h = 'Mud weight and depth in. Overbalance out.'; b = $null; f = $null; a = $white },
+    @{ e = 'BEFORE YOU USE IT'; h = 'Learning tool only.'; b = 'A reference calculation, not an operational authority. Verify every number you rely on by an approved method.'; f = $null; a = $danger; w = $true },
+    @{ e = 'FREE, NO SIGNUP'; h = 'Check a mud weight against TVD in about ten seconds.'; b = $null; f = 'rigfloorhq.com'; a = $white }
+  ) },
+  @{ id = '08-mud-weight-window'; frames = @(
+    @{ e = 'FREE TOOL'; h = 'Pore pressure at the bottom. Fracture pressure at the top. You live in between.'; b = $null; f = $null; a = $white },
+    @{ e = 'BEFORE YOU USE IT'; h = 'Learning tool only.'; b = 'Simplified assumptions. Use your well programme and the direction of your supervisor for anything operational.'; f = $null; a = $danger; w = $true },
+    @{ e = 'FREE, NO SIGNUP'; h = 'See the safe window, and how narrow it gets.'; b = $null; f = 'rigfloorhq.com'; a = $white }
   ) }
 )
 
@@ -110,7 +144,7 @@ foreach ($t in $topics) {
   $i = 1
   foreach ($f in $t.frames) {
     New-Frame -Path (Join-Path $out ("{0}-frame{1}.png" -f $t.id, $i)) `
-      -Eyebrow $f.e -Headline $f.h -Body $f.b -Footer $f.f -Accent $f.a
+      -Eyebrow $f.e -Headline $f.h -Body $f.b -Footer $f.f -Accent $f.a -Warning:([bool]$f.w)
     $i++; $n++
   }
 }
