@@ -42,6 +42,7 @@ const t = lang === 'es'
       blurb: 'Puede publicar este diagrama en su propio sitio, presentación o material de formación de forma gratuita. Solo pedimos una atribución con enlace de vuelta.',
       copy: 'Copiar código',
       copied: 'Copiado',
+      selected: 'Seleccionado — pulse Ctrl+C',
       manual: 'Seleccione y copie el código si el botón no funciona.',
     }
   : {
@@ -49,6 +50,7 @@ const t = lang === 'es'
       blurb: 'You are free to republish this diagram on your own site, in a presentation, or in training material. All we ask is a credit linking back.',
       copy: 'Copy embed code',
       copied: 'Copied',
+      selected: 'Selected — press Ctrl+C',
       manual: 'Select and copy the code if the button does not work.',
     };
 ---
@@ -59,7 +61,7 @@ const t = lang === 'es'
   <p class="embed-blurb">{t.blurb}</p>
   <textarea class="embed-code" readonly rows="4" spellcheck="false" aria-label={t.heading}>{snippet}</textarea>
   <div class="embed-actions">
-    <button type="button" class="embed-copy" data-copied={t.copied}>{t.copy}</button>
+    <button type="button" class="embed-copy" data-copied={t.copied} data-selected={t.selected}>{t.copy}</button>
     <span class="embed-manual">{t.manual}</span>
   </div>
 </div>
@@ -73,23 +75,41 @@ const t = lang === 'es'
     const box = btn.closest('.embed-offer')?.querySelector('.embed-code') as HTMLTextAreaElement | null;
     if (!box) return;
 
-    const done = () => {
+    // Every path has to say what happened. The first version selected the text
+    // on fallback and changed nothing on the button, so the user saw a
+    // highlighted box and had no idea whether it had copied.
+    const flash = (msg: string, success: boolean) => {
+      if (btn.dataset.busy) return;
+      btn.dataset.busy = '1';
       const original = btn.textContent;
-      btn.textContent = btn.dataset.copied || 'Copied';
-      btn.classList.add('is-copied');
+      btn.textContent = msg;
+      btn.classList.toggle('is-copied', success);
       setTimeout(() => {
         btn.textContent = original;
         btn.classList.remove('is-copied');
-      }, 1800);
+        delete btn.dataset.busy;
+      }, 2200);
     };
 
-    // Clipboard API needs a secure context. Fall back to selecting the text so
-    // the user can copy manually rather than the button silently doing nothing.
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(box.value).then(done).catch(() => { box.select(); });
-    } else {
+    const copied = () => flash(btn.dataset.copied || 'Copied', true);
+
+    // Selecting the text is the fallback, and it is a real outcome rather than
+    // a failure — the user just has to finish the job with the keyboard.
+    const selectOnly = () => {
+      box.focus();
       box.select();
-      try { document.execCommand('copy'); done(); } catch { /* selection is the fallback */ }
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch { ok = false; }
+      if (ok) copied();
+      else flash(btn.dataset.selected || 'Selected — press Ctrl+C', false);
+    };
+
+    // writeText needs a secure context AND transient user activation, and can
+    // still be refused by permissions policy. Treat rejection as normal.
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(box.value).then(copied).catch(selectOnly);
+    } else {
+      selectOnly();
     }
   });
 </script>
