@@ -121,6 +121,34 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
   {GA_ID && import.meta.env.PROD && (
     <>
       <script is:inline define:vars={{ GA_ID, CONSENT_REQUIRED_REGIONS, CONSENT_STORAGE_KEY }}>
+        // ── PERSONAL OPT-OUT ────────────────────────────────────────
+        // Visiting any page with ?ga-optout=1 permanently excludes this
+        // browser from analytics. ?ga-optout=0 undoes it.
+        //
+        // This exists because the operator's own visits distort a low-traffic
+        // property badly — a handful of sessions a day is a large share of the
+        // total, which makes the numbers actively misleading.
+        //
+        // Preferred over a GA4 internal-traffic IP filter because residential
+        // IPs are dynamic: the filter silently stops working when the ISP
+        // changes the address, and nothing tells you. This survives that.
+        // Use both if you like — they do not conflict.
+        //
+        // ga-disable-<ID> is Google's own documented opt-out flag. Setting it
+        // suppresses measurement even though gtag.js still loads.
+        var GA_OPTOUT_KEY = 'rigfloorhq_ga_optout';
+        try {
+          var params = new URLSearchParams(window.location.search);
+          if (params.has('ga-optout')) {
+            if (params.get('ga-optout') === '0') window.localStorage.removeItem(GA_OPTOUT_KEY);
+            else window.localStorage.setItem(GA_OPTOUT_KEY, '1');
+          }
+        } catch (e) { /* private mode — fall through and measure normally */ }
+
+        var gaOptedOut = false;
+        try { gaOptedOut = window.localStorage.getItem(GA_OPTOUT_KEY) === '1'; } catch (e) {}
+        window['ga-disable-' + GA_ID] = gaOptedOut;
+
         // Assign to window explicitly: Astro wraps define:vars scripts in an
         // IIFE, so a bare `function gtag(){}` would be function-scoped and
         // custom gtag('event', ...) calls elsewhere would throw.
@@ -161,8 +189,13 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
           }
         } catch (e) { /* private mode / storage disabled — defaults stand */ }
 
-        gtag('js', new Date());
-        gtag('config', GA_ID);
+        // Skip config entirely when opted out. ga-disable already suppresses
+        // measurement, but not sending the pageview at all is cleaner and
+        // means an opted-out browser produces no property traffic whatsoever.
+        if (!gaOptedOut) {
+          gtag('js', new Date());
+          gtag('config', GA_ID);
+        }
       </script>
       <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
     </>
