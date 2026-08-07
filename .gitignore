@@ -2,5 +2,12 @@ node_modules/
 dist/
 .astro/
 
+# Generated social assets. Binaries, not site content — nothing in here is
+# built or served. Regenerate with scripts/make-tiktok-frames.ps1 rather than
+# committing 3 MB of PNGs. The README inside is the part worth keeping, so it
+# is force-added.
+social/*
+!social/README.md
+
 .vscode/
 .env
