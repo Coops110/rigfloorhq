@@ -2,10 +2,58 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+
+// CIFRAS DE PROFUNDIDAD — VERIFICAR ANTES DE CAMBIAR
+// Esta página decía antes "hasta aproximadamente 1,000 metros". No se pudo
+// corroborar. Sustituido por el par citado habitualmente: límite operativo por
+// debajo de unos 400 m, fijado por la fisiología del buzo, y ~2,500 m
+// demostrados solo en simulación de presión en laboratorio. Ver la nota
+// equivalente en la versión en inglés.
+//
+// Los pares de preguntas se muestran como contenido visible además de como
+// datos estructurados. Marcar preguntas que no están en la página es una
+// infracción de datos estructurados.
+const faq = [
+  {
+    q: '¿Qué es la soldadura hiperbárica en seco?',
+    a: 'La soldadura hiperbárica en seco es soldadura submarina realizada dentro de una cámara sellada que ha sido purgada de agua y llenada con una mezcla de gas respirable a la presión del agua circundante. Como el arco se establece en gas y no en agua, la calidad de la soldadura se acerca a la de una soldadura en superficie y la unión puede inspeccionarse y calificarse según códigos estructurales.',
+  },
+  {
+    q: '¿Cuáles son los cuatro tipos de cámara de soldadura hiperbárica en seco?',
+    a: 'La soldadura en hábitat encierra toda la unión y el soldador trabaja completamente dentro. La cámara seca usa un recinto menor que admite el torso del soldador mientras las piernas permanecen en el agua. La soldadura de punto seco coloca una pequeña campana solo sobre el área de soldadura, con el buzo fuera. La soldadura a una atmósfera sella la unión en un recipiente rígido mantenido a presión de superficie, de modo que el operador no requiere descompresión.',
+  },
+  {
+    q: '¿Qué proceso de soldadura se usa en soldadura hiperbárica?',
+    a: 'La soldadura por arco de tungsteno con gas, GTAW o TIG, es el proceso más utilizado en soldadura hiperbárica en seco porque ofrece el mayor control sobre el baño de fusión en una atmósfera de gas presurizada. También se emplean GMAW, SMAW, FCAW y soldadura por arco de plasma según la unión y la cámara.',
+  },
+  {
+    q: '¿A qué profundidad se puede hacer soldadura hiperbárica?',
+    a: 'El límite lo fija la fisiología del buzo, no la soldadura. La soldadura hiperbárica operativa se realiza generalmente a profundidades inferiores a unos 400 metros, requiriendo buceo de saturación mucho antes de ese límite. Se ha demostrado soldadura en simulación de presión en laboratorio hasta unos 2,500 metros, lo cual es un ensayo en cámara y no una profundidad de trabajo.',
+  },
+  {
+    q: '¿Por qué la presión dificulta la soldadura submarina?',
+    a: 'Al aumentar la presión ambiente, la tensión del arco sube de forma pronunciada, la columna del arco se contrae y la raíz del arco se vuelve más móvil y difícil de situar con precisión. El aporte térmico y el comportamiento de deposición cambian con la profundidad, por lo que un procedimiento calificado a una presión no es válido automáticamente a otra.',
+  },
+  {
+    q: '¿Qué es la norma AWS D3.6M?',
+    a: 'AWS D3.6M es el Código de Soldadura Submarina. Define cuatro clases: la Clase A busca igualar la calidad de una soldadura en superficie y sirve para aplicaciones estructurales, la Clase B es para trabajo portante menos crítico con más tolerancia a la porosidad, la Clase C no tiene requisito estructural, y la Clase O debe cumplir otro código indicado en el contrato. La clase la decide el trabajo y determina la inspección requerida.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
 <BaseLayout
-  title="Soldadura Submarina — Hiperbárica vs. Húmeda, Salario y Certificación"
-  description="Cómo funciona la soldadura submarina: soldadura hiperbárica en seco vs. soldadura húmeda, límites de profundidad, certificación de buceo ADCI, y expectativas salariales realistas."
+  title="Soldadura Hiperbárica en Seco y Húmeda — Soldadura Submarina Explicada"
+  description="Cómo funciona la soldadura hiperbárica en seco: los cuatro tipos de cámara, por qué se usa GTAW, qué hace la presión al arco, las clases AWS D3.6M, límites de profundidad y comparación con la soldadura húmeda."
+  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Soldadura', href: '/es/welding' }, { label: 'Soldadura Submarina', href: '/es/welding/underwater-welding' }]}
   lang="es"
   alternateHref="/welding/underwater-welding"
@@ -33,8 +81,70 @@ import Footer from '../../../components/Footer.astro';
         <h3>Soldadura Húmeda</h3>
         <p>El soldador está directamente sumergido en agua, usando electrodos impermeables (típicamente SMAW con varillas especialmente recubiertas). Es más rápida de desplegar — no se necesita construir un hábitat — haciéndola la opción preferida para reparaciones de emergencia y profundidades más someras, típicamente 30–400 ft. La compensación es la calidad de la soldadura: el enfriamiento rápido por el agua circundante aumenta el riesgo de fragilización por hidrógeno y porosidad, por lo que las soldaduras húmedas generalmente no se usan para reparaciones estructurales críticas sin inspección de seguimiento y, a menudo, reemplazo una vez que sea factible.</p>
 
-        <h3>Soldadura Hiperbárica (Seca)</h3>
-        <p>Se construye un hábitat sellado y presurizado alrededor del área de trabajo y se purga de agua, permitiendo que el soldador trabaje en una atmósfera seca y controlada a presión ambiente que coincide con la profundidad del agua circundante. La calidad de la soldadura se acerca a la de una soldadura en superficie y puede ser radiografiada e inspeccionada según los mismos estándares estructurales. Este es el método usado para conexiones críticas de tuberías, reparaciones de estructuras de plataformas, y cualquier cosa que requiera soldaduras de calidad certificada. Se usa hasta aproximadamente 1,000 metros en operaciones de buceo de saturación, aunque la mayoría de la soldadura hiperbárica comercial ocurre muy por encima de ese extremo.</p>
+        <h3>Soldadura Hiperbárica en Seco</h3>
+        <p>En la soldadura hiperbárica en seco se construye una cámara sellada alrededor de la unión y se purga de agua, de modo que el arco se establece en gas y no en agua. La cámara se encuentra a la presión del agua circundante, que es lo que la hace hiperbárica: el soldador está a la presión de la profundidad, simplemente no mojado.</p>
+        <p>Ese único cambio transforma el resultado. La velocidad de enfriamiento se controla en lugar de venir impuesta por el agua, la disponibilidad de hidrógeno cae drásticamente, y el precalentamiento y el tratamiento térmico posterior pasan a ser posibles. Las soldaduras hiperbáricas en seco pueden radiografiarse y calificarse según códigos estructurales, y por eso toda conexión crítica de tubería y toda reparación de estructura de plataforma emplea este método y no la soldadura húmeda.</p>
+
+        <h2 id="tipos-de-camara">Las Cuatro Disposiciones de Cámara</h2>
+        <p>«Soldadura hiperbárica» abarca cuatro montajes distintos. Se diferencian en cuánto de la unión — y cuánto del soldador — queda dentro del espacio seco.</p>
+
+        <img src="/images/blog/hyperbaric-welding-chambers.svg" alt="Comparación de cuatro disposiciones de soldadura hiperbárica en seco. La soldadura en hábitat encierra toda la unión y el soldador trabaja completamente dentro a presión ambiente. La cámara seca usa un recinto menor que admite el torso del soldador mientras las piernas permanecen en el agua. La soldadura de punto seco coloca una pequeña campana solo sobre el área de soldadura, con el buzo fuera en el agua. La soldadura a una atmósfera sella la unión en un recipiente rígido a presión de superficie, sin necesidad de descompresión. El tamaño de la cámara y la exposición del buzo disminuyen de izquierda a derecha." style="max-width:100%;height:auto;margin:22px 0;border:1px solid var(--iron);border-radius:6px;" />
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Disposición</th><th>Qué queda encerrado</th><th>Uso típico</th></tr></thead>
+            <tbody>
+              <tr><td>Hábitat</td><td>Toda la unión; el soldador trabaja completamente dentro</td><td>Conexiones de tubería y reparaciones estructurales que exigen calidad de código</td></tr>
+              <tr><td>Cámara seca</td><td>La unión y el torso del soldador; las piernas siguen mojadas</td><td>Donde no puede montarse un hábitat completo o no se justifica</td></tr>
+              <tr><td>Punto seco</td><td>Solo el área de soldadura; el buzo permanece en el agua</td><td>Reparaciones localizadas pequeñas, parcheo</td></tr>
+              <tr><td>Una atmósfera</td><td>La unión, en un recipiente rígido a presión de superficie</td><td>Elimina el problema de la presión por completo: sin descompresión y sin efectos del arco bajo presión</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>La calidad de la soldadura sigue en general al tamaño de la cámara, porque más espacio seco significa mejor acceso, mejor control del gas y sitio para trabajar. La excepción es el caso de una atmósfera, que es el mejor de todos precisamente porque rechaza el compromiso: aísla la unión de la presión de profundidad en lugar de igualarla.</p>
+
+        <h2 id="que-proceso">Qué Proceso de Soldadura se Usa</h2>
+        <p><strong>GTAW — soldadura por arco de tungsteno con gas, o TIG</strong> — es el proceso más utilizado en trabajo hiperbárico en seco. En una atmósfera de gas presurizada la prioridad es el control del baño de fusión y del aporte térmico, y el TIG ofrece más de ambos que cualquier alternativa. Es más lento, y en una cámara a profundidad ese coste merece la pena.</p>
+        <p>GMAW (MIG), SMAW (electrodo revestido), FCAW y la soldadura por arco de plasma también se emplean, elegidos según el tipo de unión, la posición, el tamaño de la cámara y cuánto importe la tasa de deposición frente al control.</p>
+        <div class="note-box">
+          <strong>Nótese el contraste con la soldadura húmeda.</strong> La soldadura húmeda es casi siempre SMAW con electrodos impermeabilizados, porque es la única forma sensata de establecer un arco en agua. La soldadura hiperbárica en seco abre todo el catálogo de procesos, y esa flexibilidad es buena parte de su valor, no solo la ausencia de agua.
+        </div>
+
+        <h2 id="presion-y-arco">Qué le Hace la Presión al Arco</h2>
+        <p>Esta es la parte que convierte la soldadura hiperbárica en una disciplina propia y no en soldadura de superficie realizada en un sitio raro.</p>
+        <p>Al aumentar la presión ambiente, <strong>la tensión del arco sube de forma pronunciada</strong> para la misma longitud de arco e intensidad. La columna del arco <strong>se contrae</strong>, volviéndose más estrecha y concentrada, y la raíz del arco se vuelve <strong>más móvil</strong>: se desplaza sobre la pieza y resulta más difícil situarla con precisión. La distribución de calor y el comportamiento de deposición cambian con ella.</p>
+        <p>La consecuencia práctica: un procedimiento calificado a una profundidad no es válido automáticamente a otra. Los procedimientos de soldadura hiperbárica se califican a la presión, o cerca de la presión, a la que realmente se usarán, lo cual es una de las razones por las que el trabajo es caro y lento de movilizar.</p>
+
+        <h3>La atmósfera de la cámara</h3>
+        <p>La cámara no se llena de aire. A profundidad, el nitrógeno se vuelve narcótico y el oxígeno tóxico, por lo que la mezcla es típicamente <strong>helio y oxígeno</strong>, reduciendo la fracción de oxígeno conforme aumenta la profundidad.</p>
+        <p>El helio también modifica la soldadura. Es más conductor térmico que el argón o el nitrógeno, lo que altera la transferencia de calor del arco y el comportamiento de enfriamiento, de modo que el gas elegido por la fisiología del buzo se convierte además en una variable de soldadura que el procedimiento debe contemplar.</p>
+
+        <h2 id="limites-de-profundidad">Límites de Profundidad</h2>
+        <p>La restricción es el buzo, no la soldadura. Operativamente, la soldadura hiperbárica en seco se realiza en general a profundidades <strong>inferiores a unos 400&nbsp;m</strong>, requiriendo buceo de saturación mucho antes de ese límite. Se ha demostrado soldadura en cámaras de presión de laboratorio hasta unos <strong>2,500&nbsp;m</strong>, pero eso es una simulación de presión, no una inmersión de trabajo.</p>
+        <p>La soldadura a una atmósfera es la forma de sortear esto. Si la unión se sella en un recipiente a presión de superficie, el operador no tiene obligación de descompresión y el arco no lucha contra la presión, que es la razón por la que la técnica existe pese al esfuerzo de construir el recipiente.</p>
+
+        <h2 id="clases-de-soldadura">Clases de Soldadura AWS D3.6M</h2>
+        <p>Las soldaduras submarinas no se califican simplemente como aptas o no aptas. AWS D3.6M, el Código de Soldadura Submarina, define cuatro clases, y la clase se elige según lo que la soldadura deba hacer.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Clase</th><th>Propósito</th><th>En la práctica</th></tr></thead>
+            <tbody>
+              <tr><td>Clase A</td><td>Comparable a una soldadura en superficie</td><td>Estructural, portante, inspección completa. Es lo que la soldadura hiperbárica en seco busca alcanzar normalmente.</td></tr>
+              <tr><td>Clase B</td><td>Portante menos crítica</td><td>Mayor tolerancia a porosidad y discontinuidades. Alcanzable habitualmente con soldadura húmeda.</td></tr>
+              <tr><td>Clase C</td><td>Sin requisito estructural</td><td>Donde la soldadura no soporta carga: sellado, fijación de elementos no críticos.</td></tr>
+              <tr><td>Clase O</td><td>Debe cumplir otro código indicado</td><td>El contrato especifica una norma distinta que la soldadura debe satisfacer además.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Saber qué clase exige un trabajo importa más que conocer los procesos, porque determina el método, el régimen de inspección y el coste antes de que nadie se moje. El panorama completo de certificaciones está en la <a href="/es/welding/certifications">página de certificaciones de soldadura</a>.</p>
+
+        <h2 id="defectos">Defectos Propios de la Soldadura Submarina</h2>
+        <ul>
+          <li><strong>Agrietamiento por hidrógeno.</strong> La preocupación dominante. El agua que se disocia en el arco aporta hidrógeno, que difunde hacia la soldadura y la zona afectada térmicamente y provoca agrietamiento, con frecuencia horas después de soldar. Peor en aceros de mayor carbono equivalente y peor con la profundidad.</li>
+          <li><strong>Temple rápido.</strong> El agua circundante extrae calor deprisa, produciendo microestructuras duras y frágiles en la zona afectada térmicamente. Es lo que las cámaras secas y el precalentamiento existen para controlar.</li>
+          <li><strong>Porosidad.</strong> Gas atrapado en la soldadura al solidificar. Es una limitación definitoria de la soldadura húmeda y la razón principal por la que sus soldaduras suelen quedar limitadas a Clase B o C.</li>
+          <li><strong>Colocación del arco.</strong> Bajo presión, la raíz móvil del arco dificulta la colocación precisa, lo que se traduce en fusión inconsistente.</li>
+        </ul>
 
         <h2 id="la-combinacion-buzo-soldador">La Combinación Buzo-Soldador</h2>
         <p>Los soldadores submarinos son, ante todo, buzos comerciales. La certificación de soldadura (AWS D3.6M — Código de Soldadura Submarina) es solo la mitad de la calificación; el lado del buceo requiere certificación a través de la Association of Commercial Diving Educators (ACDE) o un programa acreditado por ADCI (Association of Diving Contractors International), cubriendo buceo con suministro de aire desde superficie, buceo con gas mixto, y — para el trabajo más profundo y mejor pagado — buceo de saturación.</p>
@@ -48,15 +158,36 @@ import Footer from '../../../components/Footer.astro';
 
         <h2 id="como-entrar-en-este-campo">Cómo Entrar en Este Campo</h2>
         <p>La trayectoria típica es certificarte y ganar experiencia en una disciplina primero — usualmente soldadura mediante <a href="/es/welding/certifications">certificaciones estándar de soldadura</a> — luego asistir a una escuela de buceo comercial dedicada con un programa de soldadura submarina, varias de las cuales combinan ambos currículos en un solo curso de 7 a 10 meses. Desde ahí, la mayoría de los buzos comienzan con trabajo tierra adentro o de inspección para acumular horas antes de pasar a roles de soldadura hiperbárica costa afuera.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <>
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </>
+        ))}
+
+        <div class="note-box">
+          <strong>Nota sobre el idioma.</strong> Esta es una traducción de la
+          <a href="/welding/underwater-welding">versión en inglés</a>, que es el original.
+          En caso de discrepancia entre ambas, prevalece la versión en inglés.
+        </div>
       </div>
 
       <div>
         <div class="toc">
           <div class="toc-title">En Esta Página</div>
-          <a href="#dos-metodos-humeda-vs-hiperbarica-seca">Soldadura Húmeda vs. Hiperbárica</a>
+          <a href="#dos-metodos-humeda-vs-hiperbarica-seca">Húmeda vs. Hiperbárica en Seco</a>
+          <a href="#tipos-de-camara">Los Cuatro Tipos de Cámara</a>
+          <a href="#que-proceso">Qué Proceso se Usa</a>
+          <a href="#presion-y-arco">Qué le Hace la Presión al Arco</a>
+          <a href="#limites-de-profundidad">Límites de Profundidad</a>
+          <a href="#clases-de-soldadura">Clases AWS D3.6M</a>
+          <a href="#defectos">Defectos</a>
           <a href="#la-combinacion-buzo-soldador">La Combinación Buzo-Soldador</a>
           <a href="#expectativas-salariales-realistas">Expectativas Salariales</a>
           <a href="#como-entrar-en-este-campo">Cómo Entrar en Este Campo</a>
+          <a href="#faq">Preguntas Frecuentes</a>
         </div>
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
           <h3>Lectura Relacionada</h3>
