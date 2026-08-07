@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 430" role="img" aria-labelledby="hwTitle hwDesc">
+  <title id="hwTitle">The four dry hyperbaric welding chamber arrangements</title>
+  <desc id="hwDesc">Four arrangements compared. Habitat welding encloses the whole joint in a large chamber and the welder works fully inside it at ambient pressure. Dry chamber welding uses a smaller enclosure that admits the welder's upper body while the legs remain in water. Dry spot welding places a small cup over the weld area only, with the welder remaining in the water outside it. One atmosphere welding seals the joint in a rigid vessel held at surface pressure, so the operator needs no decompression at all. Chamber size decreases and diver exposure decreases from left to right.</desc>
+
+  <rect width="960" height="430" fill="#0e0f11"/>
+
+  <!-- water band across all panels -->
+  <rect x="0" y="86" width="960" height="250" fill="#12243a" opacity="0.55"/>
+  <line x1="0" y1="86" x2="960" y2="86" stroke="#3d6b96" stroke-width="2"/>
+  <text x="12" y="80" fill="#3d6b96" font-family="monospace" font-size="10">WATERLINE</text>
+
+  <!-- ============ 1. HABITAT ============ -->
+  <g transform="translate(20,0)">
+    <text x="0" y="34" fill="#f07038" font-family="monospace" font-size="11.5" letter-spacing="1">1 — HABITAT</text>
+    <text x="0" y="52" fill="#8892a4" font-family="monospace" font-size="9.5">WHOLE JOINT ENCLOSED</text>
+    <!-- structure / pipe -->
+    <rect x="0" y="228" width="210" height="22" fill="#5b6577"/>
+    <rect x="98" y="228" width="14" height="22" fill="#c94a1f"/>
+    <!-- chamber -->
+    <rect x="26" y="112" width="158" height="152" fill="#0e0f11" stroke="#f07038" stroke-width="2.5"/>
+    <!-- welder full body -->
+    <circle cx="132" cy="152" r="9" fill="#d1d8e4"/>
+    <rect x="125" y="163" width="14" height="34" fill="#d1d8e4"/>
+    <rect x="125" y="197" width="6" height="30" fill="#d1d8e4"/>
+    <rect x="133" y="197" width="6" height="30" fill="#d1d8e4"/>
+    <line x1="125" y1="172" x2="106" y2="222" stroke="#d1d8e4" stroke-width="5"/>
+    <!-- gas line -->
+    <path d="M105 112 L105 60" stroke="#22c55e" stroke-width="2" fill="none"/>
+    <text x="112" y="72" fill="#22c55e" font-family="monospace" font-size="9">GAS</text>
+    <text x="0" y="300" fill="#d1d8e4" font-family="sans-serif" font-size="12">Welder fully inside, at ambient</text>
+    <text x="0" y="317" fill="#d1d8e4" font-family="sans-serif" font-size="12">pressure. Best weld quality.</text>
+    <text x="0" y="340" fill="#8892a4" font-family="sans-serif" font-size="11">Slowest and most expensive to set up.</text>
+  </g>
+
+  <!-- ============ 2. DRY CHAMBER ============ -->
+  <g transform="translate(260,0)">
+    <text x="0" y="34" fill="#f07038" font-family="monospace" font-size="11.5" letter-spacing="1">2 — DRY CHAMBER</text>
+    <text x="0" y="52" fill="#8892a4" font-family="monospace" font-size="9.5">UPPER BODY ONLY</text>
+    <rect x="0" y="228" width="210" height="22" fill="#5b6577"/>
+    <rect x="98" y="228" width="14" height="22" fill="#c94a1f"/>
+    <rect x="48" y="150" width="116" height="86" fill="#0e0f11" stroke="#f07038" stroke-width="2.5"/>
+    <!-- welder upper body in, legs out -->
+    <circle cx="126" cy="176" r="9" fill="#d1d8e4"/>
+    <rect x="119" y="187" width="14" height="30" fill="#d1d8e4"/>
+    <line x1="119" y1="194" x2="104" y2="224" stroke="#d1d8e4" stroke-width="5"/>
+    <rect x="119" y="236" width="6" height="34" fill="#7f8b9e"/>
+    <rect x="127" y="236" width="6" height="34" fill="#7f8b9e"/>
+    <text x="140" y="264" fill="#7f8b9e" font-family="monospace" font-size="8.5">LEGS IN</text>
+    <text x="140" y="275" fill="#7f8b9e" font-family="monospace" font-size="8.5">WATER</text>
+    <text x="0" y="300" fill="#d1d8e4" font-family="sans-serif" font-size="12">Smaller enclosure over the joint,</text>
+    <text x="0" y="317" fill="#d1d8e4" font-family="sans-serif" font-size="12">welder leans in.</text>
+    <text x="0" y="340" fill="#8892a4" font-family="sans-serif" font-size="11">Faster to deploy. Restricted access.</text>
+  </g>
+
+  <!-- ============ 3. DRY SPOT ============ -->
+  <g transform="translate(500,0)">
+    <text x="0" y="34" fill="#f07038" font-family="monospace" font-size="11.5" letter-spacing="1">3 — DRY SPOT</text>
+    <text x="0" y="52" fill="#8892a4" font-family="monospace" font-size="9.5">WELD AREA ONLY</text>
+    <rect x="0" y="228" width="210" height="22" fill="#5b6577"/>
+    <rect x="98" y="228" width="14" height="22" fill="#c94a1f"/>
+    <!-- small cup over weld -->
+    <path d="M84 228 L84 196 L126 196 L126 228" fill="#0e0f11" stroke="#f07038" stroke-width="2.5"/>
+    <!-- welder outside, in water -->
+    <circle cx="160" cy="180" r="9" fill="#7f8b9e"/>
+    <rect x="153" y="191" width="14" height="32" fill="#7f8b9e"/>
+    <line x1="153" y1="198" x2="124" y2="212" stroke="#7f8b9e" stroke-width="5"/>
+    <rect x="153" y="223" width="6" height="30" fill="#7f8b9e"/>
+    <rect x="161" y="223" width="6" height="30" fill="#7f8b9e"/>
+    <text x="0" y="300" fill="#d1d8e4" font-family="sans-serif" font-size="12">Only the weld itself is dry.</text>
+    <text x="0" y="317" fill="#d1d8e4" font-family="sans-serif" font-size="12">Diver stays in the water.</text>
+    <text x="0" y="340" fill="#8892a4" font-family="sans-serif" font-size="11">Quick, but limited to small repairs.</text>
+  </g>
+
+  <!-- ============ 4. ONE ATMOSPHERE ============ -->
+  <g transform="translate(740,0)">
+    <text x="0" y="34" fill="#22c55e" font-family="monospace" font-size="11.5" letter-spacing="1">4 — ONE ATMOSPHERE</text>
+    <text x="0" y="52" fill="#8892a4" font-family="monospace" font-size="9.5">SURFACE PRESSURE INSIDE</text>
+    <rect x="0" y="228" width="200" height="22" fill="#5b6577"/>
+    <rect x="93" y="228" width="14" height="22" fill="#c94a1f"/>
+    <!-- rigid vessel -->
+    <rect x="26" y="118" width="150" height="146" rx="6" fill="#0e0f11" stroke="#22c55e" stroke-width="3"/>
+    <rect x="32" y="124" width="138" height="134" rx="4" fill="none" stroke="#22c55e" stroke-width="1" opacity="0.4"/>
+    <circle cx="126" cy="158" r="9" fill="#d1d8e4"/>
+    <rect x="119" y="169" width="14" height="34" fill="#d1d8e4"/>
+    <rect x="119" y="203" width="6" height="26" fill="#d1d8e4"/>
+    <rect x="127" y="203" width="6" height="26" fill="#d1d8e4"/>
+    <line x1="119" y1="178" x2="101" y2="222" stroke="#d1d8e4" stroke-width="5"/>
+    <text x="40" y="292" fill="#22c55e" font-family="monospace" font-size="10">1 ATM — NO DECOMPRESSION</text>
+    <text x="0" y="317" fill="#d1d8e4" font-family="sans-serif" font-size="12">Joint sealed in a rigid vessel held</text>
+    <text x="0" y="334" fill="#d1d8e4" font-family="sans-serif" font-size="12">at surface pressure.</text>
+    <text x="0" y="356" fill="#8892a4" font-family="sans-serif" font-size="11">Removes the diver physiology limit.</text>
+  </g>
+
+  <!-- footer scale note -->
+  <text x="20" y="404" fill="#8892a4" font-family="sans-serif" font-size="12.5">Chamber size and diver exposure both decrease left to right. So does weld quality control — except in the one-atmosphere case, which sidesteps pressure entirely.</text>
+</svg>

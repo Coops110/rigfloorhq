@@ -2,10 +2,58 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+
+// DEPTH FIGURES — CHECK BEFORE CHANGING
+// This page previously said hyperbaric welding is "used down to roughly 1,000
+// metres". That figure could not be corroborated and has been replaced with the
+// commonly cited pair: an operational limit under about 400 m set by diver
+// physiology, and ~2,500 m demonstrated only in laboratory pressure simulation.
+// Worth having a working diver confirm both before the page ranks well enough
+// for the number to matter.
+//
+// FAQ pairs are rendered as visible content below as well as structured data.
+// Marking up questions that are not on the page is a structured data violation.
+const faq = [
+  {
+    q: 'What is dry hyperbaric welding?',
+    a: 'Dry hyperbaric welding is underwater welding carried out inside a sealed chamber that has been purged of water and filled with a breathable gas mixture at the surrounding water pressure. Because the arc is struck in gas rather than water, weld quality approaches that of a surface weld and the joint can be inspected and qualified to structural codes.',
+  },
+  {
+    q: 'What are the four types of dry hyperbaric welding chamber?',
+    a: 'Habitat welding encloses the entire joint and the welder works fully inside it. Dry chamber welding uses a smaller enclosure that admits the welder’s upper body while the legs remain in water. Dry spot welding places a small cup over the weld area only, with the diver outside it. One atmosphere welding seals the joint in a rigid vessel held at surface pressure, so the operator requires no decompression.',
+  },
+  {
+    q: 'Which welding process is used for hyperbaric welding?',
+    a: 'Gas tungsten arc welding, also called GTAW or TIG, is the process most commonly used for dry hyperbaric welding because it gives the greatest control over a weld pool in a pressurised gas atmosphere. Gas metal arc welding, shielded metal arc welding, flux cored arc welding and plasma arc welding are also used depending on the joint and the chamber.',
+  },
+  {
+    q: 'How deep can hyperbaric welding be done?',
+    a: 'The limit is set by diver physiology rather than by the welding itself. Operational hyperbaric welding is generally carried out at depths under about 400 metres, with saturation diving required well before that. Welding has been demonstrated in laboratory pressure simulation to around 2,500 metres, which is a chamber test rather than a working depth.',
+  },
+  {
+    q: 'Why does pressure make underwater welding harder?',
+    a: 'As ambient pressure rises the arc voltage increases sharply, the arc column constricts and the arc root becomes more mobile and harder to place accurately. Heat input and deposition behaviour change with depth, so a procedure qualified at one pressure is not automatically valid at another. This is why hyperbaric welding procedures are qualified at the depth they will be used.',
+  },
+  {
+    q: 'What is AWS D3.6M?',
+    a: 'AWS D3.6M is the Underwater Welding Code. It defines four weld classes: Class A is intended to match surface weld quality and suits structural applications, Class B is for less critical load bearing work with more tolerance for porosity, Class C carries no structural requirement, and Class O must meet another code named in the contract. The class is chosen by the job and determines the inspection required.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
 <BaseLayout
-  title="Underwater Welding — Hyperbaric vs Wet Welding, Pay & Certification"
-  description="How underwater welding works: hyperbaric dry welding vs wet welding, depth limits, ADCI diver certification, and realistic salary expectations."
+  title="Dry Hyperbaric Welding & Wet Welding — Underwater Welding Explained"
+  description="How dry hyperbaric welding works: the four chamber types, why GTAW is used, what pressure does to the arc, AWS D3.6M weld classes, depth limits, and how wet welding compares."
+  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Welding', href: '/welding' }, { label: 'Underwater Welding', href: '/welding/underwater-welding' }]}
   lang="en"
   alternateHref="/es/welding/underwater-welding"
@@ -33,8 +81,70 @@ import Footer from '../../components/Footer.astro';
         <h3>Wet Welding</h3>
         <p>The welder is directly submerged in water, using waterproof electrodes (typically SMAW with specially coated rods). It's faster to deploy — no habitat needs to be built — making it the go-to for emergency repairs and shallower depths, typically 30–400 ft. The tradeoff is weld quality: rapid cooling from surrounding water increases the risk of hydrogen embrittlement and porosity, so wet welds are generally not used for critical structural repairs without follow-up inspection and, often, replacement once feasible.</p>
 
-        <h3>Hyperbaric (Dry) Welding</h3>
-        <p>A sealed, pressurized habitat is built around the work area and purged of water, letting the welder work in a dry, controlled atmosphere at ambient pressure matching the surrounding water depth. Weld quality approaches that of a surface weld and can be X-rayed and inspected to the same structural standards. This is the method used for critical pipeline tie-ins, platform jacket repairs, and anything requiring code-quality welds. It's used down to roughly 1,000 meters in saturation diving operations, though most commercial hyperbaric welding happens well shallower than that extreme.</p>
+        <h3>Dry Hyperbaric Welding</h3>
+        <p>In dry hyperbaric welding a sealed chamber is built around the joint and purged of water, so the arc is struck in gas rather than water. The chamber sits at the pressure of the surrounding water, which is what makes it hyperbaric — the welder is at depth pressure, just not wet.</p>
+        <p>That single change transforms the result. Cooling rate is controlled rather than dictated by the water, hydrogen availability drops sharply, and pre-heat and post-weld heat treatment become possible. Dry hyperbaric welds can be radiographed and qualified to structural codes, which is why every critical pipeline tie-in and platform jacket repair uses this method rather than wet welding.</p>
+
+        <h2 id="chamber-types">The Four Chamber Arrangements</h2>
+        <p>"Hyperbaric welding" covers four distinct setups. They differ in how much of the joint — and how much of the welder — ends up inside the dry space.</p>
+
+        <img src="/images/blog/hyperbaric-welding-chambers.svg" alt="Four dry hyperbaric welding arrangements compared. Habitat welding encloses the whole joint and the welder works fully inside at ambient pressure. Dry chamber welding uses a smaller enclosure admitting the welder's upper body while the legs remain in water. Dry spot welding places a small cup over the weld area only, with the diver outside in the water. One atmosphere welding seals the joint in a rigid vessel held at surface pressure, so the operator needs no decompression. Chamber size and diver exposure both decrease from left to right." style="max-width:100%;height:auto;margin:22px 0;border:1px solid var(--iron);border-radius:6px;" />
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Arrangement</th><th>What is enclosed</th><th>Typical use</th></tr></thead>
+            <tbody>
+              <tr><td>Habitat</td><td>The whole joint; welder works fully inside</td><td>Pipeline tie-ins and structural repairs needing code-quality welds</td></tr>
+              <tr><td>Dry chamber</td><td>The joint and the welder's upper body; legs stay wet</td><td>Where a full habitat cannot be rigged or is not justified</td></tr>
+              <tr><td>Dry spot</td><td>The weld area only; diver remains in the water</td><td>Small localised repairs, patch work</td></tr>
+              <tr><td>One atmosphere</td><td>The joint, in a rigid vessel held at surface pressure</td><td>Removes the pressure problem entirely — no decompression, no arc-under-pressure effects</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Weld quality broadly tracks chamber size, because a bigger dry space means better access, better gas control and room to work. The exception is the one atmosphere case, which is the best of all of them precisely because it refuses the trade — the joint is isolated from depth pressure rather than matched to it.</p>
+
+        <h2 id="which-process">Which Welding Process Is Used</h2>
+        <p><strong>GTAW — gas tungsten arc welding, or TIG</strong> — is the process most commonly used for dry hyperbaric work. In a pressurised gas atmosphere the priority is control of the weld pool and of heat input, and TIG gives more of both than anything else. It is slower, and in a chamber at depth that cost is worth paying.</p>
+        <p>GMAW (MIG), SMAW (stick), FCAW and plasma arc welding are all used as well, chosen by joint type, position, chamber size and how much deposition rate matters against control.</p>
+        <div class="note-box">
+          <strong>Note the contrast with wet welding.</strong> Wet welding is almost always SMAW with waterproofed electrodes, because it is the only sensible way to strike an arc in water. Dry hyperbaric welding opens up the whole process catalogue — that flexibility is a large part of its value, not just the absence of water.
+        </div>
+
+        <h2 id="pressure-and-the-arc">What Pressure Does to the Arc</h2>
+        <p>This is the part that makes hyperbaric welding a distinct discipline rather than surface welding in an odd location.</p>
+        <p>As ambient pressure rises, <strong>arc voltage increases sharply</strong> for the same arc length and current. The arc column <strong>constricts</strong>, becoming narrower and more concentrated, and the arc root becomes <strong>more mobile</strong> — it wanders across the workpiece and is harder to place accurately. Heat distribution and deposition behaviour shift with it.</p>
+        <p>The practical consequence: a procedure qualified at one depth is not automatically valid at another. Hyperbaric welding procedures are qualified at, or close to, the pressure they will actually be used at, which is one reason the work is expensive and slow to mobilise.</p>
+
+        <h3>The chamber atmosphere</h3>
+        <p>The chamber is not filled with air. At depth, nitrogen becomes narcotic and oxygen becomes toxic, so the mixture is typically <strong>helium and oxygen</strong>, with the oxygen fraction reduced as depth increases.</p>
+        <p>Helium also changes the welding. It is more thermally conductive than argon or nitrogen, which alters the arc's heat transfer and cooling behaviour — so the gas chosen for the diver's physiology also becomes a welding variable that the procedure has to account for.</p>
+
+        <h2 id="depth-limits">Depth Limits</h2>
+        <p>The constraint is the diver, not the weld. Operationally, dry hyperbaric welding is generally carried out at depths <strong>under about 400&nbsp;m</strong>, with saturation diving required a long way before that limit. Welding has been demonstrated in laboratory pressure chambers to around <strong>2,500&nbsp;m</strong>, but that is a simulation of pressure, not a working dive.</p>
+        <p>One atmosphere welding is the way around this. If the joint is sealed in a vessel at surface pressure, the operator has no decompression obligation and the arc is not fighting pressure — which is why the technique exists despite the engineering effort of building the vessel.</p>
+
+        <h2 id="weld-classes">AWS D3.6M Weld Classes</h2>
+        <p>Underwater welds are not qualified as simply pass or fail. AWS D3.6M, the Underwater Welding Code, defines four classes, and the class is selected by what the weld has to do.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Class</th><th>Intent</th><th>In practice</th></tr></thead>
+            <tbody>
+              <tr><td>Class A</td><td>Comparable to a surface weld</td><td>Structural, load bearing, full inspection. What dry hyperbaric welding is normally specified to achieve.</td></tr>
+              <tr><td>Class B</td><td>Less critical load bearing</td><td>Greater tolerance for porosity and discontinuities. Commonly achievable with wet welding.</td></tr>
+              <tr><td>Class C</td><td>No structural requirement</td><td>Where the weld does not carry load — sealing, attachment of non-critical items.</td></tr>
+              <tr><td>Class O</td><td>Must meet another named code</td><td>The contract specifies a different standard the weld must satisfy in addition.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Knowing which class a job calls for matters more than knowing the processes, because it dictates the method, the inspection regime and the cost before anyone gets wet. The wider certification picture is on the <a href="/welding/certifications">welding certifications page</a>.</p>
+
+        <h2 id="defects">Defects Specific to Underwater Welding</h2>
+        <ul>
+          <li><strong>Hydrogen cracking.</strong> The dominant concern. Water dissociating in the arc supplies hydrogen, which diffuses into the weld and heat affected zone and causes cracking, often hours after welding. Worse in higher carbon equivalent steels, and worse with depth.</li>
+          <li><strong>Rapid quenching.</strong> Surrounding water pulls heat out fast, producing hard brittle microstructures in the heat affected zone. This is what dry chambers and pre-heat exist to control.</li>
+          <li><strong>Porosity.</strong> Gas trapped in the solidifying weld. A defining limitation of wet welding, and the main reason wet welds are commonly limited to Class B or C.</li>
+          <li><strong>Arc placement.</strong> Under pressure the mobile arc root makes accurate placement harder, which shows up as inconsistent fusion.</li>
+        </ul>
 
         <h2 id="the-diver-welder-combination">The Diver-Welder Combination</h2>
         <p>Underwater welders are, first and foremost, commercial divers. The welding certification (AWS D3.6M — Underwater Welding Code) is only half the qualification; the diving side requires certification through the Association of Commercial Diving Educators (ACDE) or an ADCI (Association of Diving Contractors International) accredited program, covering surface-supplied air diving, mixed-gas diving, and — for the deepest and highest-paying work — saturation diving.</p>
@@ -48,15 +158,30 @@ import Footer from '../../components/Footer.astro';
 
         <h2 id="how-to-get-into-it">How to Get Into It</h2>
         <p>The typical path is to become certified and experienced in one discipline first — usually welding via <a href="/welding/certifications">standard welding certifications</a> — then attend a dedicated commercial diving school with an underwater welding program, several of which combine both curricula into a single 7–10 month course. From there, most divers start with inland or inspection work to build hours before moving into offshore hyperbaric welding roles.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <>
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </>
+        ))}
       </div>
 
       <div>
         <div class="toc">
           <div class="toc-title">On This Page</div>
-          <a href="#two-methods-wet-vs-hyperbaric-dry">Wet vs Hyperbaric Welding</a>
+          <a href="#two-methods-wet-vs-hyperbaric-dry">Wet vs Dry Hyperbaric</a>
+          <a href="#chamber-types">The Four Chamber Types</a>
+          <a href="#which-process">Which Process Is Used</a>
+          <a href="#pressure-and-the-arc">What Pressure Does to the Arc</a>
+          <a href="#depth-limits">Depth Limits</a>
+          <a href="#weld-classes">AWS D3.6M Weld Classes</a>
+          <a href="#defects">Defects</a>
           <a href="#the-diver-welder-combination">The Diver-Welder Combination</a>
           <a href="#realistic-pay-expectations">Pay Expectations</a>
           <a href="#how-to-get-into-it">How to Get Into It</a>
+          <a href="#faq">FAQ</a>
         </div>
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
           <h3>Related Reading</h3>

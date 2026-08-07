@@ -121,6 +121,7 @@ torque-and-drag-early-warning · welcome-to-rigfloorhq *(noindex)*
 | Casing strings, liners, LOT/FIT | `/drilling/casing` |
 | Build rate, profiles, dogleg severity | `/drilling/directional` |
 | Welding positions, WPS/PQR/WPQ, continuity | `/welding/certifications` |
+| Hyperbaric chamber types, AWS D3.6M classes, arc under pressure | `/welding/underwater-welding` |
 | Differential vs mechanical sticking, fishing | the stuck pipe pillar |
 | Cuttings transport, beds, critical angle | `/blog/hole-cleaning-high-angle-wells` |
 | The three sticking conditions, spotting fluids | `/blog/differential-sticking-explained` |
