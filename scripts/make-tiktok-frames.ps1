@@ -109,7 +109,7 @@ $topics = @(
     @{ e = 'EARLY WARNING'; h = 'By the time torque looks high, you have been in trouble for hours.'; b = $null; f = $null; a = $white },
     @{ e = 'THE MISTAKE'; h = 'Watching the number.'; b = 'Torque depends on depth, angle, mud and hole size. The value alone tells you nothing.'; f = $null; a = $white },
     @{ e = 'THE SIGNAL'; h = 'The gap between measured and modelled.'; b = 'It opens several connections before the number ever looks alarming.'; f = $null; a = $ember },
-    @{ e = 'READ THE TREND'; h = 'Most stuck pipe was visible in this data for hours.'; b = $null; f = 'rigfloorhq.com'; a = $white }
+    @{ e = 'READ THE TREND'; h = 'Torque and drag give more warning than almost anything else on the rig.'; b = 'But only against a calibrated baseline.'; f = 'rigfloorhq.com'; a = $white }
   ) },
 
   # ── CALCULATOR SCREEN RECORDINGS ─────────────────────────────

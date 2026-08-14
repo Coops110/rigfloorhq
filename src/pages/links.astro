@@ -14,6 +14,16 @@ import { SITE } from '../lib/site.js';
 // UTM note: tags belong on the INBOUND link only — the bio URL. Do not add
 // them to the internal links below. A UTM on an internal link restarts the
 // session in GA4 and destroys the attribution you added it for.
+// The page the video currently running on TikTok is about. Update this ONE
+// object each time a video goes out — someone arriving from a 30 second clip
+// wants the page it was about, not a hunt through the list below. Set to null
+// when nothing is running. Video ids and their targets: social/README.md.
+const featured = {
+  href: '/welding/certifications',
+  title: 'Welding Certifications',
+  note: '6G, and what each position actually qualifies you for.',
+};
+
 const links = [
   {
     group: 'Free Tools',
@@ -33,15 +43,28 @@ const links = [
     ],
   },
   {
+    group: 'Reference',
+    items: [
+      { href: '/welding/certifications', title: 'Welding Certifications', note: '6G, 5G, 1G — what each position qualifies you for.' },
+      { href: '/equipment/drill-string', title: 'Drill String & BHA', note: 'Collars, the neutral point, why pipe stays in tension.' },
+      { href: '/glossary', title: 'Field Glossary', note: 'Every term on the rig, in plain language.' },
+    ],
+  },
+  {
     group: 'Everything Else',
     items: [
-      { href: '/glossary', title: 'Field Glossary', note: 'Every term on the rig, in plain language.' },
       { href: '/blog', title: 'All Guides', note: 'Drilling, well control, safety, careers.' },
       { href: '/es', title: 'Español', note: 'La edición en español.' },
       { href: '/about', title: 'About RigFloorHQ', note: 'Who runs it, and how it is written.' },
     ],
   },
 ];
+
+// The featured page gets its own slot at the top, so drop it from the groups
+// below rather than listing the same link twice.
+const groups = links
+  .map((s) => ({ ...s, items: s.items.filter((l) => !featured || l.href !== featured.href) }))
+  .filter((s) => s.items.length > 0);
 ---
 <BaseLayout
   title="RigFloorHQ — Start Here"
@@ -55,7 +78,17 @@ const links = [
       <p class="bio-strap">The complete oil &amp; gas field reference — free, no signup.</p>
     </header>
 
-    {links.map((section) => (
+    {featured && (
+      <section class="bio-section">
+        <h2 class="bio-group">From the Video</h2>
+        <a href={featured.href} class="bio-link">
+          <span class="bio-link-title">{featured.title}</span>
+          <span class="bio-link-note">{featured.note}</span>
+        </a>
+      </section>
+    )}
+
+    {groups.map((section) => (
       <section class="bio-section">
         <h2 class="bio-group">{section.group}</h2>
         {section.items.map((l) => (
