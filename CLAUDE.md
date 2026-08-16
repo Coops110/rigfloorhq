@@ -134,6 +134,44 @@ Do not put UTM parameters on internal links. They belong on the inbound URL
 only — a UTM on an internal link starts a new GA4 session and destroys the
 attribution it was added to collect.
 
+## Heading order
+
+All 86 pages currently pass a document-wide heading check: exactly one `h1`, no
+skipped levels. It was 51 pages failing. Keep it there — the check is at the
+bottom of this section.
+
+**Heading level is document structure, not a size picker.** Every `h4` on this
+site (65 of them, in 12 files) was really a level-3 item that had been chosen
+for its styling. They are all `h3` now, with the CSS selectors renamed to
+match — `.career-step h3`, `.safety-item h3`, `.acc-header h3`. If you want
+smaller text, style the `h3`; do not drop a level.
+
+**The footer's column headings are `h2`, and that is deliberate.** They were
+`h4`, which skipped from every page's `h2` — the single failure in a
+Lighthouse Accessibility 98. Demoting them to `h3` fixed 32 pages and broke
+`/glossary`, whose own content has no `h2` at all, so the footer's `h3` then
+skipped straight from the page `h1`. `h2` is the only level that is safe after
+*any* page content, because a heading check flags jumps down the tree, never
+steps back up. Do not "tidy" them to `h3`.
+
+**Index pages need a heading for their first card grid.** The pattern is a
+`page-hero` `h1` followed immediately by a `card-grid` of `h3` cards, with no
+section title — an `h1` -> `h3` skip. Those sections now carry
+`<h2 class="sr-only">`. The `.sr-only` utility is in `global.css`; read the
+comment above it before using it, especially the part about never swapping it
+for `display:none`.
+
+`/links` had no `h1` at all — its logo is an `<img>`, and an image is not a
+heading.
+
+Verifying this needs a real browser, not grep. A visually-hidden heading that
+has fallen out of the accessibility tree is worse than the skip it replaced,
+and markup alone cannot tell you which you have. Playwright's
+`locator.ariaSnapshot()` prints the actual tree with levels
+(`page.accessibility` was removed from Playwright and no longer exists).
+Check the heading is present in that tree, that its box is ~1x1, and that it
+adds no horizontal overflow.
+
 ## Colour
 
 `--rust` `#c94a1f` is **not a text colour**. It measures 4.09 on `--ink` and
