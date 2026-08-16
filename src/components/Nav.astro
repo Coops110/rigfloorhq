@@ -37,7 +37,11 @@ const switcherHref = alternateHref ?? (lang === 'es' ? '/' : '/es');
 const switcherLabel = lang === 'es' ? 'EN' : 'ES';
 ---
 <nav class="site-nav">
-  <a href={homeHref} class="nav-logo"><img src="/logo.svg" alt="RigFloorHQ" class="nav-logo-img" /></a>
+  {/* width/height are the logo.svg viewBox, not the rendered size — CSS still
+      sizes it to height:100%/width:auto. They are here so the browser knows the
+      3.295:1 aspect ratio before the SVG arrives and can reserve the row rather
+      than reflowing the nav around it. */}
+  <a href={homeHref} class="nav-logo"><img src="/logo.svg" alt="RigFloorHQ" class="nav-logo-img" width="580" height="176" /></a>
 
   <div class="nav-links-desktop">
     {links.map(link => (

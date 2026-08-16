@@ -101,9 +101,23 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  {/* Self-hosted, not Google Fonts. The CDN version put a render-blocking
+      stylesheet on fonts.googleapis.com in front of first paint, which then
+      discovered six woff2 files on fonts.gstatic.com — a three-level critical
+      chain ahead of an LCP that is only text. The @font-face rules now live in
+      src/styles/fonts.css, bundled into the same stylesheet as global.css, so
+      they cost no request of their own. Regenerate with scripts/fetch-fonts.py.
+
+      The two preconnects that used to be here are gone with the origins they
+      pointed at. Preconnecting to a host we no longer talk to just opens a
+      connection that is never used.
+
+      Only these two faces are preloaded: Barlow Condensed 900 is the hero h1,
+      which is the LCP element, and Inter 400 is body copy. Preloading the rest
+      would compete with them for bandwidth on the slow connections this audit
+      models, which is the opposite of the point. */}
+  <link rel="preload" href="/fonts/barlow-condensed-900-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin />
 
   {/* Google Analytics 4 (optional) — production builds only, so local
       `npm run dev` sessions never reach the property.
@@ -220,6 +234,7 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
   )}
 
   <style is:global>
+    @import "../styles/fonts.css";
     @import "../styles/global.css";
   </style>
 </head>

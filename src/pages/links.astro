@@ -74,6 +74,13 @@ const groups = links
 >
   <div class="bio-wrap">
     <header class="bio-head">
+      {/* The logo carries the page's identity visually, but an image is not a
+          heading, so this page shipped with no h1 at all and its h2 groups
+          hung off nothing. sr-only rather than visible because the logo
+          already says this to sighted visitors — repeating it in text would
+          be clutter. Absolutely positioned, so it cannot disturb the header
+          layout. */}
+      <h1 class="sr-only">RigFloorHQ — Start Here</h1>
       <img src="/logo.svg" alt="RigFloorHQ" class="bio-logo" width="200" height="48" />
       <p class="bio-strap">The complete oil &amp; gas field reference — free, no signup.</p>
     </header>
