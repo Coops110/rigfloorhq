@@ -243,6 +243,102 @@ Never add analytics by pasting Google's snippet. It calls `gtag('config')`
 immediately and would set cookies before the visitor is asked, which is what
 UK PECR and EU ePrivacy actually prohibit.
 
+## Search performance
+
+The goal is 50,000 sessions/month, which is Mediavine's threshold. Worth
+knowing before planning around it: **Journey by Mediavine takes sites at
+10,000 sessions/month** — same company, same ad stack, a quarter of the
+distance. Verify current thresholds directly, ad networks move them.
+
+Data lives in two places, both connected through Supermetrics: GA4 property
+`548204808`, and Search Console `sc-domain:rigfloorhq.com`. GSC is the more
+honest number for organic, because GA is consent-gated and GSC is not.
+
+### The lesson that cost the most to learn
+
+**Ranking first is not the same as getting clicks.** `/careers/salary` ranks
+**position 1** for roughly seventeen "how much do X make" queries — *how much
+do offshore oil rig workers make*, *offshore oil worker salary*, *how much
+does a roughneck make on an oil rig* — and earns **zero clicks from any of
+them**. Google answers salary questions in the SERP with an AI Overview or a
+pay widget, so the searcher never needs the page.
+
+You cannot rank higher than first. No title, no schema and no content change
+recovers those. Before optimising any page, ask whether the query is one
+Google can answer without a click; if it is, better rankings buy nothing.
+
+The corollary is where the site actually earns: intents that **require**
+opening the page. `stop cards in oil field` converts at **10.3%** and
+`/calculators/kill-sheet` at **6.3%**, against a site average of 0.57%.
+Examples, templates, calculators, procedures and comparisons are the shape
+that works here. Prefer them over "what is X" and "how much does X pay".
+
+### Titles are length-budgeted
+
+`BaseLayout` appends `" | RigFloorHQ"` — 13 characters — unless the title
+already contains "RigFloorHQ". Google truncates around 60. **Keep titles to
+about 45 characters.** Three of the site's best-ranked pages were shipping
+titles that rendered at 71, 80 and 85 and were cut mid-phrase, so the
+targeting they were carefully written for never displayed. Meta descriptions
+truncate near 155; one was 191.
+
+When a page targets a multi-word phrase, keep the phrase **whole**. "Hyperbaric
+Welding and Wet Welding" beats interleaving them into "Hyperbaric & Wet
+Welding" — the queries are searched as complete phrases.
+
+### Internal anchor text is a signal you control
+
+The highest-demand page on the site had the **fewest** inbound internal links,
+and every one used a generic anchor: "full guide", "Read More", "underwater
+welding page". Nothing pointing at it said what it was about. When a page
+matters, link it from genuinely related body copy using the words it should
+rank for. Counting inbound links per page is a one-line grep and worth doing
+before assuming a ranking problem is about authority.
+
+### Baseline, 30 days to 2026-08-17
+
+Compare against this rather than re-deriving it. Site total: **10,091
+impressions, 58 clicks, 0.57% CTR**; GA showed ~350 sessions/month, from
+tracking that only starts 3 Aug 2026.
+
+| Page | Impr. | Clicks | Position |
+|---|---|---|---|
+| `/welding/underwater-welding` | 2,214 | 1 | ~66 |
+| `/careers/salary` | 1,869 | 11 | 6.6 |
+| `/blog/stop-card-system` | 1,362 | 26 | 6.6 |
+| `/equipment/bop` | 1,328 | 2 | 60.6 |
+
+### If underwater welding has not improved
+
+It was retargeted on 2026-08-17 — title, `h1` and three inbound anchors — from
+a baseline of position ~66 across `hyperbaric welding` (353 impressions), `dry
+hyperbaric welding` (344), `hyperbaric underwater welding` (323), `wet welding`
+(294) and `underwater wet welding` (192). Expect position to move before
+clicks do; 65 → 20s would be a good result. Give it three to four weeks.
+
+**If position has not moved by then, on-page work is not the constraint and
+repeating it is waste.** The page content is already strong — 200+ lines
+covering both methods, the four chamber arrangements, AWS D3.6M classes and
+depth limits. Two things are worth trying instead, in order:
+
+Split it. `hyperbaric welding` (~1,020 impressions across its variants) and
+`wet welding` (~486) are separate intents that one URL is splitting its
+targeting between. Two focused pages, each linked from the other, is the
+standard fix. It was not done first because it carries cannibalisation risk
+and is a content decision, not a technical one.
+
+Then accept it is an authority problem. Position 65 on competitive terms
+usually reflects the domain, not the page, and no amount of on-page work
+substitutes for external links. At that point the honest answer is that this
+page needs citations from outside the site, and effort is better spent on the
+click-worthy intents above.
+
+**Do not "fix" `/careers/salary` again.** It is the best-ranked page on the
+site and structurally cannot earn clicks on its main cluster. Its jobs-intent
+queries — `offshore oil rig jobs` (70 impressions, position 5.4) and
+neighbours — are the part worth building for, and they want their own page,
+not edits to the pay table.
+
 ## Verify, don't assert
 
 Most errors here came from stating something without checking it.
