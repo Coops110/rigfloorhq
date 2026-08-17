@@ -4,8 +4,18 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 ---
 <BaseLayout
-  title="Oil Rig Salary Guide 2026 — Every Role, Onshore & Offshore"
-  description="Real 2026 salary data for every oil rig position: roustabout, roughneck, derrickman, driller, toolpusher, welder, and engineer. Onshore vs offshore pay compared."
+  {/* Title and description are length-budgeted deliberately. BaseLayout appends
+      " | RigFloorHQ" (13 chars), and the previous title was 58 before that, so
+      Google truncated it mid-phrase and the brand never showed. This one is 44,
+      landing at 57 with the suffix.
+
+      Leading with the real range from the table below is the differentiator:
+      this page competes at position ~6 against Indeed, Glassdoor and
+      ZipRecruiter, whose listings look identical to each other in the SERP.
+      A concrete $38k–$300k+ span is the one thing they do not show up front.
+      Keep these numbers in sync with the pay table if it is ever updated. */}
+  title="Oil Rig Salaries 2026: $38k to $300k by Role"
+  description="Real 2026 pay for every rig role — roustabout $38k to company man $300k+ — plus onshore vs offshore differences and the certs each step needs."
   breadcrumbs={[{ label: 'Careers', href: '/careers' }, { label: 'Salary Guide', href: '/careers/salary' }]}
   lang="en"
   alternateHref="/es/careers/salary"

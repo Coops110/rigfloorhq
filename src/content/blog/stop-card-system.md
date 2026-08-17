@@ -1,6 +1,6 @@
 ---
-title: "STOP Card System: How Safety Observation Cards Work on Rigs"
-description: "How STOP cards actually work on a drilling rig: what to observe, how to write a card that's worth reviewing, and why the review cycle — not the card count — decides whether the program is real."
+title: "STOP Card System: How to Write One That Works"
+description: "What a STOP card is, what makes an observation worth reviewing, and why the review cycle — not the monthly card count — decides if the program is real."
 publishDate: "2026-07-23"
 author: "RigFloorHQ Team"
 category: "Safety"
