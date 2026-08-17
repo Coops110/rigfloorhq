@@ -54,8 +54,13 @@ const jsonLd = {
 };
 ---
 <BaseLayout
-  title="Soldadura Hiperbárica en Seco y Húmeda — Soldadura Submarina Explicada"
-  description="Cómo funciona la soldadura hiperbárica en seco: los cuatro tipos de cámara, por qué se usa GTAW, qué hace la presión al arco, las clases AWS D3.6M, límites de profundidad y comparación con la soldadura húmeda."
+  {/* Mirrors the English page. The old title was 72 chars, 85 once BaseLayout
+      appends " | RigFloorHQ", so it truncated badly in the SERP. This is 40,
+      landing at 53. There is no Spanish query data to target yet — this page
+      sits around position 8 on 30 impressions — so the change here is the
+      truncation fix and parity with the English page, nothing more. */}
+  title="Soldadura Hiperbárica y Húmeda Explicada"
+  description="Soldadura hiperbárica en seco: los cuatro tipos de cámara, por qué se usa GTAW, las clases AWS D3.6M y la comparación con la soldadura húmeda."
   jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Soldadura', href: '/es/welding' }, { label: 'Soldadura Submarina', href: '/es/welding/underwater-welding' }]}
   lang="es"
@@ -66,7 +71,7 @@ const jsonLd = {
 
   <div class="page-hero">
     <div class="page-hero-eyebrow">Soldadura — Trayectoria Especializada</div>
-    <h1>Soldadura <span>Submarina</span></h1>
+    <h1>Soldadura Submarina: <span>Húmeda e Hiperbárica</span></h1>
     <p class="page-hero-sub">Una de las especializaciones mejor pagadas y de mayor riesgo en la industria — combinando buceo comercial con soldadura estructural en plataformas submarinas, tuberías, y cascos.</p>
     <div class="page-meta">
       <span class="page-meta-item">Salario: <strong>$60K–$150K+/año</strong></span>

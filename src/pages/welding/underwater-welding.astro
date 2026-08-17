@@ -54,8 +54,21 @@ const jsonLd = {
 };
 ---
 <BaseLayout
-  title="Dry Hyperbaric Welding & Wet Welding — Underwater Welding Explained"
-  description="How dry hyperbaric welding works: the four chamber types, why GTAW is used, what pressure does to the arc, AWS D3.6M weld classes, depth limits, and how wet welding compares."
+  {/* Search Console shows this page carries the most demand on the site —
+      ~2,150 impressions/month — and ranks around position 65 for all of it.
+      The dominant queries are "hyperbaric welding" (353), "dry hyperbaric
+      welding" (344) and "hyperbaric underwater welding" (323), with a second
+      cluster on "wet welding" (294) and "underwater wet welding" (192).
+
+      The old title carried those phrases but ran to 67 chars, which becomes 80
+      once BaseLayout appends " | RigFloorHQ" — truncated in the SERP, so half
+      the targeting never displayed. This is 44, landing at 57.
+
+      Both key phrases are kept intact rather than interleaved ("Hyperbaric
+      Welding", "Wet Welding"), since the queries search them as whole phrases.
+      "Underwater" is carried by the h1, the URL and the body copy. */}
+  title="Hyperbaric Welding and Wet Welding Explained"
+  description="Dry hyperbaric welding explained: the four chamber types, why GTAW, what pressure does to the arc, AWS D3.6M weld classes, and how wet welding compares."
   jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Welding', href: '/welding' }, { label: 'Underwater Welding', href: '/welding/underwater-welding' }]}
   lang="en"
@@ -66,7 +79,10 @@ const jsonLd = {
 
   <div class="page-hero">
     <div class="page-hero-eyebrow">Welding — Specialist Track</div>
-    <h1>Underwater <span>Welding</span></h1>
+    {/* "Underwater Welding" alone did not contain either term the page is
+        actually searched for. The two methods are the page's real subject and
+        the comparison is what people are looking for. */}
+    <h1>Underwater Welding: <span>Wet vs Hyperbaric</span></h1>
     <p class="page-hero-sub">One of the highest-paying and highest-risk specializations in the industry — combining commercial diving with structural welding on subsea platforms, pipelines, and hulls.</p>
     <div class="page-meta">
       <span class="page-meta-item">Pay: <strong>$60K–$150K+/yr</strong></span>

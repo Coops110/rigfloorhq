@@ -77,7 +77,10 @@ import Footer from '../../components/Footer.astro';
             <span class="card-icon">🌊</span>
             <h3>Underwater Welding</h3>
             <p>How hyperbaric and wet welding actually work, what it pays, and how to become a commercial diver-welder.</p>
-            <a href="/welding/underwater-welding" class="card-link">Read More →</a>
+            {/* Named rather than "Read More". This is the highest-demand page
+                on the site and every inbound link to it used a generic anchor,
+                so nothing pointing at it said what it was about. */}
+            <a href="/welding/underwater-welding" class="card-link">Hyperbaric &amp; Wet Welding →</a>
           </div>
           <div class="card">
             <span class="card-icon">📜</span>
