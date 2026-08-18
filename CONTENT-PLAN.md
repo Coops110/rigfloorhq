@@ -189,6 +189,70 @@ single change available, and no amount of publishing substitutes for it.
 
 ---
 
+## Distribution and reuse
+
+Assessed 18 August 2026. Both of these are about the same constraint —
+the site needs citations from outside it, not more pages.
+
+### Diagrams: offer the file, not only the embed code
+
+`DiagramEmbed` already says the diagram may be used "on your own site, in a
+presentation, or in training material", and it is on `/welding/underwater-welding`,
+`/equipment/bop` and `/equipment/rig-types`.
+
+**But it only gives an HTML embed snippet.** Someone building a toolbox talk or
+a PowerPoint cannot paste HTML into a slide. The audience most likely to reuse
+these — trainers, HSE advisors, supervisors writing a pre-tour — is exactly the
+audience the current offer fails.
+
+Two things are missing: a direct link to the image file, and a plain-text credit
+line short enough to sit in a slide footer.
+
+Be clear about the trade-off before adding them. **The embed snippet is what
+earns links; a downloaded file earns none.** Keep the embed first and most
+prominent, and treat the download as reach rather than SEO. It still pays —
+a diagram in a training deck seen by thirty hands is brand exposure the site
+has no other way to buy — but do not expect it to move rankings.
+
+Worth doing. It is small, and it serves the one mechanism this site has for
+earning the external links that everything else is currently blocked on.
+
+### TikTok: not yet, and not on the calculators
+
+The instinct is right — a calculator is the best moment on the site to ask for
+a follow, because the visitor has just got something useful. Calculators convert
+at 6.3% against a 0.57% site average, so the engagement is real.
+
+Three reasons to hold anyway:
+
+**There is no handle configured.** `src/lib/site.js` carries an email and
+nothing else. Adding social links is a decision about whether the TikTok
+presence is established enough to point the whole site at, not a code change.
+
+**There is no measured social traffic to build on.** GA4 for the 30 days to
+17 August shows Organic Search 98, Direct 57, AI Assistant 3, Unassigned 2,
+Referral 1 — and **no Social channel at all**. Note the caveat: TikTok's in-app
+browser usually strips the referrer, so TikTok visits tend to land in Direct.
+Direct is 57 sessions engaging at 14% against organic's 48%, which looks more
+like bots than an engaged social audience, but the two cannot be separated from
+GA alone.
+
+**Outbound links leak a little authority**, and authority is precisely what is
+binding here. Not a large effect, but the direction is wrong while the site
+cannot get 19 pages crawled.
+
+If it goes in anyway, keep it small and late: one text link after the calculator
+has done its job, never a banner above it, and never competing with the internal
+links that keep a session alive. Then check whether Social ever appears as a
+channel. If it does not within a month, take it out.
+
+**The direction that matters is the other one.** `/links` exists to catch TikTok
+traffic and send it into the site, and its `featured` object has to be updated
+by hand for each video. Getting that funnel working is worth more than any link
+pointing away from the site.
+
+---
+
 ## Measurement
 
 Check **monthly**, not weekly — weekly is noise.
