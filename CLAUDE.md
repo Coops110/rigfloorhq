@@ -215,6 +215,32 @@ connections the audit models. Adding preloads is not free.
 `immutable` for a year.** If a regenerated file ever differs, rename it, or
 caches will serve the old one indefinitely.
 
+## Redirects
+
+`vercel.json` carries one, and it earns its place. A legacy WordPress-style
+permalink — `/blog/rig-floor-ppe-guide-personal-protective-equipment-for-drilling-operations.html` — was still indexed at position 10.7 pulling **157
+impressions/month**, against 35 for the page that replaced it,
+`/blog/rig-floor-ppe-guide`. It has no file in the build, so every one of those
+impressions led to a 404. It is now a permanent redirect.
+
+It was the only `.html` URL left; a GSC query for `page =@ .html` returns
+exactly one row. If old permalinks ever resurface, that query finds them.
+
+**A redirect only fires when no real file matches the path.** Check the source
+does not exist in `dist/` before adding one, or the file silently wins and the
+rule looks broken for no visible reason.
+
+## Hostname
+
+The site is **non-`www` everywhere** — `astro.config.mjs` `site`, every
+canonical, the sitemap and `robots.txt`. There is no `www` string anywhere in
+`dist/`, and Search Console records zero `www` impressions.
+
+Inspecting `https://www.rigfloorhq.com/...` in Search Console therefore returns
+"URL is unknown to Google" with no referring sitemap and no referring page.
+That is the expected answer for a hostname the site never uses, not a finding.
+Always inspect the bare domain.
+
 ## Response headers
 
 `vercel.json` sets them. There was no `vercel.json` at all until the headers
