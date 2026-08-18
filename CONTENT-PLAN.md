@@ -270,6 +270,50 @@ clicks that do land show up as Direct rather than Social.
 Fixing the bio target costs nothing and is worth more than any link pointing
 away from the site.
 
+### Facebook: claim the page, work the groups
+
+Facebook is the one major platform where oil and gas has genuinely active
+communities — private groups of a few thousand hands each, plus regional job
+boards. That is where this audience already is, which is not true of TikTok.
+
+**A Page on its own is close to worthless.** Organic Page reach runs at roughly
+1–3% of followers, and a page with no followers reaches nobody. Posting a
+diagram to your own page is shouting into a void.
+
+**Groups are where the value is**, with one hard rule: post as a person who
+works in the industry, answering a question someone actually asked, with a link
+only where it genuinely helps. Drop-and-run link posting gets you removed from
+the good groups inside a week. That is a standing time commitment, not something
+that can be built once.
+
+Verdict: claim the page as a credibility placeholder — twenty minutes, worth
+having the name. Do not build a content strategy on it.
+
+### Where distribution effort actually pays, in order
+
+1. **Diagram outreach.** Possible as of 18 August, when the download and slide
+   credit shipped. Email training providers, IWCF and IADC course sites, and
+   college drilling programmes offering a diagram for their material. Ten emails
+   is an afternoon and each acceptance is a real editorial link. **Highest value
+   on this list, because external links are the binding constraint** — see the
+   E-E-A-T note above, which is the same problem from a different angle.
+2. **LinkedIn.** Where supervisors, toolpushers and HSE managers are. Posts from
+   individuals still get organic reach, and it suits BOP or well control
+   material far better than short video does.
+3. **Reddit** — r/oilandgasworkers and neighbours. Same participation rule as
+   Facebook groups. A well-received answer linking a calculator sends traffic
+   for years rather than days.
+4. **Industry forums and directories.** Smaller and older, and much easier to
+   get a genuine listing on than any of the above.
+5. **Journalist requests.** Slow, but a trade publication citation is a strong
+   link.
+
+### Do not add social icons to the site yet
+
+One account, zero followers. **A footer row of empty profiles reads as
+abandoned**, which is worse than no icons at all. Add them when at least one
+account has an audience worth showing.
+
 ---
 
 ## Measurement
