@@ -36,6 +36,21 @@ const snippet =
   `</a>\n` +
   `<p>Diagram: <a href="${pageUrl}">${title} — ${SITE.name}</a></p>`;
 
+// A slide deck cannot use an HTML snippet, and a toolbox talk is the most
+// likely reuse this site will ever get. So the file itself is offered too,
+// with a credit line short enough to sit in a slide footer.
+//
+// Be clear-eyed about the trade: the embed snippet is what earns a link back,
+// the download earns none. The snippet therefore stays first and the download
+// is framed as the presentation option rather than the default.
+const ext = (src.split('.').pop() || '').toUpperCase();
+const fileName = src.split('/').pop() || 'diagram';
+// Deliberately does not repeat the diagram title. A slide is already showing
+// the diagram, so the title is redundant there, and the descriptive titles this
+// site uses run to 140+ characters — far too long for a footer. Source and URL
+// is what a credit actually needs.
+const creditLine = `Source: ${SITE.name} — ${origin.replace(/^https?:\/\//, '')}${pagePath}`;
+
 const t = lang === 'es'
   ? {
       heading: 'Usar este diagrama',
@@ -44,6 +59,10 @@ const t = lang === 'es'
       copied: 'Copiado',
       selected: 'Seleccionado — pulse Ctrl+C',
       manual: 'Seleccione y copie el código si el botón no funciona.',
+      creditLabel: 'Línea de crédito para una diapositiva o folleto',
+      copyCredit: 'Copiar crédito',
+      download: `Descargar ${ext}`,
+      downloadNote: 'Para una presentación o charla de seguridad. Conserve el crédito.',
     }
   : {
       heading: 'Use this diagram',
@@ -52,6 +71,10 @@ const t = lang === 'es'
       copied: 'Copied',
       selected: 'Selected — press Ctrl+C',
       manual: 'Select and copy the code if the button does not work.',
+      creditLabel: 'Credit line for a slide or handout',
+      copyCredit: 'Copy credit',
+      download: `Download ${ext}`,
+      downloadNote: 'For a presentation or toolbox talk. Please keep the credit line.',
     };
 ---
 <div class="embed-offer">
@@ -59,10 +82,23 @@ const t = lang === 'es'
     <span class="embed-label">{t.heading}</span>
   </div>
   <p class="embed-blurb">{t.blurb}</p>
-  <textarea class="embed-code" readonly rows="4" spellcheck="false" aria-label={t.heading}>{snippet}</textarea>
-  <div class="embed-actions">
-    <button type="button" class="embed-copy" data-copied={t.copied} data-selected={t.selected}>{t.copy}</button>
-    <span class="embed-manual">{t.manual}</span>
+
+  <div class="embed-field">
+    <textarea class="embed-code" readonly rows="4" spellcheck="false" aria-label={t.heading}>{snippet}</textarea>
+    <div class="embed-actions">
+      <button type="button" class="embed-copy" data-copied={t.copied} data-selected={t.selected}>{t.copy}</button>
+      <span class="embed-manual">{t.manual}</span>
+    </div>
+  </div>
+
+  <div class="embed-field">
+    <label class="embed-sublabel" for={`credit-${fileName}`}>{t.creditLabel}</label>
+    <textarea class="embed-code" id={`credit-${fileName}`} readonly rows="2" spellcheck="false">{creditLine}</textarea>
+    <div class="embed-actions">
+      <button type="button" class="embed-copy embed-copy-alt" data-copied={t.copied} data-selected={t.selected}>{t.copyCredit}</button>
+      <a class="embed-download" href={src} download={fileName}>{t.download}</a>
+      <span class="embed-manual">{t.downloadNote}</span>
+    </div>
   </div>
 </div>
 
@@ -72,7 +108,11 @@ const t = lang === 'es'
   document.addEventListener('click', (e) => {
     const btn = (e.target as HTMLElement)?.closest('.embed-copy') as HTMLButtonElement | null;
     if (!btn) return;
-    const box = btn.closest('.embed-offer')?.querySelector('.embed-code') as HTMLTextAreaElement | null;
+    // Scope to the field, not the whole block — there are two textareas now
+    // (embed snippet and credit line) and .embed-offer would always find the
+    // first one, so the credit button would silently copy the wrong thing.
+    const scope = btn.closest('.embed-field') || btn.closest('.embed-offer');
+    const box = scope?.querySelector('.embed-code') as HTMLTextAreaElement | null;
     if (!box) return;
 
     // Every path has to say what happened. The first version selected the text
@@ -173,6 +213,46 @@ const t = lang === 'es'
   }
   .embed-copy:hover { background: #e05a2a; border-color: #e05a2a; }
   .embed-copy.is-copied { background: var(--safe); border-color: var(--safe); color: var(--ink); }
+
+  /* The credit field is secondary to the embed snippet above it — the snippet
+     is what earns a link back, so it keeps the solid button. */
+  .embed-field + .embed-field {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--iron);
+  }
+  .embed-sublabel {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fog);
+    margin-bottom: 7px;
+  }
+  .embed-copy-alt {
+    background: transparent;
+    color: var(--mist);
+    border-color: var(--iron);
+  }
+  .embed-copy-alt:hover { background: var(--iron); border-color: var(--iron); }
+  .embed-copy-alt.is-copied { background: var(--safe); border-color: var(--safe); color: var(--ink); }
+  .embed-download {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 9px 16px;
+    border-radius: 2px;
+    border: 1px solid var(--iron);
+    color: var(--mist);
+    text-decoration: none;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .embed-download:hover, .embed-download:focus-visible {
+    border-color: var(--ember);
+    color: var(--white);
+  }
   .embed-copy:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
   .embed-manual { font-size: 11.5px; color: var(--fog); }
 </style>
