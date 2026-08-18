@@ -2,10 +2,57 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import DiagramEmbed from '../../components/DiagramEmbed.astro';
+
+const classAlt = "Six rig types arranged left to right by increasing water depth. A land rig stands on the ground with no water at all. Three bottom-supported offshore types transfer their weight to the seabed: a submersible barge rests its flooded hull on the bottom in under 70 feet, a jack-up lowers three legs to the seabed and lifts its hull clear of the waves in up to 400 feet, and a platform rig sits on a fixed steel jacket in up to 1,500 feet. Two floating types never touch the seabed and hold station instead: a semi-submersible floats on submerged pontoons held by moorings or thrusters in up to 12,000 feet, and a drillship is a ship hull held on dynamic positioning in up to 15,000 feet. The dividing line is whether the rig rests on the bottom or floats, and that is what the water depth limit is really measuring.";
+
+// FAQ pairs are rendered as visible content below as well as structured data.
+// Marking up questions that are not on the page is a structured data violation.
+const faq = [
+  {
+    q: 'What are the main types of drilling rig?',
+    a: 'Land rigs drill onshore. Offshore, the types divide by how the rig is held in place: submersible barges, jack-ups and platform rigs rest their weight on the seabed, while semi-submersibles and drillships float and hold station on moorings or thrusters. That one distinction — bottom-supported or floating — is what sets each type\u2019s water depth limit.',
+  },
+  {
+    q: 'What is a conventional drilling rig?',
+    a: 'It depends on who is speaking. To a rig mover, a conventional rig is one dismantled into loads and rebuilt at the next location, as opposed to a mobile, telescoping or walking rig. To a driller, conventional means the string is turned by a kelly and rotary table rather than a top drive. To a geologist, conventional refers to the reservoir rather than the rig. Ask which is meant before answering.',
+  },
+  {
+    q: 'What is the difference between a jack-up and a semi-submersible?',
+    a: 'A jack-up lowers legs to the seabed and lifts its hull above the waves, so it is a fixed structure while it works — cheaper and very stable, but limited to roughly 400 feet of water and dependent on seabed that will carry the legs. A semi-submersible floats on submerged pontoons and holds station on moorings or thrusters, which costs more but works in thousands of feet.',
+  },
+  {
+    q: 'Which rig type works in the deepest water?',
+    a: 'Drillships, at up to about 15,000 feet of water, with semi-submersibles close behind at around 12,000. Both are floaters, which is the reason: once a rig stops resting on the seabed, water depth stops being a structural limit and becomes a station-keeping and riser problem instead.',
+  },
+  {
+    q: 'What decides which rig is used on a well?',
+    a: 'Water depth rules out most options first. Seabed conditions can eliminate a jack-up even in shallow water if the ground will not carry a spudcan. Weather and station-keeping decide between moored and dynamically positioned floaters. The well programme decides the rest — one well over an existing platform is a different job from a multi-well exploration campaign.',
+  },
+  {
+    q: 'Is a workover rig a drilling rig?',
+    a: 'No. A workover or pulling unit services wells that already exist — pulling tubing and rods, changing downhole equipment — and is far smaller than a drilling rig. Coiled tubing and snubbing units are also well service rather than drilling, and snubbing units are built to work on a live well under pressure, which a drilling rig is not.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
 <BaseLayout
-  title="Types of Oil Drilling Rigs — Land, Jack-Up, Semi-Sub, Drillship"
-  description="Every type of oil and gas drilling rig explained: land rigs, jack-ups, semi-submersibles, drillships, platform rigs, and submersibles, with depth capacity and specs."
+  {/* Search Console shows ~261 impressions/month across "types of drilling
+      rigs" and its two dozen variants, at position 79-97. The old title ran 63
+      characters, becoming 76 once BaseLayout appends " | RigFloorHQ", so it was
+      cut mid-list. This is 44, landing at 57. */}
+  title="Types of Drilling Rigs and What Decides Each"
+  description="The six drilling rig types compared — land, barge, jack-up, platform, semi-sub and drillship — what separates them and what decides which drills a well."
+  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Rig Types', href: '/equipment/rig-types' }]}
   lang="en"
   alternateHref="/es/equipment/rig-types"
@@ -20,7 +67,21 @@ import Footer from '../../components/Footer.astro';
   </div>
 
   <section class="block">
-    <h2 class="sr-only">The six rig types</h2>
+    <div class="section-eyebrow">Classification</div>
+    <h2 class="section-title">One Question Sorts <span>Every Rig</span></h2>
+    <p style="color:var(--mist);line-height:1.8;font-size:15px;max-width:780px;margin-bottom:14px;">Rig types look like a list to memorise. They are not. Almost every difference between them follows from a single question: <strong style="color:var(--white);">does the rig rest on the bottom, or does it float?</strong></p>
+    <p style="color:var(--mist);line-height:1.8;font-size:15px;max-width:780px;margin-bottom:14px;">A rig that rests on the bottom is limited by how far down the bottom is. Legs, jackets and hulls can only reach so far, which is why bottom-supported types stop at hundreds of feet rather than thousands. A rig that floats has no such limit — but it now has to <em>stay</em> over the well, so its problems become station-keeping, riser length and the hydrostatic head of a mile of seawater. The water depth figures below are really measuring which of those two problems the rig was built to solve.</p>
+
+    <img src="/images/blog/rig-types-classification.svg" alt={classAlt} width="1200" height="470" style="max-width:100%;height:auto;margin:26px 0;border:1px solid var(--iron);border-radius:6px;" />
+  </section>
+
+  <section class="block">
+    {/* This heading was previously sr-only, added to fix an h1 -> h3 skip.
+        It is visible now that the section has a real title, and the hidden one
+        is gone rather than left alongside it — two headings for one section is
+        worse than the skip was. */}
+    <div class="section-eyebrow">The Types</div>
+    <h2 class="section-title">The Six <span>Rig Types</span></h2>
     <div class="rig-types grid-auto-300">
       <div class="rig-card" style="border:1px solid var(--iron);border-radius:3px;padding:24px;background:var(--ink);position:relative;overflow:hidden;">
         <h3 style="font-family:var(--cond);font-weight:700;font-size:20px;text-transform:uppercase;color:var(--white);margin-bottom:6px;">Land Rig</h3>
@@ -144,6 +205,85 @@ import Footer from '../../components/Footer.astro';
       <div>
         <p style="color:var(--mist);line-height:1.8;font-size:15px;"><strong style="color:var(--white);">Walking</strong> and skidding rigs go further: they lift and step themselves between wells on a multi-well pad without rigging down at all, which is why they dominate unconventional pad drilling where twenty-plus wells share one location.</p>
         <p style="color:var(--mist);line-height:1.8;font-size:15px;">That capability is what makes long-reach horizontal programmes economic, and it ties directly to <a href="/drilling/directional" style="color:var(--amber);">directional drilling</a> — the rig stays put while the wells fan out underground.</p>
+      </div>
+    </div>
+
+    <div class="two-col mt-24">
+      <div class="prose">
+        <h3>Why the mobility class matters more than the horsepower</h3>
+        <p>On a pad programme, a rig that walks 40 feet to the next conductor in a shift is doing something a conventional rig would need days to do. Across twenty wells that difference is not a convenience, it is the economics of the whole pad. Rig-up and rig-down time is dead time paid at spread rate, and spread rate is the number that decides whether a well makes money.</p>
+        <p>It is also why comparing land rigs by depth rating alone is misleading. Two rigs rated to the same depth can differ by a factor of ten in how long they take to get from one well to the next.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Terminology</div>
+    <h2 class="section-title">What <span>"Conventional"</span> Actually Means</h2>
+    <div class="two-col">
+      <div class="prose">
+        <p>This is the most-confused word on the subject, because three different trades use it for three different things and none of them is wrong.</p>
+        <p><strong>To a rig mover</strong>, a conventional rig is one that has to be dismantled into loads and rebuilt at the next location — the opposite of mobile, telescoping, walking or skidding. This is the sense used in the section above.</p>
+        <p><strong>To a driller</strong>, conventional means the string is turned from the floor by a kelly and rotary table, rather than by a top drive hanging in the mast. That distinction is real and consequential: a top drive rotates while tripping and drills in 90-foot stands instead of 30-foot singles, which changes connection count, stuck-pipe response and how quickly the string can be reamed out of trouble.</p>
+      </div>
+      <div class="prose">
+        <p><strong>To a geologist or a commercial team</strong>, conventional describes the reservoir, not the rig — a permeable formation that flows without stimulation, as opposed to unconventional shale that needs hydraulic fracturing. A perfectly modern walking rig with a top drive can be drilling an unconventional play, and frequently is.</p>
+        <p>The practical advice is short: when someone says conventional, establish which of the three they mean before agreeing with them. On a bid, in a scope of work, or in a handover, the three are not interchangeable and assuming the wrong one changes what you think you are getting.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Adjacent</div>
+    <h2 class="section-title">Rigs That Are <span>Not Drilling Rigs</span></h2>
+    <p style="color:var(--fog);max-width:740px;margin-bottom:24px;">Plenty of things on a lease get called a rig. Most of them do not drill, and the distinction matters when you are reading a job advert or a daily report.</p>
+    <div class="card-grid grid-2">
+      <div class="card">
+        <h3>Workover / Pulling Unit</h3>
+        <p>Services wells that already exist — pulling tubing and rods, changing downhole pumps, replacing packers. Much smaller than a drilling rig, often a single truck-mounted mast, and it moves between wells in hours rather than days.</p>
+      </div>
+      <div class="card">
+        <h3>Coiled Tubing Unit</h3>
+        <p>Runs one continuous reel of tubing rather than jointed pipe, so there are no connections to make. Used for clean-outs, stimulation and fishing, and it can work on a live well without killing it first.</p>
+      </div>
+      <div class="card">
+        <h3>Snubbing Unit</h3>
+        <p>Forces pipe into a well that is under pressure, working against the well pushing back. Built for exactly the situation a drilling rig is not: an live, unkilled wellbore. Also the tool of last resort in some <a href="/pillars/stuck-pipe-and-fishing-operations" style="color:var(--amber);">fishing operations</a>.</p>
+      </div>
+      <div class="card">
+        <h3>Tender-Assisted Rig</h3>
+        <p>A genuine drilling rig, but split in two: a compact drilling package sits on the platform while a tender vessel alongside carries the mud, power and accommodation. Used where a full platform rig would be too heavy or too expensive for the structure.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+
+        <h2 id="reuse">Reuse the diagram</h2>
+        <DiagramEmbed
+          src="/images/blog/rig-types-classification.svg"
+          alt={classAlt}
+          title="Drilling rig types classified by how they are supported"
+          pagePath="/equipment/rig-types"
+          lang="en"
+        />
+      </div>
+      <div>
+        <div class="card" style="border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/bop" class="card-link">→ BOP Types &amp; Stack</a><br><br>
+          <a href="/equipment/drill-string" class="card-link">→ The Drill String</a><br><br>
+          <a href="/drilling/directional" class="card-link">→ Directional Drilling</a>
+        </div>
       </div>
     </div>
   </section>

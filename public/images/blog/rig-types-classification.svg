@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 470" role="img" aria-labelledby="rtTitle rtDesc">
+  <title id="rtTitle">Drilling rig types classified by how they are supported</title>
+  <desc id="rtDesc">Six rig types arranged left to right by increasing water depth. A land rig stands on the ground with no water at all. Three bottom-supported offshore types transfer their weight to the seabed: a submersible barge rests its flooded hull on the bottom in under 70 feet, a jack-up lowers three legs to the seabed and lifts its hull clear of the waves in up to 400 feet, and a platform rig sits on a fixed steel jacket in up to 1,500 feet. Two floating types never touch the seabed and hold station instead: a semi-submersible floats on submerged pontoons held by moorings or thrusters in up to 12,000 feet, and a drillship is a ship hull held on dynamic positioning in up to 15,000 feet. The dividing line is whether the rig rests on the bottom or floats, and that is what the water depth limit is really measuring.</desc>
+
+  <rect width="1200" height="470" fill="#0e0f11"/>
+
+  <!-- group headers -->
+  <text x="100"  y="26" fill="#e8a020" font-family="monospace" font-size="12" letter-spacing="2" text-anchor="middle">ONSHORE</text>
+  <text x="500"  y="26" fill="#e8a020" font-family="monospace" font-size="12" letter-spacing="2" text-anchor="middle">BOTTOM-SUPPORTED</text>
+  <text x="1000" y="26" fill="#e8a020" font-family="monospace" font-size="12" letter-spacing="2" text-anchor="middle">FLOATING</text>
+  <line x1="200" y1="38" x2="200" y2="450" stroke="#2a3347" stroke-width="1" stroke-dasharray="3 4"/>
+  <line x1="800" y1="38" x2="800" y2="450" stroke="#2a3347" stroke-width="1" stroke-dasharray="3 4"/>
+
+  <!-- water body across the five offshore panels -->
+  <rect x="200" y="110" width="1000" height="300" fill="#12243a" opacity="0.55"/>
+  <line x1="200" y1="110" x2="1200" y2="110" stroke="#3d6b96" stroke-width="2"/>
+  <text x="1192" y="104" fill="#3d6b96" font-family="monospace" font-size="10" text-anchor="end">WATERLINE</text>
+
+  <!-- ============ 1. LAND RIG ============ -->
+  <g>
+    <rect x="20" y="110" width="160" height="300" fill="#1a1410" opacity="0.5"/>
+    <line x1="20" y1="110" x2="180" y2="110" stroke="#6b5330" stroke-width="2"/>
+    <text x="100" y="128" fill="#6b5330" font-family="monospace" font-size="9" text-anchor="middle">GROUND</text>
+    <rect x="72" y="100" width="56" height="10" fill="#1c2130" stroke="#d1d8e4" stroke-width="1.5"/>
+    <path d="M84 100 L94 46 L106 46 L116 100 Z" fill="#1c2130" stroke="#e8a020" stroke-width="1.5"/>
+    <line x1="88" y1="82" x2="112" y2="82" stroke="#e8a020" stroke-width="1"/>
+    <line x1="91" y1="64" x2="109" y2="64" stroke="#e8a020" stroke-width="1"/>
+    <text x="100" y="430" fill="#d1d8e4" font-family="monospace" font-size="12" text-anchor="middle">LAND RIG</text>
+    <text x="100" y="448" fill="#8892a4" font-family="monospace" font-size="10" text-anchor="middle">no water</text>
+  </g>
+
+  <!-- ============ 2. SUBMERSIBLE / BARGE ============ -->
+  <g>
+    <rect x="220" y="152" width="160" height="258" fill="#2a3347"/>
+    <line x1="220" y1="152" x2="380" y2="152" stroke="#4a5568" stroke-width="2"/>
+    <rect x="268" y="128" width="64" height="24" fill="#1c2130" stroke="#d1d8e4" stroke-width="1.5"/>
+    <rect x="276" y="118" width="48" height="10" fill="#1c2130" stroke="#d1d8e4" stroke-width="1.5"/>
+    <path d="M284 118 L294 64 L306 64 L316 118 Z" fill="#1c2130" stroke="#e8a020" stroke-width="1.5"/>
+    <line x1="288" y1="100" x2="312" y2="100" stroke="#e8a020" stroke-width="1"/>
+    <line x1="291" y1="82" x2="309" y2="82" stroke="#e8a020" stroke-width="1"/>
+    <text x="300" y="430" fill="#d1d8e4" font-family="monospace" font-size="12" text-anchor="middle">BARGE</text>
+    <text x="300" y="448" fill="#8892a4" font-family="monospace" font-size="10" text-anchor="middle">to 70 ft</text>
+  </g>
+
+  <!-- ============ 3. JACK-UP ============ -->
+  <g>
+    <rect x="420" y="212" width="160" height="198" fill="#2a3347"/>
+    <line x1="420" y1="212" x2="580" y2="212" stroke="#4a5568" stroke-width="2"/>
+    <rect x="462" y="92" width="76" height="16" fill="#1c2130" stroke="#d1d8e4" stroke-width="1.5"/>
+    <line x1="474" y1="108" x2="474" y2="212" stroke="#d1d8e4" stroke-width="2.5"/>
+    <line x1="500" y1="108" x2="500" y2="212" stroke="#d1d8e4" stroke-width="2.5"/>
+    <line x1="526" y1="108" x2="526" y2="212" stroke="#d1d8e4" stroke-width="2.5"/>
+    <path d="M484 92 L494 40 L506 40 L516 92 Z" fill="#1c2130" stroke="#e8a020" stroke-width="1.5"/>
+    <line x1="488" y1="76" x2="512" y2="76" stroke="#e8a020" stroke-width="1"/>
+    <line x1="491" y1="58" x2="509" y2="58" stroke="#e8a020" stroke-width="1"/>
+    <text x="500" y="430" fill="#d1d8e4" font-family="monospace" font-size="12" text-anchor="middle">JACK-UP</text>
+    <text x="500" y="448" fill="#8892a4" font-family="monospace" font-size="10" text-anchor="middle">to 400 ft</text>
+  </g>
+
+  <!-- ============ 4. PLATFORM ============ -->
+  <g>
+    <rect x="620" y="262" width="160" height="148" fill="#2a3347"/>
+    <line x1="620" y1="262" x2="780" y2="262" stroke="#4a5568" stroke-width="2"/>
+    <rect x="666" y="92" width="68" height="16" fill="#1c2130" stroke="#d1d8e4" stroke-width="1.5"/>
+    <path d="M674 108 L654 262 M726 108 L746 262" stroke="#d1d8e4" stroke-width="2"/>
+    <path d="M668 150 L732 150 M662 196 L738 196 M657 240 L743 240" stroke="#d1d8e4" stroke-width="1"/>
+    <path d="M674 108 L732 150 M726 108 L668 150 M668 150 L738 196 M732 150 L662 196" stroke="#d1d8e4" stroke-width="0.8" opacity="0.6"/>
+    <path d="M684 92 L694 40 L706 40 L716 92 Z" fill="#1c2130" stroke="#e8a020" stroke-width="1.5"/>
+    <line x1="688" y1="76" x2="712" y2="76" stroke="#e8a020" stroke-width="1"/>
+    <line x1="691" y1="58" x2="709" y2="58" stroke="#e8a020" stroke-width="1"/>
+    <text x="700" y="430" fill="#d1d8e4" font-family="monospace" font-size="12" text-anchor="middle">PLATFORM</text>
+    <text x="700" y="448" fill="#8892a4" font-family="monospace" font-size="10" text-anchor="middle">to 1,500 ft</text>
+  </g>
+
+  <!-- ============ 5. SEMI-SUBMERSIBLE ============ -->
+  <g>
+    <rect x="820" y="96" width="76" height="14" fill="#1c2130" stroke="#d1d8e4" stroke-width="1.5"/>
+    <line x1="836" y1="110" x2="836" y2="142" stroke="#d1d8e4" stroke-width="3"/>
+    <line x1="880" y1="110" x2="880" y2="142" stroke="#d1d8e4" stroke-width="3"/>
+    <rect x="822" y="142" width="32" height="16" rx="5" fill="#1c2130" stroke="#d1d8e4" stroke-width="1.5"/>
+    <rect x="862" y="142" width="32" height="16" rx="5" fill="#1c2130" stroke="#d1d8e4" stroke-width="1.5"/>
+    <path d="M842 96 L852 44 L864 44 L874 96 Z" fill="#1c2130" stroke="#e8a020" stroke-width="1.5"/>
+    <line x1="846" y1="80" x2="870" y2="80" stroke="#e8a020" stroke-width="1"/>
+    <line x1="849" y1="62" x2="867" y2="62" stroke="#e8a020" stroke-width="1"/>
+    <path d="M824 156 L806 300 M892 156 L910 300" stroke="#8892a4" stroke-width="1" stroke-dasharray="4 4"/>
+    <text x="858" y="322" fill="#8892a4" font-family="monospace" font-size="9" text-anchor="middle">MOORED OR DP</text>
+    <text x="858" y="376" fill="#4a5568" font-family="monospace" font-size="20" text-anchor="middle">≈</text>
+    <text x="858" y="402" fill="#8892a4" font-family="monospace" font-size="9" text-anchor="middle">SEABED FAR BELOW</text>
+    <text x="858" y="430" fill="#d1d8e4" font-family="monospace" font-size="12" text-anchor="middle">SEMI-SUB</text>
+    <text x="858" y="448" fill="#8892a4" font-family="monospace" font-size="10" text-anchor="middle">to 12,000 ft</text>
+  </g>
+
+  <!-- ============ 6. DRILLSHIP ============ -->
+  <g>
+    <path d="M1016 110 L1024 138 L1112 138 L1120 110 Z" fill="#1c2130" stroke="#d1d8e4" stroke-width="1.5"/>
+    <rect x="1030" y="98" width="76" height="12" fill="#1c2130" stroke="#d1d8e4" stroke-width="1.5"/>
+    <path d="M1052 98 L1062 44 L1074 44 L1084 98 Z" fill="#1c2130" stroke="#e8a020" stroke-width="1.5"/>
+    <line x1="1056" y1="80" x2="1080" y2="80" stroke="#e8a020" stroke-width="1"/>
+    <line x1="1059" y1="62" x2="1077" y2="62" stroke="#e8a020" stroke-width="1"/>
+    <line x1="1068" y1="138" x2="1068" y2="300" stroke="#e8a020" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <circle cx="1038" cy="140" r="4" fill="#8892a4"/>
+    <circle cx="1098" cy="140" r="4" fill="#8892a4"/>
+    <text x="1068" y="322" fill="#8892a4" font-family="monospace" font-size="9" text-anchor="middle">THRUSTERS HOLD IT</text>
+    <text x="1068" y="376" fill="#4a5568" font-family="monospace" font-size="20" text-anchor="middle">≈</text>
+    <text x="1068" y="402" fill="#8892a4" font-family="monospace" font-size="9" text-anchor="middle">SEABED FAR BELOW</text>
+    <text x="1068" y="430" fill="#d1d8e4" font-family="monospace" font-size="12" text-anchor="middle">DRILLSHIP</text>
+    <text x="1068" y="448" fill="#8892a4" font-family="monospace" font-size="10" text-anchor="middle">to 15,000 ft</text>
+  </g>
+</svg>
