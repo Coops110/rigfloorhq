@@ -28,8 +28,10 @@ import Footer from '../../components/Footer.astro';
       comparison, the overbalance figure and the safe/unsafe status. Splitting
       it that way is what stops the two pages competing for the same query. */}
   <section class="block">
-    <h2 id="quick-hydrostatic">Start Here: Hydrostatic Pressure</h2>
-    <p>Mud weight and depth is the calculation everything else on this page builds on. Type into both boxes and it works out as you go.</p>
+    <div class="prose">
+      <h2 id="quick-hydrostatic">Start Here: Hydrostatic Pressure</h2>
+      <p>Mud weight and depth is the calculation everything else on this page builds on. Type into both boxes and it works out as you go.</p>
+    </div>
 
     <div class="calc-box" style="max-width:620px;">
       <div class="calc-title">⚙ Quick Hydrostatic</div>
@@ -49,12 +51,16 @@ import Footer from '../../components/Footer.astro';
       </div>
     </div>
 
-    <p class="mt-24">That is the static column only. To check it against pore and fracture pressure and get a kick or lost-circulation warning, use the full <a href="/calculators/hydrostatic">hydrostatic pressure calculator</a>.</p>
+    <div class="prose mt-24">
+      <p>That is the static column only. To check it against pore and fracture pressure and get a kick or lost-circulation warning, use the full <a href="/calculators/hydrostatic">hydrostatic pressure calculator</a>.</p>
+    </div>
   </section>
 
   <section class="block">
-    <h2 id="which-calculator">Which Calculator Do You Need?</h2>
-    <p>Most people land here mid-problem. Find your situation:</p>
+    <div class="prose">
+      <h2 id="which-calculator">Which Calculator Do You Need?</h2>
+      <p>Most people land here mid-problem. Find your situation:</p>
+    </div>
 
     <table class="calc-table">
       <thead>
@@ -80,11 +86,13 @@ import Footer from '../../components/Footer.astro';
       </tbody>
     </table>
 
-    <p>If you're new to this and not sure which applies, start with the <a href="/calculators/hydrostatic">hydrostatic pressure calculator</a> — every other calculation on this page builds on it.</p>
+    <div class="prose mt-24">
+      <p>If you're new to this and not sure which applies, start with the <a href="/calculators/hydrostatic">hydrostatic pressure calculator</a> — every other calculation on this page builds on it.</p>
+    </div>
   </section>
 
   <section class="block">
-    <h2 id="the-calculators">The Calculators</h2>
+    <div class="prose"><h2 id="the-calculators">The Calculators</h2></div>
     <div class="card-grid">
       <div class="card">
         <span class="card-icon">⚙</span>
@@ -118,18 +126,21 @@ import Footer from '../../components/Footer.astro';
   </section>
 
   <section class="block">
-    <h2 id="units">Units and Conventions</h2>
-    <p>Every calculator on this page uses oilfield units as standard:</p>
-    <ul>
-      <li><strong>Mud weight</strong> — pounds per gallon (ppg)</li>
-      <li><strong>Pressure</strong> — pounds per square inch (psi)</li>
-      <li><strong>Depth</strong> — feet, <strong>true vertical depth</strong>, not measured depth</li>
-      <li><strong>Gradient</strong> — psi per foot</li>
-    </ul>
-    <p>The depth distinction matters more than anything else on this list. Hydrostatic pressure depends only on the vertical height of the fluid column, so a deviated or horizontal well can have a measured depth far greater than its TVD while the bottomhole pressure tracks TVD alone. Feeding measured depth into any of these calculators on a deviated well will overstate your pressure, sometimes badly.</p>
+    <div class="prose">
+      <h2 id="units">Units and Conventions</h2>
+      <p>Every calculator on this page uses oilfield units as standard:</p>
+      <ul>
+        <li><strong>Mud weight</strong> — pounds per gallon (ppg)</li>
+        <li><strong>Pressure</strong> — pounds per square inch (psi)</li>
+        <li><strong>Depth</strong> — feet, <strong>true vertical depth</strong>, not measured depth</li>
+        <li><strong>Gradient</strong> — psi per foot</li>
+      </ul>
+      <p>The depth distinction matters more than anything else on this list. Hydrostatic pressure depends only on the vertical height of the fluid column, so a deviated or horizontal well can have a measured depth far greater than its TVD while the bottomhole pressure tracks TVD alone. Feeding measured depth into any of these calculators on a deviated well will overstate your pressure, sometimes badly.</p>
+    </div>
   </section>
 
   <section class="block">
+    <div class="prose">
     <h2 id="faq">Frequently Asked Questions</h2>
 
     <h3>Where does the 0.052 constant come from?</h3>
@@ -149,6 +160,8 @@ import Footer from '../../components/Footer.astro';
 
     <h3>Is my data stored?</h3>
     <p>No. Every calculation runs client-side in your browser. Nothing is transmitted or saved.</p>
+
+    </div>
 
     <div class="note-box mt-40" style="max-width:800px;">
       <strong>Important:</strong> These calculators are for educational and reference purposes. Always follow your company's approved procedures and consult your certified well control supervisor for actual operational decisions. Never make live well control decisions based solely on a reference tool.
