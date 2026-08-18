@@ -19,6 +19,39 @@ import Footer from '../../components/Footer.astro';
     <p class="page-hero-sub">Run real drilling pressure calculations using the exact formulas taught in IWCF and IADC well control certification. Every calculator shows the formula it uses, so you can check the math by hand rather than trusting a number on a screen.</p>
   </div>
 
+  {/* The hub used to be a directory: 708 words, zero inputs, pointing
+      elsewhere. For a plural query like "drilling calculators" that delegates
+      the thing the visitor came to do. This answers it on the spot.
+
+      Deliberately a subset, not a copy of /calculators/hydrostatic. Two inputs
+      and two outputs here; the full page keeps the pore and fracture
+      comparison, the overbalance figure and the safe/unsafe status. Splitting
+      it that way is what stops the two pages competing for the same query. */}
+  <section class="block">
+    <h2 id="quick-hydrostatic">Start Here: Hydrostatic Pressure</h2>
+    <p>Mud weight and depth is the calculation everything else on this page builds on. Type into both boxes and it works out as you go.</p>
+
+    <div class="calc-box" style="max-width:620px;">
+      <div class="calc-title">⚙ Quick Hydrostatic</div>
+      <div class="input-row">
+        <div class="input-group">
+          <label for="q-mw">Mud Weight (ppg)</label>
+          <input type="number" id="q-mw" placeholder="e.g. 12.0" step="any" min="0">
+        </div>
+        <div class="input-group">
+          <label for="q-tvd">True Vertical Depth (ft)</label>
+          <input type="number" id="q-tvd" placeholder="e.g. 10000" step="any" min="0">
+        </div>
+      </div>
+      <div class="calc-output" id="q-output">
+        <div class="output-line"><span class="output-label">Hydrostatic Pressure</span><span class="output-value" id="q-hp">—</span></div>
+        <div class="output-line" style="border-bottom:none;"><span class="output-label">Pressure Gradient</span><span class="output-value" id="q-grad">—</span></div>
+      </div>
+    </div>
+
+    <p class="mt-24">That is the static column only. To check it against pore and fracture pressure and get a kick or lost-circulation warning, use the full <a href="/calculators/hydrostatic">hydrostatic pressure calculator</a>.</p>
+  </section>
+
   <section class="block">
     <h2 id="which-calculator">Which Calculator Do You Need?</h2>
     <p>Most people land here mid-problem. Find your situation:</p>
@@ -173,6 +206,43 @@ import Footer from '../../components/Footer.astro';
     ]
   })} />
 </BaseLayout>
+
+<script>
+  // Live, no Calculate button — matching the converter. The 0.052 here is the
+  // exact 1728/231/144 rather than the rounded field value, same as every
+  // other calculator on the site.
+  const PSI_PER_FT_PER_PPG = 0.05194805194805;
+
+  const mw = document.getElementById('q-mw') as HTMLInputElement | null;
+  const tvd = document.getElementById('q-tvd') as HTMLInputElement | null;
+  const hpOut = document.getElementById('q-hp');
+  const gradOut = document.getElementById('q-grad');
+  const box = document.getElementById('q-output');
+
+  function run() {
+    if (!mw || !tvd || !hpOut || !gradOut) return;
+    const w = parseFloat(mw.value);
+    const d = parseFloat(tvd.value);
+
+    // Gradient needs only mud weight, so show it as soon as that is entered.
+    if (isFinite(w) && w > 0) {
+      gradOut.textContent = (w * PSI_PER_FT_PER_PPG).toFixed(4) + ' psi/ft';
+      box?.classList.add('visible');
+    } else {
+      gradOut.textContent = '—';
+    }
+
+    if (isFinite(w) && isFinite(d) && w > 0 && d > 0) {
+      hpOut.textContent = Math.round(w * PSI_PER_FT_PER_PPG * d).toLocaleString() + ' psi';
+      box?.classList.add('visible');
+    } else {
+      hpOut.textContent = '—';
+    }
+  }
+
+  mw?.addEventListener('input', run);
+  tvd?.addEventListener('input', run);
+</script>
 
 <style>
   .calc-table {
