@@ -254,6 +254,33 @@ Data lives in two places, both connected through Supermetrics: GA4 property
 `548204808`, and Search Console `sc-domain:rigfloorhq.com`. GSC is the more
 honest number for organic, because GA is consent-gated and GSC is not.
 
+### Sitemap lastmod comes from git, and must stay that way
+
+`scripts/git-lastmod.mjs` reads one `git log` pass and gives each URL the date
+of the last commit touching **its own source file**. `astro.config.mjs` feeds
+that to the sitemap's `serialize`.
+
+**Do not replace this with file mtime.** Vercel clones the repo fresh for every
+deploy, so every file carries the same checkout mtime and all 83 URLs would
+claim they changed on every build. Google discounts sitemaps that do that,
+which is worse than sending no lastmod at all — and the sitemap shipped with
+none until 2026-08-18, so there is nothing to fall back to.
+
+Editing `BaseLayout`, `Nav`, `Footer` or `global.css` deliberately bumps
+**nothing**. A font swap or a heading-level fix is not a content change.
+Verified: the self-hosted-fonts commit touched all four of those and moved zero
+dates, while the heading-order commit moved exactly the pages whose own files
+it edited.
+
+A URL whose source cannot be resolved gets **no** lastmod rather than a guessed
+one. Blog posts resolve to `src/content/blog{,-es}/<slug>.md`, not to
+`[slug].astro`, so fixing one post does not restamp all twelve.
+
+Every build prints `N/M sitemap URLs have lastmod` and warns if any are
+missing. It was 83/83 when this was added. If that number drops, a route was
+added whose source path the candidate list does not cover — extend
+`sourceCandidates`, do not paper over it with a default date.
+
 ### The lesson that cost the most to learn
 
 **Ranking first is not the same as getting clicks.** `/careers/salary` ranks
