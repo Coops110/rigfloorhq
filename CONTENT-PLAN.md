@@ -237,19 +237,38 @@ Direct is 57 sessions engaging at 14% against organic's 48%, which looks more
 like bots than an engaged social audience, but the two cannot be separated from
 GA alone.
 
-**Outbound links leak a little authority**, and authority is precisely what is
-binding here. Not a large effect, but the direction is wrong while the site
-cannot get 19 pages crawled.
+**The account is not ready to be pointed at.** As of 18 August the profile
+`@rigfloorhq` has **0 followers** on 2 published videos totalling ~750 views,
+with 2 more scheduled. Sending an engaged calculator user to an empty profile
+converts nobody, and a 0-follower link is weaker social proof than no link.
 
-If it goes in anyway, keep it small and late: one text link after the calculator
-has done its job, never a banner above it, and never competing with the internal
-links that keep a session alive. Then check whether Social ever appears as a
-channel. If it does not within a month, take it out.
+To correct an earlier note in this file: **outbound links do not meaningfully
+weaken the site.** A handful of social links is ordinary and every site has
+them; the PageRank argument is not a real reason to avoid this. The reason to
+wait is that there is nothing on the other end yet.
 
-**The direction that matters is the other one.** `/links` exists to catch TikTok
-traffic and send it into the site, and its `featured` object has to be updated
-by hand for each video. Getting that funnel working is worth more than any link
-pointing away from the site.
+Revisit when the account has an audience worth joining — a few hundred followers
+is the point where the link starts doing work. Then keep it small and late: one
+text link after the calculator has done its job, never a banner above it.
+
+### The inbound funnel is where the loss is
+
+**`/links` exists for exactly this and is not being used.** It is built as the
+link-in-bio target — no nav, no footer, one decision — with a `featured` slot
+pointing at whatever the current video is about. That slot is presently set to
+`/welding/certifications`, correctly matching the live welding test video.
+
+The TikTok bio reads `rigfloorhq.com`, not `rigfloorhq.com/links`. The
+purpose-built page is being bypassed for the homepage.
+
+Worth checking at the same time whether that bio line is a **clickable link at
+all** rather than plain text. ~750 video views have produced no measurable
+social sessions in GA4, and the simplest explanation is that nothing is
+clickable. Note the confound: TikTok's in-app browser strips referrers, so any
+clicks that do land show up as Direct rather than Social.
+
+Fixing the bio target costs nothing and is worth more than any link pointing
+away from the site.
 
 ---
 
