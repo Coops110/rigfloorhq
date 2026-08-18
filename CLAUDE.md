@@ -230,6 +230,18 @@ exactly one row. If old permalinks ever resurface, that query finds them.
 does not exist in `dist/` before adding one, or the file silently wins and the
 rule looks broken for no visible reason.
 
+**Search Console cannot verify a redirect.** URL Inspection's Live Test
+*follows* redirects and reports on the destination, so a working redirect
+displays as "URL is available to Google / Page can be indexed" with the
+destination's structured data — indistinguishable from the old URL still
+serving a page. The index view is no better: it shows the last crawl, which
+predates the redirect. Open the URL in a browser and watch the address bar, or
+read the HTTP response under **View tested page → More info**. Anything else
+is guesswork, and this one cost several round trips before it was settled.
+
+Redirects are Vercel platform config, not build output, so nothing in `dist/`
+proves they work. They can only be confirmed against the live site after deploy.
+
 ## Hostname
 
 The site is **non-`www` everywhere** — `astro.config.mjs` `site`, every
