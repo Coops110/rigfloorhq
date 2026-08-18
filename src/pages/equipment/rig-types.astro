@@ -72,7 +72,16 @@ const jsonLd = {
     <p style="color:var(--mist);line-height:1.8;font-size:15px;max-width:780px;margin-bottom:14px;">Rig types look like a list to memorise. They are not. Almost every difference between them follows from a single question: <strong style="color:var(--white);">does the rig rest on the bottom, or does it float?</strong></p>
     <p style="color:var(--mist);line-height:1.8;font-size:15px;max-width:780px;margin-bottom:14px;">A rig that rests on the bottom is limited by how far down the bottom is. Legs, jackets and hulls can only reach so far, which is why bottom-supported types stop at hundreds of feet rather than thousands. A rig that floats has no such limit — but it now has to <em>stay</em> over the well, so its problems become station-keeping, riser length and the hydrostatic head of a mile of seawater. The water depth figures below are really measuring which of those two problems the rig was built to solve.</p>
 
-    <img src="/images/blog/rig-types-classification.svg" alt={classAlt} width="1200" height="470" style="max-width:100%;height:auto;margin:26px 0;border:1px solid var(--iron);border-radius:6px;" />
+    {/* Two layouts, not one scaled down. The desktop diagram is 1200 wide, so
+        on a phone its labels render at roughly a third size and stop being
+        readable — and this audience is overwhelmingly on a phone. The mobile
+        version stacks the same six rigs vertically at 420 wide so the type
+        stays legible. <picture> fetches only the matching one, and both carry
+        width/height so neither shifts layout while loading. */}
+    <picture>
+      <source media="(max-width: 700px)" srcset="/images/blog/rig-types-classification-mobile.svg" width="420" height="820" />
+      <img src="/images/blog/rig-types-classification.svg" alt={classAlt} width="1200" height="470" style="max-width:100%;height:auto;margin:26px 0;border:1px solid var(--iron);border-radius:6px;" />
+    </picture>
   </section>
 
   <section class="block">
