@@ -1,0 +1,269 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+// CONVERSION FACTORS — DERIVED, NOT REMEMBERED
+// Every figure below comes from exact definitions rather than a rounded value
+// copied from somewhere: 1 US gallon = 231 in³, 1 lb = 0.45359237 kg,
+// 1 US gal = 3.785411784 L, g = 9.80665 m/s², 1 ft = 0.3048 m.
+//
+//   lb/ft³ per ppg  = 1728/231            = 7.4805194805
+//   psi/ft per ppg  = (1728/231)/144      = 0.0519480519   <- the "0.052"
+//   kg/m³  per ppg  = (0.45359237/3.785411784)*1000
+//                                          = 119.8264273169
+//   sg     per ppg  = kg/m³ / 1000        = 0.1198264273
+//
+// NOTE the data-factor attributes below hold the RECIPROCAL of these — the
+// number of base units (ppg, psi, ft) that one of that unit represents — because
+// that is the direction the conversion runs. 1 sg is 8.3454 ppg, not 0.1198.
+//
+// Checked against field values before shipping: 8.33 ppg gives 0.4327 psi/ft
+// and 8.55 ppg gives 0.4442, which are the 0.433 and 0.445 gradients used for
+// fresh and sea water. If you change a factor, re-run that check.
+const faq = [
+  {
+    q: 'How do you convert ppg to specific gravity?',
+    a: 'Multiply pounds per gallon by 0.11983. Water at 8.33 ppg comes out at 0.998 specific gravity, which is the check worth remembering — if your answer is not near 1.0 for water, the conversion went the wrong way. To go back the other way, divide by 0.11983 or multiply by 8.345.',
+  },
+  {
+    q: 'How do you convert ppg to psi per foot?',
+    a: 'Multiply by 0.052. The exact figure is 0.0519481, which comes from a US gallon being 231 cubic inches: a one-foot column over one square inch holds 1728/231/144 gallons. The industry rounds it to 0.052 and that is accurate enough for field work, but this converter uses the full value.',
+  },
+  {
+    q: 'What is the mud weight of fresh water and sea water?',
+    a: 'Fresh water is about 8.33 ppg, which is 0.433 psi/ft and specific gravity 1.0. Sea water is about 8.55 ppg, or 0.445 psi/ft and specific gravity 1.03. Those two gradients are the reference points most pore pressure estimates start from.',
+  },
+  {
+    q: 'What is equivalent mud weight?',
+    a: 'Equivalent mud weight expresses a pressure at depth as the mud weight that would produce it, so pressures at different depths can be compared directly. Divide pressure in psi by 0.052 and by true vertical depth in feet. It is how a formation pressure or a leak-off test result gets quoted in ppg.',
+  },
+  {
+    q: 'Does this converter use TVD or measured depth?',
+    a: 'Neither — a unit conversion between ppg, specific gravity and psi/ft holds no matter what the depth is. Depth only enters when you turn a gradient into an actual pressure, and there it must always be true vertical depth. The depth section here converts feet and metres only.',
+  },
+  {
+    q: 'Why does my kg/m³ figure not match specific gravity times 1000?',
+    a: 'It does, and that is the point — specific gravity is density relative to water at 1000 kg/m³, so the two differ only by a factor of 1000. Seeing both is useful because mud reports in metric regions quote kg/m³ while lab results and most textbooks quote specific gravity.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Mud Weight Converter: ppg, sg and psi/ft"
+  description="Convert mud weight between ppg, specific gravity, lb/ft³, kg/m³ and psi/ft instantly. Also converts pressure and depth. Every field updates as you type."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Mud Weight Converter', href: '/calculators/mud-weight-converter' }]}
+  lang="en"
+>
+  {/* No alternateHref: there is no Spanish version of this page, so BaseLayout
+      emits no hreflang at all rather than declaring an alternate that does not
+      reciprocate. The Nav switcher still goes somewhere sensible. */}
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Mud Weight <span>Converter</span></h1>
+    <p class="page-hero-sub">Type into any box and the rest update as you go. Mud weight, pressure and depth, in the units actually used on a rig floor and in a lab report.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">⚖ Mud Weight / Density</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;">
+            <button type="button" class="preset-btn" data-ppg="8.33">Fresh water 8.33</button>
+            <button type="button" class="preset-btn" data-ppg="8.55">Sea water 8.55</button>
+            <button type="button" class="preset-btn" data-ppg="10">10 ppg</button>
+            <button type="button" class="preset-btn" data-ppg="16">16 ppg</button>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="u-ppg">Pounds per gallon (ppg)</label>
+              <input type="number" id="u-ppg" class="conv" data-group="mw" data-factor="1" placeholder="e.g. 12.0" step="any">
+            </div>
+            <div class="input-group">
+              <label for="u-sg">Specific gravity (sg)</label>
+              <input type="number" id="u-sg" class="conv" data-group="mw" data-factor="8.345404452019" placeholder="e.g. 1.44" step="any">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="u-psift">Pressure gradient (psi/ft)</label>
+              <input type="number" id="u-psift" class="conv" data-group="mw" data-factor="19.25" placeholder="e.g. 0.624" step="any">
+            </div>
+            <div class="input-group">
+              <label for="u-lbft3">Density (lb/ft³)</label>
+              <input type="number" id="u-lbft3" class="conv" data-group="mw" data-factor="0.133680555556" placeholder="e.g. 89.8" step="any">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="u-kgm3">Density (kg/m³)</label>
+              <input type="number" id="u-kgm3" class="conv" data-group="mw" data-factor="0.008345404452" placeholder="e.g. 1438" step="any">
+            </div>
+            <div class="input-group">
+              <label for="u-bar10m">Gradient (bar/10m)</label>
+              <input type="number" id="u-bar10m" class="conv" data-group="mw" data-factor="8.509944223582" placeholder="e.g. 1.41" step="any">
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">◉ Pressure</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="p-psi">psi</label>
+              <input type="number" id="p-psi" class="conv" data-group="p" data-factor="1" placeholder="e.g. 5200" step="any">
+            </div>
+            <div class="input-group">
+              <label for="p-bar">bar</label>
+              <input type="number" id="p-bar" class="conv" data-group="p" data-factor="14.503773773" placeholder="e.g. 358" step="any">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="p-kpa">kPa</label>
+              <input type="number" id="p-kpa" class="conv" data-group="p" data-factor="0.14503773773" placeholder="e.g. 35853" step="any">
+            </div>
+            <div class="input-group">
+              <label for="p-kgcm2">kg/cm²</label>
+              <input type="number" id="p-kgcm2" class="conv" data-group="p" data-factor="14.2233433" placeholder="e.g. 366" step="any">
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">↕ Depth</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="d-ft">Feet (ft)</label>
+              <input type="number" id="d-ft" class="conv" data-group="d" data-factor="1" placeholder="e.g. 10000" step="any">
+            </div>
+            <div class="input-group">
+              <label for="d-m">Metres (m)</label>
+              <input type="number" id="d-m" class="conv" data-group="d" data-factor="3.280839895" placeholder="e.g. 3048" step="any">
+            </div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Reference points worth knowing by heart.</strong> Fresh water <span class="highlight">8.33 ppg</span> = 0.433 psi/ft = sg 1.00. Sea water <span class="highlight">8.55 ppg</span> = 0.445 psi/ft = sg 1.03. If a conversion lands nowhere near these for something you know is water, it went the wrong way.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Where the 0.052 Comes From</h2>
+        <p>The constant that turns mud weight into a pressure gradient is not arbitrary, and knowing where it comes from makes it much harder to misuse.</p>
+        <div class="formula-block">
+          <div class="formula-label">Pressure gradient</div>
+          <div class="formula-eq">psi/ft = ppg × 0.052</div>
+          <div class="formula-note">Exactly: (1728 ÷ 231) ÷ 144 = 0.0519481. A US gallon is 231 cubic inches and a cubic foot is 1728, so a one-foot column over one square inch holds 0.0519481 gallons.</div>
+        </div>
+        <p>This converter uses the full value rather than the rounded one. Over a 10,000 ft well the difference between 0.052 and 0.0519481 is about 5 psi at 10 ppg — immaterial on the floor, but there is no reason to carry the error.</p>
+
+        <h3>Which unit gets used where</h3>
+        <ul>
+          <li><strong>ppg</strong> — the working unit on most US and international rigs, and what mud reports are written in.</li>
+          <li><strong>Specific gravity</strong> — lab results, textbooks and anything comparing a fluid to water.</li>
+          <li><strong>psi/ft</strong> — pore pressure and fracture gradients, and anything being compared against a leak-off test.</li>
+          <li><strong>kg/m³ and bar/10m</strong> — metric operations, common in Europe, Latin America and much of the Middle East.</li>
+          <li><strong>lb/ft³</strong> — cement and bulk material specifications more often than drilling fluid.</li>
+        </ul>
+
+        <p>To turn one of these gradients into an actual pressure at depth, use the <a href="/calculators/hydrostatic">hydrostatic pressure calculator</a>, which applies the same constant against true vertical depth. For what mud weight has to sit between, see the <a href="/calculators/mud-weight-window">mud weight window calculator</a>, and for the underlying theory the <a href="/drilling/mud-weight">mud weight and pressure reference</a> works through it properly.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .preset-btn {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--mist);
+    background: var(--iron);
+    border: 1px solid var(--iron);
+    border-radius: 3px;
+    padding: 6px 11px;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .preset-btn:hover, .preset-btn:focus-visible {
+    border-color: var(--rust);
+    color: var(--white);
+  }
+</style>
+
+<script>
+  // Live conversion. Each input carries the number of base units it represents,
+  // so a value converts to base by multiplying and out again by dividing. Base
+  // units are ppg, psi and ft.
+  //
+  // Only fields the user is not typing in are rewritten — overwriting the
+  // active field would fight the caret and make partial entries like "1." or
+  // a leading minus impossible to type.
+  const DECIMALS: Record<string, number> = {
+    'u-ppg': 3, 'u-sg': 4, 'u-psift': 4, 'u-lbft3': 2, 'u-kgm3': 1, 'u-bar10m': 4,
+    'p-psi': 1, 'p-bar': 4, 'p-kpa': 2, 'p-kgcm2': 4,
+    'd-ft': 1, 'd-m': 2,
+  };
+
+  const inputs = Array.from(document.querySelectorAll<HTMLInputElement>('input.conv'));
+
+  function trim(n: number, places: number): string {
+    // Fixed places, then strip trailing zeros so 1.5000 reads as 1.5
+    return n.toFixed(places).replace(/\.?0+$/, '') || '0';
+  }
+
+  function spread(source: HTMLInputElement) {
+    const group = source.dataset.group;
+    const raw = source.value.trim();
+    const peers = inputs.filter((i) => i.dataset.group === group && i !== source);
+
+    if (raw === '') {
+      peers.forEach((i) => { i.value = ''; });
+      return;
+    }
+    const val = parseFloat(raw);
+    if (!isFinite(val)) return;
+
+    const base = val * parseFloat(source.dataset.factor!);
+    peers.forEach((peer) => {
+      const converted = base / parseFloat(peer.dataset.factor!);
+      peer.value = trim(converted, DECIMALS[peer.id] ?? 4);
+    });
+  }
+
+  inputs.forEach((input) => {
+    input.addEventListener('input', () => spread(input));
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('.preset-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const ppg = document.getElementById('u-ppg') as HTMLInputElement;
+      ppg.value = btn.dataset.ppg!;
+      spread(ppg);
+      ppg.focus();
+    });
+  });
+</script>
