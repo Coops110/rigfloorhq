@@ -1,0 +1,277 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Drilling Formulas Cheat Sheet",
+  "description": "The drilling calculations used on the rig floor, with units, constants and worked numbers: hydrostatic pressure, kill sheet, capacities, annular velocity, pump output, buoyancy and survey.",
+  "about": "Drilling engineering"
+};
+---
+<BaseLayout
+  title="Drilling Formulas Cheat Sheet"
+  description="The drilling formulas used on shift, with units and constants written out: hydrostatic pressure, kill sheet, capacities, annular velocity and buoyancy."
+  breadcrumbs={[{ label: 'Drilling', href: '/drilling' }, { label: 'Formulas', href: '/drilling/formulas' }]}
+  jsonLd={jsonLd}
+  lang="en"
+>
+  {/* No alternateHref: there is no Spanish version of this page yet, so
+      BaseLayout emits no hreflang at all rather than declaring an alternate
+      that does not reciprocate. The Nav switcher still goes somewhere sensible. */}
+  <Nav slot="nav" lang="en" alternateHref="/es/drilling" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Drilling — Quick Reference</div>
+    <h1>Drilling Formulas <span>Cheat Sheet</span></h1>
+    <p class="page-hero-sub">The calculations that actually get used on tour, with the units written out and every constant explained rather than assumed. Built to be checked against, not read start to finish.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+
+        <div class="note-box">
+          <strong>Read the units before you use the number.</strong> Almost every mistake on this page's subject comes from mixing unit systems, not from getting the algebra wrong. Every formula here is in oilfield units — <strong>ppg</strong>, <strong>psi</strong>, <strong>feet</strong>, <strong>inches</strong>, <strong>barrels</strong>, <strong>gpm</strong> — and depth means <strong>true vertical depth</strong> unless it says otherwise. Pressure does not care how far you drilled sideways.
+        </div>
+
+        <h2 id="pressure">Pressure and Hydrostatics</h2>
+        <p>The foundation. Everything in well control resolves back to these three lines.</p>
+
+        <div class="formula-block">
+          <div class="formula-label">Hydrostatic Pressure</div>
+          <div class="formula-eq">HP (psi) = 0.052 × MW (ppg) × TVD (ft)</div>
+          <div class="formula-note">The pressure the mud column exerts at depth. TVD, never measured depth.</div>
+        </div>
+
+        <div class="formula-block">
+          <div class="formula-label">Pressure Gradient</div>
+          <div class="formula-eq">Gradient (psi/ft) = 0.052 × MW (ppg)</div>
+          <div class="formula-note">Freshwater ≈ 0.433 psi/ft · seawater ≈ 0.444 psi/ft · overburden ≈ 1.0 psi/ft.</div>
+        </div>
+
+        <div class="formula-block">
+          <div class="formula-label">Equivalent Mud Weight</div>
+          <div class="formula-eq">EMW (ppg) = P (psi) ÷ (0.052 × TVD (ft))</div>
+          <div class="formula-note">Converts any pressure back into the mud weight that would produce it. This is how a leak-off test result becomes a number you can compare to mud weight.</div>
+        </div>
+
+        <div class="formula-block">
+          <div class="formula-label">Equivalent Circulating Density</div>
+          <div class="formula-eq">ECD (ppg) = MW (ppg) + APL (psi) ÷ (0.052 × TVD (ft))</div>
+          <div class="formula-note">APL = annular pressure loss. ECD always exceeds static mud weight while pumping, which is why wells are lost on connections and regained on them too.</div>
+        </div>
+
+        <div class="formula-block">
+          <div class="formula-label">Overbalance</div>
+          <div class="formula-eq">Overbalance (psi) = HP − Pore Pressure</div>
+          <div class="formula-note">Negative overbalance is a kick in progress. Excessive overbalance is differential sticking waiting to happen.</div>
+        </div>
+
+        <p>The full treatment of these, including the mud weight window and swab and surge, is on the <a href="/drilling/mud-weight">mud weight and hydrostatic pressure page</a>, and you can run them against your own numbers in the <a href="/calculators/hydrostatic">hydrostatic pressure calculator</a>.</p>
+
+        <h2 id="conversions">Mud Weight Conversions</h2>
+        <p>The same fluid gets reported four different ways depending on who is writing the report. These are exact, not rounded.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>From ppg, multiply by</th><th>To get</th><th>12.0 ppg becomes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>÷ 8.3454</td><td>Specific gravity</td><td>1.438</td></tr>
+              <tr><td>÷ 19.25</td><td>psi/ft</td><td>0.6234</td></tr>
+              <tr><td>× 7.4805</td><td>lb/ft³</td><td>89.77</td></tr>
+              <tr><td>× 119.826</td><td>kg/m³</td><td>1,437.9</td></tr>
+              <tr><td>÷ 8.5099</td><td>bar/10 m</td><td>1.410</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Note that <strong>19.25 is the exact reciprocal of the 0.052 constant</strong> — they are the same conversion written two ways, which is worth knowing when a figure looks off by a factor you cannot place. The <a href="/calculators/mud-weight-converter">mud weight converter</a> does all five live.</p>
+
+        <h2 id="well-control">Well Control and the Kill Sheet</h2>
+        <p>Shut-in pressures are readings. These turn them into a plan.</p>
+
+        <div class="formula-block">
+          <div class="formula-label">Kill Mud Weight</div>
+          <div class="formula-eq">KMW (ppg) = OMW (ppg) + SIDPP (psi) ÷ (0.052 × TVD (ft))</div>
+          <div class="formula-note">OMW = original mud weight · SIDPP = shut-in drillpipe pressure. The drillpipe is the clean gauge because it is full of known mud.</div>
+        </div>
+
+        <div class="formula-block">
+          <div class="formula-label">Initial Circulating Pressure</div>
+          <div class="formula-eq">ICP (psi) = SIDPP + SCRP</div>
+          <div class="formula-note">SCRP = slow circulating rate pressure, recorded before the kick, not estimated during it.</div>
+        </div>
+
+        <div class="formula-block">
+          <div class="formula-label">Final Circulating Pressure</div>
+          <div class="formula-eq">FCP (psi) = SCRP × (KMW ÷ OMW)</div>
+          <div class="formula-note">Where the drillpipe pressure should settle once kill mud reaches the bit.</div>
+        </div>
+
+        <div class="formula-block">
+          <div class="formula-label">Pressure Step Down the String</div>
+          <div class="formula-eq">Step (psi/100 stk) = (ICP − FCP) ÷ (strokes to bit ÷ 100)</div>
+          <div class="formula-note">The schedule you hold the drillpipe pressure to while displacing the string.</div>
+        </div>
+
+        <div class="formula-block">
+          <div class="formula-label">MAASP</div>
+          <div class="formula-eq">MAASP (psi) = (FG (ppg) − MW (ppg)) × 0.052 × Shoe TVD (ft)</div>
+          <div class="formula-note">Maximum allowable annular surface pressure. FG = fracture gradient as EMW at the shoe. Recalculate it every time mud weight changes — it moves, and people forget.</div>
+        </div>
+
+        <div class="formula-block">
+          <div class="formula-label">Influx Height and Density</div>
+          <div class="formula-eq">h (ft) = Pit gain (bbl) ÷ Annular capacity (bbl/ft)<br />ρ (ppg) = MW − (SICP − SIDPP) ÷ (0.052 × h)</div>
+          <div class="formula-note">Roughly: below ~4 ppg treat it as gas, above ~7 ppg as liquid. The gap between SICP and SIDPP is what tells you.</div>
+        </div>
+
+        <p>The procedure these feed — shut in, read, circulate — is on the <a href="/drilling/well-control">well control page</a>, and the <a href="/calculators/kill-sheet">kill sheet calculator</a> runs the whole sequence.</p>
+
+        <h2 id="capacities">Capacities, Volumes and Strokes</h2>
+        <p>All three capacity formulas are the same formula. Only the diameters change.</p>
+
+        <div class="formula-block">
+          <div class="formula-label">Capacity and Displacement</div>
+          <div class="formula-eq">Pipe capacity (bbl/ft) = ID² ÷ 1029.4<br />Annular capacity (bbl/ft) = (D<sub>hole</sub>² − D<sub>pipe</sub>²) ÷ 1029.4<br />Displacement (bbl/ft) = (OD² − ID²) ÷ 1029.4</div>
+          <div class="formula-note">All diameters in inches. 1029.4 is exact to four figures — it is 9,702 in³ per barrel divided by the area constant.</div>
+        </div>
+
+        <div class="formula-block">
+          <div class="formula-label">Pump Output — Triplex</div>
+          <div class="formula-eq">Output (bbl/stk) = 0.000243 × Liner ID² (in) × Stroke (in) × Efficiency</div>
+          <div class="formula-note">Volumetric efficiency is typically 0.95–1.00. Measure it rather than assuming it; a worn pump quietly ruins every stroke count downstream.</div>
+        </div>
+
+        <div class="formula-block">
+          <div class="formula-label">Strokes and Bottoms Up</div>
+          <div class="formula-eq">Strokes = Volume (bbl) ÷ Pump output (bbl/stk)</div>
+          <div class="formula-note">Strokes to bit uses drill string capacity. Bottoms up uses annular volume. Total circulation is both.</div>
+        </div>
+
+        <div class="formula-block">
+          <div class="formula-label">Annular Velocity</div>
+          <div class="formula-eq">AV (ft/min) = 24.5 × Q (gpm) ÷ (D<sub>hole</sub>² − D<sub>pipe</sub>²)</div>
+          <div class="formula-note">The number that decides whether cuttings come out. Hole cleaning fails in high-angle sections long before AV looks bad on paper.</div>
+        </div>
+
+        <p>Why hole cleaning stops obeying annular velocity past about 30° is covered in <a href="/blog/hole-cleaning-high-angle-wells">hole cleaning in high-angle wells</a>.</p>
+
+        <h2 id="buoyancy">Buoyancy and String Weight</h2>
+
+        <div class="formula-block">
+          <div class="formula-label">Buoyancy Factor</div>
+          <div class="formula-eq">BF = 1 − (MW (ppg) ÷ 65.5)</div>
+          <div class="formula-note">Buoyed weight = air weight × BF. At 12 ppg, BF ≈ 0.817, so a string loses about 18% of its weight.</div>
+        </div>
+
+        <p>A note on 65.5: steel at 489.5 lb/ft³ works out at <strong>65.44 ppg</strong>, not 65.5. The rounded figure is the field convention and the difference is under a tenth of a percent, but if a number will not reconcile against a supplier's tally book, this is one of the places the discrepancy hides.</p>
+
+        <div class="formula-block">
+          <div class="formula-label">Neutral Point</div>
+          <div class="formula-eq">Max WOB (lb) = Collar weight (lb/ft) × Length (ft) × BF</div>
+          <div class="formula-note">Keep the neutral point in the collars. Putting drill pipe in compression is how you buy a fatigue failure.</div>
+        </div>
+
+        <p>Pipe grades, inspection classes and where the neutral point should sit are on the <a href="/equipment/drill-string">drill string page</a>.</p>
+
+        <h2 id="survey">Directional and Survey</h2>
+
+        <div class="formula-block">
+          <div class="formula-label">TVD over a Constant-Inclination Section</div>
+          <div class="formula-eq">ΔTVD (ft) = ΔMD (ft) × cos I</div>
+          <div class="formula-note">I = inclination from vertical. In a build section use minimum curvature rather than this.</div>
+        </div>
+
+        <div class="formula-block">
+          <div class="formula-label">Build Rate</div>
+          <div class="formula-eq">Build rate (°/100 ft) = (I₂ − I₁) × 100 ÷ Course length (ft)</div>
+          <div class="formula-note">Inclination change only. It is not the same as dogleg severity unless azimuth is constant.</div>
+        </div>
+
+        <div class="formula-block">
+          <div class="formula-label">Dogleg Severity</div>
+          <div class="formula-eq">cos β = cos(I₂ − I₁) − sin I₁ × sin I₂ × (1 − cos(A₂ − A₁))<br />DLS (°/100 ft) = β × 100 ÷ Course length (ft)</div>
+          <div class="formula-note">The minimum curvature dogleg angle β, accounting for both inclination and azimuth change. When azimuth is unchanged it collapses to the build rate above.</div>
+        </div>
+
+        <p>Well profiles, build sections and why dogleg severity limits matter are on the <a href="/drilling/directional">directional drilling page</a>.</p>
+
+        <h2 id="constants">The Constants, and Where They Come From</h2>
+        <p>Every rounded constant on this page is a unit conversion, not a fudge factor. Knowing the derivation is what lets you rebuild one when a figure looks wrong.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Constant</th><th>Exact value</th><th>What it is</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>0.052</td><td>0.0519481</td><td>12 ÷ 231 — cubic inches per foot of a 1 in² column, over cubic inches per gallon</td></tr>
+              <tr><td>19.25</td><td>19.25</td><td>Exactly 1 ÷ 0.0519481. The same conversion inverted</td></tr>
+              <tr><td>1029.4</td><td>1029.4142</td><td>Barrel volume ÷ area constant, giving bbl per foot from inches squared</td></tr>
+              <tr><td>24.5</td><td>24.5099</td><td>gpm to ft/min through an annulus measured in inches</td></tr>
+              <tr><td>0.000243</td><td>0.00024286</td><td>Three cylinders, per stroke, expressed in barrels</td></tr>
+              <tr><td>8.3454</td><td>8.345404</td><td>Pounds per gallon of fresh water — the specific gravity anchor</td></tr>
+              <tr><td>1 bbl</td><td>42 gal = 5.6146 ft³</td><td>9,702 cubic inches</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="worked">One Worked Example, End to End</h2>
+        <p>A 12.0 ppg mud at 10,000 ft TVD. The well kicks and is shut in on 400 psi drillpipe, 550 psi casing, with a 12 bbl pit gain in a 8½ in hole around 5 in pipe.</p>
+
+        <ul>
+          <li><strong>Hydrostatic:</strong> 0.052 × 12.0 × 10,000 = <strong>6,240 psi</strong></li>
+          <li><strong>Formation pressure:</strong> 6,240 + 400 = <strong>6,640 psi</strong></li>
+          <li><strong>Kill mud weight:</strong> 12.0 + 400 ÷ (0.052 × 10,000) = 12.0 + 0.77 = <strong>12.77 ppg</strong>, call it 12.8</li>
+          <li><strong>Annular capacity:</strong> (8.5² − 5²) ÷ 1029.4 = (72.25 − 25) ÷ 1029.4 = <strong>0.0459 bbl/ft</strong></li>
+          <li><strong>Influx height:</strong> 12 ÷ 0.0459 = <strong>261 ft</strong></li>
+          <li><strong>Influx density:</strong> 12.0 − (550 − 400) ÷ (0.052 × 261) = 12.0 − 11.05 = <strong>0.95 ppg</strong> — gas</li>
+        </ul>
+
+        <p>That last line is the one that changes the shift. A 0.95 ppg influx is gas, gas migrates, and a gas kick shut in on a well that is not being circulated will carry its pressure to surface whether or not anyone is watching the gauges. The arithmetic took a minute; the conclusion decides what happens for the next twelve hours.</p>
+
+        <div class="note-box">
+          <strong>These are the standard field equations, not a substitute for your well programme.</strong> Rig-specific procedures, your operator's well control policy and the standard governing your jurisdiction take precedence over anything on this page. Check pump output by measurement, check slow circulating rates on tour, and verify fracture gradient against the actual leak-off test rather than a gradient assumption.
+        </div>
+
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#pressure">Pressure &amp; Hydrostatics</a>
+          <a href="#conversions">Mud Weight Conversions</a>
+          <a href="#well-control">Well Control &amp; Kill Sheet</a>
+          <a href="#capacities">Capacities &amp; Strokes</a>
+          <a href="#buoyancy">Buoyancy &amp; String Weight</a>
+          <a href="#survey">Directional &amp; Survey</a>
+          <a href="#constants">The Constants</a>
+          <a href="#worked">Worked Example</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>🧮 Run the Numbers</h3>
+          <p>Every formula on this page has a calculator behind it that shows its working.</p>
+          <a href="/calculators" class="card-link">Open the Calculators →</a>
+        </div>
+
+        <div class="card" style="margin-top:1px;border:1px solid var(--iron);border-radius:0 0 4px 4px;">
+          <h3>Related Reading</h3>
+          <a href="/drilling/mud-weight" class="card-link">→ Mud Weight &amp; Pressure</a><br><br>
+          <a href="/drilling/well-control" class="card-link">→ Well Control &amp; Kicks</a><br><br>
+          <a href="/calculators/kill-sheet" class="card-link">→ Kill Sheet Calculator</a><br><br>
+          <a href="/calculators/mud-weight-converter" class="card-link">→ Mud Weight Converter</a><br><br>
+          <a href="/equipment/drill-string" class="card-link">→ Drill String Components</a><br><br>
+          <a href="/drilling/directional" class="card-link">→ Directional Drilling</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
