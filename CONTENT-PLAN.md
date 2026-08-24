@@ -421,6 +421,76 @@ be clicked because they rank on page seven, and one of the two that do rank
 cannot be clicked because Google answers salary in the SERP. That is the whole
 explanation.
 
+### The US-only drilldown, and why "work the page-2 list" has no list
+
+The instruction was: filter to United States, sort queries by impressions,
+treat anything with 200+ impressions and under 5 clicks as a page-2 page, and
+work that list before writing anything new.
+
+Run it and **the list is empty**. Zero US queries have 200+ impressions. The
+largest named US query is `blowout preventer` at **143 impressions, position
+69.8**. US named-query distribution, same 90 days:
+
+| Position | Impressions | Share of US named | Clicks |
+|---|---|---|---|
+| 1-3 | 115 | 3.6% | 0 |
+| 4-10 | 256 | 8.0% | 3 |
+| **11-25** | **55** | **1.7%** | **0** |
+| 26-50 | 544 | 16.9% | 0 |
+| 51+ | 2,225 | 69.2% | 0 |
+
+Worse than the site-wide picture, not better. And one number to keep in mind
+whenever US CTR is quoted: **US named-query CTR is 0.09%, not 0.32%.** The
+0.32% is carried almost entirely by the anonymised `(unknown)` bucket — 2,254
+impressions and 12 of the 21 US clicks, at position 13.8. GSC hides those
+queries, so they cannot be worked as a list either.
+
+"Ignore monetization until US CTR is above 2%" is the right instinct. Just
+note that no title or snippet edit gets there from position 67.
+
+### BOP: the diagnosis is right, the prescription is wrong
+
+**Right:** BOP is genuinely the topic the US market associates with this site.
+US BOP queries total **1,218 impressions, 37.9% of all US named impressions,
+across 25 queries — at a weighted average position of 66.7, with zero clicks.**
+By comparison the welding cluster is 193 US impressions. Site-wide the ordering
+flips (underwater welding 3,796 vs BOP 2,075), because the welding demand is
+Gulf-based, but within the US, BOP is the franchise.
+
+**Wrong:** the prescription was to consolidate — "you almost certainly have
+this content spread across equipment pages, the glossary, and maybe a blog
+post, all competing with each other", absorb them into one canonical page and
+301 the old URLs. Checked against the repo and against GSC page data:
+
+- `/equipment/bop` is **2,701 words** and is the *only* URL receiving BOP
+  impressions. Nothing is competing with it.
+- **There is no BOP glossary entry.** `grep` on `src/pages/glossary/index.astro`
+  returns nothing for `blowout`. `/glossary` is one 1,177-word page at 95
+  impressions.
+- The next-highest BOP mention count is `blog/well-control-basics`, which ranks
+  for well-control queries, not BOP ones.
+
+There is no cannibalisation to fix, and the consolidation was already done —
+that page was expanded earlier in August. Following this advice would mean
+301-ing live URLs to solve a problem that does not exist. See `CLAUDE.md` on
+redirects before ever doing that.
+
+What is actually true is the uncomfortable version: a good, long, correctly
+targeted page with real US demand behind it is sitting at position 67. That is
+the authority constraint stated a third way, and it is the same answer as
+`/welding/underwater-welding`.
+
+### The UAE anomaly is not an anomaly
+
+Flagged as "890 impressions, 3 clicks — something is ranking around position
+20-30 for a high-volume query, find it, that's one page carrying 6% of your
+impressions." Pulled it: UAE is **941 impressions, 3 clicks, average position
+56.9**, and it is not one page at 20-30. It is the underwater welding cluster —
+nine queries (`hyperbaric underwater welding`, `dry hyperbaric welding`,
+`hyperbaric welding`, `wet welding` and variants) totalling **657 impressions
+at positions 61-83, all zero clicks**. Same page, same problem, different
+country. Nothing to find.
+
 ### The money in this niche is affiliate and direct, not display
 
 Joinable now, no traffic minimum:
