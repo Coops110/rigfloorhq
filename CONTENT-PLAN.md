@@ -167,6 +167,26 @@ skipping it is how they accumulated in the first place.
 - **Offshore Life & Rotations** — careers covers roles and pay but not
   rotations, HUET/BOSIET in practice, or what the job is like. No overlap risk.
 
+### Queued from the monetization assessment (24 August 2026)
+
+Not started. In order, and none of them is display ads:
+
+1. **Verify Journey by Mediavine's actual session floor.** 1,000 vs 10,000
+   changes whether any of this is a this-year plan.
+2. **US Gulf credentials comparison page.** IADC RigPass vs SafeGulf vs
+   Veriforce Basic Orientation 7.0 vs BOSIET vs the forthcoming API WorkSafe
+   Offshore. The site has zero coverage and GSC already shows ~200
+   impressions/month of long conversational queries asking exactly this,
+   sitting at positions 38-95. It is also the natural page to monetize with
+   Petrolessons and Oilandgasclub, and the traffic proof point for a
+   LearnToDrill email.
+3. **Cheat-sheet PDF and email capture on the calculators** — after the
+   privacy and cookie pages are updated to cover it.
+4. **Affiliate network accounts**: ShareASale, CJ, AvantLink, Impact,
+   FlexOffers. Then WorkingPerson on the PPE guide.
+5. **Direct email to LearnToDrill**, once there is a traffic number worth
+   quoting.
+
 ### Known thin pages, if a week needs filling
 
 Hubs and calculators, where brevity is partly appropriate — expand only where
@@ -315,6 +335,116 @@ abandoned**, which is worse than no icons at all. Add them when at least one
 account has an audience worth showing.
 
 ---
+
+## Monetization
+
+Assessed 24 August 2026, against a second opinion that had been researching ad
+networks. Two of its conclusions were sound and one was contaminated — it had
+confused this site with a food blog mid-conversation and carried "food is
+Mediavine's strongest vertical, $20-40 RPM eventually" and "put an email
+capture on the recipes" into advice about RigFloorHQ. Neither applies.
+
+### There is no display-ads plan worth making yet
+
+Realistic AdSense page RPM here is **$1.50-$4**, not the $15-40 quoted for
+lifestyle sites. Three reasons, all structural:
+
+- The intent is informational. Calculators and a glossary are the opposite of
+  purchase intent, and that is what advertisers bid on.
+- The geography is wrong for CPM. A global drilling workforce plus 25 Spanish
+  pages means Middle East, LatAm and West Africa traffic, worth a fraction of
+  US traffic to the same advertiser.
+- Industrial B2B is mid-tier programmatic. Rate cards say $5-15 CPM, the
+  publisher receives roughly 68% of it, and most open-exchange inventory
+  actually clears at $1-4.
+
+At the current **~30 sessions/month** that is cents. Ads would also slow the
+site down, against rankings that are the only thing currently compounding.
+Revisit display when sessions are in four figures, not before.
+
+Network thresholds as understood on 24 August 2026 — **verify directly, these
+move**: Ezoic raised its minimum from 10,000 to 250,000 users/month in
+February 2026 and is out of reach; Raptive dropped to 25,000 pageviews;
+Journey by Mediavine is the realistic entry point. `CLAUDE.md` records
+Journey's floor as 10,000 sessions and the second opinion says 1,000. **That
+discrepancy is unresolved and matters a lot** — 1,000 is reachable this year
+and 10,000 is not. Check Mediavine's own page before planning around either.
+
+### The money in this niche is affiliate and direct, not display
+
+Joinable now, no traffic minimum:
+
+- **WorkingPerson.com** — 10%, 90-day cookie, via ShareASale / CJ / AvantLink.
+  FR clothing, boots, gloves. Fits the PPE guide directly.
+- **Petrolessons** — 10% per sale, free to join, global, PayPal monthly after a
+  30-day refund window.
+- **Oilandgasclub** — application-based. API, ASNT, CSWIP, HTRI courses, and it
+  pays on subscription renewals.
+- **Helly Hansen Workwear US** — industrial workwear, standard networks.
+- **Amazon Associates** — fallback only. Business and industrial products pay
+  2.5%, capped at $225 per item.
+
+Join **ShareASale, CJ, AvantLink, Impact and FlexOffers as accounts** rather
+than chasing merchants one at a time; most industrial merchants sit inside
+those.
+
+**No public programme — email them directly. This is where the money is.**
+Well Control School, Wild Well Control, LearnToDrill, PetroSkills and PETEX run
+no affiliate programme at all. Ticket size makes the email worth writing: Well
+Control School lists courses at **$1,125**, so a negotiated 10% referral is
+**$112 a head**. LearnToDrill is Houston-based, runs gamified web simulations
+with IADC and IWCF accreditation, and is new enough to actually need
+distribution — the warmest first pitch.
+
+Sponsored-post rate, for when there is traffic to sell: (monthly pageviews ÷
+1,000) × CPM at $20-50 for sponsored content. B2B technical blogs command 2-5x
+lifestyle rates at equivalent traffic.
+
+### The email list is the asset, and it is buildable at any traffic level
+
+B2B professional niches under 2,500 subscribers charge $100-400 per newsletter
+placement; B2B direct sponsorship runs $100-150 CPM against $25-40
+programmatic. That is a 30-60x multiple on the $1.50-$4 display RPM above, and
+unlike display it does not require scale first.
+
+Concretely: a **"drilling formulas cheat sheet" PDF** offered on the calculator
+pages. Those pages already convert far above site average on intents that
+require opening the page (`stop cards in oil field` 10.3%,
+`/calculators/kill-sheet` 6.3%, against 0.57% site-wide), which is exactly the
+audience worth capturing.
+
+**Do not ship an email capture without deciding the consent story first.**
+`GA_ID` in `src/lib/site.js` currently governs whether this site claims to set
+cookies at all, and the privacy and cookie pages are wired to it in both
+languages. A signup form is personal data processing under UK GDPR regardless
+of cookies, and the policy pages have to say so before the form goes live.
+
+### What the CTR advice gets wrong here
+
+The second opinion read 0.6% CTR on 14.9K impressions as page-2-to-4 rankings
+that titles could fix — "pages sitting at #12 need a nudge, not a rewrite" —
+and projected a 4-5x click increase with no new traffic.
+
+Measured, 90 days to 2026-08-23, 8,679 named-query impressions:
+
+| Position band | Impressions | Share | Clicks |
+|---|---|---|---|
+| 1-3 | 185 | 2.1% | 3 |
+| 4-10 | 835 | 9.6% | 14 |
+| 11-25 | 194 | 2.2% | 0 |
+| 26-50 | 838 | 9.7% | 0 |
+| 51+ | 6,511 | 75.0% | 1 |
+
+**Positions 11-25 hold 2.2% of impressions and earned zero clicks.** There is
+almost no page-2 inventory to nudge. Three quarters of impressions sit at
+position 51 or worse — the underwater welding cluster at 62-80, BOP at 54-75,
+rig types at 78-96 — and no title rewrite moves position 70. Meanwhile the
+queries that already rank 1-10 are the salary cluster Google answers in the
+SERP, which is documented in `CLAUDE.md` and cannot be fixed at all.
+
+Site CTR is low because the site ranks badly, not because it is badly
+presented. The constraint is still authority.
+
 
 ## Measurement
 

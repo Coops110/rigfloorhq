@@ -284,9 +284,18 @@ UK PECR and EU ePrivacy actually prohibit.
 ## Search performance
 
 The goal is 50,000 sessions/month, which is Mediavine's threshold. Worth
-knowing before planning around it: **Journey by Mediavine takes sites at
-10,000 sessions/month** — same company, same ad stack, a quarter of the
-distance. Verify current thresholds directly, ad networks move them.
+knowing before planning around it: **Journey by Mediavine takes sites well
+below that** — same company, same ad stack. This file recorded 10,000
+sessions/month; a separate August 2026 research pass put it at 1,000. **That
+conflict is unresolved and the difference decides whether display ads are a
+this-year plan at all.** Check Mediavine's own page before planning around
+either number, and correct this line when you do. Ad networks move
+thresholds — Ezoic went from 10,000 to 250,000 users/month in February 2026.
+
+The monetization picture as a whole is in `CONTENT-PLAN.md`. The short version
+is that display is not the lever here: informational intent, a global and
+partly Spanish-speaking audience, and mid-tier industrial B2B CPMs put
+realistic AdSense RPM at $1.50-$4.
 
 Data lives in two places, both connected through Supermetrics: GA4 property
 `548204808`, and Search Console `sc-domain:rigfloorhq.com`. GSC is the more
