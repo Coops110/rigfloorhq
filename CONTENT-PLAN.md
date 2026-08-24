@@ -180,8 +180,9 @@ Not started. In order, and none of them is display ads:
    sitting at positions 38-95. It is also the natural page to monetize with
    Petrolessons and Oilandgasclub, and the traffic proof point for a
    LearnToDrill email.
-3. **Cheat-sheet PDF and email capture on the calculators** — after the
-   privacy and cookie pages are updated to cover it.
+3. **Drilling formulas cheat sheet as a page** (not a PDF, not gated). Email
+   capture is deferred to ~500 sessions/month — see the trigger and the
+   `privacy.astro` blocker under Monetization.
 4. **Affiliate network accounts**: ShareASale, CJ, AvantLink, Impact,
    FlexOffers. Then WorkingPerson on the PPE guide.
 5. **Direct email to LearnToDrill**, once there is a traffic number worth
@@ -521,24 +522,66 @@ Sponsored-post rate, for when there is traffic to sell: (monthly pageviews ÷
 1,000) × CPM at $20-50 for sponsored content. B2B technical blogs command 2-5x
 lifestyle rates at equivalent traffic.
 
-### The email list is the asset, and it is buildable at any traffic level
+### The email list is the right asset, at the wrong time — trigger is 500 sessions/month
 
-B2B professional niches under 2,500 subscribers charge $100-400 per newsletter
-placement; B2B direct sponsorship runs $100-150 CPM against $25-40
-programmatic. That is a 30-60x multiple on the $1.50-$4 display RPM above, and
-unlike display it does not require scale first.
+The economics are real. B2B professional niches under 2,500 subscribers charge
+$100-400 per newsletter placement, and B2B direct sponsorship runs $100-150 CPM
+against $25-40 programmatic — a 30-60x multiple on display RPM.
 
-Concretely: a **"drilling formulas cheat sheet" PDF** offered on the calculator
-pages. Those pages already convert far above site average on intents that
-require opening the page (`stop cards in oil field` 10.3%,
-`/calculators/kill-sheet` 6.3%, against 0.57% site-wide), which is exactly the
-audience worth capturing.
+**But "it compounds, so start now" does not survive the arithmetic.** Measured
+24 August 2026:
 
-**Do not ship an email capture without deciding the consent story first.**
-`GA_ID` in `src/lib/site.js` currently governs whether this site claims to set
-cookies at all, and the privacy and cookie pages are wired to it in both
-languages. A signup form is personal data processing under UK GDPR regardless
-of cookies, and the policy pages have to say so before the form goes live.
+| | Visits/month | At a generous 5% signup |
+|---|---|---|
+| Whole site | ~30 | 1.5 subscribers/month |
+| Calculator pages (where the capture would go) | 2.7 | **one subscriber every 7 months** |
+
+All calculator URLs together took **8 clicks in 90 days**. The list is not
+gated by whether the form exists. It is gated by traffic, which is gated by
+authority — the same wall as everything else in this file. Six months of
+waiting costs three or four subscribers.
+
+**Trigger: revisit at ~500 sessions/month.** At that point 5% is ~25 signups a
+month, which is a list worth having inside a year and justifies the work below.
+On the current trajectory (impressions roughly doubled over six weeks) that is
+plausibly reachable without doing anything new for it.
+
+#### The blocker to fix first — this is not optional
+
+`src/pages/privacy.astro` line 115, under **"What we do not collect"**:
+
+```
+<li>operate user accounts, logins, newsletters or contact forms;</li>
+```
+
+**That line is unconditional.** It is not branched on `GA_ID` the way the
+cookie wording is, and the identical line is in `src/pages/es/privacy.astro`.
+Shipping any email capture without rewriting it **makes the privacy policy
+false in both languages** — exactly the failure the `GA_ID` coupling in
+`src/lib/site.js` was built to prevent, except this line was never wired into
+that switch.
+
+Anyone adding a signup form must, in the same commit: rewrite that line in both
+languages, state the lawful basis and retention period for the email address,
+and update `/cookies` if the ESP sets anything. `GA_ID` is currently set
+(`G-YGCX22M94L`), so the consent banner and cookie machinery already exist and
+do not need rebuilding.
+
+Also weigh the performance cost: an embedded ESP form is third-party
+JavaScript, on a site whose LCP win came from removing its only third-party
+request. See `CLAUDE.md` on fonts.
+
+#### What is worth doing now instead
+
+**Write the drilling formulas cheat sheet as a page, not a PDF.** It is
+indexable, it is the "requires opening the page" intent this site actually
+converts on (`stop cards in oil field` 10.3%, `/calculators/kill-sheet` 6.3%
+against 0.57% site-wide), and it is a linkable asset in its own right. When
+capture is added later, the magnet is already written and already earning.
+
+If capture is wanted before 500 sessions, the cheap version is a plain
+`mailto:` link offering the cheat sheet — no ESP, no third-party script, and
+only the `privacy.astro` correction required.
 
 ### What the CTR advice gets wrong here
 
