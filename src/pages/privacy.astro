@@ -112,6 +112,13 @@ const processors = analytics
             <li>run Google Analytics or any other analytics or tracking product;</li>
           </>
         )}
+        {/* This line is unconditional, unlike the cookie wording above, which
+            branches on GA_ID. Adding a newsletter signup, contact form or any
+            login therefore makes this policy false with nothing to stop it —
+            the GA_ID coupling does not cover this claim. Rewrite this line, and
+            its twin in es/privacy.astro, in the same commit as any such form,
+            and state the lawful basis and retention period for the data.
+            CONTENT-PLAN.md carries the reasoning and the 500-sessions trigger. */}
         <li>operate user accounts, logins, newsletters or contact forms;</li>
         <li>display advertising, or work with advertising or data brokers;</li>
         <li>use tracking pixels, fingerprinting, session recording or heatmaps;</li>

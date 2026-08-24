@@ -277,6 +277,14 @@ render their no-cookies wording in both languages. That coupling is
 deliberate: it makes it impossible to ship a policy claiming the site sets no
 cookies while it is setting them.
 
+**The coupling covers the cookie claims and nothing else, and that seam is
+real.** The same "What we do not collect" list also states, unconditionally,
+that the site does not operate newsletters, contact forms or logins — in both
+languages. Nothing branches those. Adding a signup form would make the policy
+false with no switch to catch it, which is why both files now carry an Astro
+comment above that line. When adding a claim to either policy, ask whether the
+code can turn it false, and wire it to `GA_ID` or guard it in the source.
+
 Never add analytics by pasting Google's snippet. It calls `gtag('config')`
 immediately and would set cookies before the visitor is asked, which is what
 UK PECR and EU ePrivacy actually prohibit.

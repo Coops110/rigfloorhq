@@ -113,6 +113,12 @@ const processors = analytics
             <li>utiliza Google Analytics ni ninguna otra herramienta de analítica o seguimiento;</li>
           </>
         )}
+        {/* Esta línea no es condicional, a diferencia del texto sobre cookies,
+            que depende de GA_ID. Añadir un boletín, un formulario de contacto o
+            cualquier inicio de sesión haría falsa esta política sin que nada lo
+            impida. Reescríbela, junto con su equivalente en privacy.astro, en el
+            mismo commit que el formulario, e indica la base jurídica y el plazo
+            de conservación. El razonamiento está en CONTENT-PLAN.md. */}
         <li>gestiona cuentas de usuario, inicios de sesión, boletines ni formularios de contacto;</li>
         <li>muestra publicidad ni colabora con redes publicitarias o intermediarios de datos;</li>
         <li>emplea píxeles de seguimiento, huella digital del navegador, grabación de sesiones ni mapas de calor;</li>
