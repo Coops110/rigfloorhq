@@ -351,14 +351,15 @@ lifestyle sites. Three reasons, all structural:
 
 - The intent is informational. Calculators and a glossary are the opposite of
   purchase intent, and that is what advertisers bid on.
-- The geography is wrong for CPM. A global drilling workforce plus 25 Spanish
-  pages means Middle East, LatAm and West Africa traffic, worth a fraction of
-  US traffic to the same advertiser.
+- ~~The geography is wrong for CPM.~~ **Measured, and this was wrong.** See
+  "The geography is better than assumed" below.
 - Industrial B2B is mid-tier programmatic. Rate cards say $5-15 CPM, the
   publisher receives roughly 68% of it, and most open-exchange inventory
   actually clears at $1-4.
 
-At the current **~30 sessions/month** that is cents. Ads would also slow the
+Of those three, the first and third hold. The geography does not.
+
+At the current **~30 sessions/month** any of this is cents. Ads would also slow the
 site down, against rankings that are the only thing currently compounding.
 Revisit display when sessions are in four figures, not before.
 
@@ -369,6 +370,56 @@ Journey by Mediavine is the realistic entry point. `CLAUDE.md` records
 Journey's floor as 10,000 sessions and the second opinion says 1,000. **That
 discrepancy is unresolved and matters a lot** — 1,000 is reachable this year
 and 10,000 is not. Check Mediavine's own page before planning around either.
+
+### The geography is better than assumed
+
+Recorded 24 August 2026 after actually pulling the COUNTRIES dimension, because
+the paragraph above originally asserted the opposite from a guess. 90 days to
+2026-08-23, top 60 countries covering 97.6% of impressions:
+
+| Group | Impressions | Share | Clicks |
+|---|---|---|---|
+| Tier-1 (US, CA, UK, EU, AU, NZ, JP, SG) | 8,803 | 55.2% | 32 |
+| Gulf + North Africa + Iran | 3,492 | 21.9% | 24 |
+| Everywhere else | 3,286 | 20.6% | 30 |
+
+**The US alone is 6,569 impressions, 41.2% of the site.** That is a good geo
+mix for CPM, not a bad one, and it removes one of the three reasons display
+looked hopeless. It does not rescue display on its own — informational intent
+and mid-tier industrial CPMs still apply — but the ceiling is higher than the
+$1.50-$4 assumed above, and it should be re-measured rather than guessed at
+when there is enough traffic to test.
+
+The uncomfortable detail underneath it: **US CTR is 0.32%, worse than the
+0.57% site average.** US impressions are concentrated on underwater welding
+and BOP, which rank at 60-68. The best audience is landing on the worst
+rankings.
+
+### Three CTR explanations that do not survive measurement
+
+Also from the second opinion, and all three are small enough to ignore:
+
+- **"AI Overviews eat your calculator queries — your six calculators are the
+  content most exposed."** All calculator URLs together are **513 impressions,
+  3.2% of the site**, and they have the *best* CTR on it after the stop-card
+  post — `/calculators/kill-sheet` runs 6.8%. Calculators are not dragging
+  anything down; they are the thing that works.
+- **"Glossary pages (44 terms) generate high impressions, near-zero clicks,
+  dragging the site average down."** `/glossary` is **one URL with 95
+  impressions, 0.6% of the site**. There are no per-term URLs. This is not
+  happening.
+- **"Spanish pages may be picking up LatAm impressions where the SERP is
+  crowded."** All 25 Spanish URLs together are **293 impressions, 1.8%**, at a
+  **2.73% CTR** — nearly five times the site average, because they rank at
+  positions 7-12 where the English pages rank at 60+. The Spanish side is the
+  best-performing part of the site per impression. It is just tiny.
+
+What actually determines site CTR is that **four pages are 65.6% of all
+impressions**: underwater welding (3,796 at position 68), salary (2,510 at
+7.4), stop cards (2,092 at 7.8) and BOP (2,075 at 60.4). Two of those cannot
+be clicked because they rank on page seven, and one of the two that do rank
+cannot be clicked because Google answers salary in the SERP. That is the whole
+explanation.
 
 ### The money in this niche is affiliate and direct, not display
 
