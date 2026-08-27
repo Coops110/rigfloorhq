@@ -105,8 +105,18 @@ pointing at it. Every blog post on this site once had exactly one inbound link,
 the blog index, so four posts of 2,200+ words were earning nothing at all.
 
 Before committing, verify every internal link resolves against `dist/`. Run
-`npm run build` first or there is nothing to check against. The site currently
-has 3,889 internal links and zero broken.
+`npm run check` — that is `npm run build` followed by `npm run check:links`,
+because there is nothing to check against until the build has run. It reports
+**4,757 internal links across 88 pages and zero broken**, and exits non-zero if
+that stops being true.
+
+The checker reads built HTML rather than source, because a link's target is a
+file and only the build knows which files exist. It counts `href`, `src` and
+`og:url`, so canonicals, hreflang and assets are all covered — that is why the
+figure is higher than the 3,889 recorded here before the check was automated,
+not because links were added. It knows the `vercel.json` redirect source has no
+file in `dist/` by design and does not report it. Fragments are deliberately not
+validated: accordion toggles and JS-built ids are not in the static HTML.
 
 Check `CONTENT-PLAN.md`'s "already covered" table first. Four pages were
 competing on well control and two on welding certifications, all written
