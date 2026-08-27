@@ -336,6 +336,36 @@ missing. It was 83/83 when this was added. If that number drops, a route was
 added whose source path the candidate list does not cover — extend
 `sourceCandidates`, do not paper over it with a default date.
 
+**A full count does not mean the dates are right.** Vercel clones at depth 1,
+and a shallow clone does not simply truncate history — git presents the
+boundary commit, whose parents have been cut away, as having added every file
+that existed at that point. `--name-only` therefore attributes all 150 tracked
+files to it. From the day lastmod shipped (2026-08-18) until this was found,
+every one of the 84 URLs carried the date of the newest commit, rolling
+forward on each deploy — the exact "every page claims it changed on every
+build" failure this design avoids, arriving through clone depth instead of
+mtime. It read `84/84 (100%)` throughout.
+
+Two things now prevent it. `buildGitLastmodMap` calls
+`scripts/deepen-history.mjs`, which tries `git fetch --unshallow`, and then
+discards the boundary commit's file list if the clone is *still* shallow, so
+those pages get no lastmod instead of a false one.
+
+**The unshallow is called from `buildGitLastmodMap`, not from an npm
+`prebuild` hook, and that placement is the point.** A `prebuild` script only
+runs when the build is started as `npm run build`; if the build command is
+`astro build` the hook never fires and the fetch silently never happens. A
+preview deploy of the first attempt came back `7/84` for exactly that reason.
+`astro.config.mjs` is evaluated on every build however it is invoked, so
+hanging the call off the map build makes it unconditional. Do not move it back
+into package.json.
+
+Verified against full, depth-52 and depth-1 clones, each built by running
+`astro build` directly rather than through npm: the first two give the real
+spread, the last reports `0/84` and emits nothing. **If you see `0/84`, the
+fetch was refused — that is the safe failure, not a regression.** Never make
+the boundary commit's file list authoritative again to get the number back up.
+
 ### The lesson that cost the most to learn
 
 **Ranking first is not the same as getting clicks.** `/careers/salary` ranks
