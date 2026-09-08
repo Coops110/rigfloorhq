@@ -151,6 +151,26 @@ $topics = @(
     @{ e = 'FREE TOOL: MUD WEIGHT WINDOW'; h = 'Pore pressure at the bottom. Fracture pressure at the top. You live in between.'; b = $null; f = $null; a = $white },
     @{ e = 'BEFORE YOU USE IT'; h = 'Learning tool only.'; b = 'Simplified assumptions. Use your well programme and the direction of your supervisor for anything operational.'; f = $null; a = $danger; w = $true },
     @{ e = 'FREE, NO SIGNUP'; h = 'See the safe window, and how narrow it gets.'; b = $null; f = 'rigfloorhq.com'; a = $white }
+  ) },
+  @{ id = '09-mud-weight-converter'; frames = @(
+    @{ e = 'FREE TOOL: MUD WEIGHT CONVERTER'; h = 'ppg, specific gravity, psi per foot, kg per m3 -- one number, five names.'; b = $null; f = $null; a = $white },
+    @{ e = 'BEFORE YOU USE IT'; h = 'Learning tool only.'; b = 'A unit conversion, not a substitute for your mud report or lab result. Verify anything operational through your normal channels.'; f = $null; a = $danger; w = $true },
+    @{ e = 'FREE, NO SIGNUP'; h = 'Type into any box. Every other unit updates instantly.'; b = $null; f = 'rigfloorhq.com'; a = $white }
+  ) },
+
+  # ── ANIMATED DIAGRAM VIDEOS ──────────────────────────────────
+  # Same hook/insight/close bookend shape as the informational 01-05
+  # videos (no "before you use it" warning -- these aren't interactive
+  # calculators making a live-well decision, they're explainers).
+  @{ id = '10-bop-ram-size'; frames = @(
+    @{ e = 'BOP STACK'; h = 'One ram, one pipe size. Not one "good enough" one.'; b = $null; f = $null; a = $white },
+    @{ e = 'THE MISCONCEPTION'; h = 'A casing shear ram cuts pipe.'; b = 'It does not seal the well. A blind shear ram above it closes after.'; f = $null; a = $ember },
+    @{ e = 'READ THE STACK'; h = 'Every ram is rated for one size and one job.'; b = $null; f = 'rigfloorhq.com'; a = $white }
+  ) },
+  @{ id = '11-jackup-depth'; frames = @(
+    @{ e = 'JACKUP RIGS'; h = 'The 400 foot limit is not a spec sheet number.'; b = $null; f = $null; a = $white },
+    @{ e = 'THE PHYSICS'; h = 'A jackup cannot stand up in water deeper than its own legs.'; b = 'Past that, the whole design has to change.'; f = $null; a = $ember },
+    @{ e = 'WHAT TAKES OVER'; h = 'Moored semisubs hold in heavy seas. DP drillships move fast between wells.'; b = $null; f = 'rigfloorhq.com'; a = $white }
   ) }
 )
 

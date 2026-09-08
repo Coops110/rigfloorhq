@@ -45,6 +45,9 @@ VIDEOS = {
     "06": {"id": "06-kill-sheet", "rec_dir": "_rec06"},
     "07": {"id": "07-hydrostatic", "rec_dir": "_rec07"},
     "08": {"id": "08-mud-weight-window", "rec_dir": "_rec08"},
+    "09": {"id": "09-mud-weight-converter", "rec_dir": "_rec09"},
+    "10": {"id": "10-bop-ram-size", "rec_dir": "_rec10"},
+    "11": {"id": "11-jackup-depth", "rec_dir": "_rec11"},
 }
 
 
@@ -68,7 +71,13 @@ def build_video(vid: dict):
         print(f"  SKIP {tag}: missing narration/captions -- run the narration step first")
         return
     rec_dir = OUT / vid["rec_dir"]
-    recs = sorted(rec_dir.glob("*.webm"))
+    # Playwright names each recording with a random hash, not a timestamp or
+    # sequence number -- sorting alphabetically does NOT pick the most
+    # recent file if a video is ever re-recorded (found 2026-09-08: a fix
+    # to video 10's diagram silently kept assembling the first, pre-fix
+    # recording because 'e...' sorted after '2...' and '6...' regardless of
+    # which was actually newest). Sort by modification time instead.
+    recs = sorted(rec_dir.glob("*.webm"), key=lambda p: p.stat().st_mtime)
     if not recs:
         print(f"  SKIP {tag}: no recording in {vid['rec_dir']}")
         return

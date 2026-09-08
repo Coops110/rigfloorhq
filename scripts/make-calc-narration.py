@@ -18,6 +18,7 @@ Usage:
 import asyncio
 import importlib.util
 import json
+import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -60,12 +61,50 @@ SCRIPTS = {
         "This is the window you are actually drilling inside, and "
         "sometimes there is almost nothing left.",
     ],
+    "09-mud-weight-converter": [
+        "Mud weight gets quoted five different ways depending who is "
+        "asking, and they all have to agree.",
+        "Fresh water is eight point three three P P G -- point four "
+        "three three psi per foot, specific gravity one point zero.",
+        "Sea water is eight point five five P P G -- point four four "
+        "five psi per foot, specific gravity one point zero three.",
+        "Type into any box, and every other unit updates instantly.",
+    ],
+    "10-bop-ram-size": [
+        "BOP techs, drillers -- every ram in the stack is cut for "
+        "exactly one pipe size.",
+        "A ram sized for five inch drill pipe will not seal on three "
+        "and a half inch. Outside its size, it is useless.",
+        "A casing shear ram cuts pipe, but it does not seal the well "
+        "-- a blind shear ram above it closes after.",
+        "That is why a stack carries several ram types, not one "
+        "good-enough one.",
+    ],
+    "11-jackup-depth": [
+        "Rig schedulers, drillers -- a jackup's water depth limit is "
+        "not a number on a spec sheet, it is simple physics.",
+        "It cannot stand up in water deeper than its own legs -- that "
+        "caps it around four hundred feet.",
+        "Past that, the rig has to float instead of rest on the "
+        "seabed, and that changes the whole design.",
+        "A moored semisub holds in heavy seas. A dynamically "
+        "positioned drillship moves fast between wells.",
+    ],
 }
 
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
-    for vid, lines in SCRIPTS.items():
+    # Optional ids on the command line select a subset -- e.g. only the newly
+    # added entry -- so re-running this doesn't re-synthesize (and drift,
+    # since edge-tts isn't perfectly deterministic run to run) the already
+    # good 06-08 narration every time a new video is added.
+    requested = sys.argv[1:]
+    items = (
+        [(k, v) for k, v in SCRIPTS.items() if k in requested]
+        if requested else list(SCRIPTS.items())
+    )
+    for vid, lines in items:
         script = " ".join(lines)
         wav = OUT / f"{vid}.wav"
         srt = OUT / f"{vid}.srt"

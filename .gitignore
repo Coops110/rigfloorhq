@@ -5,11 +5,14 @@ __pycache__/
 
 # Generated social assets. Binaries, not site content — nothing in here is
 # built or served. Regenerate with scripts/make-tiktok-frames.ps1 rather than
-# committing 3 MB of PNGs. The README and the posting schedule are the parts
-# worth keeping, so they're force-added.
+# committing 3 MB of PNGs. The README, the posting schedule, and the
+# animated-diagram source (real hand-authored HTML/SVG/GSAP, not a
+# generated binary) are the parts worth keeping, so they're force-added.
 social/*
 !social/README.md
 !social/tiktok/ready-to-upload/SCHEDULE.md
+!social/diagrams/
+!social/diagrams/*
 
 .vscode/
 .env

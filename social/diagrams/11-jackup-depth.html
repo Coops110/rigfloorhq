@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; padding: 0; background: #0a0a0f; width: 1080px; height: 1920px; overflow: hidden; }
+  * { font-family: Arial, sans-serif; box-sizing: border-box; }
+  #stage { position: relative; width: 1080px; height: 1920px; }
+  .eyebrow { position: absolute; top: 140px; left: 60px; right: 60px; color: #f07038; font-size: 30px; font-weight: 700; letter-spacing: 2px; opacity: 0; }
+  .headline { position: absolute; top: 210px; left: 60px; right: 60px; color: #ffffff; font-size: 50px; font-weight: 700; line-height: 1.15; opacity: 0; }
+  svg { position: absolute; top: 460px; left: 40px; }
+  .label { fill: #cfd3d8; font-size: 28px; font-weight: 700; }
+  .label-warn { fill: #d9534f; font-size: 32px; font-weight: 700; }
+  .waterline { stroke: #4a90d9; stroke-width: 3; stroke-dasharray: 8 6; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="eyebrow" id="eyebrow">JACKUP RIGS</div>
+  <div class="headline" id="headline">Physics, not a<br>spec sheet.</div>
+
+  <svg width="1000" height="1200" viewBox="0 0 1000 1200">
+    <!-- depth scale -->
+    <line x1="120" y1="60" x2="120" y2="900" stroke="#3a3f4a" stroke-width="3"/>
+    <text x="60" y="60" class="label">0 ft</text>
+    <text x="30" y="490" class="label-warn" id="limitLabel" opacity="0">400 ft LIMIT</text>
+    <line id="limitLine" x1="100" y1="480" x2="800" y2="480" class="waterline" opacity="0"/>
+    <text x="40" y="900" class="label">900 ft</text>
+
+    <!-- sea surface -->
+    <line x1="140" y1="120" x2="900" y2="120" class="waterline"/>
+    <text x="820" y="110" class="label">SEA LEVEL</text>
+
+    <!-- jackup hull -->
+    <rect id="hull" x="350" y="90" width="260" height="60" fill="#3a3f4a" stroke="#f07038" stroke-width="4"/>
+    <!-- three legs, animated height -->
+    <rect id="legL" x="370" y="150" width="20" height="0" fill="#8a8f99"/>
+    <rect id="legM" x="470" y="150" width="20" height="0" fill="#8a8f99"/>
+    <rect id="legR" x="570" y="150" width="20" height="0" fill="#8a8f99"/>
+    <!-- seabed marker that rises to meet the legs -->
+    <line id="seabed" x1="300" y1="150" x2="700" y2="150" stroke="#5a4632" stroke-width="10"/>
+
+    <!-- floater silhouette, hidden until past the limit -->
+    <g id="floater" opacity="0" transform="translate(0,0)">
+      <rect x="380" y="200" width="200" height="50" fill="#3a3f4a" stroke="#f07038" stroke-width="4"/>
+      <rect x="440" y="250" width="30" height="60" fill="#6a6f79"/>
+      <rect x="490" y="250" width="30" height="60" fill="#6a6f79"/>
+      <text x="380" y="185" class="label">FLOATER</text>
+    </g>
+  </svg>
+
+  <div id="typesRow" style="position:absolute; top:1200px; left:60px; right:60px; opacity:0;">
+    <div style="color:#cfd3d8; font-size:28px; font-weight:700; margin-bottom:14px;">Moored semisub -- heavy seas, slow to move.</div>
+    <div style="color:#cfd3d8; font-size:28px; font-weight:700;">DP drillship -- fast between locations.</div>
+  </div>
+
+  <div class="headline" id="closeText" style="top:1650px; font-size:44px; opacity:0;">The hard limit changes<br>the whole design.</div>
+</div>
+
+<script src="gsap.min.js"></script>
+<script>
+  // Cue timestamps from 11-jackup-depth-cues.json.
+  const L1 = 7.8, L2 = 14.1, L3 = 20.275, TOTAL = 27.0;
+
+  const tl = gsap.timeline();
+
+  // ---- line 1: intro ----
+  tl.to('#eyebrow', { opacity: 1, duration: 0.5 }, 0.3)
+    .to('#headline', { opacity: 1, duration: 0.6 }, 0.5);
+
+  // ---- line 2: legs extend downward as depth increases, seabed rises to
+  // meet them, stopping hard at the 400ft line ----
+  tl.to('#headline', { opacity: 0, duration: 0.4 }, L1 + 0.1)
+    .to(['#legL', '#legM', '#legR'], { attr: { height: 330 }, duration: 3.5, ease: 'none' }, L1 + 0.6)
+    .to('#seabed', { attr: { y1: 480, y2: 480 }, duration: 3.5, ease: 'none' }, L1 + 0.6)
+    .to('#limitLine', { opacity: 1, duration: 0.4 }, L2 - 0.6)
+    .to('#limitLabel', { opacity: 1, duration: 0.4 }, L2 - 0.6);
+
+  // ---- line 3: past the limit -- jackup fades, floater takes over ----
+  tl.to(['#hull', '#legL', '#legM', '#legR'], { opacity: 0.15, duration: 0.6 }, L2 + 0.3)
+    .to('#floater', { opacity: 1, duration: 0.6 }, L2 + 0.6);
+
+  // ---- line 4: the two floater types ----
+  tl.to('#typesRow', { opacity: 1, duration: 0.6 }, L3 + 0.3);
+
+  // ---- close card ----
+  tl.to('#floater', { opacity: 0, duration: 0.3 }, TOTAL - 3.2)
+    .to('#typesRow', { opacity: 0, duration: 0.3 }, TOTAL - 3.2)
+    .to('#closeText', { opacity: 1, duration: 0.6 }, TOTAL - 2.6)
+    .to('#closeText', { opacity: 1, duration: 0.1 }, TOTAL);
+</script>
+</body>
+</html>
