@@ -13,6 +13,15 @@ This README is the part worth keeping.
 
 ## The workflow
 
+**Stale as of 2026-09-07 — kept for history, not current practice.** This
+CapCut/TikTok-native-composer workflow was superseded first by the
+`make-tiktok-videos.py`/`make-tiktok-recordings.py` edge-tts pipeline
+(2026-08-30, burns captions in directly since TikTok's own auto-caption step
+never runs once upload leaves its native composer), then by direct Facebook
+posting (2026-09-07, see `ready-to-upload/SCHEDULE.md` and
+[[RigFloorHQ Social Posting]] — Metricool is also no longer the plan). Use
+those scripts and that schedule file, not the steps below.
+
 Roughly **10 minutes per video** once the CapCut template exists, so a batch of
 ten is an afternoon.
 
@@ -63,7 +72,7 @@ Swap `bio` for the video id when you want to tell them apart.
 > it. You lower the pressure.
 
 **Caption:** Why pulling harder on stuck pipe often makes it worse 👇
-**Tags:** #oilfield #drilling #roughneck #oilandgas #drillingrig #wellcontrol
+**Tags:** #stuckpipe #differentialsticking #oilfield #drilling #roughneck #oilandgas #drillingrig #wellcontrol #oilfieldwork
 
 ### 02 — Hole cleaning
 **Target:** `/blog/hole-cleaning-high-angle-wells`
@@ -76,7 +85,7 @@ Swap `bio` for the video id when you want to tell them apart.
 > angle is the middle one.
 
 **Caption:** The worst angle for hole cleaning is not the one you think
-**Tags:** #drilling #directionaldrilling #oilfield #mudengineer #oilandgas
+**Tags:** #holecleaning #drilling #directionaldrilling #oilfield #mudengineer #oilandgas #oilfieldwork
 
 ### 03 — The neutral point
 **Target:** `/equipment/drill-string`
@@ -89,7 +98,7 @@ Swap `bio` for the video id when you want to tell them apart.
 > joints, and eventually parts.
 
 **Caption:** Why drill pipe must never be in compression
-**Tags:** #drilling #oilfield #drillstring #oilandgas #roughneck
+**Tags:** #neutralpoint #drilling #oilfield #drillstring #oilandgas #roughneck #oilfieldwork
 
 ### 04 — 6G welding *(best for follower growth)*
 **Target:** `/welding/certifications`
@@ -115,7 +124,7 @@ Swap `bio` for the video id when you want to tell them apart.
 > the value.
 
 **Caption:** The warning was there hours before the number looked wrong
-**Tags:** #drilling #oilfield #oilandgas #drillingrig #wellsite
+**Tags:** #torqueanddrag #drilling #oilfield #oilandgas #drillingrig #wellsite #oilfieldwork
 
 ---
 
@@ -145,21 +154,21 @@ If you shorten anything, shorten the hook. Never the warning.
 Record: enter original mud weight, SIDPP, TVD, slow pump rate. Say in one line
 what kill mud weight, ICP and FCP each mean as they appear.
 **Caption:** Free kill sheet calculator — runs in your browser
-**Tags:** #wellcontrol #drilling #oilfield #iwcf #drillingrig
+**Tags:** #killsheet #wellcontrol #drilling #oilfield #iwcf #drillingrig #safetyoilfield
 
 ### 07 — Hydrostatic pressure
 **Target:** `/calculators/hydrostatic`
 Record: mud weight and TVD in, hydrostatic and overbalance out. Show what
 happens when you push mud weight up.
 **Caption:** Check a mud weight against TVD in ten seconds
-**Tags:** #drilling #mudengineer #oilfield #oilandgas
+**Tags:** #hydrostaticpressure #drilling #mudengineer #oilfield #oilandgas #safetyoilfield
 
 ### 08 — Mud weight window
 **Target:** `/calculators/mud-weight-window`
 Record: set pore and fracture pressure, show the window, then narrow it until
 there is almost nothing left. That narrowing is the story.
 **Caption:** The gap you have to drill inside — and how narrow it gets
-**Tags:** #drilling #wellcontrol #oilfield #mpd #oilandgas
+**Tags:** #mudweightwindow #drilling #wellcontrol #oilfield #mpd #oilandgas #safetyoilfield
 
 ---
 

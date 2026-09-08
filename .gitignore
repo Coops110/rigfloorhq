@@ -1,13 +1,15 @@
 node_modules/
 dist/
 .astro/
+__pycache__/
 
 # Generated social assets. Binaries, not site content — nothing in here is
 # built or served. Regenerate with scripts/make-tiktok-frames.ps1 rather than
-# committing 3 MB of PNGs. The README inside is the part worth keeping, so it
-# is force-added.
+# committing 3 MB of PNGs. The README and the posting schedule are the parts
+# worth keeping, so they're force-added.
 social/*
 !social/README.md
+!social/tiktok/ready-to-upload/SCHEDULE.md
 
 .vscode/
 .env

@@ -26,6 +26,21 @@ $mist   = [System.Drawing.ColorTranslator]::FromHtml('#d1d8e4')
 $danger = [System.Drawing.ColorTranslator]::FromHtml('#ef4444')
 $white  = [System.Drawing.Color]::White
 
+function Get-FitFont {
+  # Longer lines at a fixed font size were overflowing their box and getting
+  # clipped mid-word (GDI+ DrawString clips to the RectangleF bounds instead
+  # of shrinking to fit). Step the size down until the wrapped text actually
+  # fits the box height, so nothing on screen gets cut off.
+  param($Graphics, $Text, $FamilyName, $Style, $MaxSize, $MinSize, $BoxWidth, $BoxHeight)
+  for ($size = $MaxSize; $size -ge $MinSize; $size -= 2) {
+    $font = New-Object System.Drawing.Font($FamilyName, $size, $Style)
+    $measured = $Graphics.MeasureString($Text, $font, $BoxWidth)
+    if ($measured.Height -le $BoxHeight) { return $font }
+    $font.Dispose()
+  }
+  return New-Object System.Drawing.Font($FamilyName, $MinSize, $Style)
+}
+
 function New-Frame {
   param($Path, $Eyebrow, $Headline, $Body, $Footer, $Accent, [switch]$Warning)
 
@@ -60,12 +75,12 @@ function New-Frame {
     (New-Object System.Drawing.RectangleF($x, 250, $wBox, 60)), $sf)
 
   $accentCol = if ($Accent) { $Accent } else { $script:white }
-  $fHead = New-Object System.Drawing.Font('Arial', 82, [System.Drawing.FontStyle]::Bold)
+  $fHead = Get-FitFont $g $Headline 'Arial' ([System.Drawing.FontStyle]::Bold) 82 40 $wBox 620
   $g.DrawString($Headline, $fHead, (New-Object System.Drawing.SolidBrush($accentCol)),
     (New-Object System.Drawing.RectangleF($x, 330, $wBox, 620)), $sf)
 
   if ($Body) {
-    $fBody = New-Object System.Drawing.Font('Segoe UI', 40)
+    $fBody = Get-FitFont $g $Body 'Segoe UI' ([System.Drawing.FontStyle]::Regular) 40 26 $wBox 420
     $g.DrawString($Body, $fBody, (New-Object System.Drawing.SolidBrush($script:mist)),
       (New-Object System.Drawing.RectangleF($x, 980, $wBox, 420)), $sf)
   }
@@ -82,7 +97,7 @@ function New-Frame {
 # Scripts and captions for each of these are in social/README.md.
 $topics = @(
   @{ id = '01-differential-sticking'; frames = @(
-    @{ e = 'STUCK PIPE'; h = 'The one thing you should NOT do is pull harder.'; b = $null; f = $null; a = $white },
+    @{ e = 'DIFFERENTIAL STICKING'; h = 'The one thing you should NOT do is pull harder.'; b = $null; f = $null; a = $white },
     @{ e = 'WHY'; h = 'Force = pressure difference x contact area'; b = 'Tension reduces neither of them.'; f = $null; a = $white },
     @{ e = 'WORSE'; h = 'In a deviated hole, pulling presses the string harder into the wall.'; b = 'Which increases the contact area the pressure acts on.'; f = $null; a = $white },
     @{ e = 'THE FIX'; h = 'You do not out-pull it. You lower the pressure.'; b = 'Full breakdown of the three conditions:'; f = 'rigfloorhq.com'; a = $ember }
@@ -123,17 +138,17 @@ $topics = @(
   # contradicts the site's own terms, which state the calculators are unverified
   # teaching tools and must not drive decisions on a live well.
   @{ id = '06-kill-sheet'; frames = @(
-    @{ e = 'FREE TOOL'; h = 'Shut-in pressures recorded. Where does kill mud weight come from?'; b = $null; f = $null; a = $white },
+    @{ e = 'FREE TOOL: KILL SHEET'; h = 'Shut-in pressures recorded. Where does kill mud weight come from?'; b = $null; f = $null; a = $white },
     @{ e = 'BEFORE YOU USE IT'; h = 'Learning tool only.'; b = 'Unverified. It does not know your well, your fluid or your equipment. On a live well, use your company approved kill sheet, verified by your well control supervisor.'; f = $null; a = $danger; w = $true },
     @{ e = 'FREE, NO SIGNUP'; h = 'Runs in your browser. Nothing you type leaves your phone.'; b = $null; f = 'rigfloorhq.com'; a = $white }
   ) },
   @{ id = '07-hydrostatic'; frames = @(
-    @{ e = 'FREE TOOL'; h = 'Mud weight and depth in. Overbalance out.'; b = $null; f = $null; a = $white },
+    @{ e = 'FREE TOOL: HYDROSTATIC'; h = 'Mud weight and depth in. Overbalance out.'; b = $null; f = $null; a = $white },
     @{ e = 'BEFORE YOU USE IT'; h = 'Learning tool only.'; b = 'A reference calculation, not an operational authority. Verify every number you rely on by an approved method.'; f = $null; a = $danger; w = $true },
     @{ e = 'FREE, NO SIGNUP'; h = 'Check a mud weight against TVD in about ten seconds.'; b = $null; f = 'rigfloorhq.com'; a = $white }
   ) },
   @{ id = '08-mud-weight-window'; frames = @(
-    @{ e = 'FREE TOOL'; h = 'Pore pressure at the bottom. Fracture pressure at the top. You live in between.'; b = $null; f = $null; a = $white },
+    @{ e = 'FREE TOOL: MUD WEIGHT WINDOW'; h = 'Pore pressure at the bottom. Fracture pressure at the top. You live in between.'; b = $null; f = $null; a = $white },
     @{ e = 'BEFORE YOU USE IT'; h = 'Learning tool only.'; b = 'Simplified assumptions. Use your well programme and the direction of your supervisor for anything operational.'; f = $null; a = $danger; w = $true },
     @{ e = 'FREE, NO SIGNUP'; h = 'See the safe window, and how narrow it gets.'; b = $null; f = 'rigfloorhq.com'; a = $white }
   ) }
