@@ -24,6 +24,13 @@
 | 6 | 2026-09-18 (Fri) | `10-bop-ram-size.mp4` | `/equipment/bop` | BOP techs, drillers — a pipe ram sized for 5" drill pipe will not seal on 3½". Each ram is cut for exactly one size, and a casing shear ram cuts pipe but doesn't seal the well — that's what the blind shear ram above it is for. See how a full stack is actually built 👇 | #bop #wellcontrol #drilling #oilfieldwork | `rigfloorhq.com/equipment/bop?utm_source=facebook&utm_medium=social&utm_campaign=10-bop-ram-size` |
 | 7 | 2026-09-20 (Sun) | `11-jackup-depth.mp4` | `/equipment/rig-types` | Rig schedulers, drillers — a jackup's water depth limit isn't a spec sheet number, it's physics. It can't stand up in water deeper than its own legs, which caps it around 400 ft. Past that the rig has to float instead, and the whole design changes 👇 | #rigtypes #drilling #oilfieldwork #jackup | `rigfloorhq.com/equipment/rig-types?utm_source=facebook&utm_medium=social&utm_campaign=11-jackup-depth` |
 
+**Static-image posts added 2026-09-10 — a new format, run alongside the videos, not on the 4x/week video grid.** Diagnosed video 03's dead traction (retention craters in the first 5 seconds, zero likes/shares/saves) against what's actually winning in Facebook's own "matches your interests" feed for this niche: single static formula/diagram images with instant payoff, no watch time required. First one built: `social/static/12-neutral-point-static.png` (1080x1350, source HTML in the same folder), same neutral-point topic as video 03 deliberately, to isolate format from content as the real variable. Post whenever, not tied to the Mon/Wed/Fri/Sun video cadence.
+
+| Image | Target | Caption (Facebook) | Tags |
+|---|---|---|---|
+| `social/static/12-neutral-point-static.png` | `/equipment/drill-string` | Why collars push and pipe pulls 👇 The neutral point is where tension becomes compression in the drill string — put it in the wrong place and drill pipe buckles instead of the collars taking the load. The formula and a worked example, one image. | #neutralpoint #drillstring #drilling #oilfieldwork |
+| Link (UTM) | `rigfloorhq.com/equipment/drill-string?utm_source=facebook&utm_medium=social&utm_campaign=12-neutral-point-static` | | |
+
 **If a date is missed, post it the next day and shift nothing else** — Chris's explicit call 2026-09-09: don't skip a slot to stay on the original grid, just run one day late and continue from there.
 
 **Held, pending review (not scheduled):**

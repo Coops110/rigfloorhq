@@ -13,6 +13,8 @@ social/*
 !social/tiktok/ready-to-upload/SCHEDULE.md
 !social/diagrams/
 !social/diagrams/*
+!social/static/
+!social/static/*
 
 .vscode/
 .env
