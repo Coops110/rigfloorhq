@@ -52,7 +52,13 @@ export const CONSENT_STORAGE_KEY = 'rigfloorhq_consent_v1';
 // 'all' shows the banner to every visitor; 'eu' only where consent is legally
 // required. 'all' is the safer default and gives non-EU visitors an opt-out
 // too, which US state privacy laws increasingly expect.
-export const CONSENT_BANNER_SCOPE = 'all';
+//
+// Set to 'eu' 2026-09-11 — Chris's call, ported from the same fix on
+// GarageDoorProHQ: a GDPR-style banner is alien to visitors outside the
+// regions that actually require opt-in consent, and Consent Mode's own
+// server-side region resolution already grants analytics by default
+// everywhere outside CONSENT_REQUIRED_REGIONS regardless of this banner.
+export const CONSENT_BANNER_SCOPE = 'eu';
 
 // ── Legal identity ──────────────────────────────────────────
 // Confirmed by the operator on 3 August 2026: same operator and same trading
