@@ -44,7 +44,7 @@
 ## Status
 
 - [x] 03 — posted 2026-09-07; caption-fix version swapped in live 2026-09-09
-- [ ] 06 — due 2026-09-11 (Fri)
+- [x] 06 — posted 2026-09-12 (one day late, per the "post next day, don't skip" rule)
 - [ ] 07 — due 2026-09-13 (Sun)
 - [ ] 08 — due 2026-09-14 (Mon)
 - [ ] 09 — due 2026-09-16 (Wed) — screen-recorded mud weight converter
