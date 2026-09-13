@@ -45,7 +45,7 @@
 
 - [x] 03 — posted 2026-09-07; caption-fix version swapped in live 2026-09-09
 - [x] 06 — posted 2026-09-12 (one day late, per the "post next day, don't skip" rule)
-- [ ] 07 — due 2026-09-13 (Sun)
+- [x] 07 — posted 2026-09-13 (Sun), on schedule
 - [ ] 08 — due 2026-09-14 (Mon)
 - [ ] 09 — due 2026-09-16 (Wed) — screen-recorded mud weight converter
 - [ ] 10 — due 2026-09-18 (Fri) — first animated-diagram video, BOP ram sizing
