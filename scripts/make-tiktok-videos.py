@@ -31,7 +31,7 @@ HERE = Path(__file__).resolve().parent
 REPO = HERE.parent
 OUT = REPO / "social" / "tiktok"
 
-VOICE = "en-US-ChristopherNeural"
+VOICE = "en-US-AndrewNeural"
 FONT_SIZE = 52
 MARGIN_V = 520          # keeps burned captions inside the frames' safe zone
 HOOK_S = 2.0            # fixed length of frame 1 (the hook) before frame 2 cuts in
