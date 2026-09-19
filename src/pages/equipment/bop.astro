@@ -122,6 +122,31 @@ const jsonLd = {
         <p>The annular goes highest because it is the most forgiving element and the least able to hold pressure — it is the one you reach for first and the one you least want holding the well alone. The choke and kill outlets go <em>below</em> at least one sealing element, because an outlet above everything that is closed is connected to nothing.</p>
         <p>Subsea stacks follow the same logic with more of everything. The ram bodies sit on the wellhead connector at the seabed, and a lower marine riser package — carrying the annulars and the flex joint — lands on top of them, so the LMRP can be released and recovered while the rams stay latched to the well.</p>
 
+        <h2 id="space-out">BOP Space-Out: How Stack Elevations Are Measured</h2>
+        <p>Space-out is the process of confirming exactly where each component in an assembled stack sits, in elevation, relative to a fixed reference — usually the rig floor (top of rotary table) or ground level. It matters because the stack has to satisfy several constraints at once: the choke and kill outlets have to land at a height the crew can actually work from, the annular has to clear the rig floor for stripping operations, and the whole assembly has to fit between the wellhead connector and the substructure without the driller finding that out the hard way.</p>
+        <p>The calculation itself is simple in principle: the elevation of any component above the wellhead connector is the running sum of the face-to-face (connector-to-connector) height of every spool and preventer stacked beneath it, as certified on the manufacturer's dimensional drawing for that specific make and pressure class. Working the other direction, the elevation of any component relative to the rig floor is that same stack-up subtracted from (or added to) the known rig floor-to-wellhead distance for that particular substructure and cellar depth.</p>
+        <p>A complete space-out record captures, top to bottom: the annular preventer, the top and bottom ram cavities (and any intermediate ram, on a triple or quad stack), the drilling spool or mud cross carrying the choke and kill outlets, ground level relative to the rig floor, cellar pit depth below ground level, and the top of the wellhead or casing head flange the stack is landed on. Because that stack-up depends on which specific preventers, spools, and adapter flanges are actually made up — not just the pressure class — it is recalculated and re-verified any time the stack's composition changes, and kept with the well file rather than treated as a fixed number for a given class.</p>
+
+        <h2 id="typical-stack">A Typical 13-5/8" 5M Stack, Component by Component</h2>
+        <p>Standard API 16A nominal-size pairings for one of the most common configurations in the industry — not a specific installation, just how the sizes and classes line up.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Position (top → bottom)</th><th>Component</th><th>Nominal Size</th><th>Pressure Class</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Annular preventer</td><td>13-5/8" bore</td><td>5,000 psi (5M)</td></tr>
+              <tr><td>2</td><td>Upper ram preventer (double cavity)</td><td>13-5/8" bore, 4-1/16" side outlets</td><td>5,000 psi (5M)</td></tr>
+              <tr><td>3</td><td>Drilling spool / mud cross</td><td>13-5/8" bore, 3-1/8" choke outlet, 2-1/16" kill outlet</td><td>5,000 psi (5M)</td></tr>
+              <tr><td>4</td><td>Lower ram preventer (single cavity)</td><td>13-5/8" bore</td><td>5,000 psi (5M)</td></tr>
+              <tr><td>—</td><td>Variable bore ram (VBR) packer element</td><td>Typically spans a mid-range pipe OD, e.g. roughly 3-1/2" to 5-7/8" in one element</td><td>5,000 psi (5M)</td></tr>
+              <tr><td>—</td><td>Blind shear ram packer assembly</td><td>Full-bore shear and seal</td><td>5,000 psi (5M)</td></tr>
+              <tr><td>—</td><td>Wellhead / casing head connector</td><td>13-5/8"</td><td>5,000 psi (5M)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The choke line runs 3-1/8", 5M fittings (manual and HCR gate valves, check valve, tee blocks, target flanges, spacer spools); the kill line runs the same fitting types at 2-1/16", 5M. Both are sized and rated to match the stack's own pressure class, not chosen independently — a 10M or 15M stack carries the equivalent fittings rated to that higher class instead. For the studded flange connections joining all of the above, see the <a href="/calculators/flange-ring-gasket">flange and ring gasket lookup</a>.</p>
+
         <h2 id="choke-and-kill">Choke and Kill Lines</h2>
         <p>Two lines run from outlets in the stack back to surface. The kill line pumps into the well; the choke line takes returns out through an adjustable choke that holds backpressure. Together they are what turns a shut-in well into a killed one.</p>
         <p>On a subsea stack these are full-length lines running the water depth alongside the riser, and their friction is not a rounding error — circulating up a choke line thousands of feet long adds pressure the driller has to account for, which is why choke line friction loss is measured rather than assumed.</p>
@@ -184,6 +209,8 @@ const jsonLd = {
           <a href="#the-two-families">The Two Families</a>
           <a href="#ram-types">The Four Ram Types</a>
           <a href="#stack-arrangement">How a Stack Is Arranged</a>
+          <a href="#space-out">Stack Space-Out</a>
+          <a href="#typical-stack">Typical 5M Stack</a>
           <a href="#choke-and-kill">Choke &amp; Kill Lines</a>
           <a href="#control-system">The Control System</a>
           <a href="#seals">Sealing Elements</a>
