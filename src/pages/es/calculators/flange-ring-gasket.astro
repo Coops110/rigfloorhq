@@ -1,0 +1,207 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+// Dimensiones de brida API 6A/6BX, cifras publicadas por Cameron. Especificación
+// pública de equipo, no ligada a ningún taladro, pozo o empresa.
+// Columnas: diámetro, clasificación de presión, # de empaque, espárragos, longitud de espárrago, diámetro de espárrago, tuerca a través de caras, DE de brida
+const FLANGE_DATA: [string, string, string, number, string, string, string, string][] = [
+  ['1 13/16"', '10M', 'BX-151', 8, '5 1/4"', '3/4"', '1 1/4"', '7 3/8"'],
+  ['1 13/16"', '15M', 'BX-151', 8, '5 7/8"', '7/8"', '1 7/8"', '8 3/16"'],
+  ['1 13/16"', '20M', 'BX-151', 8, '7 3/4"', '1"', '1 5/8"', '10 1/8"'],
+  ['2 1/16"', '5M', 'R-24', 8, '6 1/4"', '7/8"', '1 7/16"', '8 1/2"'],
+  ['2 1/16"', '10M', 'BX-152', 8, '5 1/2"', '3/4"', '1 1/4"', '7 7/8"'],
+  ['2 1/16"', '15M', 'BX-152', 8, '6 1/4"', '7/8"', '1 7/16"', '8 3/4"'],
+  ['2 1/16"', '20M', 'BX-152', 8, '8 1/2"', '1 1/8"', '1 13/16"', '11 5/16"'],
+  ['2 9/16"', '5M', 'R-27', 8, '7"', '1"', '1 5/8"', '9 5/8"'],
+  ['2 9/16"', '10M', 'BX-153', 8, '6 1/4"', '7/8"', '1 7/16"', '9 1/8"'],
+  ['2 9/16"', '15M', 'BX-153', 8, '7"', '1"', '1 5/8"', '10"'],
+  ['2 9/16"', '20M', 'BX-153', 8, '9 1/2"', '1 1/4"', '2"', '12 13/16"'],
+  ['3 1/8"', '3M', 'R-31', 8, '6 1/4"', '7/8"', '1 7/16"', '9 1/2"'],
+  ['3 1/8"', '5M', 'R-35', 8, '7 3/4"', '1 1/8"', '1 13/16"', '10 1/2"'],
+  ['3 1/16"', '10M', 'BX-154', 8, '7 1/4"', '1"', '1 5/8"', '10 5/8"'],
+  ['3 1/16"', '15M', 'BX-154', 8, '8"', '1 1/8"', '1 13/16"', '11 5/16"'],
+  ['3 1/16"', '20M', 'BX-154', 8, '10 1/4"', '1 3/8"', '2 3/16"', '14 1/16"'],
+  ['4 1/16"', '3M', 'R-37', 8, '7 1/2"', '1 1/8"', '1 13/16"', '11 1/2"'],
+  ['4 1/16"', '5M', 'R-39', 8, '8 1/2"', '1 1/4"', '2"', '12 1/4"'],
+  ['4 1/16"', '10M', 'BX-155', 8, '8 3/8"', '1 1/8"', '1 13/16"', '12 7/16"'],
+  ['4 1/16"', '15M', 'BX-155', 8, '9 1/2"', '1 3/8"', '2 3/16"', '14 3/16"'],
+  ['4 1/16"', '20M', 'BX-155', 8, '12 1/4"', '1 3/4"', '2 3/4"', '17 9/16"'],
+  ['5 1/8"', '3M', 'R-41', 8, '8"', '1 1/4"', '2"', '13 3/4"'],
+  ['5 1/8"', '5M', 'R-44', 8, '10 1/4"', '1 1/2"', '2 3/8"', '14 3/4"'],
+  ['5 1/8"', '10M', 'BX-169', 12, '9 1/4"', '1 1/8"', '1 13/16"', '14 1/16"'],
+  ['7 1/16"', '3M', 'R-45', 12, '8 1/2"', '1 1/8"', '1 13/16"', '15"'],
+  ['7 1/16"', '5M', 'R-46', 12, '11 1/4"', '1 3/8"', '2 3/16"', '15 1/2"'],
+  ['7 1/16"', '10M', 'BX-156', 12, '11 3/4"', '1 1/2"', '2 3/8"', '18 7/8"'],
+  ['7 1/16"', '15M', 'BX-156', 16, '13"', '1 1/2"', '2 3/8"', '19 7/8"'],
+  ['7 1/16"', '20M', 'BX-156', 16, '17 3/4"', '2"', '3 1/8"', '25 13/16"'],
+  ['9"', '3M', 'R-49', 12, '9 1/2"', '1 3/8"', '2 3/16"', '18 1/2"'],
+  ['9"', '5M', 'R-50', 12, '12 1/2"', '1 5/8"', '2 9/16"', '19"'],
+  ['9"', '10M', 'BX-157', 16, '13 1/4"', '1 1/2"', '2 3/8"', '21 3/4"'],
+  ['9"', '15M', 'BX-157', 16, '15 3/4"', '1 7/8"', '2 15/16"', '25 1/2"'],
+  ['11"', '2M', 'R-53', 16, '9 1/4"', '1 1/4"', '2"', '20"'],
+  ['11"', '3M', 'R-53', 16, '10"', '1 3/8"', '2 3/16"', '21 1/2"'],
+  ['11"', '5M', 'R-54', 12, '14 1/2"', '1 7/8"', '2 15/16"', '23"'],
+  ['11"', '10M', 'BX-158', 16, '15 3/8"', '1 3/4"', '2 3/4"', '25 3/4"'],
+  ['11"', '15M', 'BX-158', 20, '19 1/2"', '2"', '3 1/8"', '32"'],
+  ['11"', '20M', 'BX-158', 16, '24"', '2 3/4"', '—', '34 3/4"'],
+  ['13 5/8"', '2M', 'R-57', 20, '9 1/2"', '1 1/4"', '2"', '22"'],
+  ['13 5/8"', '3M', 'R-57', 20, '10 3/4"', '1 3/8"', '2 3/16"', '24"'],
+  ['13 5/8"', '5M', 'BX-160', 16, '12 3/4"', '1 5/8"', '2 9/16"', '26 1/2"'],
+  ['13 5/8"', '10M', 'BX-159', 20, '17 3/4"', '1 7/8"', '2 15/16"', '30 1/4"'],
+  ['13 5/8"', '15M', 'BX-159', 20, '21"', '2 1/4"', '3 1/2"', '34 7/8"'],
+  ['13 5/8"', '20M', 'BX-159', 20, '30"', '3"', '—', '45 3/4"'],
+  ['16 3/4"', '2M', 'R-65', 20, '10 3/4"', '1 1/2"', '2 3/8"', '27"'],
+  ['16 3/4"', '3M', 'R-66', 20, '12 1/4"', '1 5/8"', '2 9/16"', '27 3/4"'],
+  ['16 3/4"', '5M', 'BX-162', 16, '14 3/4"', '1 7/8"', '2 15/16"', '30 3/8"'],
+  ['16 3/4"', '10M', 'BX-162', 24, '17 3/4"', '1 7/8"', '2 15/16"', '34 5/16"'],
+  ['18 3/4"', '5M', 'BX-163', 20, '18"', '2"', '3 1/8"', '35 5/8"'],
+  ['18 3/4"', '10M', 'BX-164', 24, '22 1/2"', '2 1/4"', '3 1/2"', '40 15/16"'],
+  ['18 3/4"', '15M', 'BX-164', 20, '27"', '3"', '—', '45 3/4"'],
+  ['21 1/4"', '2M', 'R-73', 24, '12 1/2"', '1 5/8"', '2 9/16"', '32"'],
+  ['20 3/4"', '3M', 'R-74', 20, '15 1/4"', '2"', '3 1/8"', '33 3/4"'],
+  ['21 1/4"', '5M', 'BX-165', 24, '18 3/4"', '2"', '3 1/8"', '39"'],
+  ['21 1/4"', '10M', 'BX-166', 24, '24 1/2"', '2 1/2"', '3 7/8"', '45"'],
+  ['26 3/4"', '2M', 'BX-167', 20, '14 1/2"', '1 3/4"', '2 3/4"', '41"'],
+  ['26 1/4"', '3M', 'BX-168', 24, '17 3/4"', '2"', '3 1/8"', '43 3/8"'],
+];
+
+const faq = [
+  {
+    q: '¿Qué es un número de empaque tipo anillo?',
+    a: 'Es la designación API 6A/6BX marcada en el empaque mismo y en la placa de datos de la brida — "R-24" o "BX-152", por ejemplo. El número identifica la geometría exacta del empaque para una combinación específica de diámetro y clasificación de presión, así que dar el número es inequívoco, a diferencia de "el de siempre para esta brida".',
+  },
+  {
+    q: '¿Cuál es la diferencia entre un empaque R y un empaque BX?',
+    a: 'Un empaque R se asienta en una ranura plana y simétrica, y depende únicamente de la fuerza de apriete de los pernos para sellar — se usa en clasificaciones de presión más bajas, generalmente de 2M a 5M. Un empaque BX está energizado por presión: la presión del pozo empuja el anillo con más fuerza contra las paredes de la ranura, por lo que se usa en 10M y superiores, y en prácticamente todas las conexiones del stack de BOP. Los dos no son intercambiables aunque coincida el diámetro.',
+  },
+  {
+    q: '¿Cómo encuentro el empaque correcto para mi brida?',
+    a: 'Compara el diámetro y la clasificación de presión marcados en la placa de datos de la brida contra la tabla. Si la placa de datos falta o está desgastada, las dimensiones de la ranura pueden medirse y verificarse contra API 6A, pero pedir el empaque a partir de una medición sin confirmar la clasificación es exactamente cómo termina instalado un empaque incorrecto.',
+  },
+  {
+    q: '¿Qué significa "Tuerca A/F" en la tabla?',
+    a: 'A través de caras — la medida de llave de la tuerca hexagonal pesada que corresponde al espárrago, según ASME B18.2.2. Se incluye porque es la dimensión que realmente necesitas en la caja de herramientas: el diámetro del espárrago te dice qué tuerca pedir, pero A/F te dice qué dado o llave usar.',
+  },
+  {
+    q: '¿Son estas dimensiones las mismas para todos los fabricantes de bridas?',
+    a: 'API 6A estandariza las dimensiones precisamente para que bridas de distintos fabricantes que cumplan la norma encajen entre sí. Esta tabla refleja las cifras publicadas por Cameron; otros fabricantes que cumplan API 6A deberían coincidir, pero siempre verifica contra la placa de datos de la brida específica antes de pedir espárragos o empaques.',
+  },
+  {
+    q: '¿Esta tabla aplica también a cabezales de pozo y carretes?',
+    a: 'Los cabezales de pozo, carretes y conexiones del stack de BOP en este rango de diámetro y presión generalmente usan el mismo sistema de brida API 6A/6BX, así que la tabla aplica. No cubre conexiones tipo abrazadera (clamp hub) u otros tipos de conexión no embridada, que usan un sistema de sello completamente distinto.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const bores = [...new Set(FLANGE_DATA.map((r) => r[0]))];
+const pressures = [...new Set(FLANGE_DATA.map((r) => r[1]))].sort((a, b) => parseInt(a) - parseInt(b));
+---
+<BaseLayout
+  title="Tabla de Bridas y Empaques Tipo Anillo"
+  description="Diámetro y clasificación de presión API 6A/6BX a número de empaque, cantidad de espárragos, tamaño de espárrago y DE de brida — dimensiones de Cameron, filtrable."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Bridas y Empaques', href: '/es/calculators/flange-ring-gasket' }]}
+  lang="es"
+  alternateHref="/calculators/flange-ring-gasket"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/flange-ring-gasket" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Bridas y Empaques <span>Tipo Anillo</span></h1>
+    <p class="page-hero-sub">Diámetro y clasificación de presión API 6A/6BX a número de empaque tipo anillo, cantidad y tamaño de espárragos, y diámetro exterior de brida. Filtra por un diámetro o una clasificación, o revisa toda la tabla.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🔩 Bridas y Empaques Tipo Anillo</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="fl-bore">Filtrar por Diámetro</label>
+              <select id="fl-bore">
+                <option value="">Todos los diámetros</option>
+                {bores.map((b) => <option value={b}>{b}</option>)}
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="fl-press">Filtrar por Clasificación de Presión</label>
+              <select id="fl-press">
+                <option value="">Todas las clasificaciones</option>
+                {pressures.map((p) => <option value={p}>{p}</option>)}
+              </select>
+            </div>
+          </div>
+          <div class="table-wrap mt-24">
+            <table id="fl-table">
+              <thead>
+                <tr><th>Diámetro</th><th>Clasif.</th><th>Empaque</th><th>Espárragos</th><th>Long. Espárrago</th><th>Diám. Espárrago</th><th>Tuerca A/F</th><th>DE Brida</th></tr>
+              </thead>
+              <tbody>
+                {FLANGE_DATA.map((r) => (
+                  <tr data-bore={r[0]} data-press={r[1]}>
+                    <td>{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td><td>{r[3]}</td><td>{r[4]}</td><td>{r[5]}</td><td>{r[6]}</td><td>{r[7]}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Solo referencia.</strong> Confirma el diámetro y la clasificación de presión contra la placa de datos de la brida antes de pedir espárragos o empaques. Esta es una herramienta de consulta, no un sustituto de la documentación certificada del equipo.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Cómo Leer la Tabla</h2>
+        <p>Cada fila es una combinación de diámetro y clasificación, porque el empaque tipo anillo, la cantidad de espárragos y el tamaño de espárrago de una brida quedan fijos en el momento en que esos dos números se definen — no hay una elección independiente que hacer una vez que conoces el diámetro y la clase de presión.</p>
+        <p><strong>El número de empaque</strong> es lo que se pide: un número "R" es un empaque plano asentado en una ranura plana, usado hasta 5M. Un número "BX" está energizado por presión — la presión del pozo ayuda a mantenerlo sellado en lugar de trabajar en su contra — y es estándar en 10M y superiores, incluyendo prácticamente todas las conexiones del stack de BOP.</p>
+        <p><strong>Espárragos, longitud y diámetro de espárrago</strong> son el apriete físico. <strong>Tuerca A/F</strong> es el ancho a través de caras de la tuerca hexagonal pesada correspondiente, según ASME B18.2.2 — el número que te dice qué dado llevar, no solo qué pedir.</p>
+
+        <h2 id="why-it-matters">Por Qué Importa en el Piso de Perforación</h2>
+        <p>Armar o desarmar un stack de BOP, cambiar un carrete, o reconectar una brida de cabezal se reducen a la misma pregunta: ¿el empaque, los espárragos y las tuercas realmente corresponden al diámetro y clasificación marcados en la brida? Equivocarse en el número de empaque no siempre falla de forma obvia — un número BX cercano pero incorrecto puede parecer bien asentado y aun así no sostener la presión de prueba, que es exactamente por qué la prueba de presión existe como verificación separada de la visual.</p>
+        <p>Para el stack donde esto aplica más seguido, ver <a href="/es/equipment/bop">cómo se arma un stack de BOP</a>. Las conexiones de barrena y sarta de perforación usan un sistema roscado completamente distinto — ver la <a href="/es/calculators/bit-torque">tabla de roscas de barrena y torque de apriete</a> para ese lado del equipo.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const boreSel = document.getElementById('fl-bore') as HTMLSelectElement | null;
+  const pressSel = document.getElementById('fl-press') as HTMLSelectElement | null;
+  const rows = Array.from(document.querySelectorAll<HTMLTableRowElement>('#fl-table tbody tr'));
+
+  function applyFilter() {
+    const bore = boreSel?.value ?? '';
+    const press = pressSel?.value ?? '';
+    rows.forEach((row) => {
+      const matches = (!bore || row.dataset.bore === bore) && (!press || row.dataset.press === press);
+      row.style.display = matches ? '' : 'none';
+    });
+  }
+
+  boreSel?.addEventListener('change', applyFilter);
+  pressSel?.addEventListener('change', applyFilter);
+</script>

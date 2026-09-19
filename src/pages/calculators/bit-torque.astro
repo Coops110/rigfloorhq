@@ -81,11 +81,9 @@ const jsonLd = {
   jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Bit Thread & Torque', href: '/calculators/bit-torque' }]}
   lang="en"
+  alternateHref="/es/calculators/bit-torque"
 >
-  {/* No alternateHref: there is no Spanish version of this page, so BaseLayout
-      emits no hreflang at all rather than declaring an alternate that does not
-      reciprocate. The Nav switcher still goes somewhere sensible. */}
-  <Nav slot="nav" lang="en" alternateHref="/es/calculators" />
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators/bit-torque" />
   <Footer slot="footer" lang="en" />
 
   <div class="page-hero">

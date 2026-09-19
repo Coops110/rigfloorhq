@@ -1,0 +1,165 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+// Referencia de rosca de barrena y torque de apriete publicada por Reed
+// Hycalog. Especificación pública de equipo, no ligada a ningún taladro,
+// pozo o empresa.
+const BIT_THREAD_DATA: [string, string][] = [
+  ['3 3/4 - 4 1/2', '2 3/8 REG'],
+  ['4 5/8 - 5', '2 7/8 REG'],
+  ['5 1/8 - 7 3/8', '3 1/2 REG'],
+  ['7 1/2 - 9 3/8', '4 1/2 REG'],
+  ['9 1/2 - 14 3/8', '6 5/8 REG'],
+  ['14 1/2 - 18 1/2', '6 5/8 o 7 5/8 REG'],
+  ['18 5/8 - 26', '7 5/8 o 8 5/8 REG'],
+  ['27 y mayores', '8 5/8 REG'],
+];
+
+// Rosca, Mínimo ft-lb, Máximo ft-lb, Máximo Severo ft-lb
+const BIT_PDC_TORQUE: [string, number, number, number][] = [
+  ['2 3/8 REG', 3100, 3400, 4000],
+  ['2 7/8 REG', 5250, 5750, 6800],
+  ['3 1/2 REG', 7750, 8500, 10000],
+  ['4 1/2 REG', 18000, 20000, 23500],
+  ['6 5/8 REG', 43000, 47500, 56000],
+  ['7 5/8 REG', 72000, 80000, 93000],
+  ['8 5/8 REG', 101000, 111000, 131000],
+];
+
+// Rosca, rango daN-m, rango ft-lb
+const BIT_RC_TORQUE: [string, string, string][] = [
+  ['2 3/8 REG', '400 - 480', '3000 - 3500'],
+  ['2 7/8 REG', '600 - 750', '4500 - 5500'],
+  ['3 1/2 REG', '950 - 1200', '7000 - 9000'],
+  ['4 1/2 REG', '1600 - 2200', '12000 - 16000'],
+  ['6 5/8 REG', '3800 - 4300', '28000 - 32000'],
+  ['7 5/8 REG', '4800 - 5400', '34000 - 40000'],
+  ['8 5/8 REG', '5400 - 8100', '40000 - 60000'],
+];
+
+const faq = [
+  {
+    q: '¿Qué es el torque de apriete y por qué importa?',
+    a: 'Es el torque aplicado para apretar completamente una conexión roscada — en este caso, la barrena contra el último portamechas. Muy poco y la conexión puede aflojarse en el fondo, lo que significa perder la barrena y tener que pescarla. Demasiado y arriesgas dañar la rosca o una rotura. El rango de esta tabla existe porque "apretado" no es una sensación, es un número.',
+  },
+  {
+    q: '¿Cuál es la diferencia entre torque Mínimo, Máximo y Máximo Severo?',
+    a: 'Mínimo es el torque más bajo comprobado para sostener la conexión bajo cargas normales de perforación. Máximo es el límite superior para servicio ordinario. Máximo Severo se reserva para condiciones que exigen más a la conexión — alto peso sobre la barrena, perforación direccional de alto torque, o cualquier situación que trabaje la conexión más duro que una corrida vertical simple.',
+  },
+  {
+    q: '¿Cómo encuentro la rosca correcta a partir del tamaño de barrena?',
+    a: 'Compara el diámetro de la barrena contra el rango de tamaños en la primera tabla. El tamaño de la conexión escala con el diámetro de la barrena — una barrena de 8 1/2 in usa una conexión 4 1/2 REG, por ejemplo — porque una barrena más grande necesita una conexión física más grande y resistente para soportar las mismas cargas sin convertirse en el punto débil de la sarta.',
+  },
+  {
+    q: '¿Las barrenas PDC y de conos usan el mismo torque de apriete?',
+    a: 'No, por eso se muestran por separado. Los dos tipos de barrena cargan la conexión de forma distinta en servicio, así que una barrena de conos y una PDC con la misma rosca no necesariamente comparten las mismas cifras de torque — siempre lee la tabla que corresponde al tipo de barrena en mano.',
+  },
+  {
+    q: '¿Cómo se aplica realmente el torque de apriete en el piso?',
+    a: 'Con una subestructura de torque o un sistema de llaves calibrado que lea el torque aplicado directamente, no por sensación ni contando vueltas. El apriete "a sensación" es una de las causas más comunes de conexiones dañadas, porque el punto en que una conexión se siente apretada y el punto en que alcanzó su torque correcto no son lo mismo.',
+  },
+  {
+    q: '¿Estas cifras de torque son iguales en todos los fabricantes de barrenas?',
+    a: 'No — siempre revisa primero la hoja de especificaciones de la barrena específica. Esta tabla refleja las cifras publicadas por Reed Hycalog como referencia general; el torque realmente requerido puede variar según el fabricante, la condición de la rosca y el compuesto usado.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Tabla de Rosca y Torque de Apriete de Barrena"
+  description="Tamaño de barrena a conexión roscada, más torque de apriete para barrenas PDC y de conos — cifras Mínimo, Máximo y Máximo Severo de Reed Hycalog."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Rosca y Torque de Barrena', href: '/es/calculators/bit-torque' }]}
+  lang="es"
+  alternateHref="/calculators/bit-torque"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/bit-torque" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Rosca y Torque de Apriete <span>de Barrena</span></h1>
+    <p class="page-hero-sub">Tamaño de barrena a conexión roscada, luego torque de apriete para esa conexión en barrenas PDC y de conos — Mínimo, Máximo y Máximo Severo.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🛠 Tamaño de Barrena → Conexión Roscada</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tamaño de Barrena (in)</th><th>Rosca de Barrena</th></tr></thead>
+              <tbody>
+                {BIT_THREAD_DATA.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">⚙ Torque de Apriete — Barrenas PDC / Cortador Fijo y Diamante</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tamaño de Pin</th><th>Mínimo</th><th>Máximo</th><th>Máx. Severo</th></tr></thead>
+              <tbody>
+                {BIT_PDC_TORQUE.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1].toLocaleString()} ft-lb</td><td>{r[2].toLocaleString()} ft-lb</td><td>{r[3].toLocaleString()} ft-lb</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">⚙ Torque de Apriete — Barrenas de Conos</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Rosca de Barrena</th><th>daN-m</th><th>ft-lb</th></tr></thead>
+              <tbody>
+                {BIT_RC_TORQUE.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Solo referencia.</strong> Siempre revisa la hoja de especificaciones de la barrena específica antes de apretar. La condición de la rosca, el compuesto y la tolerancia del fabricante desplazan la cifra correcta respecto a esta referencia general.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Por Qué Importa el Rango</h2>
+        <p>El torque de apriete no es un solo número que alcanzar — es un rango con una razón detrás de cada extremo. Por debajo del mínimo, la conexión no está completamente acoplada y puede aflojarse bajo la vibración y la carga cíclica de la perforación normal. Por encima del máximo, el pin y la caja quedan sometidos a más esfuerzo del que la conexión fue diseñada para soportar, y el sobre-apriete repetido es un camino directo al daño de las roscas.</p>
+        <p><strong>Máximo Severo</strong> existe por una razón específica: la perforación direccional y de alto peso sobre barrena exigen más carga de trabajo a una conexión que una corrida vertical simple, y una conexión apretada al máximo ordinario puede aflojarse igual bajo esa carga extra. No es un objetivo por defecto — es el límite para cuando las condiciones realmente lo requieren.</p>
+
+        <h2 id="how-connections-differ">En Qué Se Diferencia de un Apriete de Brida</h2>
+        <p>Una conexión de barrena es una junta roscada cónica apretada a una especificación — no hay un empaque separado, y el sello viene del contacto metal-metal de la rosca misma una vez apretada correctamente. Eso es un sistema completamente distinto de las bridas embridadas y empacadas usadas en un <a href="/es/equipment/bop">stack de BOP</a> — ver la <a href="/es/calculators/flange-ring-gasket">tabla de bridas y empaques tipo anillo</a> para ese lado de las conexiones del equipo.</p>
+        <p>Para dónde se ubica la barrena en el resto de la sarta y cómo las conexiones de tool joint cargan por encima de ella, ver <a href="/es/equipment/drill-string">la página de la sarta de perforación</a>.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

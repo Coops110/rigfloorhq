@@ -115,11 +115,9 @@ const pressures = [...new Set(FLANGE_DATA.map((r) => r[1]))].sort((a, b) => pars
   jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Flange & Ring Gasket', href: '/calculators/flange-ring-gasket' }]}
   lang="en"
+  alternateHref="/es/calculators/flange-ring-gasket"
 >
-  {/* No alternateHref: there is no Spanish version of this page, so BaseLayout
-      emits no hreflang at all rather than declaring an alternate that does not
-      reciprocate. The Nav switcher still goes somewhere sensible. */}
-  <Nav slot="nav" lang="en" alternateHref="/es/calculators" />
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators/flange-ring-gasket" />
   <Footer slot="footer" lang="en" />
 
   <div class="page-hero">
