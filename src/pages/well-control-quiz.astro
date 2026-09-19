@@ -29,6 +29,17 @@ const topicOrder = [
   'Subsea Questions',
 ];
 
+const topicIcons: Record<string, string> = {
+  'Basic Knowledge': '📘',
+  'Basic Pressure': '⚙',
+  'Warning Signs and Shut-In': '🚨',
+  'Shut-In Conditions': '🔒',
+  'Volumes and MAASP': '📊',
+  'Kill Methods': '🛑',
+  'Some Tricky Stuff': '🧠',
+  'Subsea Questions': '🌊',
+};
+
 function slugify(topic: string) {
   return topic.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
@@ -36,12 +47,13 @@ function slugify(topic: string) {
 const topics = topicOrder.map((topic) => ({
   name: topic,
   slug: slugify(topic),
+  icon: topicIcons[topic] ?? '❓',
   questions: questions.filter((q) => q.topic === topic),
 }));
 ---
 <BaseLayout
   title="Well Control Quiz: 200 Practice Questions"
-  description="200 well control practice questions across 8 topics: pressure, kick warning signs, shut-in, MAASP, kill methods, subsea, and more. Practice interactively or read every answer."
+  description="200 well control practice questions across 8 topics: pressure, kick warning signs, shut-in, MAASP, kill methods, subsea, and more. Take each topic live and see your score."
   breadcrumbs={[{ label: 'Well Control Quiz', href: '/well-control-quiz' }]}
   lang="en"
 >
@@ -54,52 +66,36 @@ const topics = topicOrder.map((topic) => ({
   <div class="page-hero">
     <div class="page-hero-eyebrow">Reference — Practice</div>
     <h1>Well Control <span>Quiz</span></h1>
-    <p class="page-hero-sub">200 practice questions across 8 topics, the same ground covered by IWCF and IADC well control certification. Read through every question and answer below, or hit "Practice This Topic" to test yourself one question at a time.</p>
+    <p class="page-hero-sub">200 practice questions across 8 topics, the same ground covered by IWCF and IADC well control certification. Pick a topic below and take it live — one question at a time, real score at the end.</p>
   </div>
 
   <section class="block">
-    <div class="prose">
-      <h2 class="sr-only">Topics</h2>
-      <div class="quiz-topic-nav">
-        {topics.map((t) => (
-          <a href={`#${t.slug}`}>{t.name} <span>({t.questions.length})</span></a>
-        ))}
-      </div>
-      <div class="note-box mt-24">
-        <strong>Practice only, not a certified exam.</strong> These questions cover the same ground as IWCF and IADC well control exams but are not affiliated with either body and do not substitute for accredited certification. Nothing you enter is saved, sent anywhere, or stored — reloading the page clears it.
-      </div>
+    <div class="section-eyebrow">Test Yourself</div>
+    <h2 class="section-title">Take the <span>Quiz</span></h2>
+    <div class="card-grid" id="quiz-picker">
+      {topics.map((t) => (
+        <div class="card quiz-pick-btn" data-topic-slug={t.slug} role="button" tabindex="0">
+          <span class="card-icon">{t.icon}</span>
+          <h3>{t.name}</h3>
+          <p>{t.questions.length} questions, shuffled each time.</p>
+          <span class="card-link">Start Quiz →</span>
+        </div>
+      ))}
+    </div>
+
+    <div class="quiz-interactive-main hidden" id="quiz-interactive-main"></div>
+
+    <div class="note-box mt-24">
+      <strong>Practice only, not a certified exam.</strong> These questions cover the same ground as IWCF and IADC well control exams but are not affiliated with either body and do not substitute for accredited certification. Nothing you enter is saved, sent anywhere, or stored — reloading the page clears it.
     </div>
   </section>
 
+  {/* Question data only, nothing visible or readable as page content — the
+      quiz would be pointless if the answers sat in plain view on the page
+      itself. Rendered per-topic so the picker above can load one topic at a
+      time without shipping all 200 questions into a single blob. */}
   {topics.map((t) => (
-    <section class="block quiz-topic" id={t.slug} data-topic-slug={t.slug}>
-      <div class="prose">
-        <h2>{t.name} <span class="quiz-count">— {t.questions.length} questions</span></h2>
-      </div>
-
-      <button type="button" class="btn btn-primary quiz-start-btn">Practice This Topic →</button>
-
-      <div class="quiz-study">
-        {t.questions.map((q, i) => (
-          <div class="q-card">
-            <div class="q-num">Question {i + 1}</div>
-            <p class="q-text">{q.question}</p>
-            <div class="q-choices">
-              {Object.entries(q.choices).filter(([, text]) => text).map(([letter, text]) => (
-                <div class={`q-choice${letter === q.correctAnswer ? ' correct' : ''}`}>
-                  <strong>{letter}.</strong> {text}{letter === q.correctAnswer ? ' ✓' : ''}
-                </div>
-              ))}
-            </div>
-            <div class="q-explain"><strong>Why:</strong> {q.explanation}</div>
-          </div>
-        ))}
-      </div>
-
-      <div class="quiz-interactive hidden"></div>
-
-      <script type="application/json" class="quiz-data" set:html={JSON.stringify(t.questions)} />
-    </section>
+    <script type="application/json" class="quiz-data" data-topic-slug={t.slug} set:html={JSON.stringify(t.questions)} />
   ))}
 
   <section class="block">
@@ -109,62 +105,27 @@ const topics = topicOrder.map((topic) => ({
   </section>
 </BaseLayout>
 
-<style>
-  .quiz-topic-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 20px 0;
-  }
-  .quiz-topic-nav a {
-    font-size: 13px;
-    color: var(--mist);
-    background: var(--iron);
-    border: 1px solid var(--iron);
-    border-radius: 20px;
-    padding: 8px 16px;
-    text-decoration: none;
-  }
-  .quiz-topic-nav a:hover { border-color: var(--amber); color: var(--white); }
-  .quiz-topic-nav a span { color: var(--fog); font-size: 11px; }
+<style is:global>
+  /* Global, not scoped: the interactive quiz UI (.qi-*) is built by
+     client-side JS after the page loads, so Astro's build-time style
+     scoping never reaches it. Scoped rules here would silently no-op on
+     every dynamically created element and ship as unstyled default HTML. */
+  .quiz-pick-btn { cursor: pointer; text-align: left; }
+  .quiz-pick-btn:hover { border-color: var(--amber); }
+  .quiz-pick-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
 
-  .quiz-count { font-size: 14px; color: var(--fog); font-weight: 400; }
-
-  .quiz-start-btn { margin: 4px 0 24px; }
-
-  .q-card {
+  .quiz-interactive-main.active {
     background: var(--steel);
-    border: 1px solid var(--iron);
-    border-radius: 6px;
-    padding: 20px 22px;
-    margin-bottom: 14px;
+    border: 1px solid var(--amber);
+    border-radius: 8px;
+    padding: 28px;
+    margin-top: 28px;
   }
-  .q-num {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--fog);
-    margin-bottom: 6px;
-  }
-  .q-text { font-weight: 600; color: var(--white); margin-bottom: 12px; }
-  .q-choices { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
-  .q-choice { font-size: 14px; color: var(--mist); padding: 6px 10px; border-radius: 4px; }
-  .q-choice.correct { color: var(--white); background: rgba(74, 222, 128, 0.12); border: 1px solid rgba(74, 222, 128, 0.35); }
-  .q-explain { font-size: 13px; color: var(--fog); border-top: 1px solid var(--iron); padding-top: 12px; }
-  .q-explain strong { color: var(--amber); }
 
   .hidden { display: none !important; }
 
-  .quiz-interactive {
-    background: var(--steel);
-    border: 1px solid var(--iron);
-    border-radius: 6px;
-    padding: 24px;
-    margin-bottom: 24px;
-  }
   .qi-progress { font-family: var(--mono); font-size: 11px; color: var(--fog); margin-bottom: 12px; }
-  .qi-text { font-weight: 600; color: var(--white); margin-bottom: 16px; font-size: 16px; }
+  .qi-text { font-weight: 600; color: var(--white); margin-bottom: 16px; font-size: 18px; }
   .qi-choice {
     display: block;
     width: 100%;
@@ -185,6 +146,18 @@ const topics = topicOrder.map((topic) => ({
   .qi-explain { font-size: 13px; color: var(--fog); margin: 14px 0; padding-top: 14px; border-top: 1px solid var(--iron); }
   .qi-score-big { font-size: 2.4em; font-weight: 700; text-align: center; color: var(--white); margin: 10px 0; }
   .qi-score-sub { text-align: center; color: var(--fog); margin-bottom: 20px; }
+  .qi-topic-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); margin-bottom: 8px; }
+
+  .qi-review { margin: 24px 0; border-top: 1px solid var(--iron); padding-top: 20px; }
+  .qi-review-title { font-weight: 600; color: var(--white); margin-bottom: 14px; }
+  .qi-review-item { background: var(--ink); border: 1px solid var(--iron); border-radius: 6px; padding: 16px 18px; margin-bottom: 10px; }
+  .qi-review-item.wrong { border-color: rgba(239, 68, 68, 0.4); }
+  .qi-review-q { font-weight: 600; color: var(--white); margin-bottom: 8px; font-size: 14px; }
+  .qi-review-your { font-size: 13px; margin-bottom: 4px; }
+  .qi-review-your.wrong { color: var(--danger); }
+  .qi-review-your.right { color: #4ade80; }
+  .qi-review-correct { font-size: 13px; color: #4ade80; margin-bottom: 8px; }
+  .qi-review-explain { font-size: 13px; color: var(--fog); }
 </style>
 
 <script>
@@ -206,98 +179,145 @@ const topics = topicOrder.map((topic) => ({
     return a;
   }
 
-  document.querySelectorAll<HTMLElement>('.quiz-topic').forEach((section) => {
-    const startBtn = section.querySelector<HTMLButtonElement>('.quiz-start-btn');
-    const studyDiv = section.querySelector<HTMLElement>('.quiz-study');
-    const interactiveDiv = section.querySelector<HTMLElement>('.quiz-interactive');
-    const dataScript = section.querySelector<HTMLScriptElement>('script.quiz-data');
-    if (!startBtn || !studyDiv || !interactiveDiv || !dataScript) return;
+  type Attempt = { question: Question; chosen: string };
 
+  const mainBox = document.getElementById('quiz-interactive-main');
+  let queue: Question[] = [];
+  let index = 0;
+  let correctCount = 0;
+  let currentTopicName = '';
+  let attempts: Attempt[] = [];
+
+  function renderQuestion() {
+    if (!mainBox) return;
+    const q = queue[index];
+    const entries = Object.entries(q.choices).filter(([, text]) => text);
+    mainBox.innerHTML = `
+      <div class="qi-topic-label">${currentTopicName}</div>
+      <div class="qi-progress">Question ${index + 1} of ${queue.length}</div>
+      <div class="qi-text"></div>
+      <div class="qi-choices"></div>
+    `;
+    mainBox.querySelector('.qi-text')!.textContent = q.question;
+    const choicesEl = mainBox.querySelector('.qi-choices')!;
+    entries.forEach(([letter, text]) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'qi-choice';
+      btn.textContent = `${letter}. ${text}`;
+      btn.addEventListener('click', () => selectChoice(letter, q));
+      choicesEl.appendChild(btn);
+    });
+  }
+
+  function selectChoice(letter: string, q: Question) {
+    if (!mainBox) return;
+    const buttons = Array.from(mainBox.querySelectorAll<HTMLButtonElement>('.qi-choice'));
+    buttons.forEach((b) => (b.disabled = true));
+    const isRight = letter === q.correctAnswer;
+    if (isRight) correctCount++;
+    attempts.push({ question: q, chosen: letter });
+    buttons.forEach((b) => {
+      const l = b.textContent?.trim().charAt(0);
+      if (l === q.correctAnswer) b.classList.add('right');
+      else if (l === letter) b.classList.add('wrong');
+    });
+
+    const explainDiv = document.createElement('div');
+    explainDiv.className = 'qi-explain';
+    explainDiv.innerHTML = `<strong>${isRight ? 'Correct.' : 'Not quite.'}</strong> ${q.explanation}`;
+    mainBox.appendChild(explainDiv);
+
+    const nextBtn = document.createElement('button');
+    nextBtn.type = 'button';
+    nextBtn.className = 'btn btn-primary';
+    nextBtn.textContent = index + 1 < queue.length ? 'Next Question →' : 'See Score →';
+    nextBtn.addEventListener('click', () => {
+      index++;
+      if (index < queue.length) renderQuestion();
+      else showResults();
+    });
+    mainBox.appendChild(nextBtn);
+  }
+
+  function showResults() {
+    if (!mainBox) return;
+    const pct = Math.round((correctCount / queue.length) * 100);
+    mainBox.innerHTML = `
+      <div class="qi-topic-label">${currentTopicName}</div>
+      <div class="qi-score-big">${correctCount} / ${queue.length}</div>
+      <div class="qi-score-sub">${pct}% correct — ${queue.length - correctCount} wrong</div>
+    `;
+
+    const review = document.createElement('div');
+    review.className = 'qi-review';
+    review.innerHTML = '<div class="qi-review-title">Review — every question, correct answer, and why</div>';
+    attempts.forEach((a, i) => {
+      const isRight = a.chosen === a.question.correctAnswer;
+      const item = document.createElement('div');
+      item.className = 'qi-review-item' + (isRight ? '' : ' wrong');
+      const chosenText = a.question.choices[a.chosen] ?? a.chosen;
+      const correctText = a.question.choices[a.question.correctAnswer];
+      item.innerHTML = `
+        <div class="qi-review-q">${i + 1}. ${a.question.question}</div>
+        <div class="qi-review-your ${isRight ? 'right' : 'wrong'}">Your answer: ${a.chosen}. ${chosenText}${isRight ? ' ✓' : ''}</div>
+        ${isRight ? '' : `<div class="qi-review-correct">Correct answer: ${a.question.correctAnswer}. ${correctText}</div>`}
+        <div class="qi-review-explain"><strong>Why:</strong> ${a.question.explanation}</div>
+      `;
+      review.appendChild(item);
+    });
+    mainBox.appendChild(review);
+
+    const retryBtn = document.createElement('button');
+    retryBtn.type = 'button';
+    retryBtn.className = 'btn btn-primary';
+    retryBtn.style.display = 'block';
+    retryBtn.style.margin = '0 auto 10px';
+    retryBtn.textContent = 'Retake This Topic';
+    retryBtn.addEventListener('click', () => startQuiz(currentTopicName, queue));
+    mainBox.appendChild(retryBtn);
+
+    const pickerBtn = document.createElement('button');
+    pickerBtn.type = 'button';
+    pickerBtn.className = 'btn btn-outline';
+    pickerBtn.style.display = 'block';
+    pickerBtn.style.margin = '0 auto';
+    pickerBtn.textContent = 'Try Another Topic';
+    pickerBtn.addEventListener('click', () => {
+      mainBox.classList.add('hidden');
+      mainBox.classList.remove('active');
+      document.getElementById('quiz-picker')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    mainBox.appendChild(pickerBtn);
+  }
+
+  function startQuiz(topicName: string, allQuestions: Question[]) {
+    if (!mainBox) return;
+    currentTopicName = topicName;
+    queue = shuffle(allQuestions);
+    index = 0;
+    correctCount = 0;
+    attempts = [];
+    mainBox.classList.remove('hidden');
+    mainBox.classList.add('active');
+    renderQuestion();
+    mainBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  document.querySelectorAll<HTMLElement>('.quiz-pick-btn').forEach((btn) => {
+    const slug = btn.dataset.topicSlug;
+    const dataScript = document.querySelector<HTMLScriptElement>(`script.quiz-data[data-topic-slug="${slug}"]`);
+    const topicName = btn.querySelector('h3')?.textContent ?? '';
+    if (!dataScript) return;
     const allQuestions: Question[] = JSON.parse(dataScript.textContent || '[]');
-    let queue: Question[] = [];
-    let index = 0;
-    let correctCount = 0;
 
-    function renderQuestion() {
-      if (!interactiveDiv) return;
-      const q = queue[index];
-      const entries = Object.entries(q.choices).filter(([, text]) => text);
-      interactiveDiv.innerHTML = `
-        <div class="qi-progress">Question ${index + 1} of ${queue.length}</div>
-        <div class="qi-text"></div>
-        <div class="qi-choices"></div>
-      `;
-      interactiveDiv.querySelector('.qi-text')!.textContent = q.question;
-      const choicesEl = interactiveDiv.querySelector('.qi-choices')!;
-      entries.forEach(([letter, text]) => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'qi-choice';
-        btn.textContent = `${letter}. ${text}`;
-        btn.addEventListener('click', () => selectChoice(letter, q));
-        choicesEl.appendChild(btn);
-      });
-    }
-
-    function selectChoice(letter: string, q: Question) {
-      if (!interactiveDiv) return;
-      const buttons = Array.from(interactiveDiv.querySelectorAll<HTMLButtonElement>('.qi-choice'));
-      buttons.forEach((b) => (b.disabled = true));
-      const isRight = letter === q.correctAnswer;
-      if (isRight) correctCount++;
-      buttons.forEach((b) => {
-        const l = b.textContent?.trim().charAt(0);
-        if (l === q.correctAnswer) b.classList.add('right');
-        else if (l === letter) b.classList.add('wrong');
-      });
-
-      const explainDiv = document.createElement('div');
-      explainDiv.className = 'qi-explain';
-      explainDiv.innerHTML = `<strong>${isRight ? 'Correct.' : 'Not quite.'}</strong> ${q.explanation}`;
-      interactiveDiv.appendChild(explainDiv);
-
-      const nextBtn = document.createElement('button');
-      nextBtn.type = 'button';
-      nextBtn.className = 'btn btn-primary';
-      nextBtn.textContent = index + 1 < queue.length ? 'Next Question →' : 'See Score →';
-      nextBtn.addEventListener('click', () => {
-        index++;
-        if (index < queue.length) renderQuestion();
-        else showResults();
-      });
-      interactiveDiv.appendChild(nextBtn);
-    }
-
-    function showResults() {
-      if (!interactiveDiv) return;
-      const pct = Math.round((correctCount / queue.length) * 100);
-      interactiveDiv.innerHTML = `
-        <div class="qi-score-big">${correctCount} / ${queue.length}</div>
-        <div class="qi-score-sub">${pct}% correct</div>
-      `;
-      const backBtn = document.createElement('button');
-      backBtn.type = 'button';
-      backBtn.className = 'btn btn-primary';
-      backBtn.style.display = 'block';
-      backBtn.style.margin = '0 auto';
-      backBtn.textContent = 'Back to Full List';
-      backBtn.addEventListener('click', () => {
-        interactiveDiv.classList.add('hidden');
-        studyDiv?.classList.remove('hidden');
-        startBtn!.textContent = 'Practice This Topic →';
-        startBtn!.classList.remove('hidden');
-      });
-      interactiveDiv.appendChild(backBtn);
-    }
-
-    startBtn.addEventListener('click', () => {
-      queue = shuffle(allQuestions);
-      index = 0;
-      correctCount = 0;
-      studyDiv.classList.add('hidden');
-      interactiveDiv.classList.remove('hidden');
-      startBtn.classList.add('hidden');
-      renderQuestion();
+    const start = () => startQuiz(topicName, allQuestions);
+    btn.addEventListener('click', start);
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        start();
+      }
     });
   });
 </script>

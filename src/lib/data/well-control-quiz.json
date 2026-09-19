@@ -38,7 +38,7 @@
       "E": "The volume will decrease at first then build back up"
     },
     "correctAnswer": "C",
-    "explanation": "By the second circulation, the influx has already been removed from the well during the first circulation. What remains is pumping kill-weight mud around the system while returns are monitored. Since the volume being pumped in matches the volume coming back at surface, the pit level should stay essentially flat throughout this stage â€” a rising or falling pit here would be a sign that something unplanned is happening (losses or another influx).",
+    "explanation": "By the second circulation, the influx has already been removed from the well during the first circulation. What remains is pumping kill-weight mud around the system while returns are monitored. Since the volume being pumped in matches the volume coming back at surface, the pit level should stay essentially flat throughout this stage — a rising or falling pit here would be a sign that something unplanned is happening (losses or another influx).",
     "topic": "Basic Knowledge"
   },
   {
@@ -52,7 +52,7 @@
       "E": "All the above are correct"
     },
     "correctAnswer": "D",
-    "explanation": "Crews are generally good about topping the hole up on trips â€” the real gap is confirming the volume actually pumped back in matches the calculated volume of steel just removed. A hole that appears \"full\" can still be quietly taking less fluid than it should, and that shortfall is one of the most common, and easiest to miss, early signs of a kick in progress.",
+    "explanation": "Crews are generally good about topping the hole up on trips — the real gap is confirming the volume actually pumped back in matches the calculated volume of steel just removed. A hole that appears \"full\" can still be quietly taking less fluid than it should, and that shortfall is one of the most common, and easiest to miss, early signs of a kick in progress.",
     "topic": "Basic Knowledge"
   },
   {
@@ -66,7 +66,7 @@
       "E": "All of the above"
     },
     "correctAnswer": "D",
-    "explanation": "Total pump pressure is used up overcoming friction in the surface lines, inside the drillstring, through the bit nozzles, and finally up the annulus back to surface â€” by the time returns reach the shakers, all of it has been spent. Of those components, only the annular pressure loss (APL) is generated above the bit on the way back to surface, meaning it represents backpressure that the open hole and formation are still feeling while mud is being circulated. That is why annular pressure loss is added to static mud weight when calculating equivalent circulating density.",
+    "explanation": "Total pump pressure is used up overcoming friction in the surface lines, inside the drillstring, through the bit nozzles, and finally up the annulus back to surface — by the time returns reach the shakers, all of it has been spent. Of those components, only the annular pressure loss (APL) is generated above the bit on the way back to surface, meaning it represents backpressure that the open hole and formation are still feeling while mud is being circulated. That is why annular pressure loss is added to static mud weight when calculating equivalent circulating density.",
     "topic": "Basic Knowledge"
   },
   {
@@ -80,7 +80,7 @@
       "E": "Column length and density of the fluid"
     },
     "correctAnswer": "E",
-    "explanation": "Hydrostatic pressure is purely a function of a fluid's density and the vertical height (true vertical depth) of the column above the point being measured â€” it has nothing to do with the shape, volume, or width of the container it's in. That is why the formula is simply: pressure = fluid density x column height (gradient in psi/ft x TVD in feet).",
+    "explanation": "Hydrostatic pressure is purely a function of a fluid's density and the vertical height (true vertical depth) of the column above the point being measured — it has nothing to do with the shape, volume, or width of the container it's in. That is why the formula is simply: pressure = fluid density x column height (gradient in psi/ft x TVD in feet).",
     "topic": "Basic Knowledge"
   },
   {
@@ -108,7 +108,7 @@
       "E": "The reading obtained from the mud loggers"
     },
     "correctAnswer": "A",
-    "explanation": "If a kick happens, the well will actually be killed by watching the drillpipe gauge at the remote choke panel â€” so that is the exact gauge that should be used to establish slow circulating rate pressure losses in the first place. Using a different gauge (console, pump, or manifold) introduces small calibration differences that can throw off your kill sheet numbers right when accuracy matters most.",
+    "explanation": "If a kick happens, the well will actually be killed by watching the drillpipe gauge at the remote choke panel — so that is the exact gauge that should be used to establish slow circulating rate pressure losses in the first place. Using a different gauge (console, pump, or manifold) introduces small calibration differences that can throw off your kill sheet numbers right when accuracy matters most.",
     "topic": "Basic Knowledge"
   },
   {
@@ -122,7 +122,7 @@
       "E": ""
     },
     "correctAnswer": "A",
-    "explanation": "This is the textbook definition of hydrostatic pressure: it depends only on the fluid's density and the vertical height of the static column above the measurement point â€” not on motion, flow rate, or shape of the container. The statement is true.",
+    "explanation": "This is the textbook definition of hydrostatic pressure: it depends only on the fluid's density and the vertical height of the static column above the measurement point — not on motion, flow rate, or shape of the container. The statement is true.",
     "topic": "Basic Knowledge"
   },
   {
@@ -136,7 +136,7 @@
       "E": "Have slow circulating rate pressure losses to hand at all times"
     },
     "correctAnswer": "B",
-    "explanation": "The size of the pit gain drives everything else about how difficult and dangerous the kill will be â€” bigger gains mean higher shut-in pressures, longer bubble migration, and a bigger safety margin needed. The single biggest lever a crew has over that outcome is reaction speed: the quicker the well is shut in after a kick is recognized, the smaller the gain, and the more manageable everything downstream becomes.",
+    "explanation": "The size of the pit gain drives everything else about how difficult and dangerous the kill will be — bigger gains mean higher shut-in pressures, longer bubble migration, and a bigger safety margin needed. The single biggest lever a crew has over that outcome is reaction speed: the quicker the well is shut in after a kick is recognized, the smaller the gain, and the more manageable everything downstream becomes.",
     "topic": "Basic Knowledge"
   },
   {
@@ -192,7 +192,7 @@
       "E": "A good leak-off test"
     },
     "correctAnswer": "C",
-    "explanation": "Primary well control means keeping formation pressure balanced using nothing but the hydrostatic pressure of a properly weighted mud column at the correct true vertical depth. Everything else â€” trained crews, blowout preventers, leak-off tests â€” supports that goal or serves as a backup once primary control has already been lost.",
+    "explanation": "Primary well control means keeping formation pressure balanced using nothing but the hydrostatic pressure of a properly weighted mud column at the correct true vertical depth. Everything else — trained crews, blowout preventers, leak-off tests — supports that goal or serves as a backup once primary control has already been lost.",
     "topic": "Basic Knowledge"
   },
   {
@@ -206,7 +206,7 @@
       "E": "Investigate why primary control was lost"
     },
     "correctAnswer": "B",
-    "explanation": "Secondary well control is defined as using the blowout preventer equipment to physically shut the well in once the mud column alone (primary control) is no longer holding formation pressure back. Everything else listed â€” kill sheets, kill mud, investigating the cause â€” happens after the well has already been secured with the BOPs.",
+    "explanation": "Secondary well control is defined as using the blowout preventer equipment to physically shut the well in once the mud column alone (primary control) is no longer holding formation pressure back. Everything else listed — kill sheets, kill mud, investigating the cause — happens after the well has already been secured with the BOPs.",
     "topic": "Basic Knowledge"
   },
   {
@@ -290,7 +290,7 @@
       "E": ""
     },
     "correctAnswer": "A",
-    "explanation": "This is exactly what the slow circulating rate (SCR) pressure loss represents: the friction pressure needed to move mud through the entire circulating system at a predetermined, reduced pump rate â€” the same rate that will later be used to kill the well if a kick occurs.",
+    "explanation": "This is exactly what the slow circulating rate (SCR) pressure loss represents: the friction pressure needed to move mud through the entire circulating system at a predetermined, reduced pump rate — the same rate that will later be used to kill the well if a kick occurs.",
     "topic": "Basic Knowledge"
   },
   {
@@ -304,7 +304,7 @@
       "E": "All of the above"
     },
     "correctAnswer": "E",
-    "explanation": "Slow circulating rate pressure loss changes any time the friction characteristics of the system change â€” new mud weight, new footage of hole drilled, or a different bottom-hole assembly and nozzle configuration will all shift the number. Taking a fresh reading at shift change and after each of these events keeps your kill-sheet baseline accurate.",
+    "explanation": "Slow circulating rate pressure loss changes any time the friction characteristics of the system change — new mud weight, new footage of hole drilled, or a different bottom-hole assembly and nozzle configuration will all shift the number. Taking a fresh reading at shift change and after each of these events keeps your kill-sheet baseline accurate.",
     "topic": "Basic Knowledge"
   },
   {
@@ -318,7 +318,7 @@
       "E": "Only with surface stacks"
     },
     "correctAnswer": "A",
-    "explanation": "The wellbore behaves like a U-tube: once shut in and stabilized, the pressures in the two connected legs (drillstring and annulus) are in equilibrium with formation pressure, regardless of how different SIDPP and SICP read from each other â€” that difference simply reflects the lighter influx sitting in the annulus side. Balance is about stability, not about the two gauges matching.",
+    "explanation": "The wellbore behaves like a U-tube: once shut in and stabilized, the pressures in the two connected legs (drillstring and annulus) are in equilibrium with formation pressure, regardless of how different SIDPP and SICP read from each other — that difference simply reflects the lighter influx sitting in the annulus side. Balance is about stability, not about the two gauges matching.",
     "topic": "Basic Knowledge"
   },
   {
@@ -332,7 +332,7 @@
       "E": "Only with surface stacks"
     },
     "correctAnswer": "B",
-    "explanation": "This statement has it backwards. During a kill with the pump running at a steady rate, the choke is what you adjust to control casing (back) pressure. Drillpipe pressure is a consequence of the fixed pump speed and mud weight going down the string â€” you do not use pump speed as your primary tool to fine-tune it during circulation.",
+    "explanation": "This statement has it backwards. During a kill with the pump running at a steady rate, the choke is what you adjust to control casing (back) pressure. Drillpipe pressure is a consequence of the fixed pump speed and mud weight going down the string — you do not use pump speed as your primary tool to fine-tune it during circulation.",
     "topic": "Basic Knowledge"
   },
   {
@@ -346,7 +346,7 @@
       "E": "Only with surface stacks"
     },
     "correctAnswer": "A",
-    "explanation": "A slug is heavier mud pumped into the top of the drillstring purely so the pipe can be pulled a safe distance dry without spilling mud on the rig floor. Because the well remains static and the overall hydrostatic column reaching bottom is unaffected in any meaningful way, bottom-hole pressure is unchanged by the practice â€” which is exactly why pumping slugs is standard and permitted.",
+    "explanation": "A slug is heavier mud pumped into the top of the drillstring purely so the pipe can be pulled a safe distance dry without spilling mud on the rig floor. Because the well remains static and the overall hydrostatic column reaching bottom is unaffected in any meaningful way, bottom-hole pressure is unchanged by the practice — which is exactly why pumping slugs is standard and permitted.",
     "topic": "Basic Knowledge"
   },
   {
@@ -416,7 +416,7 @@
       "E": "7080 psi"
     },
     "correctAnswer": "B",
-    "explanation": "A gradient already expresses pressure per foot of vertical depth, so hydrostatic pressure is simply gradient x TVD (using TVD, not MD, for the same reason as always â€” pressure depends on vertical height). Here: 0.780 x 10,000 = 7800 psi.",
+    "explanation": "A gradient already expresses pressure per foot of vertical depth, so hydrostatic pressure is simply gradient x TVD (using TVD, not MD, for the same reason as always — pressure depends on vertical height). Here: 0.780 x 10,000 = 7800 psi.",
     "topic": "Basic Pressure"
   },
   {
@@ -598,7 +598,7 @@
       "E": "1725 psi"
     },
     "correctAnswer": "A",
-    "explanation": "Two changes are happening at once â€” a mud weight change and a pump speed change â€” and it doesn't matter which one you calculate first. Mud weight step: 1700 x (12/10) = 2040 psi. Speed step: 2040 x (45/50)^2 = 2040 x 0.81 = 1652 psi.",
+    "explanation": "Two changes are happening at once — a mud weight change and a pump speed change — and it doesn't matter which one you calculate first. Mud weight step: 1700 x (12/10) = 2040 psi. Speed step: 2040 x (45/50)^2 = 2040 x 0.81 = 1652 psi.",
     "topic": "Basic Pressure"
   },
   {
@@ -724,7 +724,7 @@
       "E": "Stop tripping, shear the pipe, and call for help"
     },
     "correctAnswer": "D",
-    "explanation": "When you cannot account for the fill volume, you must assume the well could already be flowing, so the safest immediate step is to secure the pipe with a full-opening safety valve before doing anything else â€” including a flow check. This protects against flow up the drillstring while you sort out what's happening.",
+    "explanation": "When you cannot account for the fill volume, you must assume the well could already be flowing, so the safest immediate step is to secure the pipe with a full-opening safety valve before doing anything else — including a flow check. This protects against flow up the drillstring while you sort out what's happening.",
     "topic": "Warning Signs and Shut-In"
   },
   {
@@ -738,7 +738,7 @@
       "E": "Reset the pit level and flow-show indicators"
     },
     "correctAnswer": "C",
-    "explanation": "An unexplained pit gain is treated as a possible kick until proven otherwise. The safest response is to pick the bit up off bottom, shut the pumps down, and perform a proper flow check â€” this is the fastest way to confirm or rule out an influx without wasting time on lower-priority actions.",
+    "explanation": "An unexplained pit gain is treated as a possible kick until proven otherwise. The safest response is to pick the bit up off bottom, shut the pumps down, and perform a proper flow check — this is the fastest way to confirm or rule out an influx without wasting time on lower-priority actions.",
     "topic": "Warning Signs and Shut-In"
   },
   {
@@ -794,7 +794,7 @@
       "E": "Both C and D"
     },
     "correctAnswer": "B",
-    "explanation": "A sudden increase in penetration rate can mean a more porous, permeable, or higher-pressured zone has just been drilled into â€” exactly the conditions that can trigger a kick. The safest immediate response is to pick up off bottom and flow check before deciding on any other action.",
+    "explanation": "A sudden increase in penetration rate can mean a more porous, permeable, or higher-pressured zone has just been drilled into — exactly the conditions that can trigger a kick. The safest immediate response is to pick up off bottom and flow check before deciding on any other action.",
     "topic": "Warning Signs and Shut-In"
   },
   {
@@ -836,7 +836,7 @@
       "E": "Running in too fast, causing surge pressure and losses"
     },
     "correctAnswer": "D",
-    "explanation": "Swabbing is specifically the suction effect created when pipe is pulled out of the hole â€” pulling too quickly, or without an adequate trip margin (extra mud weight built in to offset the swab effect), lets formation pressure momentarily exceed the reduced hydrostatic pressure and draw fluid in. The other options describe circulating density issues or surge effects on the way into the hole, which are separate problems.",
+    "explanation": "Swabbing is specifically the suction effect created when pipe is pulled out of the hole — pulling too quickly, or without an adequate trip margin (extra mud weight built in to offset the swab effect), lets formation pressure momentarily exceed the reduced hydrostatic pressure and draw fluid in. The other options describe circulating density issues or surge effects on the way into the hole, which are separate problems.",
     "topic": "Warning Signs and Shut-In"
   },
   {
@@ -850,7 +850,7 @@
       "E": "Drilling breaks"
     },
     "correctAnswer": "C",
-    "explanation": "Abnormal pressure, lost circulation, gas cutting, and drilling breaks are all conditions the crew has to react to. Failing to fill the hole with the exact calculated volume on a trip, however, is a monitoring failure â€” the driller should be watching this on every stand, and catching it in time prevents the kick entirely rather than just responding to one.",
+    "explanation": "Abnormal pressure, lost circulation, gas cutting, and drilling breaks are all conditions the crew has to react to. Failing to fill the hole with the exact calculated volume on a trip, however, is a monitoring failure — the driller should be watching this on every stand, and catching it in time prevents the kick entirely rather than just responding to one.",
     "topic": "Warning Signs and Shut-In"
   },
   {
@@ -906,7 +906,7 @@
       "E": "Run back to bottom as fast as possible"
     },
     "correctAnswer": "A",
-    "explanation": "The moment a kick is confirmed, the well must be shut in â€” that means installing a safety valve in the string if it's off bottom, and closing the BOPs. Because a kill is best executed with the bit on bottom, the next step after securing the well is to strip back down carefully, not rush or skip steps.",
+    "explanation": "The moment a kick is confirmed, the well must be shut in — that means installing a safety valve in the string if it's off bottom, and closing the BOPs. Because a kill is best executed with the bit on bottom, the next step after securing the well is to strip back down carefully, not rush or skip steps.",
     "topic": "Warning Signs and Shut-In"
   },
   {
@@ -976,7 +976,7 @@
       "E": "None of the above are correct"
     },
     "correctAnswer": "D",
-    "explanation": "Closing in quickly limits how much formation fluid gets a chance to enter the well, which directly caps the size of the influx. A smaller influx, in turn, means a lower shut-in casing pressure (SICP) once everything stabilizes â€” the two benefits are directly linked. SIDPP, by contrast, is not affected by kick size, so option C is false.",
+    "explanation": "Closing in quickly limits how much formation fluid gets a chance to enter the well, which directly caps the size of the influx. A smaller influx, in turn, means a lower shut-in casing pressure (SICP) once everything stabilizes — the two benefits are directly linked. SIDPP, by contrast, is not affected by kick size, so option C is false.",
     "topic": "Warning Signs and Shut-In"
   },
   {
@@ -1004,7 +1004,7 @@
       "E": ""
     },
     "correctAnswer": "B",
-    "explanation": "Weighting up may end up being the right call, but it should never be automatic â€” raising mud weight without first checking whether the formation can actually tolerate it risks inducing losses, which creates a new and arguably worse problem. The correct first step is to assess whether an increase is safe before making it.",
+    "explanation": "Weighting up may end up being the right call, but it should never be automatic — raising mud weight without first checking whether the formation can actually tolerate it risks inducing losses, which creates a new and arguably worse problem. The correct first step is to assess whether an increase is safe before making it.",
     "topic": "Warning Signs and Shut-In"
   },
   {
@@ -1018,7 +1018,7 @@
       "E": "Increase the pump speed"
     },
     "correctAnswer": "A",
-    "explanation": "Suspicion alone is enough to act on immediately â€” the driller should pick up off bottom, stop the pumps, and run a flow check right away. If that check comes back positive, the well is shut in on the spot rather than waiting for confirmation from anyone else or letting the situation develop further.",
+    "explanation": "Suspicion alone is enough to act on immediately — the driller should pick up off bottom, stop the pumps, and run a flow check right away. If that check comes back positive, the well is shut in on the spot rather than waiting for confirmation from anyone else or letting the situation develop further.",
     "topic": "Warning Signs and Shut-In"
   },
   {
@@ -1074,7 +1074,7 @@
       "E": "12.5 ppg"
     },
     "correctAnswer": "D",
-    "explanation": "Kill mud weight = SIDPP / (TVD x 0.052) + original mud weight â€” always use TVD and SIDPP (SICP is not part of this formula). 1000 / (10,200 x 0.052) = 1000 / 530.4 = 1.885; 1.885 + 12.3 = 14.2 ppg.",
+    "explanation": "Kill mud weight = SIDPP / (TVD x 0.052) + original mud weight — always use TVD and SIDPP (SICP is not part of this formula). 1000 / (10,200 x 0.052) = 1000 / 530.4 = 1.885; 1.885 + 12.3 = 14.2 ppg.",
     "topic": "Shut-In Conditions"
   },
   {
@@ -1214,7 +1214,7 @@
       "E": ""
     },
     "correctAnswer": "B",
-    "explanation": "SIDPP is simply the gap between mud hydrostatic pressure inside the drillstring and true formation pressure â€” the drillstring never contains any of the influx, so the size of the kick has no bearing on this reading. False.",
+    "explanation": "SIDPP is simply the gap between mud hydrostatic pressure inside the drillstring and true formation pressure — the drillstring never contains any of the influx, so the size of the kick has no bearing on this reading. False.",
     "topic": "Shut-In Conditions"
   },
   {
@@ -1242,7 +1242,7 @@
       "E": "197 ft"
     },
     "correctAnswer": "D",
-    "explanation": "Even though the bit itself is sitting at the shoe, the influx entered at the bottom of the hole, in the open, uncased section below â€” that section has no drill collars in it, so its annular capacity is the full open-hole figure given (0.0702 bbl/ft), not the drill-collar annular capacity. Influx height = kick size / open-hole capacity = 12 / 0.0702 = 171 ft.",
+    "explanation": "Even though the bit itself is sitting at the shoe, the influx entered at the bottom of the hole, in the open, uncased section below — that section has no drill collars in it, so its annular capacity is the full open-hole figure given (0.0702 bbl/ft), not the drill-collar annular capacity. Influx height = kick size / open-hole capacity = 12 / 0.0702 = 171 ft.",
     "topic": "Shut-In Conditions"
   },
   {
@@ -1298,7 +1298,7 @@
       "E": "Make sure MAASP will not be exceeded"
     },
     "correctAnswer": "C",
-    "explanation": "The influx gradient gives a strong indication of what type of fluid you're dealing with (a low gradient points toward gas, a higher one toward salt water or oil). That knowledge lets the crew prepare the right surface equipment and procedures â€” gas busters, degassers, flaring arrangements â€” well before the kick actually reaches surface.",
+    "explanation": "The influx gradient gives a strong indication of what type of fluid you're dealing with (a low gradient points toward gas, a higher one toward salt water or oil). That knowledge lets the crew prepare the right surface equipment and procedures — gas busters, degassers, flaring arrangements — well before the kick actually reaches surface.",
     "topic": "Shut-In Conditions"
   },
   {
@@ -1312,7 +1312,7 @@
       "E": "There is insufficient information to calculate kill mud weight"
     },
     "correctAnswer": "B",
-    "explanation": "With zero on the drillpipe gauge and no float to explain that reading, the situation is that gas has been swabbed into the annulus during a trip rather than kicked in while drilling. Because a pure gas influx (with no fluid density difference reaching the drillstring side) leaves the drillstring hydrostatic already matching formation pressure, the well can be killed with the original mud weight â€” no increase is needed.",
+    "explanation": "With zero on the drillpipe gauge and no float to explain that reading, the situation is that gas has been swabbed into the annulus during a trip rather than kicked in while drilling. Because a pure gas influx (with no fluid density difference reaching the drillstring side) leaves the drillstring hydrostatic already matching formation pressure, the well can be killed with the original mud weight — no increase is needed.",
     "topic": "Shut-In Conditions"
   },
   {
@@ -1382,7 +1382,7 @@
       "E": "You cannot read SICP in a horizontal well"
     },
     "correctAnswer": "C",
-    "explanation": "SICP is normally higher than SIDPP because the lighter influx occupies a length of the annulus and creates a real vertical height difference between the two hydrostatic columns. In a horizontal section, though, the influx doesn't gain any true vertical height as it moves along the wellbore, so it barely changes the vertical hydrostatic balance â€” and SICP ends up reading close to SIDPP.",
+    "explanation": "SICP is normally higher than SIDPP because the lighter influx occupies a length of the annulus and creates a real vertical height difference between the two hydrostatic columns. In a horizontal section, though, the influx doesn't gain any true vertical height as it moves along the wellbore, so it barely changes the vertical hydrostatic balance — and SICP ends up reading close to SIDPP.",
     "topic": "Shut-In Conditions"
   },
   {
@@ -1536,7 +1536,7 @@
       "E": "After all of the above"
     },
     "correctAnswer": "C",
-    "explanation": "MAASP is directly derived from the difference between maximum allowable mud weight and the mud weight currently in the hole. The moment mud weight changes, that difference changes too, so MAASP must be re-calculated every time â€” not merely as a routine check after bit runs, footage milestones, or BOP tests.",
+    "explanation": "MAASP is directly derived from the difference between maximum allowable mud weight and the mud weight currently in the hole. The moment mud weight changes, that difference changes too, so MAASP must be re-calculated every time — not merely as a routine check after bit runs, footage milestones, or BOP tests.",
     "topic": "Volumes and MAASP"
   },
   {
@@ -1564,7 +1564,7 @@
       "E": "1000 psi"
     },
     "correctAnswer": "B",
-    "explanation": "This is a MAASP calculation using gradients instead of mud weights directly â€” fracture gradient stands in for the maximum allowable mud gradient: MAASP = (fracture gradient - mud gradient) x shoe TVD = (0.606 - 0.495) x 4500 = 0.111 x 4500 = 500 psi.",
+    "explanation": "This is a MAASP calculation using gradients instead of mud weights directly — fracture gradient stands in for the maximum allowable mud gradient: MAASP = (fracture gradient - mud gradient) x shoe TVD = (0.606 - 0.495) x 4500 = 0.111 x 4500 = 500 psi.",
     "topic": "Volumes and MAASP"
   },
   {
@@ -1774,7 +1774,7 @@
       "E": "The pit volume should not be monitored during a kill"
     },
     "correctAnswer": "A",
-    "explanation": "As the gas bubble travels up the annulus toward surface, the falling hydrostatic pressure above it lets the trapped gas expand. That expansion physically pushes additional mud ahead of it, and the extra volume shows up at surface as a rising pit level â€” this is a normal and expected part of circulating a gas kick out, right up until the gas itself starts exiting through the choke.",
+    "explanation": "As the gas bubble travels up the annulus toward surface, the falling hydrostatic pressure above it lets the trapped gas expand. That expansion physically pushes additional mud ahead of it, and the extra volume shows up at surface as a rising pit level — this is a normal and expected part of circulating a gas kick out, right up until the gas itself starts exiting through the choke.",
     "topic": "Kill Methods"
   },
   {
@@ -1788,7 +1788,7 @@
       "E": "Both need two pumps on the hole"
     },
     "correctAnswer": "D",
-    "explanation": "Both are classified as \"constant bottom-hole pressure\" kill methods â€” they differ in when kill-weight mud is introduced and how many circulations it takes, but both are built around the same underlying goal of keeping bottom-hole pressure at (or just above) formation pressure throughout the entire operation.",
+    "explanation": "Both are classified as \"constant bottom-hole pressure\" kill methods — they differ in when kill-weight mud is introduced and how many circulations it takes, but both are built around the same underlying goal of keeping bottom-hole pressure at (or just above) formation pressure throughout the entire operation.",
     "topic": "Kill Methods"
   },
   {
@@ -1802,7 +1802,7 @@
       "E": ""
     },
     "correctAnswer": "B",
-    "explanation": "The greatest pressure at the shoe occurs the moment the top of the rising gas bubble actually reaches the shoe, because at that point the shoe is feeling the full combined effect of the expanding gas column pushing up plus whatever mud column remains above it â€” after the bubble passes the shoe, that particular pressure peak has already occurred and begins to ease.",
+    "explanation": "The greatest pressure at the shoe occurs the moment the top of the rising gas bubble actually reaches the shoe, because at that point the shoe is feeling the full combined effect of the expanding gas column pushing up plus whatever mud column remains above it — after the bubble passes the shoe, that particular pressure peak has already occurred and begins to ease.",
     "topic": "Kill Methods"
   },
   {
@@ -1816,7 +1816,7 @@
       "E": "None of the above are correct"
     },
     "correctAnswer": "D",
-    "explanation": "The casing shoe is the weakest point in the open system, and the moment the bubble is inside the shoe (below it) is when the greatest pressure risk to that point has passed. If MAASP hasn't been exceeded by the time the bubble reaches the shoe, it generally won't be exceeded for the rest of the kill provided the schedule is followed correctly â€” so tracking bubble position specifically to identify this milestone is valuable.",
+    "explanation": "The casing shoe is the weakest point in the open system, and the moment the bubble is inside the shoe (below it) is when the greatest pressure risk to that point has passed. If MAASP hasn't been exceeded by the time the bubble reaches the shoe, it generally won't be exceeded for the rest of the kill provided the schedule is followed correctly — so tracking bubble position specifically to identify this milestone is valuable.",
     "topic": "Kill Methods"
   },
   {
@@ -1872,7 +1872,7 @@
       "E": ""
     },
     "correctAnswer": "B",
-    "explanation": "Casing pressure should always be held constant while bringing the pump up to kill speed on a surface stack. This keeps bottom-hole pressure steady while the pump ramps up, since drillpipe pressure will naturally climb as the pump gains speed and friction increases â€” you don't fight that rise, you let it happen while managing the choke against the casing gauge.",
+    "explanation": "Casing pressure should always be held constant while bringing the pump up to kill speed on a surface stack. This keeps bottom-hole pressure steady while the pump ramps up, since drillpipe pressure will naturally climb as the pump gains speed and friction increases — you don't fight that rise, you let it happen while managing the choke against the casing gauge.",
     "topic": "Kill Methods"
   },
   {
@@ -1928,7 +1928,7 @@
       "E": "Circulate at desired SPM holding 200 psi safety on drillpipe"
     },
     "correctAnswer": "A",
-    "explanation": "Bring the pumps up to kill speed while holding casing pressure constant at the shut-in value. Once the pump is up to speed, whatever the drillpipe gauge reads at that moment is, by definition, the initial circulating pressure (ICP) â€” this works even without a prior slow circulating rate figure.",
+    "explanation": "Bring the pumps up to kill speed while holding casing pressure constant at the shut-in value. Once the pump is up to speed, whatever the drillpipe gauge reads at that moment is, by definition, the initial circulating pressure (ICP) — this works even without a prior slow circulating rate figure.",
     "topic": "Kill Methods"
   },
   {
@@ -1942,7 +1942,7 @@
       "E": "The pit level has stopped fluctuating"
     },
     "correctAnswer": "B",
-    "explanation": "FCP is reached the moment kill-weight mud arrives at the bit â€” from that point on, drillpipe pressure is held constant at FCP while the heavier mud displaces the rest of the annulus, rather than following the earlier declining pressure schedule.",
+    "explanation": "FCP is reached the moment kill-weight mud arrives at the bit — from that point on, drillpipe pressure is held constant at FCP while the heavier mud displaces the rest of the annulus, rather than following the earlier declining pressure schedule.",
     "topic": "Kill Methods"
   },
   {
@@ -1984,7 +1984,7 @@
       "E": "None of the above are correct"
     },
     "correctAnswer": "C",
-    "explanation": "By the end of the first circulation, the influx should have been fully removed from the well, leaving only original mud throughout the entire system. With no density difference left between the drillstring side and the annulus side, both gauges should read approximately the same value â€” in theory, the original SIDPP.",
+    "explanation": "By the end of the first circulation, the influx should have been fully removed from the well, leaving only original mud throughout the entire system. With no density difference left between the drillstring side and the annulus side, both gauges should read approximately the same value — in theory, the original SIDPP.",
     "topic": "Kill Methods"
   },
   {
@@ -2026,7 +2026,7 @@
       "E": "Company procedure specific method"
     },
     "correctAnswer": "D",
-    "explanation": "The Volumetric Method is designed exactly for this scenario â€” no ability to circulate, combined with gas migrating and expanding up the annulus. It manages pressure by bleeding controlled, calculated volumes of mud from the well rather than by pumping.",
+    "explanation": "The Volumetric Method is designed exactly for this scenario — no ability to circulate, combined with gas migrating and expanding up the annulus. It manages pressure by bleeding controlled, calculated volumes of mud from the well rather than by pumping.",
     "topic": "Kill Methods"
   },
   {
@@ -2040,7 +2040,7 @@
       "E": "It falls at first then remains constant"
     },
     "correctAnswer": "A",
-    "explanation": "The whole point of following the drillpipe pressure schedule during a kill is to keep bottom-hole pressure â€” and by extension, all pressures below the gas bubble â€” constant throughout the operation, regardless of where the bubble currently sits in the annulus.",
+    "explanation": "The whole point of following the drillpipe pressure schedule during a kill is to keep bottom-hole pressure — and by extension, all pressures below the gas bubble — constant throughout the operation, regardless of where the bubble currently sits in the annulus.",
     "topic": "Kill Methods"
   },
   {
@@ -2096,7 +2096,7 @@
       "E": "It falls at first then remains constant"
     },
     "correctAnswer": "A",
-    "explanation": "Keeping bottom-hole pressure constant for the entire duration of the kill â€” regardless of where the bubble is in the annulus â€” is the entire design goal of the drillpipe pressure schedule used in both the Driller's and Wait & Weight methods.",
+    "explanation": "Keeping bottom-hole pressure constant for the entire duration of the kill — regardless of where the bubble is in the annulus — is the entire design goal of the drillpipe pressure schedule used in both the Driller's and Wait & Weight methods.",
     "topic": "Kill Methods"
   },
   {
@@ -2135,7 +2135,7 @@
       "B": "The influx fluid is usually less dense than the mud weight",
       "C": "The casing pressure depends on the rig type",
       "D": "The difference is in the type of gauges used",
-      "E": "This is a red herring â€” SIDPP is usually higher than SICP"
+      "E": "This is a red herring — SIDPP is usually higher than SICP"
     },
     "correctAnswer": "B",
     "explanation": "SICP tends to read higher because the annulus side now contains a length of low-density influx displacing what would otherwise be a column of full-weight mud, while the drillstring side (which SIDPP reflects) still contains clean, full-weight mud throughout. That density gap on the annulus side is what pushes SICP above SIDPP.",
@@ -2348,7 +2348,7 @@
       "E": "Pit volume constant"
     },
     "correctAnswer": "C",
-    "explanation": "Every well-killing method â€” Driller's, Wait & Weight, Volumetric â€” is built around the same central principle: keep bottom-hole pressure constant (at or just above formation pressure) throughout the operation. Drillpipe and casing pressure are simply the tools used to achieve that goal, not the goal itself.",
+    "explanation": "Every well-killing method — Driller's, Wait & Weight, Volumetric — is built around the same central principle: keep bottom-hole pressure constant (at or just above formation pressure) throughout the operation. Drillpipe and casing pressure are simply the tools used to achieve that goal, not the goal itself.",
     "topic": "Some Tricky Stuff"
   },
   {
@@ -2418,7 +2418,7 @@
       "E": ""
     },
     "correctAnswer": "C",
-    "explanation": "A drillpipe pressure spike with casing pressure unaffected points to a plugged bit nozzle, not a genuine pressure control problem. The higher pump pressure is simply what's now required to push mud through the restricted nozzle at the same rate â€” nothing downhole has changed, so accepting the new (correct) reading for that restriction leaves bottom-hole pressure unaffected.",
+    "explanation": "A drillpipe pressure spike with casing pressure unaffected points to a plugged bit nozzle, not a genuine pressure control problem. The higher pump pressure is simply what's now required to push mud through the restricted nozzle at the same rate — nothing downhole has changed, so accepting the new (correct) reading for that restriction leaves bottom-hole pressure unaffected.",
     "topic": "Some Tricky Stuff"
   },
   {
@@ -2446,7 +2446,7 @@
       "E": ""
     },
     "correctAnswer": "A",
-    "explanation": "A serious pump leak means less mud is actually reaching the bit than the stroke counter suggests â€” effectively, the well is being pumped at a slower real rate than intended, which should call for a lower pumping pressure at the new effective rate. By continually closing the choke to hold pressure at the old (higher) schedule value instead of letting it fall to match the true lower flow rate, the choke operator has been adding unintended backpressure, and bottom-hole pressure has increased.",
+    "explanation": "A serious pump leak means less mud is actually reaching the bit than the stroke counter suggests — effectively, the well is being pumped at a slower real rate than intended, which should call for a lower pumping pressure at the new effective rate. By continually closing the choke to hold pressure at the old (higher) schedule value instead of letting it fall to match the true lower flow rate, the choke operator has been adding unintended backpressure, and bottom-hole pressure has increased.",
     "topic": "Some Tricky Stuff"
   },
   {
@@ -2544,7 +2544,7 @@
       "E": "None of the above are correct for a subsea kill"
     },
     "correctAnswer": "C",
-    "explanation": "On a subsea stack, returns travel up a long choke line with its own significant friction pressure loss (CLF) before reaching the surface gauge. To keep bottom-hole pressure genuinely constant during start-up, the casing gauge must be allowed to rise above the original SICP by an amount equal to that choke line friction â€” simply holding the surface gauge at the old SICP would actually under-pressure the well relative to what's needed downhole.",
+    "explanation": "On a subsea stack, returns travel up a long choke line with its own significant friction pressure loss (CLF) before reaching the surface gauge. To keep bottom-hole pressure genuinely constant during start-up, the casing gauge must be allowed to rise above the original SICP by an amount equal to that choke line friction — simply holding the surface gauge at the old SICP would actually under-pressure the well relative to what's needed downhole.",
     "topic": "Subsea Questions"
   },
   {
@@ -2558,7 +2558,7 @@
       "E": ""
     },
     "correctAnswer": "C",
-    "explanation": "The correct start-up procedure requires accounting for the actual choke line friction (CLF = 550 psi), not the unrelated riser pressure loss (350 psi) that would apply if returns went up the riser instead. Holding casing pressure at the old shut-in value without adding CLF means the system is effectively 200 psi (550 - 350) short of where it needs to be to compensate â€” meaning bottom-hole pressure has risen by 200 psi above the intended value.",
+    "explanation": "The correct start-up procedure requires accounting for the actual choke line friction (CLF = 550 psi), not the unrelated riser pressure loss (350 psi) that would apply if returns went up the riser instead. Holding casing pressure at the old shut-in value without adding CLF means the system is effectively 200 psi (550 - 350) short of where it needs to be to compensate — meaning bottom-hole pressure has risen by 200 psi above the intended value.",
     "topic": "Subsea Questions"
   },
   {
@@ -2628,7 +2628,7 @@
       "E": "Nothing to do with well control"
     },
     "correctAnswer": "A",
-    "explanation": "The valve referred to is commonly known as a 3-position, 4-way (manipulator) valve â€” it has 4 active ports and can be set to 3 distinct positions (typically open, closed, and neutral/block), which is how a single valve can both open and close a function from one control point.",
+    "explanation": "The valve referred to is commonly known as a 3-position, 4-way (manipulator) valve — it has 4 active ports and can be set to 3 distinct positions (typically open, closed, and neutral/block), which is how a single valve can both open and close a function from one control point.",
     "topic": "Subsea Questions"
   },
   {
@@ -2782,7 +2782,7 @@
       "E": "Abandon the rig floor"
     },
     "correctAnswer": "B",
-    "explanation": "A flowmeter that won't stop and pressures that keep dropping point to a stuck valve or a leak somewhere in the system, continuing to drain the accumulators. The immediate first step is to put the function into block to stop the fluid loss â€” only after that is contained does it make sense to call for help or investigate further.",
+    "explanation": "A flowmeter that won't stop and pressures that keep dropping point to a stuck valve or a leak somewhere in the system, continuing to drain the accumulators. The immediate first step is to put the function into block to stop the fluid loss — only after that is contained does it make sense to call for help or investigate further.",
     "topic": "Subsea Questions"
   },
   {
