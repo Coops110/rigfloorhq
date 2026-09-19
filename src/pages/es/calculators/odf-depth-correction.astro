@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Qué significa ODF y por qué cambia la elevación del piso de perforación?',
+    a: 'ODF es el datum original desde el cual se referencian las profundidades de un pozo — usualmente la elevación del piso de perforación sobre el nivel del mar o del terreno. Puede cambiar entre operaciones en el mismo pozo: un taladro de reacondicionamiento con una subestructura de altura distinta, una modificación de cubierta de plataforma, o simplemente cambiar a otro taladro en una reentrada, todo desplaza dónde está realmente el "cero".',
+  },
+  {
+    q: '¿Por qué esto necesita dos correcciones separadas?',
+    a: 'La primera corrección reconcilia un cambio físico en la altura del piso de perforación, para que la tally de tubería de perforación y las profundidades de cable vuelvan a hablar del mismo punto de referencia. La segunda reconcilia la tally de tubería de perforación contra un cable corrido en ese mismo punto de referencia, ya que el estiramiento de la tubería y el del cable se separan entre sí con la profundidad y el tiempo incluso cuando el datum no se ha movido.',
+  },
+  {
+    q: '¿Qué corrección aplico si solo cambió el piso de perforación?',
+    a: 'Solo la primera — deja ambos campos de cable en cero y la calculadora aplica solo la corrección por cambio de elevación. La segunda corrección es una verificación cruzada separada y opcional para cuando realmente tengas una profundidad de cable fresca para comparar contra tu tally de tubería.',
+  },
+  {
+    q: '¿Una corrección positiva o negativa significa que la profundidad es más profunda o menos profunda?',
+    a: 'Una corrección final positiva significa que la tally de tubería de perforación subestima la profundidad verdadera respecto a la nueva referencia — súmala para obtener la profundidad verdadera. Una corrección negativa significa que la tally sobreestima. Aplica siempre el signo tal como se calcula, en lugar de asumir qué dirección debería tener.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Calculadora de Corrección de Profundidad ODF"
+  description="Calculadora gratuita de corrección de profundidad ODF: reconcilia la profundidad de tally de tubería de perforación contra la profundidad de cable después de un cambio de elevación del piso de perforación."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Corrección de Profundidad ODF', href: '/es/calculators/odf-depth-correction' }]}
+  lang="es"
+  alternateHref="/calculators/odf-depth-correction"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/odf-depth-correction" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Corrección de Profundidad <span>ODF del Piso de Perforación</span></h1>
+    <p class="page-hero-sub">Reconcilia la profundidad de tally de tubería de perforación contra la profundidad de cable después de un cambio de elevación del piso de perforación, con una verificación cruzada opcional contra un cable fresco.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">📐 1ra Corrección — Cambio de Elevación del Piso</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="odf-orig">Elevación Original del Piso de Perforación (ft)</label>
+              <input type="number" id="odf-orig" value="45">
+            </div>
+            <div class="input-group">
+              <label for="odf-present">Elevación Actual del Piso de Perforación (ft)</label>
+              <input type="number" id="odf-present" value="35">
+            </div>
+          </div>
+
+          <div class="calc-title" style="margin-top:24px;">🔗 2da Corrección — Verificación Cruzada Contra Cable (opcional)</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="odf-dp">Profundidad de Tally de Tubería (ft)</label>
+              <input type="number" id="odf-dp" value="0">
+            </div>
+            <div class="input-group">
+              <label for="odf-wl">Profundidad Medida de Cable (ft)</label>
+              <input type="number" id="odf-wl" value="0">
+            </div>
+          </div>
+
+          <div class="calc-output visible" style="margin-top:20px;">
+            <div class="output-line headline"><span class="output-label">1ra Corrección (cambio de piso)</span><span class="output-value" id="out-c1">—</span></div>
+            <div class="output-line"><span class="output-label">2da Corrección (tubería vs. cable)</span><span class="output-value" id="out-c2">—</span></div>
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Corrección Final a Aplicar</span><span class="output-value" id="out-final">—</span></div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Solo referencia.</strong> Confirma ambas elevaciones contra la documentación real del taladro antes de aplicar una corrección a los registros de profundidad de un pozo activo.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Las Fórmulas Usadas</h2>
+        <div class="formula-block">
+          <div class="formula-label">1ra Corrección</div>
+          <div class="formula-eq">C1 = Elevación Original del Piso − Elevación Actual del Piso</div>
+          <div class="formula-note">Aplicada tanto a la profundidad de tubería como a la de cable, ya que ambas se referenciaron a la elevación original.</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">2da Corrección</div>
+          <div class="formula-eq">C2 = Profundidad de Tally de Tubería − Profundidad Medida de Cable</div>
+          <div class="formula-note">Solo tiene sentido una vez que ambas profundidades se leen desde el mismo punto de referencia — aplica C1 primero si el piso de perforación también cambió.</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Corrección Final</div>
+          <div class="formula-eq">Final = C1 + C2</div>
+          <div class="formula-note">La corrección total a aplicar a la tally de tubería de perforación para obtener la profundidad verdadera contra la nueva referencia.</div>
+        </div>
+
+        <p>Esto es una reconciliación de datum, no un cálculo de estiramiento — no considera por sí solo el estiramiento de la tubería o del cable con la profundidad. Para la matemática de capacidad y volumen en la que se alimenta esa profundidad, ver la <a href="/es/drilling/formulas">hoja de fórmulas de perforación (inglés)</a>.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+
+  function calc() {
+    const orig = num('odf-orig'), present = num('odf-present');
+    const dp = num('odf-dp'), wl = num('odf-wl');
+
+    const c1 = orig - present;
+    const c2 = (dp !== 0 || wl !== 0) ? (dp - wl) : 0;
+    const final = c1 + c2;
+
+    (document.getElementById('out-c1') as HTMLElement).textContent = fmt(c1, 1) + ' ft';
+    (document.getElementById('out-c2') as HTMLElement).textContent = fmt(c2, 1) + ' ft';
+    (document.getElementById('out-final') as HTMLElement).textContent = (final >= 0 ? '+' : '') + fmt(final, 1) + ' ft';
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

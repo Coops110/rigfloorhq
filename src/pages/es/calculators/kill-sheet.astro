@@ -2,10 +2,40 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Qué es un programa de presión de tubería y por qué lo necesito?',
+    a: 'Es la presión de standpipe a mantener en cada etapa del bombeo de lodo de matanza hacia el pozo, bajando de ICP a FCP a medida que el lodo más pesado reemplaza al lodo original en la sarta. Mantener un programa en lugar de saltar directo a FCP mantiene constante la presión de fondo mientras cambia la densidad dentro de la tubería — omitirlo significa desbalancear el pozo a mitad de la matanza.',
+  },
+  {
+    q: '¿Por qué el programa baja en emboladas y no en tiempo?',
+    a: 'Porque lo que importa es cuánto de la sarta ha sido desplazado por el lodo de matanza, y eso sigue directamente las emboladas de la bomba, no el reloj. La tasa de bombeo cambia, pero el volumen por embolada no, así que las emboladas hasta la barrena son la referencia confiable de dónde está realmente el frente del lodo de matanza.',
+  },
+  {
+    q: '¿Por qué necesito tanto el volumen de la sarta como el anular?',
+    a: 'Las emboladas hasta la barrena usan solo la capacidad de la sarta, porque eso es lo que hay que desplazar antes de que el lodo de matanza llegue a la barrena. Las emboladas de fondo hacia arriba usan el volumen anular, porque eso es lo que hay que bombear después para traer a superficie el lodo original y cualquier influjo. La circulación total es ambos juntos — el viaje redondo completo.',
+  },
+  {
+    q: '¿Qué pasa si me equivoco en el rendimiento de la bomba?',
+    a: 'Cada número basado en emboladas de esta página escala directamente con él — emboladas a la barrena, fondo hacia arriba, circulación total, y cada paso del programa de presión. Un rendimiento de bomba con 5% de error desplaza todo el programa en aproximadamente esa misma proporción, por lo que el rendimiento medido siempre gana sobre la cifra de placa.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
 <BaseLayout
-  title="Calculadora de Hoja de Control de Pozo"
-  description="Calculadora gratuita de hoja de control de pozo. Ingresa SIDPP, peso de lodo, TVD y presión de bombeo lento para calcular KMW, ICP y FCP."
+  title="Calculadora de Hoja de Control: KMW, ICP, FCP y Programa"
+  description="Calculadora gratuita de hoja de control de pozo: peso de lodo de matanza, ICP, FCP, emboladas a la barrena, fondo hacia arriba, y el programa completo de presión de tubería."
+  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Hoja de Control de Pozo', href: '/es/calculators/kill-sheet' }]}
   lang="es"
   alternateHref="/calculators/kill-sheet"
@@ -15,60 +45,116 @@ import Footer from '../../../components/Footer.astro';
 
   <div class="page-hero">
     <div class="page-hero-eyebrow">Calculadora</div>
-    <h1>Calculadora de <span>Hoja de Control de Pozo</span></h1>
-    <p class="page-hero-sub">Úsala después de cerrar el pozo por una surgencia para calcular el peso de lodo de matanza y las presiones de circulación — la misma matemática central enseñada en la certificación de control de pozos de IWCF e IADC.</p>
+    <h1>Calculadora de <span>Hoja de Control</span></h1>
+    <p class="page-hero-sub">Úsala después de cerrar el pozo por una surgencia para calcular el peso de lodo de matanza, las presiones de circulación, las emboladas, y el programa completo de reducción de presión de tubería — la misma matemática central enseñada en la certificación de control de pozos de IWCF e IADC.</p>
   </div>
 
   <section class="block">
     <div class="two-col">
       <div>
         <div class="calc-box">
-          <div class="calc-title">🚨 Calculadora de Hoja de Control de Pozo</div>
+          <div class="calc-title">🚨 Datos del Pozo y la Surgencia</div>
           <p style="font-size:12px;color:var(--fog);margin-bottom:20px;line-height:1.65;">Requiere que el pozo ya esté cerrado con el SIDPP registrado. Ver el <a href="/es/drilling/well-control" style="color:var(--amber);">procedimiento de cierre</a> si aún no lo has hecho.</p>
 
           <div class="input-row">
             <div class="input-group">
-              <label for="omw">Peso de Lodo Original (ppg)</label>
-              <input type="number" id="omw" placeholder="ej. 11.5" step="0.1">
+              <label for="ks-tvd">Profundidad Vertical Verdadera (ft)</label>
+              <input type="number" id="ks-tvd" value="10000">
             </div>
             <div class="input-group">
-              <label for="sidpp">SIDPP (psi)</label>
-              <input type="number" id="sidpp" placeholder="Presión de DP con pozo cerrado">
+              <label for="omw">Peso de Lodo Original (ppg)</label>
+              <input type="number" id="omw" value="10.0" step="0.1">
             </div>
           </div>
           <div class="input-row">
             <div class="input-group">
-              <label for="kill-tvd">TVD en la Barrena (ft)</label>
-              <input type="number" id="kill-tvd" placeholder="ej. 12000">
+              <label for="sidpp">SIDPP (psi)</label>
+              <input type="number" id="sidpp" value="300">
             </div>
             <div class="input-group">
-              <label for="spr">Presión de Bombeo Lento (psi)</label>
-              <input type="number" id="spr" placeholder="Presión SCR">
+              <label for="spr">Presión de Circ. Lenta @ SPM (psi)</label>
+              <input type="number" id="spr" value="450">
             </div>
           </div>
 
-          <button class="btn btn-primary" id="calc-kill-btn" style="width:100%;text-align:center;">Calcular Hoja de Control</button>
+          <div class="calc-title" style="margin-top:24px;">⚙ Datos de Bomba</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="pumpout">Rendimiento de Bomba (bbl/embolada)</label>
+              <input type="number" id="pumpout" value="0.1" step="0.001">
+            </div>
+          </div>
 
-          <div class="calc-output" id="kill-output">
-            <div class="output-line"><span class="output-label">Presión de Formación</span><span class="output-value" id="out-fpp">—</span></div>
-            <div class="output-line"><span class="output-label">Peso de Lodo de Matanza</span><span class="output-value" id="out-kmw">—</span></div>
-            <div class="output-line"><span class="output-label">Presión de Circ. Inicial (ICP)</span><span class="output-value" id="out-icp">—</span></div>
-            <div class="output-line" style="border-bottom:none;"><span class="output-label">Presión de Circ. Final (FCP)</span><span class="output-value" id="out-fcp">—</span></div>
+          <div class="calc-title" style="margin-top:24px;">🔩 Volumen de la Sarta</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="dp-len">Longitud de Tubería de Perforación (ft)</label>
+              <input type="number" id="dp-len" value="9500">
+            </div>
+            <div class="input-group">
+              <label for="dp-cap">Capacidad de Tubería (bbl/ft)</label>
+              <input type="number" id="dp-cap" value="0.01776" step="0.00001">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="bha-len">Longitud de Lastrabarrenas/BHA (ft)</label>
+              <input type="number" id="bha-len" value="500">
+            </div>
+            <div class="input-group">
+              <label for="bha-cap">Capacidad de Lastrabarrenas/BHA (bbl/ft)</label>
+              <input type="number" id="bha-cap" value="0.0087" step="0.00001">
+            </div>
+          </div>
+
+          <div class="calc-title" style="margin-top:24px;">⭕ Volumen Anular</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="dpann-len">Longitud Anular TP/Hoyo Abierto (ft)</label>
+              <input type="number" id="dpann-len" value="9500">
+            </div>
+            <div class="input-group">
+              <label for="dpann-cap">Capacidad Anular TP/Hoyo Abierto (bbl/ft)</label>
+              <input type="number" id="dpann-cap" value="0.1215" step="0.0001">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="bhaann-len">Longitud Anular Lastrabarrenas/Hoyo Abierto (ft)</label>
+              <input type="number" id="bhaann-len" value="500">
+            </div>
+            <div class="input-group">
+              <label for="bhaann-cap">Capacidad Anular Lastrabarrenas/Hoyo Abierto (bbl/ft)</label>
+              <input type="number" id="bhaann-cap" value="0.0836" step="0.0001">
+            </div>
+          </div>
+
+          <div class="calc-output visible" id="kill-output" style="margin-top:20px;">
+            <div class="output-line headline"><span class="output-label">Peso de Lodo de Matanza</span><span class="output-value" id="out-kmw">—</span></div>
+            <div class="output-line headline"><span class="output-label">Presión de Circulación Inicial (ICP)</span><span class="output-value" id="out-icp">—</span></div>
+            <div class="output-line headline"><span class="output-label">Presión de Circulación Final (FCP)</span><span class="output-value" id="out-fcp">—</span></div>
+            <div class="output-line"><span class="output-label">Volumen Total de Sarta</span><span class="output-value" id="out-stringvol">—</span></div>
+            <div class="output-line"><span class="output-label">Volumen Total Anular</span><span class="output-value" id="out-annvol">—</span></div>
+            <div class="output-line"><span class="output-label">Emboladas a la Barrena</span><span class="output-value" id="out-strokesbit">—</span></div>
+            <div class="output-line"><span class="output-label">Emboladas de Fondo Hacia Arriba</span><span class="output-value" id="out-strokesup">—</span></div>
+            <div class="output-line" style="border-bottom:none;"><span class="output-label">Circulación Total (Emboladas a Matar)</span><span class="output-value" id="out-strokestotal">—</span></div>
+          </div>
+
+          <div class="table-wrap mt-24">
+            <table id="sched-table">
+              <thead><tr><th>Paso</th><th>Emboladas Acumuladas</th><th>Presión de Tubería</th></tr></thead>
+              <tbody></tbody>
+            </table>
           </div>
         </div>
 
         <div class="danger-box mt-24" style="max-width:700px;">
-          <strong>Esta es una herramienta de referencia, no una autoridad operativa.</strong> Las decisiones reales de control de pozos deben ser tomadas por tu supervisor certificado de control de pozos siguiendo los procedimientos aprobados de tu empresa. Nunca actúes basándote únicamente en un cálculo de hoja de control de pozo de un sitio web durante un evento real de control de pozos.
+          <strong>Esta es una herramienta de referencia, no una autoridad operativa.</strong> Las decisiones reales de control de pozos deben ser tomadas por tu supervisor certificado de control de pozos siguiendo los procedimientos aprobados de tu empresa. Nunca actúes basándote únicamente en un cálculo de hoja de control de un sitio web durante un evento real de control de pozos.
         </div>
       </div>
 
       <div class="prose">
         <h2>Las Fórmulas Usadas</h2>
-        <div class="formula-block">
-          <div class="formula-label">Presión de Poro de Formación</div>
-          <div class="formula-eq">FPP = SIDPP + (OMW × 0.052 × TVD)</div>
-          <div class="formula-note">Medición directa del exceso de presión de formación por encima de la hidrostática una vez que el pozo está cerrado.</div>
-        </div>
         <div class="formula-block">
           <div class="formula-label">Peso de Lodo de Matanza</div>
           <div class="formula-eq">KMW = OMW + (SIDPP ÷ (0.052 × TVD))</div>
@@ -76,47 +162,95 @@ import Footer from '../../../components/Footer.astro';
         </div>
         <div class="formula-block">
           <div class="formula-label">Presión de Circulación Inicial</div>
-          <div class="formula-eq">ICP = SIDPP + Presión de Bombeo Lento</div>
+          <div class="formula-eq">ICP = SIDPP + Presión de Circ. Lenta</div>
           <div class="formula-note">La presión de standpipe a mantener al inicio de la circulación de matanza.</div>
         </div>
         <div class="formula-block">
           <div class="formula-label">Presión de Circulación Final</div>
-          <div class="formula-eq">FCP = (KMW ÷ OMW) × Presión de Bombeo Lento</div>
+          <div class="formula-eq">FCP = Presión de Circ. Lenta × (KMW ÷ OMW)</div>
           <div class="formula-note">La presión de standpipe una vez que el lodo de matanza ha desplazado completamente el pozo.</div>
         </div>
+        <div class="formula-block">
+          <div class="formula-label">Emboladas a la Barrena / Fondo Hacia Arriba</div>
+          <div class="formula-eq">Emboladas = Volumen (bbl) ÷ Rendimiento de Bomba (bbl/embolada)</div>
+          <div class="formula-note">A la barrena usa el volumen de la sarta. Fondo hacia arriba usa el volumen anular. La circulación total es la suma de ambos.</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Paso de Presión en la Sarta</div>
+          <div class="formula-eq">Presión en el paso i = ICP − ((ICP − FCP) ÷ 10) × i</div>
+          <div class="formula-note">Diez pasos iguales desde ICP al inicio hasta FCP una vez que el lodo de matanza llega a la barrena.</div>
+        </div>
 
-        <h3>¿Qué es la Presión de Bombeo Lento?</h3>
-        <p>La SPR (también llamada SCR — presión de tasa de circulación lenta) es la presión de standpipe registrada a un caudal de bombeo reducido y estandarizado — medida rutinariamente durante operaciones normales específicamente para que esté disponible si ocurre una surgencia. Sin una lectura de SPR actual, el ICP y FCP no se pueden calcular con precisión, por lo que las cuadrillas la registran cada turno como práctica estándar.</p>
+        <h3>¿Qué es la Presión de Circulación Lenta?</h3>
+        <p>La SCR (a veces SPR) es la presión de standpipe registrada a una tasa de bombeo reducida y estandarizada — medida rutinariamente durante operaciones normales específicamente para que esté disponible si ocurre una surgencia. Sin una lectura de SCR actual, el ICP y FCP no se pueden calcular con precisión, por lo que las cuadrillas la registran cada turno como práctica estándar.</p>
 
-        <p>Para el procedimiento completo de cierre paso a paso y la diferencia entre el Método del Perforador y Wait-and-Weight, ver la <a href="/es/drilling/well-control">página de referencia de control de pozos</a>.</p>
+        <p>Para el procedimiento completo de cierre paso a paso y la diferencia entre el Método del Perforador y Esperar y Densificar, ver la <a href="/es/drilling/well-control">página de referencia de control de pozos</a>. Para capacidades de sarta y anular en tus propios tamaños de tubería, la <a href="/es/drilling/formulas">hoja de fórmulas de perforación (inglés)</a> tiene la fórmula de capacidad escrita completa.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 </BaseLayout>
 
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
 <script>
-  const btn = document.getElementById('calc-kill-btn');
-  btn?.addEventListener('click', () => {
-    const omw = parseFloat((document.getElementById('omw') as HTMLInputElement).value);
-    const sidpp = parseFloat((document.getElementById('sidpp') as HTMLInputElement).value);
-    const tvd = parseFloat((document.getElementById('kill-tvd') as HTMLInputElement).value);
-    const spr = parseFloat((document.getElementById('spr') as HTMLInputElement).value);
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
 
-    if (!omw || !sidpp || !tvd || !spr) {
-      alert('Por favor completa los cuatro campos.');
-      return;
+  function calc() {
+    const tvd = num('ks-tvd'), omw = num('omw'), sidpp = num('sidpp'), scr = num('spr');
+    const pumpOut = num('pumpout');
+    const stringVol = num('dp-len') * num('dp-cap') + num('bha-len') * num('bha-cap');
+    const annVol = num('dpann-len') * num('dpann-cap') + num('bhaann-len') * num('bhaann-cap');
+
+    const kmw = tvd > 0 ? sidpp / (0.052 * tvd) + omw : omw;
+    const icp = scr + sidpp;
+    const fcp = omw > 0 ? scr * (kmw / omw) : 0;
+    const strokesToBit = pumpOut > 0 ? stringVol / pumpOut : 0;
+    const strokesUp = pumpOut > 0 ? annVol / pumpOut : 0;
+    const totalStrokes = strokesToBit + strokesUp;
+
+    (document.getElementById('out-kmw') as HTMLElement).textContent = fmt(kmw, 2) + ' ppg';
+    (document.getElementById('out-icp') as HTMLElement).textContent = fmt(icp, 0) + ' psi';
+    (document.getElementById('out-fcp') as HTMLElement).textContent = fmt(fcp, 0) + ' psi';
+    (document.getElementById('out-stringvol') as HTMLElement).textContent = fmt(stringVol, 1) + ' bbls';
+    (document.getElementById('out-annvol') as HTMLElement).textContent = fmt(annVol, 1) + ' bbls';
+    (document.getElementById('out-strokesbit') as HTMLElement).textContent = fmt(strokesToBit, 0) + ' emboladas';
+    (document.getElementById('out-strokesup') as HTMLElement).textContent = fmt(strokesUp, 0) + ' emboladas';
+    (document.getElementById('out-strokestotal') as HTMLElement).textContent = fmt(totalStrokes, 0) + ' emboladas';
+
+    const tbody = document.querySelector('#sched-table tbody');
+    if (tbody && strokesToBit > 0) {
+      const stepStrokes = Math.floor(strokesToBit / 10);
+      let rows = '';
+      for (let i = 0; i <= 10; i++) {
+        const strokes = i === 10 ? Math.round(strokesToBit) : stepStrokes * i;
+        const pressure = icp - ((icp - fcp) / 10) * i;
+        const label = i === 0 ? 'Inicio' : i === 10 ? 'En Barrena' : i * 10 + '%';
+        rows += `<tr><td>${label}</td><td>${fmt(strokes, 0)}</td><td>${fmt(pressure, 0)} psi</td></tr>`;
+      }
+      tbody.innerHTML = rows;
+    } else if (tbody) {
+      tbody.innerHTML = '';
     }
+  }
 
-    const fpp = sidpp + (omw * 0.052 * tvd);
-    const kmw = omw + (sidpp / (0.052 * tvd));
-    const icp = sidpp + spr;
-    const fcp = (kmw / omw) * spr;
-
-    (document.getElementById('out-fpp') as HTMLElement).textContent = fpp.toFixed(0) + ' psi';
-    (document.getElementById('out-kmw') as HTMLElement).textContent = kmw.toFixed(2) + ' ppg';
-    (document.getElementById('out-icp') as HTMLElement).textContent = icp.toFixed(0) + ' psi';
-    (document.getElementById('out-fcp') as HTMLElement).textContent = fcp.toFixed(0) + ' psi';
-
-    document.getElementById('kill-output')?.classList.add('visible');
-  });
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
 </script>

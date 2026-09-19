@@ -1,0 +1,214 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Qué es una tonelada-milla y por qué el desgaste de la línea de perforación se mide en ella?',
+    a: 'Una tonelada-milla es una tonelada de carga movida una milla de recorrido — captura tanto qué tan pesada era la carga como qué tan lejos la movió, lo cual juntos impulsan la fatiga en el cable de acero. API RP 9B rastrea tonelada-millas acumuladas contra una clasificación de vida útil de servicio para que la línea se corte y deslice antes de fallar, no después.',
+  },
+  {
+    q: '¿Por qué las tonelada-millas de perforación, coreo, y viaje corto usan multiplicadores diferentes?',
+    a: 'Cada una cubre una cantidad distinta de trabajo de viaje redondo. Los viajes de perforación (3×) asumen un viaje redondo completo para cambiar la barrena y regresar. Los viajes de coreo (2×) salen del hoyo más lento y con más cuidado pero no necesitan las mismas conexiones repetidas. Un viaje corto (1×, sin multiplicador) es un viaje redondo parcial, así que recibe la diferencia simple de profundidad a profundidad sin ajuste.',
+  },
+  {
+    q: '¿Por qué el factor de flotación usa 65.5 y no la densidad exacta del acero?',
+    a: 'El acero da aproximadamente 65.44 ppg, y 65.5 es la constante redondeada de campo que casi todos usan realmente. La diferencia es menos de una décima de porcentaje, pero vale la pena saberlo si una cifra no reconcilia exactamente con los números propios de una compañía de servicio.',
+  },
+  {
+    q: '¿Las tonelada-millas de asentamiento de revestimiento se calculan igual que un viaje redondo?',
+    a: 'No — es un cálculo separado, de un solo sentido, porque correr revestimiento hasta el fondo no es un viaje redondo. Aun así usa la misma lógica de peso flotado, solo aplicada a la sarta de revestimiento que se está corriendo en lugar de la sarta de perforación que se está maniobrando.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Calculadora de Tonelada-Milla: Vida de Línea de Perforación"
+  description="Calculadora gratuita de tonelada-milla: viaje redondo, perforación, coreo, viaje corto, y tonelada-millas de asentamiento de revestimiento según API RP 9B / Lapeyrouse."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Tonelada-Milla', href: '/es/calculators/ton-mile' }]}
+  lang="es"
+  alternateHref="/calculators/ton-mile"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/ton-mile" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Calculadora de <span>Tonelada-Milla</span></h1>
+    <p class="page-hero-sub">Viaje redondo, perforación, coreo, viaje corto, y tonelada-millas de asentamiento de revestimiento para rastrear la vida de servicio de la línea de perforación contra su clasificación API RP 9B.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🎣 Taladro y Sarta</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="mw">Peso de Lodo (ppg)</label>
+              <input type="number" id="mw" value="9.6" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="dpwt">Peso de Tubería de Perforación, aire (lb/ft)</label>
+              <input type="number" id="dpwt" value="13.3" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="stand">Longitud Promedio de Parada (ft)</label>
+              <input type="number" id="stand" value="90">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="block">Peso del Bloque Viajero (lb)</label>
+              <input type="number" id="block" value="15000">
+            </div>
+            <div class="input-group">
+              <label for="dclen">Longitud de Lastrabarrenas (ft)</label>
+              <input type="number" id="dclen" value="600">
+            </div>
+            <div class="input-group">
+              <label for="dcwt">Peso de Lastrabarrenas, aire (lb/ft)</label>
+              <input type="number" id="dcwt" value="83" step="0.1">
+            </div>
+          </div>
+
+          <div class="calc-title" style="margin-top:24px;">📏 Viaje Redondo a Dos Profundidades</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="deptha">Profundidad A — inicio del intervalo (ft)</label>
+              <input type="number" id="deptha" value="8000">
+            </div>
+            <div class="input-group">
+              <label for="depthb">Profundidad B — fin del intervalo (ft)</label>
+              <input type="number" id="depthb" value="8500">
+            </div>
+          </div>
+
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line"><span class="output-label">Factor de Flotación</span><span class="output-value" id="out-bf">—</span></div>
+            <div class="output-line headline"><span class="output-label">TM Viaje Redondo @ Profundidad A</span><span class="output-value" id="out-rttma">—</span></div>
+            <div class="output-line headline"><span class="output-label">TM Viaje Redondo @ Profundidad B</span><span class="output-value" id="out-rttmb">—</span></div>
+            <div class="output-line"><span class="output-label">TM Perforación/Conexión (3× dif.)</span><span class="output-value" id="out-drilling">—</span></div>
+            <div class="output-line"><span class="output-label">TM Coreo (2× dif.)</span><span class="output-value" id="out-coring">—</span></div>
+            <div class="output-line" style="border-bottom:none;"><span class="output-label">TM Viaje Corto (dif. simple)</span><span class="output-value" id="out-shorttrip">—</span></div>
+          </div>
+
+          <div class="calc-title" style="margin-top:24px;">🛢 Asentamiento de Revestimiento (cálculo separado, un sentido)</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="csgwt">Peso de Revestimiento, flotado (lb/ft)</label>
+              <input type="number" id="csgwt" value="40" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="csgdepth">Profundidad de Revestimiento (ft)</label>
+              <input type="number" id="csgdepth" value="8500">
+            </div>
+            <div class="input-group">
+              <label for="csgjoint">Longitud de Una Junta (ft)</label>
+              <input type="number" id="csgjoint" value="40">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Tonelada-Millas de Asentamiento</span><span class="output-value" id="out-csgtm">—</span></div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Solo referencia.</strong> Rastrea las tonelada-millas acumuladas contra la clasificación real de vida útil de tu línea de perforación y el programa de corte y deslizamiento, no una cifra única de esta página.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Las Fórmulas Usadas</h2>
+        <div class="formula-block">
+          <div class="formula-label">Factor de Flotación</div>
+          <div class="formula-eq">BF = (65.5 − MW) ÷ 65.5</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Tonelada-Millas de Viaje Redondo</div>
+          <div class="formula-eq">RTTM = [Wp × D × (Ls + D) + 2D × (2×Wb + Wc)] ÷ (5280 × 2000)</div>
+          <div class="formula-note">Wp = peso flotado de tubería de perforación/ft · D = profundidad · Ls = longitud de parada · Wb = peso del bloque · Wc = peso flotado de lastrabarrenas menos el peso equivalente de tubería de perforación sobre la longitud de los lastrabarrenas. Según API RP 9B / Lapeyrouse.</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Tonelada-Millas de Perforación, Coreo y Viaje Corto</div>
+          <div class="formula-eq">Perforación = 3 × (RTTM en B − RTTM en A)<br />Coreo = 2 × (RTTM en B − RTTM en A)<br />Viaje Corto = RTTM en B − RTTM en A</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Tonelada-Millas de Asentamiento de Revestimiento</div>
+          <div class="formula-eq">TM = [Wp × D × (Lj + D) + D × Wb] × 0.5 ÷ (5280 × 2000)</div>
+          <div class="formula-note">Wp = peso flotado de revestimiento/ft · D = profundidad de revestimiento · Lj = longitud de una junta · Wb = peso del bloque.</div>
+        </div>
+
+        <p>El factor de flotación aquí usa la misma constante 65.5 que la sección de flotación de la <a href="/es/drilling/formulas">hoja de fórmulas de perforación (inglés)</a>.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+
+  function roundTripTM(depth: number, mw: number, dpWtAir: number, standLen: number, blockWt: number, dcLen: number, dcWtAir: number) {
+    const bf = (65.5 - mw) / 65.5;
+    const wp = dpWtAir * bf;
+    const wc = (dcLen * dcWtAir * bf) - (dcLen * dpWtAir * bf);
+    const D = depth;
+    const rttm = (wp * D * (standLen + D) + (2 * D) * (2 * blockWt + wc)) / (5280 * 2000);
+    return { rttm, bf };
+  }
+
+  function calc() {
+    const mw = num('mw'), dpWt = num('dpwt'), stand = num('stand');
+    const block = num('block'), dcLen = num('dclen'), dcWt = num('dcwt');
+    const depthA = num('deptha'), depthB = num('depthb');
+
+    const a = roundTripTM(depthA, mw, dpWt, stand, block, dcLen, dcWt);
+    const b = roundTripTM(depthB, mw, dpWt, stand, block, dcLen, dcWt);
+    const diff = b.rttm - a.rttm;
+
+    (document.getElementById('out-bf') as HTMLElement).textContent = fmt(a.bf, 4);
+    (document.getElementById('out-rttma') as HTMLElement).textContent = fmt(a.rttm, 2) + ' ton-millas';
+    (document.getElementById('out-rttmb') as HTMLElement).textContent = fmt(b.rttm, 2) + ' ton-millas';
+    (document.getElementById('out-drilling') as HTMLElement).textContent = fmt(3 * diff, 2) + ' ton-millas';
+    (document.getElementById('out-coring') as HTMLElement).textContent = fmt(2 * diff, 2) + ' ton-millas';
+    (document.getElementById('out-shorttrip') as HTMLElement).textContent = fmt(diff, 2) + ' ton-millas';
+
+    const csgWt = num('csgwt'), csgDepth = num('csgdepth'), csgJoint = num('csgjoint');
+    const csgTM = ((csgWt * csgDepth * (csgJoint + csgDepth)) + (csgDepth * block)) * 0.5 / (5280 * 2000);
+    (document.getElementById('out-csgtm') as HTMLElement).textContent = fmt(csgTM, 2) + ' ton-millas';
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

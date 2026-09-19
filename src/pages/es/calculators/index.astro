@@ -50,6 +50,18 @@ import Footer from '../../../components/Footer.astro';
           <td>Estás apretando una barrena y necesitas el torque correcto</td>
           <td><a href="/es/calculators/bit-torque">Rosca y Torque de Barrena</a></td>
         </tr>
+        <tr>
+          <td>Necesitas emboladas de retraso, tiempo de retraso, o rendimiento de bomba</td>
+          <td><a href="/es/calculators/lag-and-volume">Retraso y Volumen</a></td>
+        </tr>
+        <tr>
+          <td>Estás rastreando el desgaste de la línea de perforación contra su vida de servicio</td>
+          <td><a href="/es/calculators/ton-mile">Tonelada-Milla</a></td>
+        </tr>
+        <tr>
+          <td>Cambió la elevación del piso de perforación y hay que reconciliar profundidades</td>
+          <td><a href="/es/calculators/odf-depth-correction">Corrección de Profundidad ODF</a></td>
+        </tr>
       </tbody>
     </table>
 
@@ -93,6 +105,27 @@ import Footer from '../../../components/Footer.astro';
         <p>Tamaño de barrena a conexión roscada, luego torque de apriete para esa conexión en barrenas PDC y de conos.</p>
         <p class="card-formula"><strong>Rango:</strong> Mínimo / Máximo / Máx. Severo</p>
         <a href="/es/calculators/bit-torque" class="card-link">Abrir Tabla →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🧮</span>
+        <h3>Calculadora de Retraso y Volumen</h3>
+        <p>Rendimiento de bomba, volúmenes de sarta y anular, y emboladas y tiempo de retraso bajando a la barrena y subiendo.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> Emboladas = Volumen ÷ Rendimiento</p>
+        <a href="/es/calculators/lag-and-volume" class="card-link">Abrir Calculadora →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎣</span>
+        <h3>Calculadora de Tonelada-Milla</h3>
+        <p>Viaje redondo, perforación, coreo, viaje corto, y tonelada-millas de asentamiento de revestimiento para vida de línea de perforación.</p>
+        <p class="card-formula"><strong>Norma:</strong> API RP 9B / Lapeyrouse</p>
+        <a href="/es/calculators/ton-mile" class="card-link">Abrir Calculadora →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">📐</span>
+        <h3>Corrección de Profundidad ODF</h3>
+        <p>Reconcilia la profundidad de tally de tubería de perforación contra la profundidad de cable tras un cambio de elevación del piso.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> Final = C1 + C2</p>
+        <a href="/es/calculators/odf-depth-correction" class="card-link">Abrir Calculadora →</a>
       </div>
     </div>
   </section>
@@ -152,7 +185,10 @@ import Footer from '../../../components/Footer.astro';
           { "@type": "ListItem", "position": 2, "name": "Calculadora de Hoja de Control de Pozo", "url": "https://rigfloorhq.com/es/calculators/kill-sheet" },
           { "@type": "ListItem", "position": 3, "name": "Calculadora de Ventana de Peso de Lodo", "url": "https://rigfloorhq.com/es/calculators/mud-weight-window" },
           { "@type": "ListItem", "position": 4, "name": "Bridas y Empaques Tipo Anillo", "url": "https://rigfloorhq.com/es/calculators/flange-ring-gasket" },
-          { "@type": "ListItem", "position": 5, "name": "Rosca y Torque de Barrena", "url": "https://rigfloorhq.com/es/calculators/bit-torque" }
+          { "@type": "ListItem", "position": 5, "name": "Rosca y Torque de Barrena", "url": "https://rigfloorhq.com/es/calculators/bit-torque" },
+          { "@type": "ListItem", "position": 6, "name": "Calculadora de Retraso y Volumen", "url": "https://rigfloorhq.com/es/calculators/lag-and-volume" },
+          { "@type": "ListItem", "position": 7, "name": "Calculadora de Tonelada-Milla", "url": "https://rigfloorhq.com/es/calculators/ton-mile" },
+          { "@type": "ListItem", "position": 8, "name": "Corrección de Profundidad ODF", "url": "https://rigfloorhq.com/es/calculators/odf-depth-correction" }
         ]
       },
       {
