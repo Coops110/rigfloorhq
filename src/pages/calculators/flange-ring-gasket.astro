@@ -1,0 +1,213 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+// API 6A/6BX flange dimensions, Cameron's published figures. Public equipment
+// spec, not tied to any rig, well or company — safe to publish as-is.
+// Columns: bore, pressure rating, ring gasket #, studs, stud length, stud diameter, nut across-flats, flange OD
+const FLANGE_DATA: [string, string, string, number, string, string, string, string][] = [
+  ['1 13/16"', '10M', 'BX-151', 8, '5 1/4"', '3/4"', '1 1/4"', '7 3/8"'],
+  ['1 13/16"', '15M', 'BX-151', 8, '5 7/8"', '7/8"', '1 7/8"', '8 3/16"'],
+  ['1 13/16"', '20M', 'BX-151', 8, '7 3/4"', '1"', '1 5/8"', '10 1/8"'],
+  ['2 1/16"', '5M', 'R-24', 8, '6 1/4"', '7/8"', '1 7/16"', '8 1/2"'],
+  ['2 1/16"', '10M', 'BX-152', 8, '5 1/2"', '3/4"', '1 1/4"', '7 7/8"'],
+  ['2 1/16"', '15M', 'BX-152', 8, '6 1/4"', '7/8"', '1 7/16"', '8 3/4"'],
+  ['2 1/16"', '20M', 'BX-152', 8, '8 1/2"', '1 1/8"', '1 13/16"', '11 5/16"'],
+  ['2 9/16"', '5M', 'R-27', 8, '7"', '1"', '1 5/8"', '9 5/8"'],
+  ['2 9/16"', '10M', 'BX-153', 8, '6 1/4"', '7/8"', '1 7/16"', '9 1/8"'],
+  ['2 9/16"', '15M', 'BX-153', 8, '7"', '1"', '1 5/8"', '10"'],
+  ['2 9/16"', '20M', 'BX-153', 8, '9 1/2"', '1 1/4"', '2"', '12 13/16"'],
+  ['3 1/8"', '3M', 'R-31', 8, '6 1/4"', '7/8"', '1 7/16"', '9 1/2"'],
+  ['3 1/8"', '5M', 'R-35', 8, '7 3/4"', '1 1/8"', '1 13/16"', '10 1/2"'],
+  ['3 1/16"', '10M', 'BX-154', 8, '7 1/4"', '1"', '1 5/8"', '10 5/8"'],
+  ['3 1/16"', '15M', 'BX-154', 8, '8"', '1 1/8"', '1 13/16"', '11 5/16"'],
+  ['3 1/16"', '20M', 'BX-154', 8, '10 1/4"', '1 3/8"', '2 3/16"', '14 1/16"'],
+  ['4 1/16"', '3M', 'R-37', 8, '7 1/2"', '1 1/8"', '1 13/16"', '11 1/2"'],
+  ['4 1/16"', '5M', 'R-39', 8, '8 1/2"', '1 1/4"', '2"', '12 1/4"'],
+  ['4 1/16"', '10M', 'BX-155', 8, '8 3/8"', '1 1/8"', '1 13/16"', '12 7/16"'],
+  ['4 1/16"', '15M', 'BX-155', 8, '9 1/2"', '1 3/8"', '2 3/16"', '14 3/16"'],
+  ['4 1/16"', '20M', 'BX-155', 8, '12 1/4"', '1 3/4"', '2 3/4"', '17 9/16"'],
+  ['5 1/8"', '3M', 'R-41', 8, '8"', '1 1/4"', '2"', '13 3/4"'],
+  ['5 1/8"', '5M', 'R-44', 8, '10 1/4"', '1 1/2"', '2 3/8"', '14 3/4"'],
+  ['5 1/8"', '10M', 'BX-169', 12, '9 1/4"', '1 1/8"', '1 13/16"', '14 1/16"'],
+  ['7 1/16"', '3M', 'R-45', 12, '8 1/2"', '1 1/8"', '1 13/16"', '15"'],
+  ['7 1/16"', '5M', 'R-46', 12, '11 1/4"', '1 3/8"', '2 3/16"', '15 1/2"'],
+  ['7 1/16"', '10M', 'BX-156', 12, '11 3/4"', '1 1/2"', '2 3/8"', '18 7/8"'],
+  ['7 1/16"', '15M', 'BX-156', 16, '13"', '1 1/2"', '2 3/8"', '19 7/8"'],
+  ['7 1/16"', '20M', 'BX-156', 16, '17 3/4"', '2"', '3 1/8"', '25 13/16"'],
+  ['9"', '3M', 'R-49', 12, '9 1/2"', '1 3/8"', '2 3/16"', '18 1/2"'],
+  ['9"', '5M', 'R-50', 12, '12 1/2"', '1 5/8"', '2 9/16"', '19"'],
+  ['9"', '10M', 'BX-157', 16, '13 1/4"', '1 1/2"', '2 3/8"', '21 3/4"'],
+  ['9"', '15M', 'BX-157', 16, '15 3/4"', '1 7/8"', '2 15/16"', '25 1/2"'],
+  ['11"', '2M', 'R-53', 16, '9 1/4"', '1 1/4"', '2"', '20"'],
+  ['11"', '3M', 'R-53', 16, '10"', '1 3/8"', '2 3/16"', '21 1/2"'],
+  ['11"', '5M', 'R-54', 12, '14 1/2"', '1 7/8"', '2 15/16"', '23"'],
+  ['11"', '10M', 'BX-158', 16, '15 3/8"', '1 3/4"', '2 3/4"', '25 3/4"'],
+  ['11"', '15M', 'BX-158', 20, '19 1/2"', '2"', '3 1/8"', '32"'],
+  ['11"', '20M', 'BX-158', 16, '24"', '2 3/4"', '—', '34 3/4"'],
+  ['13 5/8"', '2M', 'R-57', 20, '9 1/2"', '1 1/4"', '2"', '22"'],
+  ['13 5/8"', '3M', 'R-57', 20, '10 3/4"', '1 3/8"', '2 3/16"', '24"'],
+  ['13 5/8"', '5M', 'BX-160', 16, '12 3/4"', '1 5/8"', '2 9/16"', '26 1/2"'],
+  ['13 5/8"', '10M', 'BX-159', 20, '17 3/4"', '1 7/8"', '2 15/16"', '30 1/4"'],
+  ['13 5/8"', '15M', 'BX-159', 20, '21"', '2 1/4"', '3 1/2"', '34 7/8"'],
+  ['13 5/8"', '20M', 'BX-159', 20, '30"', '3"', '—', '45 3/4"'],
+  ['16 3/4"', '2M', 'R-65', 20, '10 3/4"', '1 1/2"', '2 3/8"', '27"'],
+  ['16 3/4"', '3M', 'R-66', 20, '12 1/4"', '1 5/8"', '2 9/16"', '27 3/4"'],
+  ['16 3/4"', '5M', 'BX-162', 16, '14 3/4"', '1 7/8"', '2 15/16"', '30 3/8"'],
+  ['16 3/4"', '10M', 'BX-162', 24, '17 3/4"', '1 7/8"', '2 15/16"', '34 5/16"'],
+  ['18 3/4"', '5M', 'BX-163', 20, '18"', '2"', '3 1/8"', '35 5/8"'],
+  ['18 3/4"', '10M', 'BX-164', 24, '22 1/2"', '2 1/4"', '3 1/2"', '40 15/16"'],
+  ['18 3/4"', '15M', 'BX-164', 20, '27"', '3"', '—', '45 3/4"'],
+  ['21 1/4"', '2M', 'R-73', 24, '12 1/2"', '1 5/8"', '2 9/16"', '32"'],
+  ['20 3/4"', '3M', 'R-74', 20, '15 1/4"', '2"', '3 1/8"', '33 3/4"'],
+  ['21 1/4"', '5M', 'BX-165', 24, '18 3/4"', '2"', '3 1/8"', '39"'],
+  ['21 1/4"', '10M', 'BX-166', 24, '24 1/2"', '2 1/2"', '3 7/8"', '45"'],
+  ['26 3/4"', '2M', 'BX-167', 20, '14 1/2"', '1 3/4"', '2 3/4"', '41"'],
+  ['26 1/4"', '3M', 'BX-168', 24, '17 3/4"', '2"', '3 1/8"', '43 3/8"'],
+];
+
+const faq = [
+  {
+    q: 'What is a ring gasket number?',
+    a: 'It is the API 6A/6BX designation stamped on the gasket itself and on the flange’s data plate — "R-24" or "BX-152", for example. The number identifies the exact gasket geometry for one bore size and pressure rating combination, so quoting the number is unambiguous in a way that "the usual one for this flange" is not.',
+  },
+  {
+    q: 'What is the difference between an R gasket and a BX gasket?',
+    a: 'An R gasket sits in a flat, symmetrical groove and relies on bolt-up force alone to seal — used on lower pressure classes, generally 2M through 5M. A BX gasket is pressure-energized: wellbore pressure itself pushes the ring tighter against the groove walls, which is why it is used at 10M and above and on virtually all BOP stack connections. The two are not interchangeable even at an overlapping bore size.',
+  },
+  {
+    q: 'How do I find the right ring gasket for my flange?',
+    a: 'Match the bore size and pressure rating stamped on the flange’s own data plate against the table. If the data plate is missing or worn, the ring groove dimensions can be measured and cross-checked against API 6A, but ordering from a measured guess rather than a confirmed rating is exactly how a mismatched gasket gets bolted up.',
+  },
+  {
+    q: 'What does "Nut A/F" mean in the table?',
+    a: 'Across-flats — the wrench size of the heavy hex nut that fits the stud, per ASME B18.2.2. It is listed because it is the dimension you actually need at the tool box: the stud diameter tells you what nut to order, but A/F tells you what socket or wrench fits it.',
+  },
+  {
+    q: 'Are these dimensions the same for every manufacturer’s flanges?',
+    a: 'API 6A standardizes the dimensions specifically so that compliant flanges from different manufacturers bolt up to each other. This table reflects Cameron’s own published figures; other API 6A-compliant manufacturers should match, but always verify against the specific flange’s data plate before ordering studs or gaskets.',
+  },
+  {
+    q: 'Does this table apply to wellhead housings and spools too?',
+    a: 'Wellhead housings, spools and BOP stack connections in this bore and pressure range generally use the same API 6A/6BX flange system, so the table applies. It does not cover clamp hub or other non-flanged connection types, which use a different sealing arrangement entirely.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+// Rendered server-side so the full chart is present and crawlable without
+// JS. The filter script only toggles row visibility, it never writes content.
+const bores = [...new Set(FLANGE_DATA.map((r) => r[0]))];
+const pressures = [...new Set(FLANGE_DATA.map((r) => r[1]))].sort((a, b) => parseInt(a) - parseInt(b));
+---
+<BaseLayout
+  title="Flange & Ring Gasket Lookup Chart"
+  description="API 6A/6BX flange bore and pressure rating to ring gasket number, stud count, stud size and flange OD — Cameron's published dimensions, filterable."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Flange & Ring Gasket', href: '/calculators/flange-ring-gasket' }]}
+  lang="en"
+>
+  {/* No alternateHref: there is no Spanish version of this page, so BaseLayout
+      emits no hreflang at all rather than declaring an alternate that does not
+      reciprocate. The Nav switcher still goes somewhere sensible. */}
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Flange & Ring Gasket <span>Lookup</span></h1>
+    <p class="page-hero-sub">API 6A/6BX bore size and pressure rating to ring gasket number, stud count, stud length and diameter, and flange OD. Filter it down to one bore or one rating, or browse the whole chart.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🔩 Flange & Ring Gasket Lookup</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="fl-bore">Filter by Bore Size</label>
+              <select id="fl-bore">
+                <option value="">All bore sizes</option>
+                {bores.map((b) => <option value={b}>{b}</option>)}
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="fl-press">Filter by Pressure Rating</label>
+              <select id="fl-press">
+                <option value="">All ratings</option>
+                {pressures.map((p) => <option value={p}>{p}</option>)}
+              </select>
+            </div>
+          </div>
+          <div class="table-wrap mt-24">
+            <table id="fl-table">
+              <thead>
+                <tr><th>Bore</th><th>Rating</th><th>Ring Gasket</th><th>Studs</th><th>Stud Length</th><th>Stud Dia.</th><th>Nut A/F</th><th>Flange OD</th></tr>
+              </thead>
+              <tbody>
+                {FLANGE_DATA.map((r) => (
+                  <tr data-bore={r[0]} data-press={r[1]}>
+                    <td>{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td><td>{r[3]}</td><td>{r[4]}</td><td>{r[5]}</td><td>{r[6]}</td><td>{r[7]}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Reference only.</strong> Confirm bore size and pressure rating against the flange's own data plate before ordering studs or gaskets. This is a lookup tool, not a substitute for the equipment's certified documentation.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Reading the Chart</h2>
+        <p>Every row is one bore-and-rating combination, because a flange's ring gasket, stud count, and stud size are all fixed the moment those two numbers are set — there's no independent choice to make once you know the bore and the pressure class.</p>
+        <p><strong>Ring gasket number</strong> is what you order: an "R" number is a plain gasket seated in a flat groove, used up through 5M. A "BX" number is pressure-energized — wellbore pressure helps hold it sealed rather than working against it — and is standard at 10M and above, including virtually every BOP stack connection.</p>
+        <p><strong>Studs, stud length and stud diameter</strong> are the physical bolt-up. <strong>Nut A/F</strong> is the width-across-flats for the matching heavy hex nut per ASME B18.2.2 — the number that tells you what socket to bring, not just what to order.</p>
+
+        <h2 id="why-it-matters">Why This Matters on the Floor</h2>
+        <p>Nippling up or down a BOP stack, changing a spool, or reconnecting a wellhead flange all come down to the same question: does the gasket, stud, and nut set actually match the bore and rating stamped on the flange. Getting a ring gasket number wrong doesn't always fail obviously — a close but incorrect BX number can look seated and still not hold at test pressure, which is exactly why the pressure test exists as a separate check from the visual one.</p>
+        <p>For the stack this most often applies to, see <a href="/equipment/bop">how a BOP stack is arranged</a> and where these flanged connections sit in it. Bit and drill string connections use a completely different threaded system — see the <a href="/calculators/bit-torque">bit thread and make-up torque lookup</a> for that side of it.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // The table is fully rendered server-side; this only shows/hides rows,
+  // it never writes content, so the chart works identically with JS off.
+  const boreSel = document.getElementById('fl-bore') as HTMLSelectElement | null;
+  const pressSel = document.getElementById('fl-press') as HTMLSelectElement | null;
+  const rows = Array.from(document.querySelectorAll<HTMLTableRowElement>('#fl-table tbody tr'));
+
+  function applyFilter() {
+    const bore = boreSel?.value ?? '';
+    const press = pressSel?.value ?? '';
+    rows.forEach((row) => {
+      const matches = (!bore || row.dataset.bore === bore) && (!press || row.dataset.press === press);
+      row.style.display = matches ? '' : 'none';
+    });
+  }
+
+  boreSel?.addEventListener('change', applyFilter);
+  pressSel?.addEventListener('change', applyFilter);
+</script>

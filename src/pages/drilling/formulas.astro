@@ -181,6 +181,10 @@ const jsonLd = {
 
         <p>Pipe grades, inspection classes and where the neutral point should sit are on the <a href="/equipment/drill-string">drill string page</a>.</p>
 
+        <h2 id="connections">Connections: Flange Ratings and Make-Up Torque</h2>
+        <p>Not every number on the rig floor is a formula — some are lookups, and getting them wrong matters just as much. A BOP stack's flanged connections carry an API 6A/6BX rating tied to the stack's own pressure class; the <a href="/calculators/flange-ring-gasket">flange and ring gasket lookup</a> goes from bore size and pressure rating to the correct ring gasket, stud count, and stud size.</p>
+        <p>A bit's connection to the string is a different system entirely — a tapered thread made up to a specific torque rather than a gasketed bolt-up. The <a href="/calculators/bit-torque">bit thread and make-up torque lookup</a> goes from bit size to thread connection, then to the Minimum, Maximum, and Maximum Severe torque for PDC and roller cone bits.</p>
+
         <h2 id="survey">Directional and Survey</h2>
 
         <div class="formula-block">
@@ -251,6 +255,7 @@ const jsonLd = {
           <a href="#well-control">Well Control &amp; Kill Sheet</a>
           <a href="#capacities">Capacities &amp; Strokes</a>
           <a href="#buoyancy">Buoyancy &amp; String Weight</a>
+          <a href="#connections">Connections &amp; Torque</a>
           <a href="#survey">Directional &amp; Survey</a>
           <a href="#constants">The Constants</a>
           <a href="#worked">Worked Example</a>
@@ -269,6 +274,8 @@ const jsonLd = {
           <a href="/calculators/kill-sheet" class="card-link">→ Kill Sheet Calculator</a><br><br>
           <a href="/calculators/mud-weight-converter" class="card-link">→ Mud Weight Converter</a><br><br>
           <a href="/equipment/drill-string" class="card-link">→ Drill String Components</a><br><br>
+          <a href="/calculators/flange-ring-gasket" class="card-link">→ Flange &amp; Ring Gasket Lookup</a><br><br>
+          <a href="/calculators/bit-torque" class="card-link">→ Bit Thread &amp; Torque Lookup</a><br><br>
           <a href="/drilling/directional" class="card-link">→ Directional Drilling</a>
         </div>
       </div>

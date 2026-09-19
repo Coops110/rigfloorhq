@@ -83,6 +83,14 @@ import Footer from '../../components/Footer.astro';
           <td>You're planning casing points or picking a mud weight</td>
           <td><a href="/calculators/mud-weight-window">Mud Weight Window</a></td>
         </tr>
+        <tr>
+          <td>You need a ring gasket, stud, or nut size for a flange</td>
+          <td><a href="/calculators/flange-ring-gasket">Flange &amp; Ring Gasket Lookup</a></td>
+        </tr>
+        <tr>
+          <td>You're making up a bit and need the right torque</td>
+          <td><a href="/calculators/bit-torque">Bit Thread &amp; Torque Lookup</a></td>
+        </tr>
       </tbody>
     </table>
 
@@ -122,6 +130,20 @@ import Footer from '../../components/Footer.astro';
         <p>Visualize your safe drilling window between pore pressure and fracture pressure gradients at any depth.</p>
         <p class="card-formula"><strong>Formula:</strong> Pore gradient &lt; MW &lt; Fracture gradient</p>
         <a href="/calculators/mud-weight-window" class="card-link">Open Calculator →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔩</span>
+        <h3>Flange &amp; Ring Gasket Lookup</h3>
+        <p>API 6A/6BX bore size and pressure rating to ring gasket number, stud count, stud size, and flange OD.</p>
+        <p class="card-formula"><strong>Standard:</strong> API 6A / 6BX</p>
+        <a href="/calculators/flange-ring-gasket" class="card-link">Open Lookup →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🛠</span>
+        <h3>Bit Thread &amp; Make-Up Torque</h3>
+        <p>Bit size to thread connection, then make-up torque for that connection on PDC and roller cone bits.</p>
+        <p class="card-formula"><strong>Range:</strong> Minimum / Maximum / Max. Severe</p>
+        <a href="/calculators/bit-torque" class="card-link">Open Lookup →</a>
       </div>
     </div>
   </section>
@@ -179,7 +201,9 @@ import Footer from '../../components/Footer.astro';
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Hydrostatic Pressure Calculator", "url": "https://rigfloorhq.com/calculators/hydrostatic" },
           { "@type": "ListItem", "position": 2, "name": "Kill Sheet Calculator", "url": "https://rigfloorhq.com/calculators/kill-sheet" },
-          { "@type": "ListItem", "position": 3, "name": "Mud Weight Window Calculator", "url": "https://rigfloorhq.com/calculators/mud-weight-window" }
+          { "@type": "ListItem", "position": 3, "name": "Mud Weight Window Calculator", "url": "https://rigfloorhq.com/calculators/mud-weight-window" },
+          { "@type": "ListItem", "position": 4, "name": "Flange & Ring Gasket Lookup", "url": "https://rigfloorhq.com/calculators/flange-ring-gasket" },
+          { "@type": "ListItem", "position": 5, "name": "Bit Thread & Make-Up Torque Lookup", "url": "https://rigfloorhq.com/calculators/bit-torque" }
         ]
       },
       {

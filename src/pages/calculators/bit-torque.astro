@@ -1,0 +1,166 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+// Reed Hycalog's published bit thread and make-up torque reference. Public
+// equipment spec, not tied to any rig, well or company.
+const BIT_THREAD_DATA: [string, string][] = [
+  ['3 3/4 - 4 1/2', '2 3/8 REG'],
+  ['4 5/8 - 5', '2 7/8 REG'],
+  ['5 1/8 - 7 3/8', '3 1/2 REG'],
+  ['7 1/2 - 9 3/8', '4 1/2 REG'],
+  ['9 1/2 - 14 3/8', '6 5/8 REG'],
+  ['14 1/2 - 18 1/2', '6 5/8 or 7 5/8 REG'],
+  ['18 5/8 - 26', '7 5/8 or 8 5/8 REG'],
+  ['27 and larger', '8 5/8 REG'],
+];
+
+// Thread, Min ft-lb, Max ft-lb, Max Severe ft-lb
+const BIT_PDC_TORQUE: [string, number, number, number][] = [
+  ['2 3/8 REG', 3100, 3400, 4000],
+  ['2 7/8 REG', 5250, 5750, 6800],
+  ['3 1/2 REG', 7750, 8500, 10000],
+  ['4 1/2 REG', 18000, 20000, 23500],
+  ['6 5/8 REG', 43000, 47500, 56000],
+  ['7 5/8 REG', 72000, 80000, 93000],
+  ['8 5/8 REG', 101000, 111000, 131000],
+];
+
+// Thread, daN-m range, ft-lb range
+const BIT_RC_TORQUE: [string, string, string][] = [
+  ['2 3/8 REG', '400 - 480', '3000 - 3500'],
+  ['2 7/8 REG', '600 - 750', '4500 - 5500'],
+  ['3 1/2 REG', '950 - 1200', '7000 - 9000'],
+  ['4 1/2 REG', '1600 - 2200', '12000 - 16000'],
+  ['6 5/8 REG', '3800 - 4300', '28000 - 32000'],
+  ['7 5/8 REG', '4800 - 5400', '34000 - 40000'],
+  ['8 5/8 REG', '5400 - 8100', '40000 - 60000'],
+];
+
+const faq = [
+  {
+    q: 'What is make-up torque and why does it matter?',
+    a: 'It is the torque applied to fully tighten a threaded connection — here, the bit onto the last drill collar. Too little and the connection can back off downhole, which means losing the bit and fishing for it. Too much and you risk galling the threads or a twist-off. The range in this table exists because "tight" is not a feel, it is a number.',
+  },
+  {
+    q: 'What is the difference between Minimum, Maximum, and Maximum Severe torque?',
+    a: 'Minimum is the lowest make-up proven to hold the connection under normal drilling loads. Maximum is the upper limit for ordinary service. Maximum Severe is reserved for conditions that put extra load on the connection — high weight on bit, high torque directional work, or anything expected to work the connection harder than a straightforward vertical run.',
+  },
+  {
+    q: 'How do I find the right thread connection from bit size?',
+    a: 'Match the bit diameter to the size range in the first table. Connection size scales with bit diameter — an 8 1/2 in bit runs a 4 1/2 REG connection, for example — because a larger bit needs a physically bigger, stronger connection to carry the same loads without becoming the weak point in the string.',
+  },
+  {
+    q: 'Do PDC and roller cone bits use different make-up torque?',
+    a: 'Yes, which is why they are shown separately. The two bit types load the connection differently in service, so a roller cone bit and a PDC bit on the same thread size do not necessarily share the same torque figures — always read from the table matching the bit type in hand.',
+  },
+  {
+    q: 'How is make-up torque actually applied on the floor?',
+    a: 'With a calibrated torque sub or tong system that reads the applied torque directly, not by feel or by counting turns. "By feel" make-up is one of the more common causes of galled connections, because the point at which a connection feels tight and the point at which it has reached its correct torque are not the same thing.',
+  },
+  {
+    q: 'Are these torque figures the same across every bit manufacturer?',
+    a: 'No — always check the specific bit\'s own spec sheet first. This table reflects Reed Hycalog\'s published reference figures as a general guide; actual required torque can vary by manufacturer, thread condition, and the thread compound used.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Bit Thread & Make-Up Torque Chart"
+  description="Bit size to thread connection, plus make-up torque for PDC and roller cone bits — Reed Hycalog's published Minimum, Maximum and Maximum Severe figures."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Bit Thread & Torque', href: '/calculators/bit-torque' }]}
+  lang="en"
+>
+  {/* No alternateHref: there is no Spanish version of this page, so BaseLayout
+      emits no hreflang at all rather than declaring an alternate that does not
+      reciprocate. The Nav switcher still goes somewhere sensible. */}
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Bit Thread & Make-Up <span>Torque</span></h1>
+    <p class="page-hero-sub">Bit size to thread connection, then make-up torque for that connection on PDC and roller cone bits — Minimum, Maximum, and Maximum Severe.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🛠 Bit Size → Thread Connection</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Bit Size (in)</th><th>Bit Thread</th></tr></thead>
+              <tbody>
+                {BIT_THREAD_DATA.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">⚙ Make-Up Torque — PDC / Fixed Cutter & Diamond Bits</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Pin Size</th><th>Minimum</th><th>Maximum</th><th>Max. Severe</th></tr></thead>
+              <tbody>
+                {BIT_PDC_TORQUE.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1].toLocaleString()} ft-lb</td><td>{r[2].toLocaleString()} ft-lb</td><td>{r[3].toLocaleString()} ft-lb</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">⚙ Make-Up Torque — Roller Cone Bits</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Bit Thread</th><th>daN-m</th><th>ft-lb</th></tr></thead>
+              <tbody>
+                {BIT_RC_TORQUE.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Reference only.</strong> Always check the specific bit's own spec sheet before make-up. Thread condition, compound, and manufacturer tolerance all shift the correct figure from this general reference.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Why the Range Matters</h2>
+        <p>Make-up torque is not a single number to hit — it is a range with a reason behind each end. Below the minimum, the connection is not fully engaged and can work loose under the vibration and cyclic loading of normal drilling. Above the maximum, the pin and box are stressed harder than the connection was designed for, and repeated over-torquing is a direct path to galled threads.</p>
+        <p><strong>Maximum Severe</strong> exists for a specific reason: directional and high-WOB drilling put more working load on a bit connection than a straightforward vertical run, and a connection made up to ordinary maximum can still back off under that extra load. It is not a target to aim for by default — it is the ceiling for when conditions actually call for it.</p>
+
+        <h2 id="how-connections-differ">How This Differs from a Flange Bolt-Up</h2>
+        <p>A bit connection is a tapered threaded joint torqued to a spec — there is no separate gasket, and the seal comes from the metal-to-metal contact of the thread itself once made up correctly. That is a different system entirely from the studded, gasketed flanges used on a <a href="/equipment/bop">BOP stack</a> — see the <a href="/calculators/flange-ring-gasket">flange and ring gasket lookup</a> for that side of the rig's connections.</p>
+        <p>For where the bit sits in the rest of the string and how tool joint connections carry load above it, see <a href="/equipment/drill-string">the drill string page</a>.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
