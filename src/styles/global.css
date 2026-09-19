@@ -595,6 +595,11 @@ td:first-child { font-family: var(--cond); font-weight: 700; font-size: 14px; co
 
 /* ── TWO COL ─────────────────────────────────────────── */
 .two-col { display: grid; grid-template-columns: 1fr; gap: 28px; align-items: start; max-width: 100%; }
+/* Grid items default to min-width: auto, which refuses to shrink below the
+   width of their widest content (a wide table, a long formula-eq line).
+   On mobile that dragged the whole column past the viewport instead of
+   letting .table-wrap's own overflow-x:auto handle it. */
+.two-col > * { min-width: 0; }
 @media (min-width: 900px) { .two-col { grid-template-columns: 1fr 1fr; gap: 44px; } }
 
 /* ── FOOTER ──────────────────────────────────────────── */
