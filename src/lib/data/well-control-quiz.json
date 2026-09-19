@@ -1,0 +1,2802 @@
+[
+  {
+    "id": 1,
+    "question": "A drilling mud weighs 8.9 ppg. What is its pressure gradient?",
+    "choices": {
+      "A": "0.463 psi/ft",
+      "B": "0.833 psi/ft",
+      "C": "0.465 psi/ft",
+      "D": "0.433 psi/ft",
+      "E": "0.013 psi/ft"
+    },
+    "correctAnswer": "A",
+    "explanation": "Pressure gradient converts a fluid's weight into pressure exerted per foot of vertical depth. The conversion constant is 0.052 (derived from the weight of one gallon of fresh water spread over a square-inch column). Gradient (psi/ft) = mud weight (ppg) x 0.052. Here: 8.9 x 0.052 = 0.463 psi/ft.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 2,
+    "question": "True or false: a larger pit gain will produce both a higher shut-in drillpipe pressure (SIDPP) and a higher shut-in casing pressure (SICP).",
+    "choices": {
+      "A": "True",
+      "B": "False",
+      "C": "Sometimes",
+      "D": "Not enough information to tell",
+      "E": ""
+    },
+    "correctAnswer": "B",
+    "explanation": "A bigger pit gain means more low-density influx has entered the annulus, so SICP will indeed climb with kick size. SIDPP is different: it only reflects the gap between the mud hydrostatic pressure inside the drillstring and true formation pressure, and the drillstring itself never sees the influx. So SIDPP does not change with the size of the kick. Because only one of the two pressures actually rises with a bigger gain, the statement as a whole is false.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 3,
+    "question": "When killing a well with the two-circulation (driller's) method, what should the pit volume do during the second circulation?",
+    "choices": {
+      "A": "The volume will increase considerably",
+      "B": "The volume will decrease considerably",
+      "C": "The volume will not change",
+      "D": "The volume will increase at first then fall away",
+      "E": "The volume will decrease at first then build back up"
+    },
+    "correctAnswer": "C",
+    "explanation": "By the second circulation, the influx has already been removed from the well during the first circulation. What remains is pumping kill-weight mud around the system while returns are monitored. Since the volume being pumped in matches the volume coming back at surface, the pit level should stay essentially flat throughout this stage â€” a rising or falling pit here would be a sign that something unplanned is happening (losses or another influx).",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 4,
+    "question": "Most kicks are caused by a drilling crew failing to do which of the following?",
+    "choices": {
+      "A": "Properly install and test the blowout preventer equipment",
+      "B": "Pump a slug before pulling out of the hole",
+      "C": "Keep the hole full of drilling mud",
+      "D": "Ensure the hole takes the correct fill volume on trips",
+      "E": "All the above are correct"
+    },
+    "correctAnswer": "D",
+    "explanation": "Crews are generally good about topping the hole up on trips â€” the real gap is confirming the volume actually pumped back in matches the calculated volume of steel just removed. A hole that appears \"full\" can still be quietly taking less fluid than it should, and that shortfall is one of the most common, and easiest to miss, early signs of a kick in progress.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 5,
+    "question": "Circulating pressure of several thousand psi at the pump drops to almost nothing by the time it reaches the shakers. Which portion of that pressure loss is still acting on the bottom of the hole while circulating?",
+    "choices": {
+      "A": "Surface line pressure loss",
+      "B": "Drill string pressure loss",
+      "C": "Bit nozzle pressure loss",
+      "D": "Annular pressure loss",
+      "E": "All of the above"
+    },
+    "correctAnswer": "D",
+    "explanation": "Total pump pressure is used up overcoming friction in the surface lines, inside the drillstring, through the bit nozzles, and finally up the annulus back to surface â€” by the time returns reach the shakers, all of it has been spent. Of those components, only the annular pressure loss (APL) is generated above the bit on the way back to surface, meaning it represents backpressure that the open hole and formation are still feeling while mud is being circulated. That is why annular pressure loss is added to static mud weight when calculating equivalent circulating density.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 6,
+    "question": "Which two variables are used to calculate hydrostatic pressure?",
+    "choices": {
+      "A": "Depth and shape of the hole",
+      "B": "Volume and weight of the mud",
+      "C": "Annular pressure loss and mud weight",
+      "D": "Hole depth and viscosity of the drilling mud",
+      "E": "Column length and density of the fluid"
+    },
+    "correctAnswer": "E",
+    "explanation": "Hydrostatic pressure is purely a function of a fluid's density and the vertical height (true vertical depth) of the column above the point being measured â€” it has nothing to do with the shape, volume, or width of the container it's in. That is why the formula is simply: pressure = fluid density x column height (gradient in psi/ft x TVD in feet).",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 7,
+    "question": "It is good drilling practice to keep accurate records of which of the following?",
+    "choices": {
+      "A": "Trip records",
+      "B": "Pump output figures",
+      "C": "Slow circulating rate pressure losses",
+      "D": "Crews trained and well-control conscious",
+      "E": "All of the above"
+    },
+    "correctAnswer": "E",
+    "explanation": "None of these can be skipped: trip records confirm the hole is taking the right fill, pump output figures let you convert strokes to volume, slow circulating rate pressure losses give you your kill-speed baseline, and a trained, alert crew is what actually catches problems early enough to matter. Good well control rests on all of them together, not any single one.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 8,
+    "question": "Slow circulating rate pressure losses should be recorded every tour using which gauge?",
+    "choices": {
+      "A": "The drillpipe gauge on the remote choke panel",
+      "B": "The drillpipe gauge on the driller's console",
+      "C": "The gauge on the choke manifold",
+      "D": "The pump gauge",
+      "E": "The reading obtained from the mud loggers"
+    },
+    "correctAnswer": "A",
+    "explanation": "If a kick happens, the well will actually be killed by watching the drillpipe gauge at the remote choke panel â€” so that is the exact gauge that should be used to establish slow circulating rate pressure losses in the first place. Using a different gauge (console, pump, or manifold) introduces small calibration differences that can throw off your kill sheet numbers right when accuracy matters most.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 9,
+    "question": "Hydrostatic pressure is the pressure exerted by a column of fluid at rest.",
+    "choices": {
+      "A": "True",
+      "B": "False",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "This is the textbook definition of hydrostatic pressure: it depends only on the fluid's density and the vertical height of the static column above the measurement point â€” not on motion, flow rate, or shape of the container. The statement is true.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 10,
+    "question": "One of the most important rules in well control is to:",
+    "choices": {
+      "A": "Know how to get SIDPP with a float in the string",
+      "B": "Shut the well in quickly with the least amount of gain",
+      "C": "Circulate out a kick with constant drillpipe pressure and strokes",
+      "D": "Hold approximately 200 psi back pressure on the choke",
+      "E": "Have slow circulating rate pressure losses to hand at all times"
+    },
+    "correctAnswer": "B",
+    "explanation": "The size of the pit gain drives everything else about how difficult and dangerous the kill will be â€” bigger gains mean higher shut-in pressures, longer bubble migration, and a bigger safety margin needed. The single biggest lever a crew has over that outcome is reaction speed: the quicker the well is shut in after a kick is recognized, the smaller the gain, and the more manageable everything downstream becomes.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 11,
+    "question": "Which kill method involves only one circulation, pumping full kill-weight mud from the very start?",
+    "choices": {
+      "A": "Driller's Method",
+      "B": "Wait & Weight Method",
+      "C": "Volumetric Method",
+      "D": "Concurrent Method",
+      "E": "Bullheading"
+    },
+    "correctAnswer": "B",
+    "explanation": "The Wait & Weight Method (sometimes called the Engineer's Method) requires the crew to first weight the mud up to kill-weight before circulating, then pump that heavier mud all the way around in a single circulation. This contrasts with the Driller's Method, which circulates out the influx first with the original mud weight, then follows with a second circulation of kill mud.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 12,
+    "question": "Which kill method circulates the influx completely out of the well before circulating kill-weight mud around the system?",
+    "choices": {
+      "A": "Driller's Method",
+      "B": "Wait & Weight Method",
+      "C": "Volumetric Method",
+      "D": "Concurrent Method",
+      "E": "Bullheading"
+    },
+    "correctAnswer": "A",
+    "explanation": "The Driller's Method is a two-circulation kill: the first circulation removes the influx from the well using the original mud weight, and only on the second circulation is kill-weight mud pumped around. Its main advantage is that you can start it immediately, without waiting to weight up the mud system first.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 13,
+    "question": "Which kill method would you use if you could not circulate and gas migration was suspected?",
+    "choices": {
+      "A": "Driller's Method",
+      "B": "Wait & Weight Method",
+      "C": "Volumetric Method",
+      "D": "Concurrent Method",
+      "E": "Bullheading"
+    },
+    "correctAnswer": "C",
+    "explanation": "The Volumetric Method is used specifically when circulation is not possible (for example, a plugged bit or failed pump). Instead of pumping, small, controlled volumes of mud are bled from the well to compensate for gas expanding as it migrates up the annulus, keeping bottom-hole pressure inside a safe window until circulation can be restored.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 14,
+    "question": "The primary method for preventing a blowout is:",
+    "choices": {
+      "A": "Highly trained drillers",
+      "B": "Closing the blowout preventers",
+      "C": "Correct mud weight in the hole",
+      "D": "A good site supervisor",
+      "E": "A good leak-off test"
+    },
+    "correctAnswer": "C",
+    "explanation": "Primary well control means keeping formation pressure balanced using nothing but the hydrostatic pressure of a properly weighted mud column at the correct true vertical depth. Everything else â€” trained crews, blowout preventers, leak-off tests â€” supports that goal or serves as a backup once primary control has already been lost.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 15,
+    "question": "If primary well control has been lost, the secondary method of controlling the well would be to:",
+    "choices": {
+      "A": "Pump a barite slug",
+      "B": "Close the blowout preventers",
+      "C": "Pump kill-weight mud",
+      "D": "Prepare a kill sheet",
+      "E": "Investigate why primary control was lost"
+    },
+    "correctAnswer": "B",
+    "explanation": "Secondary well control is defined as using the blowout preventer equipment to physically shut the well in once the mud column alone (primary control) is no longer holding formation pressure back. Everything else listed â€” kill sheets, kill mud, investigating the cause â€” happens after the well has already been secured with the BOPs.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 16,
+    "question": "As gas migrates up a shut-in wellbore (assume no float in the drillstring), what happens to the pressures being read?",
+    "choices": {
+      "A": "Casing pressure will increase",
+      "B": "Drillpipe pressure will increase",
+      "C": "Bubble pressure will increase",
+      "D": "A and B are correct",
+      "E": "A and C are correct"
+    },
+    "correctAnswer": "D",
+    "explanation": "As a trapped gas bubble migrates toward surface without expanding (because the well is shut in and mud is incompressible), it carries the same volume of gas into a column of mud that has less hydrostatic pressure above it, so both casing pressure and drillpipe pressure climb together. The pressure inside the bubble itself stays essentially constant, since it isn't being allowed to expand while the well is shut in.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 17,
+    "question": "If the proper drillpipe pressure schedule is not followed during a kill operation, bottom-hole pressure could end up either too high or too low, causing further influx or losses.",
+    "choices": {
+      "A": "True",
+      "B": "False",
+      "C": "Sometimes",
+      "D": "Only in vertical wells",
+      "E": "Only in horizontal wells"
+    },
+    "correctAnswer": "A",
+    "explanation": "Drillpipe pressure is the operator's control lever for bottom-hole pressure while circulating a kill. Run it too high and you risk breaking down the formation and losing returns; run it too low and formation fluid can enter the wellbore again. Sticking to the correct schedule at every pump-speed change is what keeps bottom-hole pressure constant throughout the kill.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 18,
+    "question": "The formation pressure at 7500 ft TVD is 3488 psi. What is the approximate formation gradient?",
+    "choices": {
+      "A": "0.349 psi/ft",
+      "B": "0.465 psi/ft",
+      "C": "0.521 psi/ft",
+      "D": "0.722 psi/ft",
+      "E": "1.00 psi/ft"
+    },
+    "correctAnswer": "B",
+    "explanation": "Gradient is simply pressure divided by depth: gradient (psi/ft) = pressure (psi) / depth (ft). Here: 3488 / 7500 = 0.465 psi/ft.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 19,
+    "question": "How is a blowout best described?",
+    "choices": {
+      "A": "A flow of fluid from the formation into the wellbore",
+      "B": "An abnormally pressured formation",
+      "C": "An uncontrolled flow of fluid from the wellbore at surface",
+      "D": "A combination of hydrostatic pressure and formation pressure",
+      "E": "None of the above"
+    },
+    "correctAnswer": "C",
+    "explanation": "It is important to keep the two terms separate: formation fluid entering the wellbore downhole (option A) is a kick, while formation fluid escaping the wellbore uncontrolled at surface is a blowout. A blowout is essentially what happens when a kick is not caught and controlled in time.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 20,
+    "question": "Which of the following are possible indicators of a kick?",
+    "choices": {
+      "A": "Increase in flow",
+      "B": "Drilling break",
+      "C": "Increase in pit volume",
+      "D": "Gas-cut mud",
+      "E": "All of the above"
+    },
+    "correctAnswer": "E",
+    "explanation": "None of these on its own proves a kick is in progress, but each is a recognized warning sign worth checking immediately: a flow increase or pit gain suggests formation fluid is entering the well, a sudden drilling break can mean a more permeable or higher-pressured zone has been penetrated, and gas-cut mud shows formation gas is already being carried up the annulus.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 21,
+    "question": "The slow circulating rate pressure loss is the pressure required to circulate mud around the system at a selected, fixed pump speed.",
+    "choices": {
+      "A": "True",
+      "B": "False",
+      "C": "Only in vertical wells",
+      "D": "Only in horizontal wells",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "This is exactly what the slow circulating rate (SCR) pressure loss represents: the friction pressure needed to move mud through the entire circulating system at a predetermined, reduced pump rate â€” the same rate that will later be used to kill the well if a kick occurs.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 22,
+    "question": "When should slow circulating rate pressure losses be taken?",
+    "choices": {
+      "A": "As soon as practical after coming on tour",
+      "B": "When the mud weight changes",
+      "C": "After drilling a large footage (up to 1000 ft)",
+      "D": "After a BHA or bit nozzle change",
+      "E": "All of the above"
+    },
+    "correctAnswer": "E",
+    "explanation": "Slow circulating rate pressure loss changes any time the friction characteristics of the system change â€” new mud weight, new footage of hole drilled, or a different bottom-hole assembly and nozzle configuration will all shift the number. Taking a fresh reading at shift change and after each of these events keeps your kill-sheet baseline accurate.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 23,
+    "question": "The U-tube is balanced when the well is shut in and pressures have stabilized, regardless of the difference between SIDPP and SICP.",
+    "choices": {
+      "A": "True",
+      "B": "False",
+      "C": "Only in vertical wells",
+      "D": "Only in horizontal wells",
+      "E": "Only with surface stacks"
+    },
+    "correctAnswer": "A",
+    "explanation": "The wellbore behaves like a U-tube: once shut in and stabilized, the pressures in the two connected legs (drillstring and annulus) are in equilibrium with formation pressure, regardless of how different SIDPP and SICP read from each other â€” that difference simply reflects the lighter influx sitting in the annulus side. Balance is about stability, not about the two gauges matching.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 24,
+    "question": "The choke is used to adjust casing pressure, and drillpipe pressure is adjusted by changing pump speed.",
+    "choices": {
+      "A": "True",
+      "B": "False",
+      "C": "Only in vertical wells",
+      "D": "Only in horizontal wells",
+      "E": "Only with surface stacks"
+    },
+    "correctAnswer": "B",
+    "explanation": "This statement has it backwards. During a kill with the pump running at a steady rate, the choke is what you adjust to control casing (back) pressure. Drillpipe pressure is a consequence of the fixed pump speed and mud weight going down the string â€” you do not use pump speed as your primary tool to fine-tune it during circulation.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 25,
+    "question": "Bottom-hole pressure is not affected when a slug is pumped into the drillstring before tripping.",
+    "choices": {
+      "A": "True",
+      "B": "False",
+      "C": "Only in vertical wells",
+      "D": "Only in horizontal wells",
+      "E": "Only with surface stacks"
+    },
+    "correctAnswer": "A",
+    "explanation": "A slug is heavier mud pumped into the top of the drillstring purely so the pipe can be pulled a safe distance dry without spilling mud on the rig floor. Because the well remains static and the overall hydrostatic column reaching bottom is unaffected in any meaningful way, bottom-hole pressure is unchanged by the practice â€” which is exactly why pumping slugs is standard and permitted.",
+    "topic": "Basic Knowledge"
+  },
+  {
+    "id": 1,
+    "question": "Find the hydrostatic pressure of a 12 ppg mud in a 10,000 ft well.",
+    "choices": {
+      "A": "6240 psi",
+      "B": "1200 psi",
+      "C": "6420 psi",
+      "D": "5250 psi",
+      "E": "4260 psi"
+    },
+    "correctAnswer": "A",
+    "explanation": "Hydrostatic pressure = mud weight (ppg) x 0.052 x true vertical depth (ft). Here: 12 x 0.052 x 10,000 = 6240 psi.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 2,
+    "question": "What is the hydrostatic pressure on the bottom of a hole 6500 ft deep filled with 14 ppg mud?",
+    "choices": {
+      "A": "4732 psi",
+      "B": "7800 psi",
+      "C": "2512 psi",
+      "D": "3590 psi",
+      "E": "3128 psi"
+    },
+    "correctAnswer": "A",
+    "explanation": "Hydrostatic pressure = mud weight x 0.052 x TVD. Here: 14 x 0.052 x 6500 = 4732 psi.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 3,
+    "question": "Mud weight is 11 ppg and the hole depth is 9000 ft measured depth (MD) / 8500 ft true vertical depth (TVD). What is the hydrostatic pressure at the bottom of the hole?",
+    "choices": {
+      "A": "4628 psi",
+      "B": "4268 psi",
+      "C": "4862 psi",
+      "D": "4682 psi",
+      "E": "4826 psi"
+    },
+    "correctAnswer": "C",
+    "explanation": "Hydrostatic pressure always uses true vertical depth, never measured depth, because pressure depends on the actual height of the fluid column, not the length of pipe run to get there. Using TVD: 11 x 0.052 x 8500 = 4862 psi.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 4,
+    "question": "Well depth is 18,000 ft TVD / 21,000 ft MD. The mud weight in use is 15.5 ppg. What is the bottom-hole pressure (BHP)?",
+    "choices": {
+      "A": "12,475 psi",
+      "B": "16,867 psi",
+      "C": "13,724 psi",
+      "D": "15,807 psi",
+      "E": "14,508 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "Bottom-hole pressure from a static mud column uses TVD, not MD: 15.5 x 0.052 x 18,000 = 14,508 psi.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 5,
+    "question": "The mud gradient is 0.780 psi/ft at 11,000 ft MD / 10,000 ft TVD. What is the hydrostatic pressure on bottom?",
+    "choices": {
+      "A": "8700 psi",
+      "B": "7800 psi",
+      "C": "8070 psi",
+      "D": "8580 psi",
+      "E": "7080 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "A gradient already expresses pressure per foot of vertical depth, so hydrostatic pressure is simply gradient x TVD (using TVD, not MD, for the same reason as always â€” pressure depends on vertical height). Here: 0.780 x 10,000 = 7800 psi.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 6,
+    "question": "What is the mud weight if the hydrostatic pressure is 3000 psi at 4675 ft?",
+    "choices": {
+      "A": "11.72 ppg",
+      "B": "12.12 ppg",
+      "C": "12.34 ppg",
+      "D": "12.78 ppg",
+      "E": "13.26 ppg"
+    },
+    "correctAnswer": "C",
+    "explanation": "This is the hydrostatic pressure formula rearranged to solve for mud weight: ppg = psi / (feet x 0.052). Here: 3000 / (4675 x 0.052) = 3000 / 243.1 = 12.34 ppg.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 7,
+    "question": "What is the equivalent mud weight for 4000 psi at 8000 ft? (Round your answer up.)",
+    "choices": {
+      "A": "12.45 ppg",
+      "B": "8.76 ppg",
+      "C": "9.12 ppg",
+      "D": "10.32 ppg",
+      "E": "9.62 ppg"
+    },
+    "correctAnswer": "E",
+    "explanation": "Equivalent mud weight uses the same rearranged formula: ppg = psi / (feet x 0.052). Here: 4000 / (8000 x 0.052) = 4000 / 416 = 9.615, which rounds up to 9.62 ppg.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 8,
+    "question": "The TVD is 4500 ft and the pressure is 3300 psi. What is the equivalent mud weight?",
+    "choices": {
+      "A": "12.3 ppg",
+      "B": "12.9 ppg",
+      "C": "13.5 ppg",
+      "D": "14.1 ppg",
+      "E": "14.7 ppg"
+    },
+    "correctAnswer": "D",
+    "explanation": "ppg = psi / (feet x 0.052). Here: 3300 / (4500 x 0.052) = 3300 / 234 = 14.1 ppg.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 9,
+    "question": "What is the equivalent mud weight at 8500 ft TVD / 9500 ft MD with 4900 psi?",
+    "choices": {
+      "A": "12.25 ppg",
+      "B": "11.08 ppg",
+      "C": "10.01 ppg",
+      "D": "10.82 ppg",
+      "E": "11.57 ppg"
+    },
+    "correctAnswer": "B",
+    "explanation": "Always use TVD, not MD, for pressure calculations. ppg = psi / (feet x 0.052) = 4900 / (8500 x 0.052) = 4900 / 442 = 11.09 ppg, closest to 11.08 ppg.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 10,
+    "question": "Convert a pressure of 8500 psi into an equivalent mud weight for a depth of 12,000 ft MD / 11,000 ft TVD.",
+    "choices": {
+      "A": "14.86 ppg",
+      "B": "13.86 ppg",
+      "C": "12.68 ppg",
+      "D": "15.68 ppg",
+      "E": "13.52 ppg"
+    },
+    "correctAnswer": "A",
+    "explanation": "Always use TVD, not MD, for pressure calculations. ppg = psi / (feet x 0.052) = 8500 / (11,000 x 0.052) = 8500 / 572 = 14.86 ppg.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 11,
+    "question": "Calculate the equivalent mud weight: BHP = 12,000 psi; depth = 12,500 ft.",
+    "choices": {
+      "A": "18.46 ppg",
+      "B": "13.12 ppg",
+      "C": "15.50 ppg",
+      "D": "19.24 ppg",
+      "E": "17.98 ppg"
+    },
+    "correctAnswer": "A",
+    "explanation": "ppg = psi / (feet x 0.052) = 12,000 / (12,500 x 0.052) = 12,000 / 650 = 18.46 ppg.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 12,
+    "question": "BHP = 4680 psi; depth = 9800 ft TVD / 11,500 ft MD. What is the equivalent mud weight?",
+    "choices": {
+      "A": "8.25 ppg",
+      "B": "10.6 ppg",
+      "C": "9.18 ppg",
+      "D": "7.84 ppg",
+      "E": "8.8 ppg"
+    },
+    "correctAnswer": "C",
+    "explanation": "Always use TVD, not MD. ppg = psi / (feet x 0.052) = 4680 / (9800 x 0.052) = 4680 / 509.6 = 9.18 ppg.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 13,
+    "question": "A pump pressure of 1200 psi is recorded at 35 strokes per minute (SPM). What will the approximate pump pressure be at 30 SPM?",
+    "choices": {
+      "A": "1029 psi",
+      "B": "882 psi",
+      "C": "705 psi",
+      "D": "1427 psi",
+      "E": "1173 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "Pump pressure varies with the square of pump speed: new psi = old psi x (new SPM / old SPM)^2. Here: 1200 x (30/35)^2 = 1200 x 0.735 = 882 psi.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 14,
+    "question": "The measured depth is 13,500 ft and the true vertical depth is 13,000 ft. What is the hydrostatic pressure with 15 ppg mud in the hole?",
+    "choices": {
+      "A": "10,530 psi",
+      "B": "6760 psi",
+      "C": "6278 psi",
+      "D": "10,140 psi",
+      "E": "8876 psi"
+    },
+    "correctAnswer": "D",
+    "explanation": "Hydrostatic pressure uses TVD, not MD: 15 x 0.052 x 13,000 = 10,140 psi.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 15,
+    "question": "Calculate the new pump pressure at a new pump speed: present pump pressure = 300 psi at 45 SPM; new pump speed = 80 SPM.",
+    "choices": {
+      "A": "872 psi",
+      "B": "848 psi",
+      "C": "913 psi",
+      "D": "972 psi",
+      "E": "948 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "new psi = old psi x (new SPM / old SPM)^2 = 300 x (80/45)^2 = 300 x 3.16 = 948 psi.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 16,
+    "question": "With a pump pressure of 400 psi at 20 SPM, what would be the approximate pressure at 44 SPM?",
+    "choices": {
+      "A": "880 psi",
+      "B": "2112 psi",
+      "C": "1842 psi",
+      "D": "2060 psi",
+      "E": "1936 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "new psi = old psi x (new SPM / old SPM)^2. Work the ratio first, square it, then multiply by old pressure: (44/20)^2 = 4.84; 400 x 4.84 = 1936 psi.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 17,
+    "question": "With a mud weight of 17 ppg the pumping pressure is 2500 psi. What will the pumping pressure be with 18.0 ppg mud (same pump speed)?",
+    "choices": {
+      "A": "2342 psi",
+      "B": "2647 psi",
+      "C": "2746 psi",
+      "D": "2849 psi",
+      "E": "2545 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "The pump-speed-squared relationship only applies to speed changes. For a mud weight change at a constant pump speed, pressure scales directly (not squared) with weight: new psi = old psi x (new mud weight / old mud weight). Here: 2500 x (18/17) = 2647 psi.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 18,
+    "question": "Present pump pressure is 1700 psi with 10 ppg mud at 50 SPM. What is the new pump pressure if the mud weight is increased to 12 ppg and the pump speed is reduced to 45 SPM?",
+    "choices": {
+      "A": "1652 psi",
+      "B": "1752 psi",
+      "C": "1572 psi",
+      "D": "1257 psi",
+      "E": "1725 psi"
+    },
+    "correctAnswer": "A",
+    "explanation": "Two changes are happening at once â€” a mud weight change and a pump speed change â€” and it doesn't matter which one you calculate first. Mud weight step: 1700 x (12/10) = 2040 psi. Speed step: 2040 x (45/50)^2 = 2040 x 0.81 = 1652 psi.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 19,
+    "question": "What is the approximate mud weight in ppg for a gradient of 0.62 psi/ft?",
+    "choices": {
+      "A": "9.12 ppg",
+      "B": "12.29 ppg",
+      "C": "11.92 ppg",
+      "D": "10.26 ppg",
+      "E": "13.02 ppg"
+    },
+    "correctAnswer": "C",
+    "explanation": "To get mud weight from gradient, divide by 0.052: 0.62 / 0.052 = 11.92 ppg.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 20,
+    "question": "A gradient of 0.650 psi/ft gives you a mud weight of:",
+    "choices": {
+      "A": "10.9 ppg",
+      "B": "14.2 ppg",
+      "C": "11.7 ppg",
+      "D": "13.4 ppg",
+      "E": "12.5 ppg"
+    },
+    "correctAnswer": "E",
+    "explanation": "Divide gradient by 0.052 to get ppg: 0.650 / 0.052 = 12.5 ppg.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 21,
+    "question": "The mud gradient is 0.42 psi/ft. What is the mud weight?",
+    "choices": {
+      "A": "10.2 ppg",
+      "B": "9.87 ppg",
+      "C": "8.8 ppg",
+      "D": "8.08 ppg",
+      "E": "7.93 ppg"
+    },
+    "correctAnswer": "D",
+    "explanation": "Divide gradient by 0.052: 0.42 / 0.052 = 8.08 ppg.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 22,
+    "question": "Which fluid has a gradient of about 0.433 psi/ft?",
+    "choices": {
+      "A": "Gas",
+      "B": "Fresh water",
+      "C": "Condensate",
+      "D": "Formation fluid",
+      "E": "Oil"
+    },
+    "correctAnswer": "B",
+    "explanation": "Dividing the gradient by 0.052 gives the equivalent weight: 0.433 / 0.052 = 8.33 ppg, which is the standard weight of fresh water. This gradient (roughly 0.433-0.465 psi/ft depending on salinity) is the benchmark figure used throughout well control for water-based reference calculations.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 23,
+    "question": "What is the gradient of a 9.6 ppg mud?",
+    "choices": {
+      "A": "0.543 psi/ft",
+      "B": "0.531 psi/ft",
+      "C": "0.510 psi/ft",
+      "D": "0.487 psi/ft",
+      "E": "0.499 psi/ft"
+    },
+    "correctAnswer": "E",
+    "explanation": "To convert ppg to psi/ft, multiply by 0.052: 9.6 x 0.052 = 0.499 psi/ft.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 24,
+    "question": "A 15 ppg mud has a gradient of:",
+    "choices": {
+      "A": "0.67 psi/ft",
+      "B": "0.72 psi/ft",
+      "C": "0.83 psi/ft",
+      "D": "0.78 psi/ft",
+      "E": "0.64 psi/ft"
+    },
+    "correctAnswer": "D",
+    "explanation": "Multiply mud weight by 0.052: 15 x 0.052 = 0.78 psi/ft.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 25,
+    "question": "The mud weight is 18.7 ppg. What is the mud gradient?",
+    "choices": {
+      "A": "0.9274 psi/ft",
+      "B": "0.9724 psi/ft",
+      "C": "0.8385 psi/ft",
+      "D": "0.8657 psi/ft",
+      "E": "0.7371 psi/ft"
+    },
+    "correctAnswer": "B",
+    "explanation": "Multiply mud weight by 0.052: 18.7 x 0.052 = 0.9724 psi/ft.",
+    "topic": "Basic Pressure"
+  },
+  {
+    "id": 1,
+    "question": "Which of the following is the first reliable indication that a well is kicking?",
+    "choices": {
+      "A": "Increase in torque",
+      "B": "Gas-cut mud",
+      "C": "Increase in flow rate",
+      "D": "Decrease in pump pressure",
+      "E": "Decrease in string weight"
+    },
+    "correctAnswer": "C",
+    "explanation": "An increase in return flow rate while pump speed hasn't changed is the earliest dependable signal that extra fluid (an influx) is entering the wellbore and pushing more volume out at surface. The other signs listed can each have several other causes and are considered secondary, supporting indicators rather than a first reliable sign on their own.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 2,
+    "question": "If the mud volume displaced while tripping out does not match the theoretical pipe displacement, what should you do before flow-checking the well?",
+    "choices": {
+      "A": "Stop tripping and call the mud logger",
+      "B": "Stop tripping, spot a high-viscosity pill, then continue pulling out",
+      "C": "Keep pulling slowly and watch the trip tank",
+      "D": "Stop tripping and install a full-opening safety valve",
+      "E": "Stop tripping, shear the pipe, and call for help"
+    },
+    "correctAnswer": "D",
+    "explanation": "When you cannot account for the fill volume, you must assume the well could already be flowing, so the safest immediate step is to secure the pipe with a full-opening safety valve before doing anything else â€” including a flow check. This protects against flow up the drillstring while you sort out what's happening.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 3,
+    "question": "During drilling operations the derrickman reports an unusual pit level increase. What is the safest response?",
+    "choices": {
+      "A": "Stop drilling and circulate bottoms up",
+      "B": "Ignore it if the instruments show everything is normal",
+      "C": "Pick up off bottom, shut down the pumps, and check for flow",
+      "D": "Tell him to keep watching and call back if there's no change",
+      "E": "Reset the pit level and flow-show indicators"
+    },
+    "correctAnswer": "C",
+    "explanation": "An unexplained pit gain is treated as a possible kick until proven otherwise. The safest response is to pick the bit up off bottom, shut the pumps down, and perform a proper flow check â€” this is the fastest way to confirm or rule out an influx without wasting time on lower-priority actions.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 4,
+    "question": "Swabbing is likely to occur under which of the following conditions?",
+    "choices": {
+      "A": "When the mud viscosity is high",
+      "B": "When the bit is balled up",
+      "C": "When the pipe is pulled too fast",
+      "D": "When the bottom-hole assembly has small clearance in the hole",
+      "E": "All of the above"
+    },
+    "correctAnswer": "E",
+    "explanation": "Each of these conditions creates a piston-like suction effect as pipe moves up the hole: thick mud and a balled bit both increase the drag on fluid trying to fall back to fill the space, a tight-clearance assembly restricts that fluid path even more, and pulling fast simply doesn't give the mud time to catch up. Any one of them, or a combination, can pull formation fluid into the wellbore.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 5,
+    "question": "Which sequence best describes a hard shut-in? (R/C = remote choke on the choke manifold; side outlet = the hydraulic or failsafe valve on the BOP stack.)",
+    "choices": {
+      "A": "With the R/C closed, close a BOP, then open a side outlet",
+      "B": "With the R/C closed, open a side outlet, then close a BOP",
+      "C": "With the R/C open, open a side outlet, close the R/C, then close a BOP",
+      "D": "With the R/C open, open a side outlet, close a BOP, then close the R/C",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "A hard shut-in prioritizes speed over gradual pressure buildup: the remote choke starts closed, a BOP (typically the annular or a pipe ram) is closed first, and then the side outlet is opened to line the well up to the choke manifold. It takes fewer steps than a soft shut-in and therefore traps the smallest possible influx, at the cost of a sudden pressure surge on the stack.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 6,
+    "question": "Which sequence best describes a soft shut-in? (R/C = remote choke on the choke manifold; side outlet = the hydraulic or failsafe valve on the BOP stack.)",
+    "choices": {
+      "A": "With the R/C closed, close a BOP, then open a side outlet",
+      "B": "With the R/C closed, open a side outlet, then close a BOP",
+      "C": "With the R/C open, open a side outlet, close the R/C, then close a BOP",
+      "D": "With the R/C open, open a side outlet, close a BOP, then close the R/C",
+      "E": ""
+    },
+    "correctAnswer": "D",
+    "explanation": "A soft shut-in trades a little extra influx volume for a gentler pressure buildup: the remote choke starts open, the side outlet is opened to line up the choke manifold, the BOP is closed, and only then is the choke closed to bring the well fully shut in. The gradual closure reduces the shock loading seen in a hard shut-in.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 7,
+    "question": "What should a driller do immediately upon experiencing a drilling break?",
+    "choices": {
+      "A": "Circulate bottoms up",
+      "B": "Flow check",
+      "C": "Reduce weight on bit",
+      "D": "Increase pump speed",
+      "E": "Both C and D"
+    },
+    "correctAnswer": "B",
+    "explanation": "A sudden increase in penetration rate can mean a more porous, permeable, or higher-pressured zone has just been drilled into â€” exactly the conditions that can trigger a kick. The safest immediate response is to pick up off bottom and flow check before deciding on any other action.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 8,
+    "question": "The purpose of shutting in a well is to:",
+    "choices": {
+      "A": "Stop further influx from entering the wellbore",
+      "B": "Allow pressures to be determined",
+      "C": "Function test the blowout preventers",
+      "D": "A and B",
+      "E": "Make sure the drill crew stays alert"
+    },
+    "correctAnswer": "D",
+    "explanation": "Shutting in obviously stops any more formation fluid from entering the well, but it serves a second essential purpose too: only once the well is shut in and pressures have stabilized can you get an accurate SIDPP and SICP reading, which are required to calculate formation pressure and design the kill. Both purposes matter equally.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 9,
+    "question": "If total mud losses occur while drilling with water-based mud, what should you do?",
+    "choices": {
+      "A": "Continue drilling blind",
+      "B": "Stop drilling and fill the hole with water",
+      "C": "Stop drilling and shut the well in",
+      "D": "Spot a high-viscosity pill across the shoe",
+      "E": "Set a barite plug"
+    },
+    "correctAnswer": "B",
+    "explanation": "With total losses, mud is no longer returning to surface, so continuing to pump expensive mud into a thief zone accomplishes nothing except wasting it. The priority is to keep the hole full to maintain whatever hydrostatic pressure is still possible, and water is a cheap, readily available fluid for doing that while the situation is assessed.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 10,
+    "question": "Which of the following are causes of swabbing?",
+    "choices": {
+      "A": "Improper circulating density and pumping too fast",
+      "B": "Going into the hole too fast and not using the trip tank",
+      "C": "Failing to slug the hole before pulling out",
+      "D": "Pulling pipe too fast and insufficient trip margin",
+      "E": "Running in too fast, causing surge pressure and losses"
+    },
+    "correctAnswer": "D",
+    "explanation": "Swabbing is specifically the suction effect created when pipe is pulled out of the hole â€” pulling too quickly, or without an adequate trip margin (extra mud weight built in to offset the swab effect), lets formation pressure momentarily exceed the reduced hydrostatic pressure and draw fluid in. The other options describe circulating density issues or surge effects on the way into the hole, which are separate problems.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 11,
+    "question": "Which cause of well kicks is entirely avoidable and comes down to a lack of driller alertness?",
+    "choices": {
+      "A": "Lost circulation",
+      "B": "Gas-cut mud",
+      "C": "Not filling the hole with the correct amount of mud on a trip",
+      "D": "Abnormal formation pressure",
+      "E": "Drilling breaks"
+    },
+    "correctAnswer": "C",
+    "explanation": "Abnormal pressure, lost circulation, gas cutting, and drilling breaks are all conditions the crew has to react to. Failing to fill the hole with the exact calculated volume on a trip, however, is a monitoring failure â€” the driller should be watching this on every stand, and catching it in time prevents the kick entirely rather than just responding to one.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 12,
+    "question": "What should you do if the hole stays full but does not take the correct calculated amount of mud on a trip?",
+    "choices": {
+      "A": "Note it, watch for flow, and if there is none continue pulling out",
+      "B": "Stop, spot a high-viscosity pill, and continue pulling out",
+      "C": "Go back to bottom and circulate bottoms up",
+      "D": "Check for gas-cut mud at surface",
+      "E": "Pull to the casing shoe and circulate the gas out"
+    },
+    "correctAnswer": "C",
+    "explanation": "An incorrect fill volume, even with the hole apparently full, is treated as strong evidence a kick has already been swabbed in. The correct response is to run or strip back to bottom and circulate bottoms up to confirm whether an influx is present, rather than continuing the trip or waiting for further signs.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 13,
+    "question": "The well does not flow while circulating but does flow when the pumps are shut down. By approximately how much should mud weight be increased?",
+    "choices": {
+      "A": "An amount equal to the annular pressure loss",
+      "B": "0.83 ppg",
+      "C": "5.83 ppg",
+      "D": "None of the above",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "If the well only flows once the pumps stop, the annular pressure loss (the extra backpressure created by circulating) is what has been supplying the missing primary control. To restore balance without circulating, the static mud weight needs to be increased by an amount equal to that annular pressure loss, expressed as an equivalent mud weight increase.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 14,
+    "question": "Connection gas is noticed while drilling a reservoir zone, and increasing mud weight is not an option right now. What is good practice?",
+    "choices": {
+      "A": "Flow check for longer during connections",
+      "B": "Increase drilling rate to get through the zone quicker",
+      "C": "Control drilling rate so only one slug of gas is in the annulus at a time",
+      "D": "Try to minimize connection time",
+      "E": "Both C and D"
+    },
+    "correctAnswer": "E",
+    "explanation": "With mud weight fixed, the two levers left are rate of penetration and connection speed: controlling ROP prevents multiple overlapping gas slugs from stacking up in the annulus, and minimizing time spent stopped at connections limits how much gas can migrate and accumulate during each stop. Both work together to keep the situation manageable.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 15,
+    "question": "The pipe is off bottom when the well kicks. What is recommended practice?",
+    "choices": {
+      "A": "Install a safety valve, secure the well, and strip back to bottom",
+      "B": "Circulate and kill the well immediately",
+      "C": "Bullhead the influx back",
+      "D": "Finish the trip, then strip to bottom",
+      "E": "Run back to bottom as fast as possible"
+    },
+    "correctAnswer": "A",
+    "explanation": "The moment a kick is confirmed, the well must be shut in â€” that means installing a safety valve in the string if it's off bottom, and closing the BOPs. Because a kill is best executed with the bit on bottom, the next step after securing the well is to strip back down carefully, not rush or skip steps.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 16,
+    "question": "The well does not flow while circulating but does flow with the pumps shut down. Current mud weight = 12 ppg, annular pressure loss (APL) = 220 psi, well depth = 14,300 ft TVD. By approximately how much should mud weight probably be increased?",
+    "choices": {
+      "A": "0.3 ppg",
+      "B": "3 ppg",
+      "C": "0.5 ppg",
+      "D": "5 ppg",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "The mud weight increase needed equals the annular pressure loss converted into ppg over the well depth: ppg increase = psi / (feet x 0.052) = 220 / (14,300 x 0.052) = 220 / 743.6 = 0.30 ppg.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 17,
+    "question": "Which of the following can cause a well to kick?",
+    "choices": {
+      "A": "Lost circulation",
+      "B": "Swabbing",
+      "C": "Not keeping the hole full",
+      "D": "Insufficient mud weight",
+      "E": "All of the above"
+    },
+    "correctAnswer": "E",
+    "explanation": "Each of these independently reduces the hydrostatic pressure holding formation fluid back: lost circulation drops the fluid level, swabbing temporarily pulls pressure down mechanically, an unfilled hole leaves less column height than assumed, and simply running mud that's too light for the formation pressure removes the safety margin entirely. Any one is enough to trigger a kick.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 18,
+    "question": "Rapid movement of the drill pipe into the hole can cause a pressure increase that may lead to losses. What is this pressure increase called?",
+    "choices": {
+      "A": "Swabbing",
+      "B": "Kicking",
+      "C": "Leaking",
+      "D": "Surging",
+      "E": "None of the above are correct"
+    },
+    "correctAnswer": "D",
+    "explanation": "Surging is the piston effect of pushing pipe into the hole too quickly: the mud below and around the pipe has to move out of the way faster than the annulus can accommodate, spiking pressure and potentially breaking down a weak formation. Swabbing is the mirror-image effect that happens on the way out of the hole.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 19,
+    "question": "Is it good practice to conduct unscheduled pit or flow sensor drills?",
+    "choices": {
+      "A": "Yes",
+      "B": "No",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "Real kicks never announce themselves ahead of time, so a crew that only ever practices well control on a set schedule can grow complacent. Unscheduled drills keep everyone genuinely sharp and ready to respond correctly whenever the real thing happens, not just when they're expecting it.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 20,
+    "question": "Why should a well be closed in quickly once a kick has been detected?",
+    "choices": {
+      "A": "It minimizes the influx into the wellbore",
+      "B": "Pressures will end up lower on the annulus side",
+      "C": "SIDPP is always higher with bigger kicks",
+      "D": "Both A and B are correct",
+      "E": "None of the above are correct"
+    },
+    "correctAnswer": "D",
+    "explanation": "Closing in quickly limits how much formation fluid gets a chance to enter the well, which directly caps the size of the influx. A smaller influx, in turn, means a lower shut-in casing pressure (SICP) once everything stabilizes â€” the two benefits are directly linked. SIDPP, by contrast, is not affected by kick size, so option C is false.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 21,
+    "question": "You are five stands off bottom when the well kicks. Should you install a safety valve and inside blowout preventer?",
+    "choices": {
+      "A": "Yes",
+      "B": "No",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "Once a kick has occurred, the well must be shut in against every possible flow path, including up through the open drillstring. With the string off bottom, that means installing a safety valve and inside BOP before closing the stack, so the pipe itself cannot become an uncontrolled route to surface.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 22,
+    "question": "True or false: when gas-cut mud is encountered, you should immediately increase the mud weight to prevent a kick.",
+    "choices": {
+      "A": "True",
+      "B": "False",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "B",
+    "explanation": "Weighting up may end up being the right call, but it should never be automatic â€” raising mud weight without first checking whether the formation can actually tolerate it risks inducing losses, which creates a new and arguably worse problem. The correct first step is to assess whether an increase is safe before making it.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 23,
+    "question": "The driller suspects the well has taken a kick. What should he do?",
+    "choices": {
+      "A": "Pick off bottom, stop pumping, flow check, and shut in if the check is positive",
+      "B": "Stay alert and be ready to shut the well in",
+      "C": "Continue drilling until at least twenty barrels have been gained in the pits",
+      "D": "Alert the site supervisor and let him decide what to do next",
+      "E": "Increase the pump speed"
+    },
+    "correctAnswer": "A",
+    "explanation": "Suspicion alone is enough to act on immediately â€” the driller should pick up off bottom, stop the pumps, and run a flow check right away. If that check comes back positive, the well is shut in on the spot rather than waiting for confirmation from anyone else or letting the situation develop further.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 24,
+    "question": "If lost circulation occurs and the mud level in the annulus drops, formation fluid could enter the wellbore because of:",
+    "choices": {
+      "A": "The drillpipe pressure decrease",
+      "B": "The casing pressure decrease",
+      "C": "The reduction in hydrostatic pressure of the mud column",
+      "D": "Formation pressure being lower than hydrostatic pressure",
+      "E": "None of the above are correct"
+    },
+    "correctAnswer": "C",
+    "explanation": "A falling mud level, whatever the cause, directly shortens the height of the fluid column and therefore lowers hydrostatic pressure at the bottom of the hole. If that drop is enough to bring hydrostatic pressure below formation pressure, the well goes underbalanced and can take a kick.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 25,
+    "question": "What action should be taken to control a well that has swabbed in gas?",
+    "choices": {
+      "A": "Increase the speed of pulling each stand",
+      "B": "Water back the mud to a lighter weight",
+      "C": "Add mud weight or increase trip margin",
+      "D": "Leave the mud weight as it is and continue pulling out",
+      "E": "Run or strip back to bottom and circulate the hole clean"
+    },
+    "correctAnswer": "E",
+    "explanation": "Swabbed-in gas has to be circulated out of the well, and that can really only be done effectively with the bit back on bottom, where full circulation is possible. Continuing to trip, adjusting mud weight after the fact, or changing trip speed does nothing to remove gas that is already in the annulus.",
+    "topic": "Warning Signs and Shut-In"
+  },
+  {
+    "id": 1,
+    "question": "SIDPP = 510 psi; current mud weight = 10.6 ppg; well depth = 10,000 ft TVD. What kill mud weight is needed to balance formation pressure? (Round to one decimal place.)",
+    "choices": {
+      "A": "14.3 ppg",
+      "B": "11.6 ppg",
+      "C": "10.7 ppg",
+      "D": "12.3 ppg",
+      "E": "13.8 ppg"
+    },
+    "correctAnswer": "B",
+    "explanation": "Kill mud weight = SIDPP / (TVD x 0.052) + original mud weight. Work out the denominator first, divide it into SIDPP, then add the result to the original mud weight: 510 / (10,000 x 0.052) = 510 / 520 = 0.98; 0.98 + 10.6 = 11.6 ppg.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 2,
+    "question": "Well depth = 12,000 ft MD / 10,200 ft TVD; mud weight in use = 12.3 ppg; SICP = 1150 psi; SIDPP = 1000 psi. Calculate the kill mud weight (round to one decimal place).",
+    "choices": {
+      "A": "14.7 ppg",
+      "B": "13.9 ppg",
+      "C": "13.3 ppg",
+      "D": "14.2 ppg",
+      "E": "12.5 ppg"
+    },
+    "correctAnswer": "D",
+    "explanation": "Kill mud weight = SIDPP / (TVD x 0.052) + original mud weight â€” always use TVD and SIDPP (SICP is not part of this formula). 1000 / (10,200 x 0.052) = 1000 / 530.4 = 1.885; 1.885 + 12.3 = 14.2 ppg.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 3,
+    "question": "Mud weight is 10.5 ppg, TVD is 9500 ft, SIDPP is 1100 psi, and SICP is 2000 psi. Rounded to one decimal place, what kill mud weight is needed?",
+    "choices": {
+      "A": "14.1 ppg",
+      "B": "10.2 ppg",
+      "C": "10.7 ppg",
+      "D": "13.2 ppg",
+      "E": "12.8 ppg"
+    },
+    "correctAnswer": "E",
+    "explanation": "Kill mud weight = SIDPP / (TVD x 0.052) + original mud weight, using SIDPP (not SICP): 1100 / (9500 x 0.052) = 1100 / 494 = 2.23; 2.23 + 10.5 = 12.73, which rounds to 12.8 ppg.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 4,
+    "question": "Depth = 16,200 ft TVD / 17,000 ft MD; SICP = 800 psi; SIDPP = 300 psi; mud weight = 14 ppg. Calculate the kill mud weight (rounded to one decimal).",
+    "choices": {
+      "A": "14.4 ppg",
+      "B": "14.1 ppg",
+      "C": "16.3 ppg",
+      "D": "14.7 ppg",
+      "E": "13.2 ppg"
+    },
+    "correctAnswer": "A",
+    "explanation": "Kill mud weight = SIDPP / (TVD x 0.052) + original mud weight, using TVD and SIDPP: 300 / (16,200 x 0.052) = 300 / 842.4 = 0.356; 0.356 + 14 = 14.356, which rounds to 14.4 ppg.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 5,
+    "question": "A well being drilled at 12,000 ft TVD is shut in on a 20 bbl kick with 1300 psi on the casing gauge and 700 psi on the drillpipe gauge, with 14 ppg mud in the hole. The total string length is 13,500 ft. What kill mud weight is needed to regain primary control? (Round to one decimal.)",
+    "choices": {
+      "A": "14.9 ppg",
+      "B": "15.1 ppg",
+      "C": "15.2 ppg",
+      "D": "15.4 ppg",
+      "E": "17 ppg"
+    },
+    "correctAnswer": "B",
+    "explanation": "Even though the string length is 13,500 ft, the well's true vertical depth is 12,000 ft, and TVD is always what belongs in the kill mud formula, not overall string length. Kill mud weight = SIDPP / (TVD x 0.052) + OMW = 700 / (12,000 x 0.052) + 14 = 700 / 624 + 14 = 1.12 + 14 = 15.12, which rounds to 15.1 ppg.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 6,
+    "question": "What is the approximate influx height if the gain is 25 bbl and the drill-collar/open-hole annular capacity is 0.029 bbl/ft?",
+    "choices": {
+      "A": "816 ft",
+      "B": "912 ft",
+      "C": "862 ft",
+      "D": "784 ft",
+      "E": "892 ft"
+    },
+    "correctAnswer": "C",
+    "explanation": "Influx height = kick size / annular capacity = 25 / 0.029 = 862 ft.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 7,
+    "question": "A well is shut in with a 10 bbl pit gain. There are 500 ft of drill collars with an open-hole/collar annular capacity of 0.0836 bbl/ft. What is the height of the influx?",
+    "choices": {
+      "A": "425 ft",
+      "B": "384 ft",
+      "C": "212 ft",
+      "D": "120 ft",
+      "E": "76 ft"
+    },
+    "correctAnswer": "D",
+    "explanation": "Influx height = kick size / annular capacity = 10 / 0.0836 = 120 ft.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 8,
+    "question": "Well MD is 10,000 ft with 500 ft of drill collars at the bottom. Drill-collar/open-hole annular capacity = 0.029 bbl/ft; drillpipe/open-hole annular capacity = 0.0459 bbl/ft. What would be the height of a 55 bbl influx, assuming no gas migration?",
+    "choices": {
+      "A": "1382 ft",
+      "B": "1896 ft",
+      "C": "1198 ft",
+      "D": "1098 ft",
+      "E": "947 ft"
+    },
+    "correctAnswer": "A",
+    "explanation": "First find how much of the kick fits around the drill collars: 0.029 x 500 = 14.5 bbl. Subtract that from the total kick to see how much has spilled up into the larger annulus around the drillpipe: 55 - 14.5 = 40.5 bbl. Convert that remainder to height: 40.5 / 0.0459 = 882.4 ft. Add this to the collar length to get the total influx height: 500 + 882.4 = 1382 ft.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 9,
+    "question": "A well has kicked with a float in the string, so SIDPP reads 0 psi. Which method would you use to determine kill mud weight?",
+    "choices": {
+      "A": "Assume an influx gradient based on kick size and formation pressure",
+      "B": "Start at slow circulating rate, determine ICP, and calculate SIDPP",
+      "C": "Pump slowly until the casing gauge starts to rise; the drillpipe gauge is then showing SIDPP",
+      "D": "Pump slowly until the drillpipe gauge stops rising",
+      "E": "Deduct 200 psi from SICP and use this figure as SIDPP"
+    },
+    "correctAnswer": "C",
+    "explanation": "A float valve blocks the drillpipe gauge from showing true formation pressure directly, but pumping slowly gives you a workaround: the moment the casing gauge just begins to rise, the pump has overcome the float and established communication, and whatever the drillpipe gauge reads at that exact instant is the true SIDPP.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 10,
+    "question": "What is SIDPP with the bit on bottom used to calculate?",
+    "choices": {
+      "A": "The mud weight increase needed to kill the well",
+      "B": "What type of influx has entered the wellbore",
+      "C": "What the initial circulating pressure (ICP) should be",
+      "D": "All of the above",
+      "E": "None of the above"
+    },
+    "correctAnswer": "D",
+    "explanation": "SIDPP is one of the most useful numbers on the kill sheet: it feeds directly into the kill mud weight calculation, it lets you back-calculate an influx gradient (and therefore make an educated guess about whether the kick is gas, oil, or water), and it's a required input for finding initial circulating pressure. All three uses apply.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 11,
+    "question": "After shutting in on a kick, SIDPP and SICP have been stable for a while, and both then start slowly rising by the same amount. What is the probable cause?",
+    "choices": {
+      "A": "A further influx is occurring",
+      "B": "The influx is migrating up the wellbore",
+      "C": "The gauges are faulty",
+      "D": "The blowout preventer stack is leaking",
+      "E": "The cuttings are settling out on the bottom of the hole"
+    },
+    "correctAnswer": "B",
+    "explanation": "When both gauges climb together by the same amount while shut in, it points to gas migrating up the wellbore rather than a new influx: the trapped gas isn't expanding (the well is closed), so it's simply moving into a shorter, lower-pressure column of mud above it, raising both readings equally.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 12,
+    "question": "A larger pit gain will give a higher SIDPP.",
+    "choices": {
+      "A": "True",
+      "B": "False",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "B",
+    "explanation": "SIDPP is simply the gap between mud hydrostatic pressure inside the drillstring and true formation pressure â€” the drillstring never contains any of the influx, so the size of the kick has no bearing on this reading. False.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 13,
+    "question": "A larger pit gain will give a higher SICP, but SIDPP will remain the same regardless of kick size.",
+    "choices": {
+      "A": "True",
+      "B": "False",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "A bigger influx sitting in the annulus does raise SICP, since more low-density fluid is displacing heavier mud on that side. SIDPP, being unaffected by influx size (it reflects only the string-side hydrostatic-versus-formation-pressure gap), stays constant no matter how big the kick is. True.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 14,
+    "question": "Drill-collar/open-hole annular capacity = 0.029 bbl/ft; drill collar length = 1000 ft; casing shoe set at 9000 ft MD and TVD; open-hole length below the shoe = 2500 ft with a capacity of 0.0702 bbl/ft. Calculate the height of the influx if the well is shut in on a 12 bbl kick with the bit at the shoe.",
+    "choices": {
+      "A": "414 ft",
+      "B": "671 ft",
+      "C": "476 ft",
+      "D": "171 ft",
+      "E": "197 ft"
+    },
+    "correctAnswer": "D",
+    "explanation": "Even though the bit itself is sitting at the shoe, the influx entered at the bottom of the hole, in the open, uncased section below â€” that section has no drill collars in it, so its annular capacity is the full open-hole figure given (0.0702 bbl/ft), not the drill-collar annular capacity. Influx height = kick size / open-hole capacity = 12 / 0.0702 = 171 ft.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 15,
+    "question": "Mud weight = 12.5 ppg; TVD = 13,475 ft; SIDPP = 800 psi; SICP = 1025 psi; kick size = 12 bbl; annular capacity = 0.0292 bbl/ft. Calculate the approximate gradient of the influx.",
+    "choices": {
+      "A": "0.1250 psi/ft",
+      "B": "0.1502 psi/ft",
+      "C": "0.1205 psi/ft",
+      "D": "0.1025 psi/ft",
+      "E": "0.0521 psi/ft"
+    },
+    "correctAnswer": "D",
+    "explanation": "First find influx height: 12 / 0.0292 = 410.96 ft. Then divide that into the difference between SICP and SIDPP: (1025 - 800) / 410.96 = 0.5475. Finally subtract that from the mud gradient (12.5 x 0.052 = 0.65): 0.65 - 0.5475 = 0.1025 psi/ft.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 16,
+    "question": "SIDPP = 700 psi; SICP = 825 psi; MAASP = 1890 psi; slow circulating rate pressure loss = 740 psi; annular pressure loss = 75 psi. What is the initial circulating pressure (ICP)?",
+    "choices": {
+      "A": "1556 psi",
+      "B": "800 psi",
+      "C": "2042 psi",
+      "D": "2125 psi",
+      "E": "1440 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "ICP = slow circulating rate pressure loss + SIDPP = 740 + 700 = 1440 psi.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 17,
+    "question": "Mud weight in use is 11.4 ppg; SICP is 900 psi; SIDPP is 700 psi; pit gain is 20 bbl; drill collar length is 850 ft with an annular capacity of 0.0292 bbl/ft. What is the gradient of the influx?",
+    "choices": {
+      "A": "0.3008 psi/ft",
+      "B": "0.1009 psi/ft",
+      "C": "0.3335 psi/ft",
+      "D": "0.0709 psi/ft",
+      "E": "0.1404 psi/ft"
+    },
+    "correctAnswer": "A",
+    "explanation": "First find influx height (fits entirely within the drill collar annulus, since 20/0.0292 = 684.9 ft is less than the 850 ft collar length): 684.9 ft. Then divide that into the pressure difference: (900 - 700) / 684.9 = 0.292. Finally subtract from the mud gradient (11.4 x 0.052 = 0.5928): 0.5928 - 0.292 = 0.3008 psi/ft.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 18,
+    "question": "The main reason for calculating influx gradient is to:",
+    "choices": {
+      "A": "Determine which method of well control to use",
+      "B": "Determine what the casing pressure will be",
+      "C": "Make arrangements to handle the kick at surface",
+      "D": "Alert the geologist to the possibility of hydrocarbons",
+      "E": "Make sure MAASP will not be exceeded"
+    },
+    "correctAnswer": "C",
+    "explanation": "The influx gradient gives a strong indication of what type of fluid you're dealing with (a low gradient points toward gas, a higher one toward salt water or oil). That knowledge lets the crew prepare the right surface equipment and procedures â€” gas busters, degassers, flaring arrangements â€” well before the kick actually reaches surface.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 19,
+    "question": "A 10,000 ft TVD well has been shut in on a 15 bbl pit gain with 350 psi SICP and zero on the drillpipe gauge. Current mud weight is 11.5 ppg. There is no float in the string. What kill mud weight will be required?",
+    "choices": {
+      "A": "12.2 ppg",
+      "B": "11.5 ppg",
+      "C": "13.3 ppg",
+      "D": "11.6 ppg",
+      "E": "There is insufficient information to calculate kill mud weight"
+    },
+    "correctAnswer": "B",
+    "explanation": "With zero on the drillpipe gauge and no float to explain that reading, the situation is that gas has been swabbed into the annulus during a trip rather than kicked in while drilling. Because a pure gas influx (with no fluid density difference reaching the drillstring side) leaves the drillstring hydrostatic already matching formation pressure, the well can be killed with the original mud weight â€” no increase is needed.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 20,
+    "question": "SIDPP = 500 psi; SICP = 720 psi; MD = 13,500 ft; TVD = 12,750 ft; mud weight in use = 13.2 ppg; maximum allowable mud weight = 17.8 ppg. What kill mud weight would be required if a 150 psi safety margin is included? (Round to one decimal.)",
+    "choices": {
+      "A": "14.0 ppg",
+      "B": "14.2 ppg",
+      "C": "14.6 ppg",
+      "D": "13.4 ppg",
+      "E": "19 ppg"
+    },
+    "correctAnswer": "B",
+    "explanation": "To build a safety margin into the kill mud weight, add the desired margin onto SIDPP before running the normal formula: (500 + 150) / (12,750 x 0.052) + 13.2 = 650 / 663 + 13.2 = 0.98 + 13.2 = 14.18, which rounds to 14.2 ppg.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 21,
+    "question": "At 30 SPM, the slow circulating rate pressure loss with 11.2 ppg mud was 250 psi. Kill mud is calculated at 12.6 ppg. What is the final circulating pressure (FCP) likely to be?",
+    "choices": {
+      "A": "250 psi",
+      "B": "281 psi",
+      "C": "306 psi",
+      "D": "316 psi",
+      "E": "424 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "FCP = slow circulating rate pressure loss x (kill mud weight / original mud weight) = 250 x (12.6 / 11.2) = 250 x 1.125 = 281 psi.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 22,
+    "question": "On a surface stack rig, you bring the pumps up to kill speed while holding casing pressure constant at 670 psi. Once up to speed, the drillpipe gauge reads 1030 psi. The original SIDPP was 520 psi. What was the slow circulating rate pressure loss at kill speed?",
+    "choices": {
+      "A": "There is no way of telling",
+      "B": "100 psi",
+      "C": "160 psi",
+      "D": "360 psi",
+      "E": "510 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "Since casing pressure was correctly held constant during the start-up, the drillpipe gauge reading once up to speed is by definition the initial circulating pressure (ICP): ICP = slow circulating rate pressure loss + SIDPP, so pressure loss = ICP - SIDPP = 1030 - 520 = 510 psi.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 23,
+    "question": "SIDPP = 375 psi; SICP = 525 psi; pit gain = 13 bbl; slow circulating rate pressure loss at 40 SPM with 12.2 ppg mud = 670 psi; kill mud = 13.5 ppg. What is the FCP?",
+    "choices": {
+      "A": "600 psi",
+      "B": "741 psi",
+      "C": "820 psi",
+      "D": "900 psi",
+      "E": "1045 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "FCP = slow circulating rate pressure loss x (kill mud weight / original mud weight) = 670 x (13.5 / 12.2) = 670 x 1.1066 = 741 psi.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 24,
+    "question": "If a gas kick is taken in a horizontal section of a well, what would you expect SICP to read compared to SIDPP?",
+    "choices": {
+      "A": "SICP would be a lot higher than SIDPP",
+      "B": "SICP would be a lot lower than SIDPP",
+      "C": "SICP would be about the same as SIDPP",
+      "D": "SICP would be the same as in a vertical well",
+      "E": "You cannot read SICP in a horizontal well"
+    },
+    "correctAnswer": "C",
+    "explanation": "SICP is normally higher than SIDPP because the lighter influx occupies a length of the annulus and creates a real vertical height difference between the two hydrostatic columns. In a horizontal section, though, the influx doesn't gain any true vertical height as it moves along the wellbore, so it barely changes the vertical hydrostatic balance â€” and SICP ends up reading close to SIDPP.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 25,
+    "question": "After a kick has been shut in and pressures have stabilized, formation pressure equals mud hydrostatic pressure in the string plus SIDPP.",
+    "choices": {
+      "A": "True",
+      "B": "False",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "This is the core relationship the entire kill sheet is built on: once shut in and stable, formation pressure = mud hydrostatic pressure in the drillstring + SIDPP, because SIDPP is exactly the gap left over between what the mud column alone provides and what the formation actually needs to be balanced. True.",
+    "topic": "Shut-In Conditions"
+  },
+  {
+    "id": 1,
+    "question": "Maximum allowable mud weight (MAMW) = 16.0 ppg; current mud weight = 12.0 ppg; casing shoe at 6000 ft TVD. What is the maximum allowable annular surface pressure (MAASP)?",
+    "choices": {
+      "A": "1428 psi",
+      "B": "1248 psi",
+      "C": "1824 psi",
+      "D": "1384 psi",
+      "E": "1142 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "MAASP is the difference in hydrostatic pressure at the casing shoe between the maximum allowable mud weight and the mud weight actually in use: MAASP = (MAMW - current mud weight) x shoe TVD x 0.052 = (16.0 - 12.0) x 6000 x 0.052 = 1248 psi.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 2,
+    "question": "MAMW = 16.5 ppg; current mud weight (CMW) = 12 ppg; shoe TVD = 7500 ft. What is MAASP?",
+    "choices": {
+      "A": "1952 psi",
+      "B": "2324 psi",
+      "C": "2692 psi",
+      "D": "1755 psi",
+      "E": "3132 psi"
+    },
+    "correctAnswer": "D",
+    "explanation": "MAASP = (MAMW - CMW) x shoe TVD x 0.052 = (16.5 - 12) x 7500 x 0.052 = 4.5 x 7500 x 0.052 = 1755 psi.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 3,
+    "question": "Drillpipe capacity = 0.01776 bbl/ft; drill collar capacity = 0.0076 bbl/ft. The bit is at 12,000 ft MD with 960 ft of collars. What is the string volume?",
+    "choices": {
+      "A": "304.2 bbls",
+      "B": "402.4 bbls",
+      "C": "258.8 bbls",
+      "D": "203.3 bbls",
+      "E": "196.7 bbls"
+    },
+    "correctAnswer": "D",
+    "explanation": "Volume = capacity x length. Drillpipe length = MD - collar length = 12,000 - 960 = 11,040 ft; drillpipe volume = 11,040 x 0.01776 = 196.1 bbl. Collar volume = 960 x 0.0076 = 7.3 bbl. Total string volume = 196.1 + 7.3 = 203.3 bbls.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 4,
+    "question": "The string volume is 203.4 bbls and the pump output is 0.147 bbl/stroke. How many strokes are needed to pump kill mud to the bit?",
+    "choices": {
+      "A": "1383 strokes",
+      "B": "1843 strokes",
+      "C": "1438 strokes",
+      "D": "3148 strokes",
+      "E": "3481 strokes"
+    },
+    "correctAnswer": "A",
+    "explanation": "Strokes = volume / pump output = 203.4 / 0.147 = 1383 strokes.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 5,
+    "question": "MD = 12,000 ft; casing shoe set at 8600 ft; drillpipe/open-hole annular capacity = 0.0459 bbl/ft; drill-collar/open-hole annular capacity = 0.03 bbl/ft over 960 ft of collars; pump output = 0.147 bbl/stroke. How many strokes are needed to pump from the bit to the shoe?",
+    "choices": {
+      "A": "826 strokes",
+      "B": "713 strokes",
+      "C": "1095 strokes",
+      "D": "1144 strokes",
+      "E": "957 strokes"
+    },
+    "correctAnswer": "E",
+    "explanation": "Open-hole length below the shoe = 12,000 - 8600 = 3400 ft. Of that, the drill-collar/open-hole annulus covers 960 ft: 960 x 0.03 = 28.8 bbl. The remaining 3400 - 960 = 2440 ft is drillpipe/open-hole annulus: 2440 x 0.0459 = 112.0 bbl. Total annular volume from bit to shoe = 28.8 + 112.0 = 140.8 bbl. Strokes = 140.8 / 0.147 = 957 strokes.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 6,
+    "question": "MD = 11,475 ft; casing shoe set at 7250 ft; drillpipe/open-hole annular capacity = 0.0459 bbl/ft; drill-collar/open-hole annular capacity = 0.0292 bbl/ft over 885 ft of collars; pump output = 0.117 bbl/stroke. How many strokes are needed to pump from the bit to the shoe?",
+    "choices": {
+      "A": "1275 strokes",
+      "B": "1433 strokes",
+      "C": "1531 strokes",
+      "D": "1686 strokes",
+      "E": "1822 strokes"
+    },
+    "correctAnswer": "C",
+    "explanation": "Open-hole length below the shoe = 11,475 - 7250 = 4225 ft. Drill-collar/open-hole volume (885 ft): 885 x 0.0292 = 25.84 bbl. Remaining drillpipe/open-hole length = 4225 - 885 = 3340 ft: 3340 x 0.0459 = 153.3 bbl. Total volume = 25.84 + 153.3 = 179.1 bbl. Strokes = 179.1 / 0.117 = 1531 strokes.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 7,
+    "question": "A casing shoe was set at 9000 ft TVD. A leak-off test (LOT) was performed with 12.0 ppg mud, and a surface pressure of 2500 psi was recorded when leak-off occurred. What is the maximum allowable mud weight (MAMW)?",
+    "choices": {
+      "A": "13.74 ppg",
+      "B": "14.37 ppg",
+      "C": "14.73 ppg",
+      "D": "17.34 ppg",
+      "E": "18.22 ppg"
+    },
+    "correctAnswer": "D",
+    "explanation": "MAMW = test mud weight + (surface leak-off pressure / (shoe TVD x 0.052)) = 12 + 2500 / (9000 x 0.052) = 12 + 2500 / 468 = 12 + 5.34 = 17.34 ppg.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 8,
+    "question": "A casing shoe was set at 8250 ft TVD. A LOT was performed with 12.3 ppg mud, and a surface pressure of 1750 psi was recorded at leak-off. What pressure was exerted on the formation at the shoe at leak-off?",
+    "choices": {
+      "A": "7026 psi",
+      "B": "1750 psi",
+      "C": "5276 psi",
+      "D": "2133 psi",
+      "E": "1709 psi"
+    },
+    "correctAnswer": "A",
+    "explanation": "At the moment of leak-off, the shoe feels both the surface pressure applied and the hydrostatic pressure of the mud column above it: total pressure = surface pressure + (test mud weight x 0.052 x shoe TVD) = 1750 + (12.3 x 0.052 x 8250) = 1750 + 5276 = 7026 psi.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 9,
+    "question": "Mud weight in use = 12.4 ppg; surface leak-off pressure = 3640 psi with 11 ppg test mud; shoe TVD = 10,000 ft. What is MAASP?",
+    "choices": {
+      "A": "920 psi",
+      "B": "1962 psi",
+      "C": "2036 psi",
+      "D": "2178 psi",
+      "E": "2912 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "First find MAMW = test mud weight + (surface leak-off pressure / (shoe TVD x 0.052)) = 11 + 3640/(10,000 x 0.052) = 11 + 7.0 = 18.0 ppg. Then MAASP = (MAMW - current mud weight) x shoe TVD x 0.052 = (18.0 - 12.4) x 10,000 x 0.052 = 2912 psi.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 10,
+    "question": "When should MAASP be re-calculated?",
+    "choices": {
+      "A": "After every bit change",
+      "B": "After every 1000 ft drilled",
+      "C": "After every mud weight change",
+      "D": "After a successful BOP test",
+      "E": "After all of the above"
+    },
+    "correctAnswer": "C",
+    "explanation": "MAASP is directly derived from the difference between maximum allowable mud weight and the mud weight currently in the hole. The moment mud weight changes, that difference changes too, so MAASP must be re-calculated every time â€” not merely as a routine check after bit runs, footage milestones, or BOP tests.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 11,
+    "question": "What is the surface-to-bit circulating time if the string volume is 95 bbls, the pump output is 0.123 bbl/stroke, and the pump speed is 25 SPM?",
+    "choices": {
+      "A": "15 mins",
+      "B": "20 mins",
+      "C": "25 mins",
+      "D": "30 mins",
+      "E": "35 mins"
+    },
+    "correctAnswer": "D",
+    "explanation": "First find strokes: volume / pump output = 95 / 0.123 = 772.4 strokes. Then time = strokes / SPM = 772.4 / 25 = 30.9 minutes, approximately 30 minutes.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 12,
+    "question": "The fracture gradient of a well is 0.606 psi/ft at the casing shoe (4500 ft MD/TVD). The drilling mud gradient is 0.495 psi/ft. How much pressure can be closed in on the casing gauge before breaking down the formation at the shoe?",
+    "choices": {
+      "A": "450 psi",
+      "B": "500 psi",
+      "C": "600 psi",
+      "D": "650 psi",
+      "E": "1000 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "This is a MAASP calculation using gradients instead of mud weights directly â€” fracture gradient stands in for the maximum allowable mud gradient: MAASP = (fracture gradient - mud gradient) x shoe TVD = (0.606 - 0.495) x 4500 = 0.111 x 4500 = 500 psi.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 13,
+    "question": "Well depth is 7218 ft with 650 ft of drill collars. Drill collar capacity = 0.00768 bbl/ft; drillpipe capacity = 0.01776 bbl/ft. What is the approximate drill string volume?",
+    "choices": {
+      "A": "121.6 bbls",
+      "B": "128.1 bbls",
+      "C": "116.6 bbls",
+      "D": "177.5 bbls",
+      "E": "257.7 bbls"
+    },
+    "correctAnswer": "A",
+    "explanation": "Volume = capacity x length, with drillpipe length = MD - collar length = 7218 - 650 = 6568 ft. Drillpipe volume = 6568 x 0.01776 = 116.7 bbl. Collar volume = 650 x 0.00768 = 5.0 bbl. Total = 116.7 + 5.0 = 121.6 bbls.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 14,
+    "question": "The drill string volume is 121.6 bbls and the pump output is 0.1895 bbl/stroke. What is the approximate surface-to-bit time at 45 SPM?",
+    "choices": {
+      "A": "14 mins",
+      "B": "16 mins",
+      "C": "18 mins",
+      "D": "20 mins",
+      "E": "22 mins"
+    },
+    "correctAnswer": "A",
+    "explanation": "Strokes = volume / pump output = 121.6 / 0.1895 = 641.7 strokes. Time = strokes / SPM = 641.7 / 45 = 14.3 minutes, approximately 14 minutes.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 15,
+    "question": "The annulus holds a total of 346 bbls of mud. The pump output is 0.1895 bbl/stroke. How long will it take to circulate bottoms up at 60 SPM?",
+    "choices": {
+      "A": "44 mins",
+      "B": "49 mins",
+      "C": "30 mins",
+      "D": "26 mins",
+      "E": "53 mins"
+    },
+    "correctAnswer": "C",
+    "explanation": "Strokes = volume / pump output = 346 / 0.1895 = 1826.4 strokes. Time = strokes / SPM = 1826.4 / 60 = 30.4 minutes, approximately 30 minutes.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 16,
+    "question": "Surface line volume does not have to be taken into consideration when pumping kill mud down the string.",
+    "choices": {
+      "A": "True",
+      "B": "False",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "B",
+    "explanation": "Kill mud only starts contributing hydrostatically once it is actually inside the string, so knowing exactly how much surface line volume it must first pass through is essential for correctly timing pressure schedule changes and pump-speed adjustments. Ignoring surface line volume throws off every stroke-count calculation that follows. False.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 17,
+    "question": "A leak-off test pressure of 1800 psi is recorded at surface with 12 ppg mud in the hole. What is the maximum allowable mud weight if the shoe is set at 9000 ft TVD?",
+    "choices": {
+      "A": "12.5 ppg",
+      "B": "15.8 ppg",
+      "C": "18.2 ppg",
+      "D": "16.4 ppg",
+      "E": "13.5 ppg"
+    },
+    "correctAnswer": "B",
+    "explanation": "MAMW = test mud weight + (surface leak-off pressure / (shoe TVD x 0.052)) = 12 + 1800/(9000 x 0.052) = 12 + 1800/468 = 12 + 3.85 = 15.8 ppg.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 18,
+    "question": "A leak-off test shows the amount of surface pressure added to the hydrostatic pressure of the mud column that is needed to cause a formation breakdown.",
+    "choices": {
+      "A": "True",
+      "B": "False",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "This is exactly what a leak-off test measures: the additional surface pressure, on top of whatever hydrostatic pressure the mud column already provides, that is required before the formation at the shoe begins to take fluid (leak off). True.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 19,
+    "question": "A leak-off test is used to determine the maximum mud weight or maximum surface pressure before lost circulation is likely to occur at the shoe.",
+    "choices": {
+      "A": "True",
+      "B": "False",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "This is the whole purpose of running a leak-off test: it establishes, in a controlled way, the ceiling on mud weight and surface pressure that the shoe (and by extension, the open hole below it) can tolerate before fracturing and losing returns. True.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 20,
+    "question": "A LOT was conducted with the casing shoe set at 8885 ft TVD using 10.7 ppg mud, and the maximum allowable mud weight was calculated as 17.6 ppg. Well depth is now 11,275 ft TVD and 14.6 ppg mud is being used. What is MAASP?",
+    "choices": {
+      "A": "3187 psi",
+      "B": "1758 psi",
+      "C": "4045 psi",
+      "D": "1801 psi",
+      "E": "1386 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "The well may have gotten deeper, but the casing shoe itself has not moved, so shoe TVD stays at 8885 ft for this calculation. MAASP = (MAMW - current mud weight) x shoe TVD x 0.052 = (17.6 - 14.6) x 8885 x 0.052 = 3 x 8885 x 0.052 = 1386 psi.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 21,
+    "question": "A LOT was conducted with the casing shoe set at 7600 ft TVD using 9.8 ppg mud, and the maximum allowable mud weight was calculated as 15.4 ppg. Well depth is now 10,250 ft TVD and 11.5 ppg mud is being used. What is MAASP?",
+    "choices": {
+      "A": "2984 psi",
+      "B": "671 psi",
+      "C": "1541 psi",
+      "D": "2078 psi",
+      "E": "933 psi"
+    },
+    "correctAnswer": "C",
+    "explanation": "The shoe stays at 7600 ft TVD regardless of how much deeper the well is now. MAASP = (MAMW - current mud weight) x shoe TVD x 0.052 = (15.4 - 11.5) x 7600 x 0.052 = 3.9 x 7600 x 0.052 = 1541 psi.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 22,
+    "question": "In order to get accurate leak-off test information, you need:",
+    "choices": {
+      "A": "A known shoe TVD",
+      "B": "A known and consistent mud weight in the well",
+      "C": "An accurate pressure gauge",
+      "D": "All of the above",
+      "E": "None of the above"
+    },
+    "correctAnswer": "D",
+    "explanation": "Every one of these feeds directly into the leak-off calculation: shoe TVD is needed to convert pressure to a gradient, a known and stable mud weight is needed to isolate the hydrostatic contribution, and an accurate gauge is needed so the pressure figure itself can be trusted. Missing any one undermines the whole test.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 23,
+    "question": "If the fracture gradient is 0.85 psi/ft, what is the maximum allowable mud weight?",
+    "choices": {
+      "A": "16.3 ppg",
+      "B": "18.2 ppg",
+      "C": "14.7 ppg",
+      "D": "15.8 ppg",
+      "E": "12.4 ppg"
+    },
+    "correctAnswer": "A",
+    "explanation": "Fracture gradient converts directly to the equivalent maximum mud weight by dividing by 0.052: 0.85 / 0.052 = 16.3 ppg.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 24,
+    "question": "Fracture gradient is 0.775 psi/ft at a shoe TVD of 7200 ft. What pressure was applied at surface if 9.5 ppg test mud was used at the LOT?",
+    "choices": {
+      "A": "5580 psi",
+      "B": "2021 psi",
+      "C": "3556 psi",
+      "D": "1977 psi",
+      "E": "2456 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "The surface pressure at leak-off is exactly the MAASP for the test mud used. First convert fracture gradient to MAMW by dividing by 0.052: 0.775 / 0.052 = 14.9 ppg. Then apply the MAASP formula, treating the test mud as the current mud weight: MAASP = (14.9 - 9.5) x 7200 x 0.052 = 5.4 x 7200 x 0.052 = 2022 psi, closest to 2021 psi.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 25,
+    "question": "Fracture gradient is 0.91 psi/ft at a shoe TVD of 9855 ft. What pressure was applied at surface if 12.3 ppg test mud was used at the LOT?",
+    "choices": {
+      "A": "8968 psi",
+      "B": "6303 psi",
+      "C": "4378 psi",
+      "D": "3155 psi",
+      "E": "2664 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "Convert fracture gradient to MAMW: 0.91 / 0.052 = 17.5 ppg. Then MAASP = (17.5 - 12.3) x 9855 x 0.052 = 5.2 x 9855 x 0.052 = 2664 psi, which is also the surface leak-off pressure for the test mud.",
+    "topic": "Volumes and MAASP"
+  },
+  {
+    "id": 1,
+    "question": "When killing a well using the Wait & Weight method, what happens to the pit volume the moment gas starts entering the choke?",
+    "choices": {
+      "A": "The pit volume will increase",
+      "B": "The pit volume will decrease",
+      "C": "The pit volume will stay the same from now on",
+      "D": "The pit volume will fluctuate erratically",
+      "E": "The pit volume should not be monitored during a kill"
+    },
+    "correctAnswer": "B",
+    "explanation": "Once gas begins passing through the choke and out of the system, it is being permanently removed from the wellbore, so the total fluid volume in the pits falls as it exits. This is different from what happens while the gas is still rising through the annulus (see the next question).",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 2,
+    "question": "As gas is circulated up the annulus toward surface, what happens to the pit volume?",
+    "choices": {
+      "A": "The pit volume will increase",
+      "B": "The pit volume will decrease",
+      "C": "The pit volume will stay the same from now on",
+      "D": "The pit volume will fluctuate erratically",
+      "E": "The pit volume should not be monitored during a kill"
+    },
+    "correctAnswer": "A",
+    "explanation": "As the gas bubble travels up the annulus toward surface, the falling hydrostatic pressure above it lets the trapped gas expand. That expansion physically pushes additional mud ahead of it, and the extra volume shows up at surface as a rising pit level â€” this is a normal and expected part of circulating a gas kick out, right up until the gas itself starts exiting through the choke.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 3,
+    "question": "The Driller's Method and the Wait & Weight Method have one thing in common. What is it?",
+    "choices": {
+      "A": "Both kill the well in one circulation",
+      "B": "Both have a minimum non-circulating time",
+      "C": "Both minimize pressure at the casing shoe",
+      "D": "Both keep bottom-hole pressure constant",
+      "E": "Both need two pumps on the hole"
+    },
+    "correctAnswer": "D",
+    "explanation": "Both are classified as \"constant bottom-hole pressure\" kill methods â€” they differ in when kill-weight mud is introduced and how many circulations it takes, but both are built around the same underlying goal of keeping bottom-hole pressure at (or just above) formation pressure throughout the entire operation.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 4,
+    "question": "When circulating out a gas kick, when is the greatest applied pressure at the casing shoe?",
+    "choices": {
+      "A": "When the gas bubble is at surface",
+      "B": "When the gas bubble is at the casing shoe",
+      "C": "When the gas bubble is at the bottom",
+      "D": "The pressure remains the same throughout the kill",
+      "E": ""
+    },
+    "correctAnswer": "B",
+    "explanation": "The greatest pressure at the shoe occurs the moment the top of the rising gas bubble actually reaches the shoe, because at that point the shoe is feeling the full combined effect of the expanding gas column pushing up plus whatever mud column remains above it â€” after the bubble passes the shoe, that particular pressure peak has already occurred and begins to ease.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 5,
+    "question": "Why is it important to know where an influx currently sits in the annulus during a kill?",
+    "choices": {
+      "A": "Drillpipe pressure is adjusted according to bubble position",
+      "B": "Casing pressure is adjusted according to bubble position",
+      "C": "You need to maintain a constant drillpipe pressure",
+      "D": "You want to know when the bubble is at the shoe",
+      "E": "None of the above are correct"
+    },
+    "correctAnswer": "D",
+    "explanation": "The casing shoe is the weakest point in the open system, and the moment the bubble is inside the shoe (below it) is when the greatest pressure risk to that point has passed. If MAASP hasn't been exceeded by the time the bubble reaches the shoe, it generally won't be exceeded for the rest of the kill provided the schedule is followed correctly â€” so tracking bubble position specifically to identify this milestone is valuable.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 6,
+    "question": "Pump speed should vary during a kill operation in order to maintain constant bottom-hole pressure.",
+    "choices": {
+      "A": "True",
+      "B": "False",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "B",
+    "explanation": "It's the opposite: pump speed should, as far as possible, be held constant throughout a kill operation. Bottom-hole pressure is instead kept constant by adjusting the choke (and following the drillpipe pressure schedule), not by varying pump speed. False.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 7,
+    "question": "How many circulations are there in the Driller's Method?",
+    "choices": {
+      "A": "One",
+      "B": "Two",
+      "C": "Three",
+      "D": "The Driller's Method does not involve circulation",
+      "E": ""
+    },
+    "correctAnswer": "B",
+    "explanation": "The Driller's Method uses two separate circulations: the first removes the influx using the original mud weight, and the second circulates kill-weight mud around the system.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 8,
+    "question": "How many circulations are there in the Wait & Weight Method?",
+    "choices": {
+      "A": "One",
+      "B": "Two",
+      "C": "Three",
+      "D": "The Wait & Weight Method does not involve circulation",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "The Wait & Weight Method requires only one circulation: kill-weight mud is prepared first, then pumped all the way around the well in a single pass, removing the influx and re-establishing balance at the same time.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 9,
+    "question": "How do you bring a pump up to speed for a kill operation on a surface stack?",
+    "choices": {
+      "A": "Open the choke to hold drillpipe pressure constant until up to speed",
+      "B": "Open the choke to hold casing pressure constant until up to speed",
+      "C": "Both A and B can be used for a start-up",
+      "D": "Neither A nor B can be used for a start-up",
+      "E": ""
+    },
+    "correctAnswer": "B",
+    "explanation": "Casing pressure should always be held constant while bringing the pump up to kill speed on a surface stack. This keeps bottom-hole pressure steady while the pump ramps up, since drillpipe pressure will naturally climb as the pump gains speed and friction increases â€” you don't fight that rise, you let it happen while managing the choke against the casing gauge.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 10,
+    "question": "While circulating out a kick, the mud pump fails. What is the first thing you should do?",
+    "choices": {
+      "A": "Fix the pump as soon as possible",
+      "B": "Change over to the other pump",
+      "C": "Shut the well in",
+      "D": "Use the Volumetric Method",
+      "E": "Make preparations to start bullheading"
+    },
+    "correctAnswer": "C",
+    "explanation": "Any pump failure mid-kill removes your ability to control bottom-hole pressure by circulating, so the immediate, reflexive response is to shut the well in and stop any further influx while the problem is assessed. Only after the well is secure do you think about pump repairs, switching pumps, or alternative kill methods.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 11,
+    "question": "When making adjustments to the remote choke during a kill, what responses would you expect if the choke was closed slightly?",
+    "choices": {
+      "A": "Casing gauge decrease followed by drillpipe gauge decrease",
+      "B": "Drillpipe gauge increase followed by casing gauge increase",
+      "C": "Casing and drillpipe gauges will drop together",
+      "D": "Casing gauge increase followed by drillpipe gauge increase",
+      "E": "Casing and drillpipe gauges will rise together"
+    },
+    "correctAnswer": "D",
+    "explanation": "Closing the choke slightly increases backpressure, and the casing gauge reacts to that first, since it's directly connected to the choke line. The drillpipe gauge then follows after a short delay as the pressure change propagates down the string and back up (roughly one second of lag for every 1000 ft of depth).",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 12,
+    "question": "What pressure is kept constant while filling the annulus with kill mud?",
+    "choices": {
+      "A": "Initial circulating pressure",
+      "B": "SICP minus choke line friction",
+      "C": "Final circulating pressure",
+      "D": "Original SICP",
+      "E": "Original SIDPP"
+    },
+    "correctAnswer": "C",
+    "explanation": "Once kill-weight mud reaches the bit, drillpipe pressure is held constant at final circulating pressure (FCP) for the remainder of the job, as the heavier mud fills the annulus and pushes the last of the influx out ahead of it.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 13,
+    "question": "On a surface stack rig, how can you find ICP when a kick has occurred and the slow circulating rate pressure loss is not known?",
+    "choices": {
+      "A": "Bring the pump up to speed holding casing pressure constant",
+      "B": "Bring the pump up to speed adding 200 psi to casing pressure for safety",
+      "C": "Add 100 psi safety to drillpipe pressure and circulate the influx out",
+      "D": "Bring the pump up to speed holding drillpipe pressure constant",
+      "E": "Circulate at desired SPM holding 200 psi safety on drillpipe"
+    },
+    "correctAnswer": "A",
+    "explanation": "Bring the pumps up to kill speed while holding casing pressure constant at the shut-in value. Once the pump is up to speed, whatever the drillpipe gauge reads at that moment is, by definition, the initial circulating pressure (ICP) â€” this works even without a prior slow circulating rate figure.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 14,
+    "question": "Final circulating pressure (FCP) is reached when:",
+    "choices": {
+      "A": "The influx has been removed from the well",
+      "B": "Kill mud reaches the bit",
+      "C": "Kill mud reaches the casing shoe",
+      "D": "Kill mud returns at surface",
+      "E": "The pit level has stopped fluctuating"
+    },
+    "correctAnswer": "B",
+    "explanation": "FCP is reached the moment kill-weight mud arrives at the bit â€” from that point on, drillpipe pressure is held constant at FCP while the heavier mud displaces the rest of the annulus, rather than following the earlier declining pressure schedule.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 15,
+    "question": "A gas kick is being circulated out. When the gas reaches the casing shoe at 7000 ft TVD, the pressure at the top of the bubble is 5000 psi. The original mud weight is 12.5 ppg. What will the casing pressure gauge at surface read?",
+    "choices": {
+      "A": "4550 psi",
+      "B": "2000 psi",
+      "C": "755 psi",
+      "D": "600 psi",
+      "E": "450 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "Surface casing pressure shows the difference between the upward push of the gas bubble's pressure and the downward push of the mud hydrostatic pressure above it: mud hydrostatic above the bubble at the shoe = 12.5 x 0.052 x 7000 = 4550 psi. Casing pressure = bubble pressure - mud hydrostatic = 5000 - 4550 = 450 psi.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 16,
+    "question": "While circulating out a kick, pump speed is increased while drillpipe pressure is held constant. What happens to bottom-hole pressure (BHP)?",
+    "choices": {
+      "A": "It increased",
+      "B": "It stayed the same",
+      "C": "It decreased",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "C",
+    "explanation": "When pump speed increases, friction pressure naturally increases too, so drillpipe pressure should rise along with it. Holding drillpipe pressure artificially constant instead means you're deliberately keeping it lower than the schedule calls for at the new pump speed, and that shortfall translates directly into a drop in bottom-hole pressure.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 17,
+    "question": "After the first circulation of the Driller's Method, what would you expect SIDPP and SICP to read?",
+    "choices": {
+      "A": "Zero",
+      "B": "SICP should be slightly higher than SIDPP",
+      "C": "The same",
+      "D": "SIDPP should be slightly higher than SICP",
+      "E": "None of the above are correct"
+    },
+    "correctAnswer": "C",
+    "explanation": "By the end of the first circulation, the influx should have been fully removed from the well, leaving only original mud throughout the entire system. With no density difference left between the drillstring side and the annulus side, both gauges should read approximately the same value â€” in theory, the original SIDPP.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 18,
+    "question": "A gas kick is being circulated from a well at 30 SPM with 750 psi held constant on the drillpipe pressure gauge. The pump speed is increased to 40 SPM while continuing to hold drillpipe pressure constant at 750 psi. What will bottom-hole pressure do?",
+    "choices": {
+      "A": "Decrease",
+      "B": "Increase",
+      "C": "Remain constant",
+      "D": "Drop to zero",
+      "E": "Insufficient data for the calculation"
+    },
+    "correctAnswer": "A",
+    "explanation": "The higher pump speed should have raised drillpipe pressure to roughly 1333 psi (750 x (40/30)^2) to keep bottom-hole pressure constant. By holding it artificially at the old value of 750 psi instead, you are running well below the correct pressure for that speed, so bottom-hole pressure falls.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 19,
+    "question": "Which kill method will result in the lowest casing shoe pressures if the open-hole volume is considerably larger than the string volume?",
+    "choices": {
+      "A": "Driller's Method",
+      "B": "Wait & Weight Method",
+      "C": "Concurrent Method",
+      "D": "Volumetric Method",
+      "E": "Company procedure specific method"
+    },
+    "correctAnswer": "B",
+    "explanation": "With a large open-hole volume relative to string volume, the Wait & Weight Method has the advantage: because kill-weight mud is already going down the string from the very first circulation, it reaches the annulus (and therefore starts reducing the pressure differential at the shoe) sooner than the Driller's Method, which delays introducing kill mud until the second circulation.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 20,
+    "question": "Which kill method would you use if you could not circulate and suspected gas migration was taking place?",
+    "choices": {
+      "A": "Driller's Method",
+      "B": "Wait & Weight Method",
+      "C": "Concurrent Method",
+      "D": "Volumetric Method",
+      "E": "Company procedure specific method"
+    },
+    "correctAnswer": "D",
+    "explanation": "The Volumetric Method is designed exactly for this scenario â€” no ability to circulate, combined with gas migrating and expanding up the annulus. It manages pressure by bleeding controlled, calculated volumes of mud from the well rather than by pumping.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 21,
+    "question": "What happens to the pressure below a gas bubble as it is circulated out of a well during a kill?",
+    "choices": {
+      "A": "It remains constant",
+      "B": "It decreases",
+      "C": "It increases",
+      "D": "It rises at first then remains constant",
+      "E": "It falls at first then remains constant"
+    },
+    "correctAnswer": "A",
+    "explanation": "The whole point of following the drillpipe pressure schedule during a kill is to keep bottom-hole pressure â€” and by extension, all pressures below the gas bubble â€” constant throughout the operation, regardless of where the bubble currently sits in the annulus.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 22,
+    "question": "What happens to casing shoe pressure as a gas bubble is circulated out of a well during a kill?",
+    "choices": {
+      "A": "It remains constant",
+      "B": "It decreases",
+      "C": "It increases",
+      "D": "It rises at first then remains constant",
+      "E": "It falls at first then remains constant"
+    },
+    "correctAnswer": "D",
+    "explanation": "As the gas bubble approaches the casing shoe, it progressively displaces heavier mud with lighter expanding gas at that point in the annulus, so pressure at the shoe rises. Once the bubble has fully passed the shoe and moved further up-hole, shoe pressure stops climbing and holds steady.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 23,
+    "question": "What happens to the pressure inside a gas bubble as it is circulated out of a well during a kill?",
+    "choices": {
+      "A": "It remains constant",
+      "B": "It decreases",
+      "C": "It increases",
+      "D": "It rises at first then remains constant",
+      "E": "It falls at first then remains constant"
+    },
+    "correctAnswer": "B",
+    "explanation": "As the bubble rises, the hydrostatic pressure of the shrinking mud column above it falls, allowing the trapped gas to expand. As that gas expands into a larger volume, the pressure inside the bubble itself decreases, following the basic inverse relationship between gas volume and pressure.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 24,
+    "question": "What happens to the reading on the casing gauge at surface as a gas bubble is circulated out of a well during a kill?",
+    "choices": {
+      "A": "It remains constant",
+      "B": "It decreases",
+      "C": "It increases",
+      "D": "It rises at first then remains constant",
+      "E": "It falls at first then remains constant"
+    },
+    "correctAnswer": "C",
+    "explanation": "As the bubble expands on its way toward surface and pushes ahead of it into a progressively shorter and lighter mud column above, the casing pressure gauge reading climbs continuously right up until the gas itself begins exiting through the choke.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 25,
+    "question": "What happens to bottom-hole pressure as a gas bubble is circulated out of a well during a kill?",
+    "choices": {
+      "A": "It remains constant",
+      "B": "It decreases",
+      "C": "It increases",
+      "D": "It rises at first then remains constant",
+      "E": "It falls at first then remains constant"
+    },
+    "correctAnswer": "A",
+    "explanation": "Keeping bottom-hole pressure constant for the entire duration of the kill â€” regardless of where the bubble is in the annulus â€” is the entire design goal of the drillpipe pressure schedule used in both the Driller's and Wait & Weight methods.",
+    "topic": "Kill Methods"
+  },
+  {
+    "id": 1,
+    "question": "The mud weight is 12.5 ppg, annular pressure loss (APL) is 250 psi, and the well depth is 8765 ft TVD / 8992 ft MD. What is the equivalent circulating density (ECD)?",
+    "choices": {
+      "A": "11.00 ppg",
+      "B": "12.90 ppg",
+      "C": "12.40 ppg",
+      "D": "13.04 ppg",
+      "E": "13.20 ppg"
+    },
+    "correctAnswer": "D",
+    "explanation": "ECD = current mud weight + (APL / (TVD x 0.052)) = 12.5 + 250/(8765 x 0.052) = 12.5 + 250/455.8 = 12.5 + 0.548 = 13.04 ppg.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 2,
+    "question": "Why will a 20 bbl kick in a small annulus be more significant than a 20 bbl kick in a large annulus?",
+    "choices": {
+      "A": "Kill weight mud cannot be calculated as easily",
+      "B": "The kicks are usually gas",
+      "C": "The pipe may become stuck in the smaller annulus",
+      "D": "It results in higher annulus pressures",
+      "E": "It results in higher drillpipe pressure"
+    },
+    "correctAnswer": "D",
+    "explanation": "The same volume of influx spreads out into a taller column in a smaller annulus than it would in a larger one, since influx height = kick volume / annular capacity, and capacity is smaller when the annulus is tighter. That taller gas column translates into higher pressures throughout the annulus as the kick is circulated out.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 3,
+    "question": "Why is SICP usually higher than SIDPP after a well is shut in on a kick?",
+    "choices": {
+      "A": "The cuttings in the annulus are lighter than the mud weight",
+      "B": "The influx fluid is usually less dense than the mud weight",
+      "C": "The casing pressure depends on the rig type",
+      "D": "The difference is in the type of gauges used",
+      "E": "This is a red herring â€” SIDPP is usually higher than SICP"
+    },
+    "correctAnswer": "B",
+    "explanation": "SICP tends to read higher because the annulus side now contains a length of low-density influx displacing what would otherwise be a column of full-weight mud, while the drillstring side (which SIDPP reflects) still contains clean, full-weight mud throughout. That density gap on the annulus side is what pushes SICP above SIDPP.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 4,
+    "question": "After the first circulation of the Driller's Method, the well is closed in and the surface gauges read SIDPP = 700 psi and SICP = 700 psi. Is this the type of reading you would expect?",
+    "choices": {
+      "A": "Only if the influx is a liquid",
+      "B": "Only if the influx is a gas",
+      "C": "Yes",
+      "D": "No",
+      "E": "Never"
+    },
+    "correctAnswer": "C",
+    "explanation": "After the first circulation of the Driller's Method, the influx should have been completely removed from the well, leaving original mud on both sides of the system. With no density difference left between the drillstring and the annulus, SIDPP and SICP reading the same value (approximately the original SIDPP) is exactly what should be expected, regardless of whether the influx that was removed had been gas or liquid.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 5,
+    "question": "On a surface stack rig, what would happen if, while bringing the pump up to kill rate speed, you allowed casing pressure to increase above SICP?",
+    "choices": {
+      "A": "Bottom-hole pressure would increase",
+      "B": "Bottom-hole pressure would stay the same",
+      "C": "Bottom-hole pressure would decrease",
+      "D": "It will be fine as drillpipe pressure will rise by the same amount",
+      "E": "As long as SIDPP remains constant everything will be fine"
+    },
+    "correctAnswer": "A",
+    "explanation": "Casing pressure should be held constant at the shut-in value while bringing the pump up to kill rate. Letting it climb above that value adds extra backpressure on the annulus, and that extra backpressure is transmitted straight down to the bottom of the hole, raising bottom-hole pressure above what it should be.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 6,
+    "question": "Drill-collar/open-hole annular capacity = 0.0292 bbl/ft; pump output = 0.117 bbl/stroke. What is the annular velocity around the drill collars while circulating at 80 SPM?",
+    "choices": {
+      "A": "185 ft/min",
+      "B": "312 ft/min",
+      "C": "320 ft/min",
+      "D": "371 ft/min",
+      "E": "400 ft/min"
+    },
+    "correctAnswer": "C",
+    "explanation": "First convert pump output to bbl/min: 0.117 x 80 = 9.36 bbl/min. Annular velocity = pump output (bbl/min) / annular capacity (bbl/ft) = 9.36 / 0.0292 = 320.5 ft/min.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 7,
+    "question": "Hole depth is 15,200 ft MD / 14,000 ft TVD and is full of 12.4 ppg mud. SIDPP = 700 psi; SICP = 1150 psi; pit gain = 23 bbl. What is the formation pressure after taking the kick?",
+    "choices": {
+      "A": "6510 psi",
+      "B": "9543 psi",
+      "C": "10,500 psi",
+      "D": "9727 psi",
+      "E": "9027 psi"
+    },
+    "correctAnswer": "D",
+    "explanation": "Formation pressure = mud hydrostatic pressure (using TVD) + SIDPP = (12.4 x 0.052 x 14,000) + 700 = 9027.2 + 700 = 9727 psi.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 8,
+    "question": "Drill-collar/open-hole annular capacity = 0.03 bbl/ft; drillpipe/open-hole annular capacity = 0.0505 bbl/ft; drill collar length = 600 ft; influx volume = 30 bbl. What is the approximate length of the influx?",
+    "choices": {
+      "A": "594 ft",
+      "B": "837 ft",
+      "C": "1000 ft",
+      "D": "1050 ft",
+      "E": "1135 ft"
+    },
+    "correctAnswer": "B",
+    "explanation": "First find how much of the influx fits around the drill collars: 0.03 x 600 = 18 bbl. The remainder spills over into the larger drillpipe/open-hole annulus: 30 - 18 = 12 bbl, giving a length of 12 / 0.0505 = 237.6 ft. Add this to the collar length for total influx height: 600 + 237.6 = 837.6 ft.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 9,
+    "question": "A 50 bbl kick has been shut in with 800 psi SIDPP. Mud weight = 14 ppg; gas gradient = 0.128 psi/ft; drill collar length = 1000 ft; drill-collar/open-hole annular capacity = 0.0292 bbl/ft; drillpipe/open-hole annular capacity = 0.0459 bbl/ft. What would be the approximate SICP?",
+    "choices": {
+      "A": "1453 psi",
+      "B": "850 psi",
+      "C": "1672 psi",
+      "D": "900 psi",
+      "E": "1000 psi"
+    },
+    "correctAnswer": "C",
+    "explanation": "First find the influx height: it fills the 1000 ft drill collar annulus (0.0292 x 1000 = 29.2 bbl) and spills the remainder (50 - 29.2 = 20.8 bbl) into the drillpipe annulus (20.8/0.0459 = 453.2 ft), for a total influx height of 1000 + 453.2 = 1453.2 ft. Then apply SICP = ((mud gradient - gas gradient) x influx height) + SIDPP = ((0.728 - 0.128) x 1453.2) + 800 = (0.6 x 1453.2) + 800 = 871.9 + 800 = 1672 psi.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 10,
+    "question": "A 50 bbl kick has been shut in with 600 psi SIDPP. Mud weight = 13.5 ppg; gas gradient = 0.1 psi/ft; drill collar length = 450 ft; drill-collar/open-hole annular capacity = 0.0778 bbl/ft; drillpipe/open-hole annular capacity = 0.1215 bbl/ft. What would be the approximate SICP?",
+    "choices": {
+      "A": "642 psi",
+      "B": "945 psi",
+      "C": "573 psi",
+      "D": "580 psi",
+      "E": "752 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "Drill-collar annulus volume: 0.0778 x 450 = 35.0 bbl (less than the 50 bbl kick, so it spills over). Remainder: 50 - 35.0 = 15.0 bbl, giving a drillpipe-annulus length of 15.0/0.1215 = 123.4 ft. Total influx height = 450 + 123.4 = 573.4 ft. SICP = ((mud gradient - gas gradient) x influx height) + SIDPP = ((0.702 - 0.1) x 573.4) + 600 = (0.602 x 573.4) + 600 = 345.2 + 600 = 945 psi.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 11,
+    "question": "A well is shut in with 600 psi SIDPP, 1000 psi SICP, and 15 ppg mud in the hole. Gas gradient is calculated at 0.1 psi/ft. After 15 minutes, both gauges have risen by 100 psi. How many feet per hour is the bubble migrating?",
+    "choices": {
+      "A": "1000 ft/hr",
+      "B": "512 ft/hr",
+      "C": "400 ft/hr",
+      "D": "218 ft/hr",
+      "E": "128 ft/hr"
+    },
+    "correctAnswer": "B",
+    "explanation": "First convert the pressure rise to an hourly rate: 100 psi in 15 minutes = 400 psi/hr. Percolation (migration) rate (ft/hr) = pressure increase rate (psi/hr) / mud gradient = 400 / (15 x 0.052) = 400 / 0.78 = 512.8 ft/hr.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 12,
+    "question": "If the fluid level fell 480 ft in a large-diameter surface casing string with 12 ppg mud, how much bottom-hole hydrostatic pressure would be lost?",
+    "choices": {
+      "A": "500 psi",
+      "B": "400 psi",
+      "C": "300 psi",
+      "D": "200 psi",
+      "E": "100 psi"
+    },
+    "correctAnswer": "C",
+    "explanation": "A falling fluid level simply removes that length of mud column from the pressure calculation: hydrostatic pressure lost = mud weight x 0.052 x height fallen = 12 x 0.052 x 480 = 299.5, approximately 300 psi.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 13,
+    "question": "While drilling ahead you enter a lost-circulation zone and the mud level starts to fall. You fill the hole with water, and it takes 40 bbls. Well depth = 10,000 ft TVD; casing shoe set at 6000 ft TVD; mud weight in use = 12 ppg; drillpipe/casing annular capacity = 0.0505 bbl/ft; water = 8.34 ppg. Calculate the pressure the fluids are exerting at the bottom of the hole.",
+    "choices": {
+      "A": "6900 psi",
+      "B": "6240 psi",
+      "C": "9600 psi",
+      "D": "4260 psi",
+      "E": "6090 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "There are now two fluid columns in the hole. The water sits on top; its length = volume / annular capacity = 40 / 0.0505 = 792.1 ft. Subtracting that from the well TVD gives the remaining mud column length: 10,000 - 792.1 = 9207.9 ft. Water hydrostatic = 8.34 x 0.052 x 792.1 = 343.4 psi. Mud hydrostatic = 12 x 0.052 x 9207.9 = 5745.7 psi. Total pressure = 343.4 + 5745.7 = 6089.1, approximately 6090 psi.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 14,
+    "question": "While drilling ahead you enter a lost-circulation zone and the mud level starts to fall. You fill the hole with water, and it takes 55 bbls. Well depth = 12,580 ft TVD; casing shoe set at 7620 ft TVD; mud weight in use = 12.8 ppg; drillpipe/casing annular capacity = 0.0505 bbl/ft; water = 8.34 ppg. Calculate the pressure the fluids are exerting at the bottom of the hole.",
+    "choices": {
+      "A": "8120 psi",
+      "B": "7670 psi",
+      "C": "6540 psi",
+      "D": "5430 psi",
+      "E": "4810 psi"
+    },
+    "correctAnswer": "A",
+    "explanation": "Water column length = 55 / 0.0505 = 1089.1 ft. Remaining mud column length = 12,580 - 1089.1 = 11,490.9 ft. Water hydrostatic = 8.34 x 0.052 x 1089.1 = 472.6 psi. Mud hydrostatic = 12.8 x 0.052 x 11,490.9 = 7648.9 psi. Total = 472.6 + 7648.9 = 8121.5, approximately 8120 psi.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 15,
+    "question": "When a gas kick is circulated out through the choke, what will the pit volume do?",
+    "choices": {
+      "A": "Increase",
+      "B": "Decrease",
+      "C": "Stay the same",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "B",
+    "explanation": "Once gas is actually leaving the system through the choke, it is being permanently vented out of the well, so the total fluid volume held in the pits falls. This is the opposite of what happens earlier, while the gas is still expanding on its way up the annulus and pushing extra mud volume ahead of it.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 16,
+    "question": "The mud weight in a well gives an overbalance of 100 psi. The 9 5/8 in casing has a capacity of 0.0754 bbl/ft, the mud weight is 17.5 ppg, and the drill pipe capacity is 0.01776 bbl/ft with a steel displacement of 0.00764 bbl/ft. How many feet of that drill pipe can be pulled out without losing the overbalance?",
+    "choices": {
+      "A": "962 ft",
+      "B": "820 ft",
+      "C": "742 ft",
+      "D": "680 ft",
+      "E": "242 ft"
+    },
+    "correctAnswer": "A",
+    "explanation": "Feet of pipe that can be pulled = overbalance x (casing capacity - pipe displacement) / (mud weight x 0.052 x pipe displacement). Working through: 100 x (0.0754 - 0.00764) / (17.5 x 0.052 x 0.00764) = 100 x 0.06776 / 0.0069524 = 6.776 / 0.0069524, which comes out closest to 962 ft among the given choices.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 17,
+    "question": "A well 12,750 ft TVD deep has a formation gradient of 0.811 psi/ft. The 9 5/8 in casing has a capacity of 0.0754 bbl/ft, the mud weight is 15.3 ppg, the drill pipe capacity is 0.01779 bbl/ft, and its steel displacement is 0.00762 bbl/ft. How many 93 ft stands can be pulled out of the hole without going underbalanced?",
+    "choices": {
+      "A": "14 stands",
+      "B": "17 stands",
+      "C": "20 stands",
+      "D": "23 stands",
+      "E": "26 stands"
+    },
+    "correctAnswer": "D",
+    "explanation": "First find the overbalance: (mud gradient - formation gradient) x TVD = ((15.3 x 0.052) - 0.811) x 12,750. Then apply the pipe-to-pull formula: pipe to pull (ft) = overbalance x (casing capacity - pipe displacement) / (mud weight x 0.052 x pipe displacement), and divide the resulting footage by the 93 ft stand length to get the number of stands. NOTE FOR REVIEW: with the numbers as given, the mud gradient (15.3 x 0.052 = 0.7956 psi/ft) works out lower than the stated formation gradient (0.811 psi/ft), which mathematically means the well is already slightly underbalanced before any pipe is pulled. Using the magnitude of that gap in the standard formula lands closest to 23 stands, but this input combination is unusual enough that it is flagged for a second look rather than fully trusted.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 18,
+    "question": "Finish the statement: the main principle of well-killing methods is to maintain __________.",
+    "choices": {
+      "A": "The site supervisor happy",
+      "B": "Drillpipe pressure constant",
+      "C": "Bottom-hole pressure constant",
+      "D": "Casing pressure constant",
+      "E": "Pit volume constant"
+    },
+    "correctAnswer": "C",
+    "explanation": "Every well-killing method â€” Driller's, Wait & Weight, Volumetric â€” is built around the same central principle: keep bottom-hole pressure constant (at or just above formation pressure) throughout the operation. Drillpipe and casing pressure are simply the tools used to achieve that goal, not the goal itself.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 19,
+    "question": "At the start of tripping out, the first 8 x 95 ft stands of pipe are pulled wet from the hole with no fill-up. DP steel displacement = 0.00764 bbl/ft; DP capacity = 0.01776 bbl/ft; casing capacity = 0.0758 bbl/ft; mud weight = 13.4 ppg. Calculate the reduction in bottom-hole pressure.",
+    "choices": {
+      "A": "266 psi",
+      "B": "299 psi",
+      "C": "311 psi",
+      "D": "333 psi",
+      "E": "366 psi"
+    },
+    "correctAnswer": "A",
+    "explanation": "Annular capacity = casing capacity - (DP displacement + DP capacity) = 0.0758 - 0.0254 = 0.0504 bbl/ft. Pressure drop per foot pulled wet = mud weight x 0.052 x (DP displacement + DP capacity) / annular capacity = 13.4 x 0.052 x 0.0254 / 0.0504 = 0.3512 psi/ft. Total length pulled = 8 x 95 = 760 ft. Total BHP drop = 0.3512 x 760 = 266.9, approximately 266 psi.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 20,
+    "question": "At the start of tripping out, the first 12 x 92 ft stands of pipe are pulled wet from the hole with no fill-up. DP steel displacement = 0.00764 bbl/ft; DP capacity = 0.01776 bbl/ft; casing capacity = 0.0758 bbl/ft; mud weight = 12.7 ppg. Calculate the reduction in bottom-hole pressure.",
+    "choices": {
+      "A": "266 psi",
+      "B": "299 psi",
+      "C": "311 psi",
+      "D": "333 psi",
+      "E": "366 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "Annular capacity = 0.0758 - 0.0254 = 0.0504 bbl/ft. Pressure drop per foot pulled wet = 12.7 x 0.052 x 0.0254 / 0.0504 = 0.3328 psi/ft. Total length pulled = 12 x 92 = 1104 ft. Total BHP drop = 0.3328 x 1104 = 367.4, approximately 366 psi.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 21,
+    "question": "During a trip out, the last 580 ft of drill collars are pulled from the hole dry with no fill-up. DC steel displacement = 0.045 bbl/ft; DC capacity = 0.00768 bbl/ft; casing capacity = 0.0758 bbl/ft; mud weight = 13.2 ppg. Calculate the drop in bottom-hole pressure.",
+    "choices": {
+      "A": "236 psi",
+      "B": "266 psi",
+      "C": "296 psi",
+      "D": "326 psi",
+      "E": "356 psi"
+    },
+    "correctAnswer": "A",
+    "explanation": "Pulling collars dry (no mud filling the space they leave) drops the mud level by: length x steel displacement / casing capacity = 580 x 0.045 / 0.0758 = 344.3 ft. Hydrostatic pressure lost = level drop x mud weight x 0.052 = 344.3 x 13.2 x 0.052 = 236.4, approximately 236 psi.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 22,
+    "question": "During a trip out, the last 450 ft of drill collars are pulled from the hole dry with no fill-up. DC steel displacement = 0.069 bbl/ft; DC capacity = 0.0087 bbl/ft; casing capacity = 0.0787 bbl/ft; mud weight = 12.7 ppg. Calculate the drop in bottom-hole pressure.",
+    "choices": {
+      "A": "240 psi",
+      "B": "260 psi",
+      "C": "280 psi",
+      "D": "300 psi",
+      "E": "320 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "Level drop = length x steel displacement / casing capacity = 450 x 0.069 / 0.0787 = 394.5 ft. Hydrostatic pressure lost = 394.5 x 12.7 x 0.052 = 260.5, approximately 260 psi.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 23,
+    "question": "During a kill operation, the choke operator notices drillpipe pressure shoot up rapidly while casing pressure stays roughly constant. He decides to live with the new drillpipe reading, which is 400 psi higher than before. What effect will this have on bottom-hole pressure?",
+    "choices": {
+      "A": "Bottom-hole pressure will increase",
+      "B": "Bottom-hole pressure will decrease",
+      "C": "Bottom-hole pressure will remain constant",
+      "D": "There is not enough information to tell",
+      "E": ""
+    },
+    "correctAnswer": "C",
+    "explanation": "A drillpipe pressure spike with casing pressure unaffected points to a plugged bit nozzle, not a genuine pressure control problem. The higher pump pressure is simply what's now required to push mud through the restricted nozzle at the same rate â€” nothing downhole has changed, so accepting the new (correct) reading for that restriction leaves bottom-hole pressure unaffected.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 24,
+    "question": "During a kill operation, the choke operator notices a sudden increase in casing pressure followed by a comparable increase in drillpipe pressure. He decides to live with the new drillpipe reading, which is 200 psi higher than before. What has happened to bottom-hole pressure?",
+    "choices": {
+      "A": "Bottom-hole pressure will increase",
+      "B": "Bottom-hole pressure will decrease",
+      "C": "Bottom-hole pressure will remain constant",
+      "D": "There is not enough information to tell",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "A casing pressure rise followed by a matching drillpipe pressure rise points to a partially plugged choke, adding extra backpressure to the whole system. Ideally, the choke would be changed out to restore the correct schedule; if that's not possible, drillpipe pressure should be brought back to its original value rather than accepted at the new higher reading. By doing nothing, bottom-hole pressure has increased.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 25,
+    "question": "During a kill, the choke operator is continually closing the choke to hold drillpipe pressure at the correct schedule value. Shortly after, he learns the rig pump has developed a serious leak. What effect has his continual choke-closing had on bottom-hole pressure?",
+    "choices": {
+      "A": "Bottom-hole pressure will increase",
+      "B": "Bottom-hole pressure will decrease",
+      "C": "Bottom-hole pressure will remain constant",
+      "D": "There is not enough information to tell",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "A serious pump leak means less mud is actually reaching the bit than the stroke counter suggests â€” effectively, the well is being pumped at a slower real rate than intended, which should call for a lower pumping pressure at the new effective rate. By continually closing the choke to hold pressure at the old (higher) schedule value instead of letting it fall to match the true lower flow rate, the choke operator has been adding unintended backpressure, and bottom-hole pressure has increased.",
+    "topic": "Some Tricky Stuff"
+  },
+  {
+    "id": 1,
+    "question": "Sea water depth is 1200 ft with a gradient of 0.445 psi/ft. Well depth is 2000 ft TVD from the rig floor, with an air gap of 50 ft. Mud weight in the hole is 9.8 ppg. If the riser were removed, what would be the approximate reduction in bottom-hole pressure (BHP)?",
+    "choices": {
+      "A": "53 psi",
+      "B": "103 psi",
+      "C": "153 psi",
+      "D": "203 psi",
+      "E": "253 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "Removing the riser replaces mud above the seafloor with seawater above the seafloor, plus open air across the air gap. BHP before: mud gradient x well TVD = (9.8 x 0.052) x 2000 = 1019.2 psi. BHP after: seawater gradient x sea depth (only the seawater portion actually contributes hydrostatic pressure, not the air gap) + mud gradient x remaining mud column below the seafloor = (0.445 x 1200) + (0.5096 x (2000 - 1250)) = 534 + 382.2 = 916.2 psi. Reduction = 1019.2 - 916.2 = 103 psi.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 2,
+    "question": "Sea water depth is 1000 ft with a gradient of 0.455 psi/ft. Well depth is 2150 ft TVD from the rig floor, with an air gap of 70 ft. Mud weight in the hole is 10.0 ppg. If the riser were removed, what would be the approximate reduction in BHP?",
+    "choices": {
+      "A": "101 psi",
+      "B": "121 psi",
+      "C": "141 psi",
+      "D": "161 psi",
+      "E": "181 psi"
+    },
+    "correctAnswer": "A",
+    "explanation": "BHP before = mud gradient x well TVD = (10.0 x 0.052) x 2150 = 1118 psi. BHP after = (seawater gradient x sea depth) + (mud gradient x remaining mud column below seafloor) = (0.455 x 1000) + (0.52 x (2150 - 1070)) = 455 + 561.6 = 1016.6 psi. Reduction = 1118 - 1016.6 = 101.4, approximately 101 psi.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 3,
+    "question": "Sea water depth is 1500 ft with a gradient of 0.445 psi/ft. Well depth is 2100 ft TVD from the rig floor, with an air gap of 75 ft. Mud weight in the hole is 9.3 ppg. If the riser were removed, what would be the approximate reduction in BHP?",
+    "choices": {
+      "A": "211 psi",
+      "B": "184 psi",
+      "C": "154 psi",
+      "D": "124 psi",
+      "E": "94 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "BHP before = (9.3 x 0.052) x 2100 = 1015.6 psi. BHP after = (0.445 x 1500) + (0.4836 x (2100 - 1575)) = 667.5 + 253.9 = 921.4 psi. Reduction = 1015.6 - 921.4 = 94.2, approximately 94 psi.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 4,
+    "question": "Sea water depth is 1343 ft with a gradient of 0.455 psi/ft. Well depth is 2350 ft TVD from the rig floor, with an air gap of 70 ft. Mud weight in the hole is 9.8 ppg. Before removing the riser, how much should mud weight be increased in order to keep the well in balance?",
+    "choices": {
+      "A": "0.67 ppg",
+      "B": "1.53 ppg",
+      "C": "2.23 ppg",
+      "D": "3.0 ppg",
+      "E": "9.77 ppg"
+    },
+    "correctAnswer": "C",
+    "explanation": "First find the reduction in BHP the riser removal would cause: BHP before = (9.8 x 0.052) x 2350 = 1197.6 psi. BHP after = (0.455 x 1343) + (0.5096 x (2350 - 1413)) = 611.1 + 477.5 = 1088.6 psi. Reduction = 1197.6 - 1088.6 = 109.0 psi. That loss has to be made up by increasing mud weight in the section of hole below the seafloor: ppg increase = reduction in BHP / (depth below mud line x 0.052) = 109.0 / (937 x 0.052) = 109.0 / 48.7 = 2.24, approximately 2.23 ppg.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 5,
+    "question": "Sea water depth is 1550 ft with a gradient of 0.445 psi/ft. Well depth is 2300 ft TVD from the rig floor, with an air gap of 85 ft. Mud weight in the hole is 9.7 ppg. Before removing the riser, how much should mud weight be increased in order to keep the well in balance?",
+    "choices": {
+      "A": "4.2 ppg",
+      "B": "2.7 ppg",
+      "C": "3.9 ppg",
+      "D": "5.4 ppg",
+      "E": "1.8 ppg"
+    },
+    "correctAnswer": "C",
+    "explanation": "BHP before = (9.7 x 0.052) x 2300 = 1160.1 psi. BHP after = (0.445 x 1550) + (0.5044 x (2300 - 1635)) = 689.75 + 335.4 = 1025.2 psi. Reduction = 1160.1 - 1025.2 = 134.9 psi. ppg increase = reduction / (depth below mud line x 0.052) = 134.9 / (665 x 0.052) = 134.9 / 34.6 = 3.9 ppg.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 6,
+    "question": "Why is it important for a driller to have accurate tide information?",
+    "choices": {
+      "A": "In order to time connections correctly",
+      "B": "In order to space out tool joints correctly for the blowout preventer",
+      "C": "In order to conduct an accurate flow check",
+      "D": "In order to accurately measure rate of penetration",
+      "E": "To pass on to the radio operator for helicopter landings"
+    },
+    "correctAnswer": "B",
+    "explanation": "As the tide rises and falls, the distance between the rig floor and the subsea blowout preventer stack changes with it, which shifts exactly where each tool joint lands relative to the ram positions. Tide data lets the crew correct the space-out so a tool joint never ends up sitting where a ram needs to close.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 7,
+    "question": "When starting a kill on a subsea stack, you must:",
+    "choices": {
+      "A": "Bring the pump up to kill rate holding casing pressure constant",
+      "B": "Bring the pump up to kill rate holding drillpipe pressure constant",
+      "C": "Bring the pump up to kill rate allowing casing pressure to increase by choke line friction (CLF)",
+      "D": "Bring the pump up to kill rate allowing casing pressure to decrease by CLF",
+      "E": "None of the above are correct for a subsea kill"
+    },
+    "correctAnswer": "C",
+    "explanation": "On a subsea stack, returns travel up a long choke line with its own significant friction pressure loss (CLF) before reaching the surface gauge. To keep bottom-hole pressure genuinely constant during start-up, the casing gauge must be allowed to rise above the original SICP by an amount equal to that choke line friction â€” simply holding the surface gauge at the old SICP would actually under-pressure the well relative to what's needed downhole.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 8,
+    "question": "While starting a kill operation on a subsea stack, you maintain casing pressure constant at 670 psi. Pressure loss up the riser = 350 psi; pressure loss up the choke line (CLF) = 550 psi. What has happened to bottom-hole pressure?",
+    "choices": {
+      "A": "BHP has remained constant",
+      "B": "BHP has fallen by 200 psi",
+      "C": "BHP has risen by 200 psi",
+      "D": "There is not enough information to tell",
+      "E": ""
+    },
+    "correctAnswer": "C",
+    "explanation": "The correct start-up procedure requires accounting for the actual choke line friction (CLF = 550 psi), not the unrelated riser pressure loss (350 psi) that would apply if returns went up the riser instead. Holding casing pressure at the old shut-in value without adding CLF means the system is effectively 200 psi (550 - 350) short of where it needs to be to compensate â€” meaning bottom-hole pressure has risen by 200 psi above the intended value.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 9,
+    "question": "True or false: to find initial circulating pressure (ICP) on a subsea kill, you must add choke line friction (CLF) to SIDPP.",
+    "choices": {
+      "A": "True",
+      "B": "False",
+      "C": "Only on vertical wells",
+      "D": "Only on horizontal wells",
+      "E": ""
+    },
+    "correctAnswer": "B",
+    "explanation": "The correct formula uses the slow circulating rate pressure loss up the riser, not choke line friction: ICP = slow circulating rate pressure loss (up the riser) + SIDPP. CLF is a separate figure used to adjust the casing gauge during start-up, not part of the ICP calculation itself. False.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 10,
+    "question": "Pilot signals on a subsea control system:",
+    "choices": {
+      "A": "Vent at the seabed",
+      "B": "Are dead-end signals",
+      "C": "Control shuttle valves",
+      "D": "A and B are correct",
+      "E": "A and C are correct"
+    },
+    "correctAnswer": "B",
+    "explanation": "Pilot signals are dead-end signals: they carry a low-volume hydraulic command down to the subsea control pods but don't themselves supply the volume of fluid that actually moves the rams or valves. That job belongs to the accumulator fluid, which the pilot signal triggers into action.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 11,
+    "question": "Accumulator fluid in a subsea control system:",
+    "choices": {
+      "A": "Vents at seabed",
+      "B": "Is a dead-end signal",
+      "C": "Controls shuttle valves",
+      "D": "A and B are correct",
+      "E": "A and C are correct"
+    },
+    "correctAnswer": "E",
+    "explanation": "Unlike a pilot signal, accumulator fluid does the actual physical work: it vents through the subsea (SPM) valves at the seabed once a function is complete, and along the way it moves the shuttle valves that route fluid to the correct ram or valve. Both A and C are correct.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 12,
+    "question": "What readings would you expect to see on the pressure gauges on the master control panel at the rig floor?",
+    "choices": {
+      "A": "Accumulator 1500 psi; pilot 3000 psi; manifold 3000 psi",
+      "B": "Accumulator 3000 psi; pilot 3000 psi; manifold 3000 psi",
+      "C": "Accumulator 1500 psi; pilot 1500 psi; manifold 1500 psi",
+      "D": "Accumulator 3000 psi; pilot 3000 psi; manifold 1500 psi",
+      "E": "Accumulator 3000 psi; pilot 1500 psi; manifold 1500 psi"
+    },
+    "correctAnswer": "D",
+    "explanation": "A typical subsea control system runs its accumulator and pilot circuits at full system pressure (3000 psi), while the manifold supply that actually operates most functions is regulated down to a lower working pressure (1500 psi) to protect the equipment and control flow rates. Expect: accumulator 3000 psi, pilot 3000 psi, manifold 1500 psi.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 13,
+    "question": "A standard manipulator valve used in a subsea BOP control system has:",
+    "choices": {
+      "A": "4 active ports and can be placed in 3 positions",
+      "B": "3 active ports and can be placed in 4 positions",
+      "C": "4 active ports and can be placed in 4 positions",
+      "D": "3 active ports and can be placed in 3 positions",
+      "E": "Nothing to do with well control"
+    },
+    "correctAnswer": "A",
+    "explanation": "The valve referred to is commonly known as a 3-position, 4-way (manipulator) valve â€” it has 4 active ports and can be set to 3 distinct positions (typically open, closed, and neutral/block), which is how a single valve can both open and close a function from one control point.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 14,
+    "question": "Choke line friction (CLF) can be removed during a kill start-up by holding kill line pressure constant while bringing the pump up to kill rate speed.",
+    "choices": {
+      "A": "True",
+      "B": "False",
+      "C": "Only in vertical wells",
+      "D": "Only in horizontal wells",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "The kill line runs alongside the choke line but is not used for returns, so it does not develop the same friction pressure loss. Holding pressure constant on the kill line (rather than the choke/casing line) while bringing the pump to speed is a valid, and commonly used, way of accounting for choke line friction during start-up. True.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 15,
+    "question": "A well has been successfully killed with 13.2 ppg kill mud, all the way back to surface via the 1400 ft choke line. The 1370 ft marine riser is still full of the original 12.0 ppg mud. Two barrels of gas have been trapped under the rams. How much gas would come back to surface if the rams were opened without any further action? Atmospheric pressure = 14.7 psi.",
+    "choices": {
+      "A": "116 bbls",
+      "B": "2 bbls",
+      "C": "130 bbls",
+      "D": "30 bbls",
+      "E": "66 bbls"
+    },
+    "correctAnswer": "C",
+    "explanation": "This is a Boyle's Law gas-expansion problem. The pressure the trapped gas feels before opening (P1) is the hydrostatic pressure of the kill-mud column in the choke line: 13.2 x 0.052 x 1400 = 961 psi. The pressure it will be under once at surface (P2) is atmospheric: 14.7 psi. The volume at the BOPs (V1) is the 2 bbl trapped. Expanded surface volume: V2 = (P1 x V1) / P2 = (961 x 2) / 14.7 = 130.7, approximately 130 bbls.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 16,
+    "question": "A well has been successfully killed with 14.7 ppg kill mud, all the way back to surface via the 1220 ft choke line. The 1200 ft marine riser is still full of the original 13.2 ppg mud. Three barrels of gas have been trapped under the rams. How much gas would come back to surface if the rams were opened without any further action? Atmospheric pressure = 14.7 psi.",
+    "choices": {
+      "A": "90 bbls",
+      "B": "118 bbls",
+      "C": "130 bbls",
+      "D": "168 bbls",
+      "E": "190 bbls"
+    },
+    "correctAnswer": "E",
+    "explanation": "P1 = hydrostatic pressure of the kill-mud column in the choke line = 14.7 x 0.052 x 1220 = 932.8 psi. P2 = atmospheric = 14.7 psi. V1 = 3 bbl. V2 = (P1 x V1) / P2 = (932.8 x 3) / 14.7 = 190.4, approximately 190 bbls.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 17,
+    "question": "A well has been successfully killed with 12.5 ppg kill mud, all the way back to surface via the 885 ft choke line. The 850 ft marine riser is still full of the original 10.3 ppg mud. Two barrels of gas have been trapped under the rams. How much gas would come back to surface if the rams were opened without any further action? Atmospheric pressure = 14.7 psi.",
+    "choices": {
+      "A": "93 bbls",
+      "B": "47 bbls",
+      "C": "78 bbls",
+      "D": "61 bbls",
+      "E": "87 bbls"
+    },
+    "correctAnswer": "C",
+    "explanation": "P1 = hydrostatic pressure of the kill-mud column in the choke line = 12.5 x 0.052 x 885 = 575.25 psi. P2 = atmospheric = 14.7 psi. V1 = 2 bbl. V2 = (P1 x V1) / P2 = (575.25 x 2) / 14.7 = 78.3, approximately 78 bbls.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 18,
+    "question": "The rig has an air gap of 75 ft. The riser's collapse pressure is 400 psi. How far would the mud level have to fall inside the riser before it collapsed, working in 1700 ft of sea water with a gradient of 0.445 psi/ft?",
+    "choices": {
+      "A": "898 ft",
+      "B": "973 ft",
+      "C": "1023 ft",
+      "D": "1567 ft",
+      "E": "1775 ft"
+    },
+    "correctAnswer": "B",
+    "explanation": "First find how much seawater height produces a hydrostatic pressure equal to the riser's collapse rating: feet of seawater = collapse pressure / seawater gradient = 400 / 0.445 = 898.9 ft. Add the air gap, since the mud level has to fall through that distance first before it even starts falling through the seawater-exposed section: 898.9 + 75 = 973.9, approximately 973 ft.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 19,
+    "question": "The rig has an air gap of 50 ft. The riser's collapse pressure is 410 psi. How far would the mud level have to fall inside the riser before it collapsed, working in 1800 ft of sea water with a gradient of 0.455 psi/ft?",
+    "choices": {
+      "A": "751 ft",
+      "B": "801 ft",
+      "C": "851 ft",
+      "D": "901 ft",
+      "E": "951 ft"
+    },
+    "correctAnswer": "E",
+    "explanation": "Feet of seawater equal to the collapse rating = 410 / 0.455 = 901.1 ft. Add the air gap: 901.1 + 50 = 951.1, approximately 951 ft.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 20,
+    "question": "Why are accumulator bottles mounted directly on subsea blowout preventer stacks?",
+    "choices": {
+      "A": "To permit fast delivery of high-pressure fluid to the subsea BOPs",
+      "B": "To overcome the hydrostatic pressure exerted by the column of sea water",
+      "C": "To automatically put all functions into block",
+      "D": "To add stability to the subsea BOP stack while running and pulling",
+      "E": "Bottles are not mounted on subsea BOPs"
+    },
+    "correctAnswer": "A",
+    "explanation": "Sending fluid all the way from surface accumulators, down thousands of feet of hose to the seabed, on demand would be far too slow for an emergency BOP closure. Mounting bottles directly on the subsea stack means high-pressure hydraulic fluid is already close by, letting functions be operated with the fast response time that well control requires.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 21,
+    "question": "When a function is made at surface to close a set of rams, what actually happens subsea?",
+    "choices": {
+      "A": "Accumulator fluid is sent to the rams through the 3-position/4-way valve at surface",
+      "B": "Pilot fluid moves the shuttle valve, thereby closing the rams",
+      "C": "Pilot pressure energizes the close SPM valve in both control pods",
+      "D": "Accumulator fluid energizes the close SPM valve in both pods",
+      "E": "Annular pressure falls to the required closing ratio pressure"
+    },
+    "correctAnswer": "C",
+    "explanation": "A surface function sends a low-volume pilot signal down to both subsea control pods, and that pilot pressure is what energizes (triggers) the close SPM valve in each pod. It is the larger-volume accumulator fluid, not the pilot signal itself, that then physically drives the rams closed once the SPM valve has opened the path for it.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 22,
+    "question": "A function is made at surface to close a set of rams. What are you likely to observe?",
+    "choices": {
+      "A": "The ram indicator light changes from green to red",
+      "B": "The flowmeter runs and stops at the required closing volume",
+      "C": "Manifold readback pressure falls, then builds back up",
+      "D": "Accumulator pressure falls, then builds back up",
+      "E": "All of the above"
+    },
+    "correctAnswer": "E",
+    "explanation": "A clean, successful ram closure produces all of these signs together: the status light changes to reflect the new position, the flowmeter registers the expected volume of fluid delivered and then stops, and both manifold and accumulator pressures dip as fluid is used and then recover as the system repressurizes. Seeing all of them is how you confirm the function actually worked.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 23,
+    "question": "According to API RP 16E, what is the maximum closing time allowed for a subsea annular preventer?",
+    "choices": {
+      "A": "30 seconds",
+      "B": "40 seconds",
+      "C": "50 seconds",
+      "D": "60 seconds",
+      "E": "70 seconds"
+    },
+    "correctAnswer": "D",
+    "explanation": "API RP 16E sets 60 seconds as the maximum allowable closing time for a subsea annular preventer, reflecting the balance between closing fast enough to be effective in an emergency and not so violently fast that the equipment or the well is damaged in the process.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 24,
+    "question": "A driller functions a ram at surface. The light changes, the flowmeter runs, and manifold and accumulator pressures both fall. The flowmeter keeps running well past the expected closing volume, and pressures keep falling. What should he do next?",
+    "choices": {
+      "A": "Call the subsea engineer",
+      "B": "Put the function into block",
+      "C": "Call the toolpusher",
+      "D": "Go down to the accumulator unit and function it manually from there",
+      "E": "Abandon the rig floor"
+    },
+    "correctAnswer": "B",
+    "explanation": "A flowmeter that won't stop and pressures that keep dropping point to a stuck valve or a leak somewhere in the system, continuing to drain the accumulators. The immediate first step is to put the function into block to stop the fluid loss â€” only after that is contained does it make sense to call for help or investigate further.",
+    "topic": "Subsea Questions"
+  },
+  {
+    "id": 25,
+    "question": "Which statement about accumulator bottles mounted on subsea BOP stacks is correct?",
+    "choices": {
+      "A": "They are generally painted to correspond with the pod they are allocated to",
+      "B": "They have all their pressure bled off before being retrieved to surface",
+      "C": "They can be retrieved individually or in groups with the pod",
+      "D": "They will have less usable fluid than comparable bottles on surface",
+      "E": "Accumulator bottles are not run on subsea BOPs"
+    },
+    "correctAnswer": "D",
+    "explanation": "Subsea accumulator bottles have to work against the ambient hydrostatic pressure of the surrounding sea water pressing in on them, which eats into the pressure difference available to actually deliver fluid. As a result, a subsea bottle yields less usable fluid than an equivalent bottle operating at surface, where there is no comparable back-pressure to fight against.",
+    "topic": "Subsea Questions"
+  }
+]

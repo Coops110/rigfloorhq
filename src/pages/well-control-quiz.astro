@@ -1,0 +1,303 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import quizData from '../lib/data/well-control-quiz.json';
+
+// 200 well control practice questions across 8 topics. Generic theory and
+// numbers only — no rig, well, or company reference anywhere in the source
+// data, verified before this page was built.
+type Question = {
+  id: number;
+  question: string;
+  choices: Record<string, string>;
+  correctAnswer: string;
+  explanation: string;
+  topic: string;
+};
+
+const questions = quizData as Question[];
+
+const topicOrder = [
+  'Basic Knowledge',
+  'Basic Pressure',
+  'Warning Signs and Shut-In',
+  'Shut-In Conditions',
+  'Volumes and MAASP',
+  'Kill Methods',
+  'Some Tricky Stuff',
+  'Subsea Questions',
+];
+
+function slugify(topic: string) {
+  return topic.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
+const topics = topicOrder.map((topic) => ({
+  name: topic,
+  slug: slugify(topic),
+  questions: questions.filter((q) => q.topic === topic),
+}));
+---
+<BaseLayout
+  title="Well Control Quiz: 200 Practice Questions"
+  description="200 well control practice questions across 8 topics: pressure, kick warning signs, shut-in, MAASP, kill methods, subsea, and more. Practice interactively or read every answer."
+  breadcrumbs={[{ label: 'Well Control Quiz', href: '/well-control-quiz' }]}
+  lang="en"
+>
+  {/* No alternateHref: there is no Spanish version of this page, so BaseLayout
+      emits no hreflang at all rather than declaring an alternate that does not
+      reciprocate. The Nav switcher still goes somewhere sensible. */}
+  <Nav slot="nav" lang="en" alternateHref="/es" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Reference — Practice</div>
+    <h1>Well Control <span>Quiz</span></h1>
+    <p class="page-hero-sub">200 practice questions across 8 topics, the same ground covered by IWCF and IADC well control certification. Read through every question and answer below, or hit "Practice This Topic" to test yourself one question at a time.</p>
+  </div>
+
+  <section class="block">
+    <div class="prose">
+      <h2 class="sr-only">Topics</h2>
+      <div class="quiz-topic-nav">
+        {topics.map((t) => (
+          <a href={`#${t.slug}`}>{t.name} <span>({t.questions.length})</span></a>
+        ))}
+      </div>
+      <div class="note-box mt-24">
+        <strong>Practice only, not a certified exam.</strong> These questions cover the same ground as IWCF and IADC well control exams but are not affiliated with either body and do not substitute for accredited certification. Nothing you enter is saved, sent anywhere, or stored — reloading the page clears it.
+      </div>
+    </div>
+  </section>
+
+  {topics.map((t) => (
+    <section class="block quiz-topic" id={t.slug} data-topic-slug={t.slug}>
+      <div class="prose">
+        <h2>{t.name} <span class="quiz-count">— {t.questions.length} questions</span></h2>
+      </div>
+
+      <button type="button" class="btn btn-primary quiz-start-btn">Practice This Topic →</button>
+
+      <div class="quiz-study">
+        {t.questions.map((q, i) => (
+          <div class="q-card">
+            <div class="q-num">Question {i + 1}</div>
+            <p class="q-text">{q.question}</p>
+            <div class="q-choices">
+              {Object.entries(q.choices).filter(([, text]) => text).map(([letter, text]) => (
+                <div class={`q-choice${letter === q.correctAnswer ? ' correct' : ''}`}>
+                  <strong>{letter}.</strong> {text}{letter === q.correctAnswer ? ' ✓' : ''}
+                </div>
+              ))}
+            </div>
+            <div class="q-explain"><strong>Why:</strong> {q.explanation}</div>
+          </div>
+        ))}
+      </div>
+
+      <div class="quiz-interactive hidden"></div>
+
+      <script type="application/json" class="quiz-data" set:html={JSON.stringify(t.questions)} />
+    </section>
+  ))}
+
+  <section class="block">
+    <div class="prose">
+      <p>Working these calculations out yourself first is worth more than reading the explanation cold — the <a href="/calculators/kill-sheet">kill sheet calculator</a> and <a href="/drilling/formulas">drilling formulas cheat sheet</a> run the same math these questions test.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .quiz-topic-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  .quiz-topic-nav a {
+    font-size: 13px;
+    color: var(--mist);
+    background: var(--iron);
+    border: 1px solid var(--iron);
+    border-radius: 20px;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  .quiz-topic-nav a:hover { border-color: var(--amber); color: var(--white); }
+  .quiz-topic-nav a span { color: var(--fog); font-size: 11px; }
+
+  .quiz-count { font-size: 14px; color: var(--fog); font-weight: 400; }
+
+  .quiz-start-btn { margin: 4px 0 24px; }
+
+  .q-card {
+    background: var(--steel);
+    border: 1px solid var(--iron);
+    border-radius: 6px;
+    padding: 20px 22px;
+    margin-bottom: 14px;
+  }
+  .q-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fog);
+    margin-bottom: 6px;
+  }
+  .q-text { font-weight: 600; color: var(--white); margin-bottom: 12px; }
+  .q-choices { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+  .q-choice { font-size: 14px; color: var(--mist); padding: 6px 10px; border-radius: 4px; }
+  .q-choice.correct { color: var(--white); background: rgba(74, 222, 128, 0.12); border: 1px solid rgba(74, 222, 128, 0.35); }
+  .q-explain { font-size: 13px; color: var(--fog); border-top: 1px solid var(--iron); padding-top: 12px; }
+  .q-explain strong { color: var(--amber); }
+
+  .hidden { display: none !important; }
+
+  .quiz-interactive {
+    background: var(--steel);
+    border: 1px solid var(--iron);
+    border-radius: 6px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .qi-progress { font-family: var(--mono); font-size: 11px; color: var(--fog); margin-bottom: 12px; }
+  .qi-text { font-weight: 600; color: var(--white); margin-bottom: 16px; font-size: 16px; }
+  .qi-choice {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: var(--ink);
+    border: 1px solid var(--iron);
+    color: var(--mist);
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .qi-choice:hover:not(:disabled) { border-color: var(--amber); }
+  .qi-choice:disabled { cursor: default; }
+  .qi-choice.right { border-color: #4ade80; background: rgba(74, 222, 128, 0.12); color: var(--white); }
+  .qi-choice.wrong { border-color: var(--danger); background: rgba(239, 68, 68, 0.12); color: var(--white); }
+  .qi-explain { font-size: 13px; color: var(--fog); margin: 14px 0; padding-top: 14px; border-top: 1px solid var(--iron); }
+  .qi-score-big { font-size: 2.4em; font-weight: 700; text-align: center; color: var(--white); margin: 10px 0; }
+  .qi-score-sub { text-align: center; color: var(--fog); margin-bottom: 20px; }
+</style>
+
+<script>
+  type Question = {
+    id: number;
+    question: string;
+    choices: Record<string, string>;
+    correctAnswer: string;
+    explanation: string;
+    topic: string;
+  };
+
+  function shuffle<T>(arr: T[]): T[] {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  document.querySelectorAll<HTMLElement>('.quiz-topic').forEach((section) => {
+    const startBtn = section.querySelector<HTMLButtonElement>('.quiz-start-btn');
+    const studyDiv = section.querySelector<HTMLElement>('.quiz-study');
+    const interactiveDiv = section.querySelector<HTMLElement>('.quiz-interactive');
+    const dataScript = section.querySelector<HTMLScriptElement>('script.quiz-data');
+    if (!startBtn || !studyDiv || !interactiveDiv || !dataScript) return;
+
+    const allQuestions: Question[] = JSON.parse(dataScript.textContent || '[]');
+    let queue: Question[] = [];
+    let index = 0;
+    let correctCount = 0;
+
+    function renderQuestion() {
+      if (!interactiveDiv) return;
+      const q = queue[index];
+      const entries = Object.entries(q.choices).filter(([, text]) => text);
+      interactiveDiv.innerHTML = `
+        <div class="qi-progress">Question ${index + 1} of ${queue.length}</div>
+        <div class="qi-text"></div>
+        <div class="qi-choices"></div>
+      `;
+      interactiveDiv.querySelector('.qi-text')!.textContent = q.question;
+      const choicesEl = interactiveDiv.querySelector('.qi-choices')!;
+      entries.forEach(([letter, text]) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'qi-choice';
+        btn.textContent = `${letter}. ${text}`;
+        btn.addEventListener('click', () => selectChoice(letter, q));
+        choicesEl.appendChild(btn);
+      });
+    }
+
+    function selectChoice(letter: string, q: Question) {
+      if (!interactiveDiv) return;
+      const buttons = Array.from(interactiveDiv.querySelectorAll<HTMLButtonElement>('.qi-choice'));
+      buttons.forEach((b) => (b.disabled = true));
+      const isRight = letter === q.correctAnswer;
+      if (isRight) correctCount++;
+      buttons.forEach((b) => {
+        const l = b.textContent?.trim().charAt(0);
+        if (l === q.correctAnswer) b.classList.add('right');
+        else if (l === letter) b.classList.add('wrong');
+      });
+
+      const explainDiv = document.createElement('div');
+      explainDiv.className = 'qi-explain';
+      explainDiv.innerHTML = `<strong>${isRight ? 'Correct.' : 'Not quite.'}</strong> ${q.explanation}`;
+      interactiveDiv.appendChild(explainDiv);
+
+      const nextBtn = document.createElement('button');
+      nextBtn.type = 'button';
+      nextBtn.className = 'btn btn-primary';
+      nextBtn.textContent = index + 1 < queue.length ? 'Next Question →' : 'See Score →';
+      nextBtn.addEventListener('click', () => {
+        index++;
+        if (index < queue.length) renderQuestion();
+        else showResults();
+      });
+      interactiveDiv.appendChild(nextBtn);
+    }
+
+    function showResults() {
+      if (!interactiveDiv) return;
+      const pct = Math.round((correctCount / queue.length) * 100);
+      interactiveDiv.innerHTML = `
+        <div class="qi-score-big">${correctCount} / ${queue.length}</div>
+        <div class="qi-score-sub">${pct}% correct</div>
+      `;
+      const backBtn = document.createElement('button');
+      backBtn.type = 'button';
+      backBtn.className = 'btn btn-primary';
+      backBtn.style.display = 'block';
+      backBtn.style.margin = '0 auto';
+      backBtn.textContent = 'Back to Full List';
+      backBtn.addEventListener('click', () => {
+        interactiveDiv.classList.add('hidden');
+        studyDiv?.classList.remove('hidden');
+        startBtn!.textContent = 'Practice This Topic →';
+        startBtn!.classList.remove('hidden');
+      });
+      interactiveDiv.appendChild(backBtn);
+    }
+
+    startBtn.addEventListener('click', () => {
+      queue = shuffle(allQuestions);
+      index = 0;
+      correctCount = 0;
+      studyDiv.classList.add('hidden');
+      interactiveDiv.classList.remove('hidden');
+      startBtn.classList.add('hidden');
+      renderQuestion();
+    });
+  });
+</script>
