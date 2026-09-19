@@ -46,9 +46,7 @@ import Footer from '../../../components/Footer.astro';
             </div>
           </div>
 
-          <button class="btn btn-primary" id="calc-mww-btn" style="width:100%;text-align:center;">Calcular Ventana</button>
-
-          <div class="calc-output" id="mww-output">
+          <div class="calc-output visible" id="mww-output">
             <div class="output-line"><span class="output-label">Ancho de Ventana</span><span class="output-value" id="out-window">—</span></div>
             <div class="output-line"><span class="output-label">Margen Sobre Presión de Poro</span><span class="output-value" id="out-margin-low">—</span></div>
             <div class="output-line"><span class="output-label">Margen Bajo Fractura</span><span class="output-value" id="out-margin-high">—</span></div>
@@ -86,19 +84,25 @@ import Footer from '../../../components/Footer.astro';
 </BaseLayout>
 
 <script>
-  const btn = document.getElementById('calc-mww-btn');
-  btn?.addEventListener('click', () => {
-    const current = parseFloat((document.getElementById('mww-current') as HTMLInputElement).value);
-    const pp = parseFloat((document.getElementById('mww-pp') as HTMLInputElement).value);
-    const fg = parseFloat((document.getElementById('mww-fg') as HTMLInputElement).value);
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
 
-    if (!current || !pp || !fg) {
-      alert('Por favor completa los campos de peso de lodo, presión de poro, y gradiente de fractura.');
-      return;
-    }
+  function clearOutputs() {
+    (document.getElementById('out-window') as HTMLElement).textContent = '—';
+    (document.getElementById('out-margin-low') as HTMLElement).textContent = '—';
+    (document.getElementById('out-margin-high') as HTMLElement).textContent = '—';
+    (document.getElementById('out-position') as HTMLElement).textContent = '—';
+    (document.getElementById('mww-visual') as HTMLElement).style.display = 'none';
+  }
 
-    if (fg <= pp) {
-      alert('El gradiente de fractura debe ser mayor que el gradiente de presión de poro.');
+  function calc() {
+    const current = num('mww-current'), pp = num('mww-pp'), fg = num('mww-fg');
+
+    if (!current || !pp || !fg || fg <= pp) {
+      clearOutputs();
       return;
     }
 
@@ -126,7 +130,8 @@ import Footer from '../../../components/Footer.astro';
     const marker = document.getElementById('mww-marker') as HTMLElement;
     marker.style.left = `calc(${pct}% - 1.5px)`;
     (document.getElementById('mww-visual') as HTMLElement).style.display = 'block';
+  }
 
-    document.getElementById('mww-output')?.classList.add('visible');
-  });
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  clearOutputs();
 </script>

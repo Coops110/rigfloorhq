@@ -46,9 +46,7 @@ import Footer from '../../../components/Footer.astro';
             </div>
           </div>
 
-          <button class="btn btn-primary" id="calc-hydro-btn" style="width:100%;text-align:center;">Calcular</button>
-
-          <div class="calc-output" id="hydro-output">
+          <div class="calc-output visible" id="hydro-output">
             <div class="output-line"><span class="output-label">Presión Hidrostática</span><span class="output-value" id="out-hp">—</span></div>
             <div class="output-line"><span class="output-label">Presión de Poro</span><span class="output-value" id="out-pp">—</span></div>
             <div class="output-line"><span class="output-label">Presión de Fractura</span><span class="output-value" id="out-fp">—</span></div>
@@ -87,15 +85,22 @@ import Footer from '../../../components/Footer.astro';
 </BaseLayout>
 
 <script>
-  const btn = document.getElementById('calc-hydro-btn');
-  btn?.addEventListener('click', () => {
-    const mw = parseFloat((document.getElementById('mw') as HTMLInputElement).value);
-    const tvd = parseFloat((document.getElementById('tvd') as HTMLInputElement).value);
-    const ppg = parseFloat((document.getElementById('ppg_input') as HTMLInputElement).value);
-    const fg = parseFloat((document.getElementById('fg_input') as HTMLInputElement).value);
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+
+  function calc() {
+    const mw = num('mw'), tvd = num('tvd'), ppg = num('ppg_input'), fg = num('fg_input');
+    const statusEl = document.getElementById('out-status') as HTMLElement;
 
     if (!mw || !tvd || !ppg || !fg) {
-      alert('Por favor completa los cuatro campos.');
+      (document.getElementById('out-hp') as HTMLElement).textContent = '—';
+      (document.getElementById('out-pp') as HTMLElement).textContent = '—';
+      (document.getElementById('out-fp') as HTMLElement).textContent = '—';
+      (document.getElementById('out-ob') as HTMLElement).textContent = '—';
+      statusEl.textContent = '—';
       return;
     }
 
@@ -109,7 +114,6 @@ import Footer from '../../../components/Footer.astro';
     (document.getElementById('out-fp') as HTMLElement).textContent = fp.toFixed(0) + ' psi';
     (document.getElementById('out-ob') as HTMLElement).textContent = ob.toFixed(0) + ' psi';
 
-    const statusEl = document.getElementById('out-status') as HTMLElement;
     if (hp < pp) {
       statusEl.innerHTML = '<span class="status-badge status-danger">🚨 SUBBALANCEADO — Riesgo de Surgencia</span>';
     } else if (hp > fp) {
@@ -121,7 +125,8 @@ import Footer from '../../../components/Footer.astro';
     } else {
       statusEl.innerHTML = '<span class="status-badge status-safe">✅ Ventana de Perforación Segura</span>';
     }
+  }
 
-    document.getElementById('hydro-output')?.classList.add('visible');
-  });
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
 </script>
