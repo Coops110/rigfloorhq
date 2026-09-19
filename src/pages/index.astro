@@ -79,6 +79,21 @@ const jsonLd = {
   </section>
 
   <section class="block">
+    <div class="quiz-feature">
+      <div class="quiz-feature-text">
+        <div class="section-eyebrow">Test Yourself</div>
+        <h2 class="section-title">Think You Know <span>Well Control?</span></h2>
+        <p>200 real practice questions across 8 topics — pressure, kick warning signs, shut-in, MAASP, kill methods, subsea, and more. Pick a topic, answer live, and see exactly where you stand.</p>
+        <a href="/well-control-quiz" class="btn btn-primary">Take the Quiz →</a>
+      </div>
+      <div class="quiz-feature-stats">
+        <div class="stat"><span class="stat-num">200</span><span class="stat-label">Practice questions</span></div>
+        <div class="stat"><span class="stat-num">8</span><span class="stat-label">Topics covered</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
     <div class="section-eyebrow">Explore</div>
     <h2 class="section-title">Full <span>Reference Library</span></h2>
     <div class="related-links">
@@ -97,7 +112,36 @@ const jsonLd = {
       <a href="/welding/underwater-welding" class="related-link"><div class="rl-label">Welding</div><div class="rl-title">Underwater Welding</div></a>
       <a href="/safety/h2s" class="related-link"><div class="rl-label">Safety</div><div class="rl-title">H₂S Safety</div></a>
       <a href="/glossary" class="related-link"><div class="rl-label">Reference</div><div class="rl-title">Full Glossary A–Z</div></a>
+      <a href="/well-control-quiz" class="related-link"><div class="rl-label">Practice</div><div class="rl-title">Well Control Quiz — 200 Questions</div></a>
       <a href="/blog" class="related-link"><div class="rl-label">Blog</div><div class="rl-title">Field Notes</div></a>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .quiz-feature {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    align-items: center;
+    background: linear-gradient(135deg, var(--steel), var(--ink));
+    border: 1px solid var(--rust);
+    border-radius: 10px;
+    padding: 36px 32px;
+  }
+  @media (min-width: 800px) {
+    .quiz-feature { grid-template-columns: 2fr 1fr; padding: 44px 48px; }
+  }
+  .quiz-feature-text .section-eyebrow { margin-bottom: 6px; }
+  .quiz-feature-text .section-title { margin-bottom: 12px; }
+  .quiz-feature-text p { color: var(--mist); max-width: 560px; margin-bottom: 22px; }
+  .quiz-feature-stats {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    justify-content: flex-start;
+  }
+  @media (min-width: 800px) {
+    .quiz-feature-stats { flex-direction: column; gap: 20px; justify-content: center; border-left: 1px solid var(--iron); padding-left: 32px; }
+  }
+</style>
