@@ -1,0 +1,254 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'What is lag time and why does it matter?',
+    a: 'Lag time is how long it takes a sample of fluid, cuttings, or gas at the bit to reach surface after it enters the annulus. Without it, a gas show or cuttings change at surface can\'t be tied back to the depth that produced it — every mud logging correlation depends on getting lag right first.',
+  },
+  {
+    q: 'Why does pump type change the output-per-stroke formula?',
+    a: 'A triplex pump displaces fluid on one side of the piston per stroke (single-acting), so its output depends only on the liner area and stroke length. A duplex pump displaces on both sides (double-acting), but the rod takes up cross-sectional area on one side, so its formula subtracts the rod area — leaving it out overstates duplex output.',
+  },
+  {
+    q: 'What is the difference between capacity and displacement?',
+    a: 'Capacity is the volume inside the pipe (uses ID) — what fills it and what a pump has to move to fill it. Displacement is the volume of steel the pipe itself takes up (uses OD minus ID) — what the pipe pushes out of the way when it\'s run into a full hole. Both come from the same formula shape, just different diameters.',
+  },
+  {
+    q: 'Why measure volumetric efficiency instead of assuming 100%?',
+    a: 'Piston and valve wear let a pump slip fluid backward on part of every stroke, so real output is always somewhat below the theoretical figure — typically 95-100% freshly serviced, lower as pumps wear. Since every strokes-based number on this page scales off pump output, an assumed efficiency quietly compounds into every downstream figure.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Drill Pipe Lag & Volume Calculator"
+  description="Free lag and volume calculator: pump output, string and annular volumes, lag strokes, and lag time up and down — for triplex or duplex pumps."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Lag & Volume', href: '/calculators/lag-and-volume' }]}
+  lang="en"
+>
+  {/* No alternateHref: there is no Spanish version of this page, so BaseLayout
+      emits no hreflang at all rather than declaring an alternate that does not
+      reciprocate. The Nav switcher still goes somewhere sensible. */}
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Drill Pipe Lag <span>& Volume</span></h1>
+    <p class="page-hero-sub">Pump output, string and annular volumes, and lag strokes and lag time, both down to the bit and back up to surface.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">⚙ Pump</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="pumptype">Pump Type</label>
+              <select id="pumptype">
+                <option value="triplex">Triplex (single-acting)</option>
+                <option value="duplex">Duplex (double-acting)</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="liner">Liner Diameter (in)</label>
+              <input type="number" id="liner" value="6" step="0.01">
+            </div>
+            <div class="input-group">
+              <label for="stroke">Stroke Length (in)</label>
+              <input type="number" id="stroke" value="11" step="0.01">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group" id="rod-field">
+              <label for="rod">Rod Diameter (in) — duplex only</label>
+              <input type="number" id="rod" value="2" step="0.01">
+            </div>
+            <div class="input-group">
+              <label for="eff">Volumetric Efficiency (%)</label>
+              <input type="number" id="eff" value="97" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="spm">Pump Speed (SPM)</label>
+              <input type="number" id="spm" value="50">
+            </div>
+          </div>
+
+          <div class="calc-title" style="margin-top:24px;">🔩 Drill String (internal)</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="dp-od">Pipe OD (in)</label>
+              <input type="number" id="dp-od" value="5" step="0.001">
+            </div>
+            <div class="input-group">
+              <label for="dp-id">Pipe ID (in)</label>
+              <input type="number" id="dp-id" value="4.276" step="0.001">
+            </div>
+            <div class="input-group">
+              <label for="dp-len">Pipe Length (ft)</label>
+              <input type="number" id="dp-len" value="9500">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="bha-od">BHA/Collars OD (in)</label>
+              <input type="number" id="bha-od" value="6.5" step="0.001">
+            </div>
+            <div class="input-group">
+              <label for="bha-id">BHA/Collars ID (in)</label>
+              <input type="number" id="bha-id" value="2.813" step="0.001">
+            </div>
+            <div class="input-group">
+              <label for="bha-len">BHA/Collars Length (ft)</label>
+              <input type="number" id="bha-len" value="500">
+            </div>
+          </div>
+
+          <div class="calc-title" style="margin-top:24px;">⭕ Annulus</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="hole1">Hole/Casing ID opposite Pipe (in)</label>
+              <input type="number" id="hole1" value="8.5" step="0.001">
+            </div>
+            <div class="input-group">
+              <label for="hole1-len">Length opposite Pipe (ft)</label>
+              <input type="number" id="hole1-len" value="9500">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="hole2">Hole ID opposite BHA/Collars (in)</label>
+              <input type="number" id="hole2" value="8.5" step="0.001">
+            </div>
+            <div class="input-group">
+              <label for="hole2-len">Length opposite BHA/Collars (ft)</label>
+              <input type="number" id="hole2-len" value="500">
+            </div>
+          </div>
+
+          <div class="calc-output visible" style="margin-top:20px;">
+            <div class="output-line headline"><span class="output-label">Pump Output</span><span class="output-value" id="out-output">—</span></div>
+            <div class="output-line"><span class="output-label">Pump Rate</span><span class="output-value" id="out-rate">—</span></div>
+            <div class="output-line"><span class="output-label">String Capacity Volume (internal)</span><span class="output-value" id="out-stringcap">—</span></div>
+            <div class="output-line"><span class="output-label">String Steel Displacement</span><span class="output-value" id="out-stringdisp">—</span></div>
+            <div class="output-line"><span class="output-label">Total Annular Volume</span><span class="output-value" id="out-annvol">—</span></div>
+            <div class="output-line"><span class="output-label">Lag Strokes Down (to bit)</span><span class="output-value" id="out-strokesdown">—</span></div>
+            <div class="output-line"><span class="output-label">Lag Strokes Up (bottoms-up)</span><span class="output-value" id="out-strokesup">—</span></div>
+            <div class="output-line"><span class="output-label">Lag Time Down</span><span class="output-value" id="out-timedown">—</span></div>
+            <div class="output-line" style="border-bottom:none;"><span class="output-label">Lag Time Up (bottoms-up)</span><span class="output-value" id="out-timeup">—</span></div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Reference only.</strong> Measure pump output and volumetric efficiency against your actual equipment rather than trusting nameplate figures — a worn pump quietly throws off every number below it.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formulas Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">Pump Output — Triplex</div>
+          <div class="formula-eq">Output (bbl/stk) = 0.000243 × Liner² (in) × Stroke (in) × Efficiency</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Pump Output — Duplex</div>
+          <div class="formula-eq">Output (bbl/stk) = 0.000162 × Stroke × (2 × Liner² − Rod²) × Efficiency</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Capacity and Displacement</div>
+          <div class="formula-eq">Capacity (bbl/ft) = ID² ÷ 1029.4<br />Displacement (bbl/ft) = (OD² − ID²) ÷ 1029.4</div>
+          <div class="formula-note">Annular capacity uses the same shape: (hole ID² − pipe OD²) ÷ 1029.4.</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Lag Strokes and Time</div>
+          <div class="formula-eq">Strokes = Volume (bbl) ÷ Pump Output (bbl/stk)<br />Time (min) = Strokes ÷ SPM</div>
+          <div class="formula-note">Down uses drill string capacity. Up (bottoms-up) uses annular volume.</div>
+        </div>
+
+        <p>These are the same capacity and displacement formulas behind the <a href="/calculators/kill-sheet">kill sheet calculator</a>'s strokes-to-bit and bottoms-up figures — this page just runs them for routine lag correlation rather than a kill. For the constants written out with worked numbers, see the <a href="/drilling/formulas">drilling formulas cheat sheet</a>.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+
+  function calc() {
+    const pumpType = (document.getElementById('pumptype') as HTMLSelectElement).value;
+    const rodField = document.getElementById('rod-field') as HTMLElement;
+    rodField.style.opacity = pumpType === 'duplex' ? '1' : '0.4';
+
+    const liner = num('liner'), stroke = num('stroke'), rod = num('rod'), eff = num('eff') / 100, spm = num('spm');
+    let outputPerStroke = pumpType === 'triplex'
+      ? 0.000243 * liner * liner * stroke
+      : 0.000162 * stroke * (2 * liner * liner - rod * rod);
+    outputPerStroke *= eff;
+    const bpm = outputPerStroke * spm;
+    const gpm = bpm * 42;
+
+    const dpCap = (num('dp-id') * num('dp-id')) / 1029.4;
+    const dpDisp = (num('dp-od') * num('dp-od') - num('dp-id') * num('dp-id')) / 1029.4;
+    const bhaCap = (num('bha-id') * num('bha-id')) / 1029.4;
+    const bhaDisp = (num('bha-od') * num('bha-od') - num('bha-id') * num('bha-id')) / 1029.4;
+
+    const stringCapVol = dpCap * num('dp-len') + bhaCap * num('bha-len');
+    const stringDispVol = dpDisp * num('dp-len') + bhaDisp * num('bha-len');
+
+    const ann1Cap = (num('hole1') * num('hole1') - num('dp-od') * num('dp-od')) / 1029.4;
+    const ann2Cap = (num('hole2') * num('hole2') - num('bha-od') * num('bha-od')) / 1029.4;
+    const annVol = ann1Cap * num('hole1-len') + ann2Cap * num('hole2-len');
+
+    const strokesDown = outputPerStroke > 0 ? stringCapVol / outputPerStroke : 0;
+    const strokesUp = outputPerStroke > 0 ? annVol / outputPerStroke : 0;
+    const minutesDown = spm > 0 ? strokesDown / spm : 0;
+    const minutesUp = spm > 0 ? strokesUp / spm : 0;
+
+    (document.getElementById('out-output') as HTMLElement).textContent = fmt(outputPerStroke, 4) + ' bbl/stroke';
+    (document.getElementById('out-rate') as HTMLElement).textContent = fmt(bpm, 2) + ' bbl/min (' + fmt(gpm, 0) + ' gpm)';
+    (document.getElementById('out-stringcap') as HTMLElement).textContent = fmt(stringCapVol, 1) + ' bbls';
+    (document.getElementById('out-stringdisp') as HTMLElement).textContent = fmt(stringDispVol, 1) + ' bbls';
+    (document.getElementById('out-annvol') as HTMLElement).textContent = fmt(annVol, 1) + ' bbls';
+    (document.getElementById('out-strokesdown') as HTMLElement).textContent = fmt(strokesDown, 0) + ' strokes';
+    (document.getElementById('out-strokesup') as HTMLElement).textContent = fmt(strokesUp, 0) + ' strokes';
+    (document.getElementById('out-timedown') as HTMLElement).textContent = fmt(minutesDown, 1) + ' min';
+    (document.getElementById('out-timeup') as HTMLElement).textContent = fmt(minutesUp, 1) + ' min';
+  }
+
+  document.querySelectorAll('.calc-box input, .calc-box select').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

@@ -1,0 +1,216 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'What is a ton-mile and why does drilling line wear get measured in it?',
+    a: 'One ton-mile is one ton of load moved one mile of travel — it captures both how heavy the load was and how far the line moved it, which together drive fatigue in the wire rope. API RP 9B tracks cumulative ton-miles against a service-life rating so a line gets cut and slipped before it fails, not after.',
+  },
+  {
+    q: 'Why do drilling, coring, and short-trip ton-miles use different multipliers?',
+    a: 'Each covers a different amount of round-trip work. Drilling trips (3×) assume a full round trip to change the bit and back. Coring trips (2×) come out of the hole slower and more carefully but do not need the same repeated connections. A short trip (1×, no multiplier) is a partial round trip, so it gets the plain depth-to-depth difference with no adjustment.',
+  },
+  {
+    q: 'Why does buoyancy factor use 65.5, not the exact density of steel?',
+    a: 'Steel works out to roughly 65.44 ppg, and 65.5 is the field-rounded constant almost everyone actually uses. The gap is under a tenth of a percent, but it is worth knowing about if a ton-mile figure will not reconcile exactly against a service company\'s own numbers.',
+  },
+  {
+    q: 'Is setting-casing ton-miles calculated the same way as a round trip?',
+    a: 'No — it is a separate, one-way calculation, because running casing to bottom is not a round trip. It still uses the same buoyed-weight logic, just applied to the casing string being run rather than the drill string being tripped.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Ton-Mile Calculator: Drilling Line Service Life"
+  description="Free ton-mile calculator for drilling line service life: round trip, drilling, coring, short trip, and setting-casing ton-miles per API RP 9B / Lapeyrouse."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Ton-Mile', href: '/calculators/ton-mile' }]}
+  lang="en"
+>
+  {/* No alternateHref: there is no Spanish version of this page, so BaseLayout
+      emits no hreflang at all rather than declaring an alternate that does not
+      reciprocate. The Nav switcher still goes somewhere sensible. */}
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Ton-Mile <span>Calculator</span></h1>
+    <p class="page-hero-sub">Round trip, drilling, coring, short trip, and setting-casing ton-miles for tracking drilling line service life against its API RP 9B rating.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🎣 Rig &amp; String</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="mw">Mud Weight (ppg)</label>
+              <input type="number" id="mw" value="9.6" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="dpwt">Drill Pipe Weight, air (lb/ft)</label>
+              <input type="number" id="dpwt" value="13.3" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="stand">Average Stand Length (ft)</label>
+              <input type="number" id="stand" value="90">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="block">Travelling Block Weight (lb)</label>
+              <input type="number" id="block" value="15000">
+            </div>
+            <div class="input-group">
+              <label for="dclen">Drill Collar Length (ft)</label>
+              <input type="number" id="dclen" value="600">
+            </div>
+            <div class="input-group">
+              <label for="dcwt">Drill Collar Weight, air (lb/ft)</label>
+              <input type="number" id="dcwt" value="83" step="0.1">
+            </div>
+          </div>
+
+          <div class="calc-title" style="margin-top:24px;">📏 Round Trip at Two Depths</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="deptha">Depth A — start of interval (ft)</label>
+              <input type="number" id="deptha" value="8000">
+            </div>
+            <div class="input-group">
+              <label for="depthb">Depth B — end of interval (ft)</label>
+              <input type="number" id="depthb" value="8500">
+            </div>
+          </div>
+
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line"><span class="output-label">Buoyancy Factor</span><span class="output-value" id="out-bf">—</span></div>
+            <div class="output-line headline"><span class="output-label">Round Trip TM @ Depth A</span><span class="output-value" id="out-rttma">—</span></div>
+            <div class="output-line headline"><span class="output-label">Round Trip TM @ Depth B</span><span class="output-value" id="out-rttmb">—</span></div>
+            <div class="output-line"><span class="output-label">Drilling / Connection TM (3× diff.)</span><span class="output-value" id="out-drilling">—</span></div>
+            <div class="output-line"><span class="output-label">Coring TM (2× diff.)</span><span class="output-value" id="out-coring">—</span></div>
+            <div class="output-line" style="border-bottom:none;"><span class="output-label">Short-Trip TM (straight diff.)</span><span class="output-value" id="out-shorttrip">—</span></div>
+          </div>
+
+          <div class="calc-title" style="margin-top:24px;">🛢 Setting Casing (separate one-way calc)</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="csgwt">Casing Weight, buoyed (lb/ft)</label>
+              <input type="number" id="csgwt" value="40" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="csgdepth">Casing Depth (ft)</label>
+              <input type="number" id="csgdepth" value="8500">
+            </div>
+            <div class="input-group">
+              <label for="csgjoint">Length of One Joint (ft)</label>
+              <input type="number" id="csgjoint" value="40">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Setting Casing Ton-Miles</span><span class="output-value" id="out-csgtm">—</span></div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Reference only.</strong> Track cumulative ton-miles against your drilling line's actual service-life rating and cut-and-slip programme, not a one-off figure from this page.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formulas Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">Buoyancy Factor</div>
+          <div class="formula-eq">BF = (65.5 − MW) ÷ 65.5</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Round Trip Ton-Miles</div>
+          <div class="formula-eq">RTTM = [Wp × D × (Ls + D) + 2D × (2×Wb + Wc)] ÷ (5280 × 2000)</div>
+          <div class="formula-note">Wp = buoyed drill pipe weight/ft · D = depth · Ls = stand length · Wb = block weight · Wc = buoyed collar weight minus equivalent drill pipe weight over the collar length. Per API RP 9B / Lapeyrouse.</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Drilling, Coring &amp; Short-Trip Ton-Miles</div>
+          <div class="formula-eq">Drilling = 3 × (RTTM at B − RTTM at A)<br />Coring = 2 × (RTTM at B − RTTM at A)<br />Short-Trip = RTTM at B − RTTM at A</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Setting Casing Ton-Miles</div>
+          <div class="formula-eq">TM = [Wp × D × (Lj + D) + D × Wb] × 0.5 ÷ (5280 × 2000)</div>
+          <div class="formula-note">Wp = buoyed casing weight/ft · D = casing depth · Lj = length of one joint · Wb = block weight.</div>
+        </div>
+
+        <p>Buoyancy factor here uses the same 65.5 constant as the <a href="/drilling/formulas">drilling formulas cheat sheet</a>'s buoyancy section — see that page if a figure needs reconciling to more decimal places.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+
+  function roundTripTM(depth: number, mw: number, dpWtAir: number, standLen: number, blockWt: number, dcLen: number, dcWtAir: number) {
+    const bf = (65.5 - mw) / 65.5;
+    const wp = dpWtAir * bf;
+    const wc = (dcLen * dcWtAir * bf) - (dcLen * dpWtAir * bf);
+    const D = depth;
+    const rttm = (wp * D * (standLen + D) + (2 * D) * (2 * blockWt + wc)) / (5280 * 2000);
+    return { rttm, bf };
+  }
+
+  function calc() {
+    const mw = num('mw'), dpWt = num('dpwt'), stand = num('stand');
+    const block = num('block'), dcLen = num('dclen'), dcWt = num('dcwt');
+    const depthA = num('deptha'), depthB = num('depthb');
+
+    const a = roundTripTM(depthA, mw, dpWt, stand, block, dcLen, dcWt);
+    const b = roundTripTM(depthB, mw, dpWt, stand, block, dcLen, dcWt);
+    const diff = b.rttm - a.rttm;
+
+    (document.getElementById('out-bf') as HTMLElement).textContent = fmt(a.bf, 4);
+    (document.getElementById('out-rttma') as HTMLElement).textContent = fmt(a.rttm, 2) + ' ton-miles';
+    (document.getElementById('out-rttmb') as HTMLElement).textContent = fmt(b.rttm, 2) + ' ton-miles';
+    (document.getElementById('out-drilling') as HTMLElement).textContent = fmt(3 * diff, 2) + ' ton-miles';
+    (document.getElementById('out-coring') as HTMLElement).textContent = fmt(2 * diff, 2) + ' ton-miles';
+    (document.getElementById('out-shorttrip') as HTMLElement).textContent = fmt(diff, 2) + ' ton-miles';
+
+    const csgWt = num('csgwt'), csgDepth = num('csgdepth'), csgJoint = num('csgjoint');
+    const csgTM = ((csgWt * csgDepth * (csgJoint + csgDepth)) + (csgDepth * block)) * 0.5 / (5280 * 2000);
+    (document.getElementById('out-csgtm') as HTMLElement).textContent = fmt(csgTM, 2) + ' ton-miles';
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

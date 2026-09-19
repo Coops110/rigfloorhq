@@ -91,6 +91,18 @@ import Footer from '../../components/Footer.astro';
           <td>You're making up a bit and need the right torque</td>
           <td><a href="/calculators/bit-torque">Bit Thread &amp; Torque Lookup</a></td>
         </tr>
+        <tr>
+          <td>You need lag strokes, lag time, or pump output</td>
+          <td><a href="/calculators/lag-and-volume">Lag &amp; Volume</a></td>
+        </tr>
+        <tr>
+          <td>You're tracking drilling line wear against its service life</td>
+          <td><a href="/calculators/ton-mile">Ton-Mile</a></td>
+        </tr>
+        <tr>
+          <td>Rig floor elevation changed and depths need reconciling</td>
+          <td><a href="/calculators/odf-depth-correction">ODF Depth Correction</a></td>
+        </tr>
       </tbody>
     </table>
 
@@ -144,6 +156,27 @@ import Footer from '../../components/Footer.astro';
         <p>Bit size to thread connection, then make-up torque for that connection on PDC and roller cone bits.</p>
         <p class="card-formula"><strong>Range:</strong> Minimum / Maximum / Max. Severe</p>
         <a href="/calculators/bit-torque" class="card-link">Open Lookup →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🧮</span>
+        <h3>Lag &amp; Volume Calculator</h3>
+        <p>Pump output, string and annular volumes, and lag strokes and lag time down to the bit and back up.</p>
+        <p class="card-formula"><strong>Formula:</strong> Strokes = Volume ÷ Pump Output</p>
+        <a href="/calculators/lag-and-volume" class="card-link">Open Calculator →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎣</span>
+        <h3>Ton-Mile Calculator</h3>
+        <p>Round trip, drilling, coring, short trip, and setting-casing ton-miles for drilling line service life.</p>
+        <p class="card-formula"><strong>Standard:</strong> API RP 9B / Lapeyrouse</p>
+        <a href="/calculators/ton-mile" class="card-link">Open Calculator →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">📐</span>
+        <h3>ODF Depth Correction</h3>
+        <p>Reconcile drill pipe tally depth against wireline depth after a rig floor elevation change.</p>
+        <p class="card-formula"><strong>Formula:</strong> Final = C1 + C2</p>
+        <a href="/calculators/odf-depth-correction" class="card-link">Open Calculator →</a>
       </div>
     </div>
   </section>
@@ -203,7 +236,10 @@ import Footer from '../../components/Footer.astro';
           { "@type": "ListItem", "position": 2, "name": "Kill Sheet Calculator", "url": "https://rigfloorhq.com/calculators/kill-sheet" },
           { "@type": "ListItem", "position": 3, "name": "Mud Weight Window Calculator", "url": "https://rigfloorhq.com/calculators/mud-weight-window" },
           { "@type": "ListItem", "position": 4, "name": "Flange & Ring Gasket Lookup", "url": "https://rigfloorhq.com/calculators/flange-ring-gasket" },
-          { "@type": "ListItem", "position": 5, "name": "Bit Thread & Make-Up Torque Lookup", "url": "https://rigfloorhq.com/calculators/bit-torque" }
+          { "@type": "ListItem", "position": 5, "name": "Bit Thread & Make-Up Torque Lookup", "url": "https://rigfloorhq.com/calculators/bit-torque" },
+          { "@type": "ListItem", "position": 6, "name": "Lag & Volume Calculator", "url": "https://rigfloorhq.com/calculators/lag-and-volume" },
+          { "@type": "ListItem", "position": 7, "name": "Ton-Mile Calculator", "url": "https://rigfloorhq.com/calculators/ton-mile" },
+          { "@type": "ListItem", "position": 8, "name": "ODF Depth Correction Calculator", "url": "https://rigfloorhq.com/calculators/odf-depth-correction" }
         ]
       },
       {

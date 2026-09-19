@@ -2,10 +2,40 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'What is a drillpipe pressure schedule and why do I need one?',
+    a: 'It is the standpipe pressure to hold at each stage of pumping kill mud down the string, stepping from ICP down to FCP as heavier mud replaces the original mud in the drill string. Holding a schedule rather than jumping straight to FCP keeps bottomhole pressure constant while the density inside the pipe is changing — skip it and you either underbalance or overbalance the well partway through the kill.',
+  },
+  {
+    q: 'Why does the schedule step down in strokes, not time?',
+    a: 'Because the variable that matters is how much of the string has been displaced by kill mud, and that tracks pump strokes directly, not the clock. Pump rate changes, but the volume per stroke does not, so strokes-to-bit is the reliable reference for where the kill-weight mud front actually is.',
+  },
+  {
+    q: 'Why do I need both drill string and annular volume?',
+    a: 'Strokes to bit uses only the drill string capacity, because that is what has to be displaced before kill mud reaches bit. Bottoms-up strokes uses annular volume, because that is what has to be pumped afterward to bring the original mud and any influx back to surface. Total circulation is both together — the full round trip.',
+  },
+  {
+    q: 'What happens if I get pump output wrong?',
+    a: 'Every strokes-based number on this page scales directly off it — strokes to bit, bottoms-up, total circulation, and every step in the pressure schedule. A pump output that is off by 5% shifts the whole schedule by roughly the same amount, which is why measured pump output beats a nameplate figure.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
 <BaseLayout
-  title="Kill Sheet Calculator: Kill Mud Weight"
-  description="Free kill sheet calculator for well control. Enter SIDPP, original mud weight, TVD, and slow pump rate to calculate kill mud weight, ICP, and FCP."
+  title="Kill Sheet Calculator: KMW, ICP, FCP & Pressure Schedule"
+  description="Free kill sheet calculator: kill mud weight, ICP, FCP, strokes to bit, bottoms-up, and the full drillpipe pressure step-down schedule to displace kill mud."
+  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Kill Sheet', href: '/calculators/kill-sheet' }]}
   lang="en"
   alternateHref="/es/calculators/kill-sheet"
@@ -16,44 +46,105 @@ import Footer from '../../components/Footer.astro';
   <div class="page-hero">
     <div class="page-hero-eyebrow">Calculator</div>
     <h1>Kill Sheet <span>Calculator</span></h1>
-    <p class="page-hero-sub">Use this after shutting in on a kick to calculate kill mud weight and circulating pressures — the same core math taught in IWCF and IADC well control certification.</p>
+    <p class="page-hero-sub">Use this after shutting in on a kick to calculate kill mud weight, circulating pressures, strokes, and the full drillpipe pressure step-down schedule — the same core math taught in IWCF and IADC well control certification.</p>
   </div>
 
   <section class="block">
     <div class="two-col">
       <div>
         <div class="calc-box">
-          <div class="calc-title">🚨 Kill Sheet Calculator</div>
+          <div class="calc-title">🚨 Well &amp; Kick Data</div>
           <p style="font-size:12px;color:var(--fog);margin-bottom:20px;line-height:1.65;">Requires the well to already be shut in with SIDPP recorded. See the <a href="/drilling/well-control" style="color:var(--amber);">shut-in procedure</a> if you haven't done this yet.</p>
 
           <div class="input-row">
             <div class="input-group">
-              <label for="omw">Original Mud Weight (ppg)</label>
-              <input type="number" id="omw" placeholder="e.g. 11.5" step="0.1">
+              <label for="ks-tvd">True Vertical Depth (ft)</label>
+              <input type="number" id="ks-tvd" value="10000">
             </div>
             <div class="input-group">
-              <label for="sidpp">SIDPP (psi)</label>
-              <input type="number" id="sidpp" placeholder="Shut-in DP pressure">
+              <label for="omw">Original Mud Weight (ppg)</label>
+              <input type="number" id="omw" value="10.0" step="0.1">
             </div>
           </div>
           <div class="input-row">
             <div class="input-group">
-              <label for="kill-tvd">TVD at Bit (ft)</label>
-              <input type="number" id="kill-tvd" placeholder="e.g. 12000">
+              <label for="sidpp">SIDPP (psi)</label>
+              <input type="number" id="sidpp" value="300">
             </div>
             <div class="input-group">
-              <label for="spr">Slow Pump Rate Pressure (psi)</label>
-              <input type="number" id="spr" placeholder="SCR pressure">
+              <label for="spr">Slow Circ. Pressure @ SPM (psi)</label>
+              <input type="number" id="spr" value="450">
             </div>
           </div>
 
-          <button class="btn btn-primary" id="calc-kill-btn" style="width:100%;text-align:center;">Calculate Kill Sheet</button>
+          <div class="calc-title" style="margin-top:24px;">⚙ Pump Data</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="pumpout">Pump Output (bbl/stroke)</label>
+              <input type="number" id="pumpout" value="0.1" step="0.001">
+            </div>
+          </div>
 
-          <div class="calc-output" id="kill-output">
-            <div class="output-line"><span class="output-label">Formation Pressure</span><span class="output-value" id="out-fpp">—</span></div>
-            <div class="output-line"><span class="output-label">Kill Mud Weight</span><span class="output-value" id="out-kmw">—</span></div>
-            <div class="output-line"><span class="output-label">Initial Circ. Pressure (ICP)</span><span class="output-value" id="out-icp">—</span></div>
-            <div class="output-line" style="border-bottom:none;"><span class="output-label">Final Circ. Pressure (FCP)</span><span class="output-value" id="out-fcp">—</span></div>
+          <div class="calc-title" style="margin-top:24px;">🔩 Drill String Volume</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="dp-len">Drill Pipe Length (ft)</label>
+              <input type="number" id="dp-len" value="9500">
+            </div>
+            <div class="input-group">
+              <label for="dp-cap">Drill Pipe Capacity (bbl/ft)</label>
+              <input type="number" id="dp-cap" value="0.01776" step="0.00001">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="bha-len">Collars/BHA Length (ft)</label>
+              <input type="number" id="bha-len" value="500">
+            </div>
+            <div class="input-group">
+              <label for="bha-cap">Collars/BHA Capacity (bbl/ft)</label>
+              <input type="number" id="bha-cap" value="0.0087" step="0.00001">
+            </div>
+          </div>
+
+          <div class="calc-title" style="margin-top:24px;">⭕ Annular Volume</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="dpann-len">DP/Open Hole Annulus Length (ft)</label>
+              <input type="number" id="dpann-len" value="9500">
+            </div>
+            <div class="input-group">
+              <label for="dpann-cap">DP/Open Hole Annulus Capacity (bbl/ft)</label>
+              <input type="number" id="dpann-cap" value="0.1215" step="0.0001">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="bhaann-len">Collars/Open Hole Annulus Length (ft)</label>
+              <input type="number" id="bhaann-len" value="500">
+            </div>
+            <div class="input-group">
+              <label for="bhaann-cap">Collars/Open Hole Annulus Capacity (bbl/ft)</label>
+              <input type="number" id="bhaann-cap" value="0.0836" step="0.0001">
+            </div>
+          </div>
+
+          <div class="calc-output visible" id="kill-output" style="margin-top:20px;">
+            <div class="output-line headline"><span class="output-label">Kill Mud Weight</span><span class="output-value" id="out-kmw">—</span></div>
+            <div class="output-line headline"><span class="output-label">Initial Circulating Pressure (ICP)</span><span class="output-value" id="out-icp">—</span></div>
+            <div class="output-line headline"><span class="output-label">Final Circulating Pressure (FCP)</span><span class="output-value" id="out-fcp">—</span></div>
+            <div class="output-line"><span class="output-label">Total Drill String Volume</span><span class="output-value" id="out-stringvol">—</span></div>
+            <div class="output-line"><span class="output-label">Total Annular Volume</span><span class="output-value" id="out-annvol">—</span></div>
+            <div class="output-line"><span class="output-label">Strokes to Bit</span><span class="output-value" id="out-strokesbit">—</span></div>
+            <div class="output-line"><span class="output-label">Bottoms-Up Strokes</span><span class="output-value" id="out-strokesup">—</span></div>
+            <div class="output-line" style="border-bottom:none;"><span class="output-label">Total Circulation (Strokes to Kill)</span><span class="output-value" id="out-strokestotal">—</span></div>
+          </div>
+
+          <div class="table-wrap mt-24">
+            <table id="sched-table">
+              <thead><tr><th>Step</th><th>Cumulative Strokes</th><th>Drillpipe Pressure</th></tr></thead>
+              <tbody></tbody>
+            </table>
           </div>
         </div>
 
@@ -65,58 +156,101 @@ import Footer from '../../components/Footer.astro';
       <div class="prose">
         <h2>The Formulas Used</h2>
         <div class="formula-block">
-          <div class="formula-label">Formation Pore Pressure</div>
-          <div class="formula-eq">FPP = SIDPP + (OMW × 0.052 × TVD)</div>
-          <div class="formula-note">Direct measurement of excess formation pressure above hydrostatic once the well is shut in.</div>
-        </div>
-        <div class="formula-block">
           <div class="formula-label">Kill Mud Weight</div>
           <div class="formula-eq">KMW = OMW + (SIDPP ÷ (0.052 × TVD))</div>
           <div class="formula-note">The mud weight required to exactly balance formation pressure at the bit.</div>
         </div>
         <div class="formula-block">
           <div class="formula-label">Initial Circulating Pressure</div>
-          <div class="formula-eq">ICP = SIDPP + Slow Pump Rate Pressure</div>
+          <div class="formula-eq">ICP = SIDPP + Slow Circ. Pressure</div>
           <div class="formula-note">The standpipe pressure to hold at the start of the kill circulation.</div>
         </div>
         <div class="formula-block">
           <div class="formula-label">Final Circulating Pressure</div>
-          <div class="formula-eq">FCP = (KMW ÷ OMW) × Slow Pump Rate Pressure</div>
+          <div class="formula-eq">FCP = Slow Circ. Pressure × (KMW ÷ OMW)</div>
           <div class="formula-note">The standpipe pressure once kill mud has fully displaced the wellbore.</div>
         </div>
+        <div class="formula-block">
+          <div class="formula-label">Strokes to Bit / Bottoms-Up</div>
+          <div class="formula-eq">Strokes = Volume (bbl) ÷ Pump Output (bbl/stroke)</div>
+          <div class="formula-note">Strokes to bit uses drill string volume. Bottoms-up uses annular volume. Total circulation is both added together.</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Pressure Step Down the String</div>
+          <div class="formula-eq">Pressure at step i = ICP − ((ICP − FCP) ÷ 10) × i</div>
+          <div class="formula-note">Ten even steps from ICP at the start to FCP once kill mud reaches the bit — the schedule you hold the drillpipe pressure to while pumping.</div>
+        </div>
 
-        <h3>What Is Slow Pump Rate Pressure?</h3>
-        <p>SPR (also called SCR — slow circulating rate pressure) is the standpipe pressure recorded at a reduced, standardized pump rate — measured routinely during normal operations specifically so it's available if a kick occurs. Without a current SPR reading, ICP and FCP can't be calculated accurately, which is why crews record it every shift as standard practice.</p>
+        <h3>What Is Slow Circulating Pressure?</h3>
+        <p>SCR (sometimes SPR) is the standpipe pressure recorded at a reduced, standardized pump rate — measured routinely during normal operations specifically so it's available if a kick occurs. Without a current SCR reading, ICP and FCP can't be calculated accurately, which is why crews record it every shift as standard practice.</p>
 
-        <p>For the full step-by-step shut-in procedure and the difference between the Driller's Method and Wait-and-Weight, see the <a href="/drilling/well-control">well control reference page</a>.</p>
+        <p>For the full step-by-step shut-in procedure and the difference between the Driller's Method and Wait-and-Weight, see the <a href="/drilling/well-control">well control reference page</a>. For string and annular capacities on your own pipe sizes, the <a href="/drilling/formulas">drilling formulas cheat sheet</a> has the capacity formula written out.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 </BaseLayout>
 
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
 <script>
-  const btn = document.getElementById('calc-kill-btn');
-  btn?.addEventListener('click', () => {
-    const omw = parseFloat((document.getElementById('omw') as HTMLInputElement).value);
-    const sidpp = parseFloat((document.getElementById('sidpp') as HTMLInputElement).value);
-    const tvd = parseFloat((document.getElementById('kill-tvd') as HTMLInputElement).value);
-    const spr = parseFloat((document.getElementById('spr') as HTMLInputElement).value);
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
 
-    if (!omw || !sidpp || !tvd || !spr) {
-      alert('Please fill in all four fields.');
-      return;
+  function calc() {
+    const tvd = num('ks-tvd'), omw = num('omw'), sidpp = num('sidpp'), scr = num('spr');
+    const pumpOut = num('pumpout');
+    const stringVol = num('dp-len') * num('dp-cap') + num('bha-len') * num('bha-cap');
+    const annVol = num('dpann-len') * num('dpann-cap') + num('bhaann-len') * num('bhaann-cap');
+
+    const kmw = tvd > 0 ? sidpp / (0.052 * tvd) + omw : omw;
+    const icp = scr + sidpp;
+    const fcp = omw > 0 ? scr * (kmw / omw) : 0;
+    const strokesToBit = pumpOut > 0 ? stringVol / pumpOut : 0;
+    const strokesUp = pumpOut > 0 ? annVol / pumpOut : 0;
+    const totalStrokes = strokesToBit + strokesUp;
+
+    (document.getElementById('out-kmw') as HTMLElement).textContent = fmt(kmw, 2) + ' ppg';
+    (document.getElementById('out-icp') as HTMLElement).textContent = fmt(icp, 0) + ' psi';
+    (document.getElementById('out-fcp') as HTMLElement).textContent = fmt(fcp, 0) + ' psi';
+    (document.getElementById('out-stringvol') as HTMLElement).textContent = fmt(stringVol, 1) + ' bbls';
+    (document.getElementById('out-annvol') as HTMLElement).textContent = fmt(annVol, 1) + ' bbls';
+    (document.getElementById('out-strokesbit') as HTMLElement).textContent = fmt(strokesToBit, 0) + ' strokes';
+    (document.getElementById('out-strokesup') as HTMLElement).textContent = fmt(strokesUp, 0) + ' strokes';
+    (document.getElementById('out-strokestotal') as HTMLElement).textContent = fmt(totalStrokes, 0) + ' strokes';
+
+    const tbody = document.querySelector('#sched-table tbody');
+    if (tbody && strokesToBit > 0) {
+      const stepStrokes = Math.floor(strokesToBit / 10);
+      let rows = '';
+      for (let i = 0; i <= 10; i++) {
+        const strokes = i === 10 ? Math.round(strokesToBit) : stepStrokes * i;
+        const pressure = icp - ((icp - fcp) / 10) * i;
+        const label = i === 0 ? 'Start' : i === 10 ? 'At Bit' : i * 10 + '%';
+        rows += `<tr><td>${label}</td><td>${fmt(strokes, 0)}</td><td>${fmt(pressure, 0)} psi</td></tr>`;
+      }
+      tbody.innerHTML = rows;
+    } else if (tbody) {
+      tbody.innerHTML = '';
     }
+  }
 
-    const fpp = sidpp + (omw * 0.052 * tvd);
-    const kmw = omw + (sidpp / (0.052 * tvd));
-    const icp = sidpp + spr;
-    const fcp = (kmw / omw) * spr;
-
-    (document.getElementById('out-fpp') as HTMLElement).textContent = fpp.toFixed(0) + ' psi';
-    (document.getElementById('out-kmw') as HTMLElement).textContent = kmw.toFixed(2) + ' ppg';
-    (document.getElementById('out-icp') as HTMLElement).textContent = icp.toFixed(0) + ' psi';
-    (document.getElementById('out-fcp') as HTMLElement).textContent = fcp.toFixed(0) + ' psi';
-
-    document.getElementById('kill-output')?.classList.add('visible');
-  });
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
 </script>
