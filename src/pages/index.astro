@@ -30,6 +30,12 @@ const jsonLd = {
     <div class="hero-grid"></div>
     <div class="hero-glow"></div>
 
+    <a href="/well-control-quiz" class="hero-quiz-badge">
+      <span class="hero-quiz-badge-icon">🎯</span>
+      <span class="hero-quiz-badge-label">Well Control Quiz</span>
+      <span class="hero-quiz-badge-sub">200 questions →</span>
+    </a>
+
     <div class="hero-eyebrow">⚙ Field Reference — Drilling · Welding · Well Control · Careers</div>
     <h1>Everything<br>on the <span>Rig Floor.</span></h1>
     <p class="hero-sub">From your first day as a roustabout to running your own kill sheet — the complete technical and career reference for oil and gas field operations.</p>
@@ -119,6 +125,33 @@ const jsonLd = {
 </BaseLayout>
 
 <style>
+  .hero-quiz-badge {
+    display: none;
+    position: absolute;
+    top: 28px;
+    right: 24px;
+    z-index: 2;
+    width: 148px;
+    background: var(--steel);
+    border: 1px solid var(--rust);
+    border-radius: 8px;
+    padding: 14px 14px;
+    text-align: center;
+    text-decoration: none;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .hero-quiz-badge:hover { border-color: var(--amber); transform: translateY(-2px); }
+  .hero-quiz-badge-icon { display: block; font-size: 22px; margin-bottom: 6px; }
+  .hero-quiz-badge-label { display: block; font-weight: 700; color: var(--white); font-size: 13px; line-height: 1.25; }
+  .hero-quiz-badge-sub { display: block; font-family: var(--mono); font-size: 10px; color: var(--amber); margin-top: 5px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  @media (min-width: 640px) {
+    .hero-quiz-badge { display: block; }
+  }
+  @media (min-width: 900px) {
+    .hero-quiz-badge { top: 44px; right: 56px; width: 168px; padding: 18px 16px; }
+  }
+
   .quiz-feature {
     display: grid;
     grid-template-columns: 1fr;
