@@ -103,6 +103,10 @@ import Footer from '../../components/Footer.astro';
           <td>Rig floor elevation changed and depths need reconciling</td>
           <td><a href="/calculators/odf-depth-correction">ODF Depth Correction</a></td>
         </tr>
+        <tr>
+          <td>You need hole capacity, displacement, or a running depth tally from pipe specs</td>
+          <td><a href="/calculators/drill-pipe-tally">Drill Pipe Tally</a></td>
+        </tr>
       </tbody>
     </table>
 
@@ -178,6 +182,13 @@ import Footer from '../../components/Footer.astro';
         <p class="card-formula"><strong>Formula:</strong> Final = C1 + C2</p>
         <a href="/calculators/odf-depth-correction" class="card-link">Open Calculator →</a>
       </div>
+      <div class="card">
+        <span class="card-icon">🧵</span>
+        <h3>Drill Pipe Tally Calculator</h3>
+        <p>Hole capacity, steel displacement, and a running joint-by-joint depth tally from OD, ID, and joint count.</p>
+        <p class="card-formula"><strong>Formula:</strong> Capacity = ID² ÷ 1029.4</p>
+        <a href="/calculators/drill-pipe-tally" class="card-link">Open Calculator →</a>
+      </div>
     </div>
   </section>
 
@@ -239,7 +250,8 @@ import Footer from '../../components/Footer.astro';
           { "@type": "ListItem", "position": 5, "name": "Bit Thread & Make-Up Torque Lookup", "url": "https://rigfloorhq.com/calculators/bit-torque" },
           { "@type": "ListItem", "position": 6, "name": "Lag & Volume Calculator", "url": "https://rigfloorhq.com/calculators/lag-and-volume" },
           { "@type": "ListItem", "position": 7, "name": "Ton-Mile Calculator", "url": "https://rigfloorhq.com/calculators/ton-mile" },
-          { "@type": "ListItem", "position": 8, "name": "ODF Depth Correction Calculator", "url": "https://rigfloorhq.com/calculators/odf-depth-correction" }
+          { "@type": "ListItem", "position": 8, "name": "ODF Depth Correction Calculator", "url": "https://rigfloorhq.com/calculators/odf-depth-correction" },
+          { "@type": "ListItem", "position": 9, "name": "Drill Pipe Tally Calculator", "url": "https://rigfloorhq.com/calculators/drill-pipe-tally" }
         ]
       },
       {

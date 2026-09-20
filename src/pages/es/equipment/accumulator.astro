@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const timingRows = [
+  { unit: 'Anular', close: '≤ 30 seg (diámetro < 18¾") / ≤ 45 seg (diámetro ≥ 18¾")', note: 'Sella sobre tubería, tool joints, o hoyo abierto — el elemento que más se prueba primero en un simulacro.' },
+  { unit: 'Ariete de 4"', close: '≤ 30 seg', note: 'Cavidad de ariete de tubería dimensionada para tubería de 4".' },
+  { unit: 'Blind/Shear', close: '≤ 30 seg', note: 'Cierra sobre hoyo abierto o corta la tubería y sella — el elemento de último recurso.' },
+  { unit: 'Ariete de 3½"', close: '≤ 30 seg', note: 'Cavidad de ariete de tubería dimensionada para tubería de 3½".' },
+  { unit: 'Ariete de 4"', close: '≤ 30 seg', note: 'Una segunda cavidad de 4", común en un stack triple o cuádruple.' },
+  { unit: 'Válvula HCR (Línea de Estrangulador)', close: 'Mismo objetivo que arietes/anular, según procedimiento del taladro', note: 'Válvula de compuerta operada hidráulicamente en la línea de estrangulador — la mayoría de los simulacros la cronometran contra el mismo límite aunque API STD 53 establece la cifra específicamente para arietes y anulares.' },
+  { unit: 'Matanza de Emergencia', close: 'Mismo objetivo que arietes/anular, según procedimiento del taladro', note: 'Válvula de la línea de matanza — confirma que la cuadrilla puede empezar a bombear al pozo sin esperar una secuencia de apertura separada.' },
+];
+
+const faq = [
+  {
+    q: '¿Qué es un simulacro de acumulador, y en qué se diferencia de una prueba funcional rutinaria del BOP?',
+    a: 'Una prueba funcional cicla cada elemento del BOP abierto y cerrado en un calendario fijo (comúnmente cada 7 días bajo API STD 53) principalmente para probar que el equipo todavía se mueve. Un simulacro de acumulador corre las mismas funciones pero como un ejercicio cronometrado y observado que también revisa la respuesta de la cuadrilla, la caída de presión del acumulador y el tiempo de recarga, y si cada panel remoto realmente funciona — luego documenta los tres en un reporte escrito que se guarda en el archivo de preparación de emergencia del taladro.',
+  },
+  {
+    q: '¿Por qué importan más los tiempos de cierre que los de apertura?',
+    a: 'Cerrar es la función que importa en una surgencia real — el pozo tiene que sellarse antes de que pase cualquier otra cosa, así que API STD 53 fija un tiempo máximo de cierre (30 segundos para BOPs de ariete y anulares con diámetro menor a 18¾", 45 segundos para anulares más grandes) en lugar de un tiempo de apertura. Abrir también se revisa, ya que una válvula o ariete que no vuelve a abrir deja a la cuadrilla varada a mitad de la recuperación, pero no está sujeto al mismo límite regulatorio.',
+  },
+  {
+    q: '¿Qué te dice realmente la caída de presión del acumulador y el tiempo de recarga?',
+    a: 'Cerrar cada ariete, el anular, y las válvulas HCR en secuencia sin que las bombas de carga estén corriendo hace bajar el acumulador desde su presión de trabajo completa. Cuánto baja, y cuánto tardan las bombas en devolverlo a carga completa, es una lectura directa de si el acumulador tiene suficiente volumen útil y precarga para cerrar todo lo que necesita cerrar en una surgencia real — un sistema que recarga lentamente te está diciendo que es marginal antes de que se pruebe de verdad.',
+  },
+  {
+    q: '¿Qué va en el registro de acciones correctivas versus la sección de áreas de fortaleza?',
+    a: 'El registro de acciones correctivas es para cualquier cosa que el simulacro encontró que no funcionó como se esperaba — una función lenta, un panel que no respondió, una válvula que necesitó reparación — cada una registrada con quién es responsable de la solución y para cuándo. La sección de áreas de fortaleza es lo opuesto: lo que funcionó como debía. Ambas van en el mismo reporte porque un registro de simulacro que solo lista problemas subestima a una cuadrilla que está haciendo bien la mayor parte, y un registro sin ningún hallazgo generalmente es señal de que el simulacro no se corrió con suficiente rigor.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Prueba Funcional y Simulacro del Acumulador: Presión, Tiempo, Respuesta"
+  description="Qué cubre un simulacro de acumulador de BOP: presión inicial objetivo, tiempo de apertura/cierre por componente contra API STD 53, tiempo de recarga, y las secciones de acciones correctivas y áreas de fortaleza del reporte."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Simulacro de Acumulador', href: '/es/equipment/accumulator' }]}
+  lang="es"
+  alternateHref="/equipment/accumulator"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/accumulator" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Control de Presión</div>
+    <h1>Prueba Funcional <span>y Simulacro del Acumulador</span></h1>
+    <p class="page-hero-sub">Un simulacro cronometrado y documentado que cierra y abre cada elemento del BOP desde el acumulador, revisa la caída de presión y la recarga, y registra tanto lo que falló como lo que funcionó.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="que-prueba">Qué Prueba Realmente un Simulacro de Acumulador</h2>
+        <p>El <a href="/es/equipment/bop">sistema acumulador del BOP</a> almacena energía hidráulica en botellas cargadas con nitrógeno para que el stack pueda cerrar con el taladro sin energía y las bombas apagadas — exactamente la condición en la que tiene que funcionar durante una surgencia real. Una prueba funcional prueba que cada elemento todavía se mueve. Un simulacro de acumulador va un paso más allá: corre esas mismas funciones como un ejercicio cronometrado y observado, capturando cuánto tarda cada elemento en cerrar y abrir, cuánto baja la presión del sistema al trabajar la secuencia, y cuánto tardan las bombas en devolverlo a carga completa — luego escribe todo eso en un reporte que se vuelve parte del registro de preparación de emergencia del taladro.</p>
+        <p>Porque el reporte es un registro de simulacro y no una acción real de control de pozo, toda comunicación durante el ejercicio — escrita y verbal — debe abrir y cerrar con "Esto es un simulacro," la misma convención usada en cualquier otro ejercicio de emergencia del taladro.</p>
+
+        <h2 id="presion-inicial">Presión Inicial del Acumulador</h2>
+        <p>El simulacro comienza con todas las palancas en posición abierta y el acumulador a su presión de trabajo completa. Un objetivo comúnmente documentado para esta cifra inicial es <span class="highlight">7,500 psi</span>, aunque la presión de trabajo que importa es la que tenga clasificada la unidad de cierre específica — la mayoría de los sistemas acumuladores de superficie corren a una presión de trabajo de 3,000 psi bajo API STD 53, con algunas unidades de cierre de mayor capacidad clasificadas más alto según el fabricante y la clase de presión del BOP. Confirma la cifra clasificada para la unidad real antes de tratar cualquier número único como el objetivo.</p>
+        <p>De ahí, la cuadrilla registra la presión del anular y la presión del manifold por separado, ya que las tres no se mueven juntas — el anular opera con su propia presión regulada (típicamente 700–1,500 psi) en lugar de la presión completa del acumulador, así que se rastrea como su propia lectura durante todo el simulacro.</p>
+
+        <h2 id="tabla-tiempos">Tiempo de Apertura/Cierre: Qué Se Prueba</h2>
+        <p>Cada elemento en el stack que cierra el acumulador recibe su propio ciclo cronometrado, con presión leída antes y después. Una secuencia típica de simulacro, en el orden en que la mayoría de los stacks la prueban:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Componente</th><th>Objetivo de Tiempo de Cierre</th><th>Notas</th></tr>
+            </thead>
+            <tbody>
+              {timingRows.map((r) => (
+                <tr><td>{r.unit}</td><td>{r.close}</td><td>{r.note}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>Un registro de simulacro real anota, para cada fila: presión al inicio de la función, presión al final, y los tiempos reales de cierre y apertura en segundos — la misma forma que la tabla de arriba, llenada en vivo mientras corre la prueba en lugar de prellenada desde una plantilla. Los límites de 30/45 segundos son el techo regulatorio bajo API STD 53, no un objetivo al cual acercarse; un sistema sano cierra con margen de sobra.</p>
+
+        <h2 id="recarga">Caída de Presión y Tiempo de Recarga</h2>
+        <p>Después de que los arietes, el anular, y las válvulas HCR se hayan cerrado todos y las bombas eléctricas y de aire de la unidad de control del BOP estén apagadas, la presión del acumulador habrá bajado bien por debajo de su cifra inicial — la presión del manifold y del anular se leen y registran en ese punto bajo también. Encender de nuevo las bombas de carga y cronometrar cuánto tarda el sistema en subir de regreso a la presión de trabajo completa es el número que más te dice sobre la disposición real del acumulador: una recarga lenta significa que la cuadrilla estaría esperando capacidad hidráulica a mitad de una surgencia, que es exactamente el escenario que el simulacro existe para detectar antes de que pase de verdad.</p>
+
+        <h2 id="acciones-correctivas">Registro de Acciones Correctivas</h2>
+        <p>Cualquier cosa que el simulacro encuentre que no funcionó como se esperaba va en un registro de acciones correctivas — una tabla continua, no una narrativa, para que cada punto se mantenga rastreable hasta su cierre:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>#</th><th>Ítem de Acción Correctiva</th><th>Responsable</th><th>Fecha</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Ejemplo: todos los paneles remotos del BOP (piso de perforación y oficina) fueron probados funcionalmente y encontrados funcionando correctamente — no se requiere acción.</td><td>—</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Una línea de "no se requiere acción" para un componente que probó limpio sigue siendo una entrada válida del registro — el propósito del registro es un récord completo de lo que se revisó, no solo una lista de fallas.</p>
+
+        <h2 id="areas-fortaleza">Área de Fortaleza</h2>
+        <p>El reporte cierra con lo que funcionó como debía, no solo con lo que no. Emparejar esto con el registro de acciones correctivas importa por la misma razón que cualquiera de los dos solo es engañoso: un reporte solo de problemas, sin contexto de lo que está funcionando, se lee peor que el desempeño real de la cuadrilla; un reporte sin ningún hallazgo generalmente significa que el simulacro no se corrió con suficiente rigor para encontrar algo. Ambas secciones, juntas, son lo que se archiva para la revisión anual del plan de emergencia del taladro — el valor del simulacro sobrevive al día en que se corrió.</p>
+
+        <h2 id="normas-prueba">Cómo Encaja Con los Requisitos de Prueba</h2>
+        <p>Un simulacro como este es un ejercicio documentado que se añade sobre el calendario rutinario, no un reemplazo de él. Bajo API STD 53 — y BSEE 30 CFR 250.737 para trabajo en la plataforma continental exterior de EE.UU. — los stacks submarinos corren una prueba funcional cada 7 días y una prueba de presión cada 14 días; en tierra y otras jurisdicciones varía. Ver la <a href="/es/equipment/bop">página de equipo del BOP</a> para el desglose completo de intervalos de prueba y los componentes del stack que cada prueba cubre.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#que-prueba">Qué Se Prueba</a>
+          <a href="#presion-inicial">Presión Inicial</a>
+          <a href="#tabla-tiempos">Tiempo de Apertura/Cierre</a>
+          <a href="#recarga">Tiempo de Recarga</a>
+          <a href="#acciones-correctivas">Acciones Correctivas</a>
+          <a href="#areas-fortaleza">Área de Fortaleza</a>
+          <a href="#normas-prueba">Normas de Prueba</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Esta página describe lo que cubre un simulacro real de acumulador y las normas contra las que se revisa su tiempo — no sustituye el procedimiento de simulacro aprobado de tu empresa ni un reporte completo específico del taladro.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/bop" class="card-link">→ Tipos de BOP y Cómo Funciona un Stack</a><br><br>
+          <a href="/es/drilling/well-control" class="card-link">→ Control de Pozos y Surgencias</a><br><br>
+          <a href="/es/calculators/kill-sheet" class="card-link">→ Calculadora de Hoja de Control de Pozo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

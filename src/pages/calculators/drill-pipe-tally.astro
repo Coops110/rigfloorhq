@@ -1,0 +1,212 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'What is a drill pipe tally and why does the crew keep one?',
+    a: 'A tally is the running record of every joint made up into the string — its length, and the cumulative depth after it — built as pipe goes in the hole. It is the source of truth for how deep the bit actually is, since a driller\'s depth counter can drift but the tally is a physical measurement of what went in the hole, joint by joint.',
+  },
+  {
+    q: 'Why do capacity and displacement matter beyond just knowing the string length?',
+    a: 'Both feed the volumes that get watched while tripping. Displacement is how much mud the hole should lose as steel comes out (or take as steel goes in) — comparing that against what the trip tank actually shows is how a kick or a losses event gets caught while tripping, well before it would show up any other way. Capacity is what fills the string on the way back in, which sets strokes and time to bottoms-up once drilling resumes.',
+  },
+  {
+    q: 'Why does average joint length vary from joint to joint?',
+    a: 'Range 2 drill pipe (the most common range) runs roughly 30 to 32 feet per joint, but no two joints are cut to the exact same length — that is why a real tally is measured and logged joint by joint rather than assumed. The average joint length here is a planning figure; an actual tally always uses the measured length of each joint that went in the hole.',
+  },
+  {
+    q: 'How is a stand different from a joint, and why does the average stand length matter?',
+    a: 'A joint is a single length of pipe; a stand is two or three joints made up together and racked as one unit — a range 2 thribble (three joints) commonly runs around 90 to 94 feet. Stands, not joints, are what the crew actually racks and counts while tripping, so the stand count is the quicker cross-check against the joint-by-joint tally underneath it.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Drill Pipe Tally Calculator: Capacity, Displacement & Depth"
+  description="Free drill pipe tally calculator: enter OD, ID, joint length and joint count to get hole capacity, steel displacement, and a running depth tally table."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Drill Pipe Tally', href: '/calculators/drill-pipe-tally' }]}
+  lang="en"
+  alternateHref="/es/calculators/drill-pipe-tally"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators/drill-pipe-tally" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Drill Pipe <span>Tally</span></h1>
+    <p class="page-hero-sub">Turn drill pipe OD, ID, joint length, and joint count into hole capacity, steel displacement, and a running joint-by-joint depth tally — the same math behind a physical tally book.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🔩 Pipe Specs</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="dp-od">Pipe OD (in)</label>
+              <input type="number" id="dp-od" value="5" step="0.001">
+            </div>
+            <div class="input-group">
+              <label for="dp-id">Pipe ID (in)</label>
+              <input type="number" id="dp-id" value="4.276" step="0.001">
+            </div>
+            <div class="input-group">
+              <label for="dp-wt">Nominal Weight (lb/ft) — reference only</label>
+              <input type="number" id="dp-wt" value="19.5" step="0.1">
+            </div>
+          </div>
+
+          <div class="calc-title" style="margin-top:24px;">📏 String Make-Up</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="joint-len">Average Joint Length (ft)</label>
+              <input type="number" id="joint-len" value="31.2" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="joint-count">Number of Joints</label>
+              <input type="number" id="joint-count" value="20" step="1" min="1">
+            </div>
+            <div class="input-group">
+              <label for="stand-len">Average Stand Length (ft) — optional</label>
+              <input type="number" id="stand-len" value="93.5" step="0.1">
+            </div>
+          </div>
+
+          <div class="calc-output visible" style="margin-top:20px;">
+            <div class="output-line"><span class="output-label">Capacity</span><span class="output-value" id="out-cap-ft">—</span></div>
+            <div class="output-line"><span class="output-label">Displacement</span><span class="output-value" id="out-disp-ft">—</span></div>
+            <div class="output-line headline"><span class="output-label">Total String Length</span><span class="output-value" id="out-total-len">—</span></div>
+            <div class="output-line"><span class="output-label">Total Capacity Volume</span><span class="output-value" id="out-total-cap">—</span></div>
+            <div class="output-line"><span class="output-label">Total Displacement Volume</span><span class="output-value" id="out-total-disp">—</span></div>
+            <div class="output-line" style="border-bottom:none;"><span class="output-label">Approx. Stands in String</span><span class="output-value" id="out-stands">—</span></div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Reference only.</strong> A real tally is measured and logged joint by joint as pipe goes in the hole — use this to plan and sanity-check, not to replace the physical tally.
+        </div>
+
+        <h2 style="margin-top:32px;font-size:18px;">Running Tally</h2>
+        <p style="color:var(--fog);font-size:13px;max-width:700px;margin-bottom:12px;" id="tally-note">Cumulative depth, capacity, and displacement at each joint, assuming every joint equals the average length above.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Joint #</th><th>Cumulative Depth (ft)</th><th>Cum. Capacity (bbl)</th><th>Cum. Displacement (bbl)</th></tr>
+            </thead>
+            <tbody id="tally-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formulas Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">Capacity and Displacement</div>
+          <div class="formula-eq">Capacity (bbl/ft) = ID² ÷ 1029.4<br />Displacement (bbl/ft) = (OD² − ID²) ÷ 1029.4</div>
+          <div class="formula-note">Same shape as the annular capacity formula on the <a href="/calculators/lag-and-volume">lag &amp; volume calculator</a> — capacity uses the inside diameter, displacement uses the steel cross-section (OD minus ID).</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Cumulative Depth at Joint N</div>
+          <div class="formula-eq">Depth = N × Average Joint Length</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Cumulative Volumes</div>
+          <div class="formula-eq">Cumulative Capacity = Capacity/ft × Depth<br />Cumulative Displacement = Displacement/ft × Depth</div>
+        </div>
+
+        <p>This calculator handles one uniform section of pipe — a single OD/ID/weight run the length of the string. A real drill string usually pairs drill pipe with a shorter, heavier BHA or drill collars near the bit, which have their own OD and ID and need their own pass through the same formulas. The <a href="/calculators/lag-and-volume">lag &amp; volume calculator</a> already handles a two-section string (drill pipe plus BHA) if that split matters for what you're working out.</p>
+        <p>For the constants written out with worked numbers, see the <a href="/drilling/formulas">drilling formulas cheat sheet</a>.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+
+  const MAX_ROWS = 25;
+
+  function calc() {
+    const od = num('dp-od'), id = num('dp-id');
+    const jointLen = num('joint-len'), jointCount = Math.max(0, Math.round(num('joint-count')));
+    const standLen = num('stand-len');
+
+    const capPerFt = (id * id) / 1029.4;
+    const dispPerFt = (od * od - id * id) / 1029.4;
+    const totalLen = jointCount * jointLen;
+    const totalCap = capPerFt * totalLen;
+    const totalDisp = dispPerFt * totalLen;
+    const stands = standLen > 0 ? totalLen / standLen : 0;
+
+    (document.getElementById('out-cap-ft') as HTMLElement).textContent = fmt(capPerFt, 4) + ' bbl/ft';
+    (document.getElementById('out-disp-ft') as HTMLElement).textContent = fmt(dispPerFt, 4) + ' bbl/ft';
+    (document.getElementById('out-total-len') as HTMLElement).textContent = fmt(totalLen, 1) + ' ft';
+    (document.getElementById('out-total-cap') as HTMLElement).textContent = fmt(totalCap, 1) + ' bbls';
+    (document.getElementById('out-total-disp') as HTMLElement).textContent = fmt(totalDisp, 1) + ' bbls';
+    (document.getElementById('out-stands') as HTMLElement).textContent = stands > 0 ? fmt(stands, 1) + ' stands' : '—';
+
+    const tbody = document.getElementById('tally-body');
+    const note = document.getElementById('tally-note');
+    if (tbody) {
+      tbody.innerHTML = '';
+      if (jointCount > 0 && jointLen > 0) {
+        const step = jointCount > MAX_ROWS ? Math.ceil(jointCount / MAX_ROWS) : 1;
+        const rows: number[] = [];
+        for (let j = step; j <= jointCount; j += step) rows.push(j);
+        if (rows.length === 0 || rows[rows.length - 1] !== jointCount) rows.push(jointCount);
+
+        for (const j of rows) {
+          const depth = j * jointLen;
+          const tr = document.createElement('tr');
+          tr.innerHTML =
+            '<td>' + j + '</td>' +
+            '<td>' + fmt(depth, 1) + '</td>' +
+            '<td>' + fmt(capPerFt * depth, 1) + '</td>' +
+            '<td>' + fmt(dispPerFt * depth, 1) + '</td>';
+          tbody.appendChild(tr);
+        }
+        if (note) {
+          note.textContent = step > 1
+            ? 'Cumulative depth, capacity, and displacement at each joint, assuming every joint equals the average length above. Showing every ' + step + '-joint interval (' + rows.length + ' rows) to keep the table readable — the underlying math is continuous per joint.'
+            : 'Cumulative depth, capacity, and displacement at each joint, assuming every joint equals the average length above.';
+        }
+      }
+    }
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

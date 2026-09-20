@@ -62,6 +62,10 @@ import Footer from '../../../components/Footer.astro';
           <td>Cambió la elevación del piso de perforación y hay que reconciliar profundidades</td>
           <td><a href="/es/calculators/odf-depth-correction">Corrección de Profundidad ODF</a></td>
         </tr>
+        <tr>
+          <td>Necesitas capacidad del pozo, desplazamiento, o un tally de profundidad a partir de especificaciones de tubería</td>
+          <td><a href="/es/calculators/drill-pipe-tally">Tally de Tubería</a></td>
+        </tr>
       </tbody>
     </table>
 
@@ -127,6 +131,13 @@ import Footer from '../../../components/Footer.astro';
         <p class="card-formula"><strong>Fórmula:</strong> Final = C1 + C2</p>
         <a href="/es/calculators/odf-depth-correction" class="card-link">Abrir Calculadora →</a>
       </div>
+      <div class="card">
+        <span class="card-icon">🧵</span>
+        <h3>Calculadora de Tally de Tubería</h3>
+        <p>Capacidad del pozo, desplazamiento de acero, y un tally continuo de profundidad junta por junta a partir de DE, DI, y número de juntas.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> Capacidad = DI² ÷ 1029.4</p>
+        <a href="/es/calculators/drill-pipe-tally" class="card-link">Abrir Calculadora →</a>
+      </div>
     </div>
   </section>
 
@@ -188,7 +199,8 @@ import Footer from '../../../components/Footer.astro';
           { "@type": "ListItem", "position": 5, "name": "Rosca y Torque de Barrena", "url": "https://rigfloorhq.com/es/calculators/bit-torque" },
           { "@type": "ListItem", "position": 6, "name": "Calculadora de Retraso y Volumen", "url": "https://rigfloorhq.com/es/calculators/lag-and-volume" },
           { "@type": "ListItem", "position": 7, "name": "Calculadora de Tonelada-Milla", "url": "https://rigfloorhq.com/es/calculators/ton-mile" },
-          { "@type": "ListItem", "position": 8, "name": "Corrección de Profundidad ODF", "url": "https://rigfloorhq.com/es/calculators/odf-depth-correction" }
+          { "@type": "ListItem", "position": 8, "name": "Corrección de Profundidad ODF", "url": "https://rigfloorhq.com/es/calculators/odf-depth-correction" },
+          { "@type": "ListItem", "position": 9, "name": "Calculadora de Tally de Tubería", "url": "https://rigfloorhq.com/es/calculators/drill-pipe-tally" }
         ]
       },
       {

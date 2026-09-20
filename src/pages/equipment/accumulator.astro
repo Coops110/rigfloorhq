@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+// Closing-time figures are the actual API STD 53 limits (30 sec for ram BOPs
+// and annulars under 18-3/4" bore, 45 sec for larger annulars) — verified
+// against current API/BSEE guidance rather than assumed. Accumulator system
+// working pressure is commonly quoted at 3,000 psi; some closing units are
+// rated higher depending on make and BOP class, which is why the pressure
+// section below gives a range rather than asserting one universal number.
+const timingRows = [
+  { unit: 'Annular', close: '≤ 30 sec (bore < 18¾") / ≤ 45 sec (bore ≥ 18¾")', note: 'Seals on pipe, tool joints, or open hole — the element most often cycled first in a drill.' },
+  { unit: '4" Ram', close: '≤ 30 sec', note: 'Pipe ram cavity sized for 4" pipe.' },
+  { unit: 'Blind/Shear', close: '≤ 30 sec', note: 'Closes on open hole or shears pipe and seals — the last-resort element.' },
+  { unit: '3½" Ram', close: '≤ 30 sec', note: 'Pipe ram cavity sized for 3½" pipe.' },
+  { unit: '4" Ram', close: '≤ 30 sec', note: 'A second 4" cavity, common on a triple or quad ram stack.' },
+  { unit: 'HCR Valve (Choke Line)', close: 'Same target as rams/annular, by rig procedure', note: 'Hydraulically operated gate valve on the choke line — most drills time it against the same limit even though API STD 53 states the number specifically for rams and annulars.' },
+  { unit: 'Emergency Kill', close: 'Same target as rams/annular, by rig procedure', note: 'Kill-line valve — confirms the crew can start pumping into the well without waiting on a separate opening sequence.' },
+];
+
+const faq = [
+  {
+    q: 'What is an accumulator drill, and how is it different from a routine BOP function test?',
+    a: 'A function test cycles each BOP element open and closed on a fixed schedule (commonly every 7 days under API STD 53) mainly to prove the hardware still moves. An accumulator drill runs the same functions but as a timed, observed exercise that also checks the crew\'s response, the accumulator\'s pressure drop and recharge time, and whether every remote panel actually works — then documents all three in a written report kept for the rig\'s emergency-preparedness file.',
+  },
+  {
+    q: 'Why do close times matter more than open times?',
+    a: 'Closing is the function that matters in an actual kick — the well has to be sealed before anything else happens, so API STD 53 sets a maximum close time (30 seconds for ram BOPs and annulars under 18¾" bore, 45 seconds for larger annulars) rather than an open time. Opening is checked too, since a valve or ram that will not reopen strands the crew mid-recovery, but it isn\'t held to the same regulatory limit.',
+  },
+  {
+    q: 'What does the accumulator pressure drop and recharge time actually tell you?',
+    a: 'Closing every ram, the annular, and the HCR valves in sequence without the charging pumps running draws the accumulator down from its full working pressure. How far it drops, and how long the pumps take to bring it back to full charge, is a direct read on whether the accumulator has enough usable volume and precharge to close everything it needs to close on a real kick — a system that recharges slowly is telling you it\'s marginal before it ever gets tested for real.',
+  },
+  {
+    q: 'What goes in the corrective-action log versus the area-of-strength section?',
+    a: 'The corrective-action log is for anything the drill found that didn\'t work as expected — a slow function, a panel that didn\'t respond, a valve that needed rework — each logged with who owns the fix and by when. The area-of-strength section is the opposite: what performed the way it was supposed to. Both go in the same report because a drill record that only lists problems undersells a crew that is doing most of it right, and a record with no findings at all is usually a sign the drill wasn\'t run critically enough.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Accumulator Function Test & Drill: Pressure, Timing, Response"
+  description="What a BOP accumulator drill covers: initial pressure target, per-component open/close timing against API STD 53, recharge time, and the corrective-action and area-of-strength report sections."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Accumulator Drill', href: '/equipment/accumulator' }]}
+  lang="en"
+  alternateHref="/es/equipment/accumulator"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/equipment/accumulator" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Pressure Control</div>
+    <h1>Accumulator <span>Function Test &amp; Drill</span></h1>
+    <p class="page-hero-sub">A timed, documented drill that closes and opens every BOP element off the accumulator, checks the pressure drop and recharge, and records both what failed and what worked.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="what-it-tests">What an Accumulator Drill Actually Tests</h2>
+        <p>The <a href="/equipment/bop">BOP's accumulator system</a> stores hydraulic energy in nitrogen-charged bottles so the stack can close with the rig black and the pumps dead — exactly the condition it has to work in during a real kick. A function test proves each element still moves. An accumulator drill goes a step further: it runs those same functions as a timed, observed exercise, capturing how long each element takes to close and open, how far system pressure drops as it works through the sequence, and how long the pumps take to bring it back to full charge — then writes all of it into a report that becomes part of the rig's emergency-preparedness record.</p>
+        <p>Because the report is a drill record and not a live well control action, every communication during the exercise — written and verbal — should open and close with "This is a drill," the same convention used on any other rig emergency exercise.</p>
+
+        <h2 id="initial-pressure">Initial Accumulator Pressure</h2>
+        <p>The drill starts with all lever positions open and the accumulator at its full working pressure. A commonly documented target for this starting figure is <span class="highlight">7,500 psi</span>, though the working pressure that matters is whatever the specific closing unit is rated to — most surface accumulator systems run a 3,000 psi working pressure under API STD 53, with some higher-capacity closing units rated higher depending on the manufacturer and the BOP's pressure class. Confirm the rated figure for the actual unit before treating any single number as the target.</p>
+        <p>From there, the crew records annular pressure and manifold pressure separately, since the three don't move together — the annular operates on its own regulated pressure (typically 700–1,500 psi) rather than full accumulator pressure, so it's tracked as its own reading throughout the drill.</p>
+
+        <h2 id="timing-table">Open/Close Timing: What Gets Tested</h2>
+        <p>Every element in the stack that the accumulator closes gets its own timed cycle, with pressure read before and after. A typical drill sequence, in the order most stacks test them:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Component</th><th>Close Time Target</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              {timingRows.map((r) => (
+                <tr><td>{r.unit}</td><td>{r.close}</td><td>{r.note}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>A real drill log records, for each row: pressure at the start of the function, pressure at the end, and the actual close and open times in seconds — the same shape as the timing table above, filled in live as the test runs rather than pre-filled from a template. The 30/45-second limits are the regulatory ceiling under API STD 53, not a target to drift toward; a healthy system closes with margin to spare.</p>
+
+        <h2 id="recharge">Pressure Drop and Recharge Time</h2>
+        <p>After the rams, annular, and HCR valves have all been closed and the electric and air pumps to the BOP control unit are shut off, accumulator pressure will have dropped well below its starting figure — manifold and annular pressure are read and logged at that low point too. Turning the charging pumps back on and timing how long the system takes to climb back to full working pressure is the single number that tells you the most about the accumulator's real-world readiness: a slow recharge means the crew would be waiting on hydraulic capacity mid-kick, which is exactly the scenario the drill exists to catch before it happens for real.</p>
+
+        <h2 id="corrective-action">Corrective Action Log</h2>
+        <p>Anything the drill turns up that didn't perform as expected goes in a corrective-action log — a running table, not a narrative, so each item stays trackable to closure:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>#</th><th>Corrective Action Item</th><th>Owned By</th><th>Date</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Example: all BOP remote panels (rig floor and office panels) function tested and found working properly — no action required.</td><td>—</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>A "no action required" line for a component that tested clean is still a valid log entry — the point of the log is a complete record of what was checked, not just a list of failures.</p>
+
+        <h2 id="area-of-strength">Area of Strength</h2>
+        <p>The report closes with what performed the way it was supposed to, not just what didn't. Pairing this with the corrective-action log matters for the same reason either one alone is misleading: a report of problems only, with no context for what's working, reads worse than the crew's actual performance; a report with no findings at all usually means the drill wasn't run critically enough to find anything. Both sections, together, are what get filed for the rig's annual emergency-plan review — the drill's value outlives the day it was run.</p>
+
+        <h2 id="testing-standards">How This Fits Testing Requirements</h2>
+        <p>A drill like this is a documented exercise layered on top of the routine schedule, not a replacement for it. Under API STD 53 — and BSEE 30 CFR 250.737 for US outer continental shelf work — subsea stacks run a function test every 7 days and a pressure test every 14 days; onshore and other jurisdictions vary. See the <a href="/equipment/bop">BOP equipment page</a> for the full testing-interval breakdown and the stack components each test cycles through.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-tests">What Gets Tested</a>
+          <a href="#initial-pressure">Initial Pressure</a>
+          <a href="#timing-table">Open/Close Timing</a>
+          <a href="#recharge">Recharge Time</a>
+          <a href="#corrective-action">Corrective Action Log</a>
+          <a href="#area-of-strength">Area of Strength</a>
+          <a href="#testing-standards">Testing Standards</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> This page describes what a real accumulator drill covers and the standards its timing is checked against — it is not a substitute for your company's approved drill procedure or a completed rig-specific report.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/bop" class="card-link">→ Blowout Preventer Types &amp; How a BOP Works</a><br><br>
+          <a href="/drilling/well-control" class="card-link">→ Well Control &amp; Kicks</a><br><br>
+          <a href="/calculators/kill-sheet" class="card-link">→ Kill Sheet Calculator</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
