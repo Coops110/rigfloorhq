@@ -1,0 +1,258 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+// This page is a generic, illustrative rig-move tracker template — not a record of
+// any real move. Every field below is either left blank, filled with a placeholder
+// (Pad A / Pad B, Rig #), or a rounded example number chosen to be realistic without
+// matching any specific rig, well, or company's actual move data. See the note box
+// under "The Move Header" for the standing disclaimer shown on the page itself.
+
+const equipmentRows = [
+  { item: 'Cranes, 80-ton', qty: 2 },
+  { item: 'Cranes, 60-ton', qty: 2 },
+  { item: 'Forklift', qty: 2 },
+  { item: 'Flatbed trucks', qty: 15 },
+  { item: 'Lowboy trailers', qty: 6 },
+  { item: 'Wire/pipe rack trucks', qty: 2 },
+  { item: 'Rigger crew', qty: 2 },
+  { item: 'Safety supervisor', qty: 1 },
+  { item: 'Truck pusher', qty: 2 },
+  { item: 'Diesel/fuel truck', qty: 1 },
+  { item: 'Convoy leader', qty: 1 },
+  { item: 'Swamper (load helper)', qty: 4 },
+];
+const equipmentTotal = equipmentRows.reduce((s, r) => s + r.qty, 0);
+
+const scopeRows = [
+  { n: 1, task: 'Route assessment completed for the new location', status: 'Done' },
+  { n: 2, task: 'String out new location for rig and rig camp', status: 'Done' },
+  { n: 3, task: 'All unnecessary equipment cleared off rig floor', status: 'Done' },
+  { n: 4, task: 'Secure all heavy well-control equipment and stage it to move', status: 'Done' },
+  { n: 5, task: 'Back-flush mud lines to minimize residual fluid before loadout', status: 'Done' },
+  { n: 6, task: 'Clean Pits and Jet Cellar. Ensure Cellar is clean to 6 feet for release. Prepare all blind flanges and valve handles for wellheads.', status: 'Done' },
+  { n: 7, task: 'Load mud products', status: 'Done' },
+  { n: 8, task: 'Perform inspection of trucking company personnel and equipment', status: 'Done' },
+  { n: 9, task: 'Rig down standpipe and all high-pressure lines and manifold', status: 'Not Done' },
+];
+
+const loadRows = [
+  { item: 'Main camp sleepers', qty: 10 },
+  { item: 'Main camp auxiliary units', qty: 6 },
+  { item: 'Pipe/drill collar tubs', qty: 6 },
+  { item: 'BOP components', qty: 4 },
+  { item: 'Mud system', qty: 8 },
+  { item: 'Miscellaneous boxes', qty: 12 },
+];
+
+const dashboardRows = [
+  { category: 'Number of equipment', planned: 40, actual: 42 },
+  { category: 'Number of loads', planned: 32, actual: 34 },
+  { category: 'Number of tasks', planned: 15, actual: 15 },
+];
+
+const faq = [
+  {
+    q: 'What is a rig move plan vs actual tracker?',
+    a: 'It is the working document a rig-move team fills out phase by phase — Premove 48 Hours, Premove 24 Hours, then Day 1 onward — that lists the scope of work for that phase next to a live "actual" column, alongside two supporting counts: the contracted equipment and manpower for that day, and the loads that have to move. At the end of each phase a small dashboard rolls those three things up into planned-vs-actual numbers so a rig superintendent can see at a glance whether the move is ahead, on pace, or falling behind schedule.',
+  },
+  {
+    q: 'Why track equipment and loads separately from the task checklist?',
+    a: 'They answer different questions. The scope-of-work checklist tracks whether the crew got through the work — did the task get done, and if not, why not. The equipment table tracks whether the trucking contractor actually showed up with what the day\'s plan called for, since a rig move stalls just as fast from a missing lowboy as from an unfinished task. The loads list is the connective tissue between the two: it is what the equipment above is there to move, itemized so nothing gets left on the ground when the convoy pulls out.',
+  },
+  {
+    q: 'Why does the checklist split into premove, rig-down, rig-up, and commissioning phases?',
+    a: 'Because each phase depends on the one before it finishing cleanly. Premove work (route assessment, camp staging, cellar and pit cleanup) has to close out before release, since most of it cannot be undone once the rig is down. Rig-down strips the standing rig in a fixed order — floor equipment and lines first, then the mast and substructure — because pulling that order out of sequence risks working under a load that is not secured. Rig-up rebuilds in the same order in reverse, and commissioning (circulating to test the rebuilt system, function-testing equipment, running the acceptance checklist) only starts once rig-up is actually complete, not just scheduled to be.',
+  },
+  {
+    q: 'What does "Non-Legal" move type mean on the header?',
+    a: 'It is a common way rig-move paperwork distinguishes a move within the same lease or field boundary — no new permits, road-use agreements, or jurisdictional sign-offs required beyond what is already in place — from a "legal" move that crosses into new regulatory territory and needs its own approvals before the convoy can roll. Which category a given move falls into changes what has to be cleared before Day 1 even starts.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Rig Move Plan vs Actual: Example Tracker & Checklist"
+  description="How a rig-move plan-vs-actual tracker works: the premove checklists, day-by-day rig-down and rig-up scope of work, equipment and load counts, and the planned-vs-actual dashboard — a generic illustrative example."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Drilling', href: '/drilling' }, { label: 'Rig Move Plan vs Actual', href: '/drilling/rig-move-plan' }]}
+  lang="en"
+  alternateHref="/es/drilling/rig-move-plan"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/drilling/rig-move-plan" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Drilling — Rig Moves</div>
+    <h1>Rig Move <span>Plan vs Actual</span></h1>
+    <p class="page-hero-sub">A generic, illustrative example of the day-by-day tracker crews use to plan a land rig move and log what actually happened against it — from 48 hours before release through the first days back on production.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="what-it-is">What a Plan vs Actual Tracker Is</h2>
+        <p>A rig move is one of the highest-risk, highest-cost stretches of a rig's schedule — days of zero footage while the entire structure is torn down, trucked, and rebuilt somewhere else. A plan vs actual tracker is the working document that keeps that stretch on schedule: it breaks the whole move into phases, and for each phase it lays out the planned scope of work, the equipment the move contract calls for, and the loads that have to be hauled, each with a live column recording what actually happened next to what was planned.</p>
+        <p>The template below is a generic example built from the shape a real rig-move tracker takes — not a record of any specific rig or move. Every value shown is illustrative.</p>
+
+        <h2 id="header-fields">The Move Header</h2>
+        <p>Every phase of the tracker opens with the same header block, so anyone picking up the sheet mid-move can orient in seconds:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Field</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Rig #</td><td>—</td></tr>
+              <tr><td>Move from / to</td><td>Pad A → Pad B</td></tr>
+              <tr><td>Move type</td><td>Non-Legal</td></tr>
+              <tr><td>Distance</td><td>28 km</td></tr>
+              <tr><td>Planned days</td><td>14</td></tr>
+              <tr><td>Release date</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note-box">
+          <strong>Illustrative example only.</strong> This page is a generic template built from the standard shape of a rig-move plan vs actual tracker. It does not describe, and is not based on, any specific rig, well, lease, or company's actual move — field values above are placeholders or rounded example figures.
+        </div>
+
+        <h2 id="four-trackers">Four Things Tracked Every Day</h2>
+        <p>Underneath the header, every phase of the sheet repeats the same four blocks:</p>
+        <div style="display:flex;flex-direction:column;gap:8px;margin:24px 0;">
+          <div style="padding:16px 18px;background:var(--steel);border-radius:3px;">
+            <strong style="color:var(--white);font-size:14px;">Contracted Equipment</strong>
+            <p style="font-size:12px;color:var(--fog);margin-top:4px;">What the move contract calls for that day — cranes, flatbeds, lowboys, rigger and swamper crews — next to what actually rolled onto location.</p>
+          </div>
+          <div style="padding:16px 18px;background:var(--steel);border-radius:3px;">
+            <strong style="color:var(--white);font-size:14px;">Scope of Work</strong>
+            <p style="font-size:12px;color:var(--fog);margin-top:4px;">The task checklist for the phase, each line marked Done or Not Done with a comment explaining any holdup.</p>
+          </div>
+          <div style="padding:16px 18px;background:var(--steel);border-radius:3px;">
+            <strong style="color:var(--white);font-size:14px;">Loads to Move</strong>
+            <p style="font-size:12px;color:var(--fog);margin-top:4px;">Every load itemized by what it is and how many trucks it takes, with a status and truck number filled in as each one actually leaves.</p>
+          </div>
+          <div style="padding:16px 18px;background:var(--steel);border-radius:3px;">
+            <strong style="color:var(--white);font-size:14px;">Planned & Actual Maintenance</strong>
+            <p style="font-size:12px;color:var(--fog);margin-top:4px;">Maintenance the move window makes possible — work that is hard to do with the rig running — logged planned against what actually got done.</p>
+          </div>
+        </div>
+        <p>Each phase then closes with a small dashboard rolling those blocks into three planned-vs-actual numbers. See <a href="#dashboard">the dashboard section</a> below for what that looks like filled in.</p>
+
+        <h2 id="premove">Premove: 48 and 24 Hours Before Release</h2>
+        <p>The two premove phases close out everything that has to be finished before the rig can actually come down — most of it cannot be undone once teardown starts. A representative slice of the 48-hour checklist:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>#</th><th>Task</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              {scopeRows.map((r) => (
+                <tr>
+                  <td>{r.n}</td>
+                  <td>{r.task}</td>
+                  <td><span class={`status-badge ${r.status === 'Done' ? 'status-safe' : 'status-warn'}`}>{r.status}</span></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>The 24-hour phase that follows narrows further to what only makes sense once release is imminent: tank cleaning, moving pipe tubs and yard loads, relocating BOP equipment not currently in use, and ringing down the vent lines, ditches, and control-unit suitcases that were still in service a day earlier.</p>
+
+        <h2 id="rig-down">Rig Down: Days 1–3</h2>
+        <p>Teardown runs in a fixed order for a reason — working out of sequence means working under a load that is not yet secured. A typical rig-down sequence: pull the choke manifold and de-gasser and stage them for backload; break down the top-drive quill assembly and remove the flow line; lay down the torque track and clear the rig floor of handling tools; rig down the Kelly hose and service loop; hang the blocks and slip extra drill line before unhanging the bridle lines; rig down the man-rider and rig-floor winches; secure the monkey board fingers and pull the front floor plates, handrails, and stairways; hold a pre-job safety meeting and lower the substructure and mast to a high stand after a drops inspection; then back-load the fuel tanks and standpipe skid, remove the rotary table, split the mast, and load out the top section, bottom section, and setback separately.</p>
+
+        <h2 id="rig-up">Rig Up: Days 4–6</h2>
+        <p>Rig-up rebuilds in the same order, reversed: spot the sub-base, generators, SCR house, and mud pumps; back-load matting under the sub-base; install the doghouse and driller's cabin; raise the mast and sub-base together and pin them; install the standpipe and ground manifold with all jumper hoses; spot and connect the accumulator and control-unit suitcases, then function-test the choke manifold; and finish by installing floor plates, handrails, and stairs, spooling the man-rider winches, and rigging up the flare lines. A clutch-and-brake test and a full drops inspection happen before the mast is ever raised, not after.</p>
+
+        <h2 id="commissioning">Commissioning: Day 7 Onward</h2>
+        <p>Once rig-up is actually complete — not just scheduled to be — the remaining days repeat a short, standard commissioning loop until the well is ready to spud: circulate to test the rebuilt mud and pressure systems, check the drilling-instrumentation system, function-test the cellar pump, and complete the rig's acceptance checklist. These days carry a much shorter equipment list than the teardown and rebuild phases, since the heavy trucking is already done — what is left is proving the rebuilt rig actually works before drilling resumes.</p>
+
+        <h2 id="equipment-table">Typical Contracted Equipment & Manpower</h2>
+        <p>A representative equipment and manpower list for a single rig-move day, of the kind that sits in the "as per contract" column of the tracker:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Equipment / Crew</th><th>Qty.</th></tr>
+            </thead>
+            <tbody>
+              {equipmentRows.map((r) => (
+                <tr><td>{r.item}</td><td>{r.qty}</td></tr>
+              ))}
+              <tr><td><strong>Total</strong></td><td><strong>{equipmentTotal}</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>A representative loads-to-move list for the same phase, itemized the way the tracker's "Loads to Move" block expects:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Load</th><th>Qty.</th></tr>
+            </thead>
+            <tbody>
+              {loadRows.map((r) => (
+                <tr><td>{r.item}</td><td>{r.qty}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="dashboard">The Planned vs Actual Dashboard</h2>
+        <p>Every phase closes with the same three-row rollup, comparing what was planned against what actually happened:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Category</th><th>Planned</th><th>Actual</th></tr>
+            </thead>
+            <tbody>
+              {dashboardRows.map((r) => (
+                <tr><td>{r.category}</td><td>{r.planned}</td><td>{r.actual}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>Cumulative totals for loads moved and hours spent carry forward across the whole tracker, so by the final commissioning day a superintendent can see the entire move's actual duration and load count against what the original 14-day plan called for — the same comparison the header sets up on page one.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#header-fields">The Move Header</a>
+          <a href="#four-trackers">Four Things Tracked</a>
+          <a href="#premove">Premove: 48 &amp; 24 Hours</a>
+          <a href="#rig-down">Rig Down: Days 1–3</a>
+          <a href="#rig-up">Rig Up: Days 4–6</a>
+          <a href="#commissioning">Commissioning</a>
+          <a href="#equipment-table">Equipment &amp; Manpower</a>
+          <a href="#dashboard">Planned vs Actual Dashboard</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/bop" class="card-link">→ Blowout Preventer Types &amp; How a BOP Works</a><br><br>
+          <a href="/equipment/accumulator" class="card-link">→ Accumulator Function Test &amp; Drill</a><br><br>
+          <a href="/drilling/well-control" class="card-link">→ Well Control &amp; Kicks</a><br><br>
+          <a href="/drilling" class="card-link">→ How Drilling Works</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

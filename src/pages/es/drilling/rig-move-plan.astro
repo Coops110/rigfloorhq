@@ -1,0 +1,248 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const equipmentRows = [
+  { item: 'Grúas, 80 toneladas', qty: 2 },
+  { item: 'Grúas, 60 toneladas', qty: 2 },
+  { item: 'Montacargas', qty: 2 },
+  { item: 'Camiones planos (flatbed)', qty: 15 },
+  { item: 'Plataformas bajas (lowboy)', qty: 6 },
+  { item: 'Camiones porta-tubería', qty: 2 },
+  { item: 'Cuadrilla de rigger', qty: 2 },
+  { item: 'Supervisor de seguridad', qty: 1 },
+  { item: 'Jefe de camiones', qty: 2 },
+  { item: 'Camión de diésel/combustible', qty: 1 },
+  { item: 'Líder de convoy', qty: 1 },
+  { item: 'Swamper (ayudante de carga)', qty: 4 },
+];
+const equipmentTotal = equipmentRows.reduce((s, r) => s + r.qty, 0);
+
+const scopeRows = [
+  { n: 1, task: 'Evaluación de ruta completada para la nueva ubicación', status: 'Hecho' },
+  { n: 2, task: 'Marcado de la nueva ubicación para el taladro y el campamento', status: 'Hecho' },
+  { n: 3, task: 'Todo el equipo innecesario retirado del piso de perforación', status: 'Hecho' },
+  { n: 4, task: 'Equipo pesado de control de pozo asegurado y listo para mover', status: 'Hecho' },
+  { n: 5, task: 'Contralavado de líneas de lodo para minimizar fluido residual antes de la carga', status: 'Hecho' },
+  { n: 6, task: 'Limpiar fosas y cellar. Asegurar que el cellar esté limpio a 6 pies para la liberación. Preparar todas las bridas ciegas y manijas de válvula para los cabezales de pozo.', status: 'Hecho' },
+  { n: 7, task: 'Cargar productos de lodo', status: 'Hecho' },
+  { n: 8, task: 'Inspección de personal y equipo de la empresa de transporte', status: 'Hecho' },
+  { n: 9, task: 'Desmontar standpipe y todas las líneas y manifold de alta presión', status: 'No Hecho' },
+];
+
+const loadRows = [
+  { item: 'Dormitorios del campamento principal', qty: 10 },
+  { item: 'Unidades auxiliares del campamento', qty: 6 },
+  { item: 'Tinas de tubería/collares', qty: 6 },
+  { item: 'Componentes del BOP', qty: 4 },
+  { item: 'Sistema de lodo', qty: 8 },
+  { item: 'Cajas misceláneas', qty: 12 },
+];
+
+const dashboardRows = [
+  { category: 'Cantidad de equipo', planned: 40, actual: 42 },
+  { category: 'Cantidad de cargas', planned: 32, actual: 34 },
+  { category: 'Cantidad de tareas', planned: 15, actual: 15 },
+];
+
+const faq = [
+  {
+    q: '¿Qué es un rastreador de plan versus real para un movimiento de taladro?',
+    a: 'Es el documento de trabajo que el equipo de movimiento llena fase por fase — Premove 48 Horas, Premove 24 Horas, y luego Día 1 en adelante — que lista el alcance de trabajo de esa fase junto a una columna "real" en vivo, además de dos conteos de apoyo: el equipo y personal contratado para ese día, y las cargas que hay que mover. Al final de cada fase, un pequeño panel resume esas tres cosas en números de planeado versus real, para que un superintendente de taladro vea de un vistazo si el movimiento va adelantado, a tiempo, o atrasado.',
+  },
+  {
+    q: '¿Por qué rastrear el equipo y las cargas por separado de la lista de tareas?',
+    a: 'Responden preguntas distintas. La lista de alcance de trabajo rastrea si la cuadrilla avanzó en el trabajo — si la tarea se completó, y si no, por qué. La tabla de equipo rastrea si el contratista de transporte realmente llegó con lo que el plan del día pedía, ya que un movimiento de taladro se detiene tan rápido por una plataforma baja faltante como por una tarea sin terminar. La lista de cargas es el tejido conector entre ambas: es lo que el equipo de arriba está ahí para mover, detallado para que nada quede en el suelo cuando el convoy se retire.',
+  },
+  {
+    q: '¿Por qué la lista se divide en fases de premove, desmontaje, montaje, y puesta en marcha?',
+    a: 'Porque cada fase depende de que la anterior termine limpiamente. El trabajo de premove (evaluación de ruta, preparación del campamento, limpieza de fosas y cellar) tiene que cerrarse antes de la liberación, ya que la mayor parte no se puede deshacer una vez que el taladro baja. El desmontaje retira el taladro en pie en un orden fijo — primero el equipo y líneas del piso, luego el mástil y la subestructura — porque salirse de ese orden implica trabajar bajo una carga que todavía no está asegurada. El montaje reconstruye en el mismo orden pero al revés, y la puesta en marcha (circular para probar el sistema reconstruido, probar funcionalmente el equipo, correr la lista de aceptación) solo empieza cuando el montaje realmente está completo, no solo programado para estarlo.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Plan vs Real de Movimiento de Taladro: Rastreador y Lista de Ejemplo"
+  description="Cómo funciona un rastreador de plan versus real para un movimiento de taladro: las listas de premove, el alcance de trabajo día a día de desmontaje y montaje, los conteos de equipo y carga, y el panel de planeado versus real — un ejemplo genérico ilustrativo."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Perforación', href: '/es/drilling' }, { label: 'Plan vs Real de Movimiento', href: '/es/drilling/rig-move-plan' }]}
+  lang="es"
+  alternateHref="/drilling/rig-move-plan"
+>
+  <Nav slot="nav" lang="es" alternateHref="/drilling/rig-move-plan" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Perforación — Movimientos de Taladro</div>
+    <h1>Movimiento de Taladro: <span>Plan vs Real</span></h1>
+    <p class="page-hero-sub">Un ejemplo genérico e ilustrativo del rastreador día a día que las cuadrillas usan para planear el movimiento de un taladro terrestre y registrar lo que realmente pasó contra ese plan — desde 48 horas antes de la liberación hasta los primeros días de vuelta en producción.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="que-es">Qué Es un Rastreador de Plan vs Real</h2>
+        <p>Un movimiento de taladro es uno de los tramos de más alto riesgo y costo en el calendario de un taladro — días sin metraje mientras toda la estructura se desmonta, se transporta, y se reconstruye en otro lugar. Un rastreador de plan versus real es el documento de trabajo que mantiene ese tramo a tiempo: divide todo el movimiento en fases, y para cada fase detalla el alcance de trabajo planeado, el equipo que pide el contrato de movimiento, y las cargas que hay que transportar, cada una con una columna en vivo que registra lo que realmente pasó junto a lo planeado.</p>
+        <p>La plantilla de abajo es un ejemplo genérico construido a partir de la forma que toma un rastreador real de movimiento de taladro — no es el registro de ningún taladro o movimiento específico. Todos los valores mostrados son ilustrativos.</p>
+
+        <h2 id="encabezado">El Encabezado del Movimiento</h2>
+        <p>Cada fase del rastreador abre con el mismo bloque de encabezado, para que cualquiera que tome la hoja a mitad del movimiento pueda orientarse en segundos:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Campo</th><th>Ejemplo</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Taladro #</td><td>—</td></tr>
+              <tr><td>Movimiento de / a</td><td>Pad A → Pad B</td></tr>
+              <tr><td>Tipo de movimiento</td><td>No Legal</td></tr>
+              <tr><td>Distancia</td><td>28 km</td></tr>
+              <tr><td>Días planeados</td><td>14</td></tr>
+              <tr><td>Fecha de liberación</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note-box">
+          <strong>Solo ejemplo ilustrativo.</strong> Esta página es una plantilla genérica construida a partir de la forma estándar de un rastreador de plan versus real para movimiento de taladro. No describe, y no está basada en, ningún taladro, pozo, arrendamiento, o movimiento real de ninguna empresa específica — los valores de campo arriba son marcadores de posición o cifras de ejemplo redondeadas.
+        </div>
+
+        <h2 id="cuatro-rastreadores">Cuatro Cosas Que Se Rastrean Cada Día</h2>
+        <p>Debajo del encabezado, cada fase de la hoja repite los mismos cuatro bloques:</p>
+        <div style="display:flex;flex-direction:column;gap:8px;margin:24px 0;">
+          <div style="padding:16px 18px;background:var(--steel);border-radius:3px;">
+            <strong style="color:var(--white);font-size:14px;">Equipo Contratado</strong>
+            <p style="font-size:12px;color:var(--fog);margin-top:4px;">Lo que el contrato de movimiento pide ese día — grúas, camiones planos, plataformas bajas, cuadrillas de rigger y swamper — junto a lo que realmente llegó a la ubicación.</p>
+          </div>
+          <div style="padding:16px 18px;background:var(--steel);border-radius:3px;">
+            <strong style="color:var(--white);font-size:14px;">Alcance de Trabajo</strong>
+            <p style="font-size:12px;color:var(--fog);margin-top:4px;">La lista de tareas de la fase, cada línea marcada Hecho o No Hecho con un comentario que explica cualquier demora.</p>
+          </div>
+          <div style="padding:16px 18px;background:var(--steel);border-radius:3px;">
+            <strong style="color:var(--white);font-size:14px;">Cargas a Mover</strong>
+            <p style="font-size:12px;color:var(--fog);margin-top:4px;">Cada carga detallada por lo que es y cuántos camiones requiere, con un estado y número de camión que se llena conforme cada una realmente sale.</p>
+          </div>
+          <div style="padding:16px 18px;background:var(--steel);border-radius:3px;">
+            <strong style="color:var(--white);font-size:14px;">Mantenimiento Planeado y Real</strong>
+            <p style="font-size:12px;color:var(--fog);margin-top:4px;">Mantenimiento que la ventana del movimiento hace posible — trabajo difícil de hacer con el taladro operando — registrado como planeado contra lo que realmente se completó.</p>
+          </div>
+        </div>
+        <p>Cada fase cierra con un pequeño panel que resume esos bloques en tres números de planeado versus real. Ver <a href="#panel">la sección del panel</a> abajo para ver cómo se ve lleno.</p>
+
+        <h2 id="premove">Premove: 48 y 24 Horas Antes de la Liberación</h2>
+        <p>Las dos fases de premove cierran todo lo que tiene que terminarse antes de que el taladro realmente pueda bajar — la mayor parte no se puede deshacer una vez que empieza el desmontaje. Una muestra representativa de la lista de 48 horas:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>#</th><th>Tarea</th><th>Estado</th></tr>
+            </thead>
+            <tbody>
+              {scopeRows.map((r) => (
+                <tr>
+                  <td>{r.n}</td>
+                  <td>{r.task}</td>
+                  <td><span class={`status-badge ${r.status === 'Hecho' ? 'status-safe' : 'status-warn'}`}>{r.status}</span></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>La fase de 24 horas que sigue se enfoca en lo que solo tiene sentido cuando la liberación es inminente: limpieza de tanques, mover tinas de tubería y cargas del patio, reubicar equipo de BOP que no está en uso, y desmontar las líneas de venteo, zanjas, y maletas de la unidad de control que todavía estaban en servicio un día antes.</p>
+
+        <h2 id="desmontaje">Desmontaje: Días 1–3</h2>
+        <p>El desmontaje corre en un orden fijo por una razón — trabajar fuera de secuencia significa trabajar bajo una carga que todavía no está asegurada. Una secuencia típica de desmontaje: sacar el manifold de estrangulador y el desgasificador y prepararlos para carga; desarmar el ensamble de la sarta del top drive y quitar la línea de flujo; bajar el riel de torque y despejar el piso de perforación de herramientas de manejo; desmontar la manguera de Kelly y el loop de servicio; colgar los bloques y deslizar línea de perforación extra antes de descolgar las líneas de bridle; desmontar los malacates de man-rider y de piso; asegurar los dedos del monkey board y sacar las placas de piso frontales, barandas, y escaleras; sostener una charla de seguridad y bajar la subestructura y el mástil a una posición alta después de una inspección de objetos que puedan caer; luego cargar los tanques de combustible y el skid del standpipe, quitar la mesa rotaria, dividir el mástil, y cargar la sección superior, inferior, y el setback por separado.</p>
+
+        <h2 id="montaje">Montaje: Días 4–6</h2>
+        <p>El montaje reconstruye en el mismo orden, invertido: colocar la sub-base, generadores, casa de SCR, y bombas de lodo; cargar el matting debajo de la sub-base; instalar el doghouse y la cabina del perforador; levantar el mástil y la sub-base juntos y asegurarlos con pines; instalar el standpipe y el manifold de tierra con todas las mangueras jumper; colocar y conectar el acumulador y las maletas de la unidad de control, luego probar funcionalmente el manifold de estrangulador; y terminar instalando placas de piso, barandas, y escaleras, enrollando los malacates de man-rider, y montando las líneas de venteo. Una prueba de embrague y freno y una inspección completa de objetos que puedan caer suceden antes de levantar el mástil, no después.</p>
+
+        <h2 id="puesta-en-marcha">Puesta en Marcha: Día 7 en Adelante</h2>
+        <p>Una vez que el montaje realmente está completo — no solo programado para estarlo — los días restantes repiten un ciclo corto y estándar de puesta en marcha hasta que el pozo esté listo para el spud: circular para probar los sistemas reconstruidos de lodo y presión, revisar el sistema de instrumentación de perforación, probar funcionalmente la bomba del cellar, y completar la lista de aceptación del taladro. Estos días llevan una lista de equipo mucho más corta que las fases de desmontaje y reconstrucción, ya que el transporte pesado ya está hecho — lo que queda es comprobar que el taladro reconstruido realmente funciona antes de que se reanude la perforación.</p>
+
+        <h2 id="equipo-tabla">Equipo y Personal Contratado Típico</h2>
+        <p>Una lista representativa de equipo y personal para un solo día de movimiento de taladro, del tipo que va en la columna "según contrato" del rastreador:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Equipo / Cuadrilla</th><th>Cant.</th></tr>
+            </thead>
+            <tbody>
+              {equipmentRows.map((r) => (
+                <tr><td>{r.item}</td><td>{r.qty}</td></tr>
+              ))}
+              <tr><td><strong>Total</strong></td><td><strong>{equipmentTotal}</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Una lista representativa de cargas a mover para la misma fase, detallada como el bloque "Cargas a Mover" del rastreador lo espera:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Carga</th><th>Cant.</th></tr>
+            </thead>
+            <tbody>
+              {loadRows.map((r) => (
+                <tr><td>{r.item}</td><td>{r.qty}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="panel">El Panel de Planeado vs Real</h2>
+        <p>Cada fase cierra con el mismo resumen de tres filas, comparando lo planeado contra lo que realmente pasó:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Categoría</th><th>Planeado</th><th>Real</th></tr>
+            </thead>
+            <tbody>
+              {dashboardRows.map((r) => (
+                <tr><td>{r.category}</td><td>{r.planned}</td><td>{r.actual}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>Los totales acumulados de cargas movidas y horas gastadas se arrastran a través de todo el rastreador, así que para el último día de puesta en marcha un superintendente puede ver la duración real de todo el movimiento y el conteo de cargas contra lo que pedía el plan original de 14 días — la misma comparación que el encabezado establece desde la primera página.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#que-es">Qué Es</a>
+          <a href="#encabezado">El Encabezado</a>
+          <a href="#cuatro-rastreadores">Cuatro Cosas Rastreadas</a>
+          <a href="#premove">Premove: 48 y 24 Horas</a>
+          <a href="#desmontaje">Desmontaje: Días 1–3</a>
+          <a href="#montaje">Montaje: Días 4–6</a>
+          <a href="#puesta-en-marcha">Puesta en Marcha</a>
+          <a href="#equipo-tabla">Equipo y Personal</a>
+          <a href="#panel">Panel Planeado vs Real</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/bop" class="card-link">→ Tipos de BOP y Cómo Funciona un Stack</a><br><br>
+          <a href="/es/equipment/accumulator" class="card-link">→ Prueba Funcional y Simulacro del Acumulador</a><br><br>
+          <a href="/es/drilling/well-control" class="card-link">→ Control de Pozos y Surgencias</a><br><br>
+          <a href="/es/drilling" class="card-link">→ Cómo Funciona la Perforación</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
