@@ -94,4 +94,4 @@ If the swabbed-in influx sits below the bit, SIDPP will read **the same as SICP*
 
 ---
 
-For the math behind ICP, FCP, and pressure schedules, the [kill sheet calculator](/calculators/kill-sheet) and [horizontal kill sheet calculator](/calculators/kill-sheet-horizontal) run these live. Background theory is on the [well control reference page](/drilling/well-control).
+For the math behind ICP, FCP, and pressure schedules, the [kill sheet calculator](/calculators/kill-sheet) and [horizontal kill sheet calculator](/calculators/kill-sheet-horizontal) run these live. Background theory is on the [well control reference page](/drilling/well-control). Once a kill is actually underway, holding the right pressure constant is where [Driller's Method and Wait and Weight mistakes](/blog/drillers-method-wait-and-weight-mixups) most often happen.

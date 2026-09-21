@@ -94,4 +94,4 @@ Mid-kill, a tour change isn't the moment to move fast. Best practice is for **ou
 
 ---
 
-For the theory these draw on, see the site's [well control reference page](/drilling/well-control), and for hands-on practice, the [well control quiz](/well-control-quiz) covers this same ground interactively.
+For the theory these draw on, see the site's [well control reference page](/drilling/well-control), and for hands-on practice, the [well control quiz](/well-control-quiz) covers this same ground interactively. Once the fundamentals are solid, the warning signs and shut-in mistakes in the [next page in this series](/blog/kick-warning-signs-shut-in-mistakes) build directly on several of the concepts above.

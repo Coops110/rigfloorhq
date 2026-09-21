@@ -42,4 +42,4 @@ The Driller's Method's first circulation is done, pumps shut down, and SICP read
 
 ---
 
-For the underlying math, the [kill sheet calculator](/calculators/kill-sheet) and [hydrostatic pressure calculator](/calculators/hydrostatic) run these formulas live.
+For the underlying math, the [kill sheet calculator](/calculators/kill-sheet) and [hydrostatic pressure calculator](/calculators/hydrostatic) run these formulas live. The PWD/ECD concept in #4 above is covered from a different angle in [well control basics](/blog/well-control-basics-common-mistakes).

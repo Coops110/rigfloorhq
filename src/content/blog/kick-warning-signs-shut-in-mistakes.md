@@ -94,4 +94,4 @@ Of the routine flow-check trigger points, the one that does **not** require a fl
 
 ---
 
-For hands-on practice with these scenarios, the [well control quiz](/well-control-quiz) covers the same ground interactively, and the [kill sheet calculator](/calculators/kill-sheet) runs the pressure math behind a real kill.
+For hands-on practice with these scenarios, the [well control quiz](/well-control-quiz) covers the same ground interactively, and the [kill sheet calculator](/calculators/kill-sheet) runs the pressure math behind a real kill. Once a well's shut in, the pressure behavior covered here connects directly to what happens next — see [shut-in pressure behavior](/blog/shut-in-pressure-behavior-explained) for the migration and stripping scenarios that follow.

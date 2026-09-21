@@ -94,4 +94,4 @@ Pumping kill mud to the bit while holding drill pipe pressure flat, without adju
 
 ---
 
-The [kill sheet calculator](/calculators/kill-sheet) and [horizontal kill sheet calculator](/calculators/kill-sheet-horizontal) build these exact pressure schedules, and the [bullheading calculator](/calculators/bullheading) covers a related alternative method.
+The [kill sheet calculator](/calculators/kill-sheet) and [horizontal kill sheet calculator](/calculators/kill-sheet-horizontal) build these exact pressure schedules, and the [bullheading calculator](/calculators/bullheading) covers a related alternative method. Several of the scenarios above assume a well already correctly shut in — see [shut-in pressure behavior](/blog/shut-in-pressure-behavior-explained) for what happens before this stage.

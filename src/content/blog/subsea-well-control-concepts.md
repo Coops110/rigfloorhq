@@ -22,4 +22,4 @@ Fixed bore ram type BOPs are designed to contain Rated Working Pressure **only f
 
 ---
 
-For the pressure math behind riser margin and subsea kill scenarios, the [riser margin calculator](/calculators/riser-margin) runs the formulas live, and the [well control reference page](/drilling/well-control) covers the underlying theory.
+For the pressure math behind riser margin and subsea kill scenarios, the [riser margin calculator](/calculators/riser-margin) runs the formulas live, and the [well control reference page](/drilling/well-control) covers the underlying theory. Surface-stack ram and BOP fundamentals are covered in [well control basics](/blog/well-control-basics-common-mistakes).
