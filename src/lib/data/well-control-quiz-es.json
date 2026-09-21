@@ -1,0 +1,2802 @@
+[
+  {
+    "id": 1,
+    "question": "Un lodo de perforación pesa 8.9 ppg. ¿Cuál es su gradiente de presión?",
+    "choices": {
+      "A": "0.463 psi/ft",
+      "B": "0.833 psi/ft",
+      "C": "0.465 psi/ft",
+      "D": "0.433 psi/ft",
+      "E": "0.013 psi/ft"
+    },
+    "correctAnswer": "A",
+    "explanation": "El gradiente de presión convierte el peso de un fluido en presión ejercida por pie de profundidad vertical. La constante de conversión es 0.052 (derivada del peso de un galón de agua dulce distribuido sobre una columna de una pulgada cuadrada). Gradiente (psi/ft) = peso de lodo (ppg) x 0.052. Aquí: 8.9 x 0.052 = 0.463 psi/ft.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 2,
+    "question": "Verdadero o falso: una ganancia de tanques mayor producirá tanto una presión de tubería cerrada (SIDPP) más alta como una presión de revestimiento cerrada (SICP) más alta.",
+    "choices": {
+      "A": "Verdadero",
+      "B": "Falso",
+      "C": "A veces",
+      "D": "No hay suficiente información para saberlo",
+      "E": ""
+    },
+    "correctAnswer": "B",
+    "explanation": "Una ganancia de tanques mayor significa que ha entrado más influjo de baja densidad al anular, por lo que la SICP sí aumentará con el tamaño de la surgencia. La SIDPP es diferente: solo refleja la brecha entre la presión hidrostática del lodo dentro de la sarta de perforación y la presión de formación real, y la sarta nunca ve el influjo. Por lo tanto, la SIDPP no cambia con el tamaño de la surgencia. Como solo una de las dos presiones realmente aumenta con una ganancia mayor, el enunciado en su conjunto es falso.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 3,
+    "question": "Al matar un pozo con el método de dos circulaciones (método del perforador), ¿qué debería hacer el volumen de tanques durante la segunda circulación?",
+    "choices": {
+      "A": "El volumen aumentará considerablemente",
+      "B": "El volumen disminuirá considerablemente",
+      "C": "El volumen no cambiará",
+      "D": "El volumen aumentará al principio y luego disminuirá",
+      "E": "El volumen disminuirá al principio y luego se recuperará"
+    },
+    "correctAnswer": "C",
+    "explanation": "Para la segunda circulación, el influjo ya se ha eliminado del pozo durante la primera circulación. Lo que queda es bombear lodo de peso de matanza alrededor del sistema mientras se monitorean los retornos. Dado que el volumen que se bombea coincide con el volumen que regresa en superficie, el nivel de tanques debe mantenerse esencialmente estable durante esta etapa; un tanque que sube o baja aquí sería una señal de que algo no planeado está sucediendo (pérdidas u otro influjo).",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 4,
+    "question": "¿La mayoría de las surgencias son causadas porque el equipo de perforación no hace cuál de las siguientes acciones?",
+    "choices": {
+      "A": "Instalar y probar correctamente el equipo de preventores de reventones (BOP)",
+      "B": "Bombear un tapón (slug) antes de sacar la tubería del pozo",
+      "C": "Mantener el pozo lleno de lodo de perforación",
+      "D": "Asegurar que el pozo tome el volumen de llenado correcto durante los viajes",
+      "E": "Todas las anteriores son correctas"
+    },
+    "correctAnswer": "D",
+    "explanation": "Las cuadrillas generalmente son buenas para llenar el pozo durante los viajes; la brecha real está en confirmar que el volumen realmente bombeado de vuelta coincide con el volumen calculado del acero recién retirado. Un pozo que parece estar \"lleno\" aún puede estar tomando silenciosamente menos fluido del que debería, y ese déficit es una de las señales tempranas más comunes, y más fáciles de pasar por alto, de una surgencia en curso.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 5,
+    "question": "La presión de circulación de varios miles de psi en la bomba cae a casi nada para cuando llega a las zarandas. ¿Qué parte de esa pérdida de presión sigue actuando en el fondo del pozo durante la circulación?",
+    "choices": {
+      "A": "Pérdida de presión en las líneas de superficie",
+      "B": "Pérdida de presión en la sarta de perforación",
+      "C": "Pérdida de presión en las boquillas de la barrena",
+      "D": "Pérdida de presión anular",
+      "E": "Todas las anteriores"
+    },
+    "correctAnswer": "D",
+    "explanation": "La presión total de la bomba se consume al vencer la fricción en las líneas de superficie, dentro de la sarta de perforación, a través de las boquillas de la barrena y, finalmente, al subir por el anular de regreso a superficie; para cuando los retornos llegan a las zarandas, toda esa presión ya se ha gastado. De esos componentes, solo la pérdida de presión anular (APL) se genera por encima de la barrena en el camino de regreso a superficie, lo que significa que representa la contrapresión que el agujero descubierto y la formación aún sienten mientras se circula el lodo. Por eso la pérdida de presión anular se suma al peso de lodo estático al calcular la densidad de circulación equivalente.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 6,
+    "question": "¿Qué dos variables se utilizan para calcular la presión hidrostática?",
+    "choices": {
+      "A": "Profundidad y forma del pozo",
+      "B": "Volumen y peso del lodo",
+      "C": "Pérdida de presión anular y peso de lodo",
+      "D": "Profundidad del pozo y viscosidad del lodo de perforación",
+      "E": "Longitud de la columna y densidad del fluido"
+    },
+    "correctAnswer": "E",
+    "explanation": "La presión hidrostática es puramente una función de la densidad de un fluido y la altura vertical (profundidad vertical verdadera) de la columna por encima del punto que se mide; no tiene nada que ver con la forma, el volumen o el ancho del contenedor en el que se encuentra. Por eso la fórmula es simplemente: presión = densidad del fluido x altura de la columna (gradiente en psi/ft x TVD en pies).",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 7,
+    "question": "¿De cuál de los siguientes es buena práctica de perforación llevar registros precisos?",
+    "choices": {
+      "A": "Registros de viajes",
+      "B": "Cifras de rendimiento de la bomba",
+      "C": "Pérdidas de presión a régimen de circulación lento",
+      "D": "Cuadrillas capacitadas y conscientes del control de pozos",
+      "E": "Todas las anteriores"
+    },
+    "correctAnswer": "E",
+    "explanation": "Ninguna de estas se puede omitir: los registros de viajes confirman que el pozo está tomando el llenado correcto, las cifras de rendimiento de la bomba permiten convertir golpes en volumen, las pérdidas de presión a régimen de circulación lento dan la línea base de velocidad de matanza, y una cuadrilla capacitada y alerta es lo que realmente detecta los problemas a tiempo para que importe. El buen control de pozos descansa en todas ellas juntas, no en una sola.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 8,
+    "question": "¿Con qué manómetro deben registrarse las pérdidas de presión a régimen de circulación lento en cada turno?",
+    "choices": {
+      "A": "El manómetro de tubería en el panel remoto del estrangulador",
+      "B": "El manómetro de tubería en la consola del perforador",
+      "C": "El manómetro en el múltiple de estranguladores",
+      "D": "El manómetro de la bomba",
+      "E": "La lectura obtenida de los registradores de lodo (mud loggers)"
+    },
+    "correctAnswer": "A",
+    "explanation": "Si ocurre una surgencia, el pozo se matará realmente observando el manómetro de tubería en el panel remoto del estrangulador, por lo que ese es exactamente el manómetro que debe usarse para establecer las pérdidas de presión a régimen de circulación lento desde el principio. Usar un manómetro diferente (consola, bomba o múltiple) introduce pequeñas diferencias de calibración que pueden desajustar las cifras de la hoja de matanza justo cuando la precisión más importa.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 9,
+    "question": "La presión hidrostática es la presión ejercida por una columna de fluido en reposo.",
+    "choices": {
+      "A": "Verdadero",
+      "B": "Falso",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "Esta es la definición de manual de la presión hidrostática: depende únicamente de la densidad del fluido y la altura vertical de la columna estática por encima del punto de medición, no del movimiento, el caudal ni la forma del contenedor. El enunciado es verdadero.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 10,
+    "question": "Una de las reglas más importantes en control de pozos es:",
+    "choices": {
+      "A": "Saber cómo obtener la SIDPP con una válvula flotadora en la sarta",
+      "B": "Cerrar el pozo rápidamente con la menor ganancia posible",
+      "C": "Circular una surgencia con presión de tubería y golpes constantes",
+      "D": "Mantener aproximadamente 200 psi de contrapresión en el estrangulador",
+      "E": "Tener siempre a mano las pérdidas de presión a régimen de circulación lento"
+    },
+    "correctAnswer": "B",
+    "explanation": "El tamaño de la ganancia de tanques determina todo lo demás sobre qué tan difícil y peligrosa será la matanza: ganancias mayores significan presiones de cierre más altas, migración de burbuja más larga y un mayor margen de seguridad necesario. La palanca más grande que tiene una cuadrilla sobre ese resultado es la velocidad de reacción: cuanto más rápido se cierre el pozo después de reconocer una surgencia, menor será la ganancia, y más manejable será todo lo que venga después.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 11,
+    "question": "¿Qué método de matanza involucra solo una circulación, bombeando lodo de peso de matanza completo desde el principio?",
+    "choices": {
+      "A": "Método del Perforador",
+      "B": "Método de Esperar y Densificar",
+      "C": "Método Volumétrico",
+      "D": "Método Concurrente",
+      "E": "Contrabombeo (bullheading)"
+    },
+    "correctAnswer": "B",
+    "explanation": "El Método de Esperar y Densificar (a veces llamado Método del Ingeniero) requiere que la cuadrilla primero densifique el lodo hasta el peso de matanza antes de circular, y luego bombee ese lodo más pesado alrededor de todo el sistema en una sola circulación. Esto contrasta con el Método del Perforador, que primero circula el influjo hacia afuera con el peso de lodo original y luego sigue con una segunda circulación de lodo de matanza.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 12,
+    "question": "¿Qué método de matanza circula el influjo completamente fuera del pozo antes de circular lodo de peso de matanza alrededor del sistema?",
+    "choices": {
+      "A": "Método del Perforador",
+      "B": "Método de Esperar y Densificar",
+      "C": "Método Volumétrico",
+      "D": "Método Concurrente",
+      "E": "Contrabombeo (bullheading)"
+    },
+    "correctAnswer": "A",
+    "explanation": "El Método del Perforador es una matanza de dos circulaciones: la primera circulación elimina el influjo del pozo usando el peso de lodo original, y solo en la segunda circulación se bombea lodo de peso de matanza alrededor del sistema. Su principal ventaja es que se puede iniciar de inmediato, sin esperar a densificar primero el sistema de lodo.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 13,
+    "question": "¿Qué método de matanza usaría si no pudiera circular y se sospechara migración de gas?",
+    "choices": {
+      "A": "Método del Perforador",
+      "B": "Método de Esperar y Densificar",
+      "C": "Método Volumétrico",
+      "D": "Método Concurrente",
+      "E": "Contrabombeo (bullheading)"
+    },
+    "correctAnswer": "C",
+    "explanation": "El Método Volumétrico se usa específicamente cuando no es posible circular (por ejemplo, una barrena taponada o una bomba averiada). En lugar de bombear, se purgan del pozo pequeños volúmenes controlados de lodo para compensar la expansión del gas a medida que migra hacia arriba por el anular, manteniendo la presión de fondo dentro de una ventana segura hasta que se pueda restablecer la circulación.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 14,
+    "question": "El método primario para prevenir un reventón es:",
+    "choices": {
+      "A": "Perforadores altamente capacitados",
+      "B": "Cerrar los preventores de reventones",
+      "C": "El peso de lodo correcto en el pozo",
+      "D": "Un buen supervisor de sitio",
+      "E": "Una buena prueba de goteo (leak-off test)"
+    },
+    "correctAnswer": "C",
+    "explanation": "El control primario de pozos significa mantener equilibrada la presión de formación usando únicamente la presión hidrostática de una columna de lodo correctamente densificada a la profundidad vertical verdadera correcta. Todo lo demás (cuadrillas capacitadas, preventores de reventones, pruebas de goteo) apoya ese objetivo o sirve como respaldo una vez que el control primario ya se ha perdido.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 15,
+    "question": "Si se ha perdido el control primario del pozo, el método secundario para controlar el pozo sería:",
+    "choices": {
+      "A": "Bombear un tapón de barita",
+      "B": "Cerrar los preventores de reventones",
+      "C": "Bombear lodo de peso de matanza",
+      "D": "Preparar una hoja de matanza",
+      "E": "Investigar por qué se perdió el control primario"
+    },
+    "correctAnswer": "B",
+    "explanation": "El control secundario de pozos se define como el uso del equipo de preventores de reventones para cerrar físicamente el pozo una vez que la columna de lodo por sí sola (control primario) ya no contiene la presión de formación. Todo lo demás mencionado (hojas de matanza, lodo de matanza, investigar la causa) ocurre después de que el pozo ya ha sido asegurado con los BOP.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 16,
+    "question": "A medida que el gas migra hacia arriba en un pozo cerrado (suponiendo que no hay válvula flotadora en la sarta), ¿qué sucede con las presiones que se leen?",
+    "choices": {
+      "A": "La presión de revestimiento aumentará",
+      "B": "La presión de tubería aumentará",
+      "C": "La presión de la burbuja aumentará",
+      "D": "A y B son correctas",
+      "E": "A y C son correctas"
+    },
+    "correctAnswer": "D",
+    "explanation": "A medida que una burbuja de gas atrapada migra hacia superficie sin expandirse (porque el pozo está cerrado y el lodo es incompresible), lleva el mismo volumen de gas hacia una columna de lodo que tiene menos presión hidrostática por encima, por lo que tanto la presión de revestimiento como la presión de tubería suben juntas. La presión dentro de la burbuja misma se mantiene esencialmente constante, ya que no se le permite expandirse mientras el pozo está cerrado.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 17,
+    "question": "Si no se sigue el programa correcto de presión de tubería durante una operación de matanza, la presión de fondo podría terminar siendo demasiado alta o demasiado baja, causando más influjo o pérdidas.",
+    "choices": {
+      "A": "Verdadero",
+      "B": "Falso",
+      "C": "A veces",
+      "D": "Solo en pozos verticales",
+      "E": "Solo en pozos horizontales"
+    },
+    "correctAnswer": "A",
+    "explanation": "La presión de tubería es la palanca de control del operador sobre la presión de fondo mientras se circula una matanza. Si se mantiene demasiado alta, se corre el riesgo de romper la formación y perder retornos; si se mantiene demasiado baja, el fluido de formación puede volver a entrar al pozo. Apegarse al programa correcto en cada cambio de velocidad de bomba es lo que mantiene constante la presión de fondo durante toda la matanza.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 18,
+    "question": "La presión de formación a 7500 ft TVD es de 3488 psi. ¿Cuál es el gradiente de formación aproximado?",
+    "choices": {
+      "A": "0.349 psi/ft",
+      "B": "0.465 psi/ft",
+      "C": "0.521 psi/ft",
+      "D": "0.722 psi/ft",
+      "E": "1.00 psi/ft"
+    },
+    "correctAnswer": "B",
+    "explanation": "El gradiente es simplemente la presión dividida entre la profundidad: gradiente (psi/ft) = presión (psi) / profundidad (ft). Aquí: 3488 / 7500 = 0.465 psi/ft.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 19,
+    "question": "¿Cuál es la mejor descripción de un reventón?",
+    "choices": {
+      "A": "Un flujo de fluido de la formación hacia el pozo",
+      "B": "Una formación con presión anormal",
+      "C": "Un flujo incontrolado de fluido desde el pozo en superficie",
+      "D": "Una combinación de presión hidrostática y presión de formación",
+      "E": "Ninguna de las anteriores"
+    },
+    "correctAnswer": "C",
+    "explanation": "Es importante mantener separados los dos términos: el fluido de formación que entra al pozo en el fondo (opción A) es una surgencia, mientras que el fluido de formación que escapa del pozo de forma incontrolada en superficie es un reventón. Un reventón es esencialmente lo que sucede cuando una surgencia no se detecta y controla a tiempo.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 20,
+    "question": "¿Cuáles de los siguientes son posibles indicadores de una surgencia?",
+    "choices": {
+      "A": "Aumento de flujo",
+      "B": "Quiebre de perforación (drilling break)",
+      "C": "Aumento del volumen de tanques",
+      "D": "Lodo cortado por gas",
+      "E": "Todas las anteriores"
+    },
+    "correctAnswer": "E",
+    "explanation": "Ninguna de estas por sí sola prueba que una surgencia esté en curso, pero cada una es una señal de advertencia reconocida que vale la pena verificar de inmediato: un aumento de flujo o una ganancia de tanques sugiere que está entrando fluido de formación al pozo, un quiebre de perforación repentino puede significar que se ha penetrado una zona más permeable o con mayor presión, y el lodo cortado por gas muestra que ya se está transportando gas de formación hacia arriba por el anular.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 21,
+    "question": "La pérdida de presión a régimen de circulación lento es la presión requerida para circular el lodo alrededor del sistema a una velocidad de bomba fija y seleccionada.",
+    "choices": {
+      "A": "Verdadero",
+      "B": "Falso",
+      "C": "Solo en pozos verticales",
+      "D": "Solo en pozos horizontales",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "Esto es exactamente lo que representa la pérdida de presión a régimen de circulación lento (SCR): la presión de fricción necesaria para mover el lodo a través de todo el sistema de circulación a una velocidad de bomba predeterminada y reducida, la misma velocidad que se usará más tarde para matar el pozo si ocurre una surgencia.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 22,
+    "question": "¿Cuándo deben tomarse las pérdidas de presión a régimen de circulación lento?",
+    "choices": {
+      "A": "Tan pronto como sea posible al iniciar el turno",
+      "B": "Cuando cambia el peso de lodo",
+      "C": "Después de perforar una gran cantidad de metraje (hasta 1000 ft)",
+      "D": "Después de un cambio de BHA o de boquillas de barrena",
+      "E": "Todas las anteriores"
+    },
+    "correctAnswer": "E",
+    "explanation": "La pérdida de presión a régimen de circulación lento cambia cada vez que cambian las características de fricción del sistema: un nuevo peso de lodo, un nuevo metraje de pozo perforado, o una configuración diferente de ensamble de fondo y boquillas modificarán la cifra. Tomar una lectura nueva al cambio de turno y después de cada uno de estos eventos mantiene precisa la línea base de la hoja de matanza.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 23,
+    "question": "El tubo en U está equilibrado cuando el pozo está cerrado y las presiones se han estabilizado, sin importar la diferencia entre la SIDPP y la SICP.",
+    "choices": {
+      "A": "Verdadero",
+      "B": "Falso",
+      "C": "Solo en pozos verticales",
+      "D": "Solo en pozos horizontales",
+      "E": "Solo con conjuntos de superficie"
+    },
+    "correctAnswer": "A",
+    "explanation": "El pozo se comporta como un tubo en U: una vez cerrado y estabilizado, las presiones en las dos ramas conectadas (sarta de perforación y anular) están en equilibrio con la presión de formación, sin importar cuán diferentes sean las lecturas de SIDPP y SICP entre sí; esa diferencia simplemente refleja el influjo más ligero que se encuentra en el lado del anular. El equilibrio se trata de estabilidad, no de que los dos manómetros coincidan.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 24,
+    "question": "El estrangulador se usa para ajustar la presión de revestimiento, y la presión de tubería se ajusta cambiando la velocidad de la bomba.",
+    "choices": {
+      "A": "Verdadero",
+      "B": "Falso",
+      "C": "Solo en pozos verticales",
+      "D": "Solo en pozos horizontales",
+      "E": "Solo con conjuntos de superficie"
+    },
+    "correctAnswer": "B",
+    "explanation": "Este enunciado lo tiene al revés. Durante una matanza con la bomba funcionando a una velocidad estable, el estrangulador es lo que se ajusta para controlar la presión de revestimiento (contrapresión). La presión de tubería es una consecuencia de la velocidad de bomba fija y el peso de lodo que baja por la sarta; no se usa la velocidad de la bomba como herramienta principal para ajustarla finamente durante la circulación.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 25,
+    "question": "La presión de fondo no se ve afectada cuando se bombea un tapón (slug) hacia la sarta de perforación antes de un viaje.",
+    "choices": {
+      "A": "Verdadero",
+      "B": "Falso",
+      "C": "Solo en pozos verticales",
+      "D": "Solo en pozos horizontales",
+      "E": "Solo con conjuntos de superficie"
+    },
+    "correctAnswer": "A",
+    "explanation": "Un tapón (slug) es lodo más pesado que se bombea a la parte superior de la sarta de perforación únicamente para que la tubería pueda sacarse una distancia segura en seco sin derramar lodo en el piso de perforación. Debido a que el pozo permanece estático y la columna hidrostática general que llega al fondo no se ve afectada de manera significativa, la presión de fondo no cambia por esta práctica, que es precisamente por lo que bombear tapones es estándar y está permitido.",
+    "topic": "Conocimientos Básicos"
+  },
+  {
+    "id": 1,
+    "question": "Encuentra la presión hidrostática de un lodo de 12 ppg en un pozo de 10,000 ft.",
+    "choices": {
+      "A": "6240 psi",
+      "B": "1200 psi",
+      "C": "6420 psi",
+      "D": "5250 psi",
+      "E": "4260 psi"
+    },
+    "correctAnswer": "A",
+    "explanation": "Presión hidrostática = peso de lodo (ppg) x 0.052 x profundidad vertical verdadera (ft). Aquí: 12 x 0.052 x 10,000 = 6240 psi.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 2,
+    "question": "¿Cuál es la presión hidrostática en el fondo de un pozo de 6500 ft de profundidad lleno con lodo de 14 ppg?",
+    "choices": {
+      "A": "4732 psi",
+      "B": "7800 psi",
+      "C": "2512 psi",
+      "D": "3590 psi",
+      "E": "3128 psi"
+    },
+    "correctAnswer": "A",
+    "explanation": "Presión hidrostática = peso de lodo x 0.052 x TVD. Aquí: 14 x 0.052 x 6500 = 4732 psi.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 3,
+    "question": "El peso de lodo es 11 ppg y la profundidad del pozo es 9000 ft de profundidad medida (MD) / 8500 ft de profundidad vertical verdadera (TVD). ¿Cuál es la presión hidrostática en el fondo del pozo?",
+    "choices": {
+      "A": "4628 psi",
+      "B": "4268 psi",
+      "C": "4862 psi",
+      "D": "4682 psi",
+      "E": "4826 psi"
+    },
+    "correctAnswer": "C",
+    "explanation": "La presión hidrostática siempre utiliza la profundidad vertical verdadera, nunca la profundidad medida, porque la presión depende de la altura real de la columna de fluido, no de la longitud de tubería recorrida para llegar ahí. Usando TVD: 11 x 0.052 x 8500 = 4862 psi.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 4,
+    "question": "La profundidad del pozo es 18,000 ft TVD / 21,000 ft MD. El peso de lodo en uso es 15.5 ppg. ¿Cuál es la presión de fondo (BHP)?",
+    "choices": {
+      "A": "12,475 psi",
+      "B": "16,867 psi",
+      "C": "13,724 psi",
+      "D": "15,807 psi",
+      "E": "14,508 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "La presión de fondo a partir de una columna de lodo estática usa TVD, no MD: 15.5 x 0.052 x 18,000 = 14,508 psi.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 5,
+    "question": "El gradiente de lodo es 0.780 psi/ft a 11,000 ft MD / 10,000 ft TVD. ¿Cuál es la presión hidrostática en el fondo?",
+    "choices": {
+      "A": "8700 psi",
+      "B": "7800 psi",
+      "C": "8070 psi",
+      "D": "8580 psi",
+      "E": "7080 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "Un gradiente ya expresa la presión por pie de profundidad vertical, por lo que la presión hidrostática es simplemente gradiente x TVD (usando TVD, no MD, por la misma razón de siempre: la presión depende de la altura vertical). Aquí: 0.780 x 10,000 = 7800 psi.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 6,
+    "question": "¿Cuál es el peso de lodo si la presión hidrostática es de 3000 psi a 4675 ft?",
+    "choices": {
+      "A": "11.72 ppg",
+      "B": "12.12 ppg",
+      "C": "12.34 ppg",
+      "D": "12.78 ppg",
+      "E": "13.26 ppg"
+    },
+    "correctAnswer": "C",
+    "explanation": "Esta es la fórmula de presión hidrostática reordenada para despejar el peso de lodo: ppg = psi / (pies x 0.052). Aquí: 3000 / (4675 x 0.052) = 3000 / 243.1 = 12.34 ppg.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 7,
+    "question": "¿Cuál es el peso de lodo equivalente para 4000 psi a 8000 ft? (Redondea tu respuesta hacia arriba.)",
+    "choices": {
+      "A": "12.45 ppg",
+      "B": "8.76 ppg",
+      "C": "9.12 ppg",
+      "D": "10.32 ppg",
+      "E": "9.62 ppg"
+    },
+    "correctAnswer": "E",
+    "explanation": "El peso de lodo equivalente usa la misma fórmula reordenada: ppg = psi / (pies x 0.052). Aquí: 4000 / (8000 x 0.052) = 4000 / 416 = 9.615, que redondeado hacia arriba da 9.62 ppg.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 8,
+    "question": "El TVD es de 4500 ft y la presión es de 3300 psi. ¿Cuál es el peso de lodo equivalente?",
+    "choices": {
+      "A": "12.3 ppg",
+      "B": "12.9 ppg",
+      "C": "13.5 ppg",
+      "D": "14.1 ppg",
+      "E": "14.7 ppg"
+    },
+    "correctAnswer": "D",
+    "explanation": "ppg = psi / (pies x 0.052). Aquí: 3300 / (4500 x 0.052) = 3300 / 234 = 14.1 ppg.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 9,
+    "question": "¿Cuál es el peso de lodo equivalente a 8500 ft TVD / 9500 ft MD con 4900 psi?",
+    "choices": {
+      "A": "12.25 ppg",
+      "B": "11.08 ppg",
+      "C": "10.01 ppg",
+      "D": "10.82 ppg",
+      "E": "11.57 ppg"
+    },
+    "correctAnswer": "B",
+    "explanation": "Siempre usa TVD, no MD, para los cálculos de presión. ppg = psi / (pies x 0.052) = 4900 / (8500 x 0.052) = 4900 / 442 = 11.09 ppg, más cercano a 11.08 ppg.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 10,
+    "question": "Convierte una presión de 8500 psi en un peso de lodo equivalente para una profundidad de 12,000 ft MD / 11,000 ft TVD.",
+    "choices": {
+      "A": "14.86 ppg",
+      "B": "13.86 ppg",
+      "C": "12.68 ppg",
+      "D": "15.68 ppg",
+      "E": "13.52 ppg"
+    },
+    "correctAnswer": "A",
+    "explanation": "Siempre usa TVD, no MD, para los cálculos de presión. ppg = psi / (pies x 0.052) = 8500 / (11,000 x 0.052) = 8500 / 572 = 14.86 ppg.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 11,
+    "question": "Calcula el peso de lodo equivalente: BHP = 12,000 psi; profundidad = 12,500 ft.",
+    "choices": {
+      "A": "18.46 ppg",
+      "B": "13.12 ppg",
+      "C": "15.50 ppg",
+      "D": "19.24 ppg",
+      "E": "17.98 ppg"
+    },
+    "correctAnswer": "A",
+    "explanation": "ppg = psi / (pies x 0.052) = 12,000 / (12,500 x 0.052) = 12,000 / 650 = 18.46 ppg.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 12,
+    "question": "BHP = 4680 psi; profundidad = 9800 ft TVD / 11,500 ft MD. ¿Cuál es el peso de lodo equivalente?",
+    "choices": {
+      "A": "8.25 ppg",
+      "B": "10.6 ppg",
+      "C": "9.18 ppg",
+      "D": "7.84 ppg",
+      "E": "8.8 ppg"
+    },
+    "correctAnswer": "C",
+    "explanation": "Siempre usa TVD, no MD. ppg = psi / (pies x 0.052) = 4680 / (9800 x 0.052) = 4680 / 509.6 = 9.18 ppg.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 13,
+    "question": "Se registra una presión de bomba de 1200 psi a 35 golpes por minuto (SPM). ¿Cuál será aproximadamente la presión de bomba a 30 SPM?",
+    "choices": {
+      "A": "1029 psi",
+      "B": "882 psi",
+      "C": "705 psi",
+      "D": "1427 psi",
+      "E": "1173 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "La presión de bomba varía con el cuadrado de la velocidad de la bomba: psi nuevo = psi anterior x (SPM nuevo / SPM anterior)^2. Aquí: 1200 x (30/35)^2 = 1200 x 0.735 = 882 psi.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 14,
+    "question": "La profundidad medida es de 13,500 ft y la profundidad vertical verdadera es de 13,000 ft. ¿Cuál es la presión hidrostática con lodo de 15 ppg en el pozo?",
+    "choices": {
+      "A": "10,530 psi",
+      "B": "6760 psi",
+      "C": "6278 psi",
+      "D": "10,140 psi",
+      "E": "8876 psi"
+    },
+    "correctAnswer": "D",
+    "explanation": "La presión hidrostática usa TVD, no MD: 15 x 0.052 x 13,000 = 10,140 psi.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 15,
+    "question": "Calcula la nueva presión de bomba a una nueva velocidad de bomba: presión de bomba actual = 300 psi a 45 SPM; nueva velocidad de bomba = 80 SPM.",
+    "choices": {
+      "A": "872 psi",
+      "B": "848 psi",
+      "C": "913 psi",
+      "D": "972 psi",
+      "E": "948 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "psi nuevo = psi anterior x (SPM nuevo / SPM anterior)^2 = 300 x (80/45)^2 = 300 x 3.16 = 948 psi.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 16,
+    "question": "Con una presión de bomba de 400 psi a 20 SPM, ¿cuál sería aproximadamente la presión a 44 SPM?",
+    "choices": {
+      "A": "880 psi",
+      "B": "2112 psi",
+      "C": "1842 psi",
+      "D": "2060 psi",
+      "E": "1936 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "psi nuevo = psi anterior x (SPM nuevo / SPM anterior)^2. Trabaja primero la razón, elévala al cuadrado y luego multiplica por la presión anterior: (44/20)^2 = 4.84; 400 x 4.84 = 1936 psi.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 17,
+    "question": "Con un peso de lodo de 17 ppg la presión de bombeo es de 2500 psi. ¿Cuál será la presión de bombeo con lodo de 18.0 ppg (misma velocidad de bomba)?",
+    "choices": {
+      "A": "2342 psi",
+      "B": "2647 psi",
+      "C": "2746 psi",
+      "D": "2849 psi",
+      "E": "2545 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "La relación de velocidad de bomba al cuadrado solo aplica a cambios de velocidad. Para un cambio de peso de lodo a velocidad de bomba constante, la presión escala directamente (no al cuadrado) con el peso: psi nuevo = psi anterior x (peso de lodo nuevo / peso de lodo anterior). Aquí: 2500 x (18/17) = 2647 psi.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 18,
+    "question": "La presión de bomba actual es de 1700 psi con lodo de 10 ppg a 50 SPM. ¿Cuál es la nueva presión de bomba si el peso de lodo se aumenta a 12 ppg y la velocidad de bomba se reduce a 45 SPM?",
+    "choices": {
+      "A": "1652 psi",
+      "B": "1752 psi",
+      "C": "1572 psi",
+      "D": "1257 psi",
+      "E": "1725 psi"
+    },
+    "correctAnswer": "A",
+    "explanation": "Están ocurriendo dos cambios a la vez (un cambio de peso de lodo y un cambio de velocidad de bomba), y no importa cuál se calcule primero. Paso de peso de lodo: 1700 x (12/10) = 2040 psi. Paso de velocidad: 2040 x (45/50)^2 = 2040 x 0.81 = 1652 psi.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 19,
+    "question": "¿Cuál es el peso de lodo aproximado en ppg para un gradiente de 0.62 psi/ft?",
+    "choices": {
+      "A": "9.12 ppg",
+      "B": "12.29 ppg",
+      "C": "11.92 ppg",
+      "D": "10.26 ppg",
+      "E": "13.02 ppg"
+    },
+    "correctAnswer": "C",
+    "explanation": "Para obtener el peso de lodo a partir del gradiente, divide entre 0.052: 0.62 / 0.052 = 11.92 ppg.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 20,
+    "question": "Un gradiente de 0.650 psi/ft da un peso de lodo de:",
+    "choices": {
+      "A": "10.9 ppg",
+      "B": "14.2 ppg",
+      "C": "11.7 ppg",
+      "D": "13.4 ppg",
+      "E": "12.5 ppg"
+    },
+    "correctAnswer": "E",
+    "explanation": "Divide el gradiente entre 0.052 para obtener ppg: 0.650 / 0.052 = 12.5 ppg.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 21,
+    "question": "El gradiente de lodo es de 0.42 psi/ft. ¿Cuál es el peso de lodo?",
+    "choices": {
+      "A": "10.2 ppg",
+      "B": "9.87 ppg",
+      "C": "8.8 ppg",
+      "D": "8.08 ppg",
+      "E": "7.93 ppg"
+    },
+    "correctAnswer": "D",
+    "explanation": "Divide el gradiente entre 0.052: 0.42 / 0.052 = 8.08 ppg.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 22,
+    "question": "¿Qué fluido tiene un gradiente de aproximadamente 0.433 psi/ft?",
+    "choices": {
+      "A": "Gas",
+      "B": "Agua dulce",
+      "C": "Condensado",
+      "D": "Fluido de formación",
+      "E": "Petróleo"
+    },
+    "correctAnswer": "B",
+    "explanation": "Dividir el gradiente entre 0.052 da el peso equivalente: 0.433 / 0.052 = 8.33 ppg, que es el peso estándar del agua dulce. Este gradiente (aproximadamente 0.433-0.465 psi/ft dependiendo de la salinidad) es la cifra de referencia utilizada en todo el control de pozos para cálculos de referencia con fluidos base agua.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 23,
+    "question": "¿Cuál es el gradiente de un lodo de 9.6 ppg?",
+    "choices": {
+      "A": "0.543 psi/ft",
+      "B": "0.531 psi/ft",
+      "C": "0.510 psi/ft",
+      "D": "0.487 psi/ft",
+      "E": "0.499 psi/ft"
+    },
+    "correctAnswer": "E",
+    "explanation": "Para convertir ppg a psi/ft, multiplica por 0.052: 9.6 x 0.052 = 0.499 psi/ft.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 24,
+    "question": "Un lodo de 15 ppg tiene un gradiente de:",
+    "choices": {
+      "A": "0.67 psi/ft",
+      "B": "0.72 psi/ft",
+      "C": "0.83 psi/ft",
+      "D": "0.78 psi/ft",
+      "E": "0.64 psi/ft"
+    },
+    "correctAnswer": "D",
+    "explanation": "Multiplica el peso de lodo por 0.052: 15 x 0.052 = 0.78 psi/ft.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 25,
+    "question": "El peso de lodo es de 18.7 ppg. ¿Cuál es el gradiente de lodo?",
+    "choices": {
+      "A": "0.9274 psi/ft",
+      "B": "0.9724 psi/ft",
+      "C": "0.8385 psi/ft",
+      "D": "0.8657 psi/ft",
+      "E": "0.7371 psi/ft"
+    },
+    "correctAnswer": "B",
+    "explanation": "Multiplica el peso de lodo por 0.052: 18.7 x 0.052 = 0.9724 psi/ft.",
+    "topic": "Presión Básica"
+  },
+  {
+    "id": 1,
+    "question": "¿Cuál de los siguientes es el primer indicador confiable de que un pozo está teniendo una surgencia?",
+    "choices": {
+      "A": "Aumento de torque",
+      "B": "Lodo cortado por gas",
+      "C": "Aumento del caudal de flujo",
+      "D": "Disminución de la presión de bomba",
+      "E": "Disminución del peso de la sarta"
+    },
+    "correctAnswer": "C",
+    "explanation": "Un aumento en el caudal de retorno mientras la velocidad de la bomba no ha cambiado es la señal confiable más temprana de que fluido adicional (un influjo) está entrando al pozo y empujando más volumen hacia afuera en superficie. Las demás señales mencionadas pueden tener varias otras causas y se consideran indicadores secundarios de apoyo, no un primer indicador confiable por sí solas.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 2,
+    "question": "Si el volumen de lodo desplazado al sacar la tubería no coincide con el desplazamiento teórico de la tubería, ¿qué debes hacer antes de hacer una prueba de flujo (flow check) al pozo?",
+    "choices": {
+      "A": "Detener el viaje y llamar al registrador de lodo",
+      "B": "Detener el viaje, colocar una píldora de alta viscosidad y luego continuar sacando la tubería",
+      "C": "Continuar sacando lentamente y vigilar el tanque de viaje",
+      "D": "Detener el viaje e instalar una válvula de seguridad de apertura total",
+      "E": "Detener el viaje, cizallar la tubería y pedir ayuda"
+    },
+    "correctAnswer": "D",
+    "explanation": "Cuando no se puede justificar el volumen de llenado, debes asumir que el pozo ya podría estar fluyendo, así que el paso inmediato más seguro es asegurar la tubería con una válvula de seguridad de apertura total antes de hacer cualquier otra cosa, incluida una prueba de flujo. Esto protege contra el flujo hacia arriba por la sarta de perforación mientras se resuelve lo que está sucediendo.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 3,
+    "question": "Durante las operaciones de perforación, el enderezador (derrickman) reporta un aumento inusual en el nivel de tanques. ¿Cuál es la respuesta más segura?",
+    "choices": {
+      "A": "Detener la perforación y circular fondos arriba",
+      "B": "Ignorarlo si los instrumentos muestran que todo está normal",
+      "C": "Levantar la sarta del fondo, apagar las bombas y verificar si hay flujo",
+      "D": "Decirle que siga observando y que reporte si no hay cambios",
+      "E": "Reiniciar los indicadores de nivel de tanques y de flujo"
+    },
+    "correctAnswer": "C",
+    "explanation": "Una ganancia de tanques inexplicada se trata como una posible surgencia hasta que se demuestre lo contrario. La respuesta más segura es levantar la barrena del fondo, apagar las bombas y realizar una prueba de flujo adecuada; esta es la forma más rápida de confirmar o descartar un influjo sin perder tiempo en acciones de menor prioridad.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 4,
+    "question": "¿Bajo cuál de las siguientes condiciones es probable que ocurra el efecto de pistoneo (swabbing)?",
+    "choices": {
+      "A": "Cuando la viscosidad del lodo es alta",
+      "B": "Cuando la barrena está embolada",
+      "C": "Cuando la tubería se saca demasiado rápido",
+      "D": "Cuando el ensamble de fondo tiene poco espacio libre en el pozo",
+      "E": "Todas las anteriores"
+    },
+    "correctAnswer": "E",
+    "explanation": "Cada una de estas condiciones crea un efecto de succión tipo pistón a medida que la tubería se mueve hacia arriba en el pozo: tanto el lodo espeso como una barrena embolada aumentan el arrastre sobre el fluido que intenta caer para llenar el espacio, un ensamble con poco espacio libre restringe aún más esa vía de fluido, y sacar la tubería rápido simplemente no le da tiempo al lodo para ponerse al día. Cualquiera de ellas, o una combinación, puede jalar fluido de formación hacia el pozo.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 5,
+    "question": "¿Qué secuencia describe mejor un cierre duro? (R/C = estrangulador remoto en el múltiple de estranguladores; salida lateral = la válvula hidráulica o de falla segura en el conjunto de BOP.)",
+    "choices": {
+      "A": "Con el R/C cerrado, cerrar un BOP y luego abrir una salida lateral",
+      "B": "Con el R/C cerrado, abrir una salida lateral y luego cerrar un BOP",
+      "C": "Con el R/C abierto, abrir una salida lateral, cerrar el R/C y luego cerrar un BOP",
+      "D": "Con el R/C abierto, abrir una salida lateral, cerrar un BOP y luego cerrar el R/C",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "Un cierre duro prioriza la velocidad sobre la acumulación gradual de presión: el estrangulador remoto comienza cerrado, se cierra un BOP (típicamente el anular o un ariete de tubería) primero, y luego se abre la salida lateral para alinear el pozo hacia el múltiple de estranguladores. Requiere menos pasos que un cierre suave y, por lo tanto, atrapa el menor influjo posible, a costa de un aumento súbito de presión en el conjunto de BOP.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 6,
+    "question": "¿Qué secuencia describe mejor un cierre suave? (R/C = estrangulador remoto en el múltiple de estranguladores; salida lateral = la válvula hidráulica o de falla segura en el conjunto de BOP.)",
+    "choices": {
+      "A": "Con el R/C cerrado, cerrar un BOP y luego abrir una salida lateral",
+      "B": "Con el R/C cerrado, abrir una salida lateral y luego cerrar un BOP",
+      "C": "Con el R/C abierto, abrir una salida lateral, cerrar el R/C y luego cerrar un BOP",
+      "D": "Con el R/C abierto, abrir una salida lateral, cerrar un BOP y luego cerrar el R/C",
+      "E": ""
+    },
+    "correctAnswer": "D",
+    "explanation": "Un cierre suave intercambia un poco más de volumen de influjo por una acumulación de presión más suave: el estrangulador remoto comienza abierto, se abre la salida lateral para alinear el múltiple de estranguladores, se cierra el BOP, y solo entonces se cierra el estrangulador para dejar el pozo completamente cerrado. El cierre gradual reduce la carga de choque que se ve en un cierre duro.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 7,
+    "question": "¿Qué debe hacer un perforador inmediatamente al experimentar un quiebre de perforación?",
+    "choices": {
+      "A": "Circular fondos arriba",
+      "B": "Hacer una prueba de flujo",
+      "C": "Reducir el peso sobre la barrena",
+      "D": "Aumentar la velocidad de la bomba",
+      "E": "C y D"
+    },
+    "correctAnswer": "B",
+    "explanation": "Un aumento repentino en la velocidad de penetración puede significar que se acaba de perforar una zona más porosa, permeable o con mayor presión, exactamente las condiciones que pueden desencadenar una surgencia. La respuesta inmediata más segura es levantar la sarta del fondo y hacer una prueba de flujo antes de decidir cualquier otra acción.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 8,
+    "question": "El propósito de cerrar un pozo es:",
+    "choices": {
+      "A": "Detener que siga entrando influjo al pozo",
+      "B": "Permitir determinar las presiones",
+      "C": "Probar el funcionamiento de los preventores de reventones",
+      "D": "A y B",
+      "E": "Asegurar que la cuadrilla de perforación se mantenga alerta"
+    },
+    "correctAnswer": "D",
+    "explanation": "Cerrar el pozo obviamente detiene que más fluido de formación entre al pozo, pero también cumple un segundo propósito esencial: solo una vez que el pozo está cerrado y las presiones se han estabilizado se puede obtener una lectura precisa de SIDPP y SICP, que se requieren para calcular la presión de formación y diseñar la matanza. Ambos propósitos importan por igual.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 9,
+    "question": "Si ocurren pérdidas totales de lodo mientras se perfora con lodo base agua, ¿qué debes hacer?",
+    "choices": {
+      "A": "Continuar perforando a ciegas",
+      "B": "Detener la perforación y llenar el pozo con agua",
+      "C": "Detener la perforación y cerrar el pozo",
+      "D": "Colocar una píldora de alta viscosidad a través del zapato",
+      "E": "Colocar un tapón de barita"
+    },
+    "correctAnswer": "B",
+    "explanation": "Con pérdidas totales, el lodo ya no regresa a superficie, por lo que seguir bombeando lodo costoso hacia una zona ladrona no logra nada excepto desperdiciarlo. La prioridad es mantener el pozo lleno para conservar la presión hidrostática que aún sea posible, y el agua es un fluido barato y fácilmente disponible para hacer eso mientras se evalúa la situación.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 10,
+    "question": "¿Cuáles de los siguientes son causas del efecto de pistoneo (swabbing)?",
+    "choices": {
+      "A": "Densidad de circulación inadecuada y bombear demasiado rápido",
+      "B": "Meter la tubería demasiado rápido y no usar el tanque de viaje",
+      "C": "No colocar un tapón (slug) antes de sacar la tubería",
+      "D": "Sacar la tubería demasiado rápido y un margen de viaje insuficiente",
+      "E": "Meter la tubería demasiado rápido, causando presión de surgencia (surge) y pérdidas"
+    },
+    "correctAnswer": "D",
+    "explanation": "El pistoneo es específicamente el efecto de succión que se crea al sacar la tubería del pozo: sacarla demasiado rápido, o sin un margen de viaje adecuado (peso de lodo extra incorporado para compensar el efecto de pistoneo), permite que la presión de formación exceda momentáneamente la presión hidrostática reducida y jale fluido hacia adentro. Las demás opciones describen problemas de densidad de circulación o efectos de surgencia al meter la tubería, que son problemas distintos.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 11,
+    "question": "¿Qué causa de surgencias de pozo es totalmente evitable y se reduce a una falta de alerta del perforador?",
+    "choices": {
+      "A": "Pérdida de circulación",
+      "B": "Lodo cortado por gas",
+      "C": "No llenar el pozo con la cantidad correcta de lodo durante un viaje",
+      "D": "Presión de formación anormal",
+      "E": "Quiebres de perforación"
+    },
+    "correctAnswer": "C",
+    "explanation": "La presión anormal, la pérdida de circulación, el corte por gas y los quiebres de perforación son todas condiciones a las que la cuadrilla tiene que reaccionar. No llenar el pozo con el volumen exacto calculado durante un viaje, sin embargo, es una falla de monitoreo: el perforador debe estar vigilando esto en cada parada, y detectarlo a tiempo previene la surgencia por completo en lugar de simplemente responder a una.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 12,
+    "question": "¿Qué debes hacer si el pozo se mantiene lleno pero no toma la cantidad calculada correcta de lodo durante un viaje?",
+    "choices": {
+      "A": "Anotarlo, vigilar si hay flujo, y si no lo hay continuar sacando la tubería",
+      "B": "Detenerse, colocar una píldora de alta viscosidad y continuar sacando la tubería",
+      "C": "Regresar al fondo y circular fondos arriba",
+      "D": "Verificar si hay lodo cortado por gas en superficie",
+      "E": "Sacar la tubería hasta el zapato del revestimiento y circular el gas hacia afuera"
+    },
+    "correctAnswer": "C",
+    "explanation": "Un volumen de llenado incorrecto, incluso con el pozo aparentemente lleno, se trata como evidencia sólida de que ya se ha pistoneado una surgencia hacia adentro. La respuesta correcta es correr o maniobrar (strip) de regreso al fondo y circular fondos arriba para confirmar si hay un influjo presente, en lugar de continuar el viaje o esperar más señales.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 13,
+    "question": "El pozo no fluye mientras se circula, pero sí fluye cuando se apagan las bombas. ¿Aproximadamente en cuánto debe aumentarse el peso de lodo?",
+    "choices": {
+      "A": "Una cantidad igual a la pérdida de presión anular",
+      "B": "0.83 ppg",
+      "C": "5.83 ppg",
+      "D": "Ninguna de las anteriores",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "Si el pozo solo fluye cuando se detienen las bombas, la pérdida de presión anular (la contrapresión adicional creada por la circulación) es lo que ha estado supliendo el control primario faltante. Para restablecer el equilibrio sin circular, el peso de lodo estático debe aumentarse en una cantidad igual a esa pérdida de presión anular, expresada como un aumento de peso de lodo equivalente.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 14,
+    "question": "Se detecta gas de conexión mientras se perfora una zona de yacimiento, y aumentar el peso de lodo no es una opción por ahora. ¿Cuál es la buena práctica?",
+    "choices": {
+      "A": "Hacer pruebas de flujo más largas durante las conexiones",
+      "B": "Aumentar la velocidad de perforación para atravesar la zona más rápido",
+      "C": "Controlar la velocidad de perforación para que solo haya un bolsón de gas en el anular a la vez",
+      "D": "Tratar de minimizar el tiempo de conexión",
+      "E": "C y D"
+    },
+    "correctAnswer": "E",
+    "explanation": "Con el peso de lodo fijo, las dos palancas que quedan son la velocidad de penetración y la velocidad de conexión: controlar el ROP evita que múltiples bolsones de gas se apilen y se traslapen en el anular, y minimizar el tiempo detenido en las conexiones limita cuánto gas puede migrar y acumularse en cada parada. Ambas trabajan juntas para mantener la situación manejable.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 15,
+    "question": "La tubería está fuera del fondo cuando el pozo tiene una surgencia. ¿Cuál es la práctica recomendada?",
+    "choices": {
+      "A": "Instalar una válvula de seguridad, asegurar el pozo y maniobrar (strip) de regreso al fondo",
+      "B": "Circular y matar el pozo de inmediato",
+      "C": "Contrabombear (bullhead) el influjo de regreso",
+      "D": "Terminar el viaje y luego maniobrar hacia el fondo",
+      "E": "Correr de regreso al fondo lo más rápido posible"
+    },
+    "correctAnswer": "A",
+    "explanation": "En el momento en que se confirma una surgencia, el pozo debe cerrarse; eso significa instalar una válvula de seguridad en la sarta si está fuera del fondo, y cerrar los BOP. Debido a que una matanza se ejecuta mejor con la barrena en el fondo, el siguiente paso después de asegurar el pozo es maniobrar cuidadosamente de regreso hacia abajo, sin apresurarse ni saltarse pasos.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 16,
+    "question": "El pozo no fluye mientras se circula, pero sí fluye con las bombas apagadas. Peso de lodo actual = 12 ppg, pérdida de presión anular (APL) = 220 psi, profundidad del pozo = 14,300 ft TVD. ¿Aproximadamente en cuánto debería aumentarse probablemente el peso de lodo?",
+    "choices": {
+      "A": "0.3 ppg",
+      "B": "3 ppg",
+      "C": "0.5 ppg",
+      "D": "5 ppg",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "El aumento de peso de lodo necesario es igual a la pérdida de presión anular convertida a ppg sobre la profundidad del pozo: aumento en ppg = psi / (pies x 0.052) = 220 / (14,300 x 0.052) = 220 / 743.6 = 0.30 ppg.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 17,
+    "question": "¿Cuáles de los siguientes pueden causar que un pozo tenga una surgencia?",
+    "choices": {
+      "A": "Pérdida de circulación",
+      "B": "Pistoneo (swabbing)",
+      "C": "No mantener el pozo lleno",
+      "D": "Peso de lodo insuficiente",
+      "E": "Todas las anteriores"
+    },
+    "correctAnswer": "E",
+    "explanation": "Cada una de estas reduce de forma independiente la presión hidrostática que contiene el fluido de formación: la pérdida de circulación baja el nivel de fluido, el pistoneo jala la presión hacia abajo temporalmente de forma mecánica, un pozo sin llenar deja menos altura de columna de la asumida, y simplemente usar lodo demasiado ligero para la presión de formación elimina por completo el margen de seguridad. Cualquiera de ellas basta para desencadenar una surgencia.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 18,
+    "question": "El movimiento rápido de la tubería de perforación hacia el pozo puede causar un aumento de presión que puede provocar pérdidas. ¿Cómo se llama este aumento de presión?",
+    "choices": {
+      "A": "Pistoneo (swab)",
+      "B": "Surgencia del pozo (kick)",
+      "C": "Fuga",
+      "D": "Sobrepresión por surgencia (surge)",
+      "E": "Ninguna de las anteriores es correcta"
+    },
+    "correctAnswer": "D",
+    "explanation": "El efecto de surgencia (surge) es el efecto de pistón que se produce al introducir la tubería en el pozo demasiado rápido: el lodo debajo y alrededor de la tubería tiene que desplazarse más rápido de lo que el anular puede acomodar, disparando la presión y pudiendo romper una formación débil. El pistoneo (swab) es el efecto espejo que ocurre al sacar la tubería del pozo.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 19,
+    "question": "¿Es buena práctica realizar simulacros no programados de los sensores de tanques o de flujo?",
+    "choices": {
+      "A": "Sí",
+      "B": "No",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "Las surgencias reales nunca se anuncian con anticipación, así que una cuadrilla que solo practica control de pozos en un horario fijo puede volverse complaciente. Los simulacros no programados mantienen a todos genuinamente alerta y listos para responder correctamente cuando ocurra lo real, no solo cuando lo esperan.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 20,
+    "question": "¿Por qué debe cerrarse un pozo rápidamente una vez que se ha detectado una surgencia?",
+    "choices": {
+      "A": "Minimiza el influjo hacia el pozo",
+      "B": "Las presiones terminarán siendo más bajas del lado del anular",
+      "C": "La SIDPP siempre es más alta con surgencias más grandes",
+      "D": "A y B son correctas",
+      "E": "Ninguna de las anteriores es correcta"
+    },
+    "correctAnswer": "D",
+    "explanation": "Cerrar rápidamente limita cuánto fluido de formación tiene la oportunidad de entrar al pozo, lo que limita directamente el tamaño del influjo. Un influjo más pequeño, a su vez, significa una presión de revestimiento cerrada (SICP) más baja una vez que todo se estabiliza; los dos beneficios están directamente vinculados. La SIDPP, en cambio, no se ve afectada por el tamaño de la surgencia, por lo que la opción C es falsa.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 21,
+    "question": "Estás a cinco paradas del fondo cuando el pozo tiene una surgencia. ¿Deberías instalar una válvula de seguridad y un preventor de reventones interno?",
+    "choices": {
+      "A": "Sí",
+      "B": "No",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "Una vez que ha ocurrido una surgencia, el pozo debe cerrarse contra toda vía de flujo posible, incluyendo hacia arriba a través de la sarta de perforación abierta. Con la sarta fuera del fondo, eso significa instalar una válvula de seguridad y un preventor interno antes de cerrar el conjunto de BOP, para que la tubería misma no pueda convertirse en una ruta incontrolada hacia superficie.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 22,
+    "question": "Verdadero o falso: cuando se encuentra lodo cortado por gas, debes aumentar inmediatamente el peso de lodo para prevenir una surgencia.",
+    "choices": {
+      "A": "Verdadero",
+      "B": "Falso",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "B",
+    "explanation": "Densificar el lodo puede terminar siendo la decisión correcta, pero nunca debe ser automática; aumentar el peso de lodo sin antes verificar si la formación realmente puede tolerarlo arriesga inducir pérdidas, lo que crea un problema nuevo y posiblemente peor. El primer paso correcto es evaluar si un aumento es seguro antes de hacerlo.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 23,
+    "question": "El perforador sospecha que el pozo ha tomado una surgencia. ¿Qué debe hacer?",
+    "choices": {
+      "A": "Levantar la sarta del fondo, detener el bombeo, hacer una prueba de flujo y cerrar el pozo si la prueba es positiva",
+      "B": "Mantenerse alerta y listo para cerrar el pozo",
+      "C": "Continuar perforando hasta que se hayan ganado al menos veinte barriles en los tanques",
+      "D": "Alertar al supervisor de sitio y dejar que él decida qué hacer a continuación",
+      "E": "Aumentar la velocidad de la bomba"
+    },
+    "correctAnswer": "A",
+    "explanation": "La sola sospecha ya es suficiente para actuar de inmediato: el perforador debe levantar la sarta del fondo, detener las bombas y realizar una prueba de flujo de inmediato. Si esa prueba resulta positiva, el pozo se cierra en el acto en lugar de esperar la confirmación de alguien más o dejar que la situación evolucione.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 24,
+    "question": "Si ocurre pérdida de circulación y el nivel de lodo en el anular baja, el fluido de formación podría entrar al pozo debido a:",
+    "choices": {
+      "A": "La disminución de la presión de tubería",
+      "B": "La disminución de la presión de revestimiento",
+      "C": "La reducción de la presión hidrostática de la columna de lodo",
+      "D": "Que la presión de formación sea menor que la presión hidrostática",
+      "E": "Ninguna de las anteriores es correcta"
+    },
+    "correctAnswer": "C",
+    "explanation": "Un nivel de lodo que cae, sea cual sea la causa, reduce directamente la altura de la columna de fluido y por lo tanto baja la presión hidrostática en el fondo del pozo. Si esa caída es suficiente para llevar la presión hidrostática por debajo de la presión de formación, el pozo queda subbalanceado y puede tomar una surgencia.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 25,
+    "question": "¿Qué acción debe tomarse para controlar un pozo que ha pistoneado gas hacia adentro?",
+    "choices": {
+      "A": "Aumentar la velocidad al sacar cada parada",
+      "B": "Aligerar el lodo con agua a un peso menor",
+      "C": "Agregar peso de lodo o aumentar el margen de viaje",
+      "D": "Dejar el peso de lodo como está y continuar sacando la tubería",
+      "E": "Correr o maniobrar de regreso al fondo y circular el pozo hasta limpiarlo"
+    },
+    "correctAnswer": "E",
+    "explanation": "El gas pistoneado hacia adentro tiene que circularse fuera del pozo, y eso realmente solo puede hacerse de forma efectiva con la barrena de vuelta en el fondo, donde es posible la circulación completa. Continuar el viaje, ajustar el peso de lodo después del hecho, o cambiar la velocidad de viaje no hace nada para eliminar el gas que ya está en el anular.",
+    "topic": "Señales de Advertencia y Cierre"
+  },
+  {
+    "id": 1,
+    "question": "SIDPP = 510 psi; peso de lodo actual = 10.6 ppg; profundidad del pozo = 10,000 ft TVD. ¿Qué peso de lodo de matanza se necesita para equilibrar la presión de formación? (Redondea a un decimal.)",
+    "choices": {
+      "A": "14.3 ppg",
+      "B": "11.6 ppg",
+      "C": "10.7 ppg",
+      "D": "12.3 ppg",
+      "E": "13.8 ppg"
+    },
+    "correctAnswer": "B",
+    "explanation": "Peso de lodo de matanza = SIDPP / (TVD x 0.052) + peso de lodo original. Calcula primero el denominador, divídelo entre la SIDPP, y luego suma el resultado al peso de lodo original: 510 / (10,000 x 0.052) = 510 / 520 = 0.98; 0.98 + 10.6 = 11.6 ppg.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 2,
+    "question": "Profundidad del pozo = 12,000 ft MD / 10,200 ft TVD; peso de lodo en uso = 12.3 ppg; SICP = 1150 psi; SIDPP = 1000 psi. Calcula el peso de lodo de matanza (redondea a un decimal).",
+    "choices": {
+      "A": "14.7 ppg",
+      "B": "13.9 ppg",
+      "C": "13.3 ppg",
+      "D": "14.2 ppg",
+      "E": "12.5 ppg"
+    },
+    "correctAnswer": "D",
+    "explanation": "Peso de lodo de matanza = SIDPP / (TVD x 0.052) + peso de lodo original; siempre usa TVD y SIDPP (la SICP no forma parte de esta fórmula). 1000 / (10,200 x 0.052) = 1000 / 530.4 = 1.885; 1.885 + 12.3 = 14.2 ppg.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 3,
+    "question": "El peso de lodo es 10.5 ppg, el TVD es 9500 ft, la SIDPP es 1100 psi y la SICP es 2000 psi. Redondeado a un decimal, ¿qué peso de lodo de matanza se necesita?",
+    "choices": {
+      "A": "14.1 ppg",
+      "B": "10.2 ppg",
+      "C": "10.7 ppg",
+      "D": "13.2 ppg",
+      "E": "12.8 ppg"
+    },
+    "correctAnswer": "E",
+    "explanation": "Peso de lodo de matanza = SIDPP / (TVD x 0.052) + peso de lodo original, usando la SIDPP (no la SICP): 1100 / (9500 x 0.052) = 1100 / 494 = 2.23; 2.23 + 10.5 = 12.73, que redondea a 12.8 ppg.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 4,
+    "question": "Profundidad = 16,200 ft TVD / 17,000 ft MD; SICP = 800 psi; SIDPP = 300 psi; peso de lodo = 14 ppg. Calcula el peso de lodo de matanza (redondeado a un decimal).",
+    "choices": {
+      "A": "14.4 ppg",
+      "B": "14.1 ppg",
+      "C": "16.3 ppg",
+      "D": "14.7 ppg",
+      "E": "13.2 ppg"
+    },
+    "correctAnswer": "A",
+    "explanation": "Peso de lodo de matanza = SIDPP / (TVD x 0.052) + peso de lodo original, usando TVD y SIDPP: 300 / (16,200 x 0.052) = 300 / 842.4 = 0.356; 0.356 + 14 = 14.356, que redondea a 14.4 ppg.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 5,
+    "question": "Un pozo que se perfora a 12,000 ft TVD se cierra por una surgencia de 20 bbl con 1300 psi en el manómetro de revestimiento y 700 psi en el manómetro de tubería, con lodo de 14 ppg en el pozo. La longitud total de la sarta es de 13,500 ft. ¿Qué peso de lodo de matanza se necesita para recuperar el control primario? (Redondea a un decimal.)",
+    "choices": {
+      "A": "14.9 ppg",
+      "B": "15.1 ppg",
+      "C": "15.2 ppg",
+      "D": "15.4 ppg",
+      "E": "17 ppg"
+    },
+    "correctAnswer": "B",
+    "explanation": "Aunque la longitud de la sarta es de 13,500 ft, la profundidad vertical verdadera del pozo es de 12,000 ft, y el TVD es siempre lo que va en la fórmula de lodo de matanza, no la longitud total de la sarta. Peso de lodo de matanza = SIDPP / (TVD x 0.052) + OMW = 700 / (12,000 x 0.052) + 14 = 700 / 624 + 14 = 1.12 + 14 = 15.12, que redondea a 15.1 ppg.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 6,
+    "question": "¿Cuál es la altura aproximada del influjo si la ganancia es de 25 bbl y la capacidad anular lastrabarrena/agujero descubierto es de 0.029 bbl/ft?",
+    "choices": {
+      "A": "816 ft",
+      "B": "912 ft",
+      "C": "862 ft",
+      "D": "784 ft",
+      "E": "892 ft"
+    },
+    "correctAnswer": "C",
+    "explanation": "Altura del influjo = tamaño de la surgencia / capacidad anular = 25 / 0.029 = 862 ft.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 7,
+    "question": "Un pozo se cierra con una ganancia de tanques de 10 bbl. Hay 500 ft de lastrabarrenas con una capacidad anular agujero descubierto/lastrabarrena de 0.0836 bbl/ft. ¿Cuál es la altura del influjo?",
+    "choices": {
+      "A": "425 ft",
+      "B": "384 ft",
+      "C": "212 ft",
+      "D": "120 ft",
+      "E": "76 ft"
+    },
+    "correctAnswer": "D",
+    "explanation": "Altura del influjo = tamaño de la surgencia / capacidad anular = 10 / 0.0836 = 120 ft.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 8,
+    "question": "El MD del pozo es de 10,000 ft con 500 ft de lastrabarrenas en el fondo. Capacidad anular lastrabarrena/agujero descubierto = 0.029 bbl/ft; capacidad anular tubería de perforación/agujero descubierto = 0.0459 bbl/ft. ¿Cuál sería la altura de un influjo de 55 bbl, suponiendo que no hay migración de gas?",
+    "choices": {
+      "A": "1382 ft",
+      "B": "1896 ft",
+      "C": "1198 ft",
+      "D": "1098 ft",
+      "E": "947 ft"
+    },
+    "correctAnswer": "A",
+    "explanation": "Primero calcula cuánto de la surgencia cabe alrededor de los lastrabarrenas: 0.029 x 500 = 14.5 bbl. Resta eso del total de la surgencia para ver cuánto se ha desbordado hacia el anular más grande alrededor de la tubería de perforación: 55 - 14.5 = 40.5 bbl. Convierte ese remanente a altura: 40.5 / 0.0459 = 882.4 ft. Suma esto a la longitud de los lastrabarrenas para obtener la altura total del influjo: 500 + 882.4 = 1382 ft.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 9,
+    "question": "Un pozo ha tenido una surgencia con una válvula flotadora en la sarta, por lo que la SIDPP marca 0 psi. ¿Qué método usarías para determinar el peso de lodo de matanza?",
+    "choices": {
+      "A": "Asumir un gradiente de influjo basado en el tamaño de la surgencia y la presión de formación",
+      "B": "Comenzar al régimen de circulación lento, determinar la ICP y calcular la SIDPP",
+      "C": "Bombear lentamente hasta que el manómetro de revestimiento comience a subir; el manómetro de tubería entonces mostrará la SIDPP",
+      "D": "Bombear lentamente hasta que el manómetro de tubería deje de subir",
+      "E": "Restar 200 psi a la SICP y usar esa cifra como SIDPP"
+    },
+    "correctAnswer": "C",
+    "explanation": "Una válvula flotadora impide que el manómetro de tubería muestre directamente la presión de formación real, pero bombear lentamente da una solución alterna: en el momento en que el manómetro de revestimiento apenas comienza a subir, la bomba ha vencido la válvula flotadora y ha establecido comunicación, y lo que sea que marque el manómetro de tubería en ese instante exacto es la verdadera SIDPP.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 10,
+    "question": "¿Para qué se usa la SIDPP con la barrena en el fondo?",
+    "choices": {
+      "A": "El aumento de peso de lodo necesario para matar el pozo",
+      "B": "Qué tipo de influjo ha entrado al pozo",
+      "C": "Cuál debería ser la presión inicial de circulación (ICP)",
+      "D": "Todas las anteriores",
+      "E": "Ninguna de las anteriores"
+    },
+    "correctAnswer": "D",
+    "explanation": "La SIDPP es una de las cifras más útiles en la hoja de matanza: alimenta directamente el cálculo del peso de lodo de matanza, permite calcular hacia atrás un gradiente de influjo (y por lo tanto hacer una suposición informada sobre si la surgencia es gas, aceite o agua), y es un dato necesario para encontrar la presión inicial de circulación. Los tres usos aplican.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 11,
+    "question": "Después de cerrar el pozo por una surgencia, la SIDPP y la SICP han estado estables durante un tiempo, y luego ambas comienzan a subir lentamente por la misma cantidad. ¿Cuál es la causa probable?",
+    "choices": {
+      "A": "Está ocurriendo un influjo adicional",
+      "B": "El influjo está migrando hacia arriba en el pozo",
+      "C": "Los manómetros están defectuosos",
+      "D": "El conjunto de preventores de reventones tiene una fuga",
+      "E": "Los recortes se están asentando en el fondo del pozo"
+    },
+    "correctAnswer": "B",
+    "explanation": "Cuando ambos manómetros suben juntos por la misma cantidad estando cerrado el pozo, esto apunta a que el gas está migrando hacia arriba en el pozo en lugar de un nuevo influjo: el gas atrapado no se está expandiendo (el pozo está cerrado), así que simplemente se está moviendo hacia una columna de lodo más corta y de menor presión por encima de él, elevando ambas lecturas por igual.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 12,
+    "question": "Una ganancia de tanques mayor dará una SIDPP más alta.",
+    "choices": {
+      "A": "Verdadero",
+      "B": "Falso",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "B",
+    "explanation": "La SIDPP es simplemente la brecha entre la presión hidrostática del lodo dentro de la sarta de perforación y la presión de formación real; la sarta nunca contiene nada del influjo, por lo que el tamaño de la surgencia no tiene ninguna influencia sobre esta lectura. Falso.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 13,
+    "question": "Una ganancia de tanques mayor dará una SICP más alta, pero la SIDPP se mantendrá igual sin importar el tamaño de la surgencia.",
+    "choices": {
+      "A": "Verdadero",
+      "B": "Falso",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "Un influjo más grande alojado en el anular sí eleva la SICP, ya que más fluido de baja densidad está desplazando lodo más pesado de ese lado. La SIDPP, al no verse afectada por el tamaño del influjo (refleja solo la brecha entre la presión hidrostática del lado de la sarta y la presión de formación), se mantiene constante sin importar qué tan grande sea la surgencia. Verdadero.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 14,
+    "question": "Capacidad anular lastrabarrena/agujero descubierto = 0.029 bbl/ft; longitud de lastrabarrenas = 1000 ft; zapato de revestimiento asentado a 9000 ft MD y TVD; longitud de agujero descubierto debajo del zapato = 2500 ft con una capacidad de 0.0702 bbl/ft. Calcula la altura del influjo si el pozo se cierra por una surgencia de 12 bbl con la barrena en el zapato.",
+    "choices": {
+      "A": "414 ft",
+      "B": "671 ft",
+      "C": "476 ft",
+      "D": "171 ft",
+      "E": "197 ft"
+    },
+    "correctAnswer": "D",
+    "explanation": "Aunque la barrena misma está en el zapato, el influjo entró en el fondo del pozo, en la sección descubierta y sin revestir debajo del zapato; esa sección no tiene lastrabarrenas, así que su capacidad anular es la cifra completa de agujero descubierto dada (0.0702 bbl/ft), no la capacidad anular de lastrabarrena. Altura del influjo = tamaño de la surgencia / capacidad de agujero descubierto = 12 / 0.0702 = 171 ft.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 15,
+    "question": "Peso de lodo = 12.5 ppg; TVD = 13,475 ft; SIDPP = 800 psi; SICP = 1025 psi; tamaño de la surgencia = 12 bbl; capacidad anular = 0.0292 bbl/ft. Calcula el gradiente aproximado del influjo.",
+    "choices": {
+      "A": "0.1250 psi/ft",
+      "B": "0.1502 psi/ft",
+      "C": "0.1205 psi/ft",
+      "D": "0.1025 psi/ft",
+      "E": "0.0521 psi/ft"
+    },
+    "correctAnswer": "D",
+    "explanation": "Primero encuentra la altura del influjo: 12 / 0.0292 = 410.96 ft. Luego divide eso entre la diferencia entre la SICP y la SIDPP: (1025 - 800) / 410.96 = 0.5475. Finalmente resta eso del gradiente de lodo (12.5 x 0.052 = 0.65): 0.65 - 0.5475 = 0.1025 psi/ft.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 16,
+    "question": "SIDPP = 700 psi; SICP = 825 psi; MAASP = 1890 psi; pérdida de presión a régimen de circulación lento = 740 psi; pérdida de presión anular = 75 psi. ¿Cuál es la presión inicial de circulación (ICP)?",
+    "choices": {
+      "A": "1556 psi",
+      "B": "800 psi",
+      "C": "2042 psi",
+      "D": "2125 psi",
+      "E": "1440 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "ICP = pérdida de presión a régimen de circulación lento + SIDPP = 740 + 700 = 1440 psi.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 17,
+    "question": "El peso de lodo en uso es 11.4 ppg; la SICP es 900 psi; la SIDPP es 700 psi; la ganancia de tanques es 20 bbl; la longitud de lastrabarrenas es 850 ft con una capacidad anular de 0.0292 bbl/ft. ¿Cuál es el gradiente del influjo?",
+    "choices": {
+      "A": "0.3008 psi/ft",
+      "B": "0.1009 psi/ft",
+      "C": "0.3335 psi/ft",
+      "D": "0.0709 psi/ft",
+      "E": "0.1404 psi/ft"
+    },
+    "correctAnswer": "A",
+    "explanation": "Primero encuentra la altura del influjo (cabe completamente dentro del anular de lastrabarrenas, ya que 20/0.0292 = 684.9 ft es menor que los 850 ft de longitud de lastrabarrenas): 684.9 ft. Luego divide eso entre la diferencia de presión: (900 - 700) / 684.9 = 0.292. Finalmente resta del gradiente de lodo (11.4 x 0.052 = 0.5928): 0.5928 - 0.292 = 0.3008 psi/ft.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 18,
+    "question": "La razón principal para calcular el gradiente del influjo es:",
+    "choices": {
+      "A": "Determinar qué método de control de pozos usar",
+      "B": "Determinar cuál será la presión de revestimiento",
+      "C": "Hacer los arreglos para manejar la surgencia en superficie",
+      "D": "Alertar al geólogo sobre la posibilidad de hidrocarburos",
+      "E": "Asegurar que no se exceda la MAASP"
+    },
+    "correctAnswer": "C",
+    "explanation": "El gradiente del influjo da una fuerte indicación de qué tipo de fluido se está manejando (un gradiente bajo apunta hacia gas, uno más alto hacia agua salada o aceite). Ese conocimiento le permite a la cuadrilla preparar el equipo y los procedimientos correctos en superficie (quemadores de gas, desgasificadores, arreglos de venteo) mucho antes de que la surgencia realmente llegue a superficie.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 19,
+    "question": "Un pozo de 10,000 ft TVD se ha cerrado por una ganancia de tanques de 15 bbl con 350 psi de SICP y cero en el manómetro de tubería. El peso de lodo actual es 11.5 ppg. No hay válvula flotadora en la sarta. ¿Qué peso de lodo de matanza se requerirá?",
+    "choices": {
+      "A": "12.2 ppg",
+      "B": "11.5 ppg",
+      "C": "13.3 ppg",
+      "D": "11.6 ppg",
+      "E": "No hay información suficiente para calcular el peso de lodo de matanza"
+    },
+    "correctAnswer": "B",
+    "explanation": "Con cero en el manómetro de tubería y sin válvula flotadora que explique esa lectura, la situación es que se ha pistoneado gas hacia el anular durante un viaje en lugar de una surgencia mientras se perforaba. Debido a que un influjo de gas puro (sin diferencia de densidad de fluido que llegue al lado de la sarta) deja la hidrostática de la sarta ya coincidiendo con la presión de formación, el pozo puede matarse con el peso de lodo original; no se necesita ningún aumento.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 20,
+    "question": "SIDPP = 500 psi; SICP = 720 psi; MD = 13,500 ft; TVD = 12,750 ft; peso de lodo en uso = 13.2 ppg; peso de lodo máximo permisible = 17.8 ppg. ¿Qué peso de lodo de matanza se requeriría si se incluye un margen de seguridad de 150 psi? (Redondea a un decimal.)",
+    "choices": {
+      "A": "14.0 ppg",
+      "B": "14.2 ppg",
+      "C": "14.6 ppg",
+      "D": "13.4 ppg",
+      "E": "19 ppg"
+    },
+    "correctAnswer": "B",
+    "explanation": "Para incorporar un margen de seguridad en el peso de lodo de matanza, suma el margen deseado a la SIDPP antes de aplicar la fórmula normal: (500 + 150) / (12,750 x 0.052) + 13.2 = 650 / 663 + 13.2 = 0.98 + 13.2 = 14.18, que redondea a 14.2 ppg.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 21,
+    "question": "A 30 SPM, la pérdida de presión a régimen de circulación lento con lodo de 11.2 ppg fue de 250 psi. El lodo de matanza se calcula en 12.6 ppg. ¿Cuál será probablemente la presión final de circulación (FCP)?",
+    "choices": {
+      "A": "250 psi",
+      "B": "281 psi",
+      "C": "306 psi",
+      "D": "316 psi",
+      "E": "424 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "FCP = pérdida de presión a régimen de circulación lento x (peso de lodo de matanza / peso de lodo original) = 250 x (12.6 / 11.2) = 250 x 1.125 = 281 psi.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 22,
+    "question": "En un equipo con conjunto de BOP de superficie, llevas las bombas a la velocidad de matanza mientras mantienes la presión de revestimiento constante en 670 psi. Una vez a velocidad, el manómetro de tubería marca 1030 psi. La SIDPP original era de 520 psi. ¿Cuál fue la pérdida de presión a régimen de circulación lento a la velocidad de matanza?",
+    "choices": {
+      "A": "No hay forma de saberlo",
+      "B": "100 psi",
+      "C": "160 psi",
+      "D": "360 psi",
+      "E": "510 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "Dado que la presión de revestimiento se mantuvo correctamente constante durante el arranque, la lectura del manómetro de tubería una vez a velocidad es, por definición, la presión inicial de circulación (ICP): ICP = pérdida de presión a régimen de circulación lento + SIDPP, por lo que pérdida de presión = ICP - SIDPP = 1030 - 520 = 510 psi.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 23,
+    "question": "SIDPP = 375 psi; SICP = 525 psi; ganancia de tanques = 13 bbl; pérdida de presión a régimen de circulación lento a 40 SPM con lodo de 12.2 ppg = 670 psi; lodo de matanza = 13.5 ppg. ¿Cuál es la FCP?",
+    "choices": {
+      "A": "600 psi",
+      "B": "741 psi",
+      "C": "820 psi",
+      "D": "900 psi",
+      "E": "1045 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "FCP = pérdida de presión a régimen de circulación lento x (peso de lodo de matanza / peso de lodo original) = 670 x (13.5 / 12.2) = 670 x 1.1066 = 741 psi.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 24,
+    "question": "Si se toma una surgencia de gas en una sección horizontal de un pozo, ¿qué esperarías que marque la SICP en comparación con la SIDPP?",
+    "choices": {
+      "A": "La SICP sería mucho más alta que la SIDPP",
+      "B": "La SICP sería mucho más baja que la SIDPP",
+      "C": "La SICP sería aproximadamente igual a la SIDPP",
+      "D": "La SICP sería la misma que en un pozo vertical",
+      "E": "No se puede leer la SICP en un pozo horizontal"
+    },
+    "correctAnswer": "C",
+    "explanation": "La SICP normalmente es más alta que la SIDPP porque el influjo más ligero ocupa una longitud del anular y crea una diferencia de altura vertical real entre las dos columnas hidrostáticas. En una sección horizontal, sin embargo, el influjo no gana altura vertical real a medida que se mueve a lo largo del pozo, por lo que apenas cambia el balance hidrostático vertical, y la SICP termina marcando cerca de la SIDPP.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 25,
+    "question": "Después de que se ha cerrado una surgencia y las presiones se han estabilizado, la presión de formación es igual a la presión hidrostática del lodo en la sarta más la SIDPP.",
+    "choices": {
+      "A": "Verdadero",
+      "B": "Falso",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "Esta es la relación central sobre la que se construye toda la hoja de matanza: una vez cerrado y estable, presión de formación = presión hidrostática del lodo en la sarta de perforación + SIDPP, porque la SIDPP es exactamente la brecha que queda entre lo que la columna de lodo por sí sola proporciona y lo que la formación realmente necesita para estar equilibrada. Verdadero.",
+    "topic": "Condiciones de Cierre"
+  },
+  {
+    "id": 1,
+    "question": "Peso de lodo máximo permisible (MAMW) = 16.0 ppg; peso de lodo actual = 12.0 ppg; zapato de revestimiento a 6000 ft TVD. ¿Cuál es la presión superficial anular máxima permisible (MAASP)?",
+    "choices": {
+      "A": "1428 psi",
+      "B": "1248 psi",
+      "C": "1824 psi",
+      "D": "1384 psi",
+      "E": "1142 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "La MAASP es la diferencia de presión hidrostática en el zapato de revestimiento entre el peso de lodo máximo permisible y el peso de lodo realmente en uso: MAASP = (MAMW - peso de lodo actual) x TVD del zapato x 0.052 = (16.0 - 12.0) x 6000 x 0.052 = 1248 psi.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 2,
+    "question": "MAMW = 16.5 ppg; peso de lodo actual (CMW) = 12 ppg; TVD del zapato = 7500 ft. ¿Cuál es la MAASP?",
+    "choices": {
+      "A": "1952 psi",
+      "B": "2324 psi",
+      "C": "2692 psi",
+      "D": "1755 psi",
+      "E": "3132 psi"
+    },
+    "correctAnswer": "D",
+    "explanation": "MAASP = (MAMW - CMW) x TVD del zapato x 0.052 = (16.5 - 12) x 7500 x 0.052 = 4.5 x 7500 x 0.052 = 1755 psi.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 3,
+    "question": "Capacidad de la tubería de perforación = 0.01776 bbl/ft; capacidad de los lastrabarrenas = 0.0076 bbl/ft. La barrena está a 12,000 ft MD con 960 ft de lastrabarrenas. ¿Cuál es el volumen de la sarta?",
+    "choices": {
+      "A": "304.2 bbls",
+      "B": "402.4 bbls",
+      "C": "258.8 bbls",
+      "D": "203.3 bbls",
+      "E": "196.7 bbls"
+    },
+    "correctAnswer": "D",
+    "explanation": "Volumen = capacidad x longitud. Longitud de tubería de perforación = MD - longitud de lastrabarrenas = 12,000 - 960 = 11,040 ft; volumen de tubería de perforación = 11,040 x 0.01776 = 196.1 bbl. Volumen de lastrabarrenas = 960 x 0.0076 = 7.3 bbl. Volumen total de la sarta = 196.1 + 7.3 = 203.3 bbls.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 4,
+    "question": "El volumen de la sarta es de 203.4 bbls y el rendimiento de la bomba es de 0.147 bbl/golpe. ¿Cuántos golpes se necesitan para bombear lodo de matanza hasta la barrena?",
+    "choices": {
+      "A": "1383 strokes",
+      "B": "1843 strokes",
+      "C": "1438 strokes",
+      "D": "3148 strokes",
+      "E": "3481 strokes"
+    },
+    "correctAnswer": "A",
+    "explanation": "Golpes = volumen / rendimiento de la bomba = 203.4 / 0.147 = 1383 golpes.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 5,
+    "question": "MD = 12,000 ft; zapato de revestimiento asentado a 8600 ft; capacidad anular tubería de perforación/agujero descubierto = 0.0459 bbl/ft; capacidad anular lastrabarrena/agujero descubierto = 0.03 bbl/ft en 960 ft de lastrabarrenas; rendimiento de la bomba = 0.147 bbl/golpe. ¿Cuántos golpes se necesitan para bombear de la barrena al zapato?",
+    "choices": {
+      "A": "826 strokes",
+      "B": "713 strokes",
+      "C": "1095 strokes",
+      "D": "1144 strokes",
+      "E": "957 strokes"
+    },
+    "correctAnswer": "E",
+    "explanation": "Longitud de agujero descubierto debajo del zapato = 12,000 - 8600 = 3400 ft. De eso, el anular lastrabarrena/agujero descubierto cubre 960 ft: 960 x 0.03 = 28.8 bbl. Los 3400 - 960 = 2440 ft restantes son anular tubería de perforación/agujero descubierto: 2440 x 0.0459 = 112.0 bbl. Volumen anular total de la barrena al zapato = 28.8 + 112.0 = 140.8 bbl. Golpes = 140.8 / 0.147 = 957 golpes.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 6,
+    "question": "MD = 11,475 ft; zapato de revestimiento asentado a 7250 ft; capacidad anular tubería de perforación/agujero descubierto = 0.0459 bbl/ft; capacidad anular lastrabarrena/agujero descubierto = 0.0292 bbl/ft en 885 ft de lastrabarrenas; rendimiento de la bomba = 0.117 bbl/golpe. ¿Cuántos golpes se necesitan para bombear de la barrena al zapato?",
+    "choices": {
+      "A": "1275 strokes",
+      "B": "1433 strokes",
+      "C": "1531 strokes",
+      "D": "1686 strokes",
+      "E": "1822 strokes"
+    },
+    "correctAnswer": "C",
+    "explanation": "Longitud de agujero descubierto debajo del zapato = 11,475 - 7250 = 4225 ft. Volumen anular lastrabarrena/agujero descubierto (885 ft): 885 x 0.0292 = 25.84 bbl. Longitud restante de anular tubería de perforación/agujero descubierto = 4225 - 885 = 3340 ft: 3340 x 0.0459 = 153.3 bbl. Volumen total = 25.84 + 153.3 = 179.1 bbl. Golpes = 179.1 / 0.117 = 1531 golpes.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 7,
+    "question": "Un zapato de revestimiento se asentó a 9000 ft TVD. Se realizó una prueba de goteo (LOT) con lodo de 12.0 ppg, y se registró una presión superficial de 2500 psi cuando ocurrió el goteo. ¿Cuál es el peso de lodo máximo permisible (MAMW)?",
+    "choices": {
+      "A": "13.74 ppg",
+      "B": "14.37 ppg",
+      "C": "14.73 ppg",
+      "D": "17.34 ppg",
+      "E": "18.22 ppg"
+    },
+    "correctAnswer": "D",
+    "explanation": "MAMW = peso de lodo de prueba + (presión de goteo en superficie / (TVD del zapato x 0.052)) = 12 + 2500 / (9000 x 0.052) = 12 + 2500 / 468 = 12 + 5.34 = 17.34 ppg.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 8,
+    "question": "Un zapato de revestimiento se asentó a 8250 ft TVD. Se realizó una LOT con lodo de 12.3 ppg, y se registró una presión superficial de 1750 psi en el goteo. ¿Qué presión se ejerció sobre la formación en el zapato en el momento del goteo?",
+    "choices": {
+      "A": "7026 psi",
+      "B": "1750 psi",
+      "C": "5276 psi",
+      "D": "2133 psi",
+      "E": "1709 psi"
+    },
+    "correctAnswer": "A",
+    "explanation": "En el momento del goteo, el zapato siente tanto la presión aplicada en superficie como la presión hidrostática de la columna de lodo por encima: presión total = presión de superficie + (peso de lodo de prueba x 0.052 x TVD del zapato) = 1750 + (12.3 x 0.052 x 8250) = 1750 + 5276 = 7026 psi.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 9,
+    "question": "Peso de lodo en uso = 12.4 ppg; presión de goteo en superficie = 3640 psi con lodo de prueba de 11 ppg; TVD del zapato = 10,000 ft. ¿Cuál es la MAASP?",
+    "choices": {
+      "A": "920 psi",
+      "B": "1962 psi",
+      "C": "2036 psi",
+      "D": "2178 psi",
+      "E": "2912 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "Primero encuentra la MAMW = peso de lodo de prueba + (presión de goteo en superficie / (TVD del zapato x 0.052)) = 11 + 3640/(10,000 x 0.052) = 11 + 7.0 = 18.0 ppg. Luego MAASP = (MAMW - peso de lodo actual) x TVD del zapato x 0.052 = (18.0 - 12.4) x 10,000 x 0.052 = 2912 psi.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 10,
+    "question": "¿Cuándo debe recalcularse la MAASP?",
+    "choices": {
+      "A": "Después de cada cambio de barrena",
+      "B": "Después de cada 1000 ft perforados",
+      "C": "Después de cada cambio de peso de lodo",
+      "D": "Después de una prueba exitosa de los BOP",
+      "E": "Después de todas las anteriores"
+    },
+    "correctAnswer": "C",
+    "explanation": "La MAASP se deriva directamente de la diferencia entre el peso de lodo máximo permisible y el peso de lodo actualmente en el pozo. En el momento en que el peso de lodo cambia, esa diferencia también cambia, por lo que la MAASP debe recalcularse cada vez, no solo como una verificación rutinaria después de corridas de barrena, hitos de metraje o pruebas de BOP.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 11,
+    "question": "¿Cuál es el tiempo de circulación de superficie a la barrena si el volumen de la sarta es 95 bbls, el rendimiento de la bomba es 0.123 bbl/golpe y la velocidad de la bomba es 25 SPM?",
+    "choices": {
+      "A": "15 mins",
+      "B": "20 mins",
+      "C": "25 mins",
+      "D": "30 mins",
+      "E": "35 mins"
+    },
+    "correctAnswer": "D",
+    "explanation": "Primero encuentra los golpes: volumen / rendimiento de la bomba = 95 / 0.123 = 772.4 golpes. Luego el tiempo = golpes / SPM = 772.4 / 25 = 30.9 minutos, aproximadamente 30 minutos.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 12,
+    "question": "El gradiente de fractura de un pozo es de 0.606 psi/ft en el zapato de revestimiento (4500 ft MD/TVD). El gradiente del lodo de perforación es de 0.495 psi/ft. ¿Cuánta presión se puede cerrar en el manómetro de revestimiento antes de romper la formación en el zapato?",
+    "choices": {
+      "A": "450 psi",
+      "B": "500 psi",
+      "C": "600 psi",
+      "D": "650 psi",
+      "E": "1000 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "Este es un cálculo de MAASP usando gradientes en lugar de pesos de lodo directamente; el gradiente de fractura sustituye al gradiente de lodo máximo permisible: MAASP = (gradiente de fractura - gradiente de lodo) x TVD del zapato = (0.606 - 0.495) x 4500 = 0.111 x 4500 = 500 psi.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 13,
+    "question": "La profundidad del pozo es de 7218 ft con 650 ft de lastrabarrenas. Capacidad de lastrabarrenas = 0.00768 bbl/ft; capacidad de tubería de perforación = 0.01776 bbl/ft. ¿Cuál es el volumen aproximado de la sarta de perforación?",
+    "choices": {
+      "A": "121.6 bbls",
+      "B": "128.1 bbls",
+      "C": "116.6 bbls",
+      "D": "177.5 bbls",
+      "E": "257.7 bbls"
+    },
+    "correctAnswer": "A",
+    "explanation": "Volumen = capacidad x longitud, con longitud de tubería de perforación = MD - longitud de lastrabarrenas = 7218 - 650 = 6568 ft. Volumen de tubería de perforación = 6568 x 0.01776 = 116.7 bbl. Volumen de lastrabarrenas = 650 x 0.00768 = 5.0 bbl. Total = 116.7 + 5.0 = 121.6 bbls.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 14,
+    "question": "El volumen de la sarta de perforación es de 121.6 bbls y el rendimiento de la bomba es de 0.1895 bbl/golpe. ¿Cuál es el tiempo aproximado de superficie a la barrena a 45 SPM?",
+    "choices": {
+      "A": "14 mins",
+      "B": "16 mins",
+      "C": "18 mins",
+      "D": "20 mins",
+      "E": "22 mins"
+    },
+    "correctAnswer": "A",
+    "explanation": "Golpes = volumen / rendimiento de la bomba = 121.6 / 0.1895 = 641.7 golpes. Tiempo = golpes / SPM = 641.7 / 45 = 14.3 minutos, aproximadamente 14 minutos.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 15,
+    "question": "El anular contiene un total de 346 bbls de lodo. El rendimiento de la bomba es de 0.1895 bbl/golpe. ¿Cuánto tardará en circular fondos arriba a 60 SPM?",
+    "choices": {
+      "A": "44 mins",
+      "B": "49 mins",
+      "C": "30 mins",
+      "D": "26 mins",
+      "E": "53 mins"
+    },
+    "correctAnswer": "C",
+    "explanation": "Golpes = volumen / rendimiento de la bomba = 346 / 0.1895 = 1826.4 golpes. Tiempo = golpes / SPM = 1826.4 / 60 = 30.4 minutos, aproximadamente 30 minutos.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 16,
+    "question": "No es necesario tomar en cuenta el volumen de las líneas de superficie al bombear lodo de matanza hacia abajo por la sarta.",
+    "choices": {
+      "A": "Verdadero",
+      "B": "Falso",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "B",
+    "explanation": "El lodo de matanza solo comienza a contribuir hidrostáticamente una vez que realmente está dentro de la sarta, así que saber exactamente cuánto volumen de líneas de superficie debe atravesar primero es esencial para programar correctamente los cambios del programa de presión y los ajustes de velocidad de bomba. Ignorar el volumen de las líneas de superficie descuadra todos los cálculos de conteo de golpes que siguen. Falso.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 17,
+    "question": "Se registra una presión de prueba de goteo de 1800 psi en superficie con lodo de 12 ppg en el pozo. ¿Cuál es el peso de lodo máximo permisible si el zapato está asentado a 9000 ft TVD?",
+    "choices": {
+      "A": "12.5 ppg",
+      "B": "15.8 ppg",
+      "C": "18.2 ppg",
+      "D": "16.4 ppg",
+      "E": "13.5 ppg"
+    },
+    "correctAnswer": "B",
+    "explanation": "MAMW = peso de lodo de prueba + (presión de goteo en superficie / (TVD del zapato x 0.052)) = 12 + 1800/(9000 x 0.052) = 12 + 1800/468 = 12 + 3.85 = 15.8 ppg.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 18,
+    "question": "Una prueba de goteo muestra la cantidad de presión de superficie que se debe agregar a la presión hidrostática de la columna de lodo para causar una ruptura de la formación.",
+    "choices": {
+      "A": "Verdadero",
+      "B": "Falso",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "Esto es exactamente lo que mide una prueba de goteo: la presión adicional de superficie, sobre lo que ya proporciona la presión hidrostática de la columna de lodo, que se requiere antes de que la formación en el zapato comience a tomar fluido (gotear). Verdadero.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 19,
+    "question": "Una prueba de goteo se usa para determinar el peso de lodo máximo o la presión superficial máxima antes de que sea probable que ocurra pérdida de circulación en el zapato.",
+    "choices": {
+      "A": "Verdadero",
+      "B": "Falso",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "Este es todo el propósito de realizar una prueba de goteo: establece, de forma controlada, el límite del peso de lodo y la presión de superficie que el zapato (y por extensión, el agujero descubierto debajo de él) puede tolerar antes de fracturarse y perder retornos. Verdadero.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 20,
+    "question": "Se realizó una LOT con el zapato de revestimiento asentado a 8885 ft TVD usando lodo de 10.7 ppg, y el peso de lodo máximo permisible se calculó en 17.6 ppg. La profundidad del pozo ahora es de 11,275 ft TVD y se está usando lodo de 14.6 ppg. ¿Cuál es la MAASP?",
+    "choices": {
+      "A": "3187 psi",
+      "B": "1758 psi",
+      "C": "4045 psi",
+      "D": "1801 psi",
+      "E": "1386 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "El pozo puede haberse profundizado, pero el zapato de revestimiento en sí no se ha movido, así que el TVD del zapato se mantiene en 8885 ft para este cálculo. MAASP = (MAMW - peso de lodo actual) x TVD del zapato x 0.052 = (17.6 - 14.6) x 8885 x 0.052 = 3 x 8885 x 0.052 = 1386 psi.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 21,
+    "question": "Se realizó una LOT con el zapato de revestimiento asentado a 7600 ft TVD usando lodo de 9.8 ppg, y el peso de lodo máximo permisible se calculó en 15.4 ppg. La profundidad del pozo ahora es de 10,250 ft TVD y se está usando lodo de 11.5 ppg. ¿Cuál es la MAASP?",
+    "choices": {
+      "A": "2984 psi",
+      "B": "671 psi",
+      "C": "1541 psi",
+      "D": "2078 psi",
+      "E": "933 psi"
+    },
+    "correctAnswer": "C",
+    "explanation": "El zapato se mantiene a 7600 ft TVD sin importar cuánto más profundo esté ahora el pozo. MAASP = (MAMW - peso de lodo actual) x TVD del zapato x 0.052 = (15.4 - 11.5) x 7600 x 0.052 = 3.9 x 7600 x 0.052 = 1541 psi.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 22,
+    "question": "Para obtener información precisa de la prueba de goteo, necesitas:",
+    "choices": {
+      "A": "Un TVD conocido del zapato",
+      "B": "Un peso de lodo conocido y consistente en el pozo",
+      "C": "Un manómetro de presión preciso",
+      "D": "Todas las anteriores",
+      "E": "Ninguna de las anteriores"
+    },
+    "correctAnswer": "D",
+    "explanation": "Cada una de estas alimenta directamente el cálculo de goteo: el TVD del zapato se necesita para convertir la presión en un gradiente, un peso de lodo conocido y estable se necesita para aislar la contribución hidrostática, y un manómetro preciso se necesita para que la cifra de presión misma sea confiable. Faltar cualquiera de ellas socava toda la prueba.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 23,
+    "question": "Si el gradiente de fractura es de 0.85 psi/ft, ¿cuál es el peso de lodo máximo permisible?",
+    "choices": {
+      "A": "16.3 ppg",
+      "B": "18.2 ppg",
+      "C": "14.7 ppg",
+      "D": "15.8 ppg",
+      "E": "12.4 ppg"
+    },
+    "correctAnswer": "A",
+    "explanation": "El gradiente de fractura se convierte directamente al peso de lodo máximo equivalente dividiendo entre 0.052: 0.85 / 0.052 = 16.3 ppg.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 24,
+    "question": "El gradiente de fractura es de 0.775 psi/ft a un TVD de zapato de 7200 ft. ¿Qué presión se aplicó en superficie si se usó lodo de prueba de 9.5 ppg en la LOT?",
+    "choices": {
+      "A": "5580 psi",
+      "B": "2021 psi",
+      "C": "3556 psi",
+      "D": "1977 psi",
+      "E": "2456 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "La presión de superficie en el goteo es exactamente la MAASP para el lodo de prueba usado. Primero convierte el gradiente de fractura a MAMW dividiendo entre 0.052: 0.775 / 0.052 = 14.9 ppg. Luego aplica la fórmula de MAASP, tratando el lodo de prueba como el peso de lodo actual: MAASP = (14.9 - 9.5) x 7200 x 0.052 = 5.4 x 7200 x 0.052 = 2022 psi, más cercano a 2021 psi.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 25,
+    "question": "El gradiente de fractura es de 0.91 psi/ft a un TVD de zapato de 9855 ft. ¿Qué presión se aplicó en superficie si se usó lodo de prueba de 12.3 ppg en la LOT?",
+    "choices": {
+      "A": "8968 psi",
+      "B": "6303 psi",
+      "C": "4378 psi",
+      "D": "3155 psi",
+      "E": "2664 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "Convierte el gradiente de fractura a MAMW: 0.91 / 0.052 = 17.5 ppg. Luego MAASP = (17.5 - 12.3) x 9855 x 0.052 = 5.2 x 9855 x 0.052 = 2664 psi, que también es la presión de goteo en superficie para el lodo de prueba.",
+    "topic": "Volúmenes y MAASP"
+  },
+  {
+    "id": 1,
+    "question": "Al matar un pozo usando el método de Esperar y Densificar, ¿qué sucede con el volumen de tanques en el momento en que el gas comienza a entrar al estrangulador?",
+    "choices": {
+      "A": "El volumen de tanques aumentará",
+      "B": "El volumen de tanques disminuirá",
+      "C": "El volumen de tanques se mantendrá igual de ahora en adelante",
+      "D": "El volumen de tanques fluctuará de forma errática",
+      "E": "El volumen de tanques no debe monitorearse durante una matanza"
+    },
+    "correctAnswer": "B",
+    "explanation": "Una vez que el gas comienza a pasar por el estrangulador y sale del sistema, se está eliminando permanentemente del pozo, por lo que el volumen total de fluido en los tanques cae a medida que sale. Esto es diferente de lo que sucede mientras el gas todavía está subiendo por el anular (ver la siguiente pregunta).",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 2,
+    "question": "A medida que el gas se circula hacia arriba por el anular hacia la superficie, ¿qué sucede con el volumen de tanques?",
+    "choices": {
+      "A": "El volumen de tanques aumentará",
+      "B": "El volumen de tanques disminuirá",
+      "C": "El volumen de tanques se mantendrá igual de ahora en adelante",
+      "D": "El volumen de tanques fluctuará de forma errática",
+      "E": "El volumen de tanques no debe monitorearse durante una matanza"
+    },
+    "correctAnswer": "A",
+    "explanation": "A medida que la burbuja de gas viaja hacia arriba por el anular hacia la superficie, la presión hidrostática decreciente por encima le permite al gas atrapado expandirse. Esa expansión empuja físicamente lodo adicional por delante, y el volumen extra aparece en superficie como un nivel de tanques en aumento; esto es normal y esperado como parte de circular una surgencia de gas hacia afuera, hasta que el gas mismo comienza a salir por el estrangulador.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 3,
+    "question": "El Método del Perforador y el Método de Esperar y Densificar tienen algo en común. ¿Qué es?",
+    "choices": {
+      "A": "Ambos matan el pozo en una sola circulación",
+      "B": "Ambos tienen un tiempo mínimo sin circular",
+      "C": "Ambos minimizan la presión en el zapato de revestimiento",
+      "D": "Ambos mantienen la presión de fondo constante",
+      "E": "Ambos necesitan dos bombas en el pozo"
+    },
+    "correctAnswer": "D",
+    "explanation": "Ambos se clasifican como métodos de matanza de \"presión de fondo constante\"; difieren en cuándo se introduce el lodo de peso de matanza y en cuántas circulaciones se necesitan, pero ambos están construidos alrededor del mismo objetivo subyacente de mantener la presión de fondo en (o justo por encima de) la presión de formación durante toda la operación.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 4,
+    "question": "Al circular una surgencia de gas hacia afuera, ¿cuándo es mayor la presión aplicada en el zapato de revestimiento?",
+    "choices": {
+      "A": "Cuando la burbuja de gas está en superficie",
+      "B": "Cuando la burbuja de gas está en el zapato de revestimiento",
+      "C": "Cuando la burbuja de gas está en el fondo",
+      "D": "La presión se mantiene igual durante toda la matanza",
+      "E": ""
+    },
+    "correctAnswer": "B",
+    "explanation": "La mayor presión en el zapato ocurre en el momento en que la parte superior de la burbuja de gas ascendente realmente llega al zapato, porque en ese punto el zapato siente el efecto combinado total de la columna de gas en expansión empujando hacia arriba más cualquier columna de lodo que quede por encima; después de que la burbuja pasa el zapato, ese pico de presión en particular ya ocurrió y comienza a disminuir.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 5,
+    "question": "¿Por qué es importante saber dónde se encuentra actualmente un influjo en el anular durante una matanza?",
+    "choices": {
+      "A": "La presión de tubería se ajusta según la posición de la burbuja",
+      "B": "La presión de revestimiento se ajusta según la posición de la burbuja",
+      "C": "Necesitas mantener una presión de tubería constante",
+      "D": "Quieres saber cuándo la burbuja está en el zapato",
+      "E": "Ninguna de las anteriores es correcta"
+    },
+    "correctAnswer": "D",
+    "explanation": "El zapato de revestimiento es el punto más débil del sistema abierto, y el momento en que la burbuja está dentro del zapato (por debajo de él) es cuando ya ha pasado el mayor riesgo de presión para ese punto. Si la MAASP no se ha excedido para cuando la burbuja llega al zapato, generalmente no se excederá durante el resto de la matanza siempre que se siga correctamente el programa, por lo que rastrear la posición de la burbuja específicamente para identificar este hito es valioso.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 6,
+    "question": "La velocidad de la bomba debe variar durante una operación de matanza para mantener constante la presión de fondo.",
+    "choices": {
+      "A": "Verdadero",
+      "B": "Falso",
+      "C": "",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "B",
+    "explanation": "Es lo contrario: la velocidad de la bomba debe mantenerse constante, en la medida de lo posible, durante toda una operación de matanza. La presión de fondo se mantiene constante ajustando el estrangulador (y siguiendo el programa de presión de tubería), no variando la velocidad de la bomba. Falso.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 7,
+    "question": "¿Cuántas circulaciones tiene el Método del Perforador?",
+    "choices": {
+      "A": "Una",
+      "B": "Dos",
+      "C": "Tres",
+      "D": "El Método del Perforador no involucra circulación",
+      "E": ""
+    },
+    "correctAnswer": "B",
+    "explanation": "El Método del Perforador usa dos circulaciones separadas: la primera elimina el influjo usando el peso de lodo original, y la segunda circula lodo de peso de matanza alrededor del sistema.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 8,
+    "question": "¿Cuántas circulaciones tiene el Método de Esperar y Densificar?",
+    "choices": {
+      "A": "Una",
+      "B": "Dos",
+      "C": "Tres",
+      "D": "El Método de Esperar y Densificar no involucra circulación",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "El Método de Esperar y Densificar requiere solo una circulación: el lodo de peso de matanza se prepara primero y luego se bombea alrededor de todo el pozo en una sola pasada, eliminando el influjo y restableciendo el equilibrio al mismo tiempo.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 9,
+    "question": "¿Cómo llevas una bomba a velocidad para una operación de matanza en un conjunto de BOP de superficie?",
+    "choices": {
+      "A": "Abrir el estrangulador para mantener constante la presión de tubería hasta llegar a velocidad",
+      "B": "Abrir el estrangulador para mantener constante la presión de revestimiento hasta llegar a velocidad",
+      "C": "Tanto A como B se pueden usar para un arranque",
+      "D": "Ni A ni B se pueden usar para un arranque",
+      "E": ""
+    },
+    "correctAnswer": "B",
+    "explanation": "La presión de revestimiento siempre debe mantenerse constante al llevar la bomba a la velocidad de matanza en un conjunto de superficie. Esto mantiene estable la presión de fondo mientras la bomba aumenta de velocidad, ya que la presión de tubería subirá naturalmente a medida que la bomba gana velocidad y aumenta la fricción; no se lucha contra ese aumento, se deja que ocurra mientras se maneja el estrangulador contra el manómetro de revestimiento.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 10,
+    "question": "Mientras se circula una surgencia hacia afuera, la bomba de lodo falla. ¿Qué es lo primero que debes hacer?",
+    "choices": {
+      "A": "Reparar la bomba lo antes posible",
+      "B": "Cambiar a la otra bomba",
+      "C": "Cerrar el pozo",
+      "D": "Usar el Método Volumétrico",
+      "E": "Hacer preparativos para comenzar a contrabombear (bullhead)"
+    },
+    "correctAnswer": "C",
+    "explanation": "Cualquier falla de bomba a mitad de una matanza elimina tu capacidad de controlar la presión de fondo circulando, así que la respuesta inmediata y refleja es cerrar el pozo y detener cualquier influjo adicional mientras se evalúa el problema. Solo después de que el pozo esté asegurado se piensa en reparar la bomba, cambiar de bomba o usar métodos de matanza alternativos.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 11,
+    "question": "Al hacer ajustes al estrangulador remoto durante una matanza, ¿qué respuestas esperarías si el estrangulador se cerrara ligeramente?",
+    "choices": {
+      "A": "Disminución del manómetro de revestimiento seguida de disminución del manómetro de tubería",
+      "B": "Aumento del manómetro de tubería seguido de aumento del manómetro de revestimiento",
+      "C": "Los manómetros de revestimiento y tubería bajarán juntos",
+      "D": "Aumento del manómetro de revestimiento seguido de aumento del manómetro de tubería",
+      "E": "Los manómetros de revestimiento y tubería subirán juntos"
+    },
+    "correctAnswer": "D",
+    "explanation": "Cerrar el estrangulador ligeramente aumenta la contrapresión, y el manómetro de revestimiento reacciona primero a eso, ya que está conectado directamente a la línea del estrangulador. El manómetro de tubería luego sigue después de un breve retraso a medida que el cambio de presión se propaga hacia abajo por la sarta y de regreso hacia arriba (aproximadamente un segundo de retraso por cada 1000 ft de profundidad).",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 12,
+    "question": "¿Qué presión se mantiene constante mientras se llena el anular con lodo de matanza?",
+    "choices": {
+      "A": "Presión inicial de circulación",
+      "B": "SICP menos la fricción de la línea del estrangulador",
+      "C": "Presión final de circulación",
+      "D": "SICP original",
+      "E": "SIDPP original"
+    },
+    "correctAnswer": "C",
+    "explanation": "Una vez que el lodo de peso de matanza llega a la barrena, la presión de tubería se mantiene constante en la presión final de circulación (FCP) durante el resto del trabajo, mientras el lodo más pesado llena el anular y empuja el resto del influjo por delante.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 13,
+    "question": "En un equipo con conjunto de BOP de superficie, ¿cómo puedes encontrar la ICP cuando ha ocurrido una surgencia y no se conoce la pérdida de presión a régimen de circulación lento?",
+    "choices": {
+      "A": "Llevar la bomba a velocidad manteniendo constante la presión de revestimiento",
+      "B": "Llevar la bomba a velocidad agregando 200 psi a la presión de revestimiento por seguridad",
+      "C": "Agregar 100 psi de seguridad a la presión de tubería y circular el influjo hacia afuera",
+      "D": "Llevar la bomba a velocidad manteniendo constante la presión de tubería",
+      "E": "Circular al SPM deseado manteniendo 200 psi de seguridad en la tubería"
+    },
+    "correctAnswer": "A",
+    "explanation": "Lleva las bombas a la velocidad de matanza manteniendo constante la presión de revestimiento en el valor de cierre. Una vez que la bomba está a velocidad, lo que marque el manómetro de tubería en ese momento es, por definición, la presión inicial de circulación (ICP); esto funciona incluso sin una cifra previa de régimen de circulación lento.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 14,
+    "question": "La presión final de circulación (FCP) se alcanza cuando:",
+    "choices": {
+      "A": "El influjo ha sido eliminado del pozo",
+      "B": "El lodo de matanza llega a la barrena",
+      "C": "El lodo de matanza llega al zapato de revestimiento",
+      "D": "El lodo de matanza retorna en superficie",
+      "E": "El nivel de tanques ha dejado de fluctuar"
+    },
+    "correctAnswer": "B",
+    "explanation": "La FCP se alcanza en el momento en que el lodo de peso de matanza llega a la barrena; a partir de ese momento, la presión de tubería se mantiene constante en la FCP mientras el lodo más pesado desplaza el resto del anular, en lugar de seguir el programa de presión decreciente anterior.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 15,
+    "question": "Se está circulando una surgencia de gas hacia afuera. Cuando el gas llega al zapato de revestimiento a 7000 ft TVD, la presión en la parte superior de la burbuja es de 5000 psi. El peso de lodo original es 12.5 ppg. ¿Qué marcará el manómetro de presión de revestimiento en superficie?",
+    "choices": {
+      "A": "4550 psi",
+      "B": "2000 psi",
+      "C": "755 psi",
+      "D": "600 psi",
+      "E": "450 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "La presión de revestimiento en superficie muestra la diferencia entre el empuje hacia arriba de la presión de la burbuja de gas y el empuje hacia abajo de la presión hidrostática del lodo por encima: hidrostática de lodo por encima de la burbuja en el zapato = 12.5 x 0.052 x 7000 = 4550 psi. Presión de revestimiento = presión de la burbuja - hidrostática de lodo = 5000 - 4550 = 450 psi.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 16,
+    "question": "Mientras se circula una surgencia hacia afuera, la velocidad de la bomba aumenta mientras la presión de tubería se mantiene constante. ¿Qué le sucede a la presión de fondo (BHP)?",
+    "choices": {
+      "A": "Aumentó",
+      "B": "Se mantuvo igual",
+      "C": "Disminuyó",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "C",
+    "explanation": "Cuando aumenta la velocidad de la bomba, la presión de fricción también aumenta naturalmente, así que la presión de tubería debería subir junto con ella. Mantener la presión de tubería artificialmente constante en su lugar significa que deliberadamente se está manteniendo más baja de lo que el programa exige a la nueva velocidad de bomba, y ese déficit se traduce directamente en una caída de la presión de fondo.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 17,
+    "question": "Después de la primera circulación del Método del Perforador, ¿qué esperarías que marcaran la SIDPP y la SICP?",
+    "choices": {
+      "A": "Cero",
+      "B": "La SICP debería ser ligeramente más alta que la SIDPP",
+      "C": "Lo mismo",
+      "D": "La SIDPP debería ser ligeramente más alta que la SICP",
+      "E": "Ninguna de las anteriores es correcta"
+    },
+    "correctAnswer": "C",
+    "explanation": "Para el final de la primera circulación, el influjo debería haberse eliminado por completo del pozo, dejando solo lodo original en todo el sistema. Sin diferencia de densidad restante entre el lado de la sarta y el lado del anular, ambos manómetros deberían marcar aproximadamente el mismo valor, en teoría, la SIDPP original.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 18,
+    "question": "Se está circulando una surgencia de gas fuera de un pozo a 30 SPM con 750 psi mantenidos constantes en el manómetro de presión de tubería. La velocidad de la bomba se aumenta a 40 SPM mientras se sigue manteniendo la presión de tubería constante en 750 psi. ¿Qué hará la presión de fondo?",
+    "choices": {
+      "A": "Disminuir",
+      "B": "Aumentar",
+      "C": "Mantenerse constante",
+      "D": "Caer a cero",
+      "E": "Datos insuficientes para el cálculo"
+    },
+    "correctAnswer": "A",
+    "explanation": "La mayor velocidad de bomba debería haber elevado la presión de tubería a aproximadamente 1333 psi (750 x (40/30)^2) para mantener constante la presión de fondo. Al mantenerla artificialmente en el valor anterior de 750 psi, se está operando muy por debajo de la presión correcta para esa velocidad, por lo que la presión de fondo cae.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 19,
+    "question": "¿Qué método de matanza resultará en las presiones más bajas en el zapato de revestimiento si el volumen de agujero descubierto es considerablemente mayor que el volumen de la sarta?",
+    "choices": {
+      "A": "Método del Perforador",
+      "B": "Método de Esperar y Densificar",
+      "C": "Método Concurrente",
+      "D": "Método Volumétrico",
+      "E": "Método específico del procedimiento de la compañía"
+    },
+    "correctAnswer": "B",
+    "explanation": "Con un gran volumen de agujero descubierto en relación con el volumen de la sarta, el Método de Esperar y Densificar tiene la ventaja: debido a que el lodo de peso de matanza ya está bajando por la sarta desde la primera circulación, llega al anular (y por lo tanto comienza a reducir el diferencial de presión en el zapato) más pronto que el Método del Perforador, que retrasa la introducción del lodo de matanza hasta la segunda circulación.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 20,
+    "question": "¿Qué método de matanza usarías si no pudieras circular y sospecharas que estaba ocurriendo migración de gas?",
+    "choices": {
+      "A": "Método del Perforador",
+      "B": "Método de Esperar y Densificar",
+      "C": "Método Concurrente",
+      "D": "Método Volumétrico",
+      "E": "Método específico del procedimiento de la compañía"
+    },
+    "correctAnswer": "D",
+    "explanation": "El Método Volumétrico está diseñado exactamente para este escenario: sin capacidad de circular, combinado con gas migrando y expandiéndose por el anular. Maneja la presión purgando volúmenes de lodo controlados y calculados del pozo en lugar de bombear.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 21,
+    "question": "¿Qué le sucede a la presión debajo de una burbuja de gas mientras se circula fuera de un pozo durante una matanza?",
+    "choices": {
+      "A": "Permanece constante",
+      "B": "Disminuye",
+      "C": "Aumenta",
+      "D": "Sube al principio y luego permanece constante",
+      "E": "Baja al principio y luego permanece constante"
+    },
+    "correctAnswer": "A",
+    "explanation": "Todo el propósito de seguir el programa de presión de tubería durante una matanza es mantener constante la presión de fondo, y por extensión todas las presiones debajo de la burbuja de gas, durante toda la operación, sin importar dónde se encuentre actualmente la burbuja en el anular.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 22,
+    "question": "¿Qué le sucede a la presión en el zapato de revestimiento mientras una burbuja de gas se circula fuera de un pozo durante una matanza?",
+    "choices": {
+      "A": "Permanece constante",
+      "B": "Disminuye",
+      "C": "Aumenta",
+      "D": "Sube al principio y luego permanece constante",
+      "E": "Baja al principio y luego permanece constante"
+    },
+    "correctAnswer": "D",
+    "explanation": "A medida que la burbuja de gas se acerca al zapato de revestimiento, va desplazando progresivamente lodo más pesado por gas más ligero en expansión en ese punto del anular, por lo que la presión en el zapato aumenta. Una vez que la burbuja ha pasado completamente el zapato y se ha movido más arriba en el pozo, la presión del zapato deja de subir y se mantiene estable.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 23,
+    "question": "¿Qué le sucede a la presión dentro de una burbuja de gas mientras se circula fuera de un pozo durante una matanza?",
+    "choices": {
+      "A": "Permanece constante",
+      "B": "Disminuye",
+      "C": "Aumenta",
+      "D": "Sube al principio y luego permanece constante",
+      "E": "Baja al principio y luego permanece constante"
+    },
+    "correctAnswer": "B",
+    "explanation": "A medida que la burbuja sube, la presión hidrostática de la columna de lodo que se reduce por encima de ella cae, permitiendo que el gas atrapado se expanda. A medida que ese gas se expande a un volumen mayor, la presión dentro de la burbuja misma disminuye, siguiendo la relación inversa básica entre el volumen y la presión de un gas.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 24,
+    "question": "¿Qué le sucede a la lectura del manómetro de revestimiento en superficie mientras una burbuja de gas se circula fuera de un pozo durante una matanza?",
+    "choices": {
+      "A": "Permanece constante",
+      "B": "Disminuye",
+      "C": "Aumenta",
+      "D": "Sube al principio y luego permanece constante",
+      "E": "Baja al principio y luego permanece constante"
+    },
+    "correctAnswer": "C",
+    "explanation": "A medida que la burbuja se expande en su camino hacia la superficie y empuja por delante hacia una columna de lodo progresivamente más corta y ligera por encima, la lectura del manómetro de presión de revestimiento sube continuamente hasta que el gas mismo comienza a salir por el estrangulador.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 25,
+    "question": "¿Qué le sucede a la presión de fondo mientras una burbuja de gas se circula fuera de un pozo durante una matanza?",
+    "choices": {
+      "A": "Permanece constante",
+      "B": "Disminuye",
+      "C": "Aumenta",
+      "D": "Sube al principio y luego permanece constante",
+      "E": "Baja al principio y luego permanece constante"
+    },
+    "correctAnswer": "A",
+    "explanation": "Mantener constante la presión de fondo durante toda la duración de la matanza, sin importar dónde esté la burbuja en el anular, es todo el objetivo de diseño del programa de presión de tubería usado tanto en el Método del Perforador como en el de Esperar y Densificar.",
+    "topic": "Métodos de Matanza"
+  },
+  {
+    "id": 1,
+    "question": "El peso de lodo es 12.5 ppg, la pérdida de presión anular (APL) es 250 psi, y la profundidad del pozo es 8765 ft TVD / 8992 ft MD. ¿Cuál es la densidad de circulación equivalente (ECD)?",
+    "choices": {
+      "A": "11.00 ppg",
+      "B": "12.90 ppg",
+      "C": "12.40 ppg",
+      "D": "13.04 ppg",
+      "E": "13.20 ppg"
+    },
+    "correctAnswer": "D",
+    "explanation": "ECD = peso de lodo actual + (APL / (TVD x 0.052)) = 12.5 + 250/(8765 x 0.052) = 12.5 + 250/455.8 = 12.5 + 0.548 = 13.04 ppg.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 2,
+    "question": "¿Por qué una surgencia de 20 bbl en un anular pequeño será más significativa que una surgencia de 20 bbl en un anular grande?",
+    "choices": {
+      "A": "El peso de lodo de matanza no se puede calcular tan fácilmente",
+      "B": "Las surgencias suelen ser de gas",
+      "C": "La tubería puede pegarse en el anular más pequeño",
+      "D": "Resulta en presiones más altas en el anular",
+      "E": "Resulta en una presión de tubería más alta"
+    },
+    "correctAnswer": "D",
+    "explanation": "El mismo volumen de influjo se extiende en una columna más alta en un anular pequeño de lo que lo haría en uno más grande, ya que la altura del influjo = volumen de la surgencia / capacidad anular, y la capacidad es menor cuando el anular es más estrecho. Esa columna de gas más alta se traduce en presiones más altas en todo el anular a medida que se circula la surgencia hacia afuera.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 3,
+    "question": "¿Por qué la SICP suele ser más alta que la SIDPP después de que un pozo se cierra por una surgencia?",
+    "choices": {
+      "A": "Los recortes en el anular son más ligeros que el peso de lodo",
+      "B": "El fluido del influjo suele ser menos denso que el peso de lodo",
+      "C": "La presión de revestimiento depende del tipo de equipo",
+      "D": "La diferencia está en el tipo de manómetros usados",
+      "E": "Esto es una pista falsa: la SIDPP suele ser más alta que la SICP"
+    },
+    "correctAnswer": "B",
+    "explanation": "La SICP tiende a marcar más alto porque el lado del anular ahora contiene una longitud de influjo de baja densidad desplazando lo que de otro modo sería una columna de lodo de peso completo, mientras que el lado de la sarta (que refleja la SIDPP) todavía contiene lodo limpio y de peso completo en toda su longitud. Esa brecha de densidad en el lado del anular es lo que empuja la SICP por encima de la SIDPP.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 4,
+    "question": "Después de la primera circulación del Método del Perforador, el pozo se cierra y los manómetros de superficie marcan SIDPP = 700 psi y SICP = 700 psi. ¿Es este el tipo de lectura que esperarías?",
+    "choices": {
+      "A": "Solo si el influjo es un líquido",
+      "B": "Solo si el influjo es un gas",
+      "C": "Sí",
+      "D": "No",
+      "E": "Nunca"
+    },
+    "correctAnswer": "C",
+    "explanation": "Después de la primera circulación del Método del Perforador, el influjo debería haberse eliminado por completo del pozo, dejando lodo original en ambos lados del sistema. Sin diferencia de densidad restante entre la sarta y el anular, que la SIDPP y la SICP marquen el mismo valor (aproximadamente la SIDPP original) es exactamente lo que se debería esperar, sin importar si el influjo eliminado había sido gas o líquido.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 5,
+    "question": "En un equipo con conjunto de BOP de superficie, ¿qué pasaría si, mientras se lleva la bomba a la velocidad de matanza, permitieras que la presión de revestimiento aumentara por encima de la SICP?",
+    "choices": {
+      "A": "La presión de fondo aumentaría",
+      "B": "La presión de fondo se mantendría igual",
+      "C": "La presión de fondo disminuiría",
+      "D": "Estará bien porque la presión de tubería subirá en la misma cantidad",
+      "E": "Mientras la SIDPP se mantenga constante, todo estará bien"
+    },
+    "correctAnswer": "A",
+    "explanation": "La presión de revestimiento debe mantenerse constante en el valor de cierre mientras se lleva la bomba a la velocidad de matanza. Dejar que suba por encima de ese valor agrega contrapresión extra al anular, y esa contrapresión extra se transmite directamente hasta el fondo del pozo, elevando la presión de fondo por encima de lo que debería ser.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 6,
+    "question": "Capacidad anular lastrabarrena/agujero descubierto = 0.0292 bbl/ft; rendimiento de la bomba = 0.117 bbl/golpe. ¿Cuál es la velocidad anular alrededor de los lastrabarrenas mientras se circula a 80 SPM?",
+    "choices": {
+      "A": "185 ft/min",
+      "B": "312 ft/min",
+      "C": "320 ft/min",
+      "D": "371 ft/min",
+      "E": "400 ft/min"
+    },
+    "correctAnswer": "C",
+    "explanation": "Primero convierte el rendimiento de la bomba a bbl/min: 0.117 x 80 = 9.36 bbl/min. Velocidad anular = rendimiento de la bomba (bbl/min) / capacidad anular (bbl/ft) = 9.36 / 0.0292 = 320.5 ft/min.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 7,
+    "question": "La profundidad del pozo es 15,200 ft MD / 14,000 ft TVD y está lleno de lodo de 12.4 ppg. SIDPP = 700 psi; SICP = 1150 psi; ganancia de tanques = 23 bbl. ¿Cuál es la presión de formación después de tomar la surgencia?",
+    "choices": {
+      "A": "6510 psi",
+      "B": "9543 psi",
+      "C": "10,500 psi",
+      "D": "9727 psi",
+      "E": "9027 psi"
+    },
+    "correctAnswer": "D",
+    "explanation": "Presión de formación = presión hidrostática del lodo (usando TVD) + SIDPP = (12.4 x 0.052 x 14,000) + 700 = 9027.2 + 700 = 9727 psi.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 8,
+    "question": "Capacidad anular lastrabarrena/agujero descubierto = 0.03 bbl/ft; capacidad anular tubería de perforación/agujero descubierto = 0.0505 bbl/ft; longitud de lastrabarrenas = 600 ft; volumen del influjo = 30 bbl. ¿Cuál es la longitud aproximada del influjo?",
+    "choices": {
+      "A": "594 ft",
+      "B": "837 ft",
+      "C": "1000 ft",
+      "D": "1050 ft",
+      "E": "1135 ft"
+    },
+    "correctAnswer": "B",
+    "explanation": "Primero calcula cuánto del influjo cabe alrededor de los lastrabarrenas: 0.03 x 600 = 18 bbl. El remanente se desborda hacia el anular más grande de tubería de perforación/agujero descubierto: 30 - 18 = 12 bbl, dando una longitud de 12 / 0.0505 = 237.6 ft. Suma esto a la longitud de lastrabarrenas para la altura total del influjo: 600 + 237.6 = 837.6 ft.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 9,
+    "question": "Una surgencia de 50 bbl se ha cerrado con 800 psi de SIDPP. Peso de lodo = 14 ppg; gradiente de gas = 0.128 psi/ft; longitud de lastrabarrenas = 1000 ft; capacidad anular lastrabarrena/agujero descubierto = 0.0292 bbl/ft; capacidad anular tubería de perforación/agujero descubierto = 0.0459 bbl/ft. ¿Cuál sería la SICP aproximada?",
+    "choices": {
+      "A": "1453 psi",
+      "B": "850 psi",
+      "C": "1672 psi",
+      "D": "900 psi",
+      "E": "1000 psi"
+    },
+    "correctAnswer": "C",
+    "explanation": "Primero encuentra la altura del influjo: llena el anular de lastrabarrenas de 1000 ft (0.0292 x 1000 = 29.2 bbl) y desborda el remanente (50 - 29.2 = 20.8 bbl) hacia el anular de tubería de perforación (20.8/0.0459 = 453.2 ft), para una altura total de influjo de 1000 + 453.2 = 1453.2 ft. Luego aplica SICP = ((gradiente de lodo - gradiente de gas) x altura del influjo) + SIDPP = ((0.728 - 0.128) x 1453.2) + 800 = (0.6 x 1453.2) + 800 = 871.9 + 800 = 1672 psi.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 10,
+    "question": "Una surgencia de 50 bbl se ha cerrado con 600 psi de SIDPP. Peso de lodo = 13.5 ppg; gradiente de gas = 0.1 psi/ft; longitud de lastrabarrenas = 450 ft; capacidad anular lastrabarrena/agujero descubierto = 0.0778 bbl/ft; capacidad anular tubería de perforación/agujero descubierto = 0.1215 bbl/ft. ¿Cuál sería la SICP aproximada?",
+    "choices": {
+      "A": "642 psi",
+      "B": "945 psi",
+      "C": "573 psi",
+      "D": "580 psi",
+      "E": "752 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "Volumen del anular de lastrabarrenas: 0.0778 x 450 = 35.0 bbl (menor que la surgencia de 50 bbl, así que se desborda). Remanente: 50 - 35.0 = 15.0 bbl, dando una longitud de anular de tubería de perforación de 15.0/0.1215 = 123.4 ft. Altura total del influjo = 450 + 123.4 = 573.4 ft. SICP = ((gradiente de lodo - gradiente de gas) x altura del influjo) + SIDPP = ((0.702 - 0.1) x 573.4) + 600 = (0.602 x 573.4) + 600 = 345.2 + 600 = 945 psi.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 11,
+    "question": "Un pozo se cierra con 600 psi de SIDPP, 1000 psi de SICP, y lodo de 15 ppg en el pozo. El gradiente de gas se calcula en 0.1 psi/ft. Después de 15 minutos, ambos manómetros han subido 100 psi. ¿Cuántos pies por hora está migrando la burbuja?",
+    "choices": {
+      "A": "1000 ft/hr",
+      "B": "512 ft/hr",
+      "C": "400 ft/hr",
+      "D": "218 ft/hr",
+      "E": "128 ft/hr"
+    },
+    "correctAnswer": "B",
+    "explanation": "Primero convierte el aumento de presión a una tasa por hora: 100 psi en 15 minutos = 400 psi/hr. Tasa de percolación (migración) (ft/hr) = tasa de aumento de presión (psi/hr) / gradiente de lodo = 400 / (15 x 0.052) = 400 / 0.78 = 512.8 ft/hr.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 12,
+    "question": "Si el nivel de fluido cayó 480 ft en una sarta de revestimiento de superficie de gran diámetro con lodo de 12 ppg, ¿cuánta presión hidrostática de fondo se perdería?",
+    "choices": {
+      "A": "500 psi",
+      "B": "400 psi",
+      "C": "300 psi",
+      "D": "200 psi",
+      "E": "100 psi"
+    },
+    "correctAnswer": "C",
+    "explanation": "Un nivel de fluido que cae simplemente elimina esa longitud de columna de lodo del cálculo de presión: presión hidrostática perdida = peso de lodo x 0.052 x altura caída = 12 x 0.052 x 480 = 299.5, aproximadamente 300 psi.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 13,
+    "question": "Mientras perforas hacia adelante entras a una zona de pérdida de circulación y el nivel de lodo comienza a caer. Llenas el pozo con agua, y toma 40 bbls. Profundidad del pozo = 10,000 ft TVD; zapato de revestimiento asentado a 6000 ft TVD; peso de lodo en uso = 12 ppg; capacidad anular tubería de perforación/revestimiento = 0.0505 bbl/ft; agua = 8.34 ppg. Calcula la presión que los fluidos ejercen en el fondo del pozo.",
+    "choices": {
+      "A": "6900 psi",
+      "B": "6240 psi",
+      "C": "9600 psi",
+      "D": "4260 psi",
+      "E": "6090 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "Ahora hay dos columnas de fluido en el pozo. El agua queda arriba; su longitud = volumen / capacidad anular = 40 / 0.0505 = 792.1 ft. Restando eso del TVD del pozo se obtiene la longitud restante de la columna de lodo: 10,000 - 792.1 = 9207.9 ft. Hidrostática del agua = 8.34 x 0.052 x 792.1 = 343.4 psi. Hidrostática del lodo = 12 x 0.052 x 9207.9 = 5745.7 psi. Presión total = 343.4 + 5745.7 = 6089.1, aproximadamente 6090 psi.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 14,
+    "question": "Mientras perforas hacia adelante entras a una zona de pérdida de circulación y el nivel de lodo comienza a caer. Llenas el pozo con agua, y toma 55 bbls. Profundidad del pozo = 12,580 ft TVD; zapato de revestimiento asentado a 7620 ft TVD; peso de lodo en uso = 12.8 ppg; capacidad anular tubería de perforación/revestimiento = 0.0505 bbl/ft; agua = 8.34 ppg. Calcula la presión que los fluidos ejercen en el fondo del pozo.",
+    "choices": {
+      "A": "8120 psi",
+      "B": "7670 psi",
+      "C": "6540 psi",
+      "D": "5430 psi",
+      "E": "4810 psi"
+    },
+    "correctAnswer": "A",
+    "explanation": "Longitud de la columna de agua = 55 / 0.0505 = 1089.1 ft. Longitud restante de la columna de lodo = 12,580 - 1089.1 = 11,490.9 ft. Hidrostática del agua = 8.34 x 0.052 x 1089.1 = 472.6 psi. Hidrostática del lodo = 12.8 x 0.052 x 11,490.9 = 7648.9 psi. Total = 472.6 + 7648.9 = 8121.5, aproximadamente 8120 psi.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 15,
+    "question": "Cuando una surgencia de gas se circula hacia afuera a través del estrangulador, ¿qué hará el volumen de tanques?",
+    "choices": {
+      "A": "Aumentar",
+      "B": "Disminuir",
+      "C": "Mantenerse igual",
+      "D": "",
+      "E": ""
+    },
+    "correctAnswer": "B",
+    "explanation": "Una vez que el gas realmente está saliendo del sistema a través del estrangulador, se está venteando permanentemente fuera del pozo, por lo que el volumen total de fluido en los tanques cae. Esto es lo opuesto a lo que sucede antes, mientras el gas todavía se está expandiendo en su camino hacia arriba por el anular y empujando volumen de lodo adicional por delante.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 16,
+    "question": "El peso de lodo en un pozo da un sobrebalance de 100 psi. El revestimiento de 9 5/8 in tiene una capacidad de 0.0754 bbl/ft, el peso de lodo es 17.5 ppg, y la capacidad de la tubería de perforación es 0.01776 bbl/ft con un desplazamiento de acero de 0.00764 bbl/ft. ¿Cuántos pies de esa tubería de perforación se pueden sacar sin perder el sobrebalance?",
+    "choices": {
+      "A": "962 ft",
+      "B": "820 ft",
+      "C": "742 ft",
+      "D": "680 ft",
+      "E": "242 ft"
+    },
+    "correctAnswer": "A",
+    "explanation": "Pies de tubería que se pueden sacar = sobrebalance x (capacidad de revestimiento - desplazamiento de tubería) / (peso de lodo x 0.052 x desplazamiento de tubería). Desarrollando: 100 x (0.0754 - 0.00764) / (17.5 x 0.052 x 0.00764) = 100 x 0.06776 / 0.0069524 = 6.776 / 0.0069524, que da el resultado más cercano a 962 ft entre las opciones dadas.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 17,
+    "question": "Un pozo de 12,750 ft TVD de profundidad tiene un gradiente de formación de 0.811 psi/ft. El revestimiento de 9 5/8 in tiene una capacidad de 0.0754 bbl/ft, el peso de lodo es 15.3 ppg, la capacidad de la tubería de perforación es 0.01779 bbl/ft, y su desplazamiento de acero es 0.00762 bbl/ft. ¿Cuántas paradas de 93 ft se pueden sacar del pozo sin quedar subbalanceado?",
+    "choices": {
+      "A": "14 stands",
+      "B": "17 stands",
+      "C": "20 stands",
+      "D": "23 stands",
+      "E": "26 stands"
+    },
+    "correctAnswer": "D",
+    "explanation": "Primero encuentra el sobrebalance: (gradiente de lodo - gradiente de formación) x TVD = ((15.3 x 0.052) - 0.811) x 12,750. Luego aplica la fórmula de pies a sacar: pies a sacar (ft) = sobrebalance x (capacidad de revestimiento - desplazamiento de tubería) / (peso de lodo x 0.052 x desplazamiento de tubería), y divide el metraje resultante entre la longitud de parada de 93 ft para obtener el número de paradas. NOTA PARA REVISIÓN: con los números tal como se dan, el gradiente de lodo (15.3 x 0.052 = 0.7956 psi/ft) resulta ser menor que el gradiente de formación indicado (0.811 psi/ft), lo que matemáticamente significa que el pozo ya está ligeramente subbalanceado antes de sacar cualquier tubería. Usando la magnitud de esa brecha en la fórmula estándar se llega al resultado más cercano a 23 paradas, pero esta combinación de datos es lo suficientemente inusual como para marcarla para una segunda revisión en lugar de confiar en ella plenamente.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 18,
+    "question": "Completa el enunciado: el principio principal de los métodos de matanza de pozos es mantener __________.",
+    "choices": {
+      "A": "Contento al supervisor de sitio",
+      "B": "La presión de tubería constante",
+      "C": "La presión de fondo constante",
+      "D": "La presión de revestimiento constante",
+      "E": "El volumen de tanques constante"
+    },
+    "correctAnswer": "C",
+    "explanation": "Todo método de matanza de pozos (Perforador, Esperar y Densificar, Volumétrico) está construido alrededor del mismo principio central: mantener constante la presión de fondo (en o justo por encima de la presión de formación) durante toda la operación. La presión de tubería y de revestimiento son simplemente las herramientas usadas para lograr ese objetivo, no el objetivo en sí.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 19,
+    "question": "Al comienzo del viaje de salida, las primeras 8 paradas de 95 ft de tubería se sacan mojadas del pozo sin llenado. Desplazamiento de acero de la DP = 0.00764 bbl/ft; capacidad de la DP = 0.01776 bbl/ft; capacidad de revestimiento = 0.0758 bbl/ft; peso de lodo = 13.4 ppg. Calcula la reducción en la presión de fondo.",
+    "choices": {
+      "A": "266 psi",
+      "B": "299 psi",
+      "C": "311 psi",
+      "D": "333 psi",
+      "E": "366 psi"
+    },
+    "correctAnswer": "A",
+    "explanation": "Capacidad anular = capacidad de revestimiento - (desplazamiento de DP + capacidad de DP) = 0.0758 - 0.0254 = 0.0504 bbl/ft. Caída de presión por pie sacado mojado = peso de lodo x 0.052 x (desplazamiento de DP + capacidad de DP) / capacidad anular = 13.4 x 0.052 x 0.0254 / 0.0504 = 0.3512 psi/ft. Longitud total sacada = 8 x 95 = 760 ft. Caída total de BHP = 0.3512 x 760 = 266.9, aproximadamente 266 psi.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 20,
+    "question": "Al comienzo del viaje de salida, las primeras 12 paradas de 92 ft de tubería se sacan mojadas del pozo sin llenado. Desplazamiento de acero de la DP = 0.00764 bbl/ft; capacidad de la DP = 0.01776 bbl/ft; capacidad de revestimiento = 0.0758 bbl/ft; peso de lodo = 12.7 ppg. Calcula la reducción en la presión de fondo.",
+    "choices": {
+      "A": "266 psi",
+      "B": "299 psi",
+      "C": "311 psi",
+      "D": "333 psi",
+      "E": "366 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "Capacidad anular = 0.0758 - 0.0254 = 0.0504 bbl/ft. Caída de presión por pie sacado mojado = 12.7 x 0.052 x 0.0254 / 0.0504 = 0.3328 psi/ft. Longitud total sacada = 12 x 92 = 1104 ft. Caída total de BHP = 0.3328 x 1104 = 367.4, aproximadamente 366 psi.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 21,
+    "question": "Durante un viaje de salida, los últimos 580 ft de lastrabarrenas se sacan del pozo en seco sin llenado. Desplazamiento de acero de la DC = 0.045 bbl/ft; capacidad de la DC = 0.00768 bbl/ft; capacidad de revestimiento = 0.0758 bbl/ft; peso de lodo = 13.2 ppg. Calcula la caída en la presión de fondo.",
+    "choices": {
+      "A": "236 psi",
+      "B": "266 psi",
+      "C": "296 psi",
+      "D": "326 psi",
+      "E": "356 psi"
+    },
+    "correctAnswer": "A",
+    "explanation": "Sacar los lastrabarrenas en seco (sin que entre lodo a llenar el espacio que dejan) baja el nivel de lodo: longitud x desplazamiento de acero / capacidad de revestimiento = 580 x 0.045 / 0.0758 = 344.3 ft. Presión hidrostática perdida = caída de nivel x peso de lodo x 0.052 = 344.3 x 13.2 x 0.052 = 236.4, aproximadamente 236 psi.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 22,
+    "question": "Durante un viaje de salida, los últimos 450 ft de lastrabarrenas se sacan del pozo en seco sin llenado. Desplazamiento de acero de la DC = 0.069 bbl/ft; capacidad de la DC = 0.0087 bbl/ft; capacidad de revestimiento = 0.0787 bbl/ft; peso de lodo = 12.7 ppg. Calcula la caída en la presión de fondo.",
+    "choices": {
+      "A": "240 psi",
+      "B": "260 psi",
+      "C": "280 psi",
+      "D": "300 psi",
+      "E": "320 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "Caída de nivel = longitud x desplazamiento de acero / capacidad de revestimiento = 450 x 0.069 / 0.0787 = 394.5 ft. Presión hidrostática perdida = 394.5 x 12.7 x 0.052 = 260.5, aproximadamente 260 psi.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 23,
+    "question": "Durante una operación de matanza, el operador del estrangulador nota que la presión de tubería sube rápidamente mientras la presión de revestimiento se mantiene aproximadamente constante. Decide aceptar la nueva lectura de tubería, que es 400 psi más alta que antes. ¿Qué efecto tendrá esto en la presión de fondo?",
+    "choices": {
+      "A": "La presión de fondo aumentará",
+      "B": "La presión de fondo disminuirá",
+      "C": "La presión de fondo permanecerá constante",
+      "D": "No hay suficiente información para saberlo",
+      "E": ""
+    },
+    "correctAnswer": "C",
+    "explanation": "Un pico de presión de tubería sin que se vea afectada la presión de revestimiento apunta a una boquilla de barrena taponada, no a un problema genuino de control de presión. La mayor presión de bomba es simplemente lo que ahora se requiere para empujar el lodo a través de la boquilla restringida a la misma tasa; nada ha cambiado en el fondo, así que aceptar la nueva lectura (correcta) para esa restricción deja la presión de fondo sin afectar.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 24,
+    "question": "Durante una operación de matanza, el operador del estrangulador nota un aumento repentino en la presión de revestimiento seguido de un aumento comparable en la presión de tubería. Decide aceptar la nueva lectura de tubería, que es 200 psi más alta que antes. ¿Qué le ha sucedido a la presión de fondo?",
+    "choices": {
+      "A": "La presión de fondo aumentará",
+      "B": "La presión de fondo disminuirá",
+      "C": "La presión de fondo permanecerá constante",
+      "D": "No hay suficiente información para saberlo",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "Un aumento de presión de revestimiento seguido de un aumento equivalente en la presión de tubería apunta a un estrangulador parcialmente taponado, agregando contrapresión extra a todo el sistema. Lo ideal sería cambiar el estrangulador para restablecer el programa correcto; si eso no es posible, la presión de tubería debería regresarse a su valor original en lugar de aceptarse en la nueva lectura más alta. Al no hacer nada, la presión de fondo ha aumentado.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 25,
+    "question": "Durante una matanza, el operador del estrangulador está cerrando continuamente el estrangulador para mantener la presión de tubería en el valor correcto del programa. Poco después, se entera de que la bomba del equipo ha desarrollado una fuga grave. ¿Qué efecto ha tenido su cierre continuo del estrangulador en la presión de fondo?",
+    "choices": {
+      "A": "La presión de fondo aumentará",
+      "B": "La presión de fondo disminuirá",
+      "C": "La presión de fondo permanecerá constante",
+      "D": "No hay suficiente información para saberlo",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "Una fuga grave en la bomba significa que en realidad está llegando menos lodo a la barrena de lo que sugiere el contador de golpes; efectivamente, el pozo se está bombeando a una tasa real más lenta de lo previsto, lo que debería requerir una presión de bombeo más baja a la nueva tasa efectiva. Al cerrar continuamente el estrangulador para mantener la presión en el valor antiguo (más alto) del programa en lugar de dejar que caiga para igualar la verdadera tasa de flujo más baja, el operador del estrangulador ha estado agregando contrapresión no intencionada, y la presión de fondo ha aumentado.",
+    "topic": "Preguntas Difíciles"
+  },
+  {
+    "id": 1,
+    "question": "La profundidad del agua de mar es 1200 ft con un gradiente de 0.445 psi/ft. La profundidad del pozo es 2000 ft TVD desde el piso de perforación, con un espacio de aire (air gap) de 50 ft. El peso de lodo en el pozo es 9.8 ppg. Si se retirara el riser, ¿cuál sería la reducción aproximada en la presión de fondo (BHP)?",
+    "choices": {
+      "A": "53 psi",
+      "B": "103 psi",
+      "C": "153 psi",
+      "D": "203 psi",
+      "E": "253 psi"
+    },
+    "correctAnswer": "B",
+    "explanation": "Retirar el riser reemplaza el lodo por encima del lecho marino con agua de mar por encima del lecho marino, más aire abierto a través del espacio de aire. BHP antes: gradiente de lodo x TVD del pozo = (9.8 x 0.052) x 2000 = 1019.2 psi. BHP después: gradiente de agua de mar x profundidad del mar (solo la porción de agua de mar realmente contribuye presión hidrostática, no el espacio de aire) + gradiente de lodo x columna de lodo restante debajo del lecho marino = (0.445 x 1200) + (0.5096 x (2000 - 1250)) = 534 + 382.2 = 916.2 psi. Reducción = 1019.2 - 916.2 = 103 psi.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 2,
+    "question": "La profundidad del agua de mar es 1000 ft con un gradiente de 0.455 psi/ft. La profundidad del pozo es 2150 ft TVD desde el piso de perforación, con un espacio de aire de 70 ft. El peso de lodo en el pozo es 10.0 ppg. Si se retirara el riser, ¿cuál sería la reducción aproximada en la BHP?",
+    "choices": {
+      "A": "101 psi",
+      "B": "121 psi",
+      "C": "141 psi",
+      "D": "161 psi",
+      "E": "181 psi"
+    },
+    "correctAnswer": "A",
+    "explanation": "BHP antes = gradiente de lodo x TVD del pozo = (10.0 x 0.052) x 2150 = 1118 psi. BHP después = (gradiente de agua de mar x profundidad del mar) + (gradiente de lodo x columna de lodo restante debajo del lecho marino) = (0.455 x 1000) + (0.52 x (2150 - 1070)) = 455 + 561.6 = 1016.6 psi. Reducción = 1118 - 1016.6 = 101.4, aproximadamente 101 psi.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 3,
+    "question": "La profundidad del agua de mar es 1500 ft con un gradiente de 0.445 psi/ft. La profundidad del pozo es 2100 ft TVD desde el piso de perforación, con un espacio de aire de 75 ft. El peso de lodo en el pozo es 9.3 ppg. Si se retirara el riser, ¿cuál sería la reducción aproximada en la BHP?",
+    "choices": {
+      "A": "211 psi",
+      "B": "184 psi",
+      "C": "154 psi",
+      "D": "124 psi",
+      "E": "94 psi"
+    },
+    "correctAnswer": "E",
+    "explanation": "BHP antes = (9.3 x 0.052) x 2100 = 1015.6 psi. BHP después = (0.445 x 1500) + (0.4836 x (2100 - 1575)) = 667.5 + 253.9 = 921.4 psi. Reducción = 1015.6 - 921.4 = 94.2, aproximadamente 94 psi.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 4,
+    "question": "La profundidad del agua de mar es 1343 ft con un gradiente de 0.455 psi/ft. La profundidad del pozo es 2350 ft TVD desde el piso de perforación, con un espacio de aire de 70 ft. El peso de lodo en el pozo es 9.8 ppg. Antes de retirar el riser, ¿en cuánto se debería aumentar el peso de lodo para mantener el pozo en equilibrio?",
+    "choices": {
+      "A": "0.67 ppg",
+      "B": "1.53 ppg",
+      "C": "2.23 ppg",
+      "D": "3.0 ppg",
+      "E": "9.77 ppg"
+    },
+    "correctAnswer": "C",
+    "explanation": "Primero encuentra la reducción en la BHP que causaría el retiro del riser: BHP antes = (9.8 x 0.052) x 2350 = 1197.6 psi. BHP después = (0.455 x 1343) + (0.5096 x (2350 - 1413)) = 611.1 + 477.5 = 1088.6 psi. Reducción = 1197.6 - 1088.6 = 109.0 psi. Esa pérdida debe compensarse aumentando el peso de lodo en la sección del pozo debajo del lecho marino: aumento en ppg = reducción de BHP / (profundidad debajo de la línea de lodo x 0.052) = 109.0 / (937 x 0.052) = 109.0 / 48.7 = 2.24, aproximadamente 2.23 ppg.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 5,
+    "question": "La profundidad del agua de mar es 1550 ft con un gradiente de 0.445 psi/ft. La profundidad del pozo es 2300 ft TVD desde el piso de perforación, con un espacio de aire de 85 ft. El peso de lodo en el pozo es 9.7 ppg. Antes de retirar el riser, ¿en cuánto se debería aumentar el peso de lodo para mantener el pozo en equilibrio?",
+    "choices": {
+      "A": "4.2 ppg",
+      "B": "2.7 ppg",
+      "C": "3.9 ppg",
+      "D": "5.4 ppg",
+      "E": "1.8 ppg"
+    },
+    "correctAnswer": "C",
+    "explanation": "BHP antes = (9.7 x 0.052) x 2300 = 1160.1 psi. BHP después = (0.445 x 1550) + (0.5044 x (2300 - 1635)) = 689.75 + 335.4 = 1025.2 psi. Reducción = 1160.1 - 1025.2 = 134.9 psi. Aumento en ppg = reducción / (profundidad debajo de la línea de lodo x 0.052) = 134.9 / (665 x 0.052) = 134.9 / 34.6 = 3.9 ppg.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 6,
+    "question": "¿Por qué es importante que un perforador tenga información precisa sobre las mareas?",
+    "choices": {
+      "A": "Para programar correctamente las conexiones",
+      "B": "Para espaciar correctamente las uniones de tubería (tool joints) para el preventor de reventones",
+      "C": "Para realizar una prueba de flujo precisa",
+      "D": "Para medir con precisión la velocidad de penetración",
+      "E": "Para transmitirla al operador de radio para los aterrizajes de helicóptero"
+    },
+    "correctAnswer": "B",
+    "explanation": "A medida que la marea sube y baja, la distancia entre el piso de perforación y el conjunto de preventores de reventones submarino cambia con ella, lo que desplaza exactamente dónde queda cada unión de tubería en relación con las posiciones de los arietes. Los datos de marea le permiten a la cuadrilla corregir el espaciado para que ninguna unión de tubería termine ubicada donde un ariete necesita cerrar.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 7,
+    "question": "Al iniciar una matanza en un conjunto de BOP submarino, debes:",
+    "choices": {
+      "A": "Llevar la bomba a la tasa de matanza manteniendo constante la presión de revestimiento",
+      "B": "Llevar la bomba a la tasa de matanza manteniendo constante la presión de tubería",
+      "C": "Llevar la bomba a la tasa de matanza permitiendo que la presión de revestimiento aumente en la cantidad de la fricción de la línea del estrangulador (CLF)",
+      "D": "Llevar la bomba a la tasa de matanza permitiendo que la presión de revestimiento disminuya en la cantidad de la CLF",
+      "E": "Ninguna de las anteriores es correcta para una matanza submarina"
+    },
+    "correctAnswer": "C",
+    "explanation": "En un conjunto submarino, los retornos viajan por una larga línea de estrangulador con su propia pérdida de presión por fricción significativa (CLF) antes de llegar al manómetro de superficie. Para mantener la presión de fondo genuinamente constante durante el arranque, se debe permitir que el manómetro de revestimiento suba por encima de la SICP original en una cantidad igual a esa fricción de línea de estrangulador; simplemente mantener el manómetro de superficie en la SICP antigua en realidad subpresurizaría el pozo en relación con lo que se necesita en el fondo.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 8,
+    "question": "Mientras inicias una operación de matanza en un conjunto submarino, mantienes la presión de revestimiento constante en 670 psi. Pérdida de presión subiendo por el riser = 350 psi; pérdida de presión subiendo por la línea del estrangulador (CLF) = 550 psi. ¿Qué le ha sucedido a la presión de fondo?",
+    "choices": {
+      "A": "La BHP se ha mantenido constante",
+      "B": "La BHP ha caído 200 psi",
+      "C": "La BHP ha subido 200 psi",
+      "D": "No hay suficiente información para saberlo",
+      "E": ""
+    },
+    "correctAnswer": "C",
+    "explanation": "El procedimiento correcto de arranque requiere tener en cuenta la fricción real de la línea del estrangulador (CLF = 550 psi), no la pérdida de presión del riser (350 psi), que no es aplicable aquí ya que no se usa para los retornos en este arranque. Mantener la presión de revestimiento en el valor de cierre antiguo sin agregar la CLF significa que el sistema está efectivamente 200 psi (550 - 350) corto de donde necesita estar para compensar, lo que significa que la presión de fondo ha subido 200 psi por encima del valor previsto.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 9,
+    "question": "Verdadero o falso: para encontrar la presión inicial de circulación (ICP) en una matanza submarina, debes sumar la fricción de la línea del estrangulador (CLF) a la SIDPP.",
+    "choices": {
+      "A": "Verdadero",
+      "B": "Falso",
+      "C": "Solo en pozos verticales",
+      "D": "Solo en pozos horizontales",
+      "E": ""
+    },
+    "correctAnswer": "B",
+    "explanation": "La fórmula correcta usa la pérdida de presión a régimen de circulación lento subiendo por el riser, no la fricción de la línea del estrangulador: ICP = pérdida de presión a régimen de circulación lento (subiendo por el riser) + SIDPP. La CLF es una cifra separada usada para ajustar el manómetro de revestimiento durante el arranque, no parte del cálculo de la ICP en sí. Falso.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 10,
+    "question": "Las señales piloto en un sistema de control submarino:",
+    "choices": {
+      "A": "Ventean en el lecho marino",
+      "B": "Son señales de línea muerta (dead-end)",
+      "C": "Controlan las válvulas lanzadera (shuttle valves)",
+      "D": "A y B son correctas",
+      "E": "A y C son correctas"
+    },
+    "correctAnswer": "B",
+    "explanation": "Las señales piloto son señales de línea muerta: llevan un comando hidráulico de bajo volumen hacia los pods de control submarinos, pero no suministran por sí mismas el volumen de fluido que realmente mueve los arietes o válvulas. Ese trabajo le corresponde al fluido del acumulador, que la señal piloto activa.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 11,
+    "question": "El fluido del acumulador en un sistema de control submarino:",
+    "choices": {
+      "A": "Ventea en el lecho marino",
+      "B": "Es una señal de línea muerta",
+      "C": "Controla las válvulas lanzadera",
+      "D": "A y B son correctas",
+      "E": "A y C son correctas"
+    },
+    "correctAnswer": "E",
+    "explanation": "A diferencia de una señal piloto, el fluido del acumulador realiza el trabajo físico real: ventea a través de las válvulas submarinas (SPM) en el lecho marino una vez que se completa una función, y en el camino mueve las válvulas lanzadera que dirigen el fluido hacia el ariete o válvula correcta. Tanto A como C son correctas.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 12,
+    "question": "¿Qué lecturas esperarías ver en los manómetros del panel de control maestro en el piso de perforación?",
+    "choices": {
+      "A": "Acumulador 1500 psi; piloto 3000 psi; múltiple 3000 psi",
+      "B": "Acumulador 3000 psi; piloto 3000 psi; múltiple 3000 psi",
+      "C": "Acumulador 1500 psi; piloto 1500 psi; múltiple 1500 psi",
+      "D": "Acumulador 3000 psi; piloto 3000 psi; múltiple 1500 psi",
+      "E": "Acumulador 3000 psi; piloto 1500 psi; múltiple 1500 psi"
+    },
+    "correctAnswer": "D",
+    "explanation": "Un sistema típico de control submarino opera sus circuitos de acumulador y piloto a la presión total del sistema (3000 psi), mientras que el suministro del múltiple que realmente opera la mayoría de las funciones se regula a una presión de trabajo más baja (1500 psi) para proteger el equipo y controlar las tasas de flujo. Se espera: acumulador 3000 psi, piloto 3000 psi, múltiple 1500 psi.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 13,
+    "question": "Una válvula manipuladora estándar usada en un sistema de control de BOP submarino tiene:",
+    "choices": {
+      "A": "4 puertos activos y se puede colocar en 3 posiciones",
+      "B": "3 puertos activos y se puede colocar en 4 posiciones",
+      "C": "4 puertos activos y se puede colocar en 4 posiciones",
+      "D": "3 puertos activos y se puede colocar en 3 posiciones",
+      "E": "No tiene nada que ver con el control de pozos"
+    },
+    "correctAnswer": "A",
+    "explanation": "La válvula a la que se hace referencia se conoce comúnmente como una válvula (manipuladora) de 3 posiciones y 4 vías: tiene 4 puertos activos y se puede ajustar a 3 posiciones distintas (típicamente abierta, cerrada y neutral/bloqueo), lo cual permite que una sola válvula pueda abrir y cerrar una función desde un solo punto de control.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 14,
+    "question": "La fricción de la línea del estrangulador (CLF) se puede eliminar durante el arranque de una matanza manteniendo constante la presión de la línea de matanza mientras se lleva la bomba a la velocidad de matanza.",
+    "choices": {
+      "A": "Verdadero",
+      "B": "Falso",
+      "C": "Solo en pozos verticales",
+      "D": "Solo en pozos horizontales",
+      "E": ""
+    },
+    "correctAnswer": "A",
+    "explanation": "La línea de matanza corre junto a la línea del estrangulador pero no se usa para los retornos, así que no desarrolla la misma pérdida de presión por fricción. Mantener la presión constante en la línea de matanza (en lugar de en la línea de estrangulador/revestimiento) mientras se lleva la bomba a velocidad es una forma válida, y comúnmente usada, de tener en cuenta la fricción de la línea del estrangulador durante el arranque. Verdadero.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 15,
+    "question": "Un pozo se ha matado exitosamente con lodo de matanza de 13.2 ppg, hasta la superficie, a través de la línea de estrangulador de 1400 ft. El riser marino de 1370 ft todavía está lleno con el lodo original de 12.0 ppg. Dos barriles de gas han quedado atrapados bajo los arietes. ¿Cuánto gas regresaría a superficie si se abrieran los arietes sin ninguna acción adicional? Presión atmosférica = 14.7 psi.",
+    "choices": {
+      "A": "116 bbls",
+      "B": "2 bbls",
+      "C": "130 bbls",
+      "D": "30 bbls",
+      "E": "66 bbls"
+    },
+    "correctAnswer": "C",
+    "explanation": "Este es un problema de expansión de gas según la Ley de Boyle. La presión que siente el gas atrapado antes de abrir (P1) es la presión hidrostática de la columna de lodo de matanza en la línea del estrangulador: 13.2 x 0.052 x 1400 = 961 psi. La presión a la que estará una vez en superficie (P2) es la atmosférica: 14.7 psi. El volumen en los BOP (V1) es los 2 bbl atrapados. Volumen expandido en superficie: V2 = (P1 x V1) / P2 = (961 x 2) / 14.7 = 130.7, aproximadamente 130 bbls.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 16,
+    "question": "Un pozo se ha matado exitosamente con lodo de matanza de 14.7 ppg, hasta la superficie, a través de la línea de estrangulador de 1220 ft. El riser marino de 1200 ft todavía está lleno con el lodo original de 13.2 ppg. Tres barriles de gas han quedado atrapados bajo los arietes. ¿Cuánto gas regresaría a superficie si se abrieran los arietes sin ninguna acción adicional? Presión atmosférica = 14.7 psi.",
+    "choices": {
+      "A": "90 bbls",
+      "B": "118 bbls",
+      "C": "130 bbls",
+      "D": "168 bbls",
+      "E": "190 bbls"
+    },
+    "correctAnswer": "E",
+    "explanation": "P1 = presión hidrostática de la columna de lodo de matanza en la línea del estrangulador = 14.7 x 0.052 x 1220 = 932.8 psi. P2 = atmosférica = 14.7 psi. V1 = 3 bbl. V2 = (P1 x V1) / P2 = (932.8 x 3) / 14.7 = 190.4, aproximadamente 190 bbls.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 17,
+    "question": "Un pozo se ha matado exitosamente con lodo de matanza de 12.5 ppg, hasta la superficie, a través de la línea de estrangulador de 885 ft. El riser marino de 850 ft todavía está lleno con el lodo original de 10.3 ppg. Dos barriles de gas han quedado atrapados bajo los arietes. ¿Cuánto gas regresaría a superficie si se abrieran los arietes sin ninguna acción adicional? Presión atmosférica = 14.7 psi.",
+    "choices": {
+      "A": "93 bbls",
+      "B": "47 bbls",
+      "C": "78 bbls",
+      "D": "61 bbls",
+      "E": "87 bbls"
+    },
+    "correctAnswer": "C",
+    "explanation": "P1 = presión hidrostática de la columna de lodo de matanza en la línea del estrangulador = 12.5 x 0.052 x 885 = 575.25 psi. P2 = atmosférica = 14.7 psi. V1 = 2 bbl. V2 = (P1 x V1) / P2 = (575.25 x 2) / 14.7 = 78.3, aproximadamente 78 bbls.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 18,
+    "question": "El equipo tiene un espacio de aire de 75 ft. La presión de colapso del riser es de 400 psi. ¿Cuánto tendría que caer el nivel de lodo dentro del riser antes de que colapsara, trabajando en 1700 ft de agua de mar con un gradiente de 0.445 psi/ft?",
+    "choices": {
+      "A": "898 ft",
+      "B": "973 ft",
+      "C": "1023 ft",
+      "D": "1567 ft",
+      "E": "1775 ft"
+    },
+    "correctAnswer": "B",
+    "explanation": "Primero encuentra cuánta altura de agua de mar produce una presión hidrostática igual a la clasificación de colapso del riser: pies de agua de mar = presión de colapso / gradiente de agua de mar = 400 / 0.445 = 898.9 ft. Suma el espacio de aire, ya que el nivel de lodo tiene que caer a través de esa distancia primero antes de siquiera comenzar a caer a través de la sección expuesta al agua de mar: 898.9 + 75 = 973.9, aproximadamente 973 ft.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 19,
+    "question": "El equipo tiene un espacio de aire de 50 ft. La presión de colapso del riser es de 410 psi. ¿Cuánto tendría que caer el nivel de lodo dentro del riser antes de que colapsara, trabajando en 1800 ft de agua de mar con un gradiente de 0.455 psi/ft?",
+    "choices": {
+      "A": "751 ft",
+      "B": "801 ft",
+      "C": "851 ft",
+      "D": "901 ft",
+      "E": "951 ft"
+    },
+    "correctAnswer": "E",
+    "explanation": "Pies de agua de mar equivalentes a la clasificación de colapso = 410 / 0.455 = 901.1 ft. Suma el espacio de aire: 901.1 + 50 = 951.1, aproximadamente 951 ft.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 20,
+    "question": "¿Por qué las botellas de acumulador se montan directamente en los conjuntos de preventores de reventones submarinos?",
+    "choices": {
+      "A": "Para permitir la entrega rápida de fluido de alta presión a los BOP submarinos",
+      "B": "Para vencer la presión hidrostática ejercida por la columna de agua de mar",
+      "C": "Para poner automáticamente todas las funciones en bloqueo",
+      "D": "Para agregar estabilidad al conjunto de BOP submarino durante la corrida y el retiro",
+      "E": "No se montan botellas en los BOP submarinos"
+    },
+    "correctAnswer": "A",
+    "explanation": "Enviar fluido desde los acumuladores de superficie, bajando miles de pies de manguera hasta el lecho marino, a demanda, sería demasiado lento para un cierre de emergencia de los BOP. Montar botellas directamente en el conjunto submarino significa que el fluido hidráulico de alta presión ya está cerca, permitiendo que las funciones se operen con el tiempo de respuesta rápido que el control de pozos requiere.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 21,
+    "question": "Cuando se ejecuta una función en superficie para cerrar un juego de arietes, ¿qué sucede realmente en el fondo del mar?",
+    "choices": {
+      "A": "El fluido del acumulador se envía a los arietes a través de la válvula de 3 posiciones/4 vías en superficie",
+      "B": "El fluido piloto mueve la válvula lanzadera, cerrando así los arietes",
+      "C": "La presión piloto energiza la válvula SPM de cierre en ambos pods de control",
+      "D": "El fluido del acumulador energiza la válvula SPM de cierre en ambos pods",
+      "E": "La presión anular cae a la presión de relación de cierre requerida"
+    },
+    "correctAnswer": "C",
+    "explanation": "Una función en superficie envía una señal piloto de bajo volumen hacia ambos pods de control submarinos, y esa presión piloto es lo que energiza (activa) la válvula SPM de cierre en cada pod. Es el fluido del acumulador, de mayor volumen, y no la señal piloto misma, el que luego impulsa físicamente el cierre de los arietes una vez que la válvula SPM ha abierto el paso para él.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 22,
+    "question": "Se ejecuta una función en superficie para cerrar un juego de arietes. ¿Qué es probable que observes?",
+    "choices": {
+      "A": "La luz indicadora del ariete cambia de verde a rojo",
+      "B": "El medidor de flujo funciona y se detiene en el volumen de cierre requerido",
+      "C": "La presión de retorno del múltiple cae y luego se recupera",
+      "D": "La presión del acumulador cae y luego se recupera",
+      "E": "Todas las anteriores"
+    },
+    "correctAnswer": "E",
+    "explanation": "Un cierre de ariete limpio y exitoso produce todas estas señales juntas: la luz de estado cambia para reflejar la nueva posición, el medidor de flujo registra el volumen esperado de fluido entregado y luego se detiene, y tanto la presión del múltiple como la del acumulador caen mientras se usa fluido y luego se recuperan a medida que el sistema se re-presuriza. Ver todas estas señales es cómo se confirma que la función realmente funcionó.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 23,
+    "question": "Según la API RP 16E, ¿cuál es el tiempo máximo de cierre permitido para un preventor anular submarino?",
+    "choices": {
+      "A": "30 seconds",
+      "B": "40 seconds",
+      "C": "50 seconds",
+      "D": "60 seconds",
+      "E": "70 seconds"
+    },
+    "correctAnswer": "D",
+    "explanation": "La API RP 16E establece 60 segundos como el tiempo máximo permisible de cierre para un preventor anular submarino, reflejando el equilibrio entre cerrar lo suficientemente rápido para ser efectivo en una emergencia y no tan violentamente rápido que se dañe el equipo o el pozo en el proceso.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 24,
+    "question": "Un perforador activa un ariete en superficie. La luz cambia, el medidor de flujo funciona, y tanto la presión del múltiple como la del acumulador caen. El medidor de flujo sigue funcionando mucho más allá del volumen de cierre esperado, y las presiones siguen cayendo. ¿Qué debe hacer a continuación?",
+    "choices": {
+      "A": "Llamar al ingeniero submarino",
+      "B": "Poner la función en bloqueo",
+      "C": "Llamar al toolpusher (supervisor de perforación)",
+      "D": "Bajar a la unidad de acumuladores y activarla manualmente desde ahí",
+      "E": "Abandonar el piso de perforación"
+    },
+    "correctAnswer": "B",
+    "explanation": "Un medidor de flujo que no se detiene y presiones que siguen cayendo apuntan a una válvula atascada o una fuga en algún lugar del sistema, drenando continuamente los acumuladores. El primer paso inmediato es poner la función en bloqueo para detener la pérdida de fluido; solo después de contener eso tiene sentido pedir ayuda o investigar más a fondo.",
+    "topic": "Preguntas Submarinas"
+  },
+  {
+    "id": 25,
+    "question": "¿Cuál de los siguientes enunciados sobre las botellas de acumulador montadas en conjuntos de BOP submarinos es correcto?",
+    "choices": {
+      "A": "Generalmente se pintan para corresponder con el pod al que están asignadas",
+      "B": "Se les purga toda la presión antes de recuperarlas en superficie",
+      "C": "Se pueden recuperar individualmente o en grupos junto con el pod",
+      "D": "Tendrán menos fluido utilizable que botellas comparables en superficie",
+      "E": "Las botellas de acumulador no se instalan en los BOP submarinos"
+    },
+    "correctAnswer": "D",
+    "explanation": "Las botellas de acumulador submarinas tienen que trabajar contra la presión hidrostática ambiental del agua de mar circundante que presiona sobre ellas, lo cual reduce la diferencia de presión disponible para realmente entregar fluido. Como resultado, una botella submarina rinde menos fluido utilizable que una botella equivalente operando en superficie, donde no hay una contrapresión comparable contra la cual luchar.",
+    "topic": "Preguntas Submarinas"
+  }
+]

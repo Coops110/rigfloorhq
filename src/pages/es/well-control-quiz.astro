@@ -1,12 +1,12 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
-import quizData from '../lib/data/well-control-quiz.json';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import quizData from '../../lib/data/well-control-quiz-es.json';
 
-// 200 well control practice questions across 8 topics. Generic theory and
-// numbers only — no rig, well, or company reference anywhere in the source
-// data, verified before this page was built.
+// 200 preguntas de práctica de control de pozos en 8 temas. Traducción del
+// mismo banco de preguntas genérico (sin rig, pozo o empresa) usado en la
+// versión en inglés.
 type Question = {
   id: number;
   question: string;
@@ -19,29 +19,29 @@ type Question = {
 const questions = quizData as Question[];
 
 const topicOrder = [
-  'Basic Knowledge',
-  'Basic Pressure',
-  'Warning Signs and Shut-In',
-  'Shut-In Conditions',
-  'Volumes and MAASP',
-  'Kill Methods',
-  'Some Tricky Stuff',
-  'Subsea Questions',
+  'Conocimientos Básicos',
+  'Presión Básica',
+  'Señales de Advertencia y Cierre',
+  'Condiciones de Cierre',
+  'Volúmenes y MAASP',
+  'Métodos de Matanza',
+  'Preguntas Difíciles',
+  'Preguntas Submarinas',
 ];
 
 const topicIcons: Record<string, string> = {
-  'Basic Knowledge': '📘',
-  'Basic Pressure': '⚙',
-  'Warning Signs and Shut-In': '🚨',
-  'Shut-In Conditions': '🔒',
-  'Volumes and MAASP': '📊',
-  'Kill Methods': '🛑',
-  'Some Tricky Stuff': '🧠',
-  'Subsea Questions': '🌊',
+  'Conocimientos Básicos': '📘',
+  'Presión Básica': '⚙',
+  'Señales de Advertencia y Cierre': '🚨',
+  'Condiciones de Cierre': '🔒',
+  'Volúmenes y MAASP': '📊',
+  'Métodos de Matanza': '🛑',
+  'Preguntas Difíciles': '🧠',
+  'Preguntas Submarinas': '🌊',
 };
 
 function slugify(topic: string) {
-  return topic.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  return topic.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
 const topics = topicOrder.map((topic) => ({
@@ -52,31 +52,31 @@ const topics = topicOrder.map((topic) => ({
 }));
 ---
 <BaseLayout
-  title="Well Control Quiz: 200 Practice Questions"
-  description="200 well control practice questions across 8 topics: pressure, kick warning signs, shut-in, MAASP, kill methods, subsea, and more. Take each topic live and see your score."
-  breadcrumbs={[{ label: 'Well Control Quiz', href: '/well-control-quiz' }]}
-  lang="en"
-  alternateHref="/es/well-control-quiz"
+  title="Cuestionario de Control de Pozos: 200 Preguntas de Práctica"
+  description="200 preguntas de práctica de control de pozos en 8 temas: presión, señales de advertencia de surgencia, cierre, MAASP, métodos de matanza, submarino y más. Realiza cada tema en vivo y ve tu puntaje."
+  breadcrumbs={[{ label: 'Cuestionario de Control de Pozos', href: '/es/well-control-quiz' }]}
+  lang="es"
+  alternateHref="/well-control-quiz"
 >
-  <Nav slot="nav" lang="en" alternateHref="/es/well-control-quiz" />
-  <Footer slot="footer" lang="en" />
+  <Nav slot="nav" lang="es" alternateHref="/well-control-quiz" />
+  <Footer slot="footer" lang="es" />
 
   <div class="page-hero">
-    <div class="page-hero-eyebrow">Reference — Practice</div>
-    <h1>Well Control <span>Quiz</span></h1>
-    <p class="page-hero-sub">200 practice questions across 8 topics, the same ground covered by IWCF and IADC well control certification. Pick a topic below and take it live — one question at a time, real score at the end.</p>
+    <div class="page-hero-eyebrow">Referencia — Práctica</div>
+    <h1>Cuestionario de Control de <span>Pozos</span></h1>
+    <p class="page-hero-sub">200 preguntas de práctica en 8 temas, el mismo terreno cubierto por las certificaciones de control de pozos IWCF e IADC. Elige un tema abajo y realízalo en vivo — una pregunta a la vez, puntaje real al final.</p>
   </div>
 
   <section class="block">
-    <div class="section-eyebrow">Test Yourself</div>
-    <h2 class="section-title">Take the <span>Quiz</span></h2>
+    <div class="section-eyebrow">Ponte a Prueba</div>
+    <h2 class="section-title">Realiza el <span>Cuestionario</span></h2>
     <div class="card-grid" id="quiz-picker">
       {topics.map((t) => (
         <div class="card quiz-pick-btn" data-topic-slug={t.slug} role="button" tabindex="0">
           <span class="card-icon">{t.icon}</span>
           <h3>{t.name}</h3>
-          <p>{t.questions.length} questions, shuffled each time.</p>
-          <span class="card-link">Start Quiz →</span>
+          <p>{t.questions.length} preguntas, mezcladas cada vez.</p>
+          <span class="card-link">Comenzar →</span>
         </div>
       ))}
     </div>
@@ -84,30 +84,27 @@ const topics = topicOrder.map((topic) => ({
     <div class="quiz-interactive-main hidden" id="quiz-interactive-main"></div>
 
     <div class="note-box mt-24">
-      <strong>Practice only, not a certified exam.</strong> These questions cover the same ground as IWCF and IADC well control exams but are not affiliated with either body and do not substitute for accredited certification. Nothing you enter is saved, sent anywhere, or stored — reloading the page clears it.
+      <strong>Solo práctica, no es un examen certificado.</strong> Estas preguntas cubren el mismo terreno que los exámenes de control de pozos IWCF e IADC pero no están afiliadas a ninguno de los dos organismos y no sustituyen una certificación acreditada. Nada de lo que ingreses se guarda, se envía a ningún lugar ni se almacena — recargar la página lo borra todo.
     </div>
   </section>
 
-  {/* Question data only, nothing visible or readable as page content — the
-      quiz would be pointless if the answers sat in plain view on the page
-      itself. Rendered per-topic so the picker above can load one topic at a
-      time without shipping all 200 questions into a single blob. */}
+  {/* Solo datos de preguntas, nada visible como contenido de la página — el
+      cuestionario perdería sentido si las respuestas estuvieran a la vista. */}
   {topics.map((t) => (
     <script type="application/json" class="quiz-data" data-topic-slug={t.slug} set:html={JSON.stringify(t.questions)} />
   ))}
 
   <section class="block">
     <div class="prose">
-      <p>Working these calculations out yourself first is worth more than reading the explanation cold — the <a href="/calculators/kill-sheet">kill sheet calculator</a> and <a href="/drilling/formulas">drilling formulas cheat sheet</a> run the same math these questions test.</p>
+      <p>Resolver estos cálculos tú mismo primero vale más que leer la explicación en frío — la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> usa las mismas matemáticas que estas preguntas evalúan.</p>
     </div>
   </section>
 </BaseLayout>
 
 <style is:global>
-  /* Global, not scoped: the interactive quiz UI (.qi-*) is built by
-     client-side JS after the page loads, so Astro's build-time style
-     scoping never reaches it. Scoped rules here would silently no-op on
-     every dynamically created element and ship as unstyled default HTML. */
+  /* Global, no scoped: la UI interactiva del cuestionario (.qi-*) la crea JS
+     del lado del cliente después de cargar la página, así que el scoping de
+     estilos de Astro en build-time nunca la alcanza. */
   .quiz-pick-btn { cursor: pointer; text-align: left; }
   .quiz-pick-btn:hover { border-color: var(--amber); }
   .quiz-pick-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
@@ -192,7 +189,7 @@ const topics = topicOrder.map((topic) => ({
     const entries = Object.entries(q.choices).filter(([, text]) => text);
     mainBox.innerHTML = `
       <div class="qi-topic-label">${currentTopicName}</div>
-      <div class="qi-progress">Question ${index + 1} of ${queue.length}</div>
+      <div class="qi-progress">Pregunta ${index + 1} de ${queue.length}</div>
       <div class="qi-text"></div>
       <div class="qi-choices"></div>
     `;
@@ -223,13 +220,13 @@ const topics = topicOrder.map((topic) => ({
 
     const explainDiv = document.createElement('div');
     explainDiv.className = 'qi-explain';
-    explainDiv.innerHTML = `<strong>${isRight ? 'Correct.' : 'Not quite.'}</strong> ${q.explanation}`;
+    explainDiv.innerHTML = `<strong>${isRight ? 'Correcto.' : 'No exactamente.'}</strong> ${q.explanation}`;
     mainBox.appendChild(explainDiv);
 
     const nextBtn = document.createElement('button');
     nextBtn.type = 'button';
     nextBtn.className = 'btn btn-primary';
-    nextBtn.textContent = index + 1 < queue.length ? 'Next Question →' : 'See Score →';
+    nextBtn.textContent = index + 1 < queue.length ? 'Siguiente Pregunta →' : 'Ver Puntaje →';
     nextBtn.addEventListener('click', () => {
       index++;
       if (index < queue.length) renderQuestion();
@@ -244,12 +241,12 @@ const topics = topicOrder.map((topic) => ({
     mainBox.innerHTML = `
       <div class="qi-topic-label">${currentTopicName}</div>
       <div class="qi-score-big">${correctCount} / ${queue.length}</div>
-      <div class="qi-score-sub">${pct}% correct — ${queue.length - correctCount} wrong</div>
+      <div class="qi-score-sub">${pct}% correcto — ${queue.length - correctCount} incorrectas</div>
     `;
 
     const review = document.createElement('div');
     review.className = 'qi-review';
-    review.innerHTML = '<div class="qi-review-title">Review — every question, correct answer, and why</div>';
+    review.innerHTML = '<div class="qi-review-title">Revisión — cada pregunta, respuesta correcta y por qué</div>';
     attempts.forEach((a, i) => {
       const isRight = a.chosen === a.question.correctAnswer;
       const item = document.createElement('div');
@@ -258,9 +255,9 @@ const topics = topicOrder.map((topic) => ({
       const correctText = a.question.choices[a.question.correctAnswer];
       item.innerHTML = `
         <div class="qi-review-q">${i + 1}. ${a.question.question}</div>
-        <div class="qi-review-your ${isRight ? 'right' : 'wrong'}">Your answer: ${a.chosen}. ${chosenText}${isRight ? ' ✓' : ''}</div>
-        ${isRight ? '' : `<div class="qi-review-correct">Correct answer: ${a.question.correctAnswer}. ${correctText}</div>`}
-        <div class="qi-review-explain"><strong>Why:</strong> ${a.question.explanation}</div>
+        <div class="qi-review-your ${isRight ? 'right' : 'wrong'}">Tu respuesta: ${a.chosen}. ${chosenText}${isRight ? ' ✓' : ''}</div>
+        ${isRight ? '' : `<div class="qi-review-correct">Respuesta correcta: ${a.question.correctAnswer}. ${correctText}</div>`}
+        <div class="qi-review-explain"><strong>Por qué:</strong> ${a.question.explanation}</div>
       `;
       review.appendChild(item);
     });
@@ -271,7 +268,7 @@ const topics = topicOrder.map((topic) => ({
     retryBtn.className = 'btn btn-primary';
     retryBtn.style.display = 'block';
     retryBtn.style.margin = '0 auto 10px';
-    retryBtn.textContent = 'Retake This Topic';
+    retryBtn.textContent = 'Repetir Este Tema';
     retryBtn.addEventListener('click', () => startQuiz(currentTopicName, queue));
     mainBox.appendChild(retryBtn);
 
@@ -280,7 +277,7 @@ const topics = topicOrder.map((topic) => ({
     pickerBtn.className = 'btn btn-outline';
     pickerBtn.style.display = 'block';
     pickerBtn.style.margin = '0 auto';
-    pickerBtn.textContent = 'Try Another Topic';
+    pickerBtn.textContent = 'Probar Otro Tema';
     pickerBtn.addEventListener('click', () => {
       mainBox.classList.add('hidden');
       mainBox.classList.remove('active');
