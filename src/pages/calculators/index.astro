@@ -107,6 +107,26 @@ import Footer from '../../components/Footer.astro';
           <td>You need hole capacity, displacement, or a running depth tally from pipe specs</td>
           <td><a href="/calculators/drill-pipe-tally">Drill Pipe Tally</a></td>
         </tr>
+        <tr>
+          <td>You need to bullhead a well and check the surface-pressure limits</td>
+          <td><a href="/calculators/bullheading">Bullheading</a></td>
+        </tr>
+        <tr>
+          <td>Shut-in pressure is climbing and you need a migration rate or bleed volume</td>
+          <td><a href="/calculators/gas-migration">Gas Migration</a></td>
+        </tr>
+        <tr>
+          <td>You need buoyed weight for closed-ended pipe or two different fluids</td>
+          <td><a href="/calculators/buoyancy">Buoyancy &amp; Tubular Weight</a></td>
+        </tr>
+        <tr>
+          <td>You're on a subsea well and need the riser margin</td>
+          <td><a href="/calculators/riser-margin">Riser Margin</a></td>
+        </tr>
+        <tr>
+          <td>You need a safe pipe-pull length before fill-up on a trip</td>
+          <td><a href="/calculators/pipe-pull-margin">Wet &amp; Dry Pipe Pull Margin</a></td>
+        </tr>
       </tbody>
     </table>
 
@@ -189,6 +209,41 @@ import Footer from '../../components/Footer.astro';
         <p class="card-formula"><strong>Formula:</strong> Capacity = ID² ÷ 1029.4</p>
         <a href="/calculators/drill-pipe-tally" class="card-link">Open Calculator →</a>
       </div>
+      <div class="card">
+        <span class="card-icon">🎯</span>
+        <h3>Bullheading Calculator</h3>
+        <p>Kill fluid weight, formation fracture pressure, initial/final max surface pressure, volume to bullhead, and pump rate vs. gas migration.</p>
+        <p class="card-formula"><strong>Formula:</strong> Max Surface Pressure = FFP − Hydrostatic</p>
+        <a href="/calculators/bullheading" class="card-link">Open Calculator →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">📈</span>
+        <h3>Gas Migration Calculator</h3>
+        <p>Migration rate from a shut-in pressure buildup, and the volumetric-method bleed volume to hold bottomhole pressure steady.</p>
+        <p class="card-formula"><strong>Formula:</strong> Rate = Pressure Increase ÷ Mud Gradient</p>
+        <a href="/calculators/gas-migration" class="card-link">Open Calculator →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">⚓</span>
+        <h3>Buoyancy &amp; Tubular Weight</h3>
+        <p>Buoyed pipe weight for open-ended pipe, closed-ended pipe, and pipe carrying a different fluid inside than the annulus.</p>
+        <p class="card-formula"><strong>Formula:</strong> BF = 1 − (MW ÷ 65.5)</p>
+        <a href="/calculators/buoyancy" class="card-link">Open Calculator →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🌊</span>
+        <h3>Riser Margin Calculator</h3>
+        <p>Mud weight margin for a subsea well if the riser column were lost and replaced by seawater.</p>
+        <p class="card-formula"><strong>Formula:</strong> RM = ΔHydrostatic ÷ 0.052 ÷ Interval</p>
+        <a href="/calculators/riser-margin" class="card-link">Open Calculator →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🪝</span>
+        <h3>Wet &amp; Dry Pipe Pull Margin</h3>
+        <p>How much pipe can come out of the hole, wet or dry, before hydrostatic pressure drops by a target amount.</p>
+        <p class="card-formula"><strong>Formula:</strong> L = (ΔP × Annulus Cap) ÷ [0.052 × MW × ...]</p>
+        <a href="/calculators/pipe-pull-margin" class="card-link">Open Calculator →</a>
+      </div>
     </div>
   </section>
 
@@ -251,7 +306,12 @@ import Footer from '../../components/Footer.astro';
           { "@type": "ListItem", "position": 6, "name": "Lag & Volume Calculator", "url": "https://rigfloorhq.com/calculators/lag-and-volume" },
           { "@type": "ListItem", "position": 7, "name": "Ton-Mile Calculator", "url": "https://rigfloorhq.com/calculators/ton-mile" },
           { "@type": "ListItem", "position": 8, "name": "ODF Depth Correction Calculator", "url": "https://rigfloorhq.com/calculators/odf-depth-correction" },
-          { "@type": "ListItem", "position": 9, "name": "Drill Pipe Tally Calculator", "url": "https://rigfloorhq.com/calculators/drill-pipe-tally" }
+          { "@type": "ListItem", "position": 9, "name": "Drill Pipe Tally Calculator", "url": "https://rigfloorhq.com/calculators/drill-pipe-tally" },
+          { "@type": "ListItem", "position": 10, "name": "Bullheading Calculator", "url": "https://rigfloorhq.com/calculators/bullheading" },
+          { "@type": "ListItem", "position": 11, "name": "Gas Migration Calculator", "url": "https://rigfloorhq.com/calculators/gas-migration" },
+          { "@type": "ListItem", "position": 12, "name": "Buoyancy & Tubular Weight Calculator", "url": "https://rigfloorhq.com/calculators/buoyancy" },
+          { "@type": "ListItem", "position": 13, "name": "Riser Margin Calculator", "url": "https://rigfloorhq.com/calculators/riser-margin" },
+          { "@type": "ListItem", "position": 14, "name": "Wet & Dry Pipe Pull Margin Calculator", "url": "https://rigfloorhq.com/calculators/pipe-pull-margin" }
         ]
       },
       {

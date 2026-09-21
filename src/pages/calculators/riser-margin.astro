@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'What is riser margin actually protecting against?',
+    a: 'On a floating subsea rig, the riser between the rig and the seafloor BOP is normally full of mud, not seawater — and mud is heavier than seawater. Riser margin is how much extra mud weight, expressed in ppg, the well can tolerate losing the riser column and having it replaced by seawater (a disconnect, a riser failure) before the well goes underbalanced. A positive, adequate margin means the well stays overbalanced even in that scenario; a thin or negative margin means losing the riser could let the well flow.',
+  },
+  {
+    q: 'Why does air gap matter if it has no fluid in it at all?',
+    a: 'Air gap — the distance from the rig floor down to the waterline — is part of the total riser length the mud column has to fill, but it contributes zero hydrostatic pressure since there\'s no fluid there. It still has to be subtracted out correctly when going from riser length to the well\'s actual pressured interval (water depth to total TVD), or the margin calculation ends up applying the pressure difference over the wrong length.',
+  },
+  {
+    q: 'Does riser margin change as the well gets deeper?',
+    a: 'The margin itself, as a ppg figure, stays governed by the same water depth, air gap, and mud-vs-seawater difference regardless of how deep the well goes — but the pressure difference that margin represents is spread over a longer interval (well TVD minus water depth minus air gap) as TVD increases, which is exactly what the denominator in the formula accounts for. Practically, operators recheck it whenever mud weight changes materially rather than assuming a single number holds for the whole well.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Riser Margin Calculator: Subsea Mud vs. Seawater"
+  description="Riser margin calculator for subsea wells: the extra mud weight margin if the riser column were lost and replaced by seawater, from mud weight, seawater gradient, water depth, and air gap."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Riser Margin', href: '/calculators/riser-margin' }]}
+  lang="en"
+  alternateHref="/es/calculators/riser-margin"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators/riser-margin" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Riser Margin <span>Calculator</span></h1>
+    <p class="page-hero-sub">How much mud weight margin a subsea well has if the riser column were lost and replaced by seawater — from mud weight, seawater gradient, water depth, and air gap.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🌊 Riser &amp; Well</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="mw">Mud Weight in Riser (ppg)</label>
+              <input type="number" id="mw" value="12" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="swg">Seawater Gradient (psi/ft)</label>
+              <input type="number" id="swg" value="0.442" step="0.001">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="wd">Water Depth (ft)</label>
+              <input type="number" id="wd" value="5000">
+            </div>
+            <div class="input-group">
+              <label for="ag">Air Gap (ft)</label>
+              <input type="number" id="ag" value="75">
+            </div>
+            <div class="input-group">
+              <label for="tvd">Well TVD (ft, from rig floor)</label>
+              <input type="number" id="tvd" value="15000">
+            </div>
+          </div>
+
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line"><span class="output-label">Riser Mud Hydrostatic</span><span class="output-value" id="out-rmh">—</span></div>
+            <div class="output-line"><span class="output-label">Seawater Hydrostatic (water column)</span><span class="output-value" id="out-swh">—</span></div>
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Riser Margin</span><span class="output-value" id="out-margin">—</span></div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Riser margin is one input to a subsea well's kick tolerance and shut-in procedure, decided by the well's own drilling program — this checks the underlying math, not a substitute for that program.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formula Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">Riser Margin</div>
+          <div class="formula-eq">RM (ppg) = [(Riser Mud Hydrostatic − Seawater Hydrostatic) ÷ 0.052] ÷ (Well TVD − Water Depth − Air Gap)</div>
+          <div class="formula-note">Riser Mud Hydrostatic = Mud Weight × 0.052 × (Water Depth + Air Gap). Seawater Hydrostatic = Seawater Gradient × Water Depth only — air gap has no fluid column. Per the WellSharp / IWCF field-units formula sheet.</div>
+        </div>
+
+        <p>0.442 psi/ft is a common seawater gradient (about 8.5 ppg equivalent); actual local seawater density varies slightly by salinity and temperature. For the hydrostatic math this builds on, see the <a href="/calculators/hydrostatic">hydrostatic pressure calculator</a>; for the subsea BOP stack this margin exists to protect, see the <a href="/equipment/bop">BOP equipment page</a>.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const mw = num('mw'), swg = num('swg'), wd = num('wd'), ag = num('ag'), tvd = num('tvd');
+
+    const riserLen = wd + ag;
+    const rmh = mw * 0.052 * riserLen;
+    const swh = swg * wd;
+    const denom = tvd - wd - ag;
+    const margin = denom !== 0 ? ((rmh - swh) / 0.052) / denom : 0;
+
+    set('out-rmh', fmt(rmh, 0) + ' psi');
+    set('out-swh', fmt(swh, 0) + ' psi');
+    set('out-margin', fmt(margin, 2) + ' ppg');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

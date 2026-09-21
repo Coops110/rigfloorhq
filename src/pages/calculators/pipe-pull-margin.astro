@@ -1,0 +1,156 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'Why does pulling pipe out of a well drop the hydrostatic pressure at all?',
+    a: 'Pulling wet pipe (still full of mud, swabbing or not being filled as it comes out) removes steel volume from the annulus without replacing it — the mud level in the annulus falls to fill that space, and a shorter fluid column above any given point means less hydrostatic pressure there. Pull enough pipe without adding fill-up fluid and that pressure drop can undercut formation pressure, letting the well flow — the classic swab-in-a-kick mechanism.',
+  },
+  {
+    q: 'What is the practical difference between the wet-pipe and dry-pipe numbers?',
+    a: 'Wet pipe (full of mud as it comes out, the normal case) only affects the annulus level directly — the drill pipe capacity and displacement both act on the annulus side of the math. Dry pipe (empty, or displaced to air/gas) additionally means nothing is draining out of the pipe itself into the annulus as it\'s pulled, so both its capacity and displacement stack against the same annulus capacity rather than working with it — which is why the dry-pipe length allowed before hitting the same pressure drop comes out longer in the worked example on this page.',
+  },
+  {
+    q: 'How is this different from a trip sheet or swab-sheet during an actual trip?',
+    a: 'A trip or swab sheet tracks fill-up volume actually pumped against pipe pulled, in real time, against a well-specific tolerance — the live record during the job. This calculator answers the planning-stage question of how much pipe can come out before a chosen pressure drop is reached, using the well\'s own capacities and mud weight, so a fill-up interval or swab margin can be set before pulling out of the hole rather than discovered mid-trip.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Wet & Dry Pipe Pull Margin Calculator"
+  description="Length of wet or dry pipe that can be pulled before a target hydrostatic pressure drop, from mud weight, annulus capacity, drill pipe capacity, and displacement."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Pipe Pull Margin', href: '/calculators/pipe-pull-margin' }]}
+  lang="en"
+  alternateHref="/es/calculators/pipe-pull-margin"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators/pipe-pull-margin" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Wet &amp; Dry Pipe Pull <span>Margin</span></h1>
+    <p class="page-hero-sub">How much pipe can come out of the hole, wet or dry, before hydrostatic pressure drops by a target amount — the swab-margin question, answered before the trip instead of during it.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🪝 Well &amp; Pipe</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="dp">Target Pressure Drop ΔP (psi)</label>
+              <input type="number" id="dp" value="75">
+            </div>
+            <div class="input-group">
+              <label for="mw">Mud Weight (ppg)</label>
+              <input type="number" id="mw" value="10" step="0.1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="acap">Annulus Capacity (bbl/ft)</label>
+              <input type="number" id="acap" value="0.0774" step="0.0001">
+            </div>
+            <div class="input-group">
+              <label for="dpcap">Drill Pipe Capacity (bbl/ft)</label>
+              <input type="number" id="dpcap" value="0.01776" step="0.0001">
+            </div>
+            <div class="input-group">
+              <label for="dpdisp">Drill Pipe Displacement (bbl/ft)</label>
+              <input type="number" id="dpdisp" value="0.0075" step="0.0001">
+            </div>
+          </div>
+
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline"><span class="output-label">Wet Pipe — Length Before Drop</span><span class="output-value" id="out-wet">—</span></div>
+            <div class="output-line headline"><span class="output-label">Dry Pipe — Length Before Drop</span><span class="output-value" id="out-dry">—</span></div>
+            <div class="output-line" style="border-bottom:none;"><span class="output-label">Pressure Drop per Foot (Wet Pipe)</span><span class="output-value" id="out-perft">—</span></div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Actual swab margin depends on formation pressure margin, trip speed, and gel strength effects beyond this static calculation — use your company's approved trip sheet for a live job.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formulas Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">Length of Wet Pipe Pulled Before Fill-Up</div>
+          <div class="formula-eq">L = (ΔP × Annulus Cap) ÷ [0.052 × MW × (DP Cap + DP Displ)]</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Length of Dry Pipe Pulled Before Fill-Up</div>
+          <div class="formula-eq">L = [ΔP × (Annulus Cap + DP Cap)] ÷ [0.052 × MW × DP Displ]</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Hydrostatic Pressure Drop per Foot, Pulling Wet Pipe</div>
+          <div class="formula-eq">ΔP/ft = 0.052 × MW × [(DP Cap + DP Displ) ÷ Annulus Cap]</div>
+          <div class="formula-note">Per the WellSharp / IWCF field-units formula sheet. Multiplying the wet-pipe length above by this figure returns the target ΔP entered — a quick way to sanity-check the two together.</div>
+        </div>
+
+        <p>For hole capacity, displacement, and a joint-by-joint depth tally from pipe OD/ID, see the <a href="/calculators/drill-pipe-tally">drill pipe tally calculator</a>. For the hydrostatic pressure this margin is measured against, see the <a href="/calculators/hydrostatic">hydrostatic pressure calculator</a>.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const dp = num('dp'), mw = num('mw'), acap = num('acap'), dpcap = num('dpcap'), dpdisp = num('dpdisp');
+
+    const wetDenom = 0.052 * mw * (dpcap + dpdisp);
+    const wet = wetDenom !== 0 ? (dp * acap) / wetDenom : 0;
+
+    const dryDenom = 0.052 * mw * dpdisp;
+    const dry = dryDenom !== 0 ? (dp * (acap + dpcap)) / dryDenom : 0;
+
+    const perft = acap !== 0 ? 0.052 * mw * ((dpcap + dpdisp) / acap) : 0;
+
+    set('out-wet', fmt(wet, 1) + ' ft');
+    set('out-dry', fmt(dry, 1) + ' ft');
+    set('out-perft', fmt(perft, 4) + ' psi/ft');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

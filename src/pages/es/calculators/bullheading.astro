@@ -1,0 +1,249 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const brineRows = [
+  { range: '8.4 – 9.0 ppg', loss: '0.0017 ppg/°F' },
+  { range: '9.1 – 11.0 ppg', loss: '0.0025 ppg/°F' },
+  { range: '11.1 – 14.5 ppg', loss: '0.0033 ppg/°F' },
+  { range: '14.6 – 17.0 ppg', loss: '0.0040 ppg/°F' },
+  { range: '17.1 – 19.2 ppg', loss: '0.0048 ppg/°F' },
+];
+
+const faq = [
+  {
+    q: '¿Cuándo se bombea a matar (bullhead) un pozo en lugar de circular fluido de matar hacia abajo y hacia arriba?',
+    a: 'Bombear a matar empuja fluido de matar directamente por la tubería y hacia afuera por las perforaciones, forzando lo que esté en el pozo de vuelta hacia la formación en lugar de circularlo hacia afuera por el choke. Se usa cuando circular no es práctico o seguro — entrada de H2S, una sarta de tubería tapada o poco confiable, o un pozo donde el equipo de superficie no puede manejar lo que regresaría. El costo son los dos límites de presión de superficie que esta calculadora revisa: bombear con demasiada fuerza fractura la formación misma en superficie, no en el fondo.',
+  },
+  {
+    q: '¿Por qué hay dos cifras diferentes de "presión máxima de superficie"?',
+    a: 'La presión máxima inicial de superficie es el límite en el momento en que empiezas a bombear, antes de que haya entrado fluido de matar — es la Presión de Fractura de Formación menos cualquier hidrostática que ya esté en el pozo. La presión máxima final de superficie es el límite una vez que el pozo está completamente desplazado a fluido de matar, cuando la columna hidrostática es más alta y pesada. La cifra final suele ser la restricción más ajustada ya que una columna más pesada consume más del margen hacia la presión de fractura, pero ambas deben cumplirse durante todo el trabajo, no solo al final.',
+  },
+  {
+    q: '¿Por qué el ritmo de bombeo se compara contra la migración de gas y no simplemente "tan rápido como pueda bombear el equipo"?',
+    a: 'Si el gas está migrando hacia arriba por el anular más rápido de lo que el fluido de matar se está bombeando hacia abajo y desplazándolo de vuelta a la formación, el trabajo se queda atrás del gas en lugar de adelante de él. La cifra de SPM para superar la migración es un piso, no una meta — es el ritmo más lento que aún supera al gas, y en la práctica suele resultar muy por debajo de cualquier ritmo al que realmente correría una bomba de equipo, lo cual normalmente es tranquilizador en lugar de una restricción real.',
+  },
+  {
+    q: '¿Por qué importa el peso de la salmuera específicamente para un trabajo de bombeo a matar?',
+    a: 'Las salmueras pesadas de terminación (bromuro de calcio, bromuro de zinc, y similares) pierden más densidad por grado de calentamiento que el lodo de perforación, y un trabajo de bombeo a matar a menudo usa una salmuera como fluido de matar. Una salmuera mezclada y pesada a temperatura de superficie será más ligera una vez que se caliente yendo hacia el fondo — no considerar esa pérdida significa que la columna hidrostática real de fondo es más débil de lo que sugiere la cifra pesada en superficie, lo cual consume el margen que esta calculadora está revisando en primer lugar.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Calculadora de Bombeo a Matar: Límites de Presión y Fluido de Matar"
+  description="Calculadora de bombeo a matar (bullheading): peso de fluido de matar, presión de fractura de formación, presión máxima inicial y final de superficie, volumen a bombear, y ritmo de bomba para superar la migración de gas."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Bombeo a Matar', href: '/es/calculators/bullheading' }]}
+  lang="es"
+  alternateHref="/calculators/bullheading"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/bullheading" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Calculadora de <span>Bombeo a Matar</span></h1>
+    <p class="page-hero-sub">Peso de fluido de matar, presión de fractura de formación, los límites inicial y final de presión de superficie, volumen a bombear, y el ritmo de bomba necesario para mantenerse por delante de la migración de gas.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🎯 Pozo y Fluido de Matar</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="fp">Presión de Formación (psi)</label>
+              <input type="number" id="fp" value="5500">
+            </div>
+            <div class="input-group">
+              <label for="sitp">SITP (psi)</label>
+              <input type="number" id="sitp" value="800">
+            </div>
+            <div class="input-group">
+              <label for="tvd">TVD Tope de Perforaciones (ft)</label>
+              <input type="number" id="tvd" value="9000">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="omw">Peso de Fluido Original (ppg)</label>
+              <input type="number" id="omw" value="9.0" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="fg">Gradiente de Fractura de Formación (psi/ft)</label>
+              <input type="number" id="fg" value="0.75" step="0.01">
+            </div>
+          </div>
+
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline"><span class="output-label">Peso de Fluido de Matar</span><span class="output-value" id="out-kfw">—</span></div>
+            <div class="output-line"><span class="output-label">Presión de Fractura de Formación</span><span class="output-value" id="out-ffp">—</span></div>
+            <div class="output-line"><span class="output-label">Presión Hidrostática Inicial</span><span class="output-value" id="out-ihp">—</span></div>
+            <div class="output-line"><span class="output-label">Densidad Promedio Inicial del Fluido</span><span class="output-value" id="out-iafd">—</span></div>
+            <div class="output-line headline"><span class="output-label">Presión Máxima Inicial de Superficie</span><span class="output-value" id="out-misp">—</span></div>
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Presión Máxima Final de Superficie</span><span class="output-value" id="out-mfsp">—</span></div>
+          </div>
+
+          <div class="calc-title" style="margin-top:24px;">📏 Volumen a Bombear</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="vsl">Líneas de Superficie (bbls)</label>
+              <input type="number" id="vsl" value="5" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="veot">Superficie a EOT (bbls)</label>
+              <input type="number" id="veot" value="40" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="vperf">EOT a Tope de Perforaciones (bbls)</label>
+              <input type="number" id="vperf" value="8" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="vbot">Tope a Fondo de Perforaciones (bbls)</label>
+              <input type="number" id="vbot" value="3" step="0.1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Volumen a Bombear</span><span class="output-value" id="out-vol">—</span></div>
+          </div>
+
+          <div class="calc-title" style="margin-top:24px;">💨 Ritmo de Bomba vs. Migración de Gas</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="gmr">Ritmo de Migración de Gas (ft/hr)</label>
+              <input type="number" id="gmr" value="30">
+            </div>
+            <div class="input-group">
+              <label for="tcap">Capacidad de Tubería (bbl/ft)</label>
+              <input type="number" id="tcap" value="0.0155" step="0.0001">
+            </div>
+            <div class="input-group">
+              <label for="pout">Salida de Bomba (bbl/emb.)</label>
+              <input type="number" id="pout" value="0.12" step="0.001">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">SPM Mín. para Superar Migración</span><span class="output-value" id="out-spm">—</span></div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Un trabajo real de bombeo a matar se ejecuta bajo el procedimiento aprobado de tu compañía con aprobación de ingeniería — esta página revisa la matemática subyacente, no sustituye esa aprobación.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Las Fórmulas Usadas</h2>
+        <div class="formula-block">
+          <div class="formula-label">Peso de Fluido de Matar</div>
+          <div class="formula-eq">KFW = [SITP ÷ (0.052 × TVD)] + Peso de Fluido Original</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Presión de Fractura de Formación</div>
+          <div class="formula-eq">FFP = Gradiente de Fractura × TVD Tope de Perforaciones</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Presión Hidrostática Inicial y Densidad de Fluido</div>
+          <div class="formula-eq">IHP = Presión de Formación − SITP<br />Densidad = IHP ÷ (TVD × 0.052)</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Presión Máxima Inicial / Final de Superficie</div>
+          <div class="formula-eq">Inicial = FFP − IHP<br />Final = FFP − (KFW × 0.052 × TVD)</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Ritmo de Bomba vs. Migración</div>
+          <div class="formula-eq">SPM = (Ritmo de Migración ÷ 60) × Capacidad de Tubería ÷ Salida de Bomba</div>
+          <div class="formula-note">Según la hoja de fórmulas WellSharp / IWCF en unidades de campo, sección de terminación/reacondicionamiento de pozos.</div>
+        </div>
+
+        <h2 id="brine">Una Complicación Real: El Peso de la Salmuera Cambia con la Temperatura</h2>
+        <p>El peso de fluido de matar de arriba asume que el fluido mantiene la densidad con la que fue mezclado y medido — cierto para el lodo de perforación en la mayoría de un trabajo, pero las salmueras pesadas de terminación (bromuro de calcio, bromuro de zinc, y similares) pierden notablemente más densidad por grado al calentarse yendo hacia el fondo. Una salmuera pesada a temperatura de superficie no tiene el mismo peso para cuando llega a un fondo de pozo caliente, y la diferencia es lo suficientemente grande como para importar contra los márgenes ajustados de presión de superficie de arriba.</p>
+        <div class="formula-block">
+          <div class="formula-label">Densidad de Fluido a Mezclar, Corregida por Temperatura</div>
+          <div class="formula-eq">Densidad a Mezclar = Densidad a Temp. Prom. + [(Temp. Prom. − Temp. Superficie) × Pérdida de Peso]</div>
+          <div class="formula-note">La pérdida de peso se lee del propio rango de peso de la salmuera abajo, no una constante única — las salmueras más pesadas pierden más densidad por grado que las más ligeras.</div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Peso de Salmuera</th><th>Pérdida de Peso por °F</th></tr></thead>
+            <tbody>
+              {brineRows.map((r) => (
+                <tr><td>{r.range}</td><td>{r.loss}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>Los valores varían según la salmuera específica y otros factores — trata esta tabla como una estimación de etapa de planeación y confirma contra los datos propios del proveedor del fluido antes de finalizar un peso de mezcla para un trabajo real.</p>
+
+        <p>Una vez que el fluido de matar está en su lugar, revisar lo que se necesita para sacarlo de nuevo es la misma matemática que la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a>. Para la matemática de acumulación de presión de cierre y purga detrás del ritmo de migración de gas usado arriba, ver la <a href="/es/calculators/gas-migration">calculadora de migración de gas</a>.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const fp = num('fp'), sitp = num('sitp'), tvd = num('tvd'), omw = num('omw'), fg = num('fg');
+
+    const kfw = tvd > 0 ? (sitp / (0.052 * tvd)) + omw : 0;
+    const ffp = fg * tvd;
+    const ihp = fp - sitp;
+    const iafd = tvd > 0 ? ihp / (tvd * 0.052) : 0;
+    const misp = ffp - ihp;
+    const mfsp = ffp - (kfw * 0.052 * tvd);
+
+    set('out-kfw', fmt(kfw, 2) + ' ppg');
+    set('out-ffp', fmt(ffp, 0) + ' psi');
+    set('out-ihp', fmt(ihp, 0) + ' psi');
+    set('out-iafd', fmt(iafd, 2) + ' ppg');
+    set('out-misp', fmt(misp, 0) + ' psi');
+    set('out-mfsp', fmt(mfsp, 0) + ' psi');
+
+    const vol = num('vsl') + num('veot') + num('vperf') + num('vbot');
+    set('out-vol', fmt(vol, 1) + ' bbls');
+
+    const gmr = num('gmr'), tcap = num('tcap'), pout = num('pout');
+    const spm = pout > 0 ? (gmr / 60) * tcap / pout : 0;
+    set('out-spm', fmt(spm, 3) + ' spm');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Qué causa realmente la migración de gas en un pozo cerrado?',
+    a: 'Una entrada de gas no se queda quieta una vez que el pozo está cerrado — el gas es flotante y sube a través de la columna de lodo incluso sin bombas corriendo, y debido a que el gas se expande al subir hacia presión más baja, tanto la presión de tubería cerrada como la de revestimiento suben con el tiempo aunque no se esté bombeando nada. El ritmo al que sube la presión es lo que esta calculadora convierte en un ritmo de migración.',
+  },
+  {
+    q: '¿Por qué el ritmo de migración usa gradiente de lodo y no peso de lodo directamente?',
+    a: 'La fórmula es una lectura de presión por hora dividida entre una lectura de presión por pie, lo cual se cancela a pies por hora — la velocidad real a la que sube el gas. El peso de lodo en ppg tiene que convertirse primero a un gradiente en psi/ft (peso × 0.052) para que las unidades en ambos lados de la división realmente coincidan.',
+  },
+  {
+    q: '¿Qué es el método volumétrico, y por qué necesita un volumen de purga?',
+    a: 'El método volumétrico mantiene la presión de fondo aproximadamente constante mientras la presión de revestimiento de un pozo cerrado sube por gas migrando, purgando un volumen pequeño y calculado de lodo del anular en pasos controlados en lugar de cerrar y no hacer nada. Purgar exactamente el volumen correcto para un paso de presión dado mantiene el pozo apenas sobrebalanceado en lugar de acumular presión hacia los límites del equipo — purgar muy poco y la presión sigue subiendo, purgar demasiado y el pozo queda subbalanceado.',
+  },
+  {
+    q: '¿Un ritmo de migración rápido siempre es malo?',
+    a: 'Es una señal de advertencia, no una emergencia automática — algunas formaciones y tipos de gas migran más rápido que otros como cuestión de rutina. Lo que importa operacionalmente es si el intervalo de monitoreo y el procedimiento de purga de la cuadrilla pueden mantener el ritmo del que realmente se observa. Un ritmo de migración lento y bien entendido en una formación conocida es rutinario; un ritmo rápido o acelerado sin un procedimiento claro que lo siga es la situación que vale la pena escalar.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Calculadora de Migración de Gas: Ritmo y Volumen de Purga"
+  description="Calculadora de migración de gas: ritmo de migración en ft/hr desde la acumulación de presión de cierre, y el volumen de purga del método volumétrico para mantener estable la presión de fondo."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Migración de Gas', href: '/es/calculators/gas-migration' }]}
+  lang="es"
+  alternateHref="/calculators/gas-migration"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/gas-migration" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Calculadora de <span>Migración de Gas</span></h1>
+    <p class="page-hero-sub">Ritmo de migración desde una acumulación de presión de cierre, y el volumen de purga del método volumétrico que mantiene estable la presión de fondo mientras migra el gas.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">📈 Ritmo de Migración</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="pinc">Aumento de Presión de Cierre, Última Hora (psi)</label>
+              <input type="number" id="pinc" value="50">
+            </div>
+            <div class="input-group">
+              <label for="mw">Peso de Lodo (ppg)</label>
+              <input type="number" id="mw" value="10" step="0.1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line"><span class="output-label">Gradiente de Lodo</span><span class="output-value" id="out-grad">—</span></div>
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Ritmo de Migración de Gas</span><span class="output-value" id="out-rate">—</span></div>
+          </div>
+
+          <div class="calc-title" style="margin-top:24px;">🩸 Purga Volumétrica (por paso)</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="pbleed">Presión de Trabajo a Purgar (psi)</label>
+              <input type="number" id="pbleed" value="100">
+            </div>
+            <div class="input-group">
+              <label for="acap">Capacidad Anular (bbl/ft)</label>
+              <input type="number" id="acap" value="0.0775" step="0.0001">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Volumen a Purgar</span><span class="output-value" id="out-bleedvol">—</span></div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Ejecuta el método volumétrico bajo el procedimiento de control de pozos aprobado por tu compañía — esto revisa la matemática subyacente de un solo paso, no un programa completo de cierre.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Las Fórmulas Usadas</h2>
+        <div class="formula-block">
+          <div class="formula-label">Ritmo de Migración de Gas</div>
+          <div class="formula-eq">Ritmo (ft/hr) = Aumento de Presión (psi/hr) ÷ Gradiente de Lodo (psi/ft)</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Volumen a Purgar (Método Volumétrico)</div>
+          <div class="formula-eq">Volumen (bbls) = (Presión a Purgar ÷ Gradiente de Lodo) × Capacidad Anular</div>
+          <div class="formula-note">Según la hoja de fórmulas WellSharp / IWCF en unidades de campo. Puede usarse la acumulación de SIDPP o SICP para el lado del ritmo de migración, la que se esté monitoreando.</div>
+        </div>
+
+        <p>Una vez que tienes un ritmo de migración, revisar si un ritmo de bombeo planeado para bombeo a matar realmente superaría ese ritmo es la última sección de la <a href="/es/calculators/bullheading">calculadora de bombeo a matar</a>. Para las presiones de cierre y el peso de matar en los que se alimenta esto más ampliamente, ver la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a>.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const pinc = num('pinc'), mw = num('mw');
+    const grad = mw * 0.052;
+    const rate = grad > 0 ? pinc / grad : 0;
+    set('out-grad', fmt(grad, 4) + ' psi/ft');
+    set('out-rate', fmt(rate, 1) + ' ft/hr');
+
+    const pbleed = num('pbleed'), acap = num('acap');
+    const bleedvol = grad > 0 ? (pbleed / grad) * acap : 0;
+    set('out-bleedvol', fmt(bleedvol, 2) + ' bbls');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

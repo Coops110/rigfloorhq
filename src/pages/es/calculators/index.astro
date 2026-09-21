@@ -66,6 +66,26 @@ import Footer from '../../../components/Footer.astro';
           <td>Necesitas capacidad del pozo, desplazamiento, o un tally de profundidad a partir de especificaciones de tubería</td>
           <td><a href="/es/calculators/drill-pipe-tally">Tally de Tubería</a></td>
         </tr>
+        <tr>
+          <td>Necesitas bombear a matar un pozo y revisar los límites de presión de superficie</td>
+          <td><a href="/es/calculators/bullheading">Bombeo a Matar</a></td>
+        </tr>
+        <tr>
+          <td>La presión de cierre está subiendo y necesitas un ritmo de migración o volumen de purga</td>
+          <td><a href="/es/calculators/gas-migration">Migración de Gas</a></td>
+        </tr>
+        <tr>
+          <td>Necesitas peso flotado para tubería de extremo cerrado o dos fluidos diferentes</td>
+          <td><a href="/es/calculators/buoyancy">Flotación y Peso de Tubería</a></td>
+        </tr>
+        <tr>
+          <td>Estás en un pozo submarino y necesitas el margen de riser</td>
+          <td><a href="/es/calculators/riser-margin">Margen de Riser</a></td>
+        </tr>
+        <tr>
+          <td>Necesitas una longitud segura de tubería a sacar antes de llenado en un viaje</td>
+          <td><a href="/es/calculators/pipe-pull-margin">Margen de Suabeo</a></td>
+        </tr>
       </tbody>
     </table>
 
@@ -138,6 +158,41 @@ import Footer from '../../../components/Footer.astro';
         <p class="card-formula"><strong>Fórmula:</strong> Capacidad = DI² ÷ 1029.4</p>
         <a href="/es/calculators/drill-pipe-tally" class="card-link">Abrir Calculadora →</a>
       </div>
+      <div class="card">
+        <span class="card-icon">🎯</span>
+        <h3>Calculadora de Bombeo a Matar</h3>
+        <p>Peso de fluido de matar, presión de fractura de formación, presión máxima inicial/final de superficie, volumen a bombear, y ritmo de bomba vs. migración de gas.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> Presión Máxima = FFP − Hidrostática</p>
+        <a href="/es/calculators/bullheading" class="card-link">Abrir Calculadora →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">📈</span>
+        <h3>Calculadora de Migración de Gas</h3>
+        <p>Ritmo de migración desde una acumulación de presión de cierre, y el volumen de purga del método volumétrico.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> Ritmo = Aumento de Presión ÷ Gradiente</p>
+        <a href="/es/calculators/gas-migration" class="card-link">Abrir Calculadora →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">⚓</span>
+        <h3>Flotación y Peso de Tubería</h3>
+        <p>Peso flotado para tubería de extremo abierto, extremo cerrado, y tubería con fluido diferente adentro que en el anular.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> BF = 1 − (MW ÷ 65.5)</p>
+        <a href="/es/calculators/buoyancy" class="card-link">Abrir Calculadora →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🌊</span>
+        <h3>Calculadora de Margen de Riser</h3>
+        <p>Margen de peso de lodo para un pozo submarino si se perdiera la columna del riser y fuera reemplazada por agua de mar.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> RM = ΔHidrostática ÷ 0.052 ÷ Intervalo</p>
+        <a href="/es/calculators/riser-margin" class="card-link">Abrir Calculadora →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🪝</span>
+        <h3>Margen de Suabeo: Mojada y Seca</h3>
+        <p>Cuánta tubería puede salir del pozo, mojada o seca, antes de que la presión hidrostática caiga una cantidad objetivo.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> L = (ΔP × Cap. Anular) ÷ [0.052 × MW × ...]</p>
+        <a href="/es/calculators/pipe-pull-margin" class="card-link">Abrir Calculadora →</a>
+      </div>
     </div>
   </section>
 
@@ -200,7 +255,12 @@ import Footer from '../../../components/Footer.astro';
           { "@type": "ListItem", "position": 6, "name": "Calculadora de Retraso y Volumen", "url": "https://rigfloorhq.com/es/calculators/lag-and-volume" },
           { "@type": "ListItem", "position": 7, "name": "Calculadora de Tonelada-Milla", "url": "https://rigfloorhq.com/es/calculators/ton-mile" },
           { "@type": "ListItem", "position": 8, "name": "Corrección de Profundidad ODF", "url": "https://rigfloorhq.com/es/calculators/odf-depth-correction" },
-          { "@type": "ListItem", "position": 9, "name": "Calculadora de Tally de Tubería", "url": "https://rigfloorhq.com/es/calculators/drill-pipe-tally" }
+          { "@type": "ListItem", "position": 9, "name": "Calculadora de Tally de Tubería", "url": "https://rigfloorhq.com/es/calculators/drill-pipe-tally" },
+          { "@type": "ListItem", "position": 10, "name": "Calculadora de Bombeo a Matar", "url": "https://rigfloorhq.com/es/calculators/bullheading" },
+          { "@type": "ListItem", "position": 11, "name": "Calculadora de Migración de Gas", "url": "https://rigfloorhq.com/es/calculators/gas-migration" },
+          { "@type": "ListItem", "position": 12, "name": "Flotación y Peso de Tubería", "url": "https://rigfloorhq.com/es/calculators/buoyancy" },
+          { "@type": "ListItem", "position": 13, "name": "Calculadora de Margen de Riser", "url": "https://rigfloorhq.com/es/calculators/riser-margin" },
+          { "@type": "ListItem", "position": 14, "name": "Margen de Suabeo: Mojada y Seca", "url": "https://rigfloorhq.com/es/calculators/pipe-pull-margin" }
         ]
       },
       {

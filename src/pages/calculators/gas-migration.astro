@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'What actually causes gas migration on a shut-in well?',
+    a: 'A gas kick doesn\'t stay still once the well is shut in — gas is buoyant and rises through the mud column even with no pumps running, and because gas expands as it rises into lower pressure, both shut-in drillpipe and casing pressure climb over time even though nothing is being pumped. The rate that pressure climbs at is what this calculator converts into a migration rate.',
+  },
+  {
+    q: 'Why does the migration rate use mud gradient and not mud weight directly?',
+    a: 'The formula is a pressure-per-hour reading divided by a pressure-per-foot reading, which cancels to feet per hour — the actual speed gas is climbing at. Mud weight in ppg has to be converted to a gradient in psi/ft first (weight × 0.052) so the units on both sides of the division actually match.',
+  },
+  {
+    q: 'What is the volumetric method, and why does it need a bleed volume at all?',
+    a: 'The volumetric method holds bottomhole pressure roughly constant while a shut-in well\'s casing pressure climbs from migrating gas, by bleeding a small, calculated volume of mud off the annulus in controlled steps rather than shutting in and doing nothing. Bleeding exactly the right volume for a given pressure step keeps the well barely overbalanced instead of building pressure toward equipment limits — bleed too little and pressure keeps climbing, bleed too much and the well goes underbalanced.',
+  },
+  {
+    q: 'Is a fast migration rate always bad?',
+    a: 'It is a warning sign, not an automatic emergency — some formations and gas types migrate faster than others as a matter of course. What matters operationally is whether the crew\'s monitoring interval and bleed procedure can keep pace with the rate actually being seen. A slow, well-understood migration rate on a known formation is routine; a fast or accelerating rate with no clear procedure keeping up with it is the situation worth escalating.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Gas Migration Calculator: Rate & Volumetric Bleed Volume"
+  description="Gas migration calculator: migration rate in ft/hr from shut-in pressure buildup, and the volumetric-method bleed volume to hold bottomhole pressure steady."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Gas Migration', href: '/calculators/gas-migration' }]}
+  lang="en"
+  alternateHref="/es/calculators/gas-migration"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators/gas-migration" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Gas Migration <span>Calculator</span></h1>
+    <p class="page-hero-sub">Migration rate from a shut-in pressure buildup, and the volumetric-method bleed volume that holds bottomhole pressure steady while gas migrates.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">📈 Migration Rate</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="pinc">Shut-In Pressure Increase, Last Hour (psi)</label>
+              <input type="number" id="pinc" value="50">
+            </div>
+            <div class="input-group">
+              <label for="mw">Mud Weight (ppg)</label>
+              <input type="number" id="mw" value="10" step="0.1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line"><span class="output-label">Mud Gradient</span><span class="output-value" id="out-grad">—</span></div>
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Gas Migration Rate</span><span class="output-value" id="out-rate">—</span></div>
+          </div>
+
+          <div class="calc-title" style="margin-top:24px;">🩸 Volumetric Bleed (per step)</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="pbleed">Working Pressure to Bleed (psi)</label>
+              <input type="number" id="pbleed" value="100">
+            </div>
+            <div class="input-group">
+              <label for="acap">Annular Capacity (bbl/ft)</label>
+              <input type="number" id="acap" value="0.0775" step="0.0001">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Volume to Bleed</span><span class="output-value" id="out-bleedvol">—</span></div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Run the volumetric method under your company's approved well-control procedure — this checks the underlying math for a single step, not a full shut-in program.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formulas Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">Gas Migration Rate</div>
+          <div class="formula-eq">Rate (ft/hr) = Pressure Increase (psi/hr) ÷ Mud Gradient (psi/ft)</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Volume to Bleed (Volumetric Method)</div>
+          <div class="formula-eq">Volume (bbls) = (Pressure to Bleed ÷ Mud Gradient) × Annular Capacity</div>
+          <div class="formula-note">Per the WellSharp / IWCF field-units formula sheet. Either SIDPP or SICP buildup can be used for the migration-rate side, whichever is being monitored.</div>
+        </div>
+
+        <p>Once you have a migration rate, checking whether a planned bullhead pump rate would actually outpace it is the <a href="/calculators/bullheading">bullheading calculator</a>'s last section. For the shut-in pressures and kill weight this feeds into more broadly, see the <a href="/calculators/kill-sheet">kill sheet calculator</a>.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const pinc = num('pinc'), mw = num('mw');
+    const grad = mw * 0.052;
+    const rate = grad > 0 ? pinc / grad : 0;
+    set('out-grad', fmt(grad, 4) + ' psi/ft');
+    set('out-rate', fmt(rate, 1) + ' ft/hr');
+
+    const pbleed = num('pbleed'), acap = num('acap');
+    const bleedvol = grad > 0 ? (pbleed / grad) * acap : 0;
+    set('out-bleedvol', fmt(bleedvol, 2) + ' bbls');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

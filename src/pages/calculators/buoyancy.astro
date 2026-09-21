@@ -1,0 +1,160 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'Why are there three different buoyed-weight numbers instead of one?',
+    a: 'Each covers a different downhole condition. Open-ended pipe (drill pipe, tubing run empty and flowing through) just applies the buoyancy factor to the air weight. Closed-ended pipe with nothing inside it — a plugged joint, a run-in tool — displaces its full outside diameter with nothing pushing back from inside, so it floats more and weighs less than the open-ended case. Different fluid inside versus in the annulus (common in completions, where a lighter packer fluid sits inside tubing against heavier annulus fluid) needs both diameters and both fluid weights, since the two fluids are pushing back with different force.',
+  },
+  {
+    q: 'Why do the open-ended and different-fluid answers come out close but not identical?',
+    a: 'The open-ended formula uses a theoretical buoyancy factor based on steel\'s own density (1 − MW/65.5). The closed-ended and different-fluid formulas instead work directly off the pipe\'s actual OD and ID — real cross-sectional area, not an assumed steel density. They agree closely because they\'re describing the same physics, but they aren\'t forced to match exactly, and the geometry-based numbers are the more precise ones when the actual OD/ID are known.',
+  },
+  {
+    q: 'Does this replace the simple buoyancy factor used elsewhere on the site (ton-mile, drilling formulas)?',
+    a: 'No — that one (BF = 1 − MW/65.5) is specifically for open-ended drill pipe weight in a single fluid, which is the common drilling case and still the right tool for that job. This page covers the completions-side variants: closed-ended pipe and two different fluids on either side of the pipe wall, situations that come up in workovers and completions more than routine drilling.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Buoyancy & Tubular Weight Calculator"
+  description="Buoyancy factor and buoyed pipe weight for open-ended pipe, closed-ended pipe, and pipe with different fluid inside versus in the annulus."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Buoyancy', href: '/calculators/buoyancy' }]}
+  lang="en"
+  alternateHref="/es/calculators/buoyancy"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators/buoyancy" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Buoyancy &amp; Tubular <span>Weight</span></h1>
+    <p class="page-hero-sub">Buoyed pipe weight for open-ended pipe, closed-ended pipe, and pipe carrying a different fluid inside than what's in the annulus.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">⚓ Pipe &amp; Fluids</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="wair">Pipe Weight, Air (lb/ft)</label>
+              <input type="number" id="wair" value="19.5" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="od">Pipe OD (in)</label>
+              <input type="number" id="od" value="5.0" step="0.01">
+            </div>
+            <div class="input-group">
+              <label for="id">Pipe ID (in)</label>
+              <input type="number" id="id" value="4.276" step="0.001">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="fwa">Fluid Weight, Annulus (ppg)</label>
+              <input type="number" id="fwa" value="10" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="fwi">Fluid Weight, Inside Pipe (ppg)</label>
+              <input type="number" id="fwi" value="10" step="0.1">
+            </div>
+          </div>
+
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line"><span class="output-label">Buoyancy Factor (steel, annulus fluid)</span><span class="output-value" id="out-bf">—</span></div>
+            <div class="output-line headline"><span class="output-label">Buoyed Weight — Open-Ended</span><span class="output-value" id="out-open">—</span></div>
+            <div class="output-line headline"><span class="output-label">Buoyed Weight — Closed-Ended, No Fluid Inside</span><span class="output-value" id="out-closed">—</span></div>
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Buoyed Weight — Different Fluid In/Out</span><span class="output-value" id="out-diff">—</span></div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Use actual pipe OD/ID from the tally book and confirmed fluid weights for a real string-weight calculation, not catalog nominal values.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formulas Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">Buoyancy Factor</div>
+          <div class="formula-eq">BF = 1 − (Fluid Weight ÷ 65.5)</div>
+          <div class="formula-note">Some references use 65.4 for steel density instead of 65.5 — the difference is under a tenth of a percent. This site uses 65.5 everywhere for consistency; see the <a href="/drilling/formulas#buoyancy">drilling formulas cheat sheet</a> for the note on why.</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Buoyed Weight — Open-Ended Pipe</div>
+          <div class="formula-eq">W = Weight (air) × BF</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Buoyed Weight — Closed-Ended, No Fluid Inside</div>
+          <div class="formula-eq">W = Weight (air) − [(OD² × Fluid Weight) ÷ 24.5]</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Buoyed Weight — Different Fluid Inside vs. Annulus</div>
+          <div class="formula-eq">W = Weight (air) + [(ID² × Fluid Weight, inside) ÷ 24.5] − [(OD² × Fluid Weight, annulus) ÷ 24.5]</div>
+          <div class="formula-note">Per the WellSharp / IWCF field-units formula sheet, buoyed weight of tubulars section.</div>
+        </div>
+
+        <p>For the simple open-ended case applied to a full drill string's ton-mile figure, see the <a href="/calculators/ton-mile">ton-mile calculator</a>. Neutral point and where to keep drill collars in compression are on the <a href="/drilling/formulas#buoyancy">drilling formulas cheat sheet</a>.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const wair = num('wair'), od = num('od'), id_ = num('id'), fwa = num('fwa'), fwi = num('fwi');
+
+    const bf = 1 - (fwa / 65.5);
+    const open = wair * bf;
+    const closed = wair - ((od * od * fwa) / 24.5);
+    const diff = wair + ((id_ * id_ * fwi) / 24.5) - ((od * od * fwa) / 24.5);
+
+    set('out-bf', fmt(bf, 4));
+    set('out-open', fmt(open, 2) + ' lb/ft');
+    set('out-closed', fmt(closed, 2) + ' lb/ft');
+    set('out-diff', fmt(diff, 2) + ' lb/ft');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

@@ -27,6 +27,10 @@ const faq = [
     a: 'Cerrar cada ariete, el anular, y las válvulas HCR en secuencia sin que las bombas de carga estén corriendo hace bajar el acumulador desde su presión de trabajo completa. Cuánto baja, y cuánto tardan las bombas en devolverlo a carga completa, es una lectura directa de si el acumulador tiene suficiente volumen útil y precarga para cerrar todo lo que necesita cerrar en una surgencia real — un sistema que recarga lentamente te está diciendo que es marginal antes de que se pruebe de verdad.',
   },
   {
+    q: '¿Qué pasa si la presión del acumulador baja por debajo de la precarga de nitrógeno?',
+    a: 'Por debajo de la presión de precarga, el nitrógeno comprimido ya no puede empujar contra el fluido hidráulico en absoluto, así que la botella deja de descargar fluido útil sin importar cuánto volumen de fluido quede físicamente adentro. Por eso la precarga se revisa directamente como parte de un simulacro adecuado en lugar de asumirse — una botella puede verse llena y aun así entregar poco o nada de volumen útil si su precarga se ha filtrado con el tiempo.',
+  },
+  {
     q: '¿Qué va en el registro de acciones correctivas versus la sección de áreas de fortaleza?',
     a: 'El registro de acciones correctivas es para cualquier cosa que el simulacro encontró que no funcionó como se esperaba — una función lenta, un panel que no respondió, una válvula que necesitó reparación — cada una registrada con quién es responsable de la solución y para cuándo. La sección de áreas de fortaleza es lo opuesto: lo que funcionó como debía. Ambas van en el mismo reporte porque un registro de simulacro que solo lista problemas subestima a una cuadrilla que está haciendo bien la mayor parte, y un registro sin ningún hallazgo generalmente es señal de que el simulacro no se corrió con suficiente rigor.',
   },
@@ -89,6 +93,20 @@ const jsonLd = {
         <h2 id="recarga">Caída de Presión y Tiempo de Recarga</h2>
         <p>Después de que los arietes, el anular, y las válvulas HCR se hayan cerrado todos y las bombas eléctricas y de aire de la unidad de control del BOP estén apagadas, la presión del acumulador habrá bajado bien por debajo de su cifra inicial — la presión del manifold y del anular se leen y registran en ese punto bajo también. Encender de nuevo las bombas de carga y cronometrar cuánto tarda el sistema en subir de regreso a la presión de trabajo completa es el número que más te dice sobre la disposición real del acumulador: una recarga lenta significa que la cuadrilla estaría esperando capacidad hidráulica a mitad de una surgencia, que es exactamente el escenario que el simulacro existe para detectar antes de que pase de verdad.</p>
 
+        <h2 id="ley-boyle">Por Qué Funcionan las Botellas Acumuladoras: Ley de Boyle</h2>
+        <p>Una botella acumuladora almacena energía hidráulica comprimiendo una precarga de gas nitrógeno contra fluido hidráulico dentro de una sola botella sellada, separados por un pistón flotante o vejiga. Abrir una función del BOP empuja fluido fuera de la botella bajo presión de gas sin que corra ninguna bomba — ese empuje almacenado es exactamente lo que permite que el stack cierre con el taladro sin energía. Lo que decide cuánto de ese fluido es realmente utilizable, versus permanentemente bloqueado detrás de un colchón de gas que no puede colapsar más, es la Ley de Boyle: a temperatura constante, la presión y el volumen de un gas se intercambian directamente entre sí (P<sub>1</sub>V<sub>1</sub> = P<sub>2</sub>V<sub>2</sub>).</p>
+        <div class="formula-block">
+          <div class="formula-label">Ley de Boyle</div>
+          <div class="formula-eq">P<sub>1</sub>V<sub>1</sub> = P<sub>2</sub>V<sub>2</sub></div>
+          <div class="formula-note">Presión atmosférica = 14.7 psi. P = presión, V = volumen.</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Volumen de Fluido Útil por Botella</div>
+          <div class="formula-eq">Volumen Útil = [(Precarga ÷ Presión Mín. de Operación) − (Precarga ÷ Presión Máx. de Operación)] × Volumen de Botella</div>
+          <div class="formula-note">Según la hoja de fórmulas WellSharp / IWCF en unidades de campo. La precarga fija el piso: el fluido sigue descargando solo mientras la presión del sistema se mantenga arriba de la presión de precarga del nitrógeno — debajo de eso, el gas ya no puede empujar el fluido restante hacia afuera en absoluto, que es exactamente por qué la precarga se revisa como parte del simulacro de arriba en lugar de asumirse constante para siempre.</div>
+        </div>
+        <p>Esto también es por qué la lectura de tiempo de recarga de arriba importa tanto como importa — las bombas de carga no solo están rellenando fluido, están recomprimiendo el nitrógeno de vuelta a su presión de trabajo para que la botella tenga volumen útil de nuevo para el siguiente cierre.</p>
+
         <h2 id="acciones-correctivas">Registro de Acciones Correctivas</h2>
         <p>Cualquier cosa que el simulacro encuentre que no funcionó como se esperaba va en un registro de acciones correctivas — una tabla continua, no una narrativa, para que cada punto se mantenga rastreable hasta su cierre:</p>
         <div class="table-wrap">
@@ -125,6 +143,7 @@ const jsonLd = {
           <a href="#presion-inicial">Presión Inicial</a>
           <a href="#tabla-tiempos">Tiempo de Apertura/Cierre</a>
           <a href="#recarga">Tiempo de Recarga</a>
+          <a href="#ley-boyle">Ley de Boyle</a>
           <a href="#acciones-correctivas">Acciones Correctivas</a>
           <a href="#areas-fortaleza">Área de Fortaleza</a>
           <a href="#normas-prueba">Normas de Prueba</a>

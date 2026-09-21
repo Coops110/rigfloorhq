@@ -1,0 +1,156 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Por qué sacar tubería de un pozo baja la presión hidrostática en absoluto?',
+    a: 'Sacar tubería mojada (todavía llena de lodo, haciendo suabeo o sin ser llenada mientras sale) remueve volumen de acero del anular sin reemplazarlo — el nivel de lodo en el anular baja para llenar ese espacio, y una columna de fluido más corta arriba de cualquier punto dado significa menos presión hidrostática ahí. Sacar suficiente tubería sin agregar fluido de llenado puede hacer que esa caída de presión sea menor que la presión de formación, dejando fluir el pozo — el mecanismo clásico de suabeo hacia una entrada.',
+  },
+  {
+    q: '¿Cuál es la diferencia práctica entre las cifras de tubería mojada y seca?',
+    a: 'La tubería mojada (llena de lodo mientras sale, el caso normal) solo afecta el nivel del anular directamente — tanto la capacidad como el desplazamiento de la tubería de perforación actúan del lado del anular en la matemática. La tubería seca (vacía, o desplazada a aire/gas) además significa que nada está drenando de la tubería misma hacia el anular mientras se saca, así que tanto su capacidad como su desplazamiento se suman contra la misma capacidad anular en lugar de trabajar con ella — por eso la longitud de tubería seca permitida antes de llegar a la misma caída de presión sale más larga en el ejemplo trabajado de esta página.',
+  },
+  {
+    q: '¿En qué se diferencia esto de una hoja de viaje o de suabeo durante un viaje real?',
+    a: 'Una hoja de viaje o suabeo rastrea el volumen de llenado realmente bombeado contra la tubería sacada, en tiempo real, contra una tolerancia específica del pozo — el registro en vivo durante el trabajo. Esta calculadora responde la pregunta de etapa de planeación de cuánta tubería puede salir antes de alcanzar una caída de presión elegida, usando las capacidades propias del pozo y el peso de lodo, para poder fijar un intervalo de llenado o un margen de suabeo antes de sacar la tubería en lugar de descubrirlo a mitad del viaje.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Calculadora de Margen de Suabeo: Tubería Mojada y Seca"
+  description="Longitud de tubería mojada o seca que puede sacarse antes de una caída de presión hidrostática objetivo, desde peso de lodo, capacidad anular, capacidad de tubería de perforación, y desplazamiento."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Margen de Suabeo', href: '/es/calculators/pipe-pull-margin' }]}
+  lang="es"
+  alternateHref="/calculators/pipe-pull-margin"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/pipe-pull-margin" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Margen de Suabeo: Tubería <span>Mojada y Seca</span></h1>
+    <p class="page-hero-sub">Cuánta tubería puede salir del pozo, mojada o seca, antes de que la presión hidrostática caiga una cantidad objetivo — la pregunta del margen de suabeo, respondida antes del viaje en lugar de durante él.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🪝 Pozo y Tubería</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="dp">Caída de Presión Objetivo ΔP (psi)</label>
+              <input type="number" id="dp" value="75">
+            </div>
+            <div class="input-group">
+              <label for="mw">Peso de Lodo (ppg)</label>
+              <input type="number" id="mw" value="10" step="0.1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="acap">Capacidad Anular (bbl/ft)</label>
+              <input type="number" id="acap" value="0.0774" step="0.0001">
+            </div>
+            <div class="input-group">
+              <label for="dpcap">Capacidad de Tubería de Perforación (bbl/ft)</label>
+              <input type="number" id="dpcap" value="0.01776" step="0.0001">
+            </div>
+            <div class="input-group">
+              <label for="dpdisp">Desplazamiento de Tubería de Perforación (bbl/ft)</label>
+              <input type="number" id="dpdisp" value="0.0075" step="0.0001">
+            </div>
+          </div>
+
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline"><span class="output-label">Tubería Mojada — Longitud Antes de Caída</span><span class="output-value" id="out-wet">—</span></div>
+            <div class="output-line headline"><span class="output-label">Tubería Seca — Longitud Antes de Caída</span><span class="output-value" id="out-dry">—</span></div>
+            <div class="output-line" style="border-bottom:none;"><span class="output-label">Caída de Presión por Pie (Tubería Mojada)</span><span class="output-value" id="out-perft">—</span></div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> El margen real de suabeo depende del margen de presión de formación, la velocidad de viaje, y efectos de resistencia de gel más allá de este cálculo estático — usa la hoja de viaje aprobada por tu compañía para un trabajo real.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Las Fórmulas Usadas</h2>
+        <div class="formula-block">
+          <div class="formula-label">Longitud de Tubería Mojada Sacada Antes de Llenado</div>
+          <div class="formula-eq">L = (ΔP × Capacidad Anular) ÷ [0.052 × MW × (Capacidad TP + Desplazamiento TP)]</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Longitud de Tubería Seca Sacada Antes de Llenado</div>
+          <div class="formula-eq">L = [ΔP × (Capacidad Anular + Capacidad TP)] ÷ [0.052 × MW × Desplazamiento TP]</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Caída de Presión Hidrostática por Pie, Sacando Tubería Mojada</div>
+          <div class="formula-eq">ΔP/ft = 0.052 × MW × [(Capacidad TP + Desplazamiento TP) ÷ Capacidad Anular]</div>
+          <div class="formula-note">Según la hoja de fórmulas WellSharp / IWCF en unidades de campo. Multiplicar la longitud de tubería mojada de arriba por esta cifra debe regresar el ΔP ingresado — una forma rápida de verificar ambas juntas.</div>
+        </div>
+
+        <p>Para capacidad de hoyo, desplazamiento, y un conteo de profundidad junta por junta desde OD/ID de tubería, ver la <a href="/es/calculators/drill-pipe-tally">calculadora de conteo de tubería de perforación</a>. Para la presión hidrostática contra la que se mide este margen, ver la <a href="/es/calculators/hydrostatic">calculadora de presión hidrostática</a>.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const dp = num('dp'), mw = num('mw'), acap = num('acap'), dpcap = num('dpcap'), dpdisp = num('dpdisp');
+
+    const wetDenom = 0.052 * mw * (dpcap + dpdisp);
+    const wet = wetDenom !== 0 ? (dp * acap) / wetDenom : 0;
+
+    const dryDenom = 0.052 * mw * dpdisp;
+    const dry = dryDenom !== 0 ? (dp * (acap + dpcap)) / dryDenom : 0;
+
+    const perft = acap !== 0 ? 0.052 * mw * ((dpcap + dpdisp) / acap) : 0;
+
+    set('out-wet', fmt(wet, 1) + ' ft');
+    set('out-dry', fmt(dry, 1) + ' ft');
+    set('out-perft', fmt(perft, 4) + ' psi/ft');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

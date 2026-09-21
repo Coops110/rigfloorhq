@@ -1,0 +1,251 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+// Brine weight-loss chart is the WellSharp formula sheet's own example table,
+// used as-is — real, generic numbers, no source-specific brand attached.
+const brineRows = [
+  { range: '8.4 – 9.0 ppg', loss: '0.0017 ppg/°F' },
+  { range: '9.1 – 11.0 ppg', loss: '0.0025 ppg/°F' },
+  { range: '11.1 – 14.5 ppg', loss: '0.0033 ppg/°F' },
+  { range: '14.6 – 17.0 ppg', loss: '0.0040 ppg/°F' },
+  { range: '17.1 – 19.2 ppg', loss: '0.0048 ppg/°F' },
+];
+
+const faq = [
+  {
+    q: 'When would you bullhead a well instead of circulating a kill weight fluid down and up?',
+    a: 'Bullheading pumps kill fluid straight down the tubing and out the perforations, forcing whatever is in the wellbore back into the formation rather than circulating it out through the choke. It gets used when circulating isn\'t practical or safe — H2S influx, a plugged or unreliable tubing string, or a well where surface equipment can\'t handle what would come back. The trade-off is the two surface-pressure limits this calculator checks: bullhead too hard and the formation itself fractures at surface, not downhole.',
+  },
+  {
+    q: 'Why are there two different "max surface pressure" numbers?',
+    a: 'Initial max surface pressure is the ceiling the moment you start pumping, before any kill fluid has gone in — it\'s Formation Fracture Pressure minus whatever hydrostatic is already in the hole. Final max surface pressure is the ceiling once the well is fully displaced to kill fluid, when the hydrostatic column is higher and heavier. The final number is usually the tighter constraint since a heavier column eats more of the margin to fracture pressure, but both have to hold throughout the job, not just at the end.',
+  },
+  {
+    q: 'Why does the bullhead pump rate compare against gas migration and not just "as fast as the rig can pump"?',
+    a: 'If gas is migrating up the annulus faster than kill fluid is being pumped down and displacing it back into the formation, the job falls behind the gas rather than ahead of it. The SPM-to-exceed-migration figure is a floor, not a target — it is the slowest rate that still outpaces the gas, and in practice it usually comes out far below any rate a rig pump would actually run at, which is normally reassuring rather than a real constraint.',
+  },
+  {
+    q: 'Why does brine weight matter for a bullhead job specifically?',
+    a: 'Heavy completion brines (calcium bromide, zinc bromide, and similar) lose more density per degree of heating than drilling mud does, and a bullhead job often uses a brine as the kill fluid. A brine mixed and weighed at surface temperature will be lighter than that once it warms up going downhole — underestimating that loss means the actual downhole hydrostatic column is weaker than the surface-weighed number suggests, which eats into the margin this calculator is checking in the first place.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Bullheading Calculator: Surface Pressure Limits & Kill Fluid"
+  description="Bullheading calculator: kill fluid weight, formation fracture pressure, initial and final max surface pressure, volume to bullhead, and pump rate to exceed gas migration."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Bullheading', href: '/calculators/bullheading' }]}
+  lang="en"
+  alternateHref="/es/calculators/bullheading"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators/bullheading" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Bullheading <span>Calculator</span></h1>
+    <p class="page-hero-sub">Kill fluid weight, formation fracture pressure, the initial and final surface-pressure ceilings, volume to bullhead, and the pump rate needed to stay ahead of gas migration.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🎯 Well &amp; Kill Fluid</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="fp">Formation Pressure (psi)</label>
+              <input type="number" id="fp" value="5500">
+            </div>
+            <div class="input-group">
+              <label for="sitp">SITP (psi)</label>
+              <input type="number" id="sitp" value="800">
+            </div>
+            <div class="input-group">
+              <label for="tvd">Top Perfs TVD (ft)</label>
+              <input type="number" id="tvd" value="9000">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="omw">Original Fluid Weight (ppg)</label>
+              <input type="number" id="omw" value="9.0" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="fg">Formation Fracture Gradient (psi/ft)</label>
+              <input type="number" id="fg" value="0.75" step="0.01">
+            </div>
+          </div>
+
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline"><span class="output-label">Kill Fluid Weight</span><span class="output-value" id="out-kfw">—</span></div>
+            <div class="output-line"><span class="output-label">Formation Fracture Pressure</span><span class="output-value" id="out-ffp">—</span></div>
+            <div class="output-line"><span class="output-label">Initial Hydrostatic Pressure</span><span class="output-value" id="out-ihp">—</span></div>
+            <div class="output-line"><span class="output-label">Initial Average Fluid Density</span><span class="output-value" id="out-iafd">—</span></div>
+            <div class="output-line headline"><span class="output-label">Max Initial Surface Pressure</span><span class="output-value" id="out-misp">—</span></div>
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Max Final Surface Pressure</span><span class="output-value" id="out-mfsp">—</span></div>
+          </div>
+
+          <div class="calc-title" style="margin-top:24px;">📏 Volume to Bullhead</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="vsl">Surface Lines (bbls)</label>
+              <input type="number" id="vsl" value="5" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="veot">Surface to EOT (bbls)</label>
+              <input type="number" id="veot" value="40" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="vperf">EOT to Top Perfs (bbls)</label>
+              <input type="number" id="vperf" value="8" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="vbot">Top to Bottom Perfs (bbls)</label>
+              <input type="number" id="vbot" value="3" step="0.1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Volume to Bullhead</span><span class="output-value" id="out-vol">—</span></div>
+          </div>
+
+          <div class="calc-title" style="margin-top:24px;">💨 Pump Rate vs. Gas Migration</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="gmr">Gas Migration Rate (ft/hr)</label>
+              <input type="number" id="gmr" value="30">
+            </div>
+            <div class="input-group">
+              <label for="tcap">Tubing Capacity (bbl/ft)</label>
+              <input type="number" id="tcap" value="0.0155" step="0.0001">
+            </div>
+            <div class="input-group">
+              <label for="pout">Pump Output (bbl/stroke)</label>
+              <input type="number" id="pout" value="0.12" step="0.001">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Min. SPM to Exceed Migration</span><span class="output-value" id="out-spm">—</span></div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> A real bullhead job runs under your company's approved well-kill procedure with engineering sign-off — this page checks the underlying math, not a substitute for that approval.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formulas Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">Kill Fluid Weight</div>
+          <div class="formula-eq">KFW = [SITP ÷ (0.052 × TVD)] + Original Fluid Weight</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Formation Fracture Pressure</div>
+          <div class="formula-eq">FFP = Fracture Gradient × Top Perfs TVD</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Initial Hydrostatic Pressure &amp; Fluid Density</div>
+          <div class="formula-eq">IHP = Formation Pressure − SITP<br />Density = IHP ÷ (TVD × 0.052)</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Max Initial / Final Surface Pressure</div>
+          <div class="formula-eq">Initial = FFP − IHP<br />Final = FFP − (KFW × 0.052 × TVD)</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Bullhead Pump Rate vs. Migration</div>
+          <div class="formula-eq">SPM = (Migration Rate ÷ 60) × Tubing Capacity ÷ Pump Output</div>
+          <div class="formula-note">Per the WellSharp / IWCF field-units formula sheet, well completion/workover section.</div>
+        </div>
+
+        <h2 id="brine">A Real Wrinkle: Brine Weight Changes With Temperature</h2>
+        <p>Kill fluid weight above assumes the fluid stays the density it was mixed and measured at — true for drilling mud over most of a job, but heavy completion brines (calcium bromide, zinc bromide, and similar) lose noticeably more density per degree as they warm up going downhole. A brine weighed at surface temperature is not the same weight by the time it reaches a hot bottomhole, and the gap is large enough to matter against the tight surface-pressure margins above.</p>
+        <div class="formula-block">
+          <div class="formula-label">Fluid Density to Mix, Temperature-Corrected</div>
+          <div class="formula-eq">Density to Mix = Density at Avg. Temp + [(Avg. Temp − Surface Temp) × Weight Loss]</div>
+          <div class="formula-note">Weight loss is read from the brine's own weight range below, not a single constant — heavier brines lose more density per degree than lighter ones.</div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Brine Weight</th><th>Weight Loss per °F</th></tr></thead>
+            <tbody>
+              {brineRows.map((r) => (
+                <tr><td>{r.range}</td><td>{r.loss}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>Values vary by the specific brine and other factors — treat this table as a planning-stage estimate and confirm against the fluid supplier's own data before finalizing a mix weight for a real job.</p>
+
+        <p>Once kill fluid is in place, checking what it takes to move it back out is the same math as the <a href="/calculators/kill-sheet">kill sheet calculator</a>. For the shut-in pressure buildup and bleed-off math behind the gas migration rate used above, see the <a href="/calculators/gas-migration">gas migration calculator</a>.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const fp = num('fp'), sitp = num('sitp'), tvd = num('tvd'), omw = num('omw'), fg = num('fg');
+
+    const kfw = tvd > 0 ? (sitp / (0.052 * tvd)) + omw : 0;
+    const ffp = fg * tvd;
+    const ihp = fp - sitp;
+    const iafd = tvd > 0 ? ihp / (tvd * 0.052) : 0;
+    const misp = ffp - ihp;
+    const mfsp = ffp - (kfw * 0.052 * tvd);
+
+    set('out-kfw', fmt(kfw, 2) + ' ppg');
+    set('out-ffp', fmt(ffp, 0) + ' psi');
+    set('out-ihp', fmt(ihp, 0) + ' psi');
+    set('out-iafd', fmt(iafd, 2) + ' ppg');
+    set('out-misp', fmt(misp, 0) + ' psi');
+    set('out-mfsp', fmt(mfsp, 0) + ' psi');
+
+    const vol = num('vsl') + num('veot') + num('vperf') + num('vbot');
+    set('out-vol', fmt(vol, 1) + ' bbls');
+
+    const gmr = num('gmr'), tcap = num('tcap'), pout = num('pout');
+    const spm = pout > 0 ? (gmr / 60) * tcap / pout : 0;
+    set('out-spm', fmt(spm, 3) + ' spm');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

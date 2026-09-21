@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Contra qué protege realmente el margen de riser?',
+    a: 'En un equipo flotante submarino, el riser entre el equipo y el BOP de fondo marino normalmente está lleno de lodo, no de agua de mar — y el lodo es más pesado que el agua de mar. El margen de riser es cuánto peso de lodo extra, expresado en ppg, puede tolerar perder el pozo al perder la columna del riser y que sea reemplazada por agua de mar (una desconexión, una falla de riser) antes de que el pozo quede subbalanceado. Un margen positivo y adecuado significa que el pozo se mantiene sobrebalanceado incluso en ese escenario; un margen delgado o negativo significa que perder el riser podría dejar fluir el pozo.',
+  },
+  {
+    q: '¿Por qué importa el espacio de aire (air gap) si no tiene fluido en absoluto?',
+    a: 'El espacio de aire — la distancia desde el piso del equipo hasta la línea de agua — es parte de la longitud total del riser que la columna de lodo tiene que llenar, pero contribuye cero presión hidrostática ya que no hay fluido ahí. Aún así tiene que restarse correctamente al pasar de la longitud del riser al intervalo real presurizado del pozo (profundidad de agua a TVD total), o el cálculo del margen termina aplicando la diferencia de presión sobre la longitud equivocada.',
+  },
+  {
+    q: '¿El margen de riser cambia conforme el pozo se hace más profundo?',
+    a: 'El margen mismo, como cifra en ppg, se mantiene gobernado por la misma profundidad de agua, espacio de aire, y diferencia lodo-vs-agua de mar sin importar qué tan profundo llegue el pozo — pero la diferencia de presión que representa ese margen se extiende sobre un intervalo más largo (TVD del pozo menos profundidad de agua menos espacio de aire) conforme aumenta el TVD, que es exactamente lo que considera el denominador en la fórmula. En la práctica, los operadores lo revisan de nuevo cada vez que el peso de lodo cambia materialmente en lugar de asumir que una sola cifra se mantiene para todo el pozo.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Calculadora de Margen de Riser: Lodo vs. Agua de Mar"
+  description="Calculadora de margen de riser para pozos submarinos: el margen extra de peso de lodo si se perdiera la columna del riser y fuera reemplazada por agua de mar, desde peso de lodo, gradiente de agua de mar, profundidad de agua, y espacio de aire."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Margen de Riser', href: '/es/calculators/riser-margin' }]}
+  lang="es"
+  alternateHref="/calculators/riser-margin"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/riser-margin" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Calculadora de Margen de <span>Riser</span></h1>
+    <p class="page-hero-sub">Cuánto margen de peso de lodo tiene un pozo submarino si se perdiera la columna del riser y fuera reemplazada por agua de mar — desde peso de lodo, gradiente de agua de mar, profundidad de agua, y espacio de aire.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🌊 Riser y Pozo</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="mw">Peso de Lodo en Riser (ppg)</label>
+              <input type="number" id="mw" value="12" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="swg">Gradiente de Agua de Mar (psi/ft)</label>
+              <input type="number" id="swg" value="0.442" step="0.001">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="wd">Profundidad de Agua (ft)</label>
+              <input type="number" id="wd" value="5000">
+            </div>
+            <div class="input-group">
+              <label for="ag">Espacio de Aire (ft)</label>
+              <input type="number" id="ag" value="75">
+            </div>
+            <div class="input-group">
+              <label for="tvd">TVD del Pozo (ft, desde el piso del equipo)</label>
+              <input type="number" id="tvd" value="15000">
+            </div>
+          </div>
+
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line"><span class="output-label">Hidrostática del Lodo en Riser</span><span class="output-value" id="out-rmh">—</span></div>
+            <div class="output-line"><span class="output-label">Hidrostática de Agua de Mar (columna de agua)</span><span class="output-value" id="out-swh">—</span></div>
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Margen de Riser</span><span class="output-value" id="out-margin">—</span></div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> El margen de riser es una entrada a la tolerancia de surgencia y al procedimiento de cierre de un pozo submarino, decidido por el propio programa de perforación del pozo — esto revisa la matemática subyacente, no sustituye ese programa.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>La Fórmula Usada</h2>
+        <div class="formula-block">
+          <div class="formula-label">Margen de Riser</div>
+          <div class="formula-eq">RM (ppg) = [(Hidrostática del Lodo en Riser − Hidrostática de Agua de Mar) ÷ 0.052] ÷ (TVD del Pozo − Profundidad de Agua − Espacio de Aire)</div>
+          <div class="formula-note">Hidrostática del Lodo en Riser = Peso de Lodo × 0.052 × (Profundidad de Agua + Espacio de Aire). Hidrostática de Agua de Mar = Gradiente de Agua de Mar × Profundidad de Agua solamente — el espacio de aire no tiene columna de fluido. Según la hoja de fórmulas WellSharp / IWCF en unidades de campo.</div>
+        </div>
+
+        <p>0.442 psi/ft es un gradiente común de agua de mar (equivalente a unos 8.5 ppg); la densidad real del agua de mar local varía ligeramente según salinidad y temperatura. Para la matemática hidrostática en la que se basa esto, ver la <a href="/es/calculators/hydrostatic">calculadora de presión hidrostática</a>; para la pila de BOP submarina que este margen existe para proteger, ver la <a href="/es/equipment/bop">página de equipo BOP</a>.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const mw = num('mw'), swg = num('swg'), wd = num('wd'), ag = num('ag'), tvd = num('tvd');
+
+    const riserLen = wd + ag;
+    const rmh = mw * 0.052 * riserLen;
+    const swh = swg * wd;
+    const denom = tvd - wd - ag;
+    const margin = denom !== 0 ? ((rmh - swh) / 0.052) / denom : 0;
+
+    set('out-rmh', fmt(rmh, 0) + ' psi');
+    set('out-swh', fmt(swh, 0) + ' psi');
+    set('out-margin', fmt(margin, 2) + ' ppg');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

@@ -33,6 +33,10 @@ const faq = [
     a: 'Closing every ram, the annular, and the HCR valves in sequence without the charging pumps running draws the accumulator down from its full working pressure. How far it drops, and how long the pumps take to bring it back to full charge, is a direct read on whether the accumulator has enough usable volume and precharge to close everything it needs to close on a real kick — a system that recharges slowly is telling you it\'s marginal before it ever gets tested for real.',
   },
   {
+    q: 'What happens if accumulator pressure drops below the nitrogen precharge?',
+    a: 'Below precharge pressure, the compressed nitrogen can no longer push against the hydraulic fluid at all, so the bottle stops discharging usable fluid regardless of how much fluid volume physically remains inside it. This is why precharge is checked directly as part of a proper drill rather than assumed — a bottle can look full and still deliver little to no usable volume if its precharge has leaked down over time.',
+  },
+  {
     q: 'What goes in the corrective-action log versus the area-of-strength section?',
     a: 'The corrective-action log is for anything the drill found that didn\'t work as expected — a slow function, a panel that didn\'t respond, a valve that needed rework — each logged with who owns the fix and by when. The area-of-strength section is the opposite: what performed the way it was supposed to. Both go in the same report because a drill record that only lists problems undersells a crew that is doing most of it right, and a record with no findings at all is usually a sign the drill wasn\'t run critically enough.',
   },
@@ -95,6 +99,20 @@ const jsonLd = {
         <h2 id="recharge">Pressure Drop and Recharge Time</h2>
         <p>After the rams, annular, and HCR valves have all been closed and the electric and air pumps to the BOP control unit are shut off, accumulator pressure will have dropped well below its starting figure — manifold and annular pressure are read and logged at that low point too. Turning the charging pumps back on and timing how long the system takes to climb back to full working pressure is the single number that tells you the most about the accumulator's real-world readiness: a slow recharge means the crew would be waiting on hydraulic capacity mid-kick, which is exactly the scenario the drill exists to catch before it happens for real.</p>
 
+        <h2 id="boyles-law">Why Accumulator Bottles Work: Boyle's Law</h2>
+        <p>An accumulator bottle stores hydraulic energy by squeezing a precharge of nitrogen gas against hydraulic fluid inside a single sealed bottle, separated by a floating piston or bladder. Opening a BOP function pushes fluid out of the bottle under gas pressure with no pump running — that stored push is exactly what lets the stack close with the rig black. What decides how much of that fluid is actually usable, versus permanently locked behind an un-collapsible gas cushion, is Boyle's Law: at constant temperature, a gas's pressure and volume trade off directly against each other (P<sub>1</sub>V<sub>1</sub> = P<sub>2</sub>V<sub>2</sub>).</p>
+        <div class="formula-block">
+          <div class="formula-label">Boyle's Law</div>
+          <div class="formula-eq">P<sub>1</sub>V<sub>1</sub> = P<sub>2</sub>V<sub>2</sub></div>
+          <div class="formula-note">Atmospheric pressure = 14.7 psi. P = pressure, V = volume.</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Usable Fluid Volume per Bottle</div>
+          <div class="formula-eq">Usable Volume = [(Precharge ÷ Min. Operating Pressure) − (Precharge ÷ Max. Operating Pressure)] × Bottle Volume</div>
+          <div class="formula-note">Per the WellSharp / IWCF field-units formula sheet. Precharge sets the floor: fluid keeps discharging only while system pressure stays above the nitrogen precharge pressure — below that, the gas can no longer push the remaining fluid out at all, which is exactly why precharge is checked as part of the drill above rather than assumed constant forever.</div>
+        </div>
+        <p>This is also why the recharge-time reading above matters as much as it does — the charging pumps aren't just refilling fluid, they're recompressing the nitrogen back to its working pressure so the bottle has usable volume again for the next closure.</p>
+
         <h2 id="corrective-action">Corrective Action Log</h2>
         <p>Anything the drill turns up that didn't perform as expected goes in a corrective-action log — a running table, not a narrative, so each item stays trackable to closure:</p>
         <div class="table-wrap">
@@ -131,6 +149,7 @@ const jsonLd = {
           <a href="#initial-pressure">Initial Pressure</a>
           <a href="#timing-table">Open/Close Timing</a>
           <a href="#recharge">Recharge Time</a>
+          <a href="#boyles-law">Boyle's Law</a>
           <a href="#corrective-action">Corrective Action Log</a>
           <a href="#area-of-strength">Area of Strength</a>
           <a href="#testing-standards">Testing Standards</a>

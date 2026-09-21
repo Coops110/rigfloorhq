@@ -1,0 +1,160 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Por qué hay tres cifras de peso flotado diferentes en lugar de una?',
+    a: 'Cada una cubre una condición de fondo diferente. La tubería de extremo abierto (tubería de perforación, tubería de producción corrida vacía y fluyendo a través) simplemente aplica el factor de flotación al peso en aire. La tubería de extremo cerrado sin nada adentro — una junta tapada, una herramienta corrida — desplaza todo su diámetro exterior sin nada empujando de vuelta desde adentro, así que flota más y pesa menos que el caso de extremo abierto. Un fluido diferente adentro versus en el anular (común en terminaciones, donde un fluido empacador más ligero se queda dentro de la tubería contra un fluido anular más pesado) necesita ambos diámetros y ambos pesos de fluido, ya que los dos fluidos empujan de vuelta con fuerza diferente.',
+  },
+  {
+    q: '¿Por qué las respuestas de extremo abierto y de fluido diferente salen cercanas pero no idénticas?',
+    a: 'La fórmula de extremo abierto usa un factor de flotación teórico basado en la densidad propia del acero (1 − MW/65.5). Las fórmulas de extremo cerrado y de fluido diferente en cambio trabajan directamente con el OD e ID reales de la tubería — área de sección transversal real, no una densidad de acero asumida. Coinciden de cerca porque describen la misma física, pero no están forzadas a coincidir exactamente, y las cifras basadas en geometría son las más precisas cuando se conocen el OD/ID reales.',
+  },
+  {
+    q: '¿Esto reemplaza el factor de flotación simple usado en otras partes del sitio (tonelada-milla, fórmulas de perforación)?',
+    a: 'No — ese (BF = 1 − MW/65.5) es específicamente para el peso de tubería de perforación de extremo abierto en un solo fluido, que es el caso común de perforación y sigue siendo la herramienta correcta para ese trabajo. Esta página cubre las variantes del lado de terminaciones: tubería de extremo cerrado y dos fluidos diferentes en cada lado de la pared de la tubería, situaciones que surgen más en reacondicionamientos y terminaciones que en la perforación rutinaria.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Calculadora de Flotación y Peso de Tubería"
+  description="Factor de flotación y peso flotado de tubería para tubería de extremo abierto, extremo cerrado, y tubería con fluido diferente adentro versus en el anular."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Flotación', href: '/es/calculators/buoyancy' }]}
+  lang="es"
+  alternateHref="/calculators/buoyancy"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/buoyancy" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Flotación y Peso de <span>Tubería</span></h1>
+    <p class="page-hero-sub">Peso flotado de tubería para tubería de extremo abierto, tubería de extremo cerrado, y tubería que lleva un fluido diferente adentro que en el anular.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">⚓ Tubería y Fluidos</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="wair">Peso de Tubería, Aire (lb/ft)</label>
+              <input type="number" id="wair" value="19.5" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="od">OD de Tubería (in)</label>
+              <input type="number" id="od" value="5.0" step="0.01">
+            </div>
+            <div class="input-group">
+              <label for="id">ID de Tubería (in)</label>
+              <input type="number" id="id" value="4.276" step="0.001">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="fwa">Peso de Fluido, Anular (ppg)</label>
+              <input type="number" id="fwa" value="10" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="fwi">Peso de Fluido, Dentro de Tubería (ppg)</label>
+              <input type="number" id="fwi" value="10" step="0.1">
+            </div>
+          </div>
+
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line"><span class="output-label">Factor de Flotación (acero, fluido anular)</span><span class="output-value" id="out-bf">—</span></div>
+            <div class="output-line headline"><span class="output-label">Peso Flotado — Extremo Abierto</span><span class="output-value" id="out-open">—</span></div>
+            <div class="output-line headline"><span class="output-label">Peso Flotado — Extremo Cerrado, Sin Fluido Adentro</span><span class="output-value" id="out-closed">—</span></div>
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Peso Flotado — Fluido Diferente Dentro/Fuera</span><span class="output-value" id="out-diff">—</span></div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Usa el OD/ID real de tubería del libro de conteo y pesos de fluido confirmados para un cálculo real de peso de sarta, no valores nominales de catálogo.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Las Fórmulas Usadas</h2>
+        <div class="formula-block">
+          <div class="formula-label">Factor de Flotación</div>
+          <div class="formula-eq">BF = 1 − (Peso de Fluido ÷ 65.5)</div>
+          <div class="formula-note">Algunas referencias usan 65.4 para la densidad del acero en lugar de 65.5 — la diferencia es menos de una décima de porcentaje. Este sitio usa 65.5 en todas partes por consistencia; ver la <a href="/drilling/formulas#buoyancy">hoja de fórmulas de perforación (inglés)</a> para la nota de por qué.</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Peso Flotado — Tubería de Extremo Abierto</div>
+          <div class="formula-eq">W = Peso (aire) × BF</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Peso Flotado — Extremo Cerrado, Sin Fluido Adentro</div>
+          <div class="formula-eq">W = Peso (aire) − [(OD² × Peso de Fluido) ÷ 24.5]</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Peso Flotado — Fluido Diferente Dentro vs. Anular</div>
+          <div class="formula-eq">W = Peso (aire) + [(ID² × Peso de Fluido, adentro) ÷ 24.5] − [(OD² × Peso de Fluido, anular) ÷ 24.5]</div>
+          <div class="formula-note">Según la hoja de fórmulas WellSharp / IWCF en unidades de campo, sección de peso flotado de tubulares.</div>
+        </div>
+
+        <p>Para el caso simple de extremo abierto aplicado a la cifra de tonelada-milla de una sarta completa, ver la <a href="/es/calculators/ton-mile">calculadora de tonelada-milla</a>. El punto neutro y dónde mantener los lastrabarrenas en compresión están en la <a href="/drilling/formulas#buoyancy">hoja de fórmulas de perforación (inglés)</a>.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const wair = num('wair'), od = num('od'), id_ = num('id'), fwa = num('fwa'), fwi = num('fwi');
+
+    const bf = 1 - (fwa / 65.5);
+    const open = wair * bf;
+    const closed = wair - ((od * od * fwa) / 24.5);
+    const diff = wair + ((id_ * id_ * fwi) / 24.5) - ((od * od * fwa) / 24.5);
+
+    set('out-bf', fmt(bf, 4));
+    set('out-open', fmt(open, 2) + ' lb/ft');
+    set('out-closed', fmt(closed, 2) + ' lb/ft');
+    set('out-diff', fmt(diff, 2) + ' lb/ft');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>
