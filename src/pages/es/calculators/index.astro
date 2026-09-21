@@ -86,6 +86,10 @@ import Footer from '../../../components/Footer.astro';
           <td>Necesitas una longitud segura de tubería a sacar antes de llenado en un viaje</td>
           <td><a href="/es/calculators/pipe-pull-margin">Margen de Suabeo</a></td>
         </tr>
+        <tr>
+          <td>Estás matando un pozo direccional u horizontal y necesitas puntos de control KOP/EOB</td>
+          <td><a href="/es/calculators/kill-sheet-horizontal">Adiciones de Hoja de Control Horizontal</a></td>
+        </tr>
       </tbody>
     </table>
 
@@ -193,6 +197,13 @@ import Footer from '../../../components/Footer.astro';
         <p class="card-formula"><strong>Fórmula:</strong> L = (ΔP × Cap. Anular) ÷ [0.052 × MW × ...]</p>
         <a href="/es/calculators/pipe-pull-margin" class="card-link">Abrir Calculadora →</a>
       </div>
+      <div class="card">
+        <span class="card-icon">🛰</span>
+        <h3>Adiciones de Hoja de Control Horizontal</h3>
+        <p>Puntos extra de presión de tubería en el inicio de curvatura y fin de construcción para el control de un pozo direccional u horizontal.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> Presión = ICP − (ICP−FCP) × Razón de Emboladas</p>
+        <a href="/es/calculators/kill-sheet-horizontal" class="card-link">Abrir Calculadora →</a>
+      </div>
     </div>
   </section>
 
@@ -260,7 +271,8 @@ import Footer from '../../../components/Footer.astro';
           { "@type": "ListItem", "position": 11, "name": "Calculadora de Migración de Gas", "url": "https://rigfloorhq.com/es/calculators/gas-migration" },
           { "@type": "ListItem", "position": 12, "name": "Flotación y Peso de Tubería", "url": "https://rigfloorhq.com/es/calculators/buoyancy" },
           { "@type": "ListItem", "position": 13, "name": "Calculadora de Margen de Riser", "url": "https://rigfloorhq.com/es/calculators/riser-margin" },
-          { "@type": "ListItem", "position": 14, "name": "Margen de Suabeo: Mojada y Seca", "url": "https://rigfloorhq.com/es/calculators/pipe-pull-margin" }
+          { "@type": "ListItem", "position": 14, "name": "Margen de Suabeo: Mojada y Seca", "url": "https://rigfloorhq.com/es/calculators/pipe-pull-margin" },
+          { "@type": "ListItem", "position": 15, "name": "Adiciones de Hoja de Control Horizontal", "url": "https://rigfloorhq.com/es/calculators/kill-sheet-horizontal" }
         ]
       },
       {

@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'Why does a directional or horizontal well need extra pressure checkpoints at all?',
+    a: 'The standard kill sheet schedule only guarantees the drillpipe pressure at the start (ICP) and once kill mud reaches the bit (FCP) — everything between is a straight-line assumption based on strokes pumped. On a straight vertical well that\'s a safe approximation. On a well with a build section, the point where the string starts curving (KOP) and the point where it straightens back out (EOB) are worth checking against explicitly, since that\'s where crews most often catch a schedule that has drifted from what the choke operator is actually seeing.',
+  },
+  {
+    q: 'Is the pressure at KOP and EOB calculated any differently than the rest of the schedule?',
+    a: 'No — it uses the exact same straight-line ICP-to-FCP relationship as the standard 10-step schedule, just evaluated at the specific stroke count where the string crosses KOP or EOB instead of at even 10% increments. It\'s the same schedule, read at two extra points that happen to matter for a directional well.',
+  },
+  {
+    q: 'Do KOP and EOB need to be entered as measured or vertical depth?',
+    a: 'Both — measured depth (MD) is what actually goes into the string-volume and strokes calculation, since that\'s the length of pipe the kill mud has to travel through. Vertical depth (TVD) isn\'t used directly in this calculator but is worth having on hand, since the two diverge more and more past the KOP and that gap is exactly why this checkpoint exists in the first place.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Horizontal & Extended-Reach Kill Sheet Additions"
+  description="Extra drillpipe pressure checkpoints for a directional or horizontal well kill: string volume and strokes to kick-off point (KOP) and end of build (EOB), read against the standard ICP-to-FCP schedule."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Horizontal Kill Sheet', href: '/calculators/kill-sheet-horizontal' }]}
+  lang="en"
+  alternateHref="/es/calculators/kill-sheet-horizontal"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators/kill-sheet-horizontal" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Horizontal &amp; Extended-Reach <span>Kill Sheet Additions</span></h1>
+    <p class="page-hero-sub">Two extra drillpipe pressure checkpoints for a directional or horizontal well — at kick-off point (KOP) and end of build (EOB) — read against the same ICP-to-FCP schedule as the standard kill sheet.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🚨 From Your Kill Sheet</div>
+          <p style="font-size:12px;color:var(--fog);margin-bottom:20px;line-height:1.65;">Run the <a href="/calculators/kill-sheet" style="color:var(--amber);">kill sheet calculator</a> first — bring ICP, FCP, and strokes to bit over from there.</p>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="icp">ICP (psi)</label>
+              <input type="number" id="icp" value="750">
+            </div>
+            <div class="input-group">
+              <label for="fcp">FCP (psi)</label>
+              <input type="number" id="fcp" value="476">
+            </div>
+            <div class="input-group">
+              <label for="stb">Strokes to Bit</label>
+              <input type="number" id="stb" value="1731">
+            </div>
+          </div>
+
+          <div class="calc-title" style="margin-top:24px;">🔧 Well Path &amp; Pump</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="kopmd">KOP — Measured Depth (ft)</label>
+              <input type="number" id="kopmd" value="3000">
+            </div>
+            <div class="input-group">
+              <label for="koptvd">KOP — Vertical Depth (ft)</label>
+              <input type="number" id="koptvd" value="3000">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="eobmd">EOB — Measured Depth (ft)</label>
+              <input type="number" id="eobmd" value="4500">
+            </div>
+            <div class="input-group">
+              <label for="eobtvd">EOB — Vertical Depth (ft)</label>
+              <input type="number" id="eobtvd" value="3800">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="dpcap">Drill Pipe Capacity (bbl/ft)</label>
+              <input type="number" id="dpcap" value="0.01776" step="0.00001">
+            </div>
+            <div class="input-group">
+              <label for="pumpout">Pump Output (bbl/stroke)</label>
+              <input type="number" id="pumpout" value="0.1" step="0.001">
+            </div>
+          </div>
+
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line"><span class="output-label">KOP String Volume</span><span class="output-value" id="out-kopvol">—</span></div>
+            <div class="output-line headline"><span class="output-label">Strokes to KOP</span><span class="output-value" id="out-kopstrokes">—</span></div>
+            <div class="output-line headline"><span class="output-label">Drillpipe Pressure at KOP</span><span class="output-value" id="out-koppress">—</span></div>
+            <div class="output-line" style="border-top:1px solid var(--iron);padding-top:14px;margin-top:4px;"><span class="output-label">EOB String Volume</span><span class="output-value" id="out-eobvol">—</span></div>
+            <div class="output-line headline"><span class="output-label">Strokes to EOB</span><span class="output-value" id="out-eobstrokes">—</span></div>
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Drillpipe Pressure at EOB</span><span class="output-value" id="out-eobpress">—</span></div>
+          </div>
+        </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>This is a reference tool, not an operational authority.</strong> Real well control decisions must be made by your certified well control supervisor following your company's approved procedures.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formulas Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">String Volume &amp; Strokes to a Checkpoint</div>
+          <div class="formula-eq">Volume = Checkpoint MD × DP Capacity<br />Strokes = Volume ÷ Pump Output</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Drillpipe Pressure at a Checkpoint</div>
+          <div class="formula-eq">Pressure = ICP − (ICP − FCP) × (Strokes to Checkpoint ÷ Strokes to Bit)</div>
+          <div class="formula-note">The same straight-line ICP-to-FCP relationship the standard kill sheet's 10-step schedule uses, evaluated at KOP and EOB instead of at even stroke increments.</div>
+        </div>
+
+        <p>This page only covers the two extra checkpoints — for kill mud weight, ICP, FCP, strokes to bit, and the full 10-step pressure schedule itself, use the <a href="/calculators/kill-sheet">kill sheet calculator</a>. For the Driller's Method and Wait-and-Weight procedures this schedule supports, see the <a href="/drilling/well-control">well control reference page</a>.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function checkpoint(md: number, dpcap: number, pumpOut: number, icp: number, fcp: number, stb: number) {
+    const vol = md * dpcap;
+    const strokes = pumpOut > 0 ? vol / pumpOut : 0;
+    const pressure = stb > 0 ? icp - (icp - fcp) * (strokes / stb) : icp;
+    return { vol, strokes, pressure };
+  }
+
+  function calc() {
+    const icp = num('icp'), fcp = num('fcp'), stb = num('stb');
+    const dpcap = num('dpcap'), pumpOut = num('pumpout');
+
+    const kop = checkpoint(num('kopmd'), dpcap, pumpOut, icp, fcp, stb);
+    set('out-kopvol', fmt(kop.vol, 1) + ' bbls');
+    set('out-kopstrokes', fmt(kop.strokes, 0) + ' strokes');
+    set('out-koppress', fmt(kop.pressure, 0) + ' psi');
+
+    const eob = checkpoint(num('eobmd'), dpcap, pumpOut, icp, fcp, stb);
+    set('out-eobvol', fmt(eob.vol, 1) + ' bbls');
+    set('out-eobstrokes', fmt(eob.strokes, 0) + ' strokes');
+    set('out-eobpress', fmt(eob.pressure, 0) + ' psi');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

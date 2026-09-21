@@ -127,6 +127,10 @@ import Footer from '../../components/Footer.astro';
           <td>You need a safe pipe-pull length before fill-up on a trip</td>
           <td><a href="/calculators/pipe-pull-margin">Wet &amp; Dry Pipe Pull Margin</a></td>
         </tr>
+        <tr>
+          <td>You're killing a directional or horizontal well and need KOP/EOB pressure checkpoints</td>
+          <td><a href="/calculators/kill-sheet-horizontal">Horizontal Kill Sheet Additions</a></td>
+        </tr>
       </tbody>
     </table>
 
@@ -244,6 +248,13 @@ import Footer from '../../components/Footer.astro';
         <p class="card-formula"><strong>Formula:</strong> L = (ΔP × Annulus Cap) ÷ [0.052 × MW × ...]</p>
         <a href="/calculators/pipe-pull-margin" class="card-link">Open Calculator →</a>
       </div>
+      <div class="card">
+        <span class="card-icon">🛰</span>
+        <h3>Horizontal Kill Sheet Additions</h3>
+        <p>Extra drillpipe pressure checkpoints at kick-off point and end of build for a directional or horizontal well kill.</p>
+        <p class="card-formula"><strong>Formula:</strong> Pressure = ICP − (ICP−FCP) × Strokes Ratio</p>
+        <a href="/calculators/kill-sheet-horizontal" class="card-link">Open Calculator →</a>
+      </div>
     </div>
   </section>
 
@@ -311,7 +322,8 @@ import Footer from '../../components/Footer.astro';
           { "@type": "ListItem", "position": 11, "name": "Gas Migration Calculator", "url": "https://rigfloorhq.com/calculators/gas-migration" },
           { "@type": "ListItem", "position": 12, "name": "Buoyancy & Tubular Weight Calculator", "url": "https://rigfloorhq.com/calculators/buoyancy" },
           { "@type": "ListItem", "position": 13, "name": "Riser Margin Calculator", "url": "https://rigfloorhq.com/calculators/riser-margin" },
-          { "@type": "ListItem", "position": 14, "name": "Wet & Dry Pipe Pull Margin Calculator", "url": "https://rigfloorhq.com/calculators/pipe-pull-margin" }
+          { "@type": "ListItem", "position": 14, "name": "Wet & Dry Pipe Pull Margin Calculator", "url": "https://rigfloorhq.com/calculators/pipe-pull-margin" },
+          { "@type": "ListItem", "position": 15, "name": "Horizontal Kill Sheet Additions", "url": "https://rigfloorhq.com/calculators/kill-sheet-horizontal" }
         ]
       },
       {
