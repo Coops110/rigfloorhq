@@ -48,8 +48,8 @@
 - [x] 07 — posted 2026-09-13 (Sun), on schedule
 - [x] 08 — posted 2026-09-14 (Mon), on schedule
 - [x] 09 — posted 2026-09-17 (Thu, one day late per the "post next day" rule) — screen-recorded mud weight converter
-- [ ] 10 — due 2026-09-18 (Fri), queued 2026-09-22 for Chris to post manually — first animated-diagram video, BOP ram sizing
-- [ ] 11 — due 2026-09-20 (Sun), queued 2026-09-22 for Chris to post manually — animated jackup depth-limit video
+- [x] 10 — due 2026-09-18 (Fri), posted 2026-09-22 — first animated-diagram video, BOP ram sizing
+- [x] 11 — due 2026-09-20 (Sun), posted 2026-09-22 — animated jackup depth-limit video
 - [x] 04 — already live since 2026-08-14, do not repost
 - [ ] 01 — **held**, pending rig-experience review
 - [ ] 02 — **held**, pending rig-experience review
