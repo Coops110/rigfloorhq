@@ -90,6 +90,10 @@ import Footer from '../../../components/Footer.astro';
           <td>Estás matando un pozo direccional u horizontal y necesitas puntos de control KOP/EOB</td>
           <td><a href="/es/calculators/kill-sheet-horizontal">Adiciones de Hoja de Control Horizontal</a></td>
         </tr>
+        <tr>
+          <td>Necesitas el peso de lodo ajustado por fricción mientras circulas, no solo el estático</td>
+          <td><a href="/es/calculators/ecd">ECD</a></td>
+        </tr>
       </tbody>
     </table>
 
@@ -204,6 +208,13 @@ import Footer from '../../../components/Footer.astro';
         <p class="card-formula"><strong>Fórmula:</strong> Presión = ICP − (ICP−FCP) × Razón de Emboladas</p>
         <a href="/es/calculators/kill-sheet-horizontal" class="card-link">Abrir Calculadora →</a>
       </div>
+      <div class="card">
+        <span class="card-icon">🌀</span>
+        <h3>Calculadora de ECD</h3>
+        <p>Velocidad anular, pérdida de presión anular por fricción, y densidad de circulación equivalente una vez que las bombas están encendidas.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> ECD = MW + (Pérdida de Presión Anular ÷ 0.052 ÷ TVD)</p>
+        <a href="/es/calculators/ecd" class="card-link">Abrir Calculadora →</a>
+      </div>
     </div>
   </section>
 
@@ -272,7 +283,8 @@ import Footer from '../../../components/Footer.astro';
           { "@type": "ListItem", "position": 12, "name": "Flotación y Peso de Tubería", "url": "https://rigfloorhq.com/es/calculators/buoyancy" },
           { "@type": "ListItem", "position": 13, "name": "Calculadora de Margen de Riser", "url": "https://rigfloorhq.com/es/calculators/riser-margin" },
           { "@type": "ListItem", "position": 14, "name": "Margen de Suabeo: Mojada y Seca", "url": "https://rigfloorhq.com/es/calculators/pipe-pull-margin" },
-          { "@type": "ListItem", "position": 15, "name": "Adiciones de Hoja de Control Horizontal", "url": "https://rigfloorhq.com/es/calculators/kill-sheet-horizontal" }
+          { "@type": "ListItem", "position": 15, "name": "Adiciones de Hoja de Control Horizontal", "url": "https://rigfloorhq.com/es/calculators/kill-sheet-horizontal" },
+          { "@type": "ListItem", "position": 16, "name": "Calculadora de ECD", "url": "https://rigfloorhq.com/es/calculators/ecd" }
         ]
       },
       {

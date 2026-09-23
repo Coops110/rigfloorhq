@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Por qué importa el ECD si el peso de lodo en las piletas no ha cambiado?',
+    a: 'El peso de lodo estático solo indica la presión de una columna quieta. En el momento en que las bombas están encendidas, la fricción contra las paredes del anular suma presión extra sobre esa columna — el ECD es lo que la formación realmente siente mientras se circula, y siempre es más alto que el peso de lodo estático, nunca más bajo. Un pozo que en papel se ve cómodamente dentro de la ventana de perforación puede seguir tomando pérdidas en la zapata en el momento en que arranca la circulación si nunca se revisó ese margen de fricción.',
+  },
+  {
+    q: '¿Por qué este cálculo solo usa la pérdida de presión anular, no la del interior de la sarta?',
+    a: 'La pérdida de presión dentro de la sarta empuja el fluido hacia la barrena, lo cual aparece como presión extra de bomba en superficie — nunca se suma a la columna de presión que presiona la formación. La pérdida de presión en el anular trabaja en la dirección contraria: el fluido que sube de regreso a superficie tiene que vencer fricción todo el camino, y esa resistencia se suma directamente a la carga que presiona el pozo abierto. Solo el lado anular cuenta para el ECD.',
+  },
+  {
+    q: '¿Por qué un anular angosto sube el ECD más rápido que uno ancho?',
+    a: 'La pérdida de presión anular en esta fórmula escala con la velocidad al cuadrado y se divide entre el tamaño del hoyo menos el tamaño de la tubería — reduce ese espacio y el fluido tiene que acelerar para mover el mismo caudal a través de menos área, y la penalización por fricción sube rápido, no en línea recta. Un BHA de OD grande en un hoyo pequeño, o un traslape de liner largo, es exactamente donde el margen de ECD desaparece primero, mucho antes de que la TVD o el caudal se vean fuera de lo común por sí solos.',
+  },
+  {
+    q: '¿Qué cuenta como un margen de ECD seguro por debajo del gradiente de fractura?',
+    a: 'No hay un número universal — depende de la resistencia de la formación, de qué tan bien se conoce realmente el gradiente de fractura a esa profundidad, y de cuánto riesgo de pérdida de circulación tolera la operación. Lo que importa es revisar el ECD contra la misma línea de gradiente de fractura que usa la <a href="/es/calculators/mud-weight-window">ventana de peso de lodo</a>, no solo contra el peso de lodo estático, ya que esa comparación estática por sí sola puede esconder un problema real una vez que las bombas están corriendo.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Calculadora de ECD: Densidad de Circulación Equivalente"
+  description="Calculadora de ECD gratis: velocidad anular, pérdida de presión anular por fricción, y densidad de circulación equivalente a partir del peso de lodo, caudal y geometría del anular."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'ECD', href: '/es/calculators/ecd' }]}
+  lang="es"
+  alternateHref="/calculators/ecd"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/ecd" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Calculadora de <span>ECD</span></h1>
+    <p class="page-hero-sub">El peso de lodo estático solo indica la presión de una columna quieta. La Densidad de Circulación Equivalente suma la penalización por fricción anular de bombear de verdad, que es el número que la formación siente una vez que arranca la circulación.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🌀 Datos de Lodo y Caudal</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="ecd-mw">Peso de Lodo (ppg)</label>
+              <input type="number" id="ecd-mw" value="12.0" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="ecd-tvd">Profundidad Vertical Verdadera (ft)</label>
+              <input type="number" id="ecd-tvd" value="10000">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="ecd-q">Caudal (gpm)</label>
+              <input type="number" id="ecd-q" value="400">
+            </div>
+            <div class="input-group">
+              <label for="ecd-len">Longitud del Anular (ft)</label>
+              <input type="number" id="ecd-len" value="10000">
+            </div>
+          </div>
+
+          <div class="calc-title" style="margin-top:24px;">⭕ Geometría del Anular</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="ecd-dh">DI de Hoyo / Revestimiento (in)</label>
+              <input type="number" id="ecd-dh" value="8.5" step="0.01">
+            </div>
+            <div class="input-group">
+              <label for="ecd-dp">DE de Tubería / Lastrabarrena (in)</label>
+              <input type="number" id="ecd-dp" value="5.0" step="0.01">
+            </div>
+          </div>
+
+          <div class="calc-output visible" id="ecd-output" style="margin-top:20px;">
+            <div class="output-line"><span class="output-label">Velocidad Anular</span><span class="output-value" id="out-av">—</span></div>
+            <div class="output-line"><span class="output-label">Pérdida de Presión Anular por Fricción</span><span class="output-value" id="out-apl">—</span></div>
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Densidad de Circulación Equivalente</span><span class="output-value" id="out-ecd">—</span></div>
+          </div>
+        </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>Esta es una herramienta de referencia, no una autoridad operacional.</strong> Las decisiones reales de manejo de ECD pertenecen al ingeniero de lodos y a tu supervisor certificado de control de pozos, usando reología medida y el software de hidráulica aprobado por tu compañía. Nunca planees un margen real de ventana de perforación solo con esta calculadora.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Las Fórmulas Usadas</h2>
+        <div class="formula-block">
+          <div class="formula-label">Velocidad Anular</div>
+          <div class="formula-eq">V = (24.5 × Q) ÷ (Dh² − Dp²)</div>
+          <div class="formula-note">Caudal en gpm, DI de hoyo/revestimiento y DE de tubería en pulgadas, velocidad en ft/min.</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Pérdida de Presión Anular por Fricción</div>
+          <div class="formula-eq">P = (1.4327 × 10⁻⁷ × MW × L × V²) ÷ (Dh − Dp)</div>
+          <div class="formula-note">Una estimación en unidades de campo de la presión por fricción que suma el fluido al circular de regreso por todo el largo del anular.</div>
+        </div>
+        <div class="formula-block">
+          <div class="formula-label">Densidad de Circulación Equivalente</div>
+          <div class="formula-eq">ECD = MW + (P ÷ 0.052 ÷ TVD)</div>
+          <div class="formula-note">Peso de lodo estático más la presión de fricción convertida de nuevo a un peso de lodo equivalente sobre la profundidad vertical verdadera.</div>
+        </div>
+
+        <h3>Dónde Encaja Esto</h3>
+        <p>El peso de lodo estático, el número con el que trabaja la <a href="/es/calculators/hydrostatic">calculadora de presión hidrostática</a>, es solo el punto de partida. El ECD es el número que hay que revisar contra el gradiente de fractura una vez que las bombas están encendidas — la misma comparación que hace la <a href="/es/calculators/mud-weight-window">calculadora de ventana de peso de lodo</a> entre presión de poro y fractura, solo que contra la cifra más alta de circulación en lugar de la estática. Si ya ocurrió una entrada, el siguiente paso es la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a>, no esta. En un pozo direccional u horizontal, recuerda que la profundidad medida es la que maneja la velocidad y la fricción a lo largo de todo el anular, pero solo la TVD convierte esa fricción de vuelta a un peso de lodo equivalente — las dos profundidades hacen trabajos distintos en esta fórmula, igual que en el resto de este sitio.</p>
+
+        <p>Esta es una estimación de una sola sección, tratando el anular como un espacio uniforme. Una sarta real con tubería de perforación, heavy weight y lastrabarrenas en distintos tamaños de hoyo y revestimiento tiene una velocidad y pérdida de fricción diferente en cada sección, por lo cual un programa de hidráulica completo hecho por un ingeniero de lodos no va a coincidir exactamente con este número — usa esto para entender la forma del problema, no para reemplazar ese programa.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p set:html={item.a} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const mw = num('ecd-mw'), tvd = num('ecd-tvd'), q = num('ecd-q'), len = num('ecd-len');
+    const dh = num('ecd-dh'), dp = num('ecd-dp');
+    const gap = dh - dp;
+    const areaTerm = dh * dh - dp * dp;
+
+    const av = areaTerm > 0 ? (24.5 * q) / areaTerm : 0;
+    const apl = gap > 0 ? (1.4327e-7 * mw * len * av * av) / gap : 0;
+    const ecd = tvd > 0 ? mw + apl / 0.052 / tvd : mw;
+
+    set('out-av', fmt(av, 0) + ' ft/min');
+    set('out-apl', fmt(apl, 0) + ' psi');
+    set('out-ecd', fmt(ecd, 2) + ' ppg');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>
