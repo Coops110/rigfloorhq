@@ -1,6 +1,6 @@
 # RigFloorHQ
 
-> RigFloorHQ is a free technical and career reference for the oil and gas drilling industry, covering rig operations, well control, drilling equipment, career progression, welding, and safety. Content is written for rig floor crews, engineers, and supervisors, and includes six interactive drilling calculators using formulas taught in IWCF/IADC well control certification. The site is available in English and Spanish (/es).
+> RigFloorHQ is a free technical and career reference for the oil and gas drilling industry, covering rig operations, well control, drilling equipment, career progression, welding, and safety. Content is written for rig floor crews, engineers, and supervisors, and includes 17 interactive drilling calculators (well control and pressure, torque and drag, volumetrics, tubular design, and unit conversions) using formulas taught in IWCF/IADC well control certification. The site is available in English and Spanish (/es).
 
 ## Core Reference
 
@@ -8,7 +8,7 @@
 - [Careers](https://rigfloorhq.com/careers): Rig job roles and hierarchy, from roustabout to company man.
 - [Equipment](https://rigfloorhq.com/equipment): Rig types, drill string components, and blowout preventers.
 - [Drilling Operations](https://rigfloorhq.com/drilling): How a well is drilled, well control, mud weight, casing design, directional drilling.
-- [Calculators](https://rigfloorhq.com/calculators): Hydrostatic pressure, kill sheet, and mud weight window calculators.
+- [Calculators](https://rigfloorhq.com/calculators): 17 interactive drilling calculators — hydrostatic pressure, kill sheet (vertical and horizontal), mud weight window, mud weight converter, ECD, gas migration, bullheading, buoyancy, riser margin, pipe pull margin, bit torque, flange ring gasket, lag and volume, ton-mile, drill pipe tally, and OD/depth correction.
 - [Welding](https://rigfloorhq.com/welding): Rig welding processes, certifications, and underwater welding.
 - [Safety](https://rigfloorhq.com/safety): Rig floor hazards, PPE requirements, and H2S safety.
 - [Glossary](https://rigfloorhq.com/glossary): 44-term A-Z reference of oilfield terminology.
