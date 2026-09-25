@@ -24,6 +24,8 @@ faq:
     a: "Not directly, but it raises equivalent circulating density, which can fracture the formation and cause losses. Losing mud to the formation reduces hydrostatic pressure, which can allow an influx. The connection is indirect but real."
 ---
 
+*Reviewed for accuracy by [Jabin Travis](/about#reviewed-by-a-working-driller), IADC WellSharp-certified driller.*
+
 Hole cleaning is one of those subjects that sounds like housekeeping and turns out to be the reason a well got stuck. In a vertical hole it more or less takes care of itself. Past about 50 degrees it stops being automatic, and the difference is not a matter of degree — the mechanism changes entirely.
 
 ## Key Takeaways

@@ -24,6 +24,8 @@ faq:
     a: "Divergence from the modelled line typically appears several connections before the absolute value looks unusual. That gap is the useful warning window, which is why the comparison against a calibrated model matters more than watching a raw number against a mental threshold."
 ---
 
+*Reviewed for accuracy by [Jabin Travis](/about#reviewed-by-a-working-driller), IADC WellSharp-certified driller.*
+
 Torque and drag are the most consistently available early warning on a rig, and among the most consistently misread. The mistake is nearly always the same: watching the number instead of the gap.
 
 A torque reading is not a diagnosis. It depends on depth, angle, hole size, string configuration and mud lubricity — so a figure that is entirely unremarkable on one well is a serious warning on another. The information is not in the value. It is in the difference between what the string should be doing and what it actually is.
