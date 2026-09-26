@@ -1,0 +1,230 @@
+---
+// Pilot interactive 3D viewer — poster-image-first, drag-to-rotate only, no auto-spin.
+// Geometry is procedurally generated (primitives only, no downloaded mesh/model file),
+// built from generic drillable-bridge-plug anatomy: mandrel, packing element, slip
+// wedges, compression cones. Not modeled on any specific manufacturer's product.
+---
+<div class="tool3d-wrap" role="img" aria-label="Interactive 3D model of a generic drillable bridge plug — drag to rotate">
+  <div class="tool3d-poster" id="tool3d-poster">
+    <svg viewBox="0 0 200 200" class="tool3d-poster-icon" aria-hidden="true">
+      <rect x="85" y="30" width="30" height="140" rx="4" fill="#3a4148"/>
+      <rect x="70" y="80" width="60" height="40" rx="6" fill="#1a1c1e"/>
+      <polygon points="70,80 100,55 130,80" fill="#5a6470"/>
+      <polygon points="70,120 100,145 130,120" fill="#5a6470"/>
+    </svg>
+    <div class="tool3d-poster-label">Tap to view 3D model — drag to rotate</div>
+  </div>
+  <canvas id="tool3d-canvas" class="tool3d-canvas" aria-hidden="true"></canvas>
+  <div class="tool3d-fallback" id="tool3d-fallback" hidden>
+    3D preview isn't available in this browser — the diagram above and the write-up below cover the same detail.
+  </div>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.169.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.169.0/examples/jsm/"
+  }
+}
+</script>
+
+<style>
+  .tool3d-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    max-height: 520px;
+    min-height: 340px;
+    background: radial-gradient(ellipse at 50% 45%, #333c45 0%, #1c2126 45%, #0e1113 100%);
+    border: 1px solid var(--iron, #2a2f35);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: grab;
+  }
+  .tool3d-wrap:active { cursor: grabbing; }
+  .tool3d-poster {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 14px;
+    background: radial-gradient(circle at 50% 40%, #23282d 0%, #14171a 80%);
+  }
+  .tool3d-poster-icon { width: 96px; height: 96px; }
+  .tool3d-poster-label {
+    color: #9aa4ad; font-size: 0.85rem; letter-spacing: 0.02em;
+  }
+  .tool3d-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: none; }
+  .tool3d-fallback {
+    position: absolute; inset: 0; display: none; align-items: center; justify-content: center;
+    padding: 24px; text-align: center; color: #9aa4ad; font-size: 0.9rem;
+  }
+</style>
+
+<script is:inline>
+  const wrap = document.querySelector('.tool3d-wrap');
+  const poster = document.getElementById('tool3d-poster');
+  const canvas = document.getElementById('tool3d-canvas');
+  const fallback = document.getElementById('tool3d-fallback');
+  if (!wrap || !poster || !canvas || !fallback) throw new Error('BridgePlug3D: expected elements missing');
+
+  let started = false;
+
+  async function start() {
+    if (started) return;
+    started = true;
+
+    const probe = document.createElement('canvas');
+    const hasWebGL = !!(probe.getContext('webgl') || probe.getContext('experimental-webgl'));
+    if (!hasWebGL) {
+      poster.style.display = 'none';
+      fallback.style.display = 'flex';
+      return;
+    }
+
+    const THREE = await import('three');
+    const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
+    const { RoomEnvironment } = await import('three/addons/environments/RoomEnvironment.js');
+
+    poster.style.display = 'none';
+    canvas.style.display = 'block';
+
+    const scene = new THREE.Scene();
+    scene.background = null;
+
+    const camera = new THREE.PerspectiveCamera(38, wrap.clientWidth / wrap.clientHeight, 0.1, 100);
+    camera.position.set(3.0, 0.9, 3.0);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(wrap.clientWidth, wrap.clientHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.25;
+
+    // A soft procedural room environment gives the metal real reflections
+    // instead of flat, lightless PBR — the single biggest lever for making
+    // it read as premium hardware instead of a gray silhouette.
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+    // Three-point studio lighting, brighter and warmer than a flat single light.
+    const key = new THREE.DirectionalLight(0xfff4e6, 3.4);
+    key.position.set(3, 4.5, 2.5);
+    const fill = new THREE.DirectionalLight(0x9ecbff, 1.1);
+    fill.position.set(-3.5, 1.2, 2);
+    const rim = new THREE.DirectionalLight(0xffffff, 2.4);
+    rim.position.set(-1, 2.5, -4);
+    const kicker = new THREE.PointLight(0xffffff, 1.4, 12);
+    kicker.position.set(2, -0.5, 3);
+    const ambient = new THREE.HemisphereLight(0x6b7a8c, 0x14100c, 0.9);
+    scene.add(key, fill, rim, kicker, ambient);
+
+    // --- Generic drillable bridge plug, built from primitives ---
+    // Anatomy per generic industry reference (mandrel / slips / compression
+    // cones / packing element), cross-checked against US4784226A's public,
+    // expired cross-section drawing for proportion only — no branded or
+    // company-specific geometry copied.
+    const group = new THREE.Group();
+
+    const metal = new THREE.MeshStandardMaterial({ color: 0x9aa4ae, metalness: 0.9, roughness: 0.28 });
+    const darkMetal = new THREE.MeshStandardMaterial({ color: 0x5b636b, metalness: 0.85, roughness: 0.35 });
+    const rubber = new THREE.MeshStandardMaterial({ color: 0x2a2a2c, metalness: 0.1, roughness: 0.7 });
+
+    // Central mandrel (full-length core rod)
+    const mandrel = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.22, 3.2, 32), metal);
+    group.add(mandrel);
+
+    // Packing element (rubber, mid-body, slightly larger OD)
+    const packing = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 0.9, 32), rubber);
+    packing.position.y = 0.1;
+    group.add(packing);
+
+    // Backup shoes either side of the packing element
+    [0.62, -0.42].forEach((y) => {
+      const shoe = new THREE.Mesh(new THREE.CylinderGeometry(0.44, 0.44, 0.12, 32), darkMetal);
+      shoe.position.y = y;
+      group.add(shoe);
+    });
+
+    // Compression cones (top and bottom) that drive the slips outward
+    const coneTop = new THREE.Mesh(new THREE.ConeGeometry(0.42, 0.5, 32), metal);
+    coneTop.position.y = 1.1;
+    group.add(coneTop);
+    const coneBottom = new THREE.Mesh(new THREE.ConeGeometry(0.42, 0.5, 32), metal);
+    coneBottom.position.y = -0.95;
+    coneBottom.rotation.x = Math.PI;
+    group.add(coneBottom);
+
+    // Slip wedges — segmented rings with toothed ridges, top and bottom
+    function buildSlipRing(y) {
+      const ring = new THREE.Group();
+      const segCount = 6;
+      for (let i = 0; i < segCount; i++) {
+        const seg = new THREE.Mesh(
+          new THREE.BoxGeometry(0.14, 0.34, 0.05),
+          darkMetal
+        );
+        const angle = (i / segCount) * Math.PI * 2;
+        seg.position.set(Math.cos(angle) * 0.46, y, Math.sin(angle) * 0.46);
+        seg.lookAt(0, y, 0);
+        ring.add(seg);
+      }
+      return ring;
+    }
+    group.add(buildSlipRing(0.85));
+    group.add(buildSlipRing(-0.68));
+
+    // End subs (upper fishing neck, lower guide nose)
+    const topSub = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.22, 0.4, 24), metal);
+    topSub.position.y = 1.55;
+    group.add(topSub);
+    const bottomNose = new THREE.Mesh(new THREE.ConeGeometry(0.16, 0.35, 24), metal);
+    bottomNose.position.y = -1.55;
+    group.add(bottomNose);
+
+    scene.add(group);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.enablePan = false;
+    controls.enableZoom = false;
+    controls.minPolarAngle = Math.PI * 0.18;
+    controls.maxPolarAngle = Math.PI * 0.82;
+    controls.target.set(0, 0, 0);
+    controls.update();
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function onResize() {
+      const w = wrap.clientWidth, h = wrap.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    }
+    window.addEventListener('resize', onResize);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    // No auto-rotation ever — reduced-motion users get identical behavior to
+    // everyone else here since nothing animates without user input.
+    animate();
+    void reduceMotion;
+  }
+
+  // Poster-image-first: only load Three.js and build the scene once the user
+  // taps, or the viewer scrolls into view — never on initial page load.
+  poster.addEventListener('click', start, { once: true });
+  const io = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        // Still requires a tap per the agreed UX spec — this just pre-warms
+        // nothing; kept as a hook if we later want true scroll-triggered load.
+      }
+    }
+  }, { threshold: 0.4 });
+  io.observe(wrap);
+</script>

@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import BridgePlug3D from '../../components/BridgePlug3D.astro';
+
+const faq = [
+  {
+    q: 'What is a bridge plug used for?',
+    a: 'A bridge plug creates a pressure-tight mechanical seal inside casing or tubing, isolating everything below it from everything above it. It is run to abandon a depleted zone, to protect a lower zone while working over or completing a zone higher up, to hold pressure during a casing integrity test, or as part of temporary or permanent well abandonment.',
+  },
+  {
+    q: 'What is the difference between a drillable and a retrievable bridge plug?',
+    a: 'A drillable (cast iron) bridge plug is built from cast iron and composite components specifically so it can be milled out with a rig if the zone below it ever needs to be re-accessed — it is designed to be destroyed, not recovered intact. A retrievable bridge plug uses a steel body and a release mechanism (typically a J-slot or similar profile) so it can be latched, unset, and pulled back out of the well whole, then reused.',
+  },
+  {
+    q: 'How is a bridge plug set downhole?',
+    a: 'Two setting methods cover most jobs. Wireline setting runs the plug on electric line with a setting tool that fires a small explosive charge to drive the slips and element into place — fast, and the standard choice when tubing or coiled tubing isn\'t already in the hole. Mechanical or hydraulic setting runs the plug on a work string, then sets it by applying weight and rotation, or by applying hydraulic pressure through the string, depending on the tool.',
+  },
+  {
+    q: 'What is the difference between a bridge plug and a cement retainer?',
+    a: 'Both isolate a zone, but a cement retainer has a valve through its body that opens to let cement be pumped through it under pressure during a squeeze job, then closes to hold pressure from above once the job is done. A bridge plug has no through-valve at all — it is a pure mechanical seal, set and left, with nothing designed to pump through it afterward.',
+  },
+  {
+    q: 'What causes a bridge plug to fail?',
+    a: 'The most common failure is element extrusion or leakage once differential pressure or temperature exceeds what the specific plug is rated for. Slip failure — the plug sliding rather than biting — happens most often in damaged, worn, or undersized casing. A retrievable plug can also fail to release cleanly if its J-slot or setting mechanism has corroded or been damaged since it was set, and a drillable plug can be slower than expected to mill if its composite doesn\'t break down the way its design intends.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Bridge Plug: What It Is, How It's Set, Drillable vs. Retrievable"
+  description="What a bridge plug is, when it's run, how drillable and retrievable versions are set and retrieved, generic pressure/temperature ratings, common failure modes, and how it differs from a cement retainer."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Bridge Plug', href: '/equipment/bridge-plug' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Bridge <span>Plug</span></h1>
+    <p class="page-hero-sub">A downhole tool that seals off one section of the wellbore from another — set once, either drilled out later or pulled back out whole, depending on which type is run.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <BridgePlug3D />
+      <div class="prose">
+        <h2 id="what-it-is">What a Bridge Plug Is</h2>
+        <p>A bridge plug is a downhole tool run on wireline or a work string and set inside casing or tubing to create a pressure-tight mechanical seal across the full bore. Once set, it physically separates the wellbore into two isolated sections — nothing flows past it in either direction.</p>
+        <p>The tool itself is built around a set of slips that bite into the casing wall to hold it in place under differential pressure, and an elastomer sealing element, compressed between two backup shoes, that does the actual sealing. It's a single-purpose isolation tool, not a valve or a flow-control device — once it's set, the only way to change what's happening at that depth is to either retrieve it (if it's a retrievable design) or drill it out (if it's a drillable one).</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="when-used">When and Why a Bridge Plug Is Run</h2>
+        <p>Bridge plugs show up anywhere a well needs a hard, reliable barrier at a specific depth rather than a full workover of everything below it. The most common jobs:</p>
+        <ul>
+          <li><strong>Zonal isolation.</strong> Sealing off a depleted or watered-out producing zone so a different zone, higher in the same wellbore, can be perforated and produced without interference.</li>
+          <li><strong>Protecting a lower zone during workover or completion work</strong> being done higher up the same well, so nothing from the work above can affect pressure or fluid in the isolated interval below.</li>
+          <li><strong>Pressure testing <a href="/drilling/casing">casing</a></strong> above a known depth, using the plug as the isolation point that lets the test pressure be held against a defined interval instead of the whole wellbore.</li>
+          <li><strong>Temporary or permanent well abandonment</strong>, where regulatory plugging requirements call for a mechanical barrier at specific depths, often backed up with cement above it.</li>
+        </ul>
+
+        <h2 id="setting-retrieval">How It's Set and Retrieved</h2>
+        <p>Setting method and retrievability are two separate choices, and a plug is specified on both:</p>
+        <p><strong>Wireline-set</strong> plugs run on electric line with a dedicated setting tool. The setting tool fires a small explosive charge (a "pyrotechnic" or "power charge") on command from surface, which drives a mandrel through the plug's body, compressing the slips outward into the casing wall and squeezing the sealing element into place. This is the fastest, most common setting method when there's no tubing or coiled tubing already in the hole to run on instead.</p>
+        <p><strong>Mechanical or hydraulic-set</strong> plugs run on a jointed work string or coiled tubing. A mechanical-set tool is triggered by applying weight and rotation from surface once it's at depth; a hydraulic-set tool is triggered by pumping pressure down the string against a ball or plug seated in the setting tool. Both are slower to rig up than a wireline run but are the only option when the plug needs to go in alongside other tubing-conveyed work in the same trip.</p>
+        <p><strong>Drillable (cast iron) plugs</strong> are built from cast iron and composite slips and elements specifically so they mill out cleanly if the zone below is ever needed again — the whole design assumes it will eventually be destroyed by a bit, not recovered. <strong>Retrievable plugs</strong> use a steel body and a mechanical release profile, most commonly a J-slot, so a retrieving tool run back down on wireline or tubing can latch it, rotate or pull to unset the slips and element, and bring the whole assembly back out of the hole intact for reuse or inspection.</p>
+
+        <h2 id="ratings">Pressure and Temperature Ratings</h2>
+        <p>Ratings vary by manufacturer and model, but as a generic guide: standard-service bridge plugs are commonly rated for differential pressures in the 5,000–10,000 psi range and temperatures up to roughly 300–350°F, which covers the large majority of conventional wells. High-pressure/high-temperature (HP/HT) designs extend well beyond that on both axes, using different elastomer compounds and metallurgy to hold their seal in wells where standard-service elements would extrude, harden, or fail outright. The rated figures for the specific plug being run should always be confirmed against the manufacturer's actual spec sheet for that model — this range is a starting reference, not a substitute for checking the real tool.</p>
+
+        <h2 id="materials">Materials and Millability</h2>
+        <p>The material choice follows directly from whether the plug is meant to be destroyed or recovered. Drillable plugs use cast iron bodies and slips, and composite (rather than steel) backup shoes and setting components, chosen specifically because they break apart into small, millable pieces under a drill bit rather than binding or spinning. Retrievable plugs use high-strength steel throughout, since the whole point is that the assembly survives being unset, pulled, and run again — millability is never a design goal for a retrievable tool. Sealing elements on both types are typically a nitrile or HNBR elastomer for standard service, moving to more chemically resistant compounds (such as HNBR blends or PEEK-based materials) for HP/HT or corrosive-fluid service.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Element extrusion or leakage</strong> once differential pressure or temperature at depth exceeds what the specific plug is rated for — the most common way a bridge plug actually fails to hold.</li>
+          <li><strong>Slip failure to bite</strong> into damaged, corroded, or undersized casing, letting the whole plug slide under load instead of anchoring.</li>
+          <li><strong>Premature setting</strong> in the hole from shock or vibration during run-in, most often on a wireline-set tool if the setting tool's safety mechanism is compromised.</li>
+          <li><strong>Failed retrieval</strong> on a retrievable plug, if its J-slot or release mechanism has corroded, or scale/debris has built up around it, since it was originally set.</li>
+          <li><strong>Slow or incomplete milling</strong> on a drillable plug, if its composite components don't break down the way the design intends, extending rig time on what should be a routine drill-out.</li>
+        </ul>
+
+        <h2 id="vs-cement-retainer">Bridge Plug vs. Cement Retainer</h2>
+        <p>The two tools get confused because they do similar-looking isolation jobs, but the mechanical difference is simple: a <strong>cement retainer</strong> has a valve running through its body. That valve opens to let cement be pumped through it under pressure during a squeeze-cementing job, then closes afterward to hold pressure from above once the job is complete. A <strong>bridge plug</strong> has no through-valve at all — it's a pure mechanical seal with nothing designed to pump through it once it's set. If the job requires pumping cement (or anything else) through the tool itself, it calls for a retainer; if it's a straightforward isolation seal with no pumping through it afterward, it calls for a bridge plug.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#when-used">When It's Used</a>
+          <a href="#setting-retrieval">Setting &amp; Retrieval</a>
+          <a href="#ratings">Pressure &amp; Temp Ratings</a>
+          <a href="#materials">Materials &amp; Millability</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-cement-retainer">vs. Cement Retainer</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Ratings and specifications vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/bop" class="card-link">→ Blowout Preventer Types &amp; How a BOP Works</a><br><br>
+          <a href="/drilling/well-control" class="card-link">→ Well Control &amp; Kicks</a><br><br>
+          <a href="/calculators/kill-sheet" class="card-link">→ Kill Sheet Calculator</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
