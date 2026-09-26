@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'Why does MAASP change every time mud weight changes, not just after a new LOT/FIT?',
+    a: 'The LOT/FIT only runs once, right after drilling out the shoe, and it finds the formation\'s limit at whatever mud weight was in the hole that day. MAASP is not that test result — it is the live gap between today\'s mud weight and that original limit, converted back into a surface pressure. Weight the mud up and the gap shrinks; weight it down and the gap grows. Recalculate MAASP any time mud weight changes, not just once after the test.',
+  },
+  {
+    q: 'What does it mean if the current mud weight is already higher than the LOT/FIT mud weight?',
+    a: 'MAASP comes out negative, which means the shoe is already carrying more hydrostatic load than the LOT/FIT ever proved it could take, before any surface pressure is added at all. That is not a normal operating state — it calls for the well control supervisor\'s attention immediately, not a wait-and-see approach.',
+  },
+  {
+    q: 'Why is shoe TVD the depth used here, not the well\'s total depth?',
+    a: 'The LOT/FIT is run against the formation directly below the last casing shoe, which is the weakest point in the open hole exposed below that casing string. Every surface-pressure limit calculated from that test is anchored to that same shoe depth, regardless of how much further the well is eventually drilled.',
+  },
+  {
+    q: 'How does MAASP relate to the mud weight window?',
+    a: 'They describe the same fracture limit in different units. The <a href="/calculators/mud-weight-window">mud weight window calculator</a> plots that limit as a fracture gradient in ppg-equivalent terms; MAASP restates it as a live surface pressure in psi at today\'s mud weight. Converted to the same units, the two should never disagree.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="MAASP Calculator: Maximum Allowable Annular Surface Pressure"
+  description="Free MAASP calculator: maximum allowable annular surface pressure at the casing shoe from your LOT/FIT test, current mud weight, and shoe TVD."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'MAASP', href: '/calculators/maasp' }]}
+  lang="en"
+  alternateHref="/es/calculators/maasp"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators/maasp" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>MAASP <span>Calculator</span></h1>
+    <p class="page-hero-sub">Maximum Allowable Annular Surface Pressure converts your leak-off or formation integrity test into a live surface-pressure limit at the current mud weight — the number that says how much shut-in casing pressure the shoe can actually take before it starts taking losses.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Test &amp; Mud Data</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="maasp-lp">LOT/FIT Pressure (psi)</label>
+              <input type="number" id="maasp-lp" value="415" step="1">
+            </div>
+            <div class="input-group">
+              <label for="maasp-lmw">LOT/FIT Mud Weight (ppg)</label>
+              <input type="number" id="maasp-lmw" value="10.5" step="0.1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="maasp-mw">Current Mud Weight in Use (ppg)</label>
+              <input type="number" id="maasp-mw" value="9.1" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="maasp-tvd">Shoe TVD (ft)</label>
+              <input type="number" id="maasp-tvd" value="6108" step="1">
+            </div>
+          </div>
+
+          <div class="calc-output visible" id="maasp-output" style="margin-top:20px;">
+            <div class="output-line"><span class="output-label">Mud Weight Margin to LOT/FIT</span><span class="output-value" id="out-margin">—</span></div>
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">MAASP</span><span class="output-value" id="out-maasp">—</span></div>
+          </div>
+        </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>This is a reference tool, not an operational authority.</strong> Real MAASP limits used during well control belong to your certified well control supervisor, working from the actual LOT/FIT recorded on this well and your company's approved procedures. Never set a real surface-pressure limit from this calculator alone.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formula Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">Maximum Allowable Annular Surface Pressure</div>
+          <div class="formula-eq">MAASP = LOT/FIT Pressure + [(LOT/FIT MW − Current MW) × 0.052 × Shoe TVD]</div>
+          <div class="formula-note">LOT/FIT pressure in psi, both mud weights in ppg, shoe TVD in feet, MAASP in psi.</div>
+        </div>
+
+        <h3>Where This Fits</h3>
+        <p>MAASP isn't a fixed number for the well — it moves every time mud weight changes, which is why it needs recalculating whenever mud is weighted up or down, not recorded once after the LOT/FIT and forgotten. The test itself, run right after drilling out the shoe, finds the pressure the formation just below it can take before breaking down or taking losses, at whatever mud weight was in the hole that day. Everything after that test is really asking one question: how much surface pressure is left before that same formation, at today's mud weight, hits that original limit? Feed in the LOT/FIT pressure, LOT/FIT mud weight, and shoe TVD from the completed test alongside whatever mud weight is currently in use, and this calculator answers exactly that.</p>
+        <p>MAASP is the live number a kick tolerance figure is built on — a small MAASP means a small kick before the shoe is at risk, which is exactly what the <a href="/calculators/kick-tolerance">kick tolerance calculator</a> works out next. It's also one of two ways well control programs express the same limit: MAASP states it as a surface pressure in psi, while Maximum Allowable Mud Weight restates the identical limit as an equivalent mud weight — same shoe, same test, just two different units for the same ceiling. If a kick is already underway and mud is being weighted up to kill it, check the new MAASP against actual shut-in casing pressure on the <a href="/calculators/kill-sheet">kill sheet calculator</a> rather than assuming today's figure still holds once mud weight changes.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p set:html={item.a} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const lp = num('maasp-lp'), lmw = num('maasp-lmw'), mw = num('maasp-mw'), tvd = num('maasp-tvd');
+    const margin = lmw - mw;
+    const maasp = lp + margin * 0.052 * tvd;
+
+    set('out-margin', fmt(margin, 1) + ' ppg');
+    set('out-maasp', fmt(maasp, 0) + ' psi');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Por qué cambia el MAASP cada vez que cambia el peso de lodo, y no solo después de un nuevo LOT/FIT?',
+    a: 'El LOT/FIT solo se realiza una vez, justo después de perforar bajo la zapata, y encuentra el límite de la formación al peso de lodo que estaba en el pozo ese día. El MAASP no es ese resultado de prueba — es la brecha en vivo entre el peso de lodo de hoy y ese límite original, convertida de nuevo en una presión de superficie. Sube el peso del lodo y la brecha se reduce; bájalo y la brecha crece. Recalcula el MAASP cada vez que cambie el peso de lodo, no solo una vez después de la prueba.',
+  },
+  {
+    q: '¿Qué significa si el peso de lodo actual ya es mayor que el peso de lodo del LOT/FIT?',
+    a: 'El MAASP sale negativo, lo cual significa que la zapata ya está cargando más peso hidrostático del que el LOT/FIT alguna vez probó que podía soportar, antes de agregar cualquier presión de superficie. Ese no es un estado operativo normal — requiere la atención inmediata del supervisor de control de pozos, no esperar a ver qué pasa.',
+  },
+  {
+    q: '¿Por qué se usa el TVD de la zapata aquí, y no la profundidad total del pozo?',
+    a: 'El LOT/FIT se realiza contra la formación justo debajo de la última zapata de revestimiento, que es el punto más débil del hoyo abierto expuesto bajo esa sarta de revestimiento. Todo límite de presión de superficie calculado a partir de esa prueba queda anclado a esa misma profundidad de zapata, sin importar cuánto más se perfore el pozo después.',
+  },
+  {
+    q: '¿Cómo se relaciona el MAASP con la ventana de peso de lodo?',
+    a: 'Describen el mismo límite de fractura en unidades distintas. La <a href="/es/calculators/mud-weight-window">calculadora de ventana de peso de lodo</a> grafica ese límite como un gradiente de fractura en términos equivalentes de ppg; el MAASP lo expresa como una presión de superficie en vivo al peso de lodo de hoy. Convertidos a las mismas unidades, ambos nunca deberían estar en desacuerdo.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Calculadora de MAASP: Presión Máxima Permisible en Superficie del Anular"
+  description="Calculadora de MAASP gratis: presión máxima permisible en superficie del anular en la zapata a partir de tu prueba LOT/FIT, peso de lodo actual, y TVD de zapata."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'MAASP', href: '/es/calculators/maasp' }]}
+  lang="es"
+  alternateHref="/calculators/maasp"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/maasp" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Calculadora de <span>MAASP</span></h1>
+    <p class="page-hero-sub">El MAASP convierte tu prueba de fuga o de integridad de formación en un límite de presión de superficie en vivo al peso de lodo actual — el número que indica cuánta presión de revestimiento cerrada puede soportar realmente la zapata antes de empezar a tomar pérdidas.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Datos de Prueba y Lodo</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="maasp-lp">Presión LOT/FIT (psi)</label>
+              <input type="number" id="maasp-lp" value="415" step="1">
+            </div>
+            <div class="input-group">
+              <label for="maasp-lmw">Peso de Lodo LOT/FIT (ppg)</label>
+              <input type="number" id="maasp-lmw" value="10.5" step="0.1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="maasp-mw">Peso de Lodo Actual en Uso (ppg)</label>
+              <input type="number" id="maasp-mw" value="9.1" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="maasp-tvd">TVD de Zapata (ft)</label>
+              <input type="number" id="maasp-tvd" value="6108" step="1">
+            </div>
+          </div>
+
+          <div class="calc-output visible" id="maasp-output" style="margin-top:20px;">
+            <div class="output-line"><span class="output-label">Margen de Peso de Lodo al LOT/FIT</span><span class="output-value" id="out-margin">—</span></div>
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">MAASP</span><span class="output-value" id="out-maasp">—</span></div>
+          </div>
+        </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>Esta es una herramienta de referencia, no una autoridad operacional.</strong> Los límites reales de MAASP usados en control de pozos pertenecen a tu supervisor certificado de control de pozos, trabajando con el LOT/FIT real registrado en este pozo y los procedimientos aprobados de tu compañía. Nunca establezcas un límite real de presión de superficie solo con esta calculadora.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>La Fórmula Usada</h2>
+        <div class="formula-block">
+          <div class="formula-label">Presión Máxima Permisible en Superficie del Anular</div>
+          <div class="formula-eq">MAASP = Presión LOT/FIT + [(MW LOT/FIT − MW Actual) × 0.052 × TVD de Zapata]</div>
+          <div class="formula-note">Presión LOT/FIT en psi, ambos pesos de lodo en ppg, TVD de zapata en pies, MAASP en psi.</div>
+        </div>
+
+        <h3>Dónde Encaja Esto</h3>
+        <p>El MAASP no es un número fijo para el pozo — se mueve cada vez que cambia el peso de lodo, por lo que hay que recalcularlo cada vez que el lodo se sube o se baja de peso, no registrarlo una sola vez después del LOT/FIT y olvidarlo. La prueba en sí, realizada justo después de perforar bajo la zapata, encuentra la presión que la formación justo debajo puede soportar antes de romperse o tomar pérdidas, al peso de lodo que estaba en el pozo ese día. Todo lo que viene después de esa prueba realmente pregunta una sola cosa: ¿cuánta presión de superficie queda antes de que esa misma formación, al peso de lodo de hoy, alcance ese límite original? Ingresa la presión LOT/FIT, el peso de lodo LOT/FIT, y el TVD de zapata de la prueba ya realizada junto con el peso de lodo actualmente en uso, y esta calculadora responde exactamente eso.</p>
+        <p>El MAASP es el número en vivo sobre el que se construye la tolerancia a la surgencia — un MAASP pequeño significa que una surgencia pequeña ya pone en riesgo la zapata, que es exactamente lo que calcula después la <a href="/es/calculators/kick-tolerance">calculadora de tolerancia a la surgencia</a>. También es una de dos formas en que los programas de control de pozos expresan el mismo límite: el MAASP lo expresa como una presión de superficie en psi, mientras que el Peso de Lodo Máximo Permisible expresa el mismo límite como un peso de lodo equivalente — la misma zapata, la misma prueba, solo dos unidades distintas para el mismo techo. Si ya hay una surgencia en curso y se está subiendo el peso del lodo para matarla, revisa el nuevo MAASP contra la presión de revestimiento cerrada real en la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a>, en lugar de asumir que la cifra de hoy sigue siendo válida una vez que cambia el peso de lodo.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p set:html={item.a} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const lp = num('maasp-lp'), lmw = num('maasp-lmw'), mw = num('maasp-mw'), tvd = num('maasp-tvd');
+    const margin = lmw - mw;
+    const maasp = lp + margin * 0.052 * tvd;
+
+    set('out-margin', fmt(margin, 1) + ' ppg');
+    set('out-maasp', fmt(maasp, 0) + ' psi');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

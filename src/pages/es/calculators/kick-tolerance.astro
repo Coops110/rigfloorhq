@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Por qué se asume que el gradiente de gas es cero en lugar de un número real?',
+    a: 'Es el caso deliberadamente conservador, no un promedio. Una entrada real con cualquier contenido líquido lleva algo de gradiente hidrostático y dejaría más margen real del que muestra este número, pero no hay forma de saber qué entró realmente hasta que se circula y se mide. Asumir gradiente cero — una surgencia de gas puro y ligero — da la cifra de tolerancia a la surgencia más pequeña y menos indulgente, así que el número de referencia nunca sobreestima cuánto margen realmente hay.',
+  },
+  {
+    q: '¿Qué se considera una tolerancia a la surgencia aceptable antes de seguir perforando?',
+    a: 'No hay un número universal. La mayoría de los operadores fijan una tolerancia mínima, a menudo expresada como una cantidad requerida de barriles a un peso de lodo dado, como parte de su propia política de control de pozos antes de perforar una sección. Esta calculadora revisa un punto de asentamiento que ya tienes contra ese tipo de estándar — no establece el estándar en sí.',
+  },
+  {
+    q: '¿Por qué se usa el MAASP aquí en lugar de la presión bruta del LOT/FIT?',
+    a: 'El MAASP ya refleja el peso de lodo de hoy medido contra la línea base original del LOT/FIT. Usar la presión bruta de la prueba aquí ignoraría cualquier cambio de peso de lodo ocurrido desde entonces — siempre corre primero la <a href="/es/calculators/maasp">calculadora de MAASP</a>, y luego trae ese resultado actual a esta.',
+  },
+  {
+    q: '¿Un peso de lodo más pesado siempre reduce la tolerancia a la surgencia?',
+    a: 'No automáticamente, y no en la dirección que parece intuitiva. El peso de lodo aparece dos veces en este cálculo: normalmente sube el MAASP mismo (un lodo más pesado se acerca más al peso de lodo del LOT/FIT, reduciendo ese margen), y también aumenta la pérdida hidrostática restada para una altura de surgencia dada. Ambos efectos normalmente bajan la tolerancia a la surgencia al subir el peso de lodo — vuelve a calcular en lugar de asumir cualquiera de las dos direcciones de memoria.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Calculadora de Tolerancia a la Surgencia (ppg)"
+  description="Calculadora de tolerancia a la surgencia gratis: la surgencia equivalente en ppg que tu MAASP actual puede absorber en la zapata, usando el supuesto conservador estándar de gradiente cero."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Tolerancia a la Surgencia', href: '/es/calculators/kick-tolerance' }]}
+  lang="es"
+  alternateHref="/calculators/kick-tolerance"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/kick-tolerance" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Calculadora de <span>Tolerancia a la Surgencia</span></h1>
+    <p class="page-hero-sub">Convierte tu MAASP en la surgencia máxima equivalente en ppg que la zapata puede absorber antes de alcanzar ese límite de presión de superficie, usando el supuesto conservador estándar de gas con gradiente cero.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🎚 Datos de MAASP y Surgencia</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="kt-maasp">MAASP (psi)</label>
+              <input type="number" id="kt-maasp" value="600" step="1">
+            </div>
+            <div class="input-group">
+              <label for="kt-mw">Peso de Lodo (ppg)</label>
+              <input type="number" id="kt-mw" value="12.0" step="0.1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="kt-hif">Altura de la Surgencia (ft)</label>
+              <input type="number" id="kt-hif" value="150" step="1">
+            </div>
+            <div class="input-group">
+              <label for="kt-tvd">TVD de Zapata (ft)</label>
+              <input type="number" id="kt-tvd" value="10000" step="1">
+            </div>
+          </div>
+
+          <div class="calc-output visible" id="kt-output" style="margin-top:20px;">
+            <div class="output-line"><span class="output-label">Pérdida Hidrostática por la Surgencia</span><span class="output-value" id="out-loss">—</span></div>
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Tolerancia a la Surgencia</span><span class="output-value" id="out-kt">—</span></div>
+          </div>
+        </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>Esta es una herramienta de referencia, no una autoridad operacional.</strong> Las cifras reales de tolerancia a la surgencia usadas en la planificación del pozo o en un evento real de control de pozos pertenecen a tu supervisor certificado de control de pozos, trabajando con los procedimientos aprobados de tu compañía y los datos reales de revestimiento y presión de poro de este pozo. Nunca establezcas un límite real de tolerancia a la surgencia solo con esta calculadora.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>La Fórmula Usada</h2>
+        <div class="formula-block">
+          <div class="formula-label">Tolerancia a la Surgencia</div>
+          <div class="formula-eq">KT = [MAASP − (Altura de Surgencia × MW × 0.052)] ÷ (0.052 × TVD de Zapata)</div>
+          <div class="formula-note">MAASP en psi, altura de surgencia y TVD de zapata en pies, peso de lodo en ppg, tolerancia a la surgencia en ppg-equivalente.</div>
+        </div>
+
+        <h3>Dónde Encaja Esto</h3>
+        <p>La tolerancia a la surgencia toma el límite de presión de superficie de la <a href="/es/calculators/maasp">calculadora de MAASP</a> y lo expresa como la surgencia máxima equivalente en ppg que la zapata puede absorber antes de alcanzar ese límite. Funciona con un supuesto deliberadamente conservador: trata la entrada como si tuviera gradiente hidrostático cero, tal como se comporta una surgencia de gas puro — el peor caso, no un promedio. Una entrada real con cualquier contenido líquido lleva algo de gradiente y dejaría más margen real del que muestra este número, pero un perforador no tiene forma de saber qué entró realmente hasta que se circula y se mide, así que la cifra de referencia debe asumir el fluido más ligero y menos indulgente en lugar de adivinar.</p>
+        <p>Una tolerancia a la surgencia pequeña o negativa significa que hay poco o ningún margen de error al peso de lodo y punto de asentamiento actuales — incluso una altura de surgencia modesta podría llevar a la zapata más allá de su límite probado, que es exactamente el escenario que esta verificación existe para detectar antes de que ocurra, no después. El mismo cálculo funciona en la otra dirección durante la planificación del pozo: en lugar de revisar un punto de asentamiento ya fijado, los planificadores trabajan hacia atrás desde una tolerancia mínima requerida para decidir dónde debe ir la siguiente zapata. Vuelve a calcular el MAASP primero cada vez que cambie el peso de lodo — un MAASP desactualizado llevado a esta calculadora subestimará o sobreestimará el número real sin ninguna advertencia.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p set:html={item.a} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const maasp = num('kt-maasp'), mw = num('kt-mw'), hif = num('kt-hif'), tvd = num('kt-tvd');
+    const loss = hif * mw * 0.052;
+    const kt = tvd > 0 ? (maasp - loss) / (0.052 * tvd) : 0;
+
+    set('out-loss', fmt(loss, 0) + ' psi');
+    set('out-kt', fmt(kt, 2) + ' ppg');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

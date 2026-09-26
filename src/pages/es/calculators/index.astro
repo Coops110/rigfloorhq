@@ -94,6 +94,14 @@ import Footer from '../../../components/Footer.astro';
           <td>Necesitas el peso de lodo ajustado por fricción mientras circulas, no solo el estático</td>
           <td><a href="/es/calculators/ecd">ECD</a></td>
         </tr>
+        <tr>
+          <td>Tienes un LOT/FIT reciente y necesitas el límite de presión de superficie de hoy</td>
+          <td><a href="/es/calculators/maasp">MAASP</a></td>
+        </tr>
+        <tr>
+          <td>Necesitas saber qué tan grande puede ser una surgencia antes de poner en riesgo la zapata</td>
+          <td><a href="/es/calculators/kick-tolerance">Tolerancia a la Surgencia</a></td>
+        </tr>
       </tbody>
     </table>
 
@@ -215,6 +223,20 @@ import Footer from '../../../components/Footer.astro';
         <p class="card-formula"><strong>Fórmula:</strong> ECD = MW + (Pérdida de Presión Anular ÷ 0.052 ÷ TVD)</p>
         <a href="/es/calculators/ecd" class="card-link">Abrir Calculadora →</a>
       </div>
+      <div class="card">
+        <span class="card-icon">🧭</span>
+        <h3>Calculadora de MAASP</h3>
+        <p>Presión máxima permisible en superficie del anular en la zapata a partir de tu prueba LOT/FIT y peso de lodo actual.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> MAASP = Presión LOT/FIT + [(MW LOT/FIT − MW Actual) × 0.052 × TVD de Zapata]</p>
+        <a href="/es/calculators/maasp" class="card-link">Abrir Calculadora →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎚</span>
+        <h3>Calculadora de Tolerancia a la Surgencia</h3>
+        <p>La surgencia equivalente en ppg que tu MAASP actual puede absorber en la zapata, usando el supuesto estándar de gradiente cero.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> KT = [MAASP − (Alt. Surgencia × MW × 0.052)] ÷ (0.052 × TVD)</p>
+        <a href="/es/calculators/kick-tolerance" class="card-link">Abrir Calculadora →</a>
+      </div>
     </div>
   </section>
 
@@ -284,7 +306,9 @@ import Footer from '../../../components/Footer.astro';
           { "@type": "ListItem", "position": 13, "name": "Calculadora de Margen de Riser", "url": "https://rigfloorhq.com/es/calculators/riser-margin" },
           { "@type": "ListItem", "position": 14, "name": "Margen de Suabeo: Mojada y Seca", "url": "https://rigfloorhq.com/es/calculators/pipe-pull-margin" },
           { "@type": "ListItem", "position": 15, "name": "Adiciones de Hoja de Control Horizontal", "url": "https://rigfloorhq.com/es/calculators/kill-sheet-horizontal" },
-          { "@type": "ListItem", "position": 16, "name": "Calculadora de ECD", "url": "https://rigfloorhq.com/es/calculators/ecd" }
+          { "@type": "ListItem", "position": 16, "name": "Calculadora de ECD", "url": "https://rigfloorhq.com/es/calculators/ecd" },
+          { "@type": "ListItem", "position": 17, "name": "Calculadora de MAASP", "url": "https://rigfloorhq.com/es/calculators/maasp" },
+          { "@type": "ListItem", "position": 18, "name": "Calculadora de Tolerancia a la Surgencia", "url": "https://rigfloorhq.com/es/calculators/kick-tolerance" }
         ]
       },
       {

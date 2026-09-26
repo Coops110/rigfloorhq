@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'Why does this assume the gas gradient is zero instead of a real number?',
+    a: 'It is the deliberately conservative case, not an average one. A real influx with any liquid content carries some hydrostatic gradient and would leave more actual margin than this number shows, but there is no way to know what actually came in until it is circulated out and measured. Assuming zero gradient — a pure, light gas kick — gives the smallest, least forgiving kick tolerance figure, so the reference number never overstates how much room is really there.',
+  },
+  {
+    q: 'What counts as an acceptable kick tolerance before drilling ahead?',
+    a: 'There is no universal number. Most operators set a minimum kick tolerance, often expressed as a required barrel count at a given mud weight, as part of their own well control policy before a section is drilled. This calculator checks a casing point you already have against that kind of standard — it does not set the standard itself.',
+  },
+  {
+    q: 'Why does MAASP feed into this instead of the raw LOT/FIT pressure?',
+    a: 'MAASP already reflects today\'s mud weight measured against the original LOT/FIT baseline. Feeding in the raw test pressure here would ignore whatever mud weight changes have happened since — always run the <a href="/calculators/maasp">MAASP calculator</a> first, then bring that current result into this one.',
+  },
+  {
+    q: 'Does a heavier mud weight always lower kick tolerance?',
+    a: 'Not automatically, and not in the direction that feels intuitive. Mud weight appears twice in this calculation: it usually raises MAASP itself (a heavier mud sits closer to the LOT/FIT mud weight, shrinking that margin), and it also increases the hydrostatic loss subtracted for a given influx height. Both effects typically pull kick tolerance down as mud weight rises — recalculate rather than assume either direction from memory.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Kick Tolerance Calculator (ppg)"
+  description="Free kick tolerance calculator: the ppg-equivalent gas kick your current MAASP can absorb at the casing shoe, using the standard zero-gradient worst-case assumption."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Kick Tolerance', href: '/calculators/kick-tolerance' }]}
+  lang="en"
+  alternateHref="/es/calculators/kick-tolerance"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators/kick-tolerance" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Kick Tolerance <span>Calculator</span></h1>
+    <p class="page-hero-sub">Restates your MAASP as the largest ppg-equivalent kick the casing shoe can absorb before that surface-pressure limit is reached, using the standard worst-case, zero-gradient gas assumption.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🎚 MAASP &amp; Influx Data</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="kt-maasp">MAASP (psi)</label>
+              <input type="number" id="kt-maasp" value="600" step="1">
+            </div>
+            <div class="input-group">
+              <label for="kt-mw">Mud Weight (ppg)</label>
+              <input type="number" id="kt-mw" value="12.0" step="0.1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="kt-hif">Height of Influx (ft)</label>
+              <input type="number" id="kt-hif" value="150" step="1">
+            </div>
+            <div class="input-group">
+              <label for="kt-tvd">Shoe TVD (ft)</label>
+              <input type="number" id="kt-tvd" value="10000" step="1">
+            </div>
+          </div>
+
+          <div class="calc-output visible" id="kt-output" style="margin-top:20px;">
+            <div class="output-line"><span class="output-label">Hydrostatic Loss From Influx</span><span class="output-value" id="out-loss">—</span></div>
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Kick Tolerance</span><span class="output-value" id="out-kt">—</span></div>
+          </div>
+        </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>This is a reference tool, not an operational authority.</strong> Real kick tolerance figures used for well planning or an active well control event belong to your certified well control supervisor, working from your company's approved procedures and the actual casing and pore-pressure data for this well. Never set a real kick tolerance limit from this calculator alone.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formula Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">Kick Tolerance</div>
+          <div class="formula-eq">KT = [MAASP − (Height of Influx × Mud Weight × 0.052)] ÷ (0.052 × Shoe TVD)</div>
+          <div class="formula-note">MAASP in psi, influx height and shoe TVD in feet, mud weight in ppg, kick tolerance in ppg-equivalent.</div>
+        </div>
+
+        <h3>Where This Fits</h3>
+        <p>Kick tolerance takes the surface-pressure limit from the <a href="/calculators/maasp">MAASP calculator</a> and restates it as the largest ppg-equivalent kick the shoe can absorb before that limit is reached. It runs on a deliberately conservative assumption: it treats the influx as if it had zero hydrostatic gradient at all, the way a pure gas kick behaves — the worst case, not an average one. A real influx with any liquid content carries some gradient and would leave more actual margin than this number shows, but a driller has no way to know what actually came in until it's circulated out and measured, so the reference figure has to assume the lightest, least forgiving fluid rather than guess.</p>
+        <p>A small or negative kick tolerance means there is little or no room for error at the current mud weight and casing point — even a modest influx height could put the shoe past its tested limit, which is exactly the scenario this check exists to catch before it happens, not after. The same calculation runs the other direction during well planning too: instead of checking an already-set casing point, planners work backward from a required minimum kick tolerance to decide where the next shoe has to sit. Re-run MAASP first whenever mud weight changes — a stale MAASP carried into this calculator will understate or overstate the real number without any warning.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p set:html={item.a} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const maasp = num('kt-maasp'), mw = num('kt-mw'), hif = num('kt-hif'), tvd = num('kt-tvd');
+    const loss = hif * mw * 0.052;
+    const kt = tvd > 0 ? (maasp - loss) / (0.052 * tvd) : 0;
+
+    set('out-loss', fmt(loss, 0) + ' psi');
+    set('out-kt', fmt(kt, 2) + ' ppg');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

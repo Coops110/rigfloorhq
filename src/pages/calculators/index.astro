@@ -136,6 +136,14 @@ import Footer from '../../components/Footer.astro';
           <td>You need the friction-adjusted mud weight while circulating, not just static</td>
           <td><a href="/calculators/ecd">ECD</a></td>
         </tr>
+        <tr>
+          <td>You have a fresh LOT/FIT and need today's surface-pressure limit</td>
+          <td><a href="/calculators/maasp">MAASP</a></td>
+        </tr>
+        <tr>
+          <td>You need to know how big a kick the shoe can take before it's at risk</td>
+          <td><a href="/calculators/kick-tolerance">Kick Tolerance</a></td>
+        </tr>
       </tbody>
     </table>
 
@@ -267,6 +275,20 @@ import Footer from '../../components/Footer.astro';
         <p class="card-formula"><strong>Formula:</strong> ECD = MW + (Annular Pressure Loss ÷ 0.052 ÷ TVD)</p>
         <a href="/calculators/ecd" class="card-link">Open Calculator →</a>
       </div>
+      <div class="card">
+        <span class="card-icon">🧭</span>
+        <h3>MAASP Calculator</h3>
+        <p>Maximum allowable annular surface pressure at the casing shoe from your LOT/FIT test and current mud weight.</p>
+        <p class="card-formula"><strong>Formula:</strong> MAASP = LOT/FIT Pressure + [(LOT/FIT MW − Current MW) × 0.052 × Shoe TVD]</p>
+        <a href="/calculators/maasp" class="card-link">Open Calculator →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎚</span>
+        <h3>Kick Tolerance Calculator</h3>
+        <p>The ppg-equivalent gas kick your current MAASP can absorb at the shoe, using the standard zero-gradient assumption.</p>
+        <p class="card-formula"><strong>Formula:</strong> KT = [MAASP − (Influx Ht × MW × 0.052)] ÷ (0.052 × TVD)</p>
+        <a href="/calculators/kick-tolerance" class="card-link">Open Calculator →</a>
+      </div>
     </div>
   </section>
 
@@ -336,7 +358,9 @@ import Footer from '../../components/Footer.astro';
           { "@type": "ListItem", "position": 13, "name": "Riser Margin Calculator", "url": "https://rigfloorhq.com/calculators/riser-margin" },
           { "@type": "ListItem", "position": 14, "name": "Wet & Dry Pipe Pull Margin Calculator", "url": "https://rigfloorhq.com/calculators/pipe-pull-margin" },
           { "@type": "ListItem", "position": 15, "name": "Horizontal Kill Sheet Additions", "url": "https://rigfloorhq.com/calculators/kill-sheet-horizontal" },
-          { "@type": "ListItem", "position": 16, "name": "ECD Calculator", "url": "https://rigfloorhq.com/calculators/ecd" }
+          { "@type": "ListItem", "position": 16, "name": "ECD Calculator", "url": "https://rigfloorhq.com/calculators/ecd" },
+          { "@type": "ListItem", "position": 17, "name": "MAASP Calculator", "url": "https://rigfloorhq.com/calculators/maasp" },
+          { "@type": "ListItem", "position": 18, "name": "Kick Tolerance Calculator", "url": "https://rigfloorhq.com/calculators/kick-tolerance" }
         ]
       },
       {
