@@ -1,0 +1,212 @@
+---
+// Poster-image-first, drag-to-rotate only, no auto-spin — same interaction
+// contract as BridgePlug3D.astro. Geometry is procedurally generated
+// (primitives only, no downloaded mesh/model file), built from generic
+// internal-mechanical-casing-cutter anatomy: mandrel, blade housing, radially
+// extended cutter blades, guide nose. Not modeled on any specific
+// manufacturer's product.
+---
+<div class="tool3d-wrap" role="img" aria-label="Interactive 3D model of a generic internal casing cutter — drag to rotate">
+  <div class="tool3d-poster" id="tool3d-poster">
+    <svg viewBox="0 0 200 200" class="tool3d-poster-icon" aria-hidden="true">
+      <rect x="90" y="20" width="20" height="160" rx="3" fill="#3a4148"/>
+      <rect x="78" y="85" width="44" height="30" rx="4" fill="#1a1c1e"/>
+      <polygon points="122,90 155,70 150,80 128,100" fill="#8a94a0"/>
+      <polygon points="122,100 158,100 152,112 122,110" fill="#8a94a0"/>
+      <polygon points="122,110 150,135 140,140 122,118" fill="#8a94a0"/>
+    </svg>
+    <div class="tool3d-poster-label">Tap to view 3D model — drag to rotate</div>
+  </div>
+  <canvas id="tool3d-canvas" class="tool3d-canvas" aria-hidden="true"></canvas>
+  <div class="tool3d-fallback" id="tool3d-fallback" hidden>
+    3D preview isn't available in this browser — the diagram above and the write-up below cover the same detail.
+  </div>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.169.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.169.0/examples/jsm/"
+  }
+}
+</script>
+
+<style>
+  .tool3d-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    max-height: 520px;
+    min-height: 340px;
+    background: radial-gradient(ellipse at 50% 45%, #333c45 0%, #1c2126 45%, #0e1113 100%);
+    border: 1px solid var(--iron, #2a2f35);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: grab;
+  }
+  .tool3d-wrap:active { cursor: grabbing; }
+  .tool3d-poster {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 14px;
+    background: radial-gradient(circle at 50% 40%, #23282d 0%, #14171a 80%);
+  }
+  .tool3d-poster-icon { width: 96px; height: 96px; }
+  .tool3d-poster-label {
+    color: #9aa4ad; font-size: 0.85rem; letter-spacing: 0.02em;
+  }
+  .tool3d-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: none; }
+  .tool3d-fallback {
+    position: absolute; inset: 0; display: none; align-items: center; justify-content: center;
+    padding: 24px; text-align: center; color: #9aa4ad; font-size: 0.9rem;
+  }
+</style>
+
+<script is:inline>
+  const wrap = document.querySelector('.tool3d-wrap');
+  const poster = document.getElementById('tool3d-poster');
+  const canvas = document.getElementById('tool3d-canvas');
+  const fallback = document.getElementById('tool3d-fallback');
+  if (!wrap || !poster || !canvas || !fallback) throw new Error('CasingCutter3D: expected elements missing');
+
+  let started = false;
+
+  async function start() {
+    if (started) return;
+    started = true;
+
+    const probe = document.createElement('canvas');
+    const hasWebGL = !!(probe.getContext('webgl') || probe.getContext('experimental-webgl'));
+    if (!hasWebGL) {
+      poster.style.display = 'none';
+      fallback.style.display = 'flex';
+      return;
+    }
+
+    const THREE = await import('three');
+    const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
+    const { RoomEnvironment } = await import('three/addons/environments/RoomEnvironment.js');
+
+    poster.style.display = 'none';
+    canvas.style.display = 'block';
+
+    const scene = new THREE.Scene();
+    scene.background = null;
+
+    const camera = new THREE.PerspectiveCamera(38, wrap.clientWidth / wrap.clientHeight, 0.1, 100);
+    camera.position.set(3.0, 0.9, 3.0);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(wrap.clientWidth, wrap.clientHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.25;
+
+    // A soft procedural room environment gives the metal real reflections
+    // instead of flat, lightless PBR — the single biggest lever for making
+    // it read as premium hardware instead of a gray silhouette.
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+    // Three-point studio lighting, brighter and warmer than a flat single light.
+    const key = new THREE.DirectionalLight(0xfff4e6, 3.4);
+    key.position.set(3, 4.5, 2.5);
+    const fill = new THREE.DirectionalLight(0x9ecbff, 1.1);
+    fill.position.set(-3.5, 1.2, 2);
+    const rim = new THREE.DirectionalLight(0xffffff, 2.4);
+    rim.position.set(-1, 2.5, -4);
+    const kicker = new THREE.PointLight(0xffffff, 1.4, 12);
+    kicker.position.set(2, -0.5, 3);
+    const ambient = new THREE.HemisphereLight(0x6b7a8c, 0x14100c, 0.9);
+    scene.add(key, fill, rim, kicker, ambient);
+
+    // --- Generic internal casing cutter, built from primitives ---
+    // Anatomy per generic industry reference (mandrel / blade housing /
+    // radially-extending mechanical cutter blades / guide nose) — no branded
+    // or company-specific geometry copied.
+    const group = new THREE.Group();
+
+    const metal = new THREE.MeshStandardMaterial({ color: 0x9aa4ae, metalness: 0.9, roughness: 0.28 });
+    const darkMetal = new THREE.MeshStandardMaterial({ color: 0x5b636b, metalness: 0.85, roughness: 0.35 });
+    const bladeMetal = new THREE.MeshStandardMaterial({ color: 0xc7ccd1, metalness: 0.95, roughness: 0.18 });
+
+    // Central body / mandrel
+    const body = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.22, 2.6, 32), metal);
+    group.add(body);
+
+    // Blade housing collar (mid-body, slightly wider than the mandrel)
+    const housing = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.28, 0.55, 32), darkMetal);
+    housing.position.y = 0.1;
+    group.add(housing);
+
+    // Extended mechanical cutter blades — three, radially spaced and swung
+    // out into their cutting position
+    const bladeCount = 3;
+    for (let i = 0; i < bladeCount; i++) {
+      const blade = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.55, 0.16), bladeMetal);
+      const angle = (i / bladeCount) * Math.PI * 2;
+      const r = 0.46;
+      blade.position.set(Math.cos(angle) * r, 0.1, Math.sin(angle) * r);
+      blade.lookAt(0, 0.1, 0);
+      blade.rotateY(Math.PI / 2);
+      group.add(blade);
+    }
+
+    // Upper connection sub (fishing neck to work string/wireline)
+    const topSub = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.2, 0.4, 24), metal);
+    topSub.position.y = 1.5;
+    group.add(topSub);
+
+    // Lower guide nose
+    const bottomNose = new THREE.Mesh(new THREE.ConeGeometry(0.16, 0.4, 24), metal);
+    bottomNose.position.y = -1.5;
+    group.add(bottomNose);
+
+    scene.add(group);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.enablePan = false;
+    controls.enableZoom = false;
+    controls.minPolarAngle = Math.PI * 0.18;
+    controls.maxPolarAngle = Math.PI * 0.82;
+    controls.target.set(0, 0, 0);
+    controls.update();
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function onResize() {
+      const w = wrap.clientWidth, h = wrap.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    }
+    window.addEventListener('resize', onResize);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    // No auto-rotation ever — reduced-motion users get identical behavior to
+    // everyone else here since nothing animates without user input.
+    animate();
+    void reduceMotion;
+  }
+
+  // Poster-image-first: only load Three.js and build the scene once the user
+  // taps, or the viewer scrolls into view — never on initial page load.
+  poster.addEventListener('click', start, { once: true });
+  const io = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        // Still requires a tap per the agreed UX spec — this just pre-warms
+        // nothing; kept as a hook if we later want true scroll-triggered load.
+      }
+    }
+  }, { threshold: 0.4 });
+  io.observe(wrap);
+</script>

@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import CasingCutter3D from '../../components/CasingCutter3D.astro';
+
+const faq = [
+  {
+    q: 'What is a casing cutter used for?',
+    a: 'A casing cutter severs a casing string from the inside, cleanly, at a chosen depth, so everything above the cut can be pulled free of the well. It is the standard tool for plug-and-abandonment cut-and-pull jobs, for retrieving stuck or unwanted casing in a workover, and any time a string needs to come out of the hole in one piece rather than being milled away.',
+  },
+  {
+    q: 'What is the difference between a mechanical and a chemical casing cutter?',
+    a: 'A mechanical casing cutter uses hardened, often carbide-faced steel blades that are driven outward — hydraulically or by applied weight and rotation — to physically cut through the pipe wall. A chemical cutter instead releases a controlled chemical reactant against the inside of the pipe wall that severs it without any moving blades or rotation, which is useful in tight clearances or where rotating a work string isn\'t practical.',
+  },
+  {
+    q: 'How is a casing cutter run into the well?',
+    a: 'Most casing cutters run on electric line (wireline) with a dedicated setting/actuating tool, since the job usually doesn\'t need a full work string trip. Heavier mechanical cutters, or jobs already using tubing or coiled tubing for another reason, run on a jointed work string instead, with the blades extended by applied weight and rotation once at depth.',
+  },
+  {
+    q: 'How does a casing cutter differ from a section mill?',
+    a: 'A casing cutter makes a single, clean, narrow parting cut through the pipe wall at one depth so the casing above can simply be pulled — the casing itself, and any cement outside it, stay otherwise intact. A section mill grinds away a whole interval of casing and the cement around it over several feet, converting cased hole into open hole across that section. If the goal is "cut it so I can pull it," that\'s a casing cutter; if the goal is "remove this section entirely so I have open hole here," that\'s a section mill.',
+  },
+  {
+    q: 'What causes a casing cutter to fail to fully part the pipe?',
+    a: 'The most common cause is blade wear or dulling against high-grade or unexpectedly thick-walled casing, leaving a partial cut that won\'t release under pull. Poor centralization in the hole can also cause uneven blade contact around the circumference. Scale, corrosion products, or cement bonded to the outside of the casing at the cut depth can also prevent the parted section from actually coming free even after a clean cut.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Casing Cutter: How Internal Casing Cutting Tools Work"
+  description="What a casing cutter is, mechanical vs. chemical cutting methods, how it's run and actuated downhole, generic ratings, common failure modes, and how it differs from a section mill."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Casing Cutter', href: '/equipment/casing-cutter' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Casing <span>Cutter</span></h1>
+    <p class="page-hero-sub">An internal cutting tool that severs casing cleanly at a chosen depth, so everything above the cut can be pulled out of the well in one piece.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <CasingCutter3D />
+      <div class="prose">
+        <h2 id="what-it-is">What a Casing Cutter Is</h2>
+        <p>A casing cutter is a downhole tool run on wireline or a work string and positioned inside a casing or tubing string at a chosen depth, where it cuts through the pipe wall from the inside out. The goal is a single, clean, full-circumference parting cut — not removal of material, not milling, just a controlled separation so the string above the cut can be retrieved as an intact section.</p>
+        <p>That distinction matters because a casing cutter is a retrieval tool, not a destructive one. Everything above the cut comes out whole and can be reused, sold for scrap by weight, or simply removed to clear the wellbore; everything below the cut stays in the hole, whether that's because it's cemented in permanently or because the job only calls for removing the upper section.</p>
+
+        <h2 id="when-used">When and Why a Casing Cutter Is Run</h2>
+        <ul>
+          <li><strong>Plug-and-abandonment "cut and pull."</strong> Many abandonment regulations require casing to be removed to a minimum depth, or across specific zones, rather than simply cemented and left in place. A casing cutter makes the parting cut that lets the required interval come out.</li>
+          <li><strong>Retrieving stuck or unwanted casing</strong> during a workover, when a string needs to come out but conventional pulling alone won't free it from where it's set or stuck.</li>
+          <li><strong>Salvage.</strong> Casing has real scrap and reuse value; cutting and pulling it back to surface recovers that value instead of leaving it in the ground.</li>
+          <li><strong>Clearing the wellbore for re-entry</strong>, when a section of an old string needs to come out before a new completion or sidetrack can proceed — often working alongside a <a href="/equipment/section-mill">section mill</a> when the job needs more than a single string retrieved intact.</li>
+        </ul>
+
+        <h2 id="cutting-methods">Mechanical vs. Chemical Cutting</h2>
+        <p><strong>Mechanical (blade) cutters</strong> are the workhorse of the category. A set of hardened, often carbide-faced steel blades sits retracted inside the tool body as it's run to depth, then extends radially outward — driven hydraulically by applied pump pressure, or mechanically by weight and rotation from the work string — until the blades bite into and cut through the pipe wall. Once the cut is confirmed, the blades retract and the tool is pulled out ahead of retrieving the severed casing.</p>
+        <p><strong>Chemical cutters</strong> take a different approach entirely: a controlled chemical reactant is released against the inside of the pipe wall, severing it through a localized reaction rather than a rotating or hydraulically-driven blade. This has real advantages in tight clearances, in wells where getting a work string to rotate cleanly at depth is impractical, or where a wireline-only trip is strongly preferred. The tradeoff is that the cut quality and speed depend on chemistry and dwell time rather than mechanical force that can be felt and adjusted at surface.</p>
+        <p>A third variant, the <strong>abrasive jet cutter</strong>, erodes through the pipe wall with a high-velocity abrasive slurry jetted radially outward. It doesn't require precise centralization the way a blade cutter does, which makes it a useful option for cutting multiple concentric strings (casing inside casing) in a single run.</p>
+
+        <h2 id="running-actuation">Running and Actuation</h2>
+        <p>Most casing cutting jobs run on electric line with a dedicated setting and actuating tool — fast to rig up, and the standard choice when there's no other reason to have a work string in the hole. Heavier mechanical cutters, deeper cuts requiring more torque, or jobs where tubing or coiled tubing is already being run for another reason, use a jointed work string instead, with the cutter actuated by applied weight, rotation, or hydraulic pressure pumped down the string once it's confirmed on depth.</p>
+        <p>After the cut, the tool is retrieved and the severed section above it is recovered with a standard pulling tool or a fishing overshot/spear if the parted top isn't gripped directly by the running string. Confirming a clean, complete cut before attempting to pull is standard practice — an incomplete cut under load can part the casing unevenly or damage the string above it.</p>
+
+        <h2 id="materials-ratings">Materials and Generic Ratings</h2>
+        <p>Mechanical cutter blades are typically hardened tool steel, frequently faced with tungsten carbide inserts to hold an edge against high-grade or heavy-wall casing. As a generic guide, standard mechanical casing cutters handle a wide range of common casing weights and grades, but cutting capacity — the maximum wall thickness and grade a given blade set can part in a reasonable number of cycles — varies significantly by tool size and blade design. The specific tool's rated cutting capacity should always be confirmed against the manufacturer's actual specification for the casing being cut, not assumed from a generic figure.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Incomplete cut</strong> from blade wear or dulling against harder or thicker-than-expected casing, leaving a partial parting that won't release cleanly under pull.</li>
+          <li><strong>Poor centralization</strong> in the hole causing uneven blade contact around the circumference, so one side cuts through before the other.</li>
+          <li><strong>Failure to release after a clean cut</strong>, if scale, corrosion products, or cement bonded to the casing's outside at that depth holds the parted section in place regardless of the cut itself.</li>
+          <li><strong>Blade damage from debris</strong> inside the casing — junk, scale, or cement fines — that the blades encounter before or during the cut.</li>
+          <li><strong>Misjudged cut depth</strong> relative to the actual free point of the string, requiring a re-run at a corrected depth.</li>
+        </ul>
+
+        <h2 id="vs-section-mill">Casing Cutter vs. Section Mill</h2>
+        <p>Both tools deal with casing that needs to come out of the way, but they solve different problems. A <strong>casing cutter</strong> makes one narrow parting cut so the casing above it can be pulled intact — the cement and formation around the pipe are left alone. A <a href="/equipment/section-mill">section mill</a> grinds away an entire interval of casing, several feet at a time, along with the cement around it, leaving open, oversized hole where cased hole used to be. If the plan is to retrieve a string, it's a casing cutter's job; if the plan is to create open hole across an interval for a cross-formation cement plug or a re-entry, it's a section mill's job — and abandonment programs frequently call for both, in sequence, at different depths in the same well.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#when-used">When It's Used</a>
+          <a href="#cutting-methods">Mechanical vs. Chemical</a>
+          <a href="#running-actuation">Running &amp; Actuation</a>
+          <a href="#materials-ratings">Materials &amp; Ratings</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-section-mill">vs. Section Mill</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Cutting capacity and specifications vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/section-mill" class="card-link">→ Section Mill</a><br><br>
+          <a href="/equipment/bridge-plug" class="card-link">→ Bridge Plug</a><br><br>
+          <a href="/drilling/casing" class="card-link">→ Casing Design Explained</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
