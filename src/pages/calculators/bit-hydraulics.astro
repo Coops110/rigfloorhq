@@ -1,0 +1,203 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'What is Total Flow Area (TFA) and why does it matter?',
+    a: 'TFA is the combined cross-sectional area of every nozzle on the bit — the total opening the drilling fluid has to pass through on its way out. A smaller TFA for the same flow rate forces the fluid through faster, which is exactly the mechanism that turns pump pressure into jet velocity and hole-cleaning force at the bit face. Nozzle sizes are conventionally specified in 32nds of an inch (a "12" nozzle is 12/32", or 0.375").',
+  },
+  {
+    q: 'Why does jet velocity matter more than flow rate alone?',
+    a: 'Flow rate tells you volume per minute; jet velocity tells you how hard that fluid actually hits the hole bottom and cuttings. Two different bits can run the same flow rate and produce very different jet velocities depending on TFA — a bit with smaller nozzles concentrates the same flow into faster, more forceful jets, which is why nozzle selection is a real hydraulics decision, not just a formality.',
+  },
+  {
+    q: 'Where does bit pressure drop come from if this calculator doesn\'t compute it from scratch?',
+    a: 'In the field it\'s usually read directly: pump pressure with the bit off bottom (circulating only) subtracted from pump pressure while drilling, or taken from a pressure-loss breakdown the mud engineer already tracks for the rest of the circulating system. This calculator asks for that figure directly rather than re-deriving it from mud weight, flow rate, and TFA, since the constant used for that derivation varies between references and wasn\'t possible to verify with confidence against a real worked example — see the note below.',
+  },
+  {
+    q: 'What do the HSI and jet velocity target ranges actually mean?',
+    a: 'They\'re rule-of-thumb targets used to judge whether a bit\'s hydraulics are adequate for the mud system in use, not hard limits: roughly 4-8 HSI and 350-550 ft/sec jet velocity for water-based muds, versus 3-6 HSI and 250-450 ft/sec for oil-based muds, which need less aggressive jetting. Falling well outside these ranges is usually a sign the nozzle sizing doesn\'t match the pump rate being run.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Bit Hydraulics Calculator: TFA, Jet Velocity, HHP, HSI"
+  description="Free bit hydraulics calculator: total flow area from nozzle sizes, jet velocity, bit hydraulic horsepower, and hydraulic horsepower per square inch (HSI)."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Bit Hydraulics', href: '/calculators/bit-hydraulics' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Bit <span>Hydraulics</span></h1>
+    <p class="page-hero-sub">Total flow area from real nozzle sizes, then jet velocity, bit hydraulic horsepower, and HSI — the numbers that say whether a bit's hydraulics actually match the pump rate being run.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Total Flow Area from Nozzle Sizes</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="bh-n1">Nozzle 1 (32nds of an inch)</label>
+              <input type="number" id="bh-n1" value="12" step="1" min="0">
+            </div>
+            <div class="input-group">
+              <label for="bh-n2">Nozzle 2 (32nds of an inch)</label>
+              <input type="number" id="bh-n2" value="12" step="1" min="0">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="bh-n3">Nozzle 3 (32nds of an inch)</label>
+              <input type="number" id="bh-n3" value="12" step="1" min="0">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Total Flow Area (TFA)</span><span class="output-value" id="out-tfa">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🧭 Jet Velocity</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="bh-q">Flow Rate (gpm)</label>
+              <input type="number" id="bh-q" value="950" step="1">
+            </div>
+            <div class="input-group">
+              <label for="bh-tfa2">TFA (in²)</label>
+              <input type="number" id="bh-tfa2" value="0.81" step="0.01">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Jet Velocity</span><span class="output-value" id="out-jv">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🧭 Bit Hydraulic Horsepower &amp; HSI</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="bh-dp">Bit Pressure Drop (psi)</label>
+              <input type="number" id="bh-dp" value="1129" step="1">
+            </div>
+            <div class="input-group">
+              <label for="bh-q2">Flow Rate (gpm)</label>
+              <input type="number" id="bh-q2" value="950" step="1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="bh-size">Bit / Hole Size (inches)</label>
+              <input type="number" id="bh-size" value="12.25" step="0.01">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line"><span class="output-label">Bit Hydraulic Horsepower</span><span class="output-value" id="out-hhp">—</span></div>
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">HSI (HHP per sq. in.)</span><span class="output-value" id="out-hsi">—</span></div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24">
+          <strong>Rules of thumb.</strong> Water-based mud: aim for 4-8 HSI, jet velocities 350-550 ft/sec. Oil-based mud: 3-6 HSI, jet velocities 250-450 ft/sec. Holes over 17½" need minimum jet velocity attained above other considerations; smaller holes can push more toward the top of the HHP-at-bit percentage range depending on formation.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formulas Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">Total Flow Area</div>
+          <div class="formula-eq">TFA = Σ [ π/4 × (Nozzle Size ÷ 32)² ] for each nozzle</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">Jet Velocity</div>
+          <div class="formula-eq">Vn (ft/sec) = 0.32 × Flow Rate (gpm) ÷ TFA (in²)</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">Bit Hydraulic Horsepower</div>
+          <div class="formula-eq">HHP = (Bit Pressure Drop × Flow Rate) ÷ 1714</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">HSI (Hydraulic Horsepower per Square Inch)</div>
+          <div class="formula-eq">HSI = HHP ÷ [π/4 × (Bit Size)²]</div>
+        </div>
+
+        <div class="note-box mt-24">
+          <strong>What's deliberately not derived here:</strong> bit pressure drop itself isn't calculated from mud weight, flow rate, and TFA — that formula's exact constant varies between references depending on assumed nozzle discharge coefficient, and it couldn't be confirmed with confidence against a real worked example while building this page. Bit pressure drop goes in as a known value (read from the standpipe pressure difference on/off bottom) rather than risk a formula that's wrong by a meaningful margin on a real job.
+        </div>
+
+        <h3>Where This Fits</h3>
+        <p>These four numbers chain together in the order a real hydraulics check actually runs: pick nozzle sizes, get TFA; check jet velocity against the mud-type target above; separately confirm bit pressure drop is delivering enough <a href="/calculators/pump-pressure-adjustment">pump horsepower</a> to the bit face via HHP and HSI. <a href="/calculators/lag-and-volume">Pump output and annular velocity</a> cover the rest of the circulating system's hydraulics — this page is specifically what's happening right at the bit.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function tfaFor32nds(n: number): number {
+    const d = n / 32;
+    return Math.PI / 4 * d * d;
+  }
+
+  function calc() {
+    const n1 = num('bh-n1'), n2 = num('bh-n2'), n3 = num('bh-n3');
+    const tfa = tfaFor32nds(n1) + tfaFor32nds(n2) + tfaFor32nds(n3);
+    set('out-tfa', fmt(tfa, 3) + ' in²');
+
+    const q = num('bh-q'), tfa2 = num('bh-tfa2');
+    const jv = tfa2 > 0 ? 0.32 * q / tfa2 : 0;
+    set('out-jv', fmt(jv, 1) + ' ft/sec');
+
+    const dp = num('bh-dp'), q2 = num('bh-q2'), size = num('bh-size');
+    const hhp = dp * q2 / 1714;
+    const bitArea = Math.PI / 4 * size * size;
+    const hsi = bitArea > 0 ? hhp / bitArea : 0;
+    set('out-hhp', fmt(hhp, 1) + ' hp');
+    set('out-hsi', fmt(hsi, 2) + ' hp/in²');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>
