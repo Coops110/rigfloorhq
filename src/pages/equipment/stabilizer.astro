@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import Stabilizer3D from '../../components/Stabilizer3D.astro';
+
+const faq = [
+  {
+    q: 'What does a stabilizer do in a drill string?',
+    a: 'A stabilizer has blades that are close to hole size, so it centres the bottom hole assembly in the hole. That controls where the bit points, which controls whether the well builds, holds or drops angle. It also keeps the drill collars off the hole wall and reduces vibration.',
+  },
+  {
+    q: 'What is the difference between a near-bit and a string stabilizer?',
+    a: 'A near-bit stabilizer has a box connection on both ends and screws directly onto the bit. A string stabilizer has a box and a pin and is run higher up, between drill collars. Where each one is placed decides how the BHA behaves.',
+  },
+  {
+    q: 'What are packed, pendulum and fulcrum assemblies?',
+    a: 'A packed assembly uses several stabilizers close together to keep the BHA stiff and hold angle. A pendulum assembly leaves the first stabilizer well above the bit, so gravity pulls the bit to the low side and the well drops angle. A fulcrum assembly puts a stabilizer at the bit with flexible pipe above it, so weight on bit bends the BHA and the bit is pushed to the high side to build angle.',
+  },
+  {
+    q: 'What does undergauge mean for a stabilizer?',
+    a: 'Gauge is the stabilizer blade diameter compared with the bit diameter. A full-gauge stabilizer is the same size as the bit, or just under. An undergauge stabilizer is deliberately smaller, to change how the BHA behaves, or has worn smaller in use. Worn stabilizers are measured with a ring gauge after every run.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Drilling Stabilizer: Types and BHA Placement"
+  description="What a drilling stabilizer does, blade and sleeve types, near-bit vs string placement, and how packed, pendulum and fulcrum assemblies control angle."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Stabilizer', href: '/equipment/stabilizer' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Bottom Hole Assembly</div>
+    <h1>Drilling <span>Stabilizer</span></h1>
+    <p class="page-hero-sub">Blades cut close to hole size, placed along the BHA to decide where the bit points — build, hold or drop.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <Stabilizer3D />
+      <div class="prose">
+        <h2 id="what-it-is">What a Stabilizer Is</h2>
+        <p>A drilling stabilizer is a short, collar-sized sub with three or four blades standing out from its body. The blades are cut close to the bit diameter, so the stabilizer fits the hole almost exactly and holds the <a href="/equipment/drill-string">bottom hole assembly</a> in the centre of it. The blade faces carry tungsten carbide hardfacing, because they are in constant contact with the hole wall.</p>
+        <p>That contact is the point. Drill collars on their own are heavy, flexible over their length, and lie on the low side of the hole. Where stabilizers touch the wall along the BHA decides how the collars bend under weight on bit, and that decides which way the bit points.</p>
+
+        <h2 id="why-used">Why Stabilizers Are Run</h2>
+        <ul>
+          <li><strong>Controlling hole angle</strong> — making the well build, hold or drop inclination without a steerable tool.</li>
+          <li><strong>Keeping the collars off the wall</strong>, which reduces the contact area that <a href="/blog/differential-sticking-explained">differential sticking</a> depends on.</li>
+          <li><strong>Reducing vibration and bit whirl</strong> by stopping the BHA from moving around in the hole.</li>
+          <li><strong>Getting the full rated weight on bit</strong> without the collars buckling into the wall and taking that weight off the bit.</li>
+        </ul>
+
+        <h2 id="types">Types of Stabilizer</h2>
+        <p><strong>Integral blade</strong> stabilizers have the blades machined from the same piece of steel as the body. They are the strongest design and the usual choice for hard formations. <strong>Welded blade</strong> stabilizers have blades welded on. They are cheaper, but the welds can fail, so they are mainly used in softer formations and larger holes. <strong>Sleeve type</strong> stabilizers carry the blades on a replaceable sleeve, so a worn stabilizer can be re-dressed at the rig. <strong>Non-rotating</strong> stabilizers have a rubber sleeve that stays still against the wall while the mandrel turns inside it, which protects casing and reduces wear.</p>
+        <p>Blades are either <strong>straight</strong> or <strong>spiral</strong>. Spiral blades wrap around the body so there is always a blade touching the wall, which gives smoother running. Straight blades leave a clearer path for mud and cuttings to flow past.</p>
+
+        <h2 id="placement">Near-Bit and String Stabilizers</h2>
+        <p>A <strong>near-bit stabilizer</strong> has a box connection at both ends and screws directly onto the bit. A <strong>string stabilizer</strong> has a box at one end and a pin at the other, and is run higher up between drill collars. In a directional well, a stabilizer is often built onto the bearing housing of the <a href="/equipment/mud-motor">mud motor</a> as well.</p>
+
+        <h2 id="assemblies">Packed, Pendulum and Fulcrum Assemblies</h2>
+        <p>Where the stabilizers go decides how the BHA behaves. The three classic set-ups are:</p>
+        <ul>
+          <li><strong>Packed (holding) assembly</strong> — a near-bit stabilizer and two or more string stabilizers close above it. The BHA is kept stiff and centred, so the well holds its angle and direction.</li>
+          <li><strong>Pendulum (dropping) assembly</strong> — no near-bit stabilizer, with the first stabilizer some distance up the collars. The unsupported collars below it hang like a pendulum, gravity pulls the bit to the low side, and the well drops angle.</li>
+          <li><strong>Fulcrum (building) assembly</strong> — a near-bit stabilizer with flexible collars above it. Weight on bit bends the collars down toward the low side, the near-bit stabilizer acts as a pivot, and the bit is levered toward the high side, so the well builds angle.</li>
+        </ul>
+        <p>These rotary assemblies are how angle was controlled before steerable motors and rotary steerable systems, and they are still used on straight holes and tangent sections. For full <a href="/drilling/directional">directional control</a>, the same stabilizer principles are built into steerable systems.</p>
+
+        <h2 id="gauge">Gauge and Wear</h2>
+        <p>A <strong>full-gauge</strong> stabilizer has blades the same diameter as the bit, or just under. An <strong>undergauge</strong> stabilizer is deliberately smaller, usually to fine-tune how much a BHA builds or drops. Stabilizers also wear undergauge in abrasive rock, which changes the BHA's behaviour without anyone deciding to. They are checked with a ring gauge every time they come out of the hole.</p>
+
+        <h2 id="problems">Common Problems</h2>
+        <ul>
+          <li><strong>Hanging up on the trip out</strong> at ledges and doglegs. Stabilizers are the widest points on the BHA, so they are the first thing to catch, and they show up as extra drag — see <a href="/blog/torque-and-drag-early-warning">torque and drag as an early warning</a>.</li>
+          <li><strong>Balling</strong> in sticky clay, where cuttings pack between the blades and turn the stabilizer into a piston that swabs the well.</li>
+          <li><strong>Unplanned angle change</strong> when a stabilizer has worn undergauge.</li>
+          <li><strong>Blade damage or broken welds</strong>, which can leave junk in the hole.</li>
+        </ul>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#why-used">Why It's Run</a>
+          <a href="#types">Types</a>
+          <a href="#placement">Near-Bit &amp; String</a>
+          <a href="#assemblies">Packed, Pendulum, Fulcrum</a>
+          <a href="#gauge">Gauge &amp; Wear</a>
+          <a href="#problems">Common Problems</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Real BHA designs are modelled for each well — stabilizer size and spacing come from the directional plan, not from rules of thumb.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/drill-string" class="card-link">→ The Drill String</a><br><br>
+          <a href="/equipment/mud-motor" class="card-link">→ Mud Motor</a><br><br>
+          <a href="/drilling/directional" class="card-link">→ Directional Drilling</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import MudMotor3D from '../../components/MudMotor3D.astro';
+
+const faq = [
+  {
+    q: 'How does a mud motor work?',
+    a: 'A positive displacement mud motor has a spiral steel rotor inside a rubber-lined stator with one more lobe than the rotor. Mud pumped down the string is forced through the sealed cavities between them, and the only way it can get through is by turning the rotor. The rotor drives the bit through a transmission and a bearing section.',
+  },
+  {
+    q: 'What controls mud motor speed and torque?',
+    a: 'Speed is set by flow rate: more gallons per minute turns the rotor faster. Torque is set by the pressure drop across the motor, called differential pressure. As more weight is put on the bit, torque and differential pressure both rise, which the driller sees as higher standpipe pressure.',
+  },
+  {
+    q: 'What is a motor stall?',
+    a: 'A stall happens when the bit needs more torque than the motor can give, usually from too much weight on bit. The rotor stops turning, and standpipe pressure jumps suddenly. The driller has to pick up off bottom straight away. Repeated stalls tear the stator rubber and are a common cause of motor failure.',
+  },
+  {
+    q: 'What is the difference between sliding and rotating with a mud motor?',
+    a: 'The bent housing makes the bit point slightly off the axis of the string. When sliding, the string is not rotated, so the bend always points the same way and the well turns in that direction. When rotating, the whole string turns, the bend points every way in turn, and the well drills roughly straight ahead.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Mud Motor: How a Downhole PDM Works"
+  description="How a positive displacement mud motor turns mud flow into bit rotation: power section, lobe ratios, bent housing, sliding vs rotating, stalls and failures."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Mud Motor', href: '/equipment/mud-motor' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Bottom Hole Assembly</div>
+    <h1>Mud <span>Motor</span></h1>
+    <p class="page-hero-sub">A downhole motor driven by the mud itself — it turns the bit without turning the string, which is what makes sliding possible.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <MudMotor3D />
+      <div class="prose">
+        <h2 id="what-it-is">What a Mud Motor Is</h2>
+        <p>A mud motor, or positive displacement motor (PDM), is a downhole motor run in the <a href="/equipment/drill-string">bottom hole assembly</a> just above the bit. The drilling fluid being pumped down the string drives it, so the bit turns whether the string above it is rotating or not. That is the basis of steerable <a href="/drilling/directional">directional drilling</a>: with a bend in the motor housing, the driller can point the bit a chosen way and drill that way without rotating the pipe.</p>
+        <p>Motors are also run in straight holes to get more bit speed than the top drive gives, and to reduce wear on the string and casing by rotating the string more slowly.</p>
+
+        <h2 id="how-it-works">How the Power Section Works</h2>
+        <p>The power section is the motor itself. It has a spiral steel <strong>rotor</strong> inside a <strong>stator</strong>, a steel tube lined with moulded rubber. The rubber lining is also spiral, with one more lobe than the rotor. Because of that extra lobe, the rotor and stator touch along sealed lines, leaving a chain of closed cavities between them.</p>
+        <p>Mud pumped down the string fills the top cavity. The only way it can get through is by pushing the rotor round, which moves the cavities down the motor. It is the same principle as a progressing cavity pump, run backwards: instead of turning a shaft to move fluid, the fluid is moved through to turn the shaft.</p>
+        <p>The <strong>lobe ratio</strong> sets the motor's character. A low ratio, such as 1:2, gives high speed and low torque. A high ratio, such as 7:8, gives low speed and high torque, which suits PDC bits and hard formations.</p>
+
+        <h2 id="components">From Top to Bottom</h2>
+        <ul>
+          <li><strong>Dump sub</strong> — a valve at the top that lets the string fill and drain through side ports while tripping, and closes once the pumps are on so all the flow goes through the motor.</li>
+          <li><strong>Power section</strong> — the rotor and stator.</li>
+          <li><strong>Transmission</strong> — the rotor wobbles as it turns, and the transmission turns that wobble into clean rotation of the drive shaft below.</li>
+          <li><strong>Bent housing</strong> — usually adjustable at the rig, from zero up to around 3 degrees. The bigger the bend, the faster the well can turn when sliding.</li>
+          <li><strong>Bearing section and drive shaft</strong> — take the weight on bit and the side loads, and carry the bit box that the bit screws into. A stabilizer pad is often built onto the bearing housing.</li>
+        </ul>
+
+        <h2 id="speed-torque">Speed, Torque and Differential Pressure</h2>
+        <p><strong>Bit speed comes from flow rate.</strong> Each turn of the rotor passes a fixed volume of mud, so more gallons per minute means more RPM. When the string is also rotating, bit speed is the motor RPM plus the string RPM.</p>
+        <p><strong>Torque comes from differential pressure</strong>, the pressure drop across the power section. Putting more weight on the bit makes the bit harder to turn, the motor works harder, and differential pressure goes up. On surface, the driller sees this as standpipe pressure rising above the off-bottom pressure. Reading that difference is how weight on a motor is controlled. The <a href="/calculators/bit-hydraulics">bit hydraulics</a> are affected too, because the motor takes a share of the pump pressure before the mud reaches the bit.</p>
+
+        <h2 id="sliding">Sliding vs. Rotating</h2>
+        <p>The bent housing makes the bit point slightly off the axis of the string. <strong>Sliding</strong> means drilling with the string held still and only the motor turning the bit. The bend always points the same way — the toolface — so the well curves in that direction. The <a href="/equipment/mwd-tool">MWD tool</a> above the motor reports the toolface so the directional driller can set and hold it.</p>
+        <p><strong>Rotating</strong> means turning the whole string as well. The bend then points every way in turn, the effects cancel out, and the well drills roughly straight ahead. Sliding is slower, cleans the hole less well and makes weight transfer harder, which is why <a href="/blog/hole-cleaning-high-angle-wells">hole cleaning</a> and drag both get worse on wells with a lot of sliding. That is the main reason rotary steerable systems replaced motors on many complex wells.</p>
+
+        <h2 id="failures">Stalls and Common Failures</h2>
+        <ul>
+          <li><strong>Stalling</strong> — too much weight on bit stops the rotor. Standpipe pressure jumps sharply, and the driller has to pick up off bottom at once. Every stall damages the stator.</li>
+          <li><strong>Stator rubber damage</strong> — rubber tearing off in chunks from repeated stalls, high temperature, or mud chemistry the rubber is not rated for, such as some oil-based muds. Motor output falls off, and the pieces can plug the bit.</li>
+          <li><strong>Bearing wear</strong> — worn bearings let the drive shaft move up and down or side to side. It is checked on surface after every run.</li>
+          <li><strong>Running outside the rated flow or pressure</strong>, which speeds up wear on every part of the motor.</li>
+        </ul>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#how-it-works">Power Section</a>
+          <a href="#components">Top to Bottom</a>
+          <a href="#speed-torque">Speed &amp; Torque</a>
+          <a href="#sliding">Sliding vs. Rotating</a>
+          <a href="#failures">Stalls &amp; Failures</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Flow ranges, differential pressure limits and bend settings are specific to each motor — always work from the actual motor's spec sheet and the directional plan.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/drilling/directional" class="card-link">→ Directional Drilling</a><br><br>
+          <a href="/equipment/mwd-tool" class="card-link">→ MWD Tool</a><br><br>
+          <a href="/equipment/stabilizer" class="card-link">→ Drilling Stabilizer</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

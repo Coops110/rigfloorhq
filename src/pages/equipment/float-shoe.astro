@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import FloatShoe3D from '../../components/FloatShoe3D.astro';
+
+const faq = [
+  {
+    q: 'What is a float shoe used for?',
+    a: 'A float shoe is the rounded, drillable guide screwed onto the bottom of the first joint of a casing string. Its nose steers the casing past ledges and washouts on the way in, and the check valve inside it stops cement from flowing back up into the casing once pumping stops.',
+  },
+  {
+    q: 'What is the difference between a float shoe and a float collar?',
+    a: 'The float shoe sits at the very bottom of the casing string and guides it into the hole. The float collar sits one to three joints higher as a second check valve and as the landing point for the cementing plugs. The joints between them, the shoe track, catch any cement contaminated by the wiper plug so that it stays inside the casing rather than around the shoe.',
+  },
+  {
+    q: 'Why does a float shoe have to be drillable?',
+    a: 'Everything inside the steel body — the cement or composite fill, the valve and the nose — has to be drilled out by the bit on the next hole section. Once it is drilled out and a few feet of new formation are made, the formation below the shoe is pressure tested with a leak-off or formation integrity test.',
+  },
+  {
+    q: 'What happens if the float shoe does not hold?',
+    a: 'Cement outside the casing is usually heavier than the displacement fluid inside it, so a failed float lets cement U-tube back into the casing when pumps stop. The usual response is to hold pressure on the casing until the cement has set, rather than bleeding it off and letting the cement flow back.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Float Shoe: How It Guides and Seals Casing"
+  description="What a float shoe is, how its drillable nose and check valve work, where it sits in the shoe track with the float collar, and what happens when it fails."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Float Shoe', href: '/equipment/float-shoe' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Casing &amp; Cementing</div>
+    <h1>Float <span>Shoe</span></h1>
+    <p class="page-hero-sub">The rounded, drillable guide on the bottom of a casing string, with a check valve that holds the cement where it was placed.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <FloatShoe3D />
+      <div class="prose">
+        <h2 id="what-it-is">What a Float Shoe Is</h2>
+        <p>A float shoe is a short, heavy-walled steel body screwed onto the bottom of the first joint of a <a href="/drilling/casing">casing string</a>. Inside it is a rounded nose made of cement or composite, a flow path through the centre, and a one-way check valve. It does two jobs: it guides the casing down the hole, and it stops cement flowing back into the casing once the cement job is finished.</p>
+        <p>Everything inside the steel body is drillable. When the next hole section starts, the bit drills straight through the nose, the valve and the fill, and leaves only the steel body cemented in place at the casing point.</p>
+
+        <h2 id="guiding">Guiding the Casing Into the Hole</h2>
+        <p>Casing is stiff and has almost no clearance in the hole. A square-cut pipe end catches on ledges, washouts and cuttings beds, especially in deviated wells. The rounded nose of the float shoe rides over them instead. Many noses also have <strong>side jets</strong> as well as a centre port, so circulation while running in washes fill away from the front of the shoe.</p>
+        <p>Where the hole is known to be rough, a <strong>reamer shoe</strong> is used instead: the same idea, with cutting structure on the nose to clean up tight spots as the casing goes in.</p>
+
+        <h2 id="check-valve">The Check Valve and the Shoe Track</h2>
+        <p>The valve inside is usually a spring-loaded ball-and-seat or poppet design, and sometimes a flapper — the same one-way principle used in a <a href="/equipment/float-sub">float sub</a> in the drill string. Fluid pumped down passes through freely. When pumping stops, the valve closes.</p>
+        <p>The float shoe rarely works alone. A <strong>float collar</strong> is run one to three joints above it with a second check valve, and the joints between the two are called the <strong>shoe track</strong>. The cementing plugs land on the float collar, not the shoe, so the last cement pumped — the part most likely to be contaminated by the wiper plug scraping mud off the casing wall — stays inside the shoe track instead of ending up around the shoe, where a clean cement seal matters most.</p>
+
+        <h2 id="running">Conventional vs. Auto-Fill Floats</h2>
+        <p>With a <strong>conventional</strong> float shoe, the valve is closed while running in, so the casing does not fill from below. It has to be filled from surface at regular intervals, or the growing difference between the mud outside and the empty pipe inside can collapse the casing. It also makes the string lighter in the hole, which can help on long, heavy strings.</p>
+        <p>An <strong>auto-fill</strong> float shoe holds the valve open while running in, so the casing fills from the bottom on its own and surge pressure on the formation is lower. Once the casing is on depth, the valve is converted to a working check valve, usually by dropping a ball or pumping above a set flow rate.</p>
+
+        <h2 id="after-cementing">After Cementing: Drill Out and Test</h2>
+        <p>Cement in the annulus is normally heavier than the fluid used to displace it, so when the pumps stop the cement wants to U-tube back up inside the casing. The float shoe and float collar valves are what stop it. If both hold, pressure can be bled off and the cement left to set.</p>
+        <p>On the next hole section, the bit drills out the float collar, the shoe track and the float shoe, then makes a few feet of new formation. The formation below the shoe is then pressure tested with a <a href="/drilling/casing#why-shoe-integrity-tests-matter">leak-off or formation integrity test</a>, which sets the upper limit of the mud weight window and the <a href="/calculators/maasp">MAASP</a> for everything drilled below.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Float not holding after the cement job.</strong> If the valve leaks, pressure has to be held on the casing until the cement sets, instead of bleeding it off and letting cement flow back inside.</li>
+          <li><strong>Debris in the valve.</strong> Scale, junk or cuttings pumped down the casing can hold the valve partly open.</li>
+          <li><strong>Collapse on a conventional shoe</strong> if the casing is not filled often enough while running in.</li>
+          <li><strong>Auto-fill not converting</strong>, leaving the valve open and the string with no working check valve.</li>
+          <li><strong>Hanging up on the way in</strong>, where the nose cannot get past a ledge — usually a sign the hole needed a reamer shoe or a wiper trip first.</li>
+        </ul>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#guiding">Guiding the Casing</a>
+          <a href="#check-valve">Check Valve &amp; Shoe Track</a>
+          <a href="#running">Conventional vs. Auto-Fill</a>
+          <a href="#after-cementing">After Cementing</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Shoe design, valve type and conversion method vary by manufacturer and job — always confirm against the actual equipment's spec sheet and the cementing program.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/drilling/casing" class="card-link">→ Casing Design Explained</a><br><br>
+          <a href="/equipment/float-sub" class="card-link">→ Float Sub</a><br><br>
+          <a href="/equipment/cement-retainer" class="card-link">→ Cement Retainer</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

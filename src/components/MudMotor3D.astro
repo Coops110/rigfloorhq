@@ -1,0 +1,255 @@
+---
+// Poster-image-first, drag-to-rotate only, no auto-spin — same interaction
+// contract as every other tool viewer on the site. Geometry is procedurally
+// generated (primitives only, no downloaded mesh/model file), built from
+// generic positive displacement motor anatomy: dump sub, power section with
+// a cutaway showing the lobed rotor, adjustable bent housing, bearing
+// section and bit box. Not modeled on any specific manufacturer's product.
+---
+<div class="tool3d-wrap" role="img" aria-label="Interactive 3D model of a generic positive displacement mud motor — drag to rotate">
+  <div class="tool3d-poster" id="tool3d-poster">
+    <svg viewBox="0 0 200 200" class="tool3d-poster-icon" aria-hidden="true">
+      <rect x="86" y="10" width="28" height="30" rx="3" fill="#8a94a0"/>
+      <rect x="84" y="40" width="32" height="80" rx="3" fill="#5a6470"/>
+      <path d="M95 45 q10 8 0 16 q-10 8 0 16 q10 8 0 16 q-10 8 0 16" stroke="#b08d57" stroke-width="5" fill="none"/>
+      <rect x="84" y="120" width="32" height="18" fill="#3a4148" transform="rotate(-6 100 129)"/>
+      <rect x="88" y="138" width="28" height="36" rx="3" fill="#8a94a0" transform="rotate(-6 100 129)"/>
+    </svg>
+    <div class="tool3d-poster-label">Tap to view 3D model — drag to rotate</div>
+  </div>
+  <canvas id="tool3d-canvas" class="tool3d-canvas" aria-hidden="true"></canvas>
+  <button type="button" class="tool3d-reset" id="tool3d-reset">⟲ Reset View</button>
+  <div class="tool3d-fallback" id="tool3d-fallback" hidden>
+    3D preview isn't available in this browser — the diagram above and the write-up below cover the same detail.
+  </div>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.169.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.169.0/examples/jsm/"
+  }
+}
+</script>
+
+<style>
+  .tool3d-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    max-height: 520px;
+    min-height: 340px;
+    background: radial-gradient(ellipse at 50% 45%, #333c45 0%, #1c2126 45%, #0e1113 100%);
+    border: 1px solid var(--iron, #2a2f35);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: grab;
+  }
+  .tool3d-wrap:active { cursor: grabbing; }
+  .tool3d-poster {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 14px;
+    background: radial-gradient(circle at 50% 40%, #23282d 0%, #14171a 80%);
+  }
+  .tool3d-poster-icon { width: 96px; height: 96px; }
+  .tool3d-poster-label {
+    color: #9aa4ad; font-size: 0.85rem; letter-spacing: 0.02em;
+  }
+  .tool3d-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: none; }
+  .tool3d-reset {
+    position: absolute; bottom: 14px; right: 14px; z-index: 2; display: none;
+    padding: 6px 14px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em;
+    color: #e8a020; background: rgba(14, 17, 19, 0.72); border: 1px solid rgba(232, 160, 32, 0.4);
+    border-radius: 999px; cursor: pointer;
+  }
+  .tool3d-reset:hover { background: rgba(14, 17, 19, 0.9); border-color: #e8a020; }
+  .tool3d-fallback {
+    position: absolute; inset: 0; display: none; align-items: center; justify-content: center;
+    padding: 24px; text-align: center; color: #9aa4ad; font-size: 0.9rem;
+  }
+</style>
+
+<script is:inline>
+  const wrap = document.querySelector('.tool3d-wrap');
+  const poster = document.getElementById('tool3d-poster');
+  const canvas = document.getElementById('tool3d-canvas');
+  const fallback = document.getElementById('tool3d-fallback');
+  const resetBtn = document.getElementById('tool3d-reset');
+  if (!wrap || !poster || !canvas || !fallback || !resetBtn) throw new Error('MudMotor3D: expected elements missing');
+
+  let started = false;
+
+  async function start() {
+    if (started) return;
+    started = true;
+
+    const probe = document.createElement('canvas');
+    const hasWebGL = !!(probe.getContext('webgl') || probe.getContext('experimental-webgl'));
+    if (!hasWebGL) {
+      poster.style.display = 'none';
+      fallback.style.display = 'flex';
+      return;
+    }
+
+    const THREE = await import('three');
+    const { TrackballControls } = await import('three/addons/controls/TrackballControls.js');
+    const { RoomEnvironment } = await import('three/addons/environments/RoomEnvironment.js');
+
+    poster.style.display = 'none';
+    canvas.style.display = 'block';
+    resetBtn.style.display = 'block';
+
+    const scene = new THREE.Scene();
+    scene.background = null;
+
+    const camera = new THREE.PerspectiveCamera(38, wrap.clientWidth / wrap.clientHeight, 0.1, 100);
+    camera.position.set(5.4, 1.6, 5.4);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(wrap.clientWidth, wrap.clientHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.25;
+
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+    const key = new THREE.DirectionalLight(0xfff4e6, 3.4);
+    key.position.set(3, 4.5, 2.5);
+    const fill = new THREE.DirectionalLight(0x9ecbff, 1.1);
+    fill.position.set(-3.5, 1.2, 2);
+    const rim = new THREE.DirectionalLight(0xffffff, 2.4);
+    rim.position.set(-1, 2.5, -4);
+    const kicker = new THREE.PointLight(0xffffff, 1.4, 12);
+    kicker.position.set(2, -0.5, 3);
+    const ambient = new THREE.HemisphereLight(0x6b7a8c, 0x14100c, 0.9);
+    scene.add(key, fill, rim, kicker, ambient);
+
+    // --- Generic positive displacement mud motor, built from primitives ---
+    // Anatomy per generic industry reference, top to bottom: dump sub, power
+    // section (a lobed rotor turning inside an elastomer-lined stator, shown
+    // through a cutaway), transmission and adjustable bent housing, bearing
+    // section, and the bit box drive shaft. No branded geometry.
+    const group = new THREE.Group();
+
+    const metal = new THREE.MeshStandardMaterial({ color: 0x9aa4ae, metalness: 0.9, roughness: 0.28 });
+    const darkMetal = new THREE.MeshStandardMaterial({ color: 0x5b636b, metalness: 0.85, roughness: 0.35, side: THREE.DoubleSide });
+    const rotorMetal = new THREE.MeshStandardMaterial({ color: 0xb08d57, metalness: 0.8, roughness: 0.25 });
+    const elastomer = new THREE.MeshStandardMaterial({ color: 0x1d2125, metalness: 0.05, roughness: 0.9, side: THREE.DoubleSide });
+    const port = new THREE.MeshStandardMaterial({ color: 0x14171a, metalness: 0.2, roughness: 0.9 });
+
+    // Dump sub at the top, with its side ports
+    const dump = new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.26, 0.4, 32), metal);
+    dump.position.y = 1.55;
+    group.add(dump);
+    for (let i = 0; i < 3; i++) {
+      const a = (i / 3) * Math.PI * 2;
+      const p = new THREE.Mesh(new THREE.CircleGeometry(0.05, 16), port);
+      p.position.set(Math.cos(a) * 0.261, 1.55, Math.sin(a) * 0.261);
+      p.lookAt(Math.cos(a) * 2, 1.55, Math.sin(a) * 2);
+      group.add(p);
+    }
+
+    // Cutaway gap centred on the default camera's bearing (45 degrees in x/z)
+    const CUT_START = Math.PI / 4 + Math.PI * 0.25;
+
+    // Power section housing, cut away on the front to show the rotor
+    const powerLen = 1.5, powerY = 0.6;
+    const housing = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.28, 0.28, powerLen, 40, 1, true, CUT_START, Math.PI * 1.5),
+      darkMetal
+    );
+    housing.position.y = powerY;
+    group.add(housing);
+    const stator = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.24, 0.24, powerLen, 40, 1, true, CUT_START, Math.PI * 1.5),
+      elastomer
+    );
+    stator.position.y = powerY;
+    group.add(stator);
+
+    // Helical rotor: a thick tube swept along a tight, offset helix, which
+    // reads as the eccentric spiral rotor of a PDM power section
+    const turns = 5, rotorLen = powerLen - 0.1;
+    const helix = new THREE.Curve();
+    helix.getPoint = (t, target = new THREE.Vector3()) => {
+      const a = t * turns * Math.PI * 2;
+      return target.set(Math.cos(a) * 0.07, powerY - rotorLen / 2 + t * rotorLen, Math.sin(a) * 0.07);
+    };
+    const rotor = new THREE.Mesh(new THREE.TubeGeometry(helix, 400, 0.1, 20, false), rotorMetal);
+    group.add(rotor);
+
+    // Transmission housing with the adjustable bend ring
+    const trans = new THREE.Mesh(new THREE.CylinderGeometry(0.27, 0.27, 0.45, 32), metal);
+    trans.position.y = -0.4;
+    group.add(trans);
+    const bendRing = new THREE.Mesh(new THREE.CylinderGeometry(0.29, 0.29, 0.1, 32), darkMetal);
+    bendRing.position.y = -0.66;
+    group.add(bendRing);
+
+    // Everything below the bend is tilted a few degrees — the bent housing
+    // that lets the motor build angle when the string is slid, not rotated
+    const lower = new THREE.Group();
+    lower.position.y = -0.7;
+    lower.rotation.z = THREE.MathUtils.degToRad(5);
+    const bearing = new THREE.Mesh(new THREE.CylinderGeometry(0.27, 0.26, 0.75, 32), metal);
+    bearing.position.y = -0.4;
+    lower.add(bearing);
+    const pad = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 0.14, 32), darkMetal);
+    pad.position.y = -0.3;
+    lower.add(pad);
+    const shaft = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, 0.22, 24), metal);
+    shaft.position.y = -0.88;
+    lower.add(shaft);
+    const bitBox = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.22, 0.26, 32), darkMetal);
+    bitBox.position.y = -1.1;
+    lower.add(bitBox);
+    group.add(lower);
+
+    group.position.y = 0.1;
+
+    scene.add(group);
+
+    const controls = new TrackballControls(camera, renderer.domElement);
+    controls.noZoom = true;
+    controls.noPan = true;
+    controls.rotateSpeed = 3.2;
+    controls.staticMoving = false;
+    controls.dynamicDampingFactor = 0.12;
+    controls.target.set(0, 0, 0);
+    controls.update();
+    resetBtn.addEventListener('click', () => controls.reset());
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function onResize() {
+      const w = wrap.clientWidth, h = wrap.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+      controls.handleResize();
+    }
+    window.addEventListener('resize', onResize);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+    void reduceMotion;
+  }
+
+  poster.addEventListener('click', start, { once: true });
+  const io = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        // Still requires a tap per the agreed UX spec.
+      }
+    }
+  }, { threshold: 0.4 });
+  io.observe(wrap);
+</script>

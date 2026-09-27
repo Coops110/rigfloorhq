@@ -1,0 +1,261 @@
+---
+// Poster-image-first, drag-to-rotate only, no auto-spin — same interaction
+// contract as every other tool viewer on the site. Geometry is procedurally
+// generated (primitives only, no downloaded mesh/model file), built from
+// generic casing shoe anatomy: casing-sized steel body, a drillable cement
+// nose with a centre port and side jets, and a ball-and-seat check valve
+// inside. Not modeled on any specific manufacturer's product.
+---
+<div class="tool3d-wrap" role="img" aria-label="Interactive 3D model of a generic float shoe — drag to rotate">
+  <div class="tool3d-poster" id="tool3d-poster">
+    <svg viewBox="0 0 200 200" class="tool3d-poster-icon" aria-hidden="true">
+      <rect x="68" y="20" width="64" height="100" rx="4" fill="#5a6470"/>
+      <circle cx="100" cy="85" r="14" fill="#8a94a0"/>
+      <path d="M68 120 L132 120 L132 140 Q100 190 68 140 Z" fill="#c9b99a"/>
+    </svg>
+    <div class="tool3d-poster-label">Tap to view 3D model — drag to rotate</div>
+  </div>
+  <canvas id="tool3d-canvas" class="tool3d-canvas" aria-hidden="true"></canvas>
+  <button type="button" class="tool3d-reset" id="tool3d-reset">⟲ Reset View</button>
+  <div class="tool3d-fallback" id="tool3d-fallback" hidden>
+    3D preview isn't available in this browser — the diagram above and the write-up below cover the same detail.
+  </div>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.169.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.169.0/examples/jsm/"
+  }
+}
+</script>
+
+<style>
+  .tool3d-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    max-height: 520px;
+    min-height: 340px;
+    background: radial-gradient(ellipse at 50% 45%, #333c45 0%, #1c2126 45%, #0e1113 100%);
+    border: 1px solid var(--iron, #2a2f35);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: grab;
+  }
+  .tool3d-wrap:active { cursor: grabbing; }
+  .tool3d-poster {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 14px;
+    background: radial-gradient(circle at 50% 40%, #23282d 0%, #14171a 80%);
+  }
+  .tool3d-poster-icon { width: 96px; height: 96px; }
+  .tool3d-poster-label {
+    color: #9aa4ad; font-size: 0.85rem; letter-spacing: 0.02em;
+  }
+  .tool3d-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: none; }
+  .tool3d-reset {
+    position: absolute; bottom: 14px; right: 14px; z-index: 2; display: none;
+    padding: 6px 14px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em;
+    color: #e8a020; background: rgba(14, 17, 19, 0.72); border: 1px solid rgba(232, 160, 32, 0.4);
+    border-radius: 999px; cursor: pointer;
+  }
+  .tool3d-reset:hover { background: rgba(14, 17, 19, 0.9); border-color: #e8a020; }
+  .tool3d-fallback {
+    position: absolute; inset: 0; display: none; align-items: center; justify-content: center;
+    padding: 24px; text-align: center; color: #9aa4ad; font-size: 0.9rem;
+  }
+</style>
+
+<script is:inline>
+  const wrap = document.querySelector('.tool3d-wrap');
+  const poster = document.getElementById('tool3d-poster');
+  const canvas = document.getElementById('tool3d-canvas');
+  const fallback = document.getElementById('tool3d-fallback');
+  const resetBtn = document.getElementById('tool3d-reset');
+  if (!wrap || !poster || !canvas || !fallback || !resetBtn) throw new Error('FloatShoe3D: expected elements missing');
+
+  let started = false;
+
+  async function start() {
+    if (started) return;
+    started = true;
+
+    const probe = document.createElement('canvas');
+    const hasWebGL = !!(probe.getContext('webgl') || probe.getContext('experimental-webgl'));
+    if (!hasWebGL) {
+      poster.style.display = 'none';
+      fallback.style.display = 'flex';
+      return;
+    }
+
+    const THREE = await import('three');
+    const { TrackballControls } = await import('three/addons/controls/TrackballControls.js');
+    const { RoomEnvironment } = await import('three/addons/environments/RoomEnvironment.js');
+
+    poster.style.display = 'none';
+    canvas.style.display = 'block';
+    resetBtn.style.display = 'block';
+
+    const scene = new THREE.Scene();
+    scene.background = null;
+
+    const camera = new THREE.PerspectiveCamera(38, wrap.clientWidth / wrap.clientHeight, 0.1, 100);
+    camera.position.set(4.6, 1.38, 4.6);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(wrap.clientWidth, wrap.clientHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.25;
+
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+    const key = new THREE.DirectionalLight(0xfff4e6, 3.4);
+    key.position.set(3, 4.5, 2.5);
+    const fill = new THREE.DirectionalLight(0x9ecbff, 1.1);
+    fill.position.set(-3.5, 1.2, 2);
+    const rim = new THREE.DirectionalLight(0xffffff, 2.4);
+    rim.position.set(-1, 2.5, -4);
+    const kicker = new THREE.PointLight(0xffffff, 1.4, 12);
+    kicker.position.set(2, -0.5, 3);
+    const ambient = new THREE.HemisphereLight(0x6b7a8c, 0x14100c, 0.9);
+    scene.add(key, fill, rim, kicker, ambient);
+
+    // --- Generic float shoe, built from primitives ---
+    // Anatomy per generic industry reference: a short joint of casing-sized
+    // steel body with its box connection on top, a rounded drillable
+    // cement/composite nose below, one centre port and angled side jets,
+    // and a spring-loaded ball-and-seat check valve. No branded geometry.
+    const group = new THREE.Group();
+
+    const metal = new THREE.MeshStandardMaterial({ color: 0x9aa4ae, metalness: 0.9, roughness: 0.28 });
+    const darkMetal = new THREE.MeshStandardMaterial({ color: 0x5b636b, metalness: 0.85, roughness: 0.35 });
+    const cement = new THREE.MeshStandardMaterial({ color: 0xc9b99a, metalness: 0.05, roughness: 0.85 });
+    const valveMetal = new THREE.MeshStandardMaterial({ color: 0xb08d57, metalness: 0.7, roughness: 0.35 });
+    const port = new THREE.MeshStandardMaterial({ color: 0x14171a, metalness: 0.2, roughness: 0.9 });
+
+    // The cutaway gap is centred on the default camera's bearing (45 degrees
+    // in x/z), so the valve is visible before the model is rotated at all
+    const CUT_START = Math.PI / 4 + Math.PI * 0.2;
+
+    // Coupling / box connection at the top, slightly wider than the body
+    const coupling = new THREE.Mesh(new THREE.CylinderGeometry(0.48, 0.48, 0.45, 40), metal);
+    coupling.position.y = 1.2;
+    group.add(coupling);
+
+    // Casing-sized steel body, cut away on the front so the valve shows
+    const body = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.42, 0.42, 1.6, 40, 1, true, CUT_START, Math.PI * 1.6),
+      darkMetal
+    );
+    body.material = darkMetal.clone();
+    body.material.side = THREE.DoubleSide;
+    body.position.y = 0.2;
+    group.add(body);
+
+    // Cement fill inside the body, set back behind the cutaway
+    const cementFill = new THREE.Mesh(new THREE.CylinderGeometry(0.38, 0.38, 1.6, 32, 1, true, CUT_START, Math.PI * 1.6), cement);
+    cementFill.material = cement.clone();
+    cementFill.material.side = THREE.DoubleSide;
+    cementFill.position.y = 0.2;
+    group.add(cementFill);
+
+    // Flow bore down the centre, visible through the cutaway
+    const bore = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 1.6, 20), port);
+    bore.position.y = 0.2;
+    group.add(bore);
+
+    // Ball-and-seat check valve: seat ring, ball, and the spring above it
+    const seat = new THREE.Mesh(new THREE.TorusGeometry(0.15, 0.04, 12, 28), metal);
+    seat.rotation.x = Math.PI / 2;
+    seat.position.y = 0.05;
+    group.add(seat);
+    const ball = new THREE.Mesh(new THREE.SphereGeometry(0.16, 28, 20), valveMetal);
+    ball.position.y = 0.2;
+    group.add(ball);
+    for (let i = 0; i < 5; i++) {
+      const coil = new THREE.Mesh(new THREE.TorusGeometry(0.1, 0.015, 8, 20), metal);
+      coil.rotation.x = Math.PI / 2;
+      coil.position.y = 0.42 + i * 0.07;
+      group.add(coil);
+    }
+
+    // Rounded drillable nose, joined flush to the bottom of the body
+    const nose = new THREE.Mesh(
+      new THREE.SphereGeometry(0.42, 40, 20, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2),
+      cement
+    );
+    nose.scale.y = 1.35;
+    nose.position.y = -0.6;
+    group.add(nose);
+    // Cement face closing the top of the nose, so the cutaway shows solid
+    // fill below the valve instead of looking into a hollow dome
+    const noseTop = new THREE.Mesh(new THREE.CircleGeometry(0.42, 40), cement);
+    noseTop.rotation.x = -Math.PI / 2;
+    noseTop.position.y = -0.6;
+    group.add(noseTop);
+
+    // Centre port at the tip and angled side jets around the nose
+    const tipPort = new THREE.Mesh(new THREE.CircleGeometry(0.08, 20), port);
+    tipPort.rotation.x = Math.PI / 2;
+    tipPort.position.y = -0.6 - 0.42 * 1.35 - 0.001;
+    group.add(tipPort);
+    for (let i = 0; i < 4; i++) {
+      const a = (i / 4) * Math.PI * 2 + Math.PI / 4;
+      const jet = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.04, 16), port);
+      const r = 0.3, y = -0.6 - 0.28 * 1.35;
+      jet.position.set(Math.cos(a) * r, y, Math.sin(a) * r);
+      jet.lookAt(Math.cos(a) * 2, y - 1.2, Math.sin(a) * 2);
+      jet.rotateX(Math.PI / 2);
+      group.add(jet);
+    }
+
+    group.position.y = -0.15;
+
+    scene.add(group);
+
+    const controls = new TrackballControls(camera, renderer.domElement);
+    controls.noZoom = true;
+    controls.noPan = true;
+    controls.rotateSpeed = 3.2;
+    controls.staticMoving = false;
+    controls.dynamicDampingFactor = 0.12;
+    controls.target.set(0, 0, 0);
+    controls.update();
+    resetBtn.addEventListener('click', () => controls.reset());
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function onResize() {
+      const w = wrap.clientWidth, h = wrap.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+      controls.handleResize();
+    }
+    window.addEventListener('resize', onResize);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+    void reduceMotion;
+  }
+
+  poster.addEventListener('click', start, { once: true });
+  const io = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        // Still requires a tap per the agreed UX spec.
+      }
+    }
+  }, { threshold: 0.4 });
+  io.observe(wrap);
+</script>
