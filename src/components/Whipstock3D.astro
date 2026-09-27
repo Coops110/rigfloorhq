@@ -102,7 +102,7 @@
     scene.background = null;
 
     const camera = new THREE.PerspectiveCamera(38, wrap.clientWidth / wrap.clientHeight, 0.1, 100);
-    camera.position.set(3.0, 0.9, 3.0);
+    camera.position.set(4.6, 1.4, 4.6);
 
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -135,47 +135,52 @@
     const darkMetal = new THREE.MeshStandardMaterial({ color: 0x5b636b, metalness: 0.85, roughness: 0.35 });
     const concaveMetal = new THREE.MeshStandardMaterial({ color: 0xc7ccd1, metalness: 0.85, roughness: 0.2, side: THREE.DoubleSide });
 
-    // The long inclined ramp body — a tapered box standing in for the
-    // whipstock's concave-faced wedge shape.
+    // The long inclined ramp body — a tapered wedge standing in for the
+    // whipstock's concave-faced shape. Extrude depth runs along local Z
+    // (the ramp's thickness), so no rotation is needed — the shape's own
+    // y=0..2.6 maps straight onto the assembly's vertical axis.
+    const rampHeight = 2.6;
     const rampShape = new THREE.Shape();
     rampShape.moveTo(-0.3, 0);
     rampShape.lineTo(0.3, 0);
-    rampShape.lineTo(0.22, 3.2);
-    rampShape.lineTo(-0.22, 3.2);
+    rampShape.lineTo(0.22, rampHeight);
+    rampShape.lineTo(-0.22, rampHeight);
     rampShape.closePath();
     const ramp = new THREE.Mesh(
       new THREE.ExtrudeGeometry(rampShape, { depth: 0.5, bevelEnabled: false }),
       darkMetal
     );
-    ramp.rotation.z = Math.PI;
-    ramp.position.set(0.22, -1.6, -0.25);
+    ramp.position.set(0, -rampHeight / 2, -0.25);
     group.add(ramp);
 
     // Concave face plate — the curved surface a mill actually rides against,
-    // represented as a shallow half-cylinder along the ramp's length.
+    // running the same vertical length as the ramp and embedded in its
+    // front (+z) face, not a separate cross-axis tube.
     const face = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.35, 0.35, 3.0, 24, 1, true, 0, Math.PI),
+      new THREE.CylinderGeometry(0.2, 0.2, rampHeight, 24, 1, true, Math.PI / 2, Math.PI),
       concaveMetal
     );
-    face.rotation.z = Math.PI / 2;
-    face.position.set(0, 0.1, 0.05);
+    face.position.set(0, 0, 0.1);
     group.add(face);
 
-    // Anchor at the base (slips gripping the casing wall)
+    // Anchor at the base (slips gripping the casing wall), seated directly
+    // under the ramp's bottom edge.
+    const anchorY = -rampHeight / 2 - 0.3;
     const anchor = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.32, 0.6, 24), metal);
-    anchor.position.y = -1.75;
+    anchor.position.y = anchorY;
     group.add(anchor);
     for (let i = 0; i < 4; i++) {
       const key_ = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.35, 0.1), darkMetal);
       const angle = (i / 4) * Math.PI * 2;
-      key_.position.set(Math.cos(angle) * 0.38, -1.75, Math.sin(angle) * 0.38);
-      key_.lookAt(0, -1.75, 0);
+      key_.position.set(Math.cos(angle) * 0.38, anchorY, Math.sin(angle) * 0.38);
+      key_.lookAt(0, anchorY, 0);
       group.add(key_);
     }
 
-    // Pilot lug at the top — shears off once the mill begins cutting
+    // Pilot lug at the top — shears off once the mill begins cutting —
+    // seated directly on the ramp's top edge.
     const lug = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.25, 0.35), metal);
-    lug.position.set(0.05, 1.55, 0);
+    lug.position.set(0, rampHeight / 2 + 0.125, 0);
     group.add(lug);
 
     scene.add(group);
