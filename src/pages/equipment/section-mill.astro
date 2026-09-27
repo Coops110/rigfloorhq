@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import SectionMill3D from '../../components/SectionMill3D.astro';
+
+const faq = [
+  {
+    q: 'What is a section mill used for?',
+    a: 'A section mill removes an entire interval of casing, and the cement around it, over a run of several feet to tens of feet, converting cased hole into open hole across that section. It is the standard tool for exposing formation to set a full-annulus cement plug in a plug-and-abandonment program, for clearing an interval ahead of a sidetrack, and for removing casing across a zone where a window mill\'s narrower cut isn\'t enough.',
+  },
+  {
+    q: 'What is the difference between a single-trip and a two-trip section mill?',
+    a: 'A single-trip mill dresses off the casing wall and mills the interval in one continuous run, retracting and coming out of the hole once the target length is milled. A two-trip mill uses a smaller starting mill on the first run to establish and dress the top of the interval, then a full-gauge dressing mill on a second run to complete the wider cut — used when the job needs a cleaner, more controlled start than a single-trip mill\'s more aggressive initial bite allows.',
+  },
+  {
+    q: 'How much casing can be milled in one run?',
+    a: 'It depends on blade wear rate, weight on bit, rotary speed, and how well the swarf (milled steel cuttings) is being circulated out of the hole, but a well-run job typically mills a few feet per hour once through the wall. Total footage per run is usually limited by blade life and swarf handling capacity rather than a fixed depth limit — jobs are planned around expected blade wear on the specific casing grade and weight being milled.',
+  },
+  {
+    q: 'What happens to the swarf produced by section milling?',
+    a: 'Swarf is the shredded steel cuttings the mill blades produce as they grind through the casing wall and cement. It is circulated to surface in the drilling fluid returns the same way rock cuttings are, then separated out at the shakers. Swarf is heavier and more abrasive than rock cuttings, so mud properties and circulation rate are managed specifically to keep it moving and prevent it packing off around the BHA or settling in a low point in the hole.',
+  },
+  {
+    q: 'How does a section mill differ from a casing cutter?',
+    a: 'A section mill grinds away a full interval of casing and cement over several feet, leaving open hole where cased hole used to be. A casing cutter makes one narrow parting cut at a single depth so the casing above it can simply be pulled — the pipe and cement around it are otherwise left intact. If the plan is "expose this interval as open hole," it\'s a section mill\'s job; if the plan is "cut it here so I can pull what\'s above," it\'s a casing cutter\'s job.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Section Mill: How Casing Section Milling Works"
+  description="What a section mill is, single-trip vs. two-trip designs, swarf handling, generic ratings, common failure modes, and how it differs from a casing cutter."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Section Mill', href: '/equipment/section-mill' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Section <span>Mill</span></h1>
+    <p class="page-hero-sub">A milling tool that removes a full interval of casing and cement, converting cased hole into open hole across that section.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <SectionMill3D />
+      <div class="prose">
+        <h2 id="what-it-is">What a Section Mill Is</h2>
+        <p>A section mill is a downhole tool run on a work string and used to grind away an entire interval of casing, along with the cement bonded to its outside, over a run of several feet to tens of feet. Unlike a casing cutter's single narrow parting cut, a section mill removes material across the whole interval, leaving open hole — casing and cement both gone — where cased hole used to be.</p>
+        <p>The mill body carries hinged or spring-loaded dressing blades that extend outward once weight and rotation are applied, grinding radially outward until they reach and cut through the full casing wall, then continue clearing the interval as the string is worked up or down through the target zone.</p>
+
+        <h2 id="when-used">When and Why a Section Mill Is Run</h2>
+        <ul>
+          <li><strong>Full-annulus abandonment plugs.</strong> Many abandonment regulations require a cement plug bonded directly to formation across a qualifying interval, not just cement inside old casing — a section mill exposes that formation so the plug can be set correctly.</li>
+          <li><strong>Sidetrack preparation</strong>, when the plan calls for open hole across an interval rather than the narrower single window a whipstock and <a href="/equipment/window-mill">window mill</a> would cut.</li>
+          <li><strong>Removing damaged or unwanted casing</strong> across a longer interval than a single parting cut and pull can address, especially where the casing is stuck or collapsed and can't simply be pulled free.</li>
+          <li><strong>Multi-string milling</strong>, when concentric strings (casing inside casing) both need removing across the same interval, working alongside abrasive or specialized dressing mills suited to cutting through multiple walls.</li>
+        </ul>
+
+        <h2 id="trip-types">Single-Trip vs. Two-Trip Mills</h2>
+        <p><strong>Single-trip mills</strong> dress off the casing wall and mill the full target interval in one continuous run, coming out of the hole once finished. They're the simpler, faster option when the top of the interval doesn't need special handling.</p>
+        <p><strong>Two-trip mills</strong> split the job: a smaller-profile starting mill establishes and dresses a controlled entry point on the first run, then a full-gauge dressing mill completes the wider cut on a second run. This is used when a job needs a cleaner, more predictable start than a single-trip mill's more aggressive initial engagement with the pipe wall allows — particularly in harder or thicker-walled casing where an uncontrolled first bite risks knocking the mill off-center.</p>
+
+        <h2 id="running-operation">Running and Operation</h2>
+        <p>The mill is run to the top of the target interval on a work string, then weight and rotation are applied to extend the dressing blades and begin cutting. Once through the wall, the string is worked through the full target interval at a controlled rate of penetration, with mud properties and circulation rate managed specifically to carry the swarf (shredded steel cuttings) out of the hole rather than let it pack off around the BHA or settle in a low spot.</p>
+        <p>Milling rate depends on blade condition, applied weight, rotary speed, and casing grade and weight — jobs are planned around expected blade wear for the specific casing being milled, with blade condition checked between runs and blades or the whole mill assembly replaced once wear reduces cutting efficiency below an acceptable rate.</p>
+
+        <h2 id="materials-ratings">Materials and Generic Ratings</h2>
+        <p>Dressing blades are typically hardened tool steel faced with tungsten carbide or similar wear-resistant inserts, sized and profiled to the specific casing OD being milled. As a generic guide, mill selection accounts for the casing's outer diameter, wall thickness, and grade, along with expected formation and cement hardness behind it — the specific tool's rated cutting capacity and expected footage per blade set should always be confirmed against the manufacturer's actual specification rather than assumed from a generic figure.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Blade wear or breakage</strong> against harder-than-expected casing grade or formation, slowing or stopping penetration mid-run.</li>
+          <li><strong>Swarf packing off</strong> around the BHA or in the annulus when circulation rate or mud properties aren't keeping the heavier steel cuttings moving, which can stick the string.</li>
+          <li><strong>Off-center milling</strong> from poor centralization, producing an uneven bore through the interval rather than a clean, round cut.</li>
+          <li><strong>Mill stalling</strong> from excessive weight applied too quickly, especially on a single-trip mill's initial engagement with the pipe wall.</li>
+          <li><strong>Premature blade retraction or mill failure</strong> requiring a fishing run to recover parts left in the hole before the job can continue.</li>
+        </ul>
+
+        <h2 id="vs-casing-cutter">Section Mill vs. Casing Cutter</h2>
+        <p>Both tools deal with casing that's in the way, but they solve different problems. A <strong>section mill</strong> grinds away an entire interval of casing and the cement around it, leaving open hole across that section — the goal is removal, not retrieval. A <a href="/equipment/casing-cutter">casing cutter</a> makes one narrow parting cut at a single depth so the casing above it can simply be pulled intact, with the cement and pipe below the cut left alone. If the plan is "expose this interval as open hole," it's a section mill's job; if the plan is "cut it here so I can pull what's above," it's a casing cutter's job — and abandonment programs frequently call for both, at different depths in the same well.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#when-used">When It's Used</a>
+          <a href="#trip-types">Single-Trip vs. Two-Trip</a>
+          <a href="#running-operation">Running &amp; Operation</a>
+          <a href="#materials-ratings">Materials &amp; Ratings</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-casing-cutter">vs. Casing Cutter</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Milling rate and specifications vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/casing-cutter" class="card-link">→ Casing Cutter</a><br><br>
+          <a href="/equipment/window-mill" class="card-link">→ Window Mill</a><br><br>
+          <a href="/drilling/casing" class="card-link">→ Casing Design Explained</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

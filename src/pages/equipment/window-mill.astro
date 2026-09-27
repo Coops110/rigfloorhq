@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import WindowMill3D from '../../components/WindowMill3D.astro';
+
+const faq = [
+  {
+    q: 'What is a window mill used for?',
+    a: 'A window mill cuts an opening — a "window" — through one side of the casing wall over a short interval, so a new wellbore can be drilled out through it in a different direction. It is the tool that actually creates the exit point for a sidetrack, working against a whipstock that has been set and oriented to deflect the mill toward the casing wall at the planned kickoff depth.',
+  },
+  {
+    q: 'What is the milling assembly sequence for cutting a window?',
+    a: 'A full window-cutting run typically uses three mills in sequence against the whipstock: a starting (or lead) mill with an angled nose that first engages the casing wall and begins the cut, a window mill (sometimes called a watermelon mill for its barrel shape) that widens and shapes the opening to full gauge, and a taper or string mill that dresses the lower edge of the window smooth so the drill string can pass through it cleanly on later trips without hanging up.',
+  },
+  {
+    q: 'How is the whipstock set and oriented before milling?',
+    a: 'The whipstock is run to the planned kickoff depth on a setting tool and anchored in the casing — mechanically or with a cement or mechanical packer-type anchor — then oriented so its concave face points in the exact direction the new wellbore needs to go. Surveying tools confirm the orientation before the anchor is set, since the whipstock\'s face angle and direction determine where the window is cut and which way the sidetrack initially builds.',
+  },
+  {
+    q: 'What causes a bad window cut?',
+    a: 'The most common problems are an undersized or ragged window that a full drill string or later completion equipment can\'t pass through cleanly, a keyseat worn into the lower edge of the window from repeated trips over a sharp transition, and a whipstock that shifted or was oriented incorrectly, sending the window in the wrong direction or at the wrong depth. Confirming window quality — usually by running a full-gauge mill or bit back through it — before drilling ahead is standard practice.',
+  },
+  {
+    q: 'How does a window mill differ from a section mill?',
+    a: 'A window mill cuts an opening through one side of the casing over a short interval so a new wellbore can exit through it — the rest of the casing circumference and the interval above and below stay intact. A section mill removes the full circumference of casing and the cement around it over a longer interval, leaving open hole rather than a single exit point. A window mill is for starting a new path out of an existing well; a section mill is for clearing an interval entirely.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Window Mill: How Sidetrack Window Milling Works"
+  description="What a window mill is, the starting/window/taper mill sequence, whipstock setting and orientation, common failure modes, and how it differs from a section mill."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Window Mill', href: '/equipment/window-mill' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Window <span>Mill</span></h1>
+    <p class="page-hero-sub">A milling tool run against a whipstock to cut an exit opening through the casing wall, starting a sidetrack in a new direction.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <WindowMill3D />
+      <div class="prose">
+        <h2 id="what-it-is">What a Window Mill Is</h2>
+        <p>A window mill is a downhole milling tool used to cut an opening — a "window" — through one side of the casing wall over a short interval, typically named for its barrel-like shape, which is also why it's sometimes called a watermelon mill. It doesn't work alone: it's run against a whipstock, a long inclined ramp anchored inside the casing at the planned kickoff depth, whose angled face deflects the mill sideways into the casing wall instead of letting it continue straight down the existing bore.</p>
+        <p>The result is a clean opening through one side of the pipe, positioned and angled so a bit can be run through it afterward to begin drilling a new wellbore path — a sidetrack — while the original wellbore below the window is left cased and undisturbed unless deliberately plugged back.</p>
+
+        <h2 id="when-used">When and Why a Window Mill Is Run</h2>
+        <ul>
+          <li><strong>Sidetracking around an unrecoverable problem</strong> lower in the original hole — a fish that can't be retrieved, a collapsed or unusable section, or a mechanical failure that makes continuing in the original path impractical.</li>
+          <li><strong>Re-entering an old well to reach a new target</strong>, drilling a new path from an existing wellbore rather than the expense of drilling and casing an entirely new well from surface.</li>
+          <li><strong>Multilateral well construction</strong>, where several individual wellbores branch off a single cased mother bore to reach multiple targets or drainage points from one surface location.</li>
+          <li><strong>Correcting wellbore trajectory</strong> when the original path missed its target zone and a new path is needed from a point still inside useful casing.</li>
+        </ul>
+
+        <h2 id="milling-sequence">The Starting, Window, and Taper Mill Sequence</h2>
+        <p>Cutting a clean window is normally a three-mill job run in sequence on the same trip or across staged trips against the same set whipstock. The <strong>starting mill</strong> (or lead mill) has an angled, tapered nose built to ride the whipstock face and begin engaging the casing wall exactly where the window needs to open. The <strong>window mill</strong> follows, widening and shaping that initial cut to full gauge along the whipstock's length. A <strong>taper or string mill</strong> finishes the job, dressing the lower edge of the window smooth so later trips — running the drill string, casing, or completion equipment back through the same window — don't catch or wear a keyseat into a sharp transition.</p>
+
+        <h2 id="whipstock-setting">Whipstock Setting and Orientation</h2>
+        <p>The whipstock is run on a setting tool to the planned kickoff depth and anchored inside the casing before any milling starts — anchored mechanically, with a cement plug set below it, or with a dedicated packer-type anchor, depending on the tool string and the job. Orientation is critical and is confirmed with surveying tools before the anchor sets: the concave face of the whipstock has to point in the exact compass direction the new wellbore is meant to build toward, since the face angle and direction are what actually steer the mill — and everything drilled afterward — once milling begins.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Whipstock shift or misorientation</strong>, sending the window in the wrong direction or at the wrong depth if the anchor doesn't hold or the survey/orientation step was off.</li>
+          <li><strong>Undersized or ragged window</strong> from incomplete milling, leaving an opening too tight or irregular for a full-gauge string or completion equipment to pass through later.</li>
+          <li><strong>Keyseat wear</strong> at the lower edge of the window from repeated trips over a sharp, poorly-dressed transition, which can eventually trap or damage the string.</li>
+          <li><strong>Mill or blade failure mid-cut</strong>, requiring a fishing run to clear parts before milling can resume.</li>
+          <li><strong>Whipstock left in the hole after milling</strong> becoming an obstruction if it isn't retrieved or accounted for in later trip planning.</li>
+        </ul>
+
+        <h2 id="vs-section-mill">Window Mill vs. Section Mill</h2>
+        <p>Both tools cut through casing, but for different purposes. A <strong>window mill</strong> opens a single exit point through one side of the pipe over a short interval so a new wellbore can be drilled out through it — most of the casing at that depth stays intact. A <a href="/equipment/section-mill">section mill</a> removes the full circumference of casing, and the cement around it, over a longer interval, leaving open hole rather than a single directional exit. Use a window mill to start a sidetrack from inside existing casing; use a section mill when the plan calls for clearing an interval entirely.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#when-used">When It's Used</a>
+          <a href="#milling-sequence">Milling Sequence</a>
+          <a href="#whipstock-setting">Whipstock Setting</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-section-mill">vs. Section Mill</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Mill sequencing and whipstock design vary by manufacturer and job — always confirm against the actual sidetrack program before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/section-mill" class="card-link">→ Section Mill</a><br><br>
+          <a href="/equipment/casing-cutter" class="card-link">→ Casing Cutter</a><br><br>
+          <a href="/drilling/casing" class="card-link">→ Casing Design Explained</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

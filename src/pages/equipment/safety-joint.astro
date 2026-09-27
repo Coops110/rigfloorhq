@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import SafetyJoint3D from '../../components/SafetyJoint3D.astro';
+
+const faq = [
+  {
+    q: 'What is a safety joint used for?',
+    a: 'A safety joint is a deliberate weak point built into a work string — most often a fishing string or a liner running string — so that if the tool below it gets permanently stuck, the string above it can be released and pulled out cleanly instead of losing the whole string in the hole. It turns a potential total loss into a much smaller, recoverable fishing job.',
+  },
+  {
+    q: 'Where is a safety joint placed in the string?',
+    a: 'A safety joint is made up directly above the tool or assembly most likely to get stuck — for example just above a fishing tool engaging a lost item downhole, or just above a liner hanger and running tool on a liner string. Everything below the safety joint is accepted as being at some risk; everything above it is protected, since that\'s the part of the string the operation can afford to lose if things go wrong.',
+  },
+  {
+    q: 'How is a safety joint released?',
+    a: 'The two common designs release differently. A mechanical (threaded) safety joint releases with left-hand rotation applied from surface, unscrewing a coarse, reverse-threaded connection once straight pull and normal rotation have failed to free the stuck assembly. A hydraulic or J-slot type releases through a specific sequence of applied weight, pressure, or a combination of pickup and rotation defined by the tool\'s own release profile, rather than simple back-off rotation.',
+  },
+  {
+    q: 'When would a safety joint be used over just risking the whole string?',
+    a: 'Any time the job involves running an assembly into a wellbore condition with a real, known chance of sticking — fishing for a specific lost item, running a liner into a hole with known tight spots or ledges, or working in a section with a history of sticking on offset wells. The cost of adding a safety joint is small compared to losing an entire expensive string and the extended fishing job that follows if the whole assembly gets stuck with no planned release point.',
+  },
+  {
+    q: 'What are the failure modes of a safety joint?',
+    a: 'The two opposite failure modes both matter: releasing prematurely under normal drilling loads, torque, or vibration when it wasn\'t meant to let go, which can turn a routine job into an unplanned fishing job on its own; and failing to release when it\'s actually needed, usually from debris or scale jamming the release mechanism, or from a mechanical joint backing off only partially and then galling before it fully disengages.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Safety Joint: How Fishing-String Release Points Work"
+  description="What a safety joint is, mechanical vs. hydraulic release designs, where it's placed in a fishing or liner string, and common failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Safety Joint', href: '/equipment/safety-joint' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Safety <span>Joint</span></h1>
+    <p class="page-hero-sub">A deliberate release point built into a work string, so a stuck tool below it can be left behind instead of losing the whole string.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <SafetyJoint3D />
+      <div class="prose">
+        <h2 id="what-it-is">What a Safety Joint Is</h2>
+        <p>A safety joint is a connection built into a work string with one specific job: to let the string above it disconnect cleanly from the assembly below it, on command, if that lower assembly becomes permanently stuck. It's a planned weak point, not an accidental one — everything about its design is aimed at releasing reliably when actually needed, and staying solidly made up the rest of the time.</p>
+        <p>Fishing operations and liner-running jobs are the two most common uses. In a fishing string, the safety joint sits just above the fishing tool that's trying to grab and retrieve a lost item downhole — if the fish won't come free, the safety joint lets the fishing string itself be recovered rather than adding a second stuck assembly on top of the first. In a liner string, it sits above the liner hanger and running tool, so if the liner can't be set or released cleanly, the running string above it isn't lost along with it.</p>
+
+        <h2 id="placement">Where It's Placed in the String</h2>
+        <p>A safety joint is made up directly above whichever component in the string carries the highest risk of sticking — the fishing tool itself, a liner-setting assembly, or any other component being run into a wellbore condition with a known chance of getting stuck. Everything below the safety joint is accepted as being at some risk of being left in the hole; everything above it is what the operation is actually trying to protect and bring back.</p>
+
+        <h2 id="release-methods">Mechanical vs. Hydraulic Release</h2>
+        <p><strong>Mechanical (threaded back-off) safety joints</strong> use a coarse, reverse-threaded connection that releases with left-hand rotation applied from surface — the standard next step once straight overpull and normal right-hand rotation have failed to free whatever's stuck below. They're simple, don't depend on hydraulic integrity, and are the more common choice on fishing strings.</p>
+        <p><strong>Hydraulic or J-slot release joints</strong> release through a specific sequence of applied weight, pressure, or a defined combination of pickup and rotation set by the tool's own internal profile, rather than simple rotation. These are common on liner-running tools, where the release also has to happen in a specific sequence relative to setting the liner hanger and isn't always practical to control by rotation alone from surface, especially in a highly deviated or horizontal wellbore.</p>
+
+        <h2 id="operational-use">Operational Use</h2>
+        <p>Before running any string with a safety joint, the release procedure is confirmed and understood by everyone on site — direction of rotation, expected torque or weight signature at release, and what a successful release looks like at surface (a sudden drop in torque or weight, for a mechanical joint) versus what a jammed or partial release looks like. Running the joint in the correct working range of weight, torque, and rotation during normal operations matters just as much as the release procedure itself, since operating outside that range is exactly what risks a premature release under normal load.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Premature release</strong> under normal drilling or running loads, torque, or vibration — turning a routine job into an unplanned fishing job for the lower assembly on its own.</li>
+          <li><strong>Failure to release when actually needed</strong>, most often from debris, scale, or cuttings jamming the release mechanism.</li>
+          <li><strong>Partial back-off and galling</strong> on a mechanical joint, where the threads start to release but bind before fully disengaging, sometimes requiring additional torque cycles or a different recovery method entirely.</li>
+          <li><strong>Incorrect release sequence applied</strong> on a hydraulic or J-slot design, where an operator error in the pickup/rotation/pressure sequence prevents the intended release.</li>
+        </ul>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#placement">Placement in the String</a>
+          <a href="#release-methods">Mechanical vs. Hydraulic</a>
+          <a href="#operational-use">Operational Use</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Release procedures and torque/pressure specifications vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/casing-cutter" class="card-link">→ Casing Cutter</a><br><br>
+          <a href="/equipment/bridge-plug" class="card-link">→ Bridge Plug</a><br><br>
+          <a href="/drilling/drill-string" class="card-link">→ The Drill String</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

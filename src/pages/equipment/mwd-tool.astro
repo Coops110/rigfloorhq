@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import MWDTool3D from '../../components/MWDTool3D.astro';
+
+const faq = [
+  {
+    q: 'What does MWD stand for and what does it do?',
+    a: 'MWD stands for Measurement While Drilling. It\'s a downhole tool, built into the bottom hole assembly, that measures the wellbore\'s inclination, azimuth, and toolface orientation in real time as drilling progresses, and transmits that data to surface without needing to stop and run a separate wireline survey. It\'s the core tool that makes modern directional drilling possible.',
+  },
+  {
+    q: 'How does MWD send data to the surface?',
+    a: 'Most MWD tools use mud pulse telemetry: a valve inside the tool restricts drilling fluid flow in a controlled pattern, creating pressure pulses that travel up the mud column inside the drill string to surface, where a pressure transducer detects and decodes them back into data. Positive-pulse tools briefly restrict flow to create a pressure spike; negative-pulse tools briefly vent fluid to create a pressure drop; continuous-wave tools modulate a rotating valve to create a steady sine-wave signal. Electromagnetic (EM) telemetry is a less common alternative that sends a signal through the formation itself instead of the mud column, useful in air or underbalanced drilling where there\'s no continuous mud column to pulse through.',
+  },
+  {
+    q: 'What is the difference between MWD and LWD?',
+    a: 'MWD measures the wellbore\'s own directional and mechanical parameters — inclination, azimuth, toolface, and often shock/vibration and downhole weight/torque. LWD (Logging While Drilling) measures the formation itself — gamma ray, resistivity, density, and other petrophysical properties, the same kind of data a wireline log would gather, but recorded in real time while drilling. The two are often bundled in the same collar or the same BHA and share the same mud pulse telemetry system to surface, which is why the terms sometimes get used loosely for the same tool, but they measure fundamentally different things.',
+  },
+  {
+    q: 'Where is the MWD tool positioned in the drill string?',
+    a: 'MWD tools sit in the bottom hole assembly, typically positioned above the mud motor and bit and below the drill collars, close enough to the bit to give a directional reading that reflects where the bit actually is, not just where the string was some distance up-hole. Exact placement depends on the specific BHA design and whether LWD, a mud motor, or a rotary steerable system is also in the string.',
+  },
+  {
+    q: 'What are common MWD failure modes?',
+    a: 'The pulser mechanism itself is the most common failure point — debris or lost circulation material fouling the pulser valve, or mechanical wear over long runs, both degrade or stop the signal. Battery depletion (on battery-powered tools) or turbine/generator failure (on mud-flow-powered tools) cuts power to the whole tool. Signal detection at surface can also fail in noisy mud systems — heavy pump noise, gas-cut mud, or very low flow rates can all make pulses hard to distinguish from background pressure fluctuations, even when the downhole tool itself is working correctly.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="MWD Tool: How Measurement While Drilling Works"
+  description="What an MWD tool is, mud pulse telemetry, MWD vs. LWD, where it sits in the BHA, and common failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'MWD Tool', href: '/equipment/mwd-tool' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>MWD <span>Tool</span></h1>
+    <p class="page-hero-sub">A bottom hole assembly tool that measures wellbore direction in real time and pulses the data to surface through the mud column.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <MWDTool3D />
+      <div class="prose">
+        <h2 id="what-it-is">What an MWD Tool Is</h2>
+        <p>MWD (Measurement While Drilling) is a downhole tool built into the bottom hole assembly that continuously measures the wellbore's inclination (how far off vertical it is), azimuth (the compass direction it's heading), and toolface (the orientation of a bent housing or steering tool relative to the wellbore) as drilling progresses. Before MWD, getting this data meant stopping the bit, running a separate wireline survey instrument down the string, and pulling it back out — slow, and only a snapshot at one moment. MWD instead reports continuously, in near real time, without ever stopping drilling to take a reading.</p>
+        <p>Inside the tool, a set of accelerometers and magnetometers (or in some designs, gyroscopic sensors, used where magnetic interference from casing or formation makes magnetic sensors unreliable) measure the string's orientation directly. Many MWD tools also carry additional sensors for downhole shock and vibration, and sometimes weight-on-bit and torque-on-bit, giving the directional driller a fuller real-time picture of what's actually happening at the bit.</p>
+
+        <h2 id="telemetry">Mud Pulse Telemetry</h2>
+        <p>The dominant method of getting MWD data to surface is mud pulse telemetry: a valve inside the tool creates a controlled disturbance in the drilling fluid flowing down the drill string, and that disturbance travels up the mud column as a pressure pulse, detected at surface by a pressure transducer on the standpipe and decoded back into the original data. Three main pulse types are in use — <strong>positive-pulse</strong> tools briefly restrict flow to spike pressure up, <strong>negative-pulse</strong> tools briefly vent fluid to a lower-pressure path to drop pressure, and <strong>continuous-wave</strong> tools rotate a slotted valve to generate a steady modulated sine-wave signal rather than discrete pulses.</p>
+        <p><strong>Electromagnetic (EM) telemetry</strong> is a less common alternative that sends its signal as an electromagnetic wave through the formation itself rather than pulsing the mud column. It's mainly used where mud pulse telemetry doesn't work well or at all — air, foam, or underbalanced drilling, where there's no continuous liquid mud column for a pulse to travel through.</p>
+
+        <h2 id="mwd-vs-lwd">MWD vs. LWD</h2>
+        <p>MWD and LWD (Logging While Drilling) are frequently confused because they're often built into the same collar and share the same telemetry system, but they measure different things. <strong>MWD</strong> measures the wellbore's own directional and mechanical state — inclination, azimuth, toolface, shock, vibration. <strong>LWD</strong> measures the surrounding formation — gamma ray, resistivity, density, porosity, and other petrophysical properties, the same category of data a wireline log gathers, just recorded in real time while drilling instead of on a separate run afterward. A BHA can carry MWD alone, LWD alone, or both bundled together, depending on whether the job needs directional data, formation evaluation data, or both.</p>
+
+        <h2 id="placement">Where MWD Sits in the BHA</h2>
+        <p>MWD tools are positioned in the bottom hole assembly close to the bit — typically above a mud motor (if one is in the string) and below the drill collars — so the directional reading reflects the actual position and orientation near the bit, not a reading taken from some distance up the string. Exact placement varies with the specific BHA design, and whether LWD, a mud motor, or a rotary steerable system is also part of the assembly.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Pulser fouling or wear</strong> — debris or lost circulation material jamming the pulser valve, or mechanical wear over a long run, both degrade or stop signal transmission.</li>
+          <li><strong>Power loss</strong> — battery depletion on battery-powered tools, or turbine/generator failure on mud-flow-powered tools, cuts power to the entire tool.</li>
+          <li><strong>Poor signal detection at surface</strong> in noisy mud systems — heavy pump noise, gas-cut mud, or very low flow rates can make pulses hard to distinguish from background pressure fluctuations even when the downhole tool is functioning correctly.</li>
+          <li><strong>Sensor drift or magnetic interference</strong> from nearby casing, other BHA components, or local magnetic anomalies, degrading directional accuracy even while the tool otherwise reports normally.</li>
+        </ul>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#telemetry">Mud Pulse Telemetry</a>
+          <a href="#mwd-vs-lwd">MWD vs. LWD</a>
+          <a href="#placement">Placement in the BHA</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Telemetry type and sensor specifications vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/drill-string" class="card-link">→ The Drill String</a><br><br>
+          <a href="/equipment/window-mill" class="card-link">→ Window Mill</a><br><br>
+          <a href="/drilling/formulas" class="card-link">→ Drilling Formulas Cheat Sheet</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
