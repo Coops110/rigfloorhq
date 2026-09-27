@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'Where does the 35.5 ppg constant come from?',
+    a: 'It represents barite\'s own absolute density expressed in ppg (a specific gravity of roughly 4.2-4.3, the standard API barite weighting material) — the theoretical mud weight if the mud were pure barite with no water or oil phase at all. The formula works because it\'s finding what fraction of that theoretical maximum needs adding to reach the target weight.',
+  },
+  {
+    q: 'Does this account for volume increase from adding barite?',
+    a: 'No — this gives the weight of barite (in lb per barrel of starting mud) needed to reach the target weight, treating the added solids as if they replace an equivalent liquid volume. A full mud engineering calculation also tracks the resulting volume increase and solids content; this calculator answers the weighting-material question specifically, not total system volume.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Barite Required Calculator: Weighting Up Drilling Mud"
+  description="Free calculator for how much barite, in pounds per barrel, is needed to raise drilling mud from one weight to a heavier target weight."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Barite Required', href: '/calculators/barite-required' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Barite Required <span>to Raise Mud Weight</span></h1>
+    <p class="page-hero-sub">How many pounds of barite per barrel of starting mud are needed to weight up from a current mud weight to a heavier target weight.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Weight-Up Inputs</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="br-mw1">Current Mud Weight (ppg)</label>
+              <input type="number" id="br-mw1" value="11" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="br-mw2">Target Mud Weight (ppg)</label>
+              <input type="number" id="br-mw2" value="12" step="0.1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Barite Required</span><span class="output-value" id="out-barite">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formula Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">Barite Required</div>
+          <div class="formula-eq">Barite (lb/bbl) = 1500 × (Target MW − Current MW) ÷ (35.5 − Target MW)</div>
+          <div class="formula-note">Both mud weights in ppg. Result is pounds of barite per barrel of starting mud.</div>
+        </div>
+
+        <h3>Where This Fits</h3>
+        <p>This is the practical weighting-up step behind several other calculators on the site: the mud engineer needs this figure any time a <a href="/calculators/kill-sheet">kill sheet</a> or the <a href="/calculators/mamw">MAMW calculator</a> calls for a heavier kill mud weight than what's currently in the pits, or any time the <a href="/calculators/maasp">MAASP</a> or mud weight window calls for weighting up ahead of drilling into a higher-pressure zone. As the target weight gets closer to barite's own 35.5 ppg absolute density, the denominator shrinks and the required quantity per barrel climbs sharply — a real practical ceiling on how heavy a water- or oil-based mud can realistically be weighted with barite alone.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const mw1 = num('br-mw1'), mw2 = num('br-mw2');
+    const denom = 35.5 - mw2;
+    const barite = denom > 0 ? 1500 * (mw2 - mw1) / denom : 0;
+    set('out-barite', fmt(barite, 1) + ' lb/bbl');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

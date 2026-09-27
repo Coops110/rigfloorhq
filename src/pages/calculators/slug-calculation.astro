@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'Why pump a slug before pulling out of hole?',
+    a: 'A slug is a small volume of heavier mud pumped into the top of the drill string before tripping, so that once the string is broken and drained at surface, the pipe comes out with a known dry section instead of dumping mud onto the rig floor at every connection. It\'s a housekeeping and safety measure, not a well control barrier.',
+  },
+  {
+    q: 'Why does pumping a slug cause a pit gain?',
+    a: 'The slug is heavier than the mud already in the pits, so pumping it in and displacing an equal volume of lighter mud back to the pits — the U-tubing effect — shows up as a real, expected pit gain. Confirming this expected gain matches what the calculator predicts is exactly how a crew rules out a real kick showing up at the same moment a slug is pumped.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Slug Volume & Pit Gain Calculator"
+  description="Free calculator for the slug volume needed for a desired dry pipe length, and the expected pit gain from pumping that slug."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Slug Calculation', href: '/calculators/slug-calculation' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Slug Volume &amp; <span>Pit Gain</span></h1>
+    <p class="page-hero-sub">The slug volume needed for a desired length of dry pipe before tripping, and the pit gain that slug will cause once it's pumped.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Slug Volume</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="slug-len">Desired Length of Dry Pipe (ft)</label>
+              <input type="number" id="slug-len" value="255.75" step="0.01">
+            </div>
+            <div class="input-group">
+              <label for="slug-cap">Drill Pipe Capacity (bbl/ft)</label>
+              <input type="number" id="slug-cap" value="0.0207" step="0.0001">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="slug-mw">Mud Weight (ppg)</label>
+              <input type="number" id="slug-mw" value="10.2" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="slug-sw">Slug Weight (ppg)</label>
+              <input type="number" id="slug-sw" value="12" step="0.1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Slug Volume</span><span class="output-value" id="out-slugvol">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🧭 Pit Gain Due to U-Tubing</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="slug-vol2">Slug Volume (bbl)</label>
+              <input type="number" id="slug-vol2" value="30" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="slug-mw2">Mud Weight (ppg)</label>
+              <input type="number" id="slug-mw2" value="10" step="0.1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="slug-sw2">Slug Weight (ppg)</label>
+              <input type="number" id="slug-sw2" value="11.3" step="0.1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Expected Pit Gain</span><span class="output-value" id="out-pitgain">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formulas Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">Slug Volume</div>
+          <div class="formula-eq">V = (Length × Pipe Capacity × Mud Weight) ÷ (Slug Weight − Mud Weight)</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">Pit Gain Due to Slug U-Tubing</div>
+          <div class="formula-eq">Pit Gain = Slug Volume × (Slug Weight − Mud Weight) ÷ Mud Weight</div>
+        </div>
+
+        <h3>Where This Fits</h3>
+        <p>The slug volume figure feeds directly into the pit gain calculation — pump the slug volume from the first box, then use that same figure in the second box to know exactly how much pit gain to expect from the U-tubing effect alone. That expected number is what a crew checks the actual pit-level reading against right after pumping a slug, on any trip, which is also the same routine sanity-check habit that matters on the <a href="/pillars/stuck-pipe-and-fishing-operations">stuck pipe and fishing operations</a> page's broader trip-monitoring discussion — an unexplained gain beyond this predicted figure is the first real sign something else is happening in the well at the same time.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const len = num('slug-len'), cap = num('slug-cap'), mw = num('slug-mw'), sw = num('slug-sw');
+    const denom = sw - mw;
+    const slugVol = denom > 0 ? (len * cap * mw) / denom : 0;
+    set('out-slugvol', fmt(slugVol, 2) + ' bbl');
+
+    const vol2 = num('slug-vol2'), mw2 = num('slug-mw2'), sw2 = num('slug-sw2');
+    const pitGain = mw2 > 0 ? vol2 * (sw2 - mw2) / mw2 : 0;
+    set('out-pitgain', fmt(pitGain, 2) + ' bbl');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

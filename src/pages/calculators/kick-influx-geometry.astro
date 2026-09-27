@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'Why does length of influx along hole matter separately from its vertical height?',
+    a: 'They answer different questions. Length along hole is a volume-to-space conversion — how much wellbore the kick volume actually fills, along the direction the hole is drilled. Vertical height converts that same length into true vertical feet, which is what actually matters for pressure, since hydrostatic pressure depends on true vertical depth, not measured depth along an inclined or horizontal hole.',
+  },
+  {
+    q: 'What happens to influx vertical height in a horizontal well?',
+    a: 'It approaches zero as inclination approaches 90 degrees, since a purely horizontal length of hole gains almost no true vertical height at all. That is exactly why kicks taken in a horizontal or high-angle section are so much harder to detect and manage on pressure alone — a large influx volume can occupy a long length of hole while barely registering as a pressure change at surface.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Kick Influx Geometry Calculator: Length, Height, Gradient, SICP"
+  description="Free calculator for influx length along hole, true vertical height, influx gradient, and shut-in casing pressure from a kick's kick volume and inclination."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Kick Influx Geometry', href: '/calculators/kick-influx-geometry' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Kick Influx <span>Geometry</span></h1>
+    <p class="page-hero-sub">Converts a kick volume into the influx's length along the hole and its true vertical height, then uses that height to check shut-in casing pressure.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Length &amp; Vertical Height of Influx</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="kig-kv">Kick Volume (bbl)</label>
+              <input type="number" id="kig-kv" value="20" step="1">
+            </div>
+            <div class="input-group">
+              <label for="kig-ac">Annular Capacity (bbl/ft)</label>
+              <input type="number" id="kig-ac" value="0.0836" step="0.0001">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="kig-inc">Hole Inclination (degrees from vertical)</label>
+              <input type="number" id="kig-inc" value="45" step="1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line"><span class="output-label">Length of Influx Along Hole</span><span class="output-value" id="out-loiah">—</span></div>
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Influx Vertical Height</span><span class="output-value" id="out-ivh">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🧭 Shut-In Casing Pressure Check</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="kig-mw">Mud Weight (ppg)</label>
+              <input type="number" id="kig-mw" value="12" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="kig-sidpp">SIDPP (psi)</label>
+              <input type="number" id="kig-sidpp" value="450" step="1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="kig-ig">Influx Gradient (psi/ft)</label>
+              <input type="number" id="kig-ig" value="0.11" step="0.01">
+            </div>
+            <div class="input-group">
+              <label for="kig-ivh2">Influx Vertical Height (ft)</label>
+              <input type="number" id="kig-ivh2" value="150" step="1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Shut-In Casing Pressure</span><span class="output-value" id="out-sicp">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formulas Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">Length of Influx Along Hole</div>
+          <div class="formula-eq">LoIAH = Kick Volume ÷ Annular Capacity</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">Influx Vertical Height</div>
+          <div class="formula-eq">IVH = LoIAH × cos(Hole Inclination)</div>
+          <div class="formula-note">Inclination measured from vertical. This calculator applies the trig correctly in degrees — see the note below on a real error found in the source worksheet this was checked against.</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">Shut-In Casing Pressure</div>
+          <div class="formula-eq">SICP = SIDPP + [Influx Vertical Height × (Mud Gradient − Influx Gradient)]</div>
+          <div class="formula-note">Mud gradient = Mud Weight × 0.052.</div>
+        </div>
+
+        <div class="note-box mt-24">
+          <strong>A real error caught building this page:</strong> the reference worksheet this was checked against computed influx vertical height by feeding a degrees value into a cosine function expecting radians — a classic spreadsheet unit bug. That produces a physically wrong, too-small vertical height. This calculator uses the correct trig (degrees converted to radians internally), which gives a noticeably larger, correct vertical height for the same inputs.
+        </div>
+
+        <h3>Where This Fits</h3>
+        <p>These three formulas chain together in a live kick: kick volume in bbl is a pit-gain reading, but neither <a href="/drilling/well-control">well control</a> action nor a pressure check can use bbl directly — it first has to become a length of hole, then a true vertical height, before it means anything on a pressure gauge. Once influx vertical height is known, feed it into the second box along with the influx's own pressure gradient (an <a href="/calculators/gas-migration">estimated gas gradient</a> if it's a gas kick) to check the resulting shut-in casing pressure against what's actually being read at surface — a real mismatch there is worth investigating before assuming either number is right.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const kv = num('kig-kv'), ac = num('kig-ac'), inc = num('kig-inc');
+    const loiah = ac > 0 ? kv / ac : 0;
+    const ivh = loiah * Math.cos(inc * Math.PI / 180);
+    set('out-loiah', fmt(loiah, 1) + ' ft');
+    set('out-ivh', fmt(ivh, 1) + ' ft');
+
+    const mw = num('kig-mw'), sidpp = num('kig-sidpp'), ig = num('kig-ig'), ivh2 = num('kig-ivh2');
+    const mudGrad = mw * 0.052;
+    const sicp = sidpp + ivh2 * (mudGrad - ig);
+    set('out-sicp', fmt(sicp, 0) + ' psi');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

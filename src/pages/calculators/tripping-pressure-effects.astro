@@ -1,0 +1,180 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'Why is the pressure drop per foot different for dry pipe vs. wet pipe?',
+    a: 'Pulling dry pipe (empty, no fluid inside) only removes the pipe\'s own steel volume from the hole, so the mud level drop is driven by steel displacement against the full open-hole or casing capacity. Pulling wet pipe (still full of fluid) also removes the fluid inside the pipe\'s bore, so the drop is driven by steel displacement plus the pipe\'s internal capacity, against just the annular capacity rather than the full hole capacity — a meaningfully different, usually larger, drop per foot.',
+  },
+  {
+    q: 'Why keep the mud topped up while tripping out?',
+    a: 'As pipe comes out, the mud level in the hole drops, and a dropping mud level means dropping hydrostatic pressure at the bottom of the well. If enough pipe is pulled without topping up the annulus, hydrostatic pressure can fall below formation pressure and the well starts flowing — filling the hole with mud as it\'s tripped keeps hydrostatic pressure roughly constant instead.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Tripping Pressure Effects Calculator: Dry Pipe, Wet Pipe, Mud Level Drop"
+  description="Free calculator for pressure drop per foot pulling dry or wet pipe, and how far the mud level drops pulling out of hole without topping up."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Tripping Pressure Effects', href: '/calculators/tripping-pressure-effects' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Tripping Pressure <span>Effects</span></h1>
+    <p class="page-hero-sub">How much hydrostatic pressure is lost per foot pulling dry or wet pipe, and how far the mud level actually drops tripping out without topping up.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Pressure Drop per Foot — Dry Pipe</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tpe-mw">Mud Weight (ppg)</label>
+              <input type="number" id="tpe-mw" value="11" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="tpe-sd">Steel Displacement (bbl/ft)</label>
+              <input type="number" id="tpe-sd" value="0.00653" step="0.00001">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tpe-cc">Casing/Hole Capacity (bbl/ft)</label>
+              <input type="number" id="tpe-cc" value="0.1481" step="0.0001">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Pressure Drop — Dry</span><span class="output-value" id="out-dry">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🧭 Pressure Drop per Foot — Wet Pipe</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tpe-mw2">Mud Weight (ppg)</label>
+              <input type="number" id="tpe-mw2" value="11" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="tpe-dpc">Drill Pipe Internal Capacity (bbl/ft)</label>
+              <input type="number" id="tpe-dpc" value="0.01776" step="0.00001">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tpe-ac">Annular Capacity (bbl/ft)</label>
+              <input type="number" id="tpe-ac" value="0.12381" step="0.00001">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Pressure Drop — Wet</span><span class="output-value" id="out-wet">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🧭 Drop in Mud Level Pulling Out (Dry)</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tpe-len">Length of Tubulars Pulled (ft)</label>
+              <input type="number" id="tpe-len" value="200" step="1">
+            </div>
+            <div class="input-group">
+              <label for="tpe-sd2">Steel Displacement (bbl/ft)</label>
+              <input type="number" id="tpe-sd2" value="0.00653" step="0.00001">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tpe-cc2">Casing/Riser Capacity (bbl/ft)</label>
+              <input type="number" id="tpe-cc2" value="0.1481" step="0.0001">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Mud Level Drop</span><span class="output-value" id="out-drop">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formulas Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">Pressure Drop/ft — Dry Pipe</div>
+          <div class="formula-eq">ΔP/ft = MW × 0.052 × [Steel Disp ÷ (Capacity − Steel Disp)]</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">Pressure Drop/ft — Wet Pipe</div>
+          <div class="formula-eq">ΔP/ft = MW × 0.052 × [(Steel Disp + Pipe Capacity) ÷ Annular Capacity]</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">Drop in Mud Level (Dry)</div>
+          <div class="formula-eq">Drop = Length Pulled × Steel Disp ÷ Capacity</div>
+        </div>
+
+        <h3>Where This Fits</h3>
+        <p>These three calculations are the mechanics behind the same swab risk the <a href="/calculators/trip-margin">trip margin calculator</a> and the <a href="/calculators/pipe-pull-margin">wet and dry pipe pull margin calculator</a> both plan around — trip margin sets how much extra mud weight to carry, pull margin says how far pipe can safely come out, and this page works out the actual pressure and mud-level consequence of a specific length pulled dry or wet. On a real trip, mud level drop is what tells the crew exactly how much to top up the annulus after every stand or connection to keep hydrostatic pressure from sagging as pipe comes out.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const mw = num('tpe-mw'), sd = num('tpe-sd'), cc = num('tpe-cc');
+    const dry = (cc - sd) > 0 ? mw * 0.052 * (sd / (cc - sd)) : 0;
+    set('out-dry', fmt(dry, 4) + ' psi/ft');
+
+    const mw2 = num('tpe-mw2'), dpc = num('tpe-dpc'), ac = num('tpe-ac');
+    const wet = ac > 0 ? mw2 * 0.052 * ((sd + dpc) / ac) : 0;
+    set('out-wet', fmt(wet, 4) + ' psi/ft');
+
+    const len = num('tpe-len'), sd2 = num('tpe-sd2'), cc2 = num('tpe-cc2');
+    const drop = cc2 > 0 ? len * sd2 / cc2 : 0;
+    set('out-drop', fmt(drop, 1) + ' ft');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

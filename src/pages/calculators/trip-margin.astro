@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'What is a trip margin actually protecting against?',
+    a: 'Swabbing — the tendency of pipe movement, especially pulling out of hole, to momentarily reduce bottomhole pressure below the static hydrostatic value. A trip margin adds a small extra mud weight on top of the minimum needed to balance formation pressure, so that swabbing during a normal trip doesn\'t let the well flow.',
+  },
+  {
+    q: 'How is the safety margin figure chosen?',
+    a: 'It\'s typically set as a company or well-specific policy figure — commonly in the 100-200 psi surface-equivalent range — based on expected swab pressures for the string and trip speed being used, not calculated fresh for every trip. Check your operator\'s well control policy for the actual figure to use on a real well.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Trip Margin / Safety Factor Calculator"
+  description="Free trip margin (safety factor) calculator: the extra mud weight carried above formation balance to protect against swabbing in a kick while tripping."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Trip Margin', href: '/calculators/trip-margin' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Trip Margin <span>/ Safety Factor</span></h1>
+    <p class="page-hero-sub">The mud weight carried above formation balance so that swab pressure while tripping out doesn't let the well flow.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Trip Margin Inputs</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tm-mw">Base Mud Weight (ppg)</label>
+              <input type="number" id="tm-mw" value="9" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="tm-sm">Safety Margin (psi)</label>
+              <input type="number" id="tm-sm" value="415" step="1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tm-tvd">TVD (ft)</label>
+              <input type="number" id="tm-tvd" value="8197" step="1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Trip Margin / Safety Factor</span><span class="output-value" id="out-tmsf">—</span></div>
+          </div>
+        </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>This is a reference tool, not an operational authority.</strong> The actual safety margin figure and trip margin policy for a real well belong to your operator's approved well control procedures.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formula Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">Trip Margin / Safety Factor</div>
+          <div class="formula-eq">TM/SF = Base Mud Weight + [Safety Margin ÷ (0.052 × TVD)]</div>
+          <div class="formula-note">Base mud weight in ppg, safety margin in psi, TVD in feet, result in ppg.</div>
+        </div>
+
+        <h3>Where This Fits</h3>
+        <p>Trip margin converts a policy safety-margin pressure into an actual mud weight you can carry in the hole, on top of whatever weight is needed to balance formation pressure alone. It's the mud-weight-side answer to the same swab risk that the <a href="/calculators/pipe-pull-margin">wet and dry pipe pull margin calculator</a> addresses from the pulled-footage side — trip margin says how much heavier to run the mud, pull margin says how far pipe can come out before hydrostatic drops too far, and a real trip plan checks both. If the calculated trip margin comes out barely above the base mud weight, that's a sign the safety margin figure itself, or the well's actual overbalance, needs a second look before pulling pipe.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p set:html={item.a} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const mw = num('tm-mw'), sm = num('tm-sm'), tvd = num('tm-tvd');
+    const tmsf = mw + sm / (0.052 * tvd);
+    set('out-tmsf', fmt(tmsf, 2) + ' ppg');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

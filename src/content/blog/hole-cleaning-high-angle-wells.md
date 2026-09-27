@@ -43,7 +43,7 @@ Hole cleaning is one of those subjects that sounds like housekeeping and turns o
 
 ![Three wellbore sections compared. Vertical: cuttings that are not lifted fall back into the flow and get another chance, so cleaning is self-correcting. Between 45 and 60 degrees: cuttings settle onto the low side and form a bed which can then avalanche down the hole as a slug of solids. Near horizontal: beds form readily but tend to sit still, because there is little downhole slope for them to slide along.](/images/blog/cuttings-beds-by-angle.svg)
 
-In a vertical well, a cutting has to be lifted against gravity. If the annular velocity beats the particle's slip velocity, it comes out. If it does not, it falls back into the flow and gets another chance. The failure mode is gradual and self-correcting.
+In a vertical well, a cutting has to be lifted against gravity. If the [annular velocity](/calculators/annular-velocity) beats the particle's slip velocity, it comes out. If it does not, it falls back into the flow and gets another chance. The failure mode is gradual and self-correcting.
 
 Tilt the hole and gravity stops opposing the flow and starts acting across it. A cutting now only has to travel a short distance sideways to reach the low side of the annulus, where the flow is slowest. Once it settles there it is no longer in the transport stream at all. It is not being lifted badly — it has left the system.
 

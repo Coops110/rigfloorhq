@@ -1,0 +1,149 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'Why does pump pressure scale with the square of stroke rate?',
+    a: 'Circulating pressure losses are friction losses, and friction pressure loss through a fixed system rises with the square of flow rate. Double the strokes per minute and pressure doesn\'t just double — it roughly quadruples, which is why the new-strokes formula squares the ratio rather than using it directly.',
+  },
+  {
+    q: 'Why does new pressure loss scale directly with mud weight, not squared?',
+    a: 'Friction pressure loss is also directly proportional to fluid density — a heavier mud is simply harder to push through the same pipe and annulus at the same rate. Unlike the flow-rate relationship, that\'s a straight-line (linear) relationship, so the new-mud formula uses a direct ratio rather than a squared one.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="New Pump Pressure Calculator: Stroke Rate & Mud Weight Changes"
+  description="Free calculator for new circulating pressure after a stroke-rate change or a mud weight change, using the standard IWCF proportionality formulas."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Pump Pressure Adjustment', href: '/calculators/pump-pressure-adjustment' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>New Pump Pressure <span>Adjustment</span></h1>
+    <p class="page-hero-sub">Work out the new circulating pressure after a stroke-rate change or a mud weight change, without re-measuring at surface.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 New Pump Pressure With New Strokes</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="ppa-p1">Current Pressure (psi)</label>
+              <input type="number" id="ppa-p1" value="1500" step="1">
+            </div>
+            <div class="input-group">
+              <label for="ppa-spm1">Current SPM</label>
+              <input type="number" id="ppa-spm1" value="80" step="1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="ppa-spm2">New SPM</label>
+              <input type="number" id="ppa-spm2" value="100" step="1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">New Pump Pressure</span><span class="output-value" id="out-newp">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🧭 New Pressure Loss With New Mud</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="ppa-op">Original Pressure Loss (psi)</label>
+              <input type="number" id="ppa-op" value="2222" step="1">
+            </div>
+            <div class="input-group">
+              <label for="ppa-mw1">Original Mud Weight (ppg)</label>
+              <input type="number" id="ppa-mw1" value="9" step="0.1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="ppa-mw2">New Mud Weight (ppg)</label>
+              <input type="number" id="ppa-mw2" value="9.1" step="0.1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">New Pressure Loss</span><span class="output-value" id="out-newpl">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formulas Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">New Pump Pressure With New Strokes</div>
+          <div class="formula-eq">P2 = P1 × (SPM2 ÷ SPM1)²</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">New Pressure Loss With New Mud</div>
+          <div class="formula-eq">P2 = P1 × (Mud Weight2 ÷ Mud Weight1)</div>
+        </div>
+
+        <h3>Where This Fits</h3>
+        <p>Both calculations answer the same practical question from different directions: what should the pump gauge read once something changes, without pumping at the new condition first to find out. The stroke-rate version is what sets the slow circulating rate (SCR) pressures used directly on the <a href="/calculators/kill-sheet">kill sheet calculator</a> — SCR readings are normally taken at reduced rate, then this same squared relationship is what a driller uses to sanity-check pressure at any other rate. The mud-weight version matters any time mud is weighted up or down mid-well and pump pressure at the same rate needs re-establishing before it can be compared against a baseline for a kick or washout indicator.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const p1 = num('ppa-p1'), spm1 = num('ppa-spm1'), spm2 = num('ppa-spm2');
+    const newP = spm1 > 0 ? p1 * Math.pow(spm2 / spm1, 2) : 0;
+    set('out-newp', fmt(newP, 0) + ' psi');
+
+    const op = num('ppa-op'), mw1 = num('ppa-mw1'), mw2 = num('ppa-mw2');
+    const newPl = mw1 > 0 ? op * (mw2 / mw1) : 0;
+    set('out-newpl', fmt(newPl, 0) + ' psi');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

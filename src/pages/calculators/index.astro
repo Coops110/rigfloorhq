@@ -289,6 +289,69 @@ import Footer from '../../components/Footer.astro';
         <p class="card-formula"><strong>Formula:</strong> KT = [MAASP − (Influx Ht × MW × 0.052)] ÷ (0.052 × TVD)</p>
         <a href="/calculators/kick-tolerance" class="card-link">Open Calculator →</a>
       </div>
+      <div class="card">
+        <span class="card-icon">🧭</span>
+        <h3>MAMW &amp; New MAASP Calculator</h3>
+        <p>Maximum allowable mud weight from your LOT/FIT test, then the new MAASP once a kill mud weight is set.</p>
+        <p class="card-formula"><strong>Formula:</strong> MAMW = MW + [LOT/FIT ÷ (0.052 × TVD)]</p>
+        <a href="/calculators/mamw" class="card-link">Open Calculator →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">📐</span>
+        <h3>Trip Margin / Safety Factor</h3>
+        <p>The extra mud weight carried above formation balance to protect against swabbing while tripping out.</p>
+        <p class="card-formula"><strong>Formula:</strong> TM/SF = MW + [Safety Margin ÷ (0.052 × TVD)]</p>
+        <a href="/calculators/trip-margin" class="card-link">Open Calculator →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">💨</span>
+        <h3>Annular Velocity Calculator</h3>
+        <p>How fast fluid moves up a given annular section at a chosen pump rate — the number that decides hole cleaning.</p>
+        <p class="card-formula"><strong>Formula:</strong> AV = Pump Output ÷ Annular Capacity</p>
+        <a href="/calculators/annular-velocity" class="card-link">Open Calculator →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">⏱</span>
+        <h3>New Pump Pressure Adjustment</h3>
+        <p>New circulating pressure after a stroke-rate change or a mud weight change.</p>
+        <p class="card-formula"><strong>Formula:</strong> P2 = P1 × (SPM2 ÷ SPM1)²</p>
+        <a href="/calculators/pump-pressure-adjustment" class="card-link">Open Calculator →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">⚖️</span>
+        <h3>Barite Required Calculator</h3>
+        <p>Pounds of barite per barrel needed to weight mud up from a current weight to a heavier target weight.</p>
+        <p class="card-formula"><strong>Formula:</strong> lb/bbl = 1500 × (MW2 − MW1) ÷ (35.5 − MW2)</p>
+        <a href="/calculators/barite-required" class="card-link">Open Calculator →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🕳</span>
+        <h3>Kick Influx Geometry</h3>
+        <p>Influx length, true vertical height, and shut-in casing pressure from a kick volume and hole inclination.</p>
+        <p class="card-formula"><strong>Formula:</strong> IVH = LoIAH × cos(Inclination)</p>
+        <a href="/calculators/kick-influx-geometry" class="card-link">Open Calculator →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">📉</span>
+        <h3>Tripping Pressure Effects</h3>
+        <p>Pressure drop per foot pulling dry or wet pipe, and mud level drop tripping out without topping up.</p>
+        <p class="card-formula"><strong>Formula:</strong> ΔP/ft = MW × 0.052 × [Steel Disp ÷ (Cap − Steel Disp)]</p>
+        <a href="/calculators/tripping-pressure-effects" class="card-link">Open Calculator →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔒</span>
+        <h3>BOP Closing &amp; Opening Ratio</h3>
+        <p>Hydraulic operating pressure needed to close or open a BOP at a given wellhead pressure and rated ratio.</p>
+        <p class="card-formula"><strong>Formula:</strong> Pressure Required = Wellhead Pressure ÷ Ratio</p>
+        <a href="/calculators/bop-closing-ratio" class="card-link">Open Calculator →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🛢</span>
+        <h3>Slug Volume &amp; Pit Gain</h3>
+        <p>Slug volume for a desired dry pipe length, and the expected pit gain from pumping it.</p>
+        <p class="card-formula"><strong>Formula:</strong> V = (Length × Capacity × MW) ÷ (Slug Wt − MW)</p>
+        <a href="/calculators/slug-calculation" class="card-link">Open Calculator →</a>
+      </div>
     </div>
   </section>
 

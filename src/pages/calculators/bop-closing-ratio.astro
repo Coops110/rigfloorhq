@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'What is a BOP closing/opening ratio?',
+    a: 'It\'s the mechanical advantage built into an annular preventer or ram design — the multiple by which hydraulic operating pressure gets converted into the actual sealing or opening force against wellbore pressure. A 7:1 closing ratio means the operating system needs to supply pressure at only 1/7th of the wellhead pressure it has to hold closed against.',
+  },
+  {
+    q: 'Why is the opening ratio usually a smaller number than the closing ratio?',
+    a: 'Closing has to generate enough force to seal against full wellbore pressure, which needs a large mechanical advantage. Opening only has to overcome the preventer\'s own sealing element resistance and whatever residual pressure remains, a much smaller force — so opening systems don\'t need as much mechanical advantage and are built with a lower ratio.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="BOP Closing & Opening Ratio Calculator"
+  description="Free calculator for the hydraulic operating pressure required to close or open a BOP at a given wellhead pressure and the tool's rated ratio."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'BOP Closing Ratio', href: '/calculators/bop-closing-ratio' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>BOP Closing &amp; <span>Opening Ratio</span></h1>
+    <p class="page-hero-sub">The hydraulic operating pressure a BOP actually needs to close or open, given wellhead pressure and the tool's own rated mechanical ratio.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Closing Ratio</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="bop-whp1">Wellhead Pressure at BOP (psi)</label>
+              <input type="number" id="bop-whp1" value="10000" step="1">
+            </div>
+            <div class="input-group">
+              <label for="bop-cr">Closing Ratio (to 1)</label>
+              <input type="number" id="bop-cr" value="7" step="0.1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Pressure Required to Close</span><span class="output-value" id="out-close">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🧭 Opening Ratio</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="bop-whp2">Wellhead Pressure at BOP (psi)</label>
+              <input type="number" id="bop-whp2" value="2000" step="1">
+            </div>
+            <div class="input-group">
+              <label for="bop-or">Opening Ratio (to 1)</label>
+              <input type="number" id="bop-or" value="2.3" step="0.1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Pressure Required to Open</span><span class="output-value" id="out-open">—</span></div>
+          </div>
+        </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>This is a reference tool, not an operational authority.</strong> Actual closing and opening ratios are stamped on the specific BOP's manufacturer spec sheet — always confirm the real rated ratio for the exact tool in use, not a generic figure.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formulas Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">BOP Closing / Opening Pressure Required</div>
+          <div class="formula-eq">Pressure Required = Wellhead Pressure ÷ Ratio</div>
+          <div class="formula-note">Both wellhead pressure and required pressure in psi. The ratio is dimensionless (expressed as N:1).</div>
+        </div>
+
+        <h3>Where This Fits</h3>
+        <p>This is the mechanical link between a wellhead pressure reading and what the closing unit actually has to supply to hold it — directly relevant on the <a href="/equipment/bop">BOP equipment page</a> and any time the <a href="/equipment/accumulator">accumulator function test</a> is checked against real closing pressures rather than a generic target. As wellhead pressure climbs during a well control event, this is the quick check for whether the rig's accumulator system has enough working pressure margin above what a given ratio actually demands at the current shut-in pressure.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const whp1 = num('bop-whp1'), cr = num('bop-cr');
+    set('out-close', fmt(cr > 0 ? whp1 / cr : 0, 0) + ' psi');
+
+    const whp2 = num('bop-whp2'), or_ = num('bop-or');
+    set('out-open', fmt(or_ > 0 ? whp2 / or_ : 0, 0) + ' psi');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

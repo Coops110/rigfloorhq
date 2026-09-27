@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'How is MAMW different from MAASP?',
+    a: 'They express the same shoe limit in two different units. <a href="/calculators/maasp">MAASP</a> restates the limit as a live surface pressure in psi at today\'s mud weight. MAMW restates it as an equivalent mud weight in ppg — the heaviest mud the shoe could take with zero surface pressure showing. Converted to the same units, both should agree.',
+  },
+  {
+    q: 'Why does New MAASP need the kill mud weight, not the current mud weight?',
+    a: 'Once a kill is underway, the mud weight in the hole is changing on purpose, and the shoe cares about whatever mud weight will actually be in the annulus once the kill mud weight is circulated — not the mud weight that was in the hole when the kick was taken. Recalculating MAASP against the kill mud weight, not the original mud weight, is what tells you whether the planned kill mud weight itself is safe for the shoe.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="MAMW Calculator: Maximum Allowable Mud Weight & New MAASP"
+  description="Free MAMW calculator: maximum allowable mud weight from your LOT/FIT test and shoe TVD, plus new MAASP once a kill mud weight is set."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'MAMW', href: '/calculators/mamw' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>MAMW <span>Calculator</span></h1>
+    <p class="page-hero-sub">Maximum Allowable Mud Weight restates your shoe's LOT/FIT limit as an equivalent mud weight, then uses it to work out the new MAASP once a kill mud weight is set.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Maximum Allowable Mud Weight</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="mamw-mw">Current Mud Weight (ppg)</label>
+              <input type="number" id="mamw-mw" value="9.4" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="mamw-lp">LOT/FIT Pressure (psi)</label>
+              <input type="number" id="mamw-lp" value="415" step="1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="mamw-tvd">Shoe TVD (ft)</label>
+              <input type="number" id="mamw-tvd" value="6108" step="1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">MAMW</span><span class="output-value" id="out-mamw">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🧭 New MAASP With Kill Mud Weight</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="mamw-killmw">Kill Mud Weight (ppg)</label>
+              <input type="number" id="mamw-killmw" value="11.5" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="mamw-tvd2">Shoe TVD (ft)</label>
+              <input type="number" id="mamw-tvd2" value="10000" step="1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="mamw-mamw2">MAMW (ppg)</label>
+              <input type="number" id="mamw-mamw2" value="12.54" step="0.01">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">New MAASP</span><span class="output-value" id="out-newmaasp">—</span></div>
+          </div>
+        </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>This is a reference tool, not an operational authority.</strong> Real shoe limits used during well control belong to your certified well control supervisor, working from the actual LOT/FIT recorded on this well and your company's approved procedures.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formulas Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">Maximum Allowable Mud Weight</div>
+          <div class="formula-eq">MAMW = Current MW + [LOT/FIT Pressure ÷ (0.052 × Shoe TVD)]</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">New MAASP With Kill Mud Weight</div>
+          <div class="formula-eq">New MAASP = (MAMW − Kill Mud Weight) × 0.052 × Shoe TVD</div>
+          <div class="formula-note">Both mud weights in ppg, shoe TVD in feet, MAASP and LOT/FIT pressure in psi.</div>
+        </div>
+
+        <h3>Where This Fits</h3>
+        <p>MAMW and <a href="/calculators/maasp">MAASP</a> come from the same LOT/FIT test and describe the identical shoe limit, just in different units — one as an equivalent mud weight, one as a live surface pressure. Once a kick is confirmed and a kill mud weight is chosen on the <a href="/calculators/kill-sheet">kill sheet calculator</a>, the second box here answers the real operational question: is that kill mud weight actually safe for this shoe, and if not, how much surface pressure is left before it isn't? A negative or very small New MAASP means the planned kill mud weight is close to or past the shoe's real limit, which calls for the well control supervisor's attention before pumping starts, not after.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p set:html={item.a} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const mw = num('mamw-mw'), lp = num('mamw-lp'), tvd = num('mamw-tvd');
+    const mamw = mw + lp / (0.052 * tvd);
+    set('out-mamw', fmt(mamw, 2) + ' ppg');
+
+    const killmw = num('mamw-killmw'), tvd2 = num('mamw-tvd2'), mamw2 = num('mamw-mamw2');
+    const newMaasp = (mamw2 - killmw) * 0.052 * tvd2;
+    set('out-newmaasp', fmt(newMaasp, 0) + ' psi');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

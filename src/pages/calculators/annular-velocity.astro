@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'Why does annular velocity matter for hole cleaning?',
+    a: 'Cuttings only get carried to surface if the fluid moving past them is going up faster than the cuttings can fall through it. Too low an annular velocity in the widest part of the annulus lets cuttings slip back down and accumulate, which is the direct mechanical cause of a pack-off or stuck pipe.',
+  },
+  {
+    q: 'Which annular section is the one that actually matters?',
+    a: 'The largest-diameter, slowest-velocity section of the annulus — usually around the drill collars or the widest open-hole interval — since that\'s where velocity is lowest and cuttings are most likely to settle. A string with several annular sections of different capacity needs annular velocity checked in each one, not just at one convenient depth.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Annular Velocity Calculator"
+  description="Free annular velocity calculator: how fast drilling fluid moves up the annulus at a given pump rate and annular capacity, for hole-cleaning checks."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Annular Velocity', href: '/calculators/annular-velocity' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Annular Velocity <span>Calculator</span></h1>
+    <p class="page-hero-sub">How fast drilling fluid actually moves up a given annular section at a chosen pump rate — the number that decides whether cuttings get carried to surface or settle back down.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Annular Velocity Inputs</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="av-po">Pump Output (bbl/min)</label>
+              <input type="number" id="av-po" value="29.2" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="av-ac">Annular Capacity (bbl/ft)</label>
+              <input type="number" id="av-ac" value="0.4464" step="0.0001">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Annular Velocity</span><span class="output-value" id="out-av">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formula Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">Annular Velocity</div>
+          <div class="formula-eq">AV = Pump Output ÷ Annular Capacity</div>
+          <div class="formula-note">Pump output in bbl/min, annular capacity in bbl/ft, AV in ft/min.</div>
+        </div>
+
+        <h3>Where This Fits</h3>
+        <p>Annular velocity is the direct link between a chosen pump rate and whether the hole is actually being cleaned — the same real-world problem the site's <a href="/blog/hole-cleaning-high-angle-wells">hole cleaning guide</a> covers from the operational side (sweeps, pipe rotation, back-reaming). Get the annular capacity for the specific section from a <a href="/calculators/drill-pipe-tally">drill pipe tally</a> or a direct hole/pipe OD calculation, run pump output through this calculator, and compare the result against the well's known minimum annular velocity target for that hole size and mud system before committing to a pump rate. The same pump output figure and annular capacity concept also feed the <a href="/calculators/ecd">ECD calculator</a>, since annular friction pressure loss is driven by the same flow.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const po = num('av-po'), ac = num('av-ac');
+    const av = ac > 0 ? po / ac : 0;
+    set('out-av', fmt(av, 1) + ' ft/min');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>
