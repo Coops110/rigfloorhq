@@ -123,7 +123,7 @@ There is also a slower cost. Poor cleaning increases wear on the string and on c
 
 Hole cleaning in high angle is a planning problem that gets discovered as an operational one. The levers — flow rate, rotation, mud properties, circulating time — are all decided before trouble appears, and all constrained by things decided earlier still, like the well profile and the mud weight window.
 
-The habit worth building is the shaker check. Counting what comes out against what should be coming out is the cheapest diagnostic on the rig, and it is the one that gives the most warning.
+The habit worth building is the shaker check. Counting what comes out against what should be coming out is the cheapest diagnostic on the rig, and it is the one that gives the most warning — see the [mud pit / solids control system](/equipment/mud-pit-system) for how the shakers and the rest of that processing chain actually work.
 
 ## Frequently Asked Questions
 

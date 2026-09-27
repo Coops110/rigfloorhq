@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'What does the circulation system actually do, beyond just moving mud around?',
+    a: 'Three jobs at once: it carries cuttings up the annulus and away from the bit so the hole keeps making progress instead of packing off, it cools and lubricates the bit and drill string, and — critically for well control — it\'s what applies the hydrostatic pressure that holds back formation pressure in the first place. All three depend on the same pumps and the same fluid moving through the same path.',
+  },
+  {
+    q: 'Why do most rigs use triplex pumps rather than duplex?',
+    a: 'A triplex (three-cylinder, single-acting) pump produces a smoother, more continuous flow than an older duplex (two-cylinder, double-acting) design, with fewer, lighter moving parts for the same output — a real advantage at the higher pressures and flow rates modern drilling calls for. Duplex pumps are largely a legacy design at this point, though the double-acting principle behind them isn\'t wrong, just less efficient at scale than triplex.',
+  },
+  {
+    q: 'What is the actual path the drilling fluid takes?',
+    a: 'From the mud pits, through the pump, up the standpipe (a rigid pipe mounted in the derrick), through a flexible rotary hose (or through the top drive\'s own internal passage), down through the drill string\'s full length, out through the bit nozzles, and back up the annulus between the string and the wellbore wall to the returns line — which feeds straight into the solids control system before the fluid goes back in the pits to be pumped again.',
+  },
+  {
+    q: 'What is pump output, and why does it matter for hole cleaning?',
+    a: 'Pump output is the actual volume of fluid the pump moves per minute at a given stroke rate — it directly sets the annular velocity that carries cuttings to surface. Too low a pump output for the hole size in use means cuttings settle back down instead of reaching surface, which is one of the direct mechanical causes of a stuck pipe incident. See the pump pressure adjustment and annular velocity calculators for the actual numbers on a specific job.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Fluid Circulation System: Mud Pumps, Standpipe, and Flow Path"
+  description="How a rig's fluid circulation system works: mud pumps, the standpipe and rotary hose, the full flow path from pits to bit and back, and why pump output matters for hole cleaning."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Fluid Circulation System', href: '/equipment/fluid-circulation-system' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Core Systems</div>
+    <h1>Fluid Circulation <span>System</span></h1>
+    <p class="page-hero-sub">The mud pumps and flow path that carry cuttings to surface, cool the bit, and hold back formation pressure — all with the same fluid, moving the same loop.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="what-it-is">What the Circulation System Does</h2>
+        <p>Circulation is doing three jobs simultaneously, with the same fluid on the same loop: carrying cuttings up the annulus and away from the bit so the hole keeps advancing, cooling and lubricating the bit and string against the friction of drilling, and applying the hydrostatic pressure that holds back formation pressure — the entire basis of primary well control. Everything in this system exists to keep that one fluid moving reliably along its full path.</p>
+
+        <h2 id="pumps">Mud Pumps</h2>
+        <p>The pumps are the system's power source — reciprocating positive-displacement pumps that push drilling fluid at the pressure and rate a given job needs. Most modern rigs run <strong>triplex pumps</strong> (three cylinders, single-acting), which produce smoother, more continuous flow than the older <strong>duplex</strong> design (two cylinders, double-acting) with fewer and lighter moving parts for a given output — a real advantage at the higher pressures and flow rates modern drilling routinely calls for. Duplex pumps are still found on some older or smaller rigs, but triplex is the standard on anything built in recent decades.</p>
+        <p>A pump's actual output — the volume it moves per minute at a given stroke rate — is a direct, calculable number, not a rating on a nameplate alone; see the <a href="/calculators/pump-pressure-adjustment">pump pressure adjustment calculator</a> for how output changes with stroke rate and mud weight.</p>
+
+        <h2 id="flow-path">The Full Flow Path</h2>
+        <p>Fluid leaves the <strong>mud pits</strong>, enters the pump, and is pushed up a rigid <strong>standpipe</strong> mounted in the derrick. From there it passes through a flexible <strong>rotary hose</strong> (or through a top drive's own internal fluid passage, on a top-drive rig — see the <a href="/equipment/rotating-system">rotating system</a>) into the top of the <a href="/equipment/drill-string">drill string</a>, travels the full length of the string, and exits through the <a href="/calculators/bit-hydraulics">bit nozzles</a> at the bottom. From there it turns around and travels back up the <strong>annulus</strong> — the space between the string and the wellbore wall — carrying cuttings with it, until it reaches surface through the <strong>returns line</strong> and feeds directly into the <a href="/equipment/mud-pit-system">solids control system</a> before going back into the pits to be pumped again.</p>
+
+        <h2 id="pressure-flow">Pressure, Flow Rate, and Hole Cleaning</h2>
+        <p>The pump has to deliver enough flow rate to carry cuttings to surface at a workable <a href="/calculators/annular-velocity">annular velocity</a> for the specific hole size and mud system in use — too low a flow rate for the hole lets cuttings settle back down instead of reaching surface, which is a direct mechanical cause of pack-off and stuck pipe, covered in more depth on the <a href="/pillars/stuck-pipe-and-fishing-operations">stuck pipe page</a>. At the same time, pump pressure is limited by the system's own pressure rating and by how much of that pressure is being lost to friction versus actually reaching the bit — see <a href="/calculators/bit-hydraulics">bit hydraulics</a> for what's happening right at the bit face once flow gets there.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Does</a>
+          <a href="#pumps">Mud Pumps</a>
+          <a href="#flow-path">The Full Flow Path</a>
+          <a href="#pressure-flow">Pressure, Flow &amp; Hole Cleaning</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/mud-pit-system" class="card-link">→ Mud Pit System</a><br><br>
+          <a href="/calculators/bit-hydraulics" class="card-link">→ Bit Hydraulics Calculator</a><br><br>
+          <a href="/calculators/annular-velocity" class="card-link">→ Annular Velocity Calculator</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

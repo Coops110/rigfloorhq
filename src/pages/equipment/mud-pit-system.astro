@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'Why can\'t drilling fluid just be reused straight from the wellbore returns without processing it?',
+    a: 'Returns come back loaded with drilled solids — everything from coarse cuttings down to fine colloidal particles — plus, depending on the well, entrained gas. Left in the fluid, that solids loading increases viscosity and density in ways that are hard to control, accelerates wear on the pumps, and reduces how effectively the fluid can still carry new cuttings. Processing pulls those solids and gas back out before the fluid goes back down the hole.',
+  },
+  {
+    q: 'What order do the solids control components actually work in?',
+    a: 'Shale shakers first — they catch the coarsest cuttings using vibrating screens and handle the bulk of the volume. What passes through the shakers\' screens goes on to desanders, then desilters, which use hydrocyclones to spin out progressively finer particles by centrifugal force. A degasser removes entrained gas at whatever point in the sequence makes sense for the specific fluid system, since gas-cut mud is a real density and pump-efficiency problem on its own.',
+  },
+  {
+    q: 'What is a hydrocyclone, and how does it separate particles without any moving parts?',
+    a: 'A hydrocyclone is a cone-shaped vessel with no internal moving parts at all — fluid enters tangentially near the top and is forced into a tight spiral, and centrifugal force throws denser solid particles outward to the cone wall, where they spiral down and out the bottom, while the cleaned fluid exits up through the center. Desanders and desilters are the same basic device at different sizes: smaller cones spin faster and separate finer particles.',
+  },
+  {
+    q: 'What is a centrifuge, and when is one added to the solids control setup?',
+    a: 'A centrifuge is a higher-speed, mechanically-driven separator used for the finest solids that hydrocyclones alone can\'t efficiently remove — common on jobs using more expensive fluid systems (like oil-based mud) where recovering and reusing the base fluid rather than discarding it with the solids has real cost justification. It\'s an additional stage beyond the standard shaker/desander/desilter sequence, not a universal requirement on every well.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Mud Pit / Solids Control System: Shakers, Desanders, Desilters, Degassers"
+  description="How a rig's solids control system works: shale shakers, desanders and desilters, degassers, and why drilling fluid has to be processed before it can be reused."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Mud Pit System', href: '/equipment/mud-pit-system' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Core Systems</div>
+    <h1>Mud Pit / Solids <span>Control System</span></h1>
+    <p class="page-hero-sub">Shale shakers, desanders, desilters, and degassers that clean drilled solids and gas out of returned drilling fluid before it goes back down the hole.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="what-it-is">What This System Does</h2>
+        <p>Drilling fluid returning from the <a href="/equipment/fluid-circulation-system">circulation system</a> is loaded with everything it just carried out of the hole — cuttings ranging from coarse chunks down to fine colloidal particles, and sometimes entrained gas. Left in the fluid, that loading increases viscosity and density in ways that are hard to control, accelerates wear on the mud pumps, and steadily reduces how well the fluid can carry new cuttings on its next trip down and back. The solids control system exists to pull that material back out so the same fluid can be reused rather than replaced.</p>
+
+        <h2 id="shakers">Shale Shakers</h2>
+        <p>Shale shakers are the first stage in the sequence and handle the bulk of the volume: vibrating screens that returns flow across, catching the coarsest cuttings while letting fluid and finer particles pass through into the pits below. Screen mesh size is a real, adjustable trade-off — finer screens catch more solids but process fluid more slowly and wear out faster; coarser screens move more volume but let more fine solids through to the next stage.</p>
+
+        <h2 id="hydrocyclones">Desanders and Desilters</h2>
+        <p>What passes through the shaker screens moves on to <strong>desanders</strong>, then <strong>desilters</strong> — both are <strong>hydrocyclones</strong>, cone-shaped vessels with no internal moving parts at all. Fluid enters tangentially near the top and is forced into a tight spiral; centrifugal force throws denser solid particles outward to the cone wall, where they spiral down and discharge out the bottom (the underflow), while cleaned fluid exits up through the center (the overflow). Desanders and desilters are the same basic device at different scale — smaller-diameter cones spin the fluid faster and separate progressively finer particles, which is the only real difference between the two.</p>
+
+        <h2 id="degassers">Degassers</h2>
+        <p>Gas entrained in returning mud — whether from a real kick or just gas liberated from cuttings — makes the fluid lighter and less effective at both hole cleaning and holding back formation pressure, on top of the general well control concerns covered on the <a href="/drilling/well-control">well control page</a>. A degasser removes that entrained gas from the fluid at whatever point in the processing sequence suits the specific fluid system, restoring the mud closer to its real, intended density before it's recirculated.</p>
+
+        <h2 id="centrifuges">Centrifuges — the Optional Extra Stage</h2>
+        <p>A centrifuge is a higher-speed, mechanically-driven separator for the finest solids remaining after the hydrocyclone stages — finer than desanders and desilters alone can efficiently pull out. It's not a universal requirement on every well; it shows up most often on jobs running more expensive fluid systems, particularly oil-based mud, where recovering and reusing the base fluid rather than discarding it along with the fine solids has a real cost justification behind the extra processing step.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Does</a>
+          <a href="#shakers">Shale Shakers</a>
+          <a href="#hydrocyclones">Desanders &amp; Desilters</a>
+          <a href="#degassers">Degassers</a>
+          <a href="#centrifuges">Centrifuges</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/fluid-circulation-system" class="card-link">→ Fluid Circulation System</a><br><br>
+          <a href="/drilling/well-control" class="card-link">→ Well Control &amp; Kicks</a><br><br>
+          <a href="/blog/hole-cleaning-high-angle-wells" class="card-link">→ Hole Cleaning in High-Angle Wells</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

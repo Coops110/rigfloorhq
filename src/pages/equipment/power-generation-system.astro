@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'Why do most modern rigs generate their own electricity instead of running equipment directly off diesel engines?',
+    a: 'An electric (or "SCR"/"AC") rig can send power exactly where it\'s needed, in exactly the amount needed, from a shared pool of generators — the drawworks, mud pumps, and top drive all pull from the same electrical bus rather than each needing its own dedicated mechanical drive train. That flexibility is a major reason most rigs built in recent decades are diesel-electric rather than direct mechanical drive.',
+  },
+  {
+    q: 'What does SCR actually stand for, and what does it do?',
+    a: 'Silicon Controlled Rectifier — the electronic component (and by extension the whole power-conversion system built around it) that converts the generators\' AC output into DC power, which older diesel-electric rigs used to drive DC motors on the drawworks and mud pumps. "SCR rig" became industry shorthand for this whole generation of diesel-electric rigs, even though many modern rigs have since moved on to variable frequency drives.',
+  },
+  {
+    q: 'What is a VFD, and how does it differ from an SCR system?',
+    a: 'A Variable Frequency Drive converts the generators\' fixed-frequency AC output into a variable-frequency AC supply, which drives modern AC motors at a precisely controlled speed — without the DC conversion step SCR systems relied on. AC motors with VFD control are now the standard on newly built rigs: they need less maintenance than the DC motors an SCR system drives, and give finer, more responsive speed control.',
+  },
+  {
+    q: 'What happens if the power generation system fails while tripping or drilling?',
+    a: 'On any rig, a full power loss means the drawworks, mud pumps, and top drive all stop at once — which is why generator redundancy (running enough units that one can be down for maintenance without losing total capacity) is standard practice, not a luxury. A power failure mid-trip with the string partially out of the hole is a real operational problem, since the hoisting system\'s auxiliary brake and continued mud circulation both depend on the same power supply staying up.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Power Generation System: Diesel-Electric Rigs, SCR, and VFD Explained"
+  description="How a rig's power generation system works: diesel generators, the diesel-electric (SCR/VFD) model most modern rigs use, and why it replaced direct mechanical drive."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Power Generation System', href: '/equipment/power-generation-system' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Core Systems</div>
+    <h1>Power Generation <span>System</span></h1>
+    <p class="page-hero-sub">The diesel generators and electrical distribution that power everything else on the rig — drawworks, mud pumps, and top drive alike.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="what-it-is">What the Power Generation System Does</h2>
+        <p>Every other system on the rig — <a href="/equipment/hoisting-system">hoisting</a>, <a href="/equipment/rotating-system">rotating</a>, and <a href="/equipment/fluid-circulation-system">fluid circulation</a> — needs real power to actually move, and on most modern rigs that power comes from a shared electrical supply rather than each system having its own independent mechanical drive. Diesel engines drive generators, the generators feed a shared electrical bus, and individual pieces of equipment draw from that bus as needed.</p>
+
+        <h2 id="diesel-electric">Why Diesel-Electric Rather Than Direct Mechanical Drive</h2>
+        <p>Older rigs, and some still in service, ran direct mechanical drive: diesel engines connected through chains, belts, or a compound drive directly to the drawworks and pumps, with clutches engaging whichever equipment needed power at a given moment. That works, but it's inflexible — the mechanical linkage between engine and equipment is fixed, and balancing power across multiple pieces of equipment running simultaneously is a real constraint.</p>
+        <p>A <strong>diesel-electric</strong> rig sidesteps that by converting mechanical power to electrical power once, at the generators, then distributing it electrically to wherever it's needed. The drawworks, mud pumps, and top drive can each draw exactly the power they need from the same shared pool, and adding or removing load from one system doesn't require re-engaging a physical clutch on another. This flexibility is the main reason most rigs built in recent decades are diesel-electric.</p>
+
+        <h2 id="scr-vfd">SCR and VFD Systems</h2>
+        <p><strong>SCR (Silicon Controlled Rectifier)</strong> systems were the first generation of this approach: the generators produce AC power, which the SCR system converts to DC to drive DC motors on the drawworks and mud pumps. "SCR rig" became industry shorthand for this entire class of diesel-electric rig, even on equipment that has since moved past the SCR component itself.</p>
+        <p><strong>VFD (Variable Frequency Drive)</strong> systems are the more modern approach: instead of converting to DC, a VFD converts the generators' fixed-frequency AC into a variable-frequency AC supply that drives modern AC motors at precisely controlled speed. AC motors under VFD control need less maintenance than the DC motors an SCR system drives, and give finer, more responsive speed control — which is why VFD has become the standard on newly built rigs.</p>
+
+        <h2 id="redundancy">Generator Redundancy and Failure Consequences</h2>
+        <p>A total power loss stops the drawworks, mud pumps, and top drive simultaneously — there's no independent backup path for any of them once the shared electrical supply is down. That's exactly why rigs run more generator capacity than the minimum needed at any one time: enough redundancy that one unit can be pulled for maintenance without losing total available power, and enough reserve that starting up an additional big load (like the mud pumps ramping up) doesn't itself risk an overload. A power failure with pipe partially out of the hole is a genuinely serious situation, since the hoisting system's auxiliary brake and continued mud circulation both depend on that same power supply.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Does</a>
+          <a href="#diesel-electric">Why Diesel-Electric</a>
+          <a href="#scr-vfd">SCR and VFD Systems</a>
+          <a href="#redundancy">Redundancy &amp; Failure</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/hoisting-system" class="card-link">→ Hoisting System</a><br><br>
+          <a href="/equipment/rotating-system" class="card-link">→ Rotating System</a><br><br>
+          <a href="/equipment/rig-types" class="card-link">→ Types of Drilling Rigs</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

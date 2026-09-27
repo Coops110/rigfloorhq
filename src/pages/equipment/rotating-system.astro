@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'What actually turns the drill string?',
+    a: 'On almost every modern rig, a top drive — a motor unit that rides in the derrick alongside the traveling block and connects directly to the top of the drill string. Older rigs, and some rigs still in service, use a rotary table on the rig floor turning a square or hexagonal kelly that passes through a matching kelly bushing, with the rest of the string hanging below it.',
+  },
+  {
+    q: 'Why did the industry move from rotary table and kelly to top drives?',
+    a: 'A top drive can rotate while the block is moving, which a kelly cannot — a kelly is a fixed length, so once it is run down as far as it goes, rotation stops while a new stand is added. A top drive lets an entire stand (or more) be drilled down in one continuous rotating motion, connections get made up mechanically rather than by hand, and it can rotate while tripping in or out, which is a real advantage for hole cleaning and avoiding stuck pipe on a marginal trip.',
+  },
+  {
+    q: 'Is the rotary table completely obsolete?',
+    a: 'Not entirely — many rigs keep a rotary table in place even with a top drive installed, since it still does useful work: backing up connections during pipe handling, and providing a way to rotate the string from the rig floor if the top drive itself is down for maintenance. A handful of older or smaller rigs still drill on kelly and rotary table alone with no top drive at all.',
+  },
+  {
+    q: 'What is the swivel, and does a top drive still need one?',
+    a: 'The swivel is what allows the rotating string below to connect to the non-rotating hook and traveling block above it, while also passing drilling fluid from the stationary standpipe/hose into the rotating string. A top drive has its own integrated swivel function built into the unit itself — it is not a separate hanging component the way it is on a kelly-and-rotary-table rig, but the same basic job (rotating connection plus fluid passage) still has to happen somewhere in the assembly.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Rotating System: Top Drive vs. Rotary Table and Kelly"
+  description="How a rig turns the drill string: top drive versus the older rotary table and kelly setup, the swivel, and why the industry largely moved to top drives."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Rotating System', href: '/equipment/rotating-system' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Core Systems</div>
+    <h1>Rotating <span>System</span></h1>
+    <p class="page-hero-sub">What actually turns the drill string and bit — a modern top drive, or the older rotary table and kelly setup it largely replaced.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="what-it-is">What the Rotating System Does</h2>
+        <p>Rotation is what turns weight on bit and drilling fluid into an actual hole — the bit only cuts rock while it is turning. The rotating system is whatever transmits that rotation from surface, through the <a href="/equipment/drill-string">drill string</a>, down to the bit. Two fundamentally different setups have done this job through the industry's history, and understanding both matters because plenty of rigs still run the older one.</p>
+
+        <h2 id="top-drive">Top Drive</h2>
+        <p>A top drive is a self-contained motor unit that hangs in the derrick from the traveling block and connects directly to the top of the drill string, rotating it from above as the whole assembly is raised or lowered. It has replaced the rotary table and kelly as the standard on the great majority of modern rigs, for a real, practical reason: it can rotate continuously while the block travels, which a kelly setup cannot.</p>
+        <p>That single capability changes a lot about how drilling actually happens. An entire stand — sometimes more — can be drilled down in one continuous rotating run instead of stopping rotation every kelly length to add a joint. Connections get made up and broken out mechanically through the top drive itself rather than by hand with tongs on the rig floor. And the string can be rotated while tripping in or out of the hole, which is a genuine advantage for keeping cuttings moving and avoiding a mechanically stuck string on a marginal trip.</p>
+
+        <h2 id="rotary-kelly">Rotary Table and Kelly</h2>
+        <p>The older setup turns a square or hexagonal <strong>kelly</strong> — a fixed-length, non-round joint near the top of the string — by passing it through a matching <strong>kelly bushing</strong> seated in the <strong>rotary table</strong> on the rig floor. The rotary table itself is driven by the rig's power system and spins the bushing and kelly together; everything below the kelly rotates with it.</p>
+        <p>The real limitation is the kelly's fixed length: once it has been run down as far as it goes, rotation has to stop so a new joint or stand can be added below it, then the kelly is picked back up and the process repeats. This is why continuous-rotation drilling wasn't possible on a pure kelly rig, and why the top drive's ability to rotate through a full stand addition was such a meaningful operational change once it became available.</p>
+        <p><strong>The rotary table isn't fully obsolete even on a top-drive rig.</strong> Many rigs keep one in place for backing up connections during pipe handling, and as a fallback way to rotate the string from the rig floor if the top drive itself needs maintenance. A number of older or smaller rigs still drill on kelly and rotary table alone, with no top drive fitted at all.</p>
+
+        <h2 id="swivel">The Swivel's Job, Whichever Setup Is Used</h2>
+        <p>Somewhere in the assembly, a rotating connection has to let the string below turn freely while the hook and traveling block above it stay stationary, and drilling fluid has to pass from the stationary standpipe hose into the rotating string without leaking. On a kelly rig, the <strong>swivel</strong> is a distinct hanging component doing exactly that job, sitting directly above the kelly. A top drive has this same function built into the unit itself rather than as a separate visible component — the job doesn't go away, it just moves inside the top drive's own housing.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Does</a>
+          <a href="#top-drive">Top Drive</a>
+          <a href="#rotary-kelly">Rotary Table &amp; Kelly</a>
+          <a href="#swivel">The Swivel's Job</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/drill-string" class="card-link">→ The Drill String</a><br><br>
+          <a href="/equipment/hoisting-system" class="card-link">→ Hoisting System</a><br><br>
+          <a href="/equipment/mwd-tool" class="card-link">→ MWD Tool</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

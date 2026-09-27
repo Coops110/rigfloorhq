@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'What is the hoisting system actually for?',
+    a: 'It raises and lowers everything that goes in and out of the hole — the drill string while tripping, casing while running it, and the whole load while drilling ahead, since weight on bit is really the drawworks paying out line at a controlled rate rather than the string free-falling. Every pound of that load ultimately hangs off the derrick and the drilling line.',
+  },
+  {
+    q: 'What is the "fast line" and "dead line"?',
+    a: 'The fast line is the end of the drilling line that spools onto the drawworks drum — it moves fastest since it takes up the most line per foot of hook travel. The dead line is anchored at a fixed point (the dead line anchor) and does not move at all. Everything in between wraps around the crown block and traveling block sheaves, and that reeving is what creates the mechanical advantage.',
+  },
+  {
+    q: 'How does reeving multiply the drawworks\' lifting capacity?',
+    a: 'Each pass of line between the crown block and traveling block shares the load across another line segment, so a rig reeved with, say, 10 lines has roughly 1/10th the tension in each line compared to a single line carrying the same hook load (minus friction losses). This is why a drawworks with a modest single-line pull rating can still hoist a load many times heavier once reeved through enough sheaves.',
+  },
+  {
+    q: 'What does the drawworks brake actually hold, and what happens if it fails?',
+    a: 'The main brake holds the full weight of the string or casing suspended in the hole any time hoisting stops — there is no other mechanism keeping that load from free-falling once it is off bottom. Modern drawworks pair the mechanical band or disc brake with an auxiliary brake (electromagnetic or hydrodynamic) that absorbs most of the energy during a controlled lowering, saving the main brake for holding and final stopping rather than continuous braking duty. A main brake failure with no functioning auxiliary brake is one of the most serious hoisting failures possible.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Hoisting System: Derrick, Drawworks, and Drilling Line Explained"
+  description="How a rig's hoisting system works: derrick and crown block, traveling block, drawworks and brakes, drilling line reeving, and what actually holds the string's weight."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Hoisting System', href: '/equipment/hoisting-system' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Core Systems</div>
+    <h1>Hoisting <span>System</span></h1>
+    <p class="page-hero-sub">The derrick, drawworks, and drilling line that raise and lower everything going in and out of the hole — and the only thing standing between a suspended string and a free fall.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="what-it-is">What the Hoisting System Does</h2>
+        <p>Every trip, every connection, and every foot of new hole depends on the hoisting system being able to raise and lower load in a controlled way. While drilling, it is also what applies weight on bit — the drawworks pays out drilling line at a controlled rate so the bit bears a set portion of the string's weight rather than the full string hanging free or the whole load resting on bottom uncontrolled.</p>
+        <p>The system is built around five main components working together: the <strong>derrick</strong> (or mast) providing the overhead structure, the <strong>crown block</strong> at its top, the <strong>traveling block and hook</strong> that actually move up and down inside it, the <strong>drawworks</strong> that spools the line, and the <strong>drilling line</strong> itself connecting all of them.</p>
+
+        <h2 id="derrick-crown">Derrick and Crown Block</h2>
+        <p>The derrick or mast is the load-bearing tower over the rig floor — everything the hoisting system lifts ultimately transfers its weight into this structure's legs and foundation. The crown block sits fixed at the very top: a set of sheaves (pulleys) the drilling line is threaded through on its way from the drawworks down to the traveling block. Because the crown block never moves, all the actual hook travel happens below it.</p>
+
+        <h2 id="traveling-block">Traveling Block and Hook</h2>
+        <p>The traveling block is the matching set of sheaves that does move — it rides up and down inside the derrick, carrying the hook (and whatever is attached below it: elevators, a top drive, or the swivel and kelly on an older rig) with it. The drilling line reeves back and forth between the crown block above and the traveling block below multiple times before terminating at the dead line anchor, and that repeated reeving is what does the real mechanical work.</p>
+
+        <h2 id="reeving">Drilling Line and Reeving</h2>
+        <p>The drilling line runs from a storage reel, up and over the drawworks drum (the <strong>fast line</strong>, which moves fastest since it takes up the most line per foot of hook travel), up to the crown block, down to the traveling block, and back up again — repeating several times depending on how the rig is reeved — before terminating at a fixed <strong>dead line anchor</strong> that never moves at all. Each additional pass shares the hook load across another line segment, which is the entire reason a drawworks with a modest single-line pull rating can hoist a load many times heavier once properly reeved.</p>
+        <p>Drilling line is a real wear item, not a fit-and-forget component — it takes cyclic tension and bending stress over the sheaves on every single trip, and a slip-and-cut program (periodically feeding fresh line through the system and cutting off the worn section at the dead line) is standard practice to keep any one section from accumulating fatigue damage past a safe point.</p>
+
+        <h2 id="drawworks-brakes">Drawworks and Brakes</h2>
+        <p>The drawworks is the winch at the heart of the system — the drum the fast line spools onto, driven by the rig's power system (see the <a href="/equipment/power-generation-system">power generation system</a> for how that power actually gets to it) and controlled from the driller's console. It both hoists load and, just as importantly, pays it back out in a controlled way.</p>
+        <p>The <strong>main brake</strong> (band or disc) is what holds the full suspended load stationary any time hoisting stops — there is no other component holding that weight up on its own. Modern rigs pair it with an <strong>auxiliary brake</strong> (electromagnetic or hydrodynamic) that absorbs most of the energy during a controlled lowering, so the main brake is reserved for holding and final stopping rather than continuous braking duty across an entire trip. A main brake failure with a non-functioning auxiliary brake is one of the most serious hoisting failures a rig can have.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Does</a>
+          <a href="#derrick-crown">Derrick &amp; Crown Block</a>
+          <a href="#traveling-block">Traveling Block &amp; Hook</a>
+          <a href="#reeving">Drilling Line &amp; Reeving</a>
+          <a href="#drawworks-brakes">Drawworks &amp; Brakes</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/rotating-system" class="card-link">→ Rotating System</a><br><br>
+          <a href="/equipment/power-generation-system" class="card-link">→ Power Generation System</a><br><br>
+          <a href="/equipment/rig-types" class="card-link">→ Types of Drilling Rigs</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
