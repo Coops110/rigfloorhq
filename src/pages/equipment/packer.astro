@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import Packer3D from '../../components/Packer3D.astro';
+
+const faq = [
+  {
+    q: 'What is a packer used for?',
+    a: 'A packer creates a pressure-tight mechanical seal between the outside of a tubing string and the inside of the casing, isolating the annulus above it from the annulus below it. Unlike a bridge plug, it does not block the bore itself — production tubing (or a seal assembly stabbed into its polished bore) passes straight through, so fluid can still flow up through the middle while the annulus stays isolated.',
+  },
+  {
+    q: 'What is the difference between a permanent and a retrievable packer?',
+    a: 'A permanent packer is designed to stay in the well and, if it ever needs to come out, is typically milled up rather than pulled intact. A retrievable packer is built to be released and pulled back to surface as a complete unit — usually via a right-hand or left-hand rotation, or a straight-pull release mechanism — making it the choice whenever a workover is expected to need the packer moved or removed.',
+  },
+  {
+    q: 'What is a polished bore receptacle, and why does it matter?',
+    a: 'It is the smooth, precision-finished section of bore just below the packing element that a separate seal assembly (run on the bottom of the tubing string) stabs into and seals against. This two-piece design lets tubing be pulled and re-run without disturbing the packer itself, since only the seal assembly comes out — the packer, already set, stays exactly where it is.',
+  },
+  {
+    q: 'How does a packer differ from a bridge plug?',
+    a: 'They share very similar setting mechanisms — slips, a packing element, a setting cone — but solve different problems. A bridge plug fully blocks the bore, isolating everything below it with nothing passing through. A packer seals the annulus around a tubing string while still allowing flow through the tubing itself. If the job needs the well fully shut off below a point, it is a bridge plug; if the job needs production tubing isolated from the annulus while still producing, it is a packer.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Packer: Permanent vs. Retrievable Production Packers Explained"
+  description="What a production packer is, permanent vs. retrievable designs, the polished bore receptacle and seal assembly, and how it differs from a bridge plug."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Packer', href: '/equipment/packer' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Packer</h1>
+    <p class="page-hero-sub">A downhole seal that isolates the annulus around production tubing without blocking the bore — flow still passes through, only the annulus is shut off.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <Packer3D />
+      <div class="prose">
+        <h2 id="what-it-is">What a Packer Is</h2>
+        <p>A packer is a downhole tool that creates a pressure-tight mechanical seal between the outside of a tubing string and the inside of the casing, isolating the annulus above the packer from whatever is below it. The critical distinction from tools like a <a href="/equipment/bridge-plug">bridge plug</a> is that a packer does not block the bore itself — production tubing, or a seal assembly run on the bottom of that tubing, passes straight through the packer's own polished bore, so fluid keeps flowing up the middle of the well while the annulus around it stays sealed off.</p>
+        <p>This makes the packer the standard tool for isolating a producing zone from the rest of the wellbore annulus, protecting casing above the packer from produced fluids and pressure, and setting up multi-zone completions where different intervals need to be produced or treated independently.</p>
+
+        <h2 id="permanent-retrievable">Permanent vs. Retrievable</h2>
+        <p>A <strong>permanent packer</strong> is designed to stay in the well for the long term. If it ever genuinely needs to come out, that's usually done by milling it up rather than pulling it intact — it's built for reliability in place, not for repeated removal.</p>
+        <p>A <strong>retrievable packer</strong> is built the opposite way: designed from the outset to be released and pulled back to surface as a complete unit, typically through a right-hand or left-hand rotation sequence, or a straight-pull release mechanism specific to the tool. Retrievable packers are the standard choice whenever a workover program expects the packer itself might need to be moved or pulled — a permanent packer that has to be milled out instead is a slower, more destructive operation than releasing a retrievable one was ever meant to be.</p>
+
+        <h2 id="components">Core Components</h2>
+        <ul>
+          <li><strong>Packing element.</strong> The rubber or elastomer section that actually forms the seal against the casing ID once compressed — the largest-OD part of the tool, similar in principle to a bridge plug's own packing element.</li>
+          <li><strong>Slips.</strong> Toothed segments that bite into the casing wall to anchor the packer against movement once set, holding it in place against the pressure differential across the seal.</li>
+          <li><strong>Setting cone.</strong> Drives the slips outward into the casing wall during setting, whether that setting is done mechanically, hydraulically, or via wireline.</li>
+          <li><strong>Polished bore receptacle (PBR).</strong> A smooth, precision-finished section of bore just below the packing element that a separate seal assembly — run on the bottom of the tubing string — stabs into and seals against.</li>
+        </ul>
+
+        <h2 id="pbr-seal-assembly">Why the Polished Bore Receptacle Matters</h2>
+        <p>The two-piece packer-and-seal-assembly design exists for a real operational reason: it lets the tubing string be pulled and re-run — for a workover, a repair, or a completion change — without disturbing the packer itself. Only the seal assembly comes out with the tubing; the packer, already set and sealed against the casing, stays exactly where it is. Re-running tubing means stabbing a fresh (or the same) seal assembly back into the same polished bore rather than resetting the whole packer from scratch.</p>
+
+        <h2 id="vs-bridge-plug">Packer vs. Bridge Plug</h2>
+        <p>A packer and a <a href="/equipment/bridge-plug">bridge plug</a> share very similar internal mechanisms — slips, a packing element, a setting cone — which is why their 3D models look broadly alike. The real difference is what happens at the bore: a bridge plug fully blocks it, isolating everything below with nothing able to pass through at all. A packer leaves the bore open through its own polished receptacle, sealing only the annulus around whatever tubing or seal assembly runs through it. If the job calls for the well being fully shut off below a given depth, that's a bridge plug's job. If the job calls for production tubing being isolated from the surrounding annulus while the well keeps producing, that's what a packer is for.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#permanent-retrievable">Permanent vs. Retrievable</a>
+          <a href="#components">Core Components</a>
+          <a href="#pbr-seal-assembly">Polished Bore Receptacle</a>
+          <a href="#vs-bridge-plug">vs. Bridge Plug</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Setting mechanisms and pressure/temperature ratings vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/bridge-plug" class="card-link">→ Bridge Plug</a><br><br>
+          <a href="/equipment/liner-hanger" class="card-link">→ Liner Hanger</a><br><br>
+          <a href="/drilling/casing" class="card-link">→ Casing Design Explained</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

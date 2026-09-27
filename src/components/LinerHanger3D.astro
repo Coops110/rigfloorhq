@@ -1,0 +1,223 @@
+---
+// Poster-image-first, drag-to-rotate only, no auto-spin — same interaction
+// contract as every other tool viewer on the site. Geometry is procedurally
+// generated (primitives only, no downloaded mesh/model file), built from
+// generic liner hanger anatomy: setting tool interface, expandable slip/cone
+// section, polished bore, and the liner top itself. Not modeled on any
+// specific manufacturer's product.
+---
+<div class="tool3d-wrap" role="img" aria-label="Interactive 3D model of a generic liner hanger — drag to rotate">
+  <div class="tool3d-poster" id="tool3d-poster">
+    <svg viewBox="0 0 200 200" class="tool3d-poster-icon" aria-hidden="true">
+      <rect x="90" y="15" width="20" height="45" rx="3" fill="#3a4148"/>
+      <polygon points="70,60 130,60 140,90 60,90" fill="#5a6470"/>
+      <rect x="75" y="90" width="50" height="30" rx="3" fill="#8a94a0"/>
+      <rect x="78" y="120" width="44" height="65" rx="3" fill="#3a4148"/>
+    </svg>
+    <div class="tool3d-poster-label">Tap to view 3D model — drag to rotate</div>
+  </div>
+  <canvas id="tool3d-canvas" class="tool3d-canvas" aria-hidden="true"></canvas>
+  <button type="button" class="tool3d-reset" id="tool3d-reset">⟲ Reset View</button>
+  <div class="tool3d-fallback" id="tool3d-fallback" hidden>
+    3D preview isn't available in this browser — the diagram above and the write-up below cover the same detail.
+  </div>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.169.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.169.0/examples/jsm/"
+  }
+}
+</script>
+
+<style>
+  .tool3d-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    max-height: 520px;
+    min-height: 340px;
+    background: radial-gradient(ellipse at 50% 45%, #333c45 0%, #1c2126 45%, #0e1113 100%);
+    border: 1px solid var(--iron, #2a2f35);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: grab;
+  }
+  .tool3d-wrap:active { cursor: grabbing; }
+  .tool3d-poster {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 14px;
+    background: radial-gradient(circle at 50% 40%, #23282d 0%, #14171a 80%);
+  }
+  .tool3d-poster-icon { width: 96px; height: 96px; }
+  .tool3d-poster-label {
+    color: #9aa4ad; font-size: 0.85rem; letter-spacing: 0.02em;
+  }
+  .tool3d-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: none; }
+  .tool3d-reset {
+    position: absolute; bottom: 14px; right: 14px; z-index: 2; display: none;
+    padding: 6px 14px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em;
+    color: #e8a020; background: rgba(14, 17, 19, 0.72); border: 1px solid rgba(232, 160, 32, 0.4);
+    border-radius: 999px; cursor: pointer;
+  }
+  .tool3d-reset:hover { background: rgba(14, 17, 19, 0.9); border-color: #e8a020; }
+  .tool3d-fallback {
+    position: absolute; inset: 0; display: none; align-items: center; justify-content: center;
+    padding: 24px; text-align: center; color: #9aa4ad; font-size: 0.9rem;
+  }
+</style>
+
+<script is:inline>
+  const wrap = document.querySelector('.tool3d-wrap');
+  const poster = document.getElementById('tool3d-poster');
+  const canvas = document.getElementById('tool3d-canvas');
+  const fallback = document.getElementById('tool3d-fallback');
+  const resetBtn = document.getElementById('tool3d-reset');
+  if (!wrap || !poster || !canvas || !fallback || !resetBtn) throw new Error('LinerHanger3D: expected elements missing');
+
+  let started = false;
+
+  async function start() {
+    if (started) return;
+    started = true;
+
+    const probe = document.createElement('canvas');
+    const hasWebGL = !!(probe.getContext('webgl') || probe.getContext('experimental-webgl'));
+    if (!hasWebGL) {
+      poster.style.display = 'none';
+      fallback.style.display = 'flex';
+      return;
+    }
+
+    const THREE = await import('three');
+    const { TrackballControls } = await import('three/addons/controls/TrackballControls.js');
+    const { RoomEnvironment } = await import('three/addons/environments/RoomEnvironment.js');
+
+    poster.style.display = 'none';
+    canvas.style.display = 'block';
+    resetBtn.style.display = 'block';
+
+    const scene = new THREE.Scene();
+    scene.background = null;
+
+    const camera = new THREE.PerspectiveCamera(38, wrap.clientWidth / wrap.clientHeight, 0.1, 100);
+    camera.position.set(3.0, 0.9, 3.0);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(wrap.clientWidth, wrap.clientHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.25;
+
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+    const key = new THREE.DirectionalLight(0xfff4e6, 3.4);
+    key.position.set(3, 4.5, 2.5);
+    const fill = new THREE.DirectionalLight(0x9ecbff, 1.1);
+    fill.position.set(-3.5, 1.2, 2);
+    const rim = new THREE.DirectionalLight(0xffffff, 2.4);
+    rim.position.set(-1, 2.5, -4);
+    const kicker = new THREE.PointLight(0xffffff, 1.4, 12);
+    kicker.position.set(2, -0.5, 3);
+    const ambient = new THREE.HemisphereLight(0x6b7a8c, 0x14100c, 0.9);
+    scene.add(key, fill, rim, kicker, ambient);
+
+    // --- Generic liner hanger, built from primitives ---
+    // Anatomy per generic industry reference: setting tool interface at top,
+    // an expandable slip/cone section that grips the previous casing string,
+    // a polished bore/seal area, and the wider liner top below it. No
+    // branded or company-specific geometry.
+    const group = new THREE.Group();
+
+    const metal = new THREE.MeshStandardMaterial({ color: 0x9aa4ae, metalness: 0.9, roughness: 0.28 });
+    const darkMetal = new THREE.MeshStandardMaterial({ color: 0x5b636b, metalness: 0.85, roughness: 0.35 });
+    const linerMetal = new THREE.MeshStandardMaterial({ color: 0x6b747c, metalness: 0.8, roughness: 0.4 });
+
+    // Upper setting tool interface (connects to the running/setting string)
+    const topSub = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.2, 0.7, 24), metal);
+    topSub.position.y = 1.55;
+    group.add(topSub);
+
+    // Hanger body / mandrel
+    const mandrel = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.24, 1.0, 32), metal);
+    mandrel.position.y = 0.7;
+    group.add(mandrel);
+
+    // Setting cone driving the slips outward
+    const cone = new THREE.Mesh(new THREE.ConeGeometry(0.42, 0.4, 32), darkMetal);
+    cone.position.y = 0.15;
+    group.add(cone);
+
+    // Slip ring gripping the previous casing string's ID
+    function buildSlipRing(y) {
+      const ring = new THREE.Group();
+      const segCount = 8;
+      for (let i = 0; i < segCount; i++) {
+        const seg = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.3, 0.05), darkMetal);
+        const angle = (i / segCount) * Math.PI * 2;
+        seg.position.set(Math.cos(angle) * 0.44, y, Math.sin(angle) * 0.44);
+        seg.lookAt(0, y, 0);
+        ring.add(seg);
+      }
+      return ring;
+    }
+    group.add(buildSlipRing(0.0));
+
+    // Polished bore / seal area, transitioning down to the wider liner top
+    const pbr = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 0.5, 32), metal);
+    pbr.position.y = -0.55;
+    group.add(pbr);
+
+    // Liner top — the wider-diameter pipe section hanging below the hanger,
+    // representing the actual liner string.
+    const linerTop = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.34, 1.6, 32), linerMetal);
+    linerTop.position.y = -1.6;
+    group.add(linerTop);
+
+    scene.add(group);
+
+    const controls = new TrackballControls(camera, renderer.domElement);
+    controls.noZoom = true;
+    controls.noPan = true;
+    controls.rotateSpeed = 3.2;
+    controls.staticMoving = false;
+    controls.dynamicDampingFactor = 0.12;
+    controls.target.set(0, 0, 0);
+    controls.update();
+    resetBtn.addEventListener('click', () => controls.reset());
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function onResize() {
+      const w = wrap.clientWidth, h = wrap.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+      controls.handleResize();
+    }
+    window.addEventListener('resize', onResize);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+    void reduceMotion;
+  }
+
+  poster.addEventListener('click', start, { once: true });
+  const io = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        // Still requires a tap per the agreed UX spec.
+      }
+    }
+  }, { threshold: 0.4 });
+  io.observe(wrap);
+</script>

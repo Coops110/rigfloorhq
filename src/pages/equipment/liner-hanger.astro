@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import LinerHanger3D from '../../components/LinerHanger3D.astro';
+
+const faq = [
+  {
+    q: 'What is a liner hanger used for?',
+    a: 'A liner hanger suspends a liner — a casing string that does not run all the way back to surface — from inside the bottom of the previous casing string, rather than the liner hanging off the wellhead the way a full casing string would. It transfers the full weight of the liner into the existing casing at the point of overlap.',
+  },
+  {
+    q: 'Why run a liner instead of a full casing string all the way to surface?',
+    a: 'A liner covers only the open-hole section below the previous casing shoe, with some overlap into that casing, rather than duplicating pipe all the way back to surface. That saves real cost and running time on deeper wells, since there\'s no point running an entire extra string through sections already cased off — the liner only needs to cover new hole plus enough overlap to seal and anchor properly.',
+  },
+  {
+    q: 'How does the hanger actually support the liner\'s weight?',
+    a: 'A setting cone drives slips outward to bite into the inside wall of the previous casing string, and once set, that grip carries the liner\'s full weight through the hanger and into the existing casing rather than down to the wellbore bottom. The polished bore and seal area below the slips then allow the running/setting string to be released and pulled without disturbing that load-bearing grip.',
+  },
+  {
+    q: 'What is a liner top packer, and is it always needed?',
+    a: 'A liner top packer (sometimes integrated with the hanger itself) seals the annulus at the overlap between the liner and the previous casing, in addition to the mechanical hanging function — needed whenever that overlap has to hold pressure or isolate a zone, not just carry weight. Some liner hanger jobs rely on cement alone for that seal instead, depending on the well\'s actual isolation requirements.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Liner Hanger: How a Liner Is Suspended from Casing"
+  description="What a liner hanger is, why a liner runs instead of a full casing string, how the slips carry the liner's weight, and what a liner top packer adds."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Liner Hanger', href: '/equipment/liner-hanger' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Liner Hanger</h1>
+    <p class="page-hero-sub">The tool that suspends a liner from inside the previous casing string instead of running all the way back to a wellhead — carrying the liner's full weight through a set of slips.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <LinerHanger3D />
+      <div class="prose">
+        <h2 id="what-it-is">What a Liner Hanger Is</h2>
+        <p>A liner hanger suspends a liner — a casing string that covers new open hole plus some overlap into the <a href="/drilling/casing">previous casing string</a>, but does not run all the way back to surface — from inside that previous casing rather than from the wellhead. It's the mechanical link that transfers the liner's entire weight into the existing casing at the overlap, which is what makes running a liner instead of a full string possible in the first place.</p>
+
+        <h2 id="why-liner">Why Run a Liner Instead of Full Casing</h2>
+        <p>A full casing string runs all the way from the new open hole back to surface, even through sections that are already cased off by a previous string. A liner skips that redundant length entirely — it only covers the new hole below the last casing shoe, plus enough overlap to seal and anchor properly, and gets hung off that previous casing instead of the wellhead. On a deep well with several casing strings, this saves real cost and running time by not duplicating pipe through intervals that don't need it twice.</p>
+
+        <h2 id="how-it-hangs">How the Hanger Carries the Load</h2>
+        <p>A <strong>setting cone</strong> drives a ring of <strong>slips</strong> outward to bite into the inside wall of the previous casing string. Once set, that grip is what actually carries the liner's full weight — through the hanger body and into the existing casing — rather than the liner's weight resting on the bottom of the new hole. Below the slips, a <strong>polished bore and seal area</strong> lets the running and setting string release and pull back to surface without disturbing that load-bearing grip, similar in principle to how a <a href="/equipment/packer">packer's</a> polished bore receptacle lets tubing be pulled without unsetting the packer itself.</p>
+        <p>Below the hanger assembly, the <strong>liner top</strong> — the actual wider-diameter pipe — extends down to cover the full length of new open hole the liner is designed to isolate.</p>
+
+        <h2 id="liner-top-packer">Liner Top Packer — Sealing, Not Just Hanging</h2>
+        <p>The hanger's slips solve the mechanical problem of carrying weight, but they don't automatically create a pressure seal at the overlap. A <strong>liner top packer</strong> — sometimes built into the hanger assembly itself, sometimes run separately — seals that overlap when the job genuinely needs it to hold pressure or isolate a zone, on top of the purely mechanical hanging function. Not every liner job requires one: some rely on cement alone at the overlap for isolation, depending on what the well's actual pressure and zonal-isolation requirements call for.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#why-liner">Why Run a Liner</a>
+          <a href="#how-it-hangs">How the Hanger Carries the Load</a>
+          <a href="#liner-top-packer">Liner Top Packer</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Setting mechanisms and load ratings vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/packer" class="card-link">→ Packer</a><br><br>
+          <a href="/drilling/casing" class="card-link">→ Casing Design Explained</a><br><br>
+          <a href="/equipment/bridge-plug" class="card-link">→ Bridge Plug</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
