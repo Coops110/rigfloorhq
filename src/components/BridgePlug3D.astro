@@ -15,6 +15,7 @@
     <div class="tool3d-poster-label">Tap to view 3D model — drag to rotate</div>
   </div>
   <canvas id="tool3d-canvas" class="tool3d-canvas" aria-hidden="true"></canvas>
+  <button type="button" class="tool3d-reset" id="tool3d-reset">⟲ Reset View</button>
   <div class="tool3d-fallback" id="tool3d-fallback" hidden>
     3D preview isn't available in this browser — the diagram above and the write-up below cover the same detail.
   </div>
@@ -54,6 +55,13 @@
     color: #9aa4ad; font-size: 0.85rem; letter-spacing: 0.02em;
   }
   .tool3d-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: none; }
+  .tool3d-reset {
+    position: absolute; bottom: 14px; right: 14px; z-index: 2; display: none;
+    padding: 6px 14px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em;
+    color: #e8a020; background: rgba(14, 17, 19, 0.72); border: 1px solid rgba(232, 160, 32, 0.4);
+    border-radius: 999px; cursor: pointer;
+  }
+  .tool3d-reset:hover { background: rgba(14, 17, 19, 0.9); border-color: #e8a020; }
   .tool3d-fallback {
     position: absolute; inset: 0; display: none; align-items: center; justify-content: center;
     padding: 24px; text-align: center; color: #9aa4ad; font-size: 0.9rem;
@@ -65,7 +73,8 @@
   const poster = document.getElementById('tool3d-poster');
   const canvas = document.getElementById('tool3d-canvas');
   const fallback = document.getElementById('tool3d-fallback');
-  if (!wrap || !poster || !canvas || !fallback) throw new Error('BridgePlug3D: expected elements missing');
+  const resetBtn = document.getElementById('tool3d-reset');
+  if (!wrap || !poster || !canvas || !fallback || !resetBtn) throw new Error('BridgePlug3D: expected elements missing');
 
   let started = false;
 
@@ -82,11 +91,12 @@
     }
 
     const THREE = await import('three');
-    const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
+    const { TrackballControls } = await import('three/addons/controls/TrackballControls.js');
     const { RoomEnvironment } = await import('three/addons/environments/RoomEnvironment.js');
 
     poster.style.display = 'none';
     canvas.style.display = 'block';
+    resetBtn.style.display = 'block';
 
     const scene = new THREE.Scene();
     scene.background = null;
@@ -184,15 +194,22 @@
 
     scene.add(group);
 
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.08;
-    controls.enablePan = false;
-    controls.enableZoom = false;
-    controls.minPolarAngle = Math.PI * 0.18;
-    controls.maxPolarAngle = Math.PI * 0.82;
+    // TrackballControls, not OrbitControls — full free rotation on any axis,
+    // no fixed up-vector, since a locked pole angle was the whole limitation
+    // being removed here. The reset button below is what gets a user back to
+    // "the correct way up" after spinning it anywhere.
+    const controls = new TrackballControls(camera, renderer.domElement);
+    controls.noZoom = true;
+    controls.noPan = true;
+    controls.rotateSpeed = 3.2;
+    controls.staticMoving = false;
+    controls.dynamicDampingFactor = 0.12;
     controls.target.set(0, 0, 0);
     controls.update();
+    // TrackballControls captures its own reset pose (target/position/up) at
+    // construction time, above — no manual snapshot needed, matches what was
+    // just set.
+    resetBtn.addEventListener('click', () => controls.reset());
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -201,6 +218,7 @@
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
+      controls.handleResize();
     }
     window.addEventListener('resize', onResize);
 
