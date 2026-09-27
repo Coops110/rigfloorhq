@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import CementRetainer3D from '../../components/CementRetainer3D.astro';
+
+const faq = [
+  {
+    q: 'What is a cement retainer used for?',
+    a: 'A cement retainer isolates a zone during a squeeze-cementing job, letting cement be pumped through its body under pressure into the interval below or beside it, then closing to hold that pressure in place once the squeeze is finished. It is the tool that lets a crew squeeze cement into a specific perforated interval without cement free-falling down the rest of the wellbore.',
+  },
+  {
+    q: 'How is a cement retainer set and operated?',
+    a: 'It runs on wireline or a work string, is set at the target depth the same way a bridge plug is (wireline setting tool or mechanical/hydraulic actuation), then a stinger or work string is stabbed into the top of the retainer to open its internal valve. Cement is pumped down through the stinger, through the retainer\'s valve, and out into the isolated zone. Once the squeeze is complete, the valve closes and the stinger is pulled out, leaving the retainer holding pressure from above.',
+  },
+  {
+    q: 'Is a cement retainer drillable or retrievable?',
+    a: 'Both versions exist, the same as a bridge plug. Drillable retainers use cast iron and composite components so they can be milled out if the zone below ever needs to be reopened. Retrievable retainers use a steel body and a release mechanism so the whole assembly can be latched and pulled back out intact once its job is done.',
+  },
+  {
+    q: 'What happens if the valve fails to close after a squeeze job?',
+    a: 'If the valve does not close cleanly, pressure applied from above during the squeeze will not hold, and the job effectively fails to isolate anything — cement or pressure can migrate back up past the retainer. This is why the stinger is typically pulled slowly and pressure is tested against the retainer immediately after release, before assuming the squeeze actually held.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Cement Retainer: How Squeeze-Cementing Isolation Tools Work"
+  description="What a cement retainer is, how its pump-through valve works during a squeeze job, drillable vs. retrievable versions, and how it differs from a bridge plug."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Cement Retainer', href: '/equipment/cement-retainer' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Cement <span>Retainer</span></h1>
+    <p class="page-hero-sub">A downhole isolation tool with a pump-through valve, run to hold pressure below it while cement is squeezed into a target zone from above.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <CementRetainer3D />
+      <div class="prose">
+        <h2 id="what-it-is">What a Cement Retainer Is</h2>
+        <p>A cement retainer is a downhole tool set inside casing or tubing that creates a pressure-tight seal across the bore, the same way a <a href="/equipment/bridge-plug">bridge plug</a> does — except a retainer has a valve running through its body. That valve stays closed under normal conditions, holding pressure from above, but can be opened by stabbing a stinger or work string into the top of the tool, letting cement be pumped straight through it under pressure during a squeeze job.</p>
+        <p>Once the squeeze is finished and the stinger is pulled, the valve closes again and the retainer keeps holding pressure — which is exactly what lets a crew squeeze cement into one specific interval without it free-falling down the rest of the open wellbore below.</p>
+
+        <h2 id="when-used">When and Why a Cement Retainer Is Run</h2>
+        <ul>
+          <li><strong>Squeeze cementing a specific perforated interval</strong> — repairing a channel behind casing, isolating a watered-out or depleted zone, or shutting off an interval producing unwanted fluid.</li>
+          <li><strong>Plugging back a well</strong> where regulations call for a cement plug placed under pressure at a specific depth, rather than just a mechanical barrier.</li>
+          <li><strong>Remedial cementing</strong> after a primary cement job leaves channels or voids that need to be squeezed off before completion work continues.</li>
+        </ul>
+
+        <h2 id="setting-operating">Setting and Operating the Valve</h2>
+        <p>A cement retainer is run and set the same way a bridge plug is — on wireline with a dedicated setting tool and a CCL run to correlate exact depth, or on a work string with mechanical or hydraulic actuation. Once it's set and holding, a stinger is stabbed into a seal bore at the top of the retainer, which opens the internal ball-and-seat valve and creates a sealed path straight through the tool. Cement is pumped down the work string, through the open valve, and out into the isolated zone below or beside the retainer. When the job is done, the stinger is pulled — closing the valve behind it — and the retainer is left in place holding pressure from above.</p>
+
+        <h2 id="drillable-retrievable">Drillable vs. Retrievable</h2>
+        <p>The same split that applies to bridge plugs applies here. <strong>Drillable retainers</strong> use cast iron and composite slips and valve components, designed to break apart cleanly under a bit if the zone below is ever needed again. <strong>Retrievable retainers</strong> use a steel body and a mechanical release profile so the whole assembly can be latched, unset, and pulled back to surface intact once its isolation job is finished.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Valve failing to close</strong> cleanly after the stinger is released, letting pressure or cement migrate back past the retainer and effectively failing the squeeze.</li>
+          <li><strong>Slip failure to bite</strong> into damaged or undersized casing, the same risk a bridge plug carries.</li>
+          <li><strong>Stinger seal failure</strong> while cement is being pumped, losing the pressure-tight path through the tool mid-job.</li>
+          <li><strong>Incomplete milling</strong> on a drillable retainer if its composite components don't break down as designed.</li>
+        </ul>
+
+        <h2 id="vs-bridge-plug">Cement Retainer vs. Bridge Plug</h2>
+        <p>The mechanical difference is simple: a <strong>cement retainer</strong> has a valve running through its body that opens under a stinger to let cement pass through it under pressure, then closes to hold pressure once the job is done. A <a href="/equipment/bridge-plug">bridge plug</a> has no through-valve at all — it's a pure mechanical seal, set and left, with nothing designed to pump through it afterward. If a job needs cement or fluid pumped through the tool itself, it calls for a retainer; if it's a straightforward isolation seal with no pumping through it afterward, it calls for a bridge plug.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#when-used">When It's Used</a>
+          <a href="#setting-operating">Setting &amp; Operating</a>
+          <a href="#drillable-retrievable">Drillable vs. Retrievable</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-bridge-plug">vs. Bridge Plug</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Valve design and setting mechanisms vary by manufacturer and job — always confirm against the actual tool's spec sheet before relying on any detail here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/bridge-plug" class="card-link">→ Bridge Plug</a><br><br>
+          <a href="/drilling/casing" class="card-link">→ Casing Design Explained</a><br><br>
+          <a href="/drilling/well-control" class="card-link">→ Well Control &amp; Kicks</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import CrossoverSub3D from '../../components/CrossoverSub3D.astro';
+
+const faq = [
+  {
+    q: 'What is a crossover sub used for?',
+    a: 'A crossover sub joins two sections of pipe, tubing, or tool string that have different thread types or sizes and would not otherwise connect. It converts one connection to another over a short length, letting equipment from different manufacturers or different generations of a string be made up together.',
+  },
+  {
+    q: 'Why would a drill string need different thread types in the first place?',
+    a: 'Different pipe sizes carry different standard thread connections by design — larger-diameter drill collars use different threads than smaller drill pipe, and different equipment vendors sometimes use proprietary connections. A crossover sub is what actually lets a bottom hole assembly built from mixed component sizes and sources be made up into one continuous string.',
+  },
+  {
+    q: 'What is the difference between a crossover sub and a bit sub?',
+    a: 'Both are short connector-type subs, but they solve different problems. A crossover sub exists purely to convert between two different thread types or sizes. A bit sub sits specifically between the bit and the rest of the bottom hole assembly, and may also carry additional features like a check valve or a specific bore profile the bit needs, beyond just a thread change.',
+  },
+  {
+    q: 'What causes a crossover sub to fail?',
+    a: 'The tapered shoulder where the two diameters meet is the highest-stress point on the tool, and repeated makeup/breakout cycles or high torque can fatigue it over time, leading to a washout or a twist-off at that shoulder. Thread wear or damage on either connection from repeated use is the other common failure point, since a crossover sees every connection cycle both strings would otherwise see separately.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Crossover Sub: Connecting Different Thread Sizes in a String"
+  description="What a crossover sub is, why drill strings need one, how it differs from a bit sub, and common failure points at the tapered shoulder."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Crossover Sub', href: '/equipment/crossover-sub' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Drill String &amp; Casing Subs</div>
+    <h1>Crossover <span>Sub</span></h1>
+    <p class="page-hero-sub">A short connector whose entire job is joining two different thread types or diameters into one continuous string.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <CrossoverSub3D />
+      <div class="prose">
+        <h2 id="what-it-is">What a Crossover Sub Is</h2>
+        <p>A crossover sub is a short length of pipe machined with two different connections — one on each end — specifically so it can join sections of a <a href="/equipment/drill-string">drill string</a>, casing string, or tool string that would not otherwise thread together. One end matches the connection above it, the other end matches the connection below it, and a tapered or stepped shoulder in between carries the transition from one diameter to the other.</p>
+        <p>It carries no other function of its own — no valve, no cutting element, nothing beyond the two connections and the body that joins them. Its entire purpose is compatibility.</p>
+
+        <h2 id="why-needed">Why a String Needs Different Thread Types</h2>
+        <p>Pipe and tooling of different sizes carry different standard connections by design — larger-diameter drill collars use different thread forms than smaller-diameter drill pipe, and different equipment vendors sometimes use their own proprietary connections on specialty tools. A bottom hole assembly built from mixed component sizes, or a string that mixes equipment from more than one manufacturer or generation, will almost always need at least one crossover somewhere in the string to actually make everything up together.</p>
+
+        <h2 id="body-design">Body Design — the Tapered Shoulder</h2>
+        <p>The body between the two connections is either a straight taper or a stepped shoulder, sized to carry the full load and torque the string transmits through that point despite the sudden change in diameter. Because it sits at a geometric discontinuity, this shoulder concentrates more stress than a straight section of pipe would under the same load — which is why crossover subs are typically built to a higher strength rating than the pipe on either side of them, not a matching or lower one.</p>
+
+        <h2 id="vs-bit-sub">Crossover Sub vs. Bit Sub</h2>
+        <p>Both are short connector-type subs, but a crossover sub exists purely to solve a thread-compatibility problem — converting one connection to another wherever it's needed in a string. A bit sub is a specific, purpose-built connector that always sits directly above the bit, and beyond changing thread type may also carry a check valve, a specific bore profile, or other features the bit itself needs. Every bit sub is functionally a kind of crossover, but not every crossover is a bit sub.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Fatigue at the tapered shoulder</strong> from repeated makeup and breakout cycles or sustained high torque, the highest-stress point on the tool and the most common location for a washout or twist-off.</li>
+          <li><strong>Thread wear or galling</strong> on either connection from repeated use, since a crossover sees every connection cycle both strings would otherwise see independently.</li>
+          <li><strong>Using the wrong crossover for the job</strong> — mismatched thread specs or pressure ratings that were never actually compatible, caught (ideally) before makeup rather than after.</li>
+        </ul>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#why-needed">Why It's Needed</a>
+          <a href="#body-design">Body Design</a>
+          <a href="#vs-bit-sub">vs. Bit Sub</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Thread specs and strength ratings vary by manufacturer and connection standard — always confirm against the actual tool's spec sheet before relying on any detail here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/drill-string" class="card-link">→ The Drill String</a><br><br>
+          <a href="/equipment/float-sub" class="card-link">→ Float Sub</a><br><br>
+          <a href="/calculators/bit-torque" class="card-link">→ Bit Torque Calculator</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

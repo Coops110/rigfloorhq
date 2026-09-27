@@ -1,0 +1,230 @@
+---
+// Poster-image-first, drag-to-rotate only, no auto-spin — same interaction
+// contract as every other tool viewer on the site. Geometry is procedurally
+// generated (primitives only, no downloaded mesh/model file), built from
+// generic cement retainer anatomy: setting-tool sub, ball-and-seat
+// pump-through valve, packing element, slips top and bottom, guide nose.
+// Not modeled on any specific manufacturer's product.
+---
+<div class="tool3d-wrap" role="img" aria-label="Interactive 3D model of a generic cement retainer — drag to rotate">
+  <div class="tool3d-poster" id="tool3d-poster">
+    <svg viewBox="0 0 200 200" class="tool3d-poster-icon" aria-hidden="true">
+      <rect x="86" y="15" width="28" height="30" rx="3" fill="#3a4148"/>
+      <rect x="76" y="45" width="48" height="20" rx="3" fill="#8a94a0"/>
+      <circle cx="100" cy="55" r="7" fill="#2a2a2c"/>
+      <rect x="68" y="65" width="64" height="65" rx="6" fill="#5a6470"/>
+      <rect x="80" y="130" width="40" height="45" rx="4" fill="#3a4148"/>
+      <polygon points="80,175 120,175 100,190" fill="#8a94a0"/>
+    </svg>
+    <div class="tool3d-poster-label">Tap to view 3D model — drag to rotate</div>
+  </div>
+  <canvas id="tool3d-canvas" class="tool3d-canvas" aria-hidden="true"></canvas>
+  <button type="button" class="tool3d-reset" id="tool3d-reset">⟲ Reset View</button>
+  <div class="tool3d-fallback" id="tool3d-fallback" hidden>
+    3D preview isn't available in this browser — the diagram above and the write-up below cover the same detail.
+  </div>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.169.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.169.0/examples/jsm/"
+  }
+}
+</script>
+
+<style>
+  .tool3d-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    max-height: 520px;
+    min-height: 340px;
+    background: radial-gradient(ellipse at 50% 45%, #333c45 0%, #1c2126 45%, #0e1113 100%);
+    border: 1px solid var(--iron, #2a2f35);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: grab;
+  }
+  .tool3d-wrap:active { cursor: grabbing; }
+  .tool3d-poster {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 14px;
+    background: radial-gradient(circle at 50% 40%, #23282d 0%, #14171a 80%);
+  }
+  .tool3d-poster-icon { width: 96px; height: 96px; }
+  .tool3d-poster-label {
+    color: #9aa4ad; font-size: 0.85rem; letter-spacing: 0.02em;
+  }
+  .tool3d-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: none; }
+  .tool3d-reset {
+    position: absolute; bottom: 14px; right: 14px; z-index: 2; display: none;
+    padding: 6px 14px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em;
+    color: #e8a020; background: rgba(14, 17, 19, 0.72); border: 1px solid rgba(232, 160, 32, 0.4);
+    border-radius: 999px; cursor: pointer;
+  }
+  .tool3d-reset:hover { background: rgba(14, 17, 19, 0.9); border-color: #e8a020; }
+  .tool3d-fallback {
+    position: absolute; inset: 0; display: none; align-items: center; justify-content: center;
+    padding: 24px; text-align: center; color: #9aa4ad; font-size: 0.9rem;
+  }
+</style>
+
+<script is:inline>
+  const wrap = document.querySelector('.tool3d-wrap');
+  const poster = document.getElementById('tool3d-poster');
+  const canvas = document.getElementById('tool3d-canvas');
+  const fallback = document.getElementById('tool3d-fallback');
+  const resetBtn = document.getElementById('tool3d-reset');
+  if (!wrap || !poster || !canvas || !fallback || !resetBtn) throw new Error('CementRetainer3D: expected elements missing');
+
+  let started = false;
+
+  async function start() {
+    if (started) return;
+    started = true;
+
+    const probe = document.createElement('canvas');
+    const hasWebGL = !!(probe.getContext('webgl') || probe.getContext('experimental-webgl'));
+    if (!hasWebGL) {
+      poster.style.display = 'none';
+      fallback.style.display = 'flex';
+      return;
+    }
+
+    const THREE = await import('three');
+    const { TrackballControls } = await import('three/addons/controls/TrackballControls.js');
+    const { RoomEnvironment } = await import('three/addons/environments/RoomEnvironment.js');
+
+    poster.style.display = 'none';
+    canvas.style.display = 'block';
+    resetBtn.style.display = 'block';
+
+    const scene = new THREE.Scene();
+    scene.background = null;
+
+    const camera = new THREE.PerspectiveCamera(38, wrap.clientWidth / wrap.clientHeight, 0.1, 100);
+    camera.position.set(5.0, 1.5, 5.0);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(wrap.clientWidth, wrap.clientHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.25;
+
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+    const key = new THREE.DirectionalLight(0xfff4e6, 3.4);
+    key.position.set(3, 4.5, 2.5);
+    const fill = new THREE.DirectionalLight(0x9ecbff, 1.1);
+    fill.position.set(-3.5, 1.2, 2);
+    const rim = new THREE.DirectionalLight(0xffffff, 2.4);
+    rim.position.set(-1, 2.5, -4);
+    const kicker = new THREE.PointLight(0xffffff, 1.4, 12);
+    kicker.position.set(2, -0.5, 3);
+    const ambient = new THREE.HemisphereLight(0x6b7a8c, 0x14100c, 0.9);
+    scene.add(key, fill, rim, kicker, ambient);
+
+    // --- Generic cement retainer, built from primitives ---
+    // Anatomy per generic industry reference: setting sub, a ball-and-seat
+    // valve running through the body (the feature that distinguishes it
+    // from a plain bridge plug), packing element, slips top and bottom,
+    // guide nose. No branded or company-specific geometry.
+    const group = new THREE.Group();
+
+    const metal = new THREE.MeshStandardMaterial({ color: 0x9aa4ae, metalness: 0.9, roughness: 0.28 });
+    const darkMetal = new THREE.MeshStandardMaterial({ color: 0x5b636b, metalness: 0.85, roughness: 0.35 });
+    const rubber = new THREE.MeshStandardMaterial({ color: 0x2a2a2c, metalness: 0.1, roughness: 0.7 });
+    const valveMetal = new THREE.MeshStandardMaterial({ color: 0xb08d57, metalness: 0.7, roughness: 0.35 });
+
+    // Central mandrel (the bore the valve sits inside)
+    const mandrel = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.22, 3.0, 32), metal);
+    group.add(mandrel);
+
+    // Setting sub at the top
+    const topSub = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.2, 0.4, 24), metal);
+    topSub.position.y = 1.7;
+    group.add(topSub);
+
+    // Ball-and-seat pump-through valve — the feature a bridge plug doesn't
+    // have. Rendered as a distinct band with a visible seat ring.
+    const valveHousing = new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.26, 0.35, 32), valveMetal);
+    valveHousing.position.y = 0.55;
+    group.add(valveHousing);
+    const valveSeat = new THREE.Mesh(new THREE.TorusGeometry(0.13, 0.04, 12, 24), darkMetal);
+    valveSeat.rotation.x = Math.PI / 2;
+    valveSeat.position.y = 0.55;
+    group.add(valveSeat);
+
+    // Slip wedges — top and bottom
+    function buildSlipRing(y) {
+      const ring = new THREE.Group();
+      const segCount = 6;
+      for (let i = 0; i < segCount; i++) {
+        const seg = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.32, 0.05), darkMetal);
+        const angle = (i / segCount) * Math.PI * 2;
+        seg.position.set(Math.cos(angle) * 0.44, y, Math.sin(angle) * 0.44);
+        seg.lookAt(0, y, 0);
+        ring.add(seg);
+      }
+      return ring;
+    }
+    group.add(buildSlipRing(1.0));
+    group.add(buildSlipRing(-0.55));
+
+    // Packing element (rubber, mid-body, largest OD — seals the annulus)
+    const packing = new THREE.Mesh(new THREE.CylinderGeometry(0.46, 0.46, 0.7, 32), rubber);
+    packing.position.y = -0.05;
+    group.add(packing);
+
+    // Guide nose at the bottom
+    const nose = new THREE.Mesh(new THREE.ConeGeometry(0.18, 0.4, 24), metal);
+    nose.position.y = -1.7;
+    group.add(nose);
+
+    scene.add(group);
+
+    const controls = new TrackballControls(camera, renderer.domElement);
+    controls.noZoom = true;
+    controls.noPan = true;
+    controls.rotateSpeed = 3.2;
+    controls.staticMoving = false;
+    controls.dynamicDampingFactor = 0.12;
+    controls.target.set(0, 0, 0);
+    controls.update();
+    resetBtn.addEventListener('click', () => controls.reset());
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function onResize() {
+      const w = wrap.clientWidth, h = wrap.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+      controls.handleResize();
+    }
+    window.addEventListener('resize', onResize);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+    void reduceMotion;
+  }
+
+  poster.addEventListener('click', start, { once: true });
+  const io = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        // Still requires a tap per the agreed UX spec.
+      }
+    }
+  }, { threshold: 0.4 });
+  io.observe(wrap);
+</script>

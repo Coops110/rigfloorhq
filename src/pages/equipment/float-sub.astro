@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import FloatSub3D from '../../components/FloatSub3D.astro';
+
+const faq = [
+  {
+    q: 'What is a float sub used for?',
+    a: 'A float sub is a short section run in the drill string or casing string that houses a check valve, letting fluid flow down through it freely but blocking flow back up. It stops mud or cement from U-tubing back up the string once pumps are shut down, and keeps the string from backfilling with wellbore fluid while running in or out of hole.',
+  },
+  {
+    q: 'How is a float sub different from a float shoe or float collar?',
+    a: 'All three do the same basic job — house a check valve — but a float shoe sits at the very bottom of a casing string and guides it into the hole, a float collar sits a joint or two above the shoe as a backup valve, and a float sub is a general-purpose version that can be placed anywhere in a drill string or casing string where a check valve is needed, not just at the bottom of a casing run.',
+  },
+  {
+    q: 'What type of valve does a float sub use?',
+    a: 'The most common design is a flapper valve — a hinged disc that swings open under downward flow and springs shut the moment flow stops or reverses. Some float subs use a spring-loaded ball-and-seat valve instead, which seats under its own spring tension rather than relying on flow direction alone.',
+  },
+  {
+    q: 'What happens if a float valve fails?',
+    a: 'If the valve fails to seat, fluid can flow back up the string once pumps stop — mud or cement U-tubing back into the drill string, or wellbore fluid backflowing into casing before cement sets. On a cementing job specifically, a failed float can let cement flow back into the shoe track or string before it cures, undermining the whole job.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Float Sub: How Check-Valve Subs Prevent Backflow"
+  description="What a float sub is, how its flapper or ball-and-seat check valve works, how it differs from a float shoe or float collar, and common failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Float Sub', href: '/equipment/float-sub' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Drill String &amp; Casing Subs</div>
+    <h1>Float <span>Sub</span></h1>
+    <p class="page-hero-sub">A short sub carrying a check valve — flow passes freely going down, and is blocked the instant it tries to reverse.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <FloatSub3D />
+      <div class="prose">
+        <h2 id="what-it-is">What a Float Sub Is</h2>
+        <p>A float sub is a short section of pipe, threaded to fit into a <a href="/equipment/drill-string">drill string</a> or casing string like any other connection, that houses a one-way check valve inside its bore. Fluid pumped down through it passes freely, but the valve closes the moment flow stops or tries to reverse, blocking anything from flowing back up through that point in the string.</p>
+        <p>That one function solves a real practical problem: without a float valve somewhere in the string, mud, cement, or wellbore fluid can U-tube back up the pipe the instant pumps shut down, backfilling the string with fluid that then has to be dealt with before the next connection or trip.</p>
+
+        <h2 id="when-used">When and Why a Float Sub Is Run</h2>
+        <ul>
+          <li><strong>Preventing backflow into the drill string</strong> whenever pumps are shut down mid-operation, keeping the string from filling with wellbore fluid and adding unplanned weight or contamination.</li>
+          <li><strong>Cementing operations</strong>, where a float device is essential to stop cement from flowing back into the shoe track or casing string before it has time to cure.</li>
+          <li><strong>Running a string into a well with an active kick risk</strong>, where a working check valve is a real, if partial, barrier against flow coming back up the string.</li>
+          <li><strong>General-purpose placement</strong> anywhere in a string that needs a check valve but isn't specifically the shoe or collar position at the bottom of a casing run.</li>
+        </ul>
+
+        <h2 id="valve-types">Flapper vs. Ball-and-Seat Valve Types</h2>
+        <p>The <strong>flapper valve</strong> is the most common design — a hinged disc mounted just off-center in the bore that swings open under downward flow and springs shut the instant flow eases off or reverses. It's simple, reliable, and has a wide-open bore when flowing, which keeps pressure loss through the sub low. A <strong>spring-loaded ball-and-seat valve</strong> works differently: a ball sits against a seat under constant spring tension, lifting off the seat only when flow pressure overcomes the spring, then reseating immediately once that pressure drops. Ball-and-seat designs tend to close faster and more positively, at the cost of a narrower flow path than a flapper.</p>
+
+        <h2 id="vs-shoe-collar">Float Sub vs. Float Shoe vs. Float Collar</h2>
+        <p>All three are check-valve housings, differing mainly in where they sit and what job they're specifically built for. A <strong>float shoe</strong> is built into the very bottom joint of a casing string, combining the check valve with a rounded, reinforced nose that guides the string into the hole and helps it pass obstructions. A <strong>float collar</strong> sits one or two joints above the shoe as a backup valve, and also acts as a landing point that stops cementing plugs from being pumped any further down the string. A <strong>float sub</strong> is the general-purpose version — a standalone check valve that can be placed anywhere a string needs one, not tied to the specific bottom-of-casing shoe or collar position.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Flapper or ball failing to seat</strong> cleanly, letting fluid backflow the moment pumps stop — the core failure mode for any float valve.</li>
+          <li><strong>Debris or cuttings lodging in the valve seat</strong>, holding it partly open and defeating the check function.</li>
+          <li><strong>Failed cement job backflow</strong>, where a bad float lets cement flow back into the shoe track before it sets, contaminating the shoe track and risking a poor cement bond at the bottom of the string.</li>
+          <li><strong>Erosion of the seat or flapper</strong> over repeated cycles or from abrasive fluid, degrading the seal over time even if the valve still moves freely.</li>
+        </ul>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#when-used">When It's Used</a>
+          <a href="#valve-types">Valve Types</a>
+          <a href="#vs-shoe-collar">vs. Float Shoe &amp; Collar</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Valve design and placement vary by manufacturer and job — always confirm against the actual tool's spec sheet before relying on any detail here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/drill-string" class="card-link">→ The Drill String</a><br><br>
+          <a href="/equipment/crossover-sub" class="card-link">→ Crossover Sub</a><br><br>
+          <a href="/drilling/casing" class="card-link">→ Casing Design Explained</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
