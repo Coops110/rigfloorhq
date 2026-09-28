@@ -2,9 +2,10 @@
 // Poster-image-first, drag-to-rotate only, no auto-spin — same interaction
 // contract as BridgePlug3D.astro. Geometry is procedurally generated
 // (primitives only, no downloaded mesh/model file), built from generic
-// window-mill ("watermelon mill") anatomy: mandrel, lens-shaped carbide-dressed
-// mill body, starting mill, tapered ramp-following nose. Not modeled on any
-// specific manufacturer's product.
+// window-mill ("watermelon mill") anatomy, top to bottom: work-string sub,
+// lens-shaped carbide-dressed watermelon (follow) mill body, smaller lead
+// (starting) mill below it, tapered ramp-following guide nose. Not modeled
+// on any specific manufacturer's product.
 ---
 <div class="tool3d-wrap" role="img" aria-label="Interactive 3D model of a generic window mill — drag to rotate">
   <div class="tool3d-poster" id="tool3d-poster">
@@ -130,41 +131,53 @@
     const ambient = new THREE.HemisphereLight(0x6b7a8c, 0x14100c, 0.9);
     scene.add(key, fill, rim, kicker, ambient);
 
-    // --- Generic window mill ("watermelon mill"), built from primitives ---
-    // Anatomy per generic industry reference (mandrel / lens-shaped carbide
-    // mill body / starting mill / ramp-following tapered nose) — no branded
-    // or company-specific geometry copied.
+    // --- Generic window mill ("watermelon mill") assembly, built from
+    // primitives --- Corrected 2026-09-28: a milling BHA run on a whipstock
+    // is a lead (starting) mill BELOW a larger watermelon/follow mill, not
+    // the reverse — the lead mill is the leading edge that first penetrates
+    // the casing wall as the assembly is lowered down the whipstock face,
+    // and the larger watermelon mill following above it then enlarges and
+    // dresses the window on the same trip. The previous build had the small
+    // starting mill placed above the watermelon body, which is backwards.
+    // Anatomy per generic industry reference (mandrel / work-string sub /
+    // lens-shaped carbide watermelon mill body / smaller lead mill below it /
+    // tapered guide nose) — no branded or company-specific geometry copied.
     const group = new THREE.Group();
 
     const metal = new THREE.MeshStandardMaterial({ color: 0x9aa4ae, metalness: 0.9, roughness: 0.28 });
     const carbide = new THREE.MeshStandardMaterial({ color: 0x3d3f42, metalness: 0.55, roughness: 0.6 });
 
     // Mandrel running through the whole assembly
-    const mandrel = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.14, 3.0, 24), metal);
+    const mandrel = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.14, 3.2, 24), metal);
     group.add(mandrel);
-
-    // Lens ("watermelon") shaped window mill body — an elongated sphere
-    const lens = new THREE.Mesh(new THREE.SphereGeometry(0.5, 32, 24), carbide);
-    lens.scale.set(1, 1.3, 1);
-    lens.position.y = 0.25;
-    group.add(lens);
-
-    // Small starting mill above, which initiates the cut at the top of the
-    // whipstock ramp before the larger window mill body follows through
-    const starter = new THREE.Mesh(new THREE.ConeGeometry(0.28, 0.5, 24), carbide);
-    starter.position.y = 1.2;
-    group.add(starter);
-
-    // Tapered nose that rides down the whipstock face and guides the mill
-    // laterally into the casing wall
-    const nose = new THREE.Mesh(new THREE.ConeGeometry(0.2, 0.5, 24), metal);
-    nose.position.y = -1.45;
-    group.add(nose);
 
     // Upper connection sub to work string
     const topSub = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.2, 0.35, 24), metal);
-    topSub.position.y = 1.63;
+    topSub.position.y = 1.5;
     group.add(topSub);
+
+    // Lens ("watermelon") shaped follow mill body — an elongated sphere,
+    // the largest-diameter element, seated directly below the work-string
+    // sub. This is what enlarges and dresses the window after the lead mill
+    // below it has already cut through the casing wall.
+    const lens = new THREE.Mesh(new THREE.SphereGeometry(0.5, 32, 24), carbide);
+    lens.scale.set(1, 1.3, 1);
+    lens.position.y = 0.75;
+    group.add(lens);
+
+    // Smaller lead ("starting") mill below the watermelon body — the
+    // leading edge that first penetrates the casing wall as the assembly
+    // rides down the whipstock's concave face.
+    const starter = new THREE.Mesh(new THREE.ConeGeometry(0.28, 0.5, 24), carbide);
+    starter.position.y = -0.35;
+    group.add(starter);
+
+    // Tapered guide nose at the very bottom, riding the whipstock face and
+    // guiding the assembly laterally into the casing wall ahead of the
+    // lead mill.
+    const nose = new THREE.Mesh(new THREE.ConeGeometry(0.2, 0.4, 24), metal);
+    nose.position.y = -1.1;
+    group.add(nose);
 
     scene.add(group);
 
