@@ -1,0 +1,226 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+// Source readings match the original drill-off test worksheet exactly — the
+// footage/time pairs below reproduce its ROP column to the decimal when run
+// through ROP = Footage / Time x 3600 (verified by hand before shipping this
+// page; see the formula note below).
+const WOB_ROWS = [
+  { wob: 50, time: 60, ft: 0.6 },
+  { wob: 45, time: 68, ft: 0.55 },
+  { wob: 40, time: 73, ft: 0.55 },
+  { wob: 35, time: 75, ft: 0.45 },
+  { wob: 30, time: 82, ft: 0.5 },
+  { wob: 50, time: 62, ft: 0.6 },
+];
+
+const RPM_ROWS = [
+  { rpm: 140, time: 120 },
+  { rpm: 130, time: 110 },
+  { rpm: 120, time: 100 },
+  { rpm: 110, time: 108 },
+  { rpm: 100, time: 118 },
+  { rpm: 140, time: 124 },
+];
+
+const faq = [
+  {
+    q: 'What is a drill-off test, exactly?',
+    a: 'A short, deliberate test run while drilling: hold the bit at a fixed depth reference and time how long it takes the string to "drill off" a set amount of weight (commonly 10,000 lb) onto the bit while it advances, logging the footage drilled in that time. Repeat it at a few different weight-on-bit or RPM settings and you get a real, on-bottom picture of how this specific bit is actually responding in this specific formation, rather than a generic recommended range.',
+  },
+  {
+    q: 'Why test at more than one weight-on-bit setting?',
+    a: 'Because ROP versus WOB is not a straight line forever. Up to a point, more weight on bit cuts faster; past that point, the bit floods with cuttings faster than it can clear them (a real phenomenon called bit floundering) and adding more weight stops helping, or even makes ROP worse. Testing several WOB steps and comparing the resulting ROP is how that point actually gets found on a live bit and formation, instead of guessed at.',
+  },
+  {
+    q: 'Does the same logic apply to the rotary (RPM) test?',
+    a: 'Yes — the mechanism is different but the read is the same. Higher RPM generally cuts faster up to a point, then vibration, torque, or bit wear start working against it and the ROP gain per added RPM shrinks or reverses. Running the rotary side of this worksheet the same way as the WOB side is how that ceiling gets found for the RPM axis specifically.',
+  },
+  {
+    q: 'Why does the rotary test use "time to drill 1 ft" instead of a footage column?',
+    a: 'It is the same formula with footage held constant at 1 ft rather than measured per step, which is simply a cleaner way to log a rotary-only test: hold WOB steady, change only RPM, and time each foot. The ROP math underneath is identical either way — footage divided by time, converted to feet per hour.',
+  },
+  {
+    q: 'Can I just read the optimum straight off the highest ROP number?',
+    a: 'Only as a rough pointer, not a real determination. The properly diagnostic way to read a drill-off test is to plot ROP against WOB (or RPM) across every step and look at the shape of the curve — the floundering point is where that curve stops climbing, not necessarily wherever the single highest number in the table happens to land, especially with only a handful of readings. This worksheet marks the highest ROP in each table so it is easy to spot, but treat it as a starting point for that plot, not the final answer on its own.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Drill-Off Test Worksheet: WOB & RPM Optimization"
+  description="Free drill-off test calculator: log weight-on-bit and rotary test readings and get rate of penetration (ROP) for every step, live — the field method for finding optimum WOB and RPM."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Drill-Off Test', href: '/calculators/drill-off-test' }]}
+  lang="en"
+  alternateHref="/es/calculators/drill-off-test"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators/drill-off-test" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Drill-Off <span>Test</span> Worksheet</h1>
+    <p class="page-hero-sub">Log weight-on-bit and rotary readings from an actual drill-off test and get rate of penetration for every step, live — the field method for finding where more WOB or RPM stops paying off.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">⚙ Weight on Bit (WOB) Optimization</div>
+          <div class="table-wrap">
+            <table id="wob-table">
+              <thead>
+                <tr><th>Step</th><th>Bit Weight (Klbs)</th><th>Time to Drill Off 10K lb (sec)</th><th>Footage Drilled (ft)</th><th>ROP (ft/hr)</th></tr>
+              </thead>
+              <tbody>
+                {WOB_ROWS.map((r, i) => (
+                  <tr>
+                    <td>{i + 1}</td>
+                    <td><input type="number" class="row-in" id={`wob-wob-${i}`} value={r.wob} step="1" min="0"></td>
+                    <td><input type="number" class="row-in" id={`wob-time-${i}`} value={r.time} step="1" min="0"></td>
+                    <td><input type="number" class="row-in" id={`wob-ft-${i}`} value={r.ft} step="0.01" min="0"></td>
+                    <td class="rop-out" id={`wob-rop-${i}`}>—</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🔄 Rotary (RPM) Optimization</div>
+          <div class="table-wrap">
+            <table id="rpm-table">
+              <thead>
+                <tr><th>Step</th><th>RPM</th><th>Time to Drill 1 ft (sec)</th><th>ROP (ft/hr)</th></tr>
+              </thead>
+              <tbody>
+                {RPM_ROWS.map((r, i) => (
+                  <tr>
+                    <td>{i + 1}</td>
+                    <td><input type="number" class="row-in" id={`rpm-rpm-${i}`} value={r.rpm} step="1" min="0"></td>
+                    <td><input type="number" class="row-in" id={`rpm-time-${i}`} value={r.time} step="1" min="0"></td>
+                    <td class="rop-out" id={`rpm-rop-${i}`}>—</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Reading it.</strong> The highlighted row in each table is the step with the highest computed ROP among the readings entered — a starting pointer, not a determination. The real read is the shape of ROP plotted against WOB (or RPM) across all the steps: rising, then flattening or falling is the floundering point, and it can sit anywhere in the range depending on the bit and formation, not necessarily at the single highest number logged.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formula Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">Rate of Penetration</div>
+          <div class="formula-eq">ROP (ft/hr) = Footage Drilled (ft) ÷ Time (sec) × 3600</div>
+          <div class="formula-note">The rotary table holds footage at a fixed 1 ft per step, so it reduces to ROP = 3600 ÷ Time — same formula, footage just isn't a variable in that test.</div>
+        </div>
+
+        <h2 id="how-it-works">Running the Test on the Floor</h2>
+        <p>A drill-off test is simple to run and easy to log badly, which is why a clean worksheet matters more than it looks like it should. For the WOB side: pick up off bottom, set a known weight on bit, and time how long it takes a fixed amount of weight — 10,000 lb is the common increment — to "drill off" back onto the bit as the string advances, logging the footage made in that time. Repeat at several different WOB settings, ideally bracketing the range the bit is expected to run at, not just testing higher and higher.</p>
+        <p>The rotary side works the same way with RPM as the variable instead: hold WOB steady, change only RPM between steps, and time each foot drilled. Changing more than one variable between steps is the most common way a drill-off test gets logged and then can't actually be read — keep WOB fixed while testing RPM, and RPM fixed while testing WOB.</p>
+
+        <h2 id="where-this-fits">Where This Fits</h2>
+        <p>WOB, RPM, and ROP are three of the parameters the driller watches continuously off the <a href="/equipment/drill-string">drill string</a> and its console — this worksheet is how a deliberate WOB/RPM test on those same numbers turns into an actual optimum rather than a feel. Once WOB and RPM are dialed in, the other side of drilling performance is whether the bit's hydraulics are keeping up with the cuttings that faster ROP is now generating — see the <a href="/calculators/bit-hydraulics">bit hydraulics calculator</a> for jet velocity and HSI against the mud system in use.</p>
+        <p>If the readings coming off this test point to bit wear rather than a WOB/RPM ceiling, the next stop is grading what actually came out of the hole — see the <a href="/calculators/iadc-dull-bit-grading">IADC dull bit grading reference</a>.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .row-in {
+    width: 100%;
+    min-width: 64px;
+    background: var(--steel);
+    border: 1px solid var(--iron);
+    color: var(--white);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 7px 9px;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .row-in:focus { border-color: var(--rust); }
+  .rop-out { font-family: var(--mono); font-weight: 700; color: var(--amber); white-space: nowrap; }
+  tr.best-row .rop-out { color: var(--white); background: rgba(232,160,32,0.14); }
+  tr.best-row td:first-child { color: var(--amber); }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  }
+
+  const WOB_COUNT = 6;
+  const RPM_COUNT = 6;
+
+  function calcWob() {
+    let bestIdx = -1, bestVal = -Infinity;
+    const values: number[] = [];
+    for (let i = 0; i < WOB_COUNT; i++) {
+      const time = num(`wob-time-${i}`);
+      const ft = num(`wob-ft-${i}`);
+      const rop = time > 0 ? (ft / time) * 3600 : 0;
+      values.push(rop);
+      const el = document.getElementById(`wob-rop-${i}`);
+      if (el) el.textContent = rop > 0 ? fmt(rop) + ' ft/hr' : '—';
+      if (rop > bestVal) { bestVal = rop; bestIdx = i; }
+    }
+    const table = document.getElementById('wob-table');
+    table?.querySelectorAll('tbody tr').forEach((tr, i) => tr.classList.toggle('best-row', i === bestIdx && values[i] > 0));
+  }
+
+  function calcRpm() {
+    let bestIdx = -1, bestVal = -Infinity;
+    const values: number[] = [];
+    for (let i = 0; i < RPM_COUNT; i++) {
+      const time = num(`rpm-time-${i}`);
+      const rop = time > 0 ? 3600 / time : 0;
+      values.push(rop);
+      const el = document.getElementById(`rpm-rop-${i}`);
+      if (el) el.textContent = rop > 0 ? fmt(rop) + ' ft/hr' : '—';
+      if (rop > bestVal) { bestVal = rop; bestIdx = i; }
+    }
+    const table = document.getElementById('rpm-table');
+    table?.querySelectorAll('tbody tr').forEach((tr, i) => tr.classList.toggle('best-row', i === bestIdx && values[i] > 0));
+  }
+
+  document.querySelectorAll('#wob-table .row-in').forEach((el) => el.addEventListener('input', calcWob));
+  document.querySelectorAll('#rpm-table .row-in').forEach((el) => el.addEventListener('input', calcRpm));
+  calcWob();
+  calcRpm();
+</script>

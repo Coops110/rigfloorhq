@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ReversingTool3D from '../../components/ReversingTool3D.astro';
+
+const faq = [
+  {
+    q: 'What is a reversing tool used for?',
+    a: "A reversing tool opens a set of ports in the work string that let fluid be circulated down the annulus and back up through the string — the reverse of normal circulation. It's run wherever debris, junk, or a released fish needs to be picked up and carried back to surface inside the pipe rather than left to fall or be pushed further down the hole by conventional down-the-pipe circulation.",
+  },
+  {
+    q: 'How does reverse circulation differ from normal circulation?',
+    a: "Normal circulation pumps fluid down the drill string, out through the bit or tool, and back up the annulus — the standard path for cooling the bit and carrying cuttings to surface. Reverse circulation flips that: fluid goes down the annulus and returns up through the string. It's the direction of choice whenever something needs to be lifted and captured inside the pipe rather than washed up the open annulus, since debris carried up the string can be caught at surface far more reliably than debris riding an open annulus.",
+  },
+  {
+    q: 'How is a reversing tool activated?',
+    a: "Most designs use a shifting sleeve inside the tool body, moved by dropping a ball onto a seat and applying pump pressure, or by a specific pickup/set-down weight sequence from surface. Once shifted, the sleeve opens the ports between the annulus and the string's internal bore; a second sequence, or a different profile in the same shift, closes them again so the tool can revert to normal circulation or be pulled without leaving the ports open.",
+  },
+  {
+    q: 'What causes a reversing tool to fail?',
+    a: 'Ports that won\'t open leave the crew unable to reverse-circulate at all, usually from debris around the shifting sleeve or a worn actuation profile that a setting ball or dart can\'t properly engage. Ports that won\'t close again is the opposite and often worse problem, since normal circulation can\'t be fully restored with the tool bypassing fluid through the open ports. Erosion around the port openings is the routine wear failure in jobs that reverse-circulate abrasive junk or cuttings repeatedly.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Reversing Tool: How Reverse Circulation Recovers Junk & Debris"
+  description="What a reversing tool is, how reverse circulation differs from normal circulation, port actuation, common failure modes, and how it differs from a float sub — with an interactive 3D model."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Reversing Tool', href: '/equipment/reversing-tool' }]}
+  lang="en"
+  alternateHref="/es/equipment/reversing-tool"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/equipment/reversing-tool" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Reversing <span>Tool</span></h1>
+    <p class="page-hero-sub">A ported sub that flips circulation direction on command — fluid down the annulus, returns up the string — to carry junk and debris back to surface inside the pipe instead of leaving it in the open annulus.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ReversingTool3D />
+      <div class="prose">
+        <h2 id="what-it-is">What a Reversing Tool Is</h2>
+        <p>A reversing tool is a sub made up in a work string with a ring of ports through its body and an internal shifting sleeve that controls whether those ports are open or closed. Closed, the tool passes fluid normally, no different from any other section of pipe. Opened, the ports connect the annulus directly to the string's internal bore, letting fluid — and whatever it's carrying — be pumped down the annulus and return up through the pipe rather than down through it.</p>
+        <p>That reversal is the entire point of the tool. It's typically run as part of a <a href="/pillars/stuck-pipe-and-fishing-operations">fishing string</a> or a junk-recovery assembly, where the job is picking material up off bottom or out of the annulus and getting it to surface captured inside the pipe, rather than pushed further downhole or left riding loose in an open annulus.</p>
+
+        <h2 id="reverse-vs-normal">Reverse vs. Normal Circulation</h2>
+        <p>Normal circulation runs fluid down the drill string, out through the bit or tool on bottom, and back up the annulus carrying cuttings to the shakers — the standard path for essentially all routine drilling. Reverse circulation runs the opposite way: fluid goes down the annulus and returns up through the string. The reason to prefer it is capture — debris riding up an open annulus can settle out, get left behind in a washout or rugose section of hole, or simply not make it all the way to surface, while debris carried up inside the string is confined the whole way and much more reliably recovered.</p>
+
+        <h2 id="activation">How the Ports Are Activated</h2>
+        <p>Most reversing tools use an internal shifting sleeve, moved by dropping a ball or dart onto a seat built into the tool and then applying pump pressure, or by a defined pickup/set-down weight sequence applied from surface. Once the sleeve shifts, the ports between the annulus and the internal bore open, and the string can be reverse-circulated. A second, distinct sequence — sometimes a different landed profile, sometimes a reverse of the same weight or pressure signature — shifts the sleeve back and closes the ports, restoring normal circulation before the tool is either used again or tripped out.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Ports fail to open</strong>, most often from debris packed around the shifting sleeve or a worn actuation profile the setting ball or dart can't properly engage — leaving the crew with no reverse-circulation capability at all.</li>
+          <li><strong>Ports fail to close</strong> after use, a more serious failure since it leaves the tool bypassing fluid through the open ports and normal circulation can't be fully restored without pulling the string.</li>
+          <li><strong>Erosion at the port openings</strong> in jobs that reverse-circulate abrasive junk or cuttings repeatedly, gradually enlarging the ports and reducing how cleanly the tool seals once closed.</li>
+          <li><strong>Sleeve sticking mid-stroke</strong>, leaving the ports partially open — worse in some respects than either fully open or fully closed, since flow behavior at that point becomes unpredictable.</li>
+        </ul>
+
+        <h2 id="vs-float-sub">Reversing Tool vs. Float Sub</h2>
+        <p>Both tools control which direction fluid is allowed to move through the string, which is the extent of what they share. A <a href="/equipment/float-sub">float sub</a> is a one-way check valve — its entire job is preventing fluid from flowing back up the string once pumps shut down, and it has no mode where reverse flow through it is ever intended. A reversing tool is the opposite kind of control: it deliberately opens a path for fluid to flow the "wrong" way, on command, specifically so debris can be carried up and out through the string. If the job needs to stop unwanted backflow, that's a float sub. If the job needs to deliberately create reverse flow to recover something, that's a reversing tool.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#reverse-vs-normal">Reverse vs. Normal Circulation</a>
+          <a href="#activation">Port Activation</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-float-sub">vs. Float Sub</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Activation sequences and port ratings vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/float-sub" class="card-link">→ Float Sub</a><br><br>
+          <a href="/equipment/safety-joint" class="card-link">→ Safety Joint</a><br><br>
+          <a href="/pillars/stuck-pipe-and-fishing-operations" class="card-link">→ Stuck Pipe &amp; Fishing Operations</a><br><br>
+          <a href="/equipment/hydraulic-jar" class="card-link">→ Hydraulic Jar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

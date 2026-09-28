@@ -1,0 +1,275 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+// IADC's 8-position dull grading system, standardized industry-wide since a
+// 1987 revision. Generic public standard, not tied to any manufacturer or
+// operator — cross-checked against multiple published references rather than
+// transcribed from a single source.
+
+const DULL_CHAR_CODES: [string, string][] = [
+  ['BC', 'Broken cone'],
+  ['BF', 'Bond failure'],
+  ['BT', 'Broken teeth or cutters'],
+  ['BU', 'Balled up bit'],
+  ['CC', 'Cracked cone (or cracked diamond layer on a fixed cutter bit)'],
+  ['CD', 'Cone dragged'],
+  ['CI', 'Cone interference'],
+  ['CR', 'Cored'],
+  ['CT', 'Chipped teeth or cutters'],
+  ['ER', 'Erosion'],
+  ['FC', 'Flat crested wear'],
+  ['HC', 'Heat checking'],
+  ['JD', 'Junk damage'],
+  ['LC', 'Lost cone'],
+  ['LN', 'Lost nozzle'],
+  ['LT', 'Lost teeth or cutters'],
+  ['NO', 'No dull characteristics'],
+  ['OC', 'Off-center wear'],
+  ['PB', 'Pinched bit'],
+  ['PN', 'Plugged nozzle or flow passage'],
+  ['RG', 'Rounded gauge'],
+  ['RO', 'Ring out'],
+  ['SD', 'Shirttail damage'],
+  ['SS', 'Self-sharpening wear'],
+  ['TR', 'Cone tracking'],
+  ['WO', 'Washed-out bit'],
+  ['WT', 'Worn teeth or cutters'],
+];
+
+const RC_LOCATION_CODES: [string, string][] = [
+  ['N', 'Nose row (innermost cutting structure)'],
+  ['M', 'Middle row'],
+  ['G', 'Gauge row (outermost cutting structure)'],
+  ['A', 'All rows'],
+  ['1, 2, 3', 'Cone number, for a code that traces to one specific cone'],
+];
+
+const FC_LOCATION_CODES: [string, string][] = [
+  ['C', 'Cone area of the cutting profile'],
+  ['N', 'Nose area'],
+  ['T', 'Taper area'],
+  ['S', 'Shoulder area'],
+  ['G', 'Gauge area'],
+  ['A', 'All areas'],
+];
+
+const REASON_PULLED_CODES: [string, string][] = [
+  ['BHA', 'Change bottom hole assembly'],
+  ['CM', 'Condition mud'],
+  ['CP', 'Core point'],
+  ['DMF', 'Downhole motor failure'],
+  ['DP', 'Drill plug'],
+  ['DSF', 'Drill string failure'],
+  ['DST', 'Drill stem test'],
+  ['DTF', 'Downhole tool failure'],
+  ['FM', 'Formation change'],
+  ['HP', 'Hole problems'],
+  ['HR', 'Hours on bit'],
+  ['LIH', 'Left in hole'],
+  ['LOG', 'Run logs'],
+  ['PP', 'Pump pressure'],
+  ['PR', 'Penetration rate'],
+  ['RIG', 'Rig repair'],
+  ['TD', 'Total depth / casing depth reached'],
+  ['TQ', 'Torque'],
+  ['TW', 'Twist off'],
+  ['WC', 'Weather conditions'],
+  ['WO', 'Washout — drill string'],
+];
+
+const GAUGE_CODES: [string, string][] = [
+  ['I', 'In gauge'],
+  ['1/16', 'Undergauge by 1/16"'],
+  ['1/8', 'Undergauge by 1/8"'],
+  ['3/16', 'Undergauge by 3/16"'],
+  ['1/4', 'Undergauge by 1/4"'],
+  ['5/16', 'Undergauge by 5/16"'],
+  ['3/8', 'Undergauge by 3/8"'],
+  ['7/16', 'Undergauge by 7/16"'],
+  ['1/2', 'Undergauge by 1/2" (and continuing in 1/16" steps beyond this for more severe cases)'],
+];
+
+const faq = [
+  {
+    q: 'What do the 8 positions in a dull grading code stand for, in order?',
+    a: '(1) Inner rows cutting structure wear, (2) outer rows cutting structure wear, (3) the primary dull characteristic, (4) its location on the bit, (5) bearing and seal condition, (6) gauge, (7) any secondary dull characteristic, and (8) the reason the bit was pulled. The first four cover the cutting structure as a group; the rest cover everything else about the bit\'s condition and the decision to pull it.',
+  },
+  {
+    q: 'Why are inner and outer cutting structure graded separately?',
+    a: 'Because they rarely wear the same amount. The outer, gauge-row cutters do more work maintaining hole diameter and tend to wear faster on an abrasive run, while the inner rows can still show plenty of life. Grading them as one combined number would hide exactly the pattern that tells a bit engineer what actually happened downhole.',
+  },
+  {
+    q: 'Why is the bearing and seal position always "X" on a PDC or other fixed cutter bit?',
+    a: 'Because fixed cutter bits have no rotating cones and therefore no bearings to grade. "X" is the standard way of marking that the field does not apply, rather than leaving it blank, so a dull grading code always has exactly eight readable positions regardless of bit type.',
+  },
+  {
+    q: 'Is this the same grading system for roller cone and PDC bits?',
+    a: 'Yes, since IADC\'s 1987 revision unified it — the same eight-position chart is used for both, with a handful of positions (cutting structure wear scale, bearings/seals, location) read slightly differently depending on which bit type is in hand. The dull characteristic and reason-pulled code lists are shared across both bit types.',
+  },
+  {
+    q: 'Who actually fills out a dull grading code, and when?',
+    a: 'The bit is graded when it comes out of the hole — typically by the mud logger, company representative, or a bit company field engineer, often cross-checked against the bit manufacturer\'s own inspection when the bit is returned. It becomes part of the well\'s bit record and feeds bit selection for the next run in similar formation.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="IADC Dull Bit Grading Chart & Code Reference"
+  description="Free IADC dull bit grading reference: the 8-position code for grading a dull drill bit — cutting structure wear, dull characteristics, location, bearings/seals, gauge, and reason pulled."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'IADC Dull Bit Grading', href: '/calculators/iadc-dull-bit-grading' }]}
+  lang="en"
+  alternateHref="/es/calculators/iadc-dull-bit-grading"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators/iadc-dull-bit-grading" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Reference</div>
+    <h1>IADC Dull Bit <span>Grading</span></h1>
+    <p class="page-hero-sub">The eight-position code used industry-wide to record a dull bit's condition coming out of the hole — cutting structure wear, dull characteristics, location, bearing and seal condition, gauge, and reason pulled.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🔍 1 &amp; 2 — Cutting Structure Wear (Inner / Outer)</div>
+          <p style="font-size:13px;color:var(--mist);line-height:1.7;margin-bottom:16px;">A linear 0–8 scale in both positions. <strong>Inner rows</strong> (position 1) cover roughly the inner two-thirds of the bit face radius; <strong>outer rows</strong> (position 2) cover the outer third, including the gauge row. 0 is no wear, 8 is total loss.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Bit Type</th><th>0</th><th>8</th></tr></thead>
+              <tbody>
+                <tr><td>Steel tooth (milled tooth)</td><td>No loss of tooth height</td><td>Total loss of tooth height</td></tr>
+                <tr><td>Insert / button (TCI)</td><td>No lost, worn, or broken inserts</td><td>All inserts lost, worn, or broken</td></tr>
+                <tr><td>Fixed cutter (PDC, diamond)</td><td>No lost, worn, or broken cutters</td><td>100% of cutting structure lost, worn, or broken</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🔍 3 &amp; 7 — Dull Characteristics</div>
+          <p style="font-size:13px;color:var(--mist);line-height:1.7;margin-bottom:16px;">Position 3 records the <strong>primary</strong> dull characteristic; position 7 records a <strong>secondary</strong> one if a second code applies. Same code list for both, and for either bit type.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Code</th><th>Meaning</th></tr></thead>
+              <tbody>
+                {DULL_CHAR_CODES.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🔍 4 — Location</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Code</th><th>Roller Cone Bits</th></tr></thead>
+              <tbody>
+                {RC_LOCATION_CODES.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div class="table-wrap mt-24">
+            <table>
+              <thead><tr><th>Code</th><th>Fixed Cutter Bits</th></tr></thead>
+              <tbody>
+                {FC_LOCATION_CODES.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🔍 5 — Bearings &amp; Seals</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Code</th><th>Meaning</th></tr></thead>
+              <tbody>
+                <tr><td>0–8</td><td>Non-sealed bearings: linear estimate of bearing life used. 0 = no life used, 8 = all life used.</td></tr>
+                <tr><td>E</td><td>Sealed bearings: seals effective</td></tr>
+                <tr><td>F</td><td>Sealed bearings: seals failed</td></tr>
+                <tr><td>N</td><td>Not able to grade</td></tr>
+                <tr><td>X</td><td>Fixed cutter bit — no bearings to grade</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🔍 6 — Gauge</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Code</th><th>Meaning</th></tr></thead>
+              <tbody>
+                {GAUGE_CODES.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🔍 8 — Reason Pulled</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Code</th><th>Meaning</th></tr></thead>
+              <tbody>
+                {REASON_PULLED_CODES.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Reference only.</strong> This is the standard IADC eight-position chart used industry-wide, not a manufacturer-specific or operator-specific version. Always confirm against the current IADC chart or a bit company field engineer for a grading that has commercial or engineering consequences.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Reading a Full Code</h2>
+        <p>Put the eight positions together in order and a dull grading code reads as one compact record. For example:</p>
+        <div class="formula-block">
+          <div class="formula-label">Worked Example</div>
+          <div class="formula-eq">2 4 WT A E I NO TD</div>
+          <div class="formula-note">Inner rows 2/8 worn, outer rows 4/8 worn, primary dull characteristic worn teeth or cutters, found across all rows, sealed bearings still effective, bit came out in gauge, no secondary characteristic, pulled on reaching total depth.</div>
+        </div>
+        <p>A fixed cutter bit reads the same eight positions with position 5 always showing <span class="highlight">X</span> since there are no bearings on that bit type, and position 4 drawn from the fixed cutter location codes above instead of the roller cone ones.</p>
+
+        <h2 id="why-it-matters">Why Dull Grading Matters Beyond the Paperwork</h2>
+        <p>A dull grading code is the closest thing the industry has to a shared language for "what actually happened to this bit downhole." The same eight positions mean the same thing whether the bit came off a rig in West Texas or the North Sea, which is what makes it possible for a bit company engineer states away to look at a code and immediately understand whether a bit floundered, wore out normally, or failed. That record feeds directly into selecting the next bit for a similar formation — a run that came back <span class="highlight">7 7 WT G X I NO TD</span> is telling a very different story about the formation than one that came back <span class="highlight">2 2 BT N X I CT PR</span>.</p>
+        <p>For the companion chart — what the three or four characters stamped on the bit itself mean before it ever goes in the hole — see the <a href="/calculators/iadc-bit-classification">IADC rock bit and PDC bit classification reference</a>. And for where the bit sits in the rest of the string and how weight actually reaches it, see <a href="/equipment/drill-string">the drill string page</a>.</p>
+        <p>If wear shows up as a WOB or RPM problem rather than a straightforward dull-out, the <a href="/calculators/drill-off-test">drill-off test worksheet</a> is the tool for isolating whether the parameters, not the bit, are the limiting factor.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

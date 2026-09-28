@@ -1,0 +1,258 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+// HORIZONTAL CYLINDRICAL TANK VOLUME — DERIVED, NOT REMEMBERED
+//
+// Standard circular-segment area formula for a horizontal cylinder of radius
+// r, filled to height h (0 <= h <= 2r), where d = r - h is the signed
+// distance from the circle's center to the fluid surface:
+//
+//   A(h) = r^2 * acos((r - h) / r)  -  (r - h) * sqrt(2*r*h - h^2)
+//   V(h) = A(h) * L
+//
+// Verified by hand before shipping this page, D=48in L=120in (r=24, full
+// volume pi*r^2*L = 217147.75 in^3 = 940.03 US gal):
+//   h=0   (0%):   A=0                        -> V=0 gal        (0.0% of full)
+//   h=12  (25%):  A=353.77 in^2               -> V=183.78 gal   (19.55% of full)
+//   h=24  (50%):  A=904.78 in^2 = pi*r^2/2    -> V=470.02 gal   (50.00% of full, exact half by symmetry)
+//   h=36  (75%):  A=1455.79 in^2              -> V=756.25 gal   (80.45% of full, mirrors the 25% case)
+//   h=48  (100%): A=1809.56 in^2 = pi*r^2     -> V=940.03 gal   (100.0% of full)
+// The 25%/75% pair summing to 100% and the exact half at 50% are the two
+// symmetry checks that confirm the formula, not just the endpoints.
+
+const faq = [
+  {
+    q: 'Why is 25% fill height not 25% of the tank\'s volume?',
+    a: 'Because a horizontal cylinder is not a uniform cross-section top to bottom — the circular shape is narrowest at the bottom and widest through the middle, so the same few inches of fill height cover a lot less volume near the bottom than it does near the middle. At 25% of diameter this tank holds about 19.5% of its full volume, and at 75% of diameter it holds about 80.5% — that gap is the geometry, not an error, and it mirrors exactly around the 50% mark where fill height and fill volume always agree.',
+  },
+  {
+    q: 'Does this work for vertical tanks too?',
+    a: 'No — a vertical (upright) cylindrical tank has a constant circular cross-section at every height, so its fill-height-to-volume relationship is a straight line: volume = cross-sectional area x height, full stop. This calculator is specifically for a tank lying on its side, where the circular segment shape is what makes the relationship curve instead of a straight line.',
+  },
+  {
+    q: 'What if my tank has rounded (dished) ends instead of flat ends?',
+    a: 'This calculator treats the tank as a plain cylinder and does not add volume for dished, elliptical, or hemispherical end caps. Most small-to-mid oilfield fuel and water tanks run flat ends where that\'s not a meaningful source of error, but a tank with true dished heads will hold measurably more than this number, and that extra volume needs adding separately from the head manufacturer\'s own capacity figure for that end style.',
+  },
+  {
+    q: 'Is the tank assumed to be perfectly level?',
+    a: 'Yes. Any pitch or list changes the true wetted cross-section at a given dipstick reading, which this formula does not account for. For a tank on a fixed skid or foundation that\'s usually a safe assumption; for one on questionable ground, check level before trusting a fill-height reading against this table.',
+  },
+  {
+    q: 'Can I use this for a mud tank or other oilfield vessel, not just fuel?',
+    a: 'The geometry is generic — any horizontal cylindrical vessel with flat ends follows the same formula, whether it holds fuel, water, or drilling fluid. The mud pits and tanks in an actual solids control system are usually rectangular, not cylindrical, so this specific shape is more common for portable fuel, water, and chemical tanks on a location than for the pit system itself — see the <a href="/equipment/mud-pit-system">mud pit system page</a> for how those rectangular tanks fit into fluid processing.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
+  })),
+};
+---
+<BaseLayout
+  title="Horizontal Tank Capacity Calculator: Fill Height to Volume"
+  description="Free horizontal cylindrical tank capacity calculator: enter diameter and length in gallons/inches or litres/centimetres and get a fill-height-to-volume table plus an instant lookup."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Horizontal Tank Capacity', href: '/calculators/horizontal-tank-capacity' }]}
+  lang="en"
+  alternateHref="/es/calculators/horizontal-tank-capacity"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators/horizontal-tank-capacity" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Horizontal Tank <span>Capacity</span></h1>
+    <p class="page-hero-sub">Diameter and length in, a full fill-height-to-volume table out — the real geometry of a tank lying on its side, where fill height and fill volume are never the same percentage.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🛢 Tank Dimensions</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tank-unit">Units</label>
+              <select id="tank-unit">
+                <option value="gal">US Gallons (inches)</option>
+                <option value="litre">Litres (centimetres)</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="tank-d">Diameter (<span id="unit-d">in</span>)</label>
+              <input type="number" id="tank-d" value="48" step="any" min="0">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tank-l">Length (<span id="unit-l">in</span>)</label>
+              <input type="number" id="tank-l" value="120" step="any" min="0">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Total (Full) Capacity</span><span class="output-value" id="out-total">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">📏 Quick Fill-Height Lookup</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tank-h">Fill Height (<span id="unit-h">in</span>), from the bottom</label>
+              <input type="number" id="tank-h" value="24" step="any" min="0">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line"><span class="output-label">Volume at This Height</span><span class="output-value" id="out-quick">—</span></div>
+            <div class="output-line" style="border-bottom:none;"><span class="output-label">% of Full Capacity</span><span class="output-value" id="out-quick-pct">—</span></div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Flat-ended cylinder only.</strong> This does not add volume for dished, elliptical, or hemispherical end caps, and assumes the tank is level. See the FAQ for what that means for your specific tank.
+        </div>
+
+        <h2 style="margin-top:32px;font-size:18px;">Fill-Height-to-Volume Table</h2>
+        <p style="color:var(--fog);font-size:13px;max-width:700px;margin-bottom:12px;">Every 5% of diameter, from empty to full, using the dimensions entered above.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Fill %</th><th>Height (<span id="unit-table">in</span>)</th><th>Volume</th></tr>
+            </thead>
+            <tbody id="tank-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formula Used</h2>
+        <div class="formula-block">
+          <div class="formula-label">Circular Segment Area at Fill Height h</div>
+          <div class="formula-eq">A(h) = r² × cos⁻¹((r − h) ÷ r) − (r − h) × √(2rh − h²)</div>
+          <div class="formula-note">r is the tank radius (half the diameter), h is fill height measured from the bottom of the tank, 0 ≤ h ≤ 2r. This is the exact area of the wetted circular cross-section at that fill height — not an approximation.</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">Volume at Fill Height h</div>
+          <div class="formula-eq">V(h) = A(h) × Tank Length</div>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Verified before shipping.</strong> At h = 0 the formula gives exactly 0. At h = full diameter it reduces to the plain cylinder volume, πr²L. At h = half the diameter it gives exactly half that volume. And the 25%-height and 75%-height results always sum to exactly 100% of the full volume, by the circle's own symmetry. All four checks hold with this formula — that symmetry is what makes a fill-height table trustworthy rather than just plausible-looking.
+        </div>
+
+        <h2 id="why-not-linear">Why the Table Isn't a Straight Line</h2>
+        <p>A vertical tank has the same cross-section at every height, so its fill-height-to-volume relationship is linear — double the height, double the volume. A horizontal tank does not, because the wetted cross-section is a circular segment that starts at zero width at the bottom, widens through the middle, and narrows back to zero at the top. That is why the first few inches off the bottom of a horizontal tank read as much less volume than the same few inches near the middle, and it is exactly what the table on the left is built to show rather than approximate.</p>
+
+        <h2 id="where-this-fits">Where This Fits</h2>
+        <p>This is the same family of geometry-to-volume math as the <a href="/calculators/drill-pipe-tally">drill pipe tally calculator</a>'s capacity and displacement figures, just applied to a different shape — a circular segment here instead of a full circular cross-section. If the number you actually need is pump output or strokes rather than a static tank volume, the <a href="/calculators/lag-and-volume">lag &amp; volume calculator</a> covers that side of the circulating system.</p>
+        <p>For where a portable fuel, water, or chemical tank like this one fits relative to the rig's own fluid processing equipment, see the <a href="/equipment/mud-pit-system">mud pit / solids control system page</a> — a different, rectangular class of tank doing a different job.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p set:html={item.a} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  const GAL_DIVISOR = 231;      // in³ per US gallon
+  const LITRE_DIVISOR = 1000;   // cm³ per litre
+
+  const DEFAULTS: Record<string, { d: number; l: number; h: number }> = {
+    gal: { d: 48, l: 120, h: 24 },
+    litre: { d: 120, l: 300, h: 60 },
+  };
+
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+  }
+
+  // Exact circular-segment area at fill height h for a circle of radius r.
+  // Clamped to [0, 2r] and the acos argument clamped to [-1, 1] to absorb
+  // floating-point overshoot right at empty/full.
+  function segmentArea(r: number, h: number): number {
+    if (r <= 0) return 0;
+    const hh = Math.max(0, Math.min(2 * r, h));
+    const d = r - hh; // signed distance from center to the fluid surface
+    const arg = Math.max(-1, Math.min(1, d / r));
+    const under = Math.max(0, 2 * r * hh - hh * hh);
+    return r * r * Math.acos(arg) - d * Math.sqrt(under);
+  }
+
+  function calc() {
+    const unitEl = document.getElementById('tank-unit') as HTMLSelectElement | null;
+    const unit = unitEl?.value === 'litre' ? 'litre' : 'gal';
+    const divisor = unit === 'litre' ? LITRE_DIVISOR : GAL_DIVISOR;
+    const unitLabel = unit === 'litre' ? 'cm' : 'in';
+    const volLabel = unit === 'litre' ? 'L' : 'gal';
+
+    ['unit-d', 'unit-l', 'unit-h', 'unit-table'].forEach((id) => set(id, unitLabel));
+
+    const D = num('tank-d');
+    const L = num('tank-l');
+    const r = D / 2;
+
+    const fullVol = (segmentArea(r, D) * L) / divisor;
+    set('out-total', D > 0 && L > 0 ? fmt(fullVol, 1) + ' ' + volLabel : '—');
+
+    const h = num('tank-h');
+    const quickVol = (segmentArea(r, h) * L) / divisor;
+    set('out-quick', D > 0 && L > 0 ? fmt(quickVol, 1) + ' ' + volLabel : '—');
+    set('out-quick-pct', fullVol > 0 ? fmt((quickVol / fullVol) * 100, 1) + '%' : '—');
+
+    const tbody = document.getElementById('tank-table-body');
+    if (tbody) {
+      tbody.innerHTML = '';
+      if (D > 0 && L > 0) {
+        for (let pct = 0; pct <= 100; pct += 5) {
+          const rowH = (pct / 100) * D;
+          const rowVol = (segmentArea(r, rowH) * L) / divisor;
+          const tr = document.createElement('tr');
+          tr.innerHTML =
+            '<td>' + pct + '%</td>' +
+            '<td>' + fmt(rowH, 2) + '</td>' +
+            '<td>' + fmt(rowVol, 1) + ' ' + volLabel + '</td>';
+          tbody.appendChild(tr);
+        }
+      }
+    }
+  }
+
+  const unitSelect = document.getElementById('tank-unit') as HTMLSelectElement | null;
+  unitSelect?.addEventListener('change', () => {
+    const mode = unitSelect.value === 'litre' ? 'litre' : 'gal';
+    const d = DEFAULTS[mode];
+    (document.getElementById('tank-d') as HTMLInputElement).value = String(d.d);
+    (document.getElementById('tank-l') as HTMLInputElement).value = String(d.l);
+    (document.getElementById('tank-h') as HTMLInputElement).value = String(d.h);
+    calc();
+  });
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

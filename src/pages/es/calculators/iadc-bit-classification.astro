@@ -1,0 +1,272 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const RC_SERIES: [string, string, string][] = [
+  ['1', 'Diente fresado', 'Formaciones blandas, baja resistencia a la compresión — desde lutita muy blanda hasta caliza/lutita media'],
+  ['2', 'Diente fresado', 'Formaciones medias a medias-duras, alta resistencia a la compresión — desde caliza/lutita media hasta caliza/arena/pizarra media-dura'],
+  ['3', 'Diente fresado', 'Formaciones duras, semi-abrasivas — desde caliza dura hasta dolomita dura'],
+  ['4', 'TCI / insertos', 'Formaciones blandas, baja resistencia a la compresión — desde lutita muy blanda hasta caliza/lutita media'],
+  ['5', 'TCI / insertos', 'Formaciones blandas a medias-duras, baja resistencia a la compresión — desde lutita/arena muy blanda hasta caliza/lutita media-blanda'],
+  ['6', 'TCI / insertos', 'Formaciones medias a duras, alta resistencia a la compresión — desde caliza/lutita media hasta caliza/arena/pizarra media-dura'],
+  ['7', 'TCI / insertos', 'Formaciones duras, semi-abrasivas y abrasivas — desde caliza/dolomita dura hasta dolomita dura'],
+  ['8', 'TCI / insertos', 'Formaciones extremadamente duras y abrasivas — desde pedernal duro hasta granito duro'],
+];
+
+const RC_BEARING: [string, string][] = [
+  ['1', 'Rodamiento de rodillos estándar, no sellado'],
+  ['2', 'Rodamiento de rodillos, enfriado por aire, no sellado'],
+  ['3', 'Rodamiento de rodillos, protegido en calibre, no sellado'],
+  ['4', 'Rodamiento de rodillos sellado'],
+  ['5', 'Rodamiento de rodillos sellado, protegido en calibre'],
+  ['6', 'Rodamiento de fricción sellado (journal)'],
+  ['7', 'Rodamiento de fricción sellado, protegido en calibre'],
+  ['8', 'Rodamiento de fricción sellado, protegido en calibre, protección adicional de cuerpo/calibre'],
+];
+
+const FOURTH_CHAR: [string, string][] = [
+  ['A', 'Aplicación de aire'],
+  ['B', 'Barrena de rodamiento especial'],
+  ['C', 'Chorro central (center jet)'],
+  ['D', 'Control de desviación'],
+  ['E', 'Boquillas extendidas (longitud completa)'],
+  ['G', 'Protección extra de calibre / cuerpo'],
+  ['H', 'Aplicación horizontal / direccional'],
+  ['J', 'Deflexión de chorro'],
+  ['L', 'Patines (lug pads)'],
+  ['M', 'Aplicación con motor'],
+  ['S', 'Modelo estándar de diente de acero'],
+  ['T', 'Barrena de dos conos'],
+  ['W', 'Estructura de corte mejorada'],
+  ['X', 'Insertos predominantemente tipo cincel'],
+  ['Y', 'Insertos predominantemente cónicos'],
+  ['Z', 'Insertos de otra forma'],
+];
+
+const PDC_FORMATION: [string, string][] = [
+  ['1', 'Muy blanda, altamente perforable — arcilla, marga, gumbo, arena no consolidada'],
+  ['2', 'Blanda, blanda pegajosa — arcilla, marga, gumbo, arena no consolidada con tendencia a pegarse'],
+  ['3', 'Blanda a media — arena, lutita, anhidrita de baja resistencia con vetas más duras'],
+  ['4', 'Media — arena, caliche, anhidrita, lutita de resistencia moderada'],
+  ['6', 'Media-dura — arena, lutita, caliza, anhidrita de mayor resistencia, no o semi-abrasiva'],
+  ['7', 'Dura — arena o limolita de alta resistencia con capas afiladas'],
+  ['8', 'Extremadamente dura y abrasiva — formaciones densas y afiladas como cuarcita o roca volcánica'],
+];
+
+const PDC_CUTTER_SOFT: [string, string][] = [
+  ['2', 'Cortadores PDC de 19 mm'],
+  ['3', 'Cortadores PDC de 13 mm'],
+  ['4', 'Cortadores PDC de 8 mm'],
+];
+
+const PDC_CUTTER_HARD: [string, string][] = [
+  ['1', 'Diamante natural'],
+  ['2', 'TSP (policristalino térmicamente estable)'],
+  ['3', 'Combinación'],
+  ['4', 'Diamante impregnado'],
+];
+
+const PDC_PROFILE: [string, string][] = [
+  ['1', 'Cola de pescado corta (fishtail)'],
+  ['2', 'Perfil corto'],
+  ['3', 'Perfil medio'],
+  ['4', 'Perfil largo'],
+];
+
+const faq = [
+  {
+    q: '¿Qué significan los tres dígitos en una barrena de conos?',
+    a: 'El primer dígito es la serie — tipo de formación y rango de dureza, del 1 al 8, con 1-3 diente fresado y 4-8 TCI/insertos. El segundo dígito es la sub-serie dentro de esa serie, una gradación más fina del mismo rango de formación. El tercer dígito es el tipo de rodamiento, del 1 al 8, yendo desde un rodamiento de rodillos básico no sellado hasta un rodamiento de fricción sellado y protegido en calibre. Una letra final, si está presente, es un código de característica del fabricante — aplicación de aire, aplicación con motor, protección extra de calibre, y así sucesivamente.',
+  },
+  {
+    q: '¿Por qué las barrenas de diente fresado y TCI se dividen en la serie 3 y 4?',
+    a: 'Son estructuras de corte fundamentalmente distintas para distintas resistencias de formación. Las barrenas de diente fresado (series 1-3) cortan con dientes de acero maquinados en el cono y son adecuadas para formaciones más blandas y perforables donde un filo afilado hace el trabajo. Las barrenas TCI (insertos de carburo de tungsteno, series 4-8) presionan botones de carburo en el cono en su lugar y resisten la abrasión y el impacto de formaciones más duras y abrasivas que redondearían rápido un diente fresado.',
+  },
+  {
+    q: '¿Qué cambia la letra de material del cuerpo en una barrena PDC?',
+    a: 'Los cuerpos de matriz (M) se fabrican con polvo de carburo de tungsteno infiltrado con un aglutinante, dando fuerte resistencia a la erosión y al desgaste adecuada para formaciones abrasivas, a costa de ser más frágiles y más difíciles de reparar. Los cuerpos de acero (S) son de acero maquinado — más resistentes y más fáciles de reparar por soldadura, pero menos resistentes a la erosión, por lo que dependen más del recargue duro en una aplicación abrasiva. Los cuerpos de diamante (D) son una variante de matriz con contenido de diamante adicional para el servicio abrasivo más severo.',
+  },
+  {
+    q: '¿Cómo cambia la clasificación de estructura de corte PDC entre códigos de formación blanda y dura?',
+    a: 'Para los tipos de formación 1-4 (blanda a media), el dígito de estructura de corte describe el tamaño del cortador PDC — desde cortadores de 19 mm más grandes hasta cortadores de 8 mm más pequeños. Para los tipos de formación 6-8 (media-dura a extremadamente dura), la tecnología del cortador misma cambia a diamante natural, TSP, una combinación, o diamante impregnado, ya que los cortadores PDC estándar no resisten en ese rango. La misma posición de dígito significa algo distinto según en qué rango de tipo de formación caiga el primer dígito.',
+  },
+  {
+    q: '¿La clasificación IADC es lo mismo que la calificación de desgaste?',
+    a: 'No — son sistemas complementarios para extremos opuestos de la vida de una barrena. La clasificación es el código grabado en una barrena nueva que describe qué es y para qué está construida. La calificación de desgaste es el código separado de ocho posiciones asignado después de que la barrena sale del pozo, describiendo la condición en que regresó. Ver la <a href="/es/calculators/iadc-dull-bit-grading">referencia de calificación de desgaste IADC</a> para ese lado.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
+  })),
+};
+---
+<BaseLayout
+  title="Tabla de Clasificación IADC: Barrenas de Conos y PDC"
+  description="Referencia gratuita de clasificación IADC: códigos de serie, sub-serie y rodamiento para barrenas de conos, más códigos de cuerpo, formación, cortador y perfil para barrenas PDC."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Clasificación IADC', href: '/es/calculators/iadc-bit-classification' }]}
+  lang="es"
+  alternateHref="/calculators/iadc-bit-classification"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/iadc-bit-classification" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Referencia</div>
+    <h1>Clasificación IADC de Barrenas de Conos y <span>PDC</span></h1>
+    <p class="page-hero-sub">Los códigos grabados en cada barrena de conos y PDC antes de entrar al pozo — tipo de formación, estructura de corte, tipo de rodamiento, perfil de barrena, y material del cuerpo, decodificados.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🗂 Barrena de Conos — Serie, 1er y 2do Dígito</div>
+          <p style="font-size:13px;color:var(--mist);line-height:1.7;margin-bottom:16px;">El primer dígito es la serie (familia de tipo de formación); el segundo dígito es la sub-serie, una gradación más fina dentro de ese mismo rango de formación.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Serie</th><th>Estructura</th><th>Formación</th></tr></thead>
+              <tbody>
+                {RC_SERIES.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🗂 Barrena de Conos — 3er Dígito, Tipo de Rodamiento</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Dígito</th><th>Tipo de Rodamiento</th></tr></thead>
+              <tbody>
+                {RC_BEARING.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🗂 Barrena de Conos — 4to Carácter (Código de Característica)</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Letra</th><th>Característica</th></tr></thead>
+              <tbody>
+                {FOURTH_CHAR.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🗂 PDC — Material del Cuerpo</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Letra</th><th>Material del Cuerpo</th></tr></thead>
+              <tbody>
+                <tr><td>M</td><td>Matriz</td></tr>
+                <tr><td>S</td><td>Acero</td></tr>
+                <tr><td>D</td><td>Diamante (variante de matriz, contenido de diamante adicional)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🗂 PDC — 1er Dígito, Tipo de Formación</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Dígito</th><th>Formación</th></tr></thead>
+              <tbody>
+                {PDC_FORMATION.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🗂 PDC — 2do Dígito, Estructura de Corte</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Dígito</th><th>Para Tipos de Formación 1–4</th></tr></thead>
+              <tbody>
+                {PDC_CUTTER_SOFT.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div class="table-wrap mt-24">
+            <table>
+              <thead><tr><th>Dígito</th><th>Para Tipos de Formación 6–8</th></tr></thead>
+              <tbody>
+                {PDC_CUTTER_HARD.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🗂 PDC — 3er Dígito, Perfil de Barrena</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Dígito</th><th>Perfil</th></tr></thead>
+              <tbody>
+                {PDC_PROFILE.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Solo referencia.</strong> Este es el significado universal de la clasificación IADC. Los fabricantes individuales graban sus propios códigos de línea de producto junto con, o en lugar de, el código IADC — siempre revisa la hoja de especificaciones de la barrena específica cuando importe para selección o pedido.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Leyendo un Código Completo</h2>
+        <div class="formula-block">
+          <div class="formula-label">Ejemplo de Barrena de Conos</div>
+          <div class="formula-eq">5 1 5 G</div>
+          <div class="formula-note">Serie 5: TCI/insertos, formación blanda a media-dura. Sub-serie 1: extremo más blando de ese rango. Dígito de rodamiento 5: rodamiento de rodillos sellado, protegido en calibre. Letra de característica G: protección extra de calibre/cuerpo.</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">Ejemplo PDC</div>
+          <div class="formula-eq">M432</div>
+          <div class="formula-note">M: cuerpo de matriz. 4: formación media. 3: cortadores PDC de 13 mm. 2: perfil corto.</div>
+        </div>
+
+        <h2 id="why-it-matters">Por Qué Vale la Pena Leer el Código, No Solo Compararlo</h2>
+        <p>Un código de clasificación es una decisión de ingeniería comprimida — evaluación de resistencia de formación, elección de tecnología de cortador, selección de rodamiento, y geometría de barrena, todo reducido a tres o cuatro caracteres para que una barrena pueda seleccionarse, pedirse, y compararse entre fabricantes sin una llamada telefónica. Leerlo en vez de solo reconocer un patrón familiar significa notar, por ejemplo, que una barrena de conos serie 7 y una barrena PDC tipo de formación 7 responden a la misma pregunta de "formación dura, semi-abrasiva a abrasiva" con dos herramientas estructuralmente distintas — una tritura con insertos de carburo sobre conos rotativos, la otra corta por cizallamiento con cortadores fijos.</p>
+        <p>El tipo de barrena también alimenta directamente decisiones en el piso una vez que la barrena está realmente armada — ver la <a href="/es/calculators/bit-torque">tabla de rosca y torque de barrena</a> para cómo el tamaño de barrena y el tipo de conexión se traducen en el torque de apriete correcto, y <a href="/es/equipment/drill-string">la página de la sarta de perforación</a> para dónde se ubica la barrena en el resto de la sarta y el WOB para el que está diseñada.</p>
+        <p>Una vez que una barrena de cierta clasificación ha perforado realmente una corrida, lo que trae de vuelta se registra en un código completamente separado — ver la <a href="/es/calculators/iadc-dull-bit-grading">referencia de calificación de desgaste IADC</a> para ese sistema.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p set:html={item.a} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,277 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+// IADC bit classification — generic public standard covering both roller
+// cone (rock bit) and fixed cutter (PDC) systems. Cross-checked against
+// multiple published references; manufacturer-specific stamping variants are
+// deliberately left out since only the universal IADC meaning is in scope.
+
+const RC_SERIES: [string, string, string][] = [
+  ['1', 'Milled tooth', 'Soft formations, low compressive strength — very soft shale to medium lime/shale'],
+  ['2', 'Milled tooth', 'Medium to medium-hard formations, high compressive strength — medium lime/shale to medium-hard lime/sand/slate'],
+  ['3', 'Milled tooth', 'Hard, semi-abrasive formations — hard lime through hard dolomite'],
+  ['4', 'TCI / insert', 'Soft formations, low compressive strength — very soft shale to medium lime/shale'],
+  ['5', 'TCI / insert', 'Soft to medium-hard formations, low compressive strength — very soft shale/sand to medium soft shale/lime'],
+  ['6', 'TCI / insert', 'Medium to hard formations, high compressive strength — medium lime/shale to medium-hard lime/sand/slate'],
+  ['7', 'TCI / insert', 'Hard, semi-abrasive and abrasive formations — hard lime/dolomite to hard dolomite'],
+  ['8', 'TCI / insert', 'Extremely hard and abrasive formations — hard chert to hard granite'],
+];
+
+const RC_BEARING: [string, string][] = [
+  ['1', 'Standard roller bearing, non-sealed'],
+  ['2', 'Roller bearing, air cooled, non-sealed'],
+  ['3', 'Roller bearing, gauge protected, non-sealed'],
+  ['4', 'Sealed roller bearing'],
+  ['5', 'Sealed roller bearing, gauge protected'],
+  ['6', 'Sealed friction (journal) bearing'],
+  ['7', 'Sealed friction bearing, gauge protected'],
+  ['8', 'Sealed friction bearing, gauge protected, additional gauge/body protection'],
+];
+
+const FOURTH_CHAR: [string, string][] = [
+  ['A', 'Air application'],
+  ['B', 'Special bearing bit'],
+  ['C', 'Center jet'],
+  ['D', 'Deviation control'],
+  ['E', 'Extended jets (full-length nozzles)'],
+  ['G', 'Extra gauge / body protection'],
+  ['H', 'Horizontal / steering application'],
+  ['J', 'Jet deflection'],
+  ['L', 'Lug pads'],
+  ['M', 'Motor application'],
+  ['S', 'Standard steel tooth model'],
+  ['T', 'Two-cone bit'],
+  ['W', 'Enhanced cutting structure'],
+  ['X', 'Predominantly chisel-shaped inserts'],
+  ['Y', 'Predominantly conical inserts'],
+  ['Z', 'Other-shaped inserts'],
+];
+
+const PDC_FORMATION: [string, string][] = [
+  ['1', 'Very soft, highly drillable — clay, marl, gumbo, unconsolidated sand'],
+  ['2', 'Soft, soft sticky — clay, marl, gumbo, unconsolidated sand with some sticking tendency'],
+  ['3', 'Soft to medium — low compressive strength sand, shale, anhydrite with harder streaks'],
+  ['4', 'Medium — moderate compressive strength sand, chalk, anhydrite, shale'],
+  ['6', 'Medium-hard — higher compressive strength, non- to semi-abrasive sand, shale, lime, anhydrite'],
+  ['7', 'Hard — high compressive strength, sharp sand or siltstone layers'],
+  ['8', 'Extremely hard and abrasive — dense, sharp formations such as quartzite or volcanic rock'],
+];
+
+const PDC_CUTTER_SOFT: [string, string][] = [
+  ['2', '19 mm PDC cutters'],
+  ['3', '13 mm PDC cutters'],
+  ['4', '8 mm PDC cutters'],
+];
+
+const PDC_CUTTER_HARD: [string, string][] = [
+  ['1', 'Natural diamond'],
+  ['2', 'TSP (thermally stable polycrystalline)'],
+  ['3', 'Combination'],
+  ['4', 'Impregnated diamond'],
+];
+
+const PDC_PROFILE: [string, string][] = [
+  ['1', 'Short fishtail'],
+  ['2', 'Short profile'],
+  ['3', 'Medium profile'],
+  ['4', 'Long profile'],
+];
+
+const faq = [
+  {
+    q: 'What do the three digits on a roller cone bit actually mean?',
+    a: 'First digit is series — formation type and hardness range, 1 through 8, with 1-3 milled tooth and 4-8 TCI/insert. Second digit is the sub-series within that series, a finer gradation of the same formation range. Third digit is bearing type, 1 through 8, running from a basic non-sealed roller bearing up to a sealed, gauge-protected friction bearing. A trailing letter, if present, is a manufacturer feature code — air application, motor application, extra gauge protection, and so on.',
+  },
+  {
+    q: 'Why do milled tooth and TCI bits split at series 3 and 4?',
+    a: 'They are fundamentally different cutting structures for different formation strengths. Milled tooth bits (series 1-3) cut with steel teeth machined into the cone and suit softer, more drillable formations where a sharp edge does the work. TCI, tungsten carbide insert, bits (series 4-8) press carbide buttons into the cone instead and hold up to the abrasion and impact loading of harder, more abrasive formations that would round off a milled tooth quickly.',
+  },
+  {
+    q: 'What does the PDC body material letter change about the bit?',
+    a: 'Matrix (M) bodies are cast from a tungsten carbide powder infiltrated with a binder, giving strong erosion and wear resistance suited to abrasive formations, at the cost of being more brittle and harder to repair. Steel (S) bodies are machined steel — tougher and easier to weld-repair, but less erosion resistant, so more dependent on hardfacing in an abrasive application. Diamond (D) bodies are a matrix variant with additional diamond content for the most severe abrasive service.',
+  },
+  {
+    q: 'How does PDC cutting structure classification change between soft and hard formation codes?',
+    a: 'For formation types 1-4 (soft to medium), the cutting structure digit describes PDC cutter size — larger 19 mm cutters down to smaller 8 mm cutters. For formation types 6-8 (medium-hard to extremely hard), the cutter technology itself changes to natural diamond, TSP, a combination, or impregnated diamond, since standard PDC cutters do not hold up in that range. The same digit position means a different thing depending on which formation-type range the first digit falls in.',
+  },
+  {
+    q: 'Is IADC classification the same thing as dull grading?',
+    a: 'No — they are companion systems for opposite ends of a bit\'s life. Classification is the code stamped on a new bit describing what it is and what it is built to drill. Dull grading is the separate eight-position code assigned after the bit comes out of the hole describing the condition it came back in. See the <a href="/calculators/iadc-dull-bit-grading">dull bit grading reference</a> for that side.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
+  })),
+};
+---
+<BaseLayout
+  title="IADC Rock Bit & PDC Bit Classification Chart"
+  description="Free IADC bit classification reference: roller cone (rock bit) series, sub-series and bearing codes, plus PDC body, formation, cutter, and profile codes decoded."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'IADC Bit Classification', href: '/calculators/iadc-bit-classification' }]}
+  lang="en"
+  alternateHref="/es/calculators/iadc-bit-classification"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators/iadc-bit-classification" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Reference</div>
+    <h1>IADC Rock Bit &amp; PDC <span>Classification</span></h1>
+    <p class="page-hero-sub">The codes stamped on every roller cone and PDC bit before it ever goes in the hole — formation type, cutting structure, bearing type, bit profile, and body material, decoded.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🗂 Roller Cone (Rock Bit) — Series, 1st &amp; 2nd Digit</div>
+          <p style="font-size:13px;color:var(--mist);line-height:1.7;margin-bottom:16px;">The first digit is the series (formation type family); the second digit is the sub-series, a finer grade within that same formation range.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Series</th><th>Structure</th><th>Formation</th></tr></thead>
+              <tbody>
+                {RC_SERIES.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🗂 Roller Cone — 3rd Digit, Bearing Type</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Digit</th><th>Bearing Type</th></tr></thead>
+              <tbody>
+                {RC_BEARING.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🗂 Roller Cone — 4th Character (Feature Code)</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Letter</th><th>Feature</th></tr></thead>
+              <tbody>
+                {FOURTH_CHAR.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🗂 PDC — Body Material</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Letter</th><th>Body Material</th></tr></thead>
+              <tbody>
+                <tr><td>M</td><td>Matrix</td></tr>
+                <tr><td>S</td><td>Steel</td></tr>
+                <tr><td>D</td><td>Diamond (matrix variant, added diamond content)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🗂 PDC — 1st Digit, Formation Type</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Digit</th><th>Formation</th></tr></thead>
+              <tbody>
+                {PDC_FORMATION.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🗂 PDC — 2nd Digit, Cutting Structure</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Digit</th><th>For Formation Types 1–4</th></tr></thead>
+              <tbody>
+                {PDC_CUTTER_SOFT.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div class="table-wrap mt-24">
+            <table>
+              <thead><tr><th>Digit</th><th>For Formation Types 6–8</th></tr></thead>
+              <tbody>
+                {PDC_CUTTER_HARD.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🗂 PDC — 3rd Digit, Bit Profile</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Digit</th><th>Profile</th></tr></thead>
+              <tbody>
+                {PDC_PROFILE.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Reference only.</strong> This is the universal IADC classification meaning. Individual manufacturers stamp their own product-line codes alongside or instead of the IADC code — always check the specific bit's own spec sheet when it matters for selection or ordering.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Reading a Full Code</h2>
+        <div class="formula-block">
+          <div class="formula-label">Roller Cone Example</div>
+          <div class="formula-eq">5 1 5 G</div>
+          <div class="formula-note">Series 5: TCI/insert, soft to medium-hard formation. Sub-series 1: softer end of that range. Bearing digit 5: sealed roller bearing, gauge protected. Feature letter G: extra gauge/body protection.</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">PDC Example</div>
+          <div class="formula-eq">M432</div>
+          <div class="formula-note">M: matrix body. 4: medium formation. 3: 13 mm PDC cutters. 2: short profile.</div>
+        </div>
+
+        <h2 id="why-it-matters">Why the Code Is Worth Reading, Not Just Matching</h2>
+        <p>A classification code is a compressed engineering decision — formation strength assessment, cutter technology choice, bearing selection, and bit geometry, all reduced to three or four characters so a bit can be selected, ordered, and compared across manufacturers without a phone call. Reading it rather than just pattern-matching a familiar string means catching, for example, that a series-7 roller cone bit and a formation-type-7 PDC bit are answering the same "hard, semi-abrasive to abrasive formation" question with two structurally different tools — one crushing with carbide inserts on rotating cones, the other shearing with fixed cutters.</p>
+        <p>Bit type also feeds directly into rig-floor decisions once the bit is actually made up — see the <a href="/calculators/bit-torque">bit thread and make-up torque lookup</a> for how bit size and connection type translate into the correct make-up torque, and <a href="/equipment/drill-string">the drill string page</a> for where the bit sits in the rest of the string and the WOB it's designed to take.</p>
+        <p>Once a bit of a given classification has actually drilled a run, what it comes back looking like gets recorded in an entirely separate code — see the <a href="/calculators/iadc-dull-bit-grading">IADC dull bit grading reference</a> for that system.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p set:html={item.a} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

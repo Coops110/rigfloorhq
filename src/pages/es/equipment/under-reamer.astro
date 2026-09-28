@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import UnderReamer3D from '../../../components/UnderReamer3D.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un escariador bajo restricción?',
+    a: 'Un escariador bajo restricción ensancha el pozo por debajo de una restricción — casi siempre el ID de un revestidor ya corrido en el pozo — a un diámetro mayor que cualquier cosa que pudiera haberse pasado por esa restricción estando cerrada. Permite perforar o abrir una sección de hoyo más ancha que el drift del último revestidor corrido, algo que una barrena de diámetro fijo corrida por ese mismo revestidor físicamente no puede hacer.',
+  },
+  {
+    q: '¿Cuál es la diferencia entre un escariador bajo restricción y un ensanchador de agujero?',
+    a: 'Ambos ensanchan el hoyo, pero resuelven problemas de geometría distintos. Los brazos de un escariador bajo restricción se pliegan para pasar por una restricción arriba — revestidor, el tope de un liner, un punto apretado — y luego se extienden una vez despejados de ella, para que la herramienta corte un hoyo más ancho que la restricción que acaba de pasar. Un ensanchador de agujero corre con cortadores fijos, no plegables, y simplemente ensancha un hoyo piloto ya perforado desde el fondo, sin ninguna restricción que pasar primero — no puede correr por nada más angosto que su propio cuerpo.',
+  },
+  {
+    q: '¿Cómo se accionan los brazos?',
+    a: 'Tres métodos cubren la mayoría de los diseños. El accionamiento hidráulico deja caer una bola o dardo sobre un asiento dentro de la herramienta, y la presión de bombeo contra ella impulsa un pistón que empuja los brazos hacia afuera. El accionamiento mecánico extiende los brazos mediante peso aplicado, rotación, o ambos, una vez que la herramienta llega a una sección sin restricción. Algunos diseños combinan los dos, usando rotación o peso para confirmar que los brazos quedaron trabados en posición extendida solo después de que la presión hidráulica inició el movimiento.',
+  },
+  {
+    q: '¿Qué causa que falle un escariador bajo restricción?',
+    a: 'La falla operacionalmente más grave es un brazo que no retrae para el viaje de salida — con los brazos trabados abiertos, la herramienta ya no puede pasar de regreso por la misma restricción que acaba de abrir, y recuperarla se convierte en un trabajo de pesca. La falla inversa — un brazo que no extiende — deja el hoyo bajo diámetro para lo que sea que deba correr después, algo que se descubre solo cuando esa siguiente sarta no pasa a profundidad. El desgaste de cortadores o conos de rodillo y la pérdida de dientes en una formación abrasiva es la falla rutinaria de desgaste, normalmente manejada dando seguimiento a la metrada contra la vida útil calificada del cortador en lugar de esperar a que aparezca como una caída de ROP.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Escariador Bajo Restricción: Cómo Funciona el Ensanche de Hoyo"
+  description="Qué es un escariador bajo restricción, cómo se pliegan y extienden sus brazos al pasar una restricción, accionamiento hidráulico vs. mecánico, fallas comunes, y en qué se diferencia de un ensanchador de agujero fijo — con un modelo 3D interactivo."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Escariador', href: '/es/equipment/under-reamer' }]}
+  lang="es"
+  alternateHref="/equipment/under-reamer"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/under-reamer" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Escariador Bajo <span>Restricción</span></h1>
+    <p class="page-hero-sub">Una herramienta que pasa una restricción cerrada, y luego abre sus brazos para cortar un hoyo más ancho que la restricción que acaba de pasar — mostrado aquí en posición extendida de escariado.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <UnderReamer3D />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Escariador Bajo Restricción</h2>
+        <p>Un escariador bajo restricción es un componente del ensamblaje de fondo construido alrededor de un cuerpo a diámetro completo y un juego de brazos articulados, cada uno con una estructura de corte — lo más común, cortadores de cono de rodillo, a veces aletas fijas de PDC. Corriendo en el pozo, los brazos permanecen plegados contra el cuerpo, manteniendo el diámetro exterior de la herramienta lo suficientemente pequeño para pasar por cualquier restricción arriba de la sección a la que se dirige — típicamente el ID del último revestidor corrido. Una vez pasada esa restricción y en hoyo abierto o de mayor diámetro, los brazos se abren hacia afuera y la herramienta corta un pozo más ancho de lo que su propio perfil plegado alguna vez fue.</p>
+        <p>Ese es el truco que la define: el hoyo que corta es más grande que la restricción que tuvo que pasar para llegar ahí. Ninguna barrena de diámetro fijo ni <a href="/es/equipment/stabilizer">estabilizador</a> puede hacer eso — su diámetro exterior queda fijo desde su fabricación, así que están limitados a lo que físicamente pase por todo lo que hay arriba.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Se Corre</h2>
+        <ul>
+          <li><strong>Ensanchar el hoyo bajo una zapata de revestidor</strong> más allá de lo que el drift del propio revestidor permitiría cortar a una barrena recta, casi siempre para asentar un traslape de liner más grande o mejorar la cobertura de cemento a su alrededor.</li>
+          <li><strong>Secciones de hoyo superior sin riser</strong> en aguas profundas, donde un hoyo de conductor de gran diámetro necesita abrirse mucho más allá de lo que un BHA delgado corrido por una sección superior más angosta podría cortar por sí solo.</li>
+          <li><strong>Pozos de alcance extendido y horizontales</strong>, donde correr un BHA más delgado por secciones superiores apretadas — reduciendo torque, arrastre y <a href="/es/calculators/ecd">ECD</a> en el camino — y solo abrir a diámetro completo una vez pasadas esas secciones hace todo el viaje más fácil que correr a diámetro completo toda la distancia.</li>
+          <li><strong>Escariar lutitas inestables o que se hinchan</strong> sin sacar la sarta por una barrena de diámetro completo, restaurando el diámetro de hoyo que se ha ido cerrando desde que se perforó por primera vez.</li>
+        </ul>
+
+        <h2 id="actuation">Cómo Se Accionan los Brazos</h2>
+        <p>El <strong>accionamiento hidráulico</strong> es el método más común: se deja caer o bombea una bola o dardo hasta un asiento integrado en la herramienta, y una vez que asienta, la presión de bombeo contra ella impulsa un pistón que empuja los brazos hacia afuera contra resistencia de resorte o mecánica. Esto da un disparo limpio y deliberado — los brazos permanecen cerrados durante todo el viaje de entrada, y solo se abren a la orden una vez confirmada la herramienta en la profundidad de trabajo.</p>
+        <p>El <strong>accionamiento mecánico</strong> extiende los brazos mediante peso aplicado, rotación, o una combinación de ambos una vez que la herramienta ha despejado la restricción — sin bola que soltar, pero con menos control preciso sobre el momento exacto en que los brazos abren respecto a la profundidad. Algunos diseños combinan ambos métodos, usando rotación o peso aplicado como confirmación de que los brazos quedaron trabados hidráulicamente en la posición totalmente abierta en lugar de como el disparo principal.</p>
+        <p>Cerrar los brazos de nuevo para el viaje de salida invierte la misma lógica: la mayoría de los diseños necesita que la herramienta se levante del fondo y, en un diseño mecánico o combinado, una secuencia específica de rotación o tiro recto para liberar el seguro y dejar que los brazos se plieguen de vuelta a su perfil de viaje antes de que la herramienta vuelva a entrar en la restricción de arriba.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>El brazo no retrae</strong> para el viaje de salida — la falla operacionalmente más grave, ya que la herramienta ya no puede pasar de regreso por la restricción que abrió, convirtiendo un viaje rutinario en un trabajo de pesca.</li>
+          <li><strong>El brazo no extiende</strong> a profundidad, casi siempre por escombros que atascan el enlace mecánico o una falla en el sello hidráulico, dejando el hoyo bajo diámetro para lo que sea que deba correr después.</li>
+          <li><strong>Desgaste de cortadores o conos de rodillo y pérdida de dientes</strong> en formaciones abrasivas, la falla rutinaria de desgaste que se sigue contra la vida útil calificada del cortador.</li>
+          <li><strong>Erosión alrededor de los puertos de accionamiento</strong> por los mayores caudales que algunos diseños necesitan para generar suficiente presión diferencial para accionar hidráulicamente.</li>
+        </ul>
+
+        <h2 id="vs-hole-opener">Escariador Bajo Restricción vs. Ensanchador de Agujero</h2>
+        <p>Los dos términos se usan de forma intercambiable en el campo, pero la diferencia mecánica es real. Un <strong>escariador bajo restricción</strong> tiene todo su diseño orientado a resolver un problema de restricción — sus brazos se pliegan para pasar algo más angosto arriba, y luego se extienden para cortar más ancho debajo. Un <strong>ensanchador de agujero</strong> corre con cortadores fijos, no plegables, y simplemente ensancha un hoyo piloto ya perforado desde el fondo, sin restricción que pasar primero — su propio cuerpo debe ser lo bastante pequeño para pasar por todo lo de arriba por sí solo, sin nada que pliegue o extienda. Si el trabajo necesita pasar una restricción y luego cortar más ancho que ella, corresponde un escariador bajo restricción. Si el trabajo es ensanchar un hoyo piloto abierto sin nada más angosto en el camino arriba, un ensanchador fijo hace el mismo trabajo de forma más simple, con una cosa menos que pueda fallar en abrir o cerrar.</p>
+
+        <h2 id="vs-stabilizer">Escariador Bajo Restricción vs. Estabilizador</h2>
+        <p>Ambas herramientas se ubican en el BHA a diámetro completo, que es donde empieza la confusión. Un <a href="/es/equipment/stabilizer">estabilizador</a> centra la sarta en el hoyo al diámetro que el hoyo ya tiene — no corta, y sus aletas quedan fijas a un OD determinado desde el día que se fabrica. Un escariador bajo restricción corta hoyo nuevo activamente, cambiando el diámetro del pozo en lugar de solo recorrerlo por dentro. Un estabilizador de rodillos-escariadores es el que más se acerca a difuminar la línea, ya que sus rodillos pueden trabajar levemente la pared del hoyo, pero no está diseñado para remover un volumen significativo como sí lo hacen los cortadores de un escariador bajo restricción.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#actuation">Accionamiento de Brazos</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-hole-opener">vs. Ensanchador de Agujero</a>
+          <a href="#vs-stabilizer">vs. Estabilizador</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Las secuencias de accionamiento y las clasificaciones de diámetro varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/stabilizer" class="card-link">→ Estabilizador</a><br><br>
+          <a href="/es/equipment/drill-string" class="card-link">→ La Sarta de Perforación</a><br><br>
+          <a href="/es/calculators/ecd" class="card-link">→ Calculadora de ECD</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

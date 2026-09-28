@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import UnderReamer3D from '../../components/UnderReamer3D.astro';
+
+const faq = [
+  {
+    q: 'What is an under-reamer used for?',
+    a: "An under-reamer enlarges the wellbore below a restriction — most often the ID of casing already in the hole — to a diameter larger than anything that could have been run through that restriction closed. It lets a crew drill or open a hole section wider than the last casing string's drift, which a fixed-gauge bit run through the same casing physically cannot do.",
+  },
+  {
+    q: 'What is the difference between an under-reamer and a hole opener?',
+    a: "Both enlarge hole, but they solve different geometry problems. An under-reamer's arms fold in to pass through a restriction above — casing, a liner top, a tight spot — then extend once clear of it, so the tool can cut a hole wider than the restriction it just passed through. A hole opener runs with fixed, non-collapsing cutters and simply enlarges an already-drilled pilot hole from bottom, with no restriction to pass through first — it can't run through anything narrower than its own body.",
+  },
+  {
+    q: 'How are the arms actuated?',
+    a: "Three methods cover most designs. Hydraulic actuation drops a ball or dart onto a seat inside the tool, and pump pressure against it drives a piston that pushes the arms out. Mechanical actuation extends the arms through applied weight, rotation, or both, once the tool reaches an unrestricted section. Some designs combine the two, using rotation or weight to confirm the arms are locked out only after hydraulic pressure has started the movement.",
+  },
+  {
+    q: 'What causes an under-reamer to fail?',
+    a: "The most operationally serious failure is an arm that won't retract for the trip out — with the arms locked open, the tool can't pass back through the same restriction it opened up, and recovering it becomes a fishing job. The reverse failure — an arm that won't extend — leaves the hole under-gauge for whatever's meant to run through it next, discovered only when that next string won't go past depth. Cutter or roller-cone wear and tooth loss from an abrasive formation is the routine wear-and-tear failure, usually managed by tracking footage against the cutter's rated life rather than waiting for it to show up as reduced ROP.",
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Under-Reamer / Hole Opener: How Below-Restriction Hole Enlargement Works"
+  description="What an under-reamer is, how its arms fold and extend past a restriction, hydraulic vs. mechanical actuation, common failure modes, and how it differs from a fixed-body hole opener — with an interactive 3D model."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Under-Reamer', href: '/equipment/under-reamer' }]}
+  lang="en"
+  alternateHref="/es/equipment/under-reamer"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/equipment/under-reamer" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Under-<span>Reamer</span></h1>
+    <p class="page-hero-sub">A tool that runs through a restriction closed, then opens its arms to cut a hole wider than the restriction it just passed through — shown here in the extended reaming position.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <UnderReamer3D />
+      <div class="prose">
+        <h2 id="what-it-is">What an Under-Reamer Is</h2>
+        <p>An under-reamer is a bottom-hole assembly component built around a full-gauge body and a set of hinged arms, each carrying a cutting structure — most commonly roller-cone cutters, sometimes fixed PDC blades. Run in the hole, the arms stay folded tight against the body, keeping the tool's outer diameter small enough to pass through whatever restriction sits above the section it's headed for — typically the ID of the last casing string. Once past that restriction and into open or larger-diameter hole, the arms swing outward and the tool cuts a bore wider than its own folded profile ever was.</p>
+        <p>That's the defining trick: the hole it cuts is larger than the restriction it had to fit through to get there. No fixed-gauge bit or <a href="/equipment/stabilizer">stabilizer</a> can do that — their outer diameter is set once and doesn't change, so they're limited to whatever will physically pass through everything above.</p>
+
+        <h2 id="when-used">When and Why It's Run</h2>
+        <ul>
+          <li><strong>Enlarging hole below a casing shoe</strong> beyond what the casing's own drift diameter would allow a straight bit to cut, most often to set a larger liner lap or improve cement coverage around it.</li>
+          <li><strong>Riserless top-hole sections</strong> in deepwater, where a large-diameter conductor hole needs to be opened well beyond what a slim BHA run through a smaller upper section could cut on its own.</li>
+          <li><strong>Extended-reach and horizontal wells</strong>, where running a slimmer BHA through tight upper sections — reducing torque, drag, and <a href="/calculators/ecd">ECD</a> along the way — and only opening to full gauge once past them keeps the whole trip easier than running full-gauge the entire distance.</li>
+          <li><strong>Reaming through unstable or swelling shale</strong> without tripping out for a full-gauge bit, restoring hole diameter that's closed in since it was first drilled.</li>
+        </ul>
+
+        <h2 id="actuation">How the Arms Actuate</h2>
+        <p><strong>Hydraulic actuation</strong> is the most common method: a ball or dart is dropped or pumped down to a seat built into the tool, and once it lands, pump pressure against it drives a piston that pushes the arms outward against spring or mechanical resistance. This gives a clean, deliberate trigger — the arms stay closed through the entire trip in, and only open on command once the tool is confirmed at the working depth.</p>
+        <p><strong>Mechanical actuation</strong> extends the arms through applied weight, rotation, or a combination of both once the tool has cleared the restriction — no ball to drop, but less precise control over exactly when the arms open relative to depth. Some designs combine both methods, using rotation or applied weight as confirmation that the arms have hydraulically locked into the fully open position rather than as the primary trigger.</p>
+        <p>Closing the arms back down for the trip out reverses the same logic: most designs need the tool picked up off bottom and, on a mechanical or combination design, a specific rotation or straight-pull sequence to release the lock and let the arms fold back to their running profile before the tool re-enters the restriction above.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Arm fails to retract</strong> for the trip out — the most operationally serious failure, since the tool can no longer pass back through the restriction it opened past, turning a routine trip into a fishing job.</li>
+          <li><strong>Arm fails to extend</strong> at depth, most often from debris jamming the linkage or a hydraulic seal failure, leaving the hole under-gauge for whatever's meant to run through it next.</li>
+          <li><strong>Cutter or roller-cone wear and tooth loss</strong> in abrasive formations, the routine wear failure tracked against the cutter's rated footage life.</li>
+          <li><strong>Erosion around the actuation ports</strong> from the higher flow rates some designs need to build enough differential pressure to actuate hydraulically.</li>
+        </ul>
+
+        <h2 id="vs-hole-opener">Under-Reamer vs. Hole Opener</h2>
+        <p>The two terms get used loosely in the field, but the mechanical difference is real. An <strong>under-reamer</strong>'s whole design exists to solve a restriction problem — its arms fold to pass through something narrower above, then extend to cut wider below it. A <strong>hole opener</strong> runs fixed, non-collapsing cutters and simply enlarges an already-drilled pilot hole from the bottom, with no restriction to get past first — its own body has to be small enough to fit through everything above it on its own, with nothing folding or extending at all. If the job needs to pass a restriction and then cut wider than it, that calls for an under-reamer. If the job is enlarging an open pilot hole with nothing narrower in the way above, a fixed hole opener does the same job more simply, with one less thing that can fail to open or close.</p>
+
+        <h2 id="vs-stabilizer">Under-Reamer vs. Stabilizer</h2>
+        <p>Both tools sit in the BHA at full gauge, which is where the confusion starts. A <a href="/equipment/stabilizer">stabilizer</a> centers the string in the hole at whatever diameter the hole already is — it doesn't cut, and its blades are fixed at a set OD from the day it's made up. An under-reamer actively cuts new hole, changing the wellbore's diameter rather than just riding inside it. A roller-reamer stabilizer sits closest to blurring the line, since its rollers can lightly work a hole wall, but it isn't designed to remove significant volume the way an under-reamer's cutters are.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#when-used">When It's Used</a>
+          <a href="#actuation">Arm Actuation</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-hole-opener">vs. Hole Opener</a>
+          <a href="#vs-stabilizer">vs. Stabilizer</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Actuation sequences and gauge ratings vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/stabilizer" class="card-link">→ Stabilizer</a><br><br>
+          <a href="/equipment/drill-string" class="card-link">→ The Drill String</a><br><br>
+          <a href="/calculators/ecd" class="card-link">→ ECD Calculator</a><br><br>
+          <a href="/equipment/window-mill" class="card-link">→ Window Mill</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

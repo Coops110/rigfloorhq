@@ -1,0 +1,270 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const DULL_CHAR_CODES: [string, string][] = [
+  ['BC', 'Cono roto'],
+  ['BF', 'Falla de adherencia (bond failure)'],
+  ['BT', 'Dientes o cortadores rotos'],
+  ['BU', 'Barrena embolada (balled up)'],
+  ['CC', 'Cono agrietado (o capa de diamante agrietada en barrena de cortador fijo)'],
+  ['CD', 'Cono arrastrado'],
+  ['CI', 'Interferencia de conos'],
+  ['CR', 'Coreado'],
+  ['CT', 'Dientes o cortadores astillados'],
+  ['ER', 'Erosión'],
+  ['FC', 'Desgaste de cresta plana'],
+  ['HC', 'Agrietamiento por calor'],
+  ['JD', 'Daño por chatarra (junk damage)'],
+  ['LC', 'Cono perdido'],
+  ['LN', 'Boquilla perdida'],
+  ['LT', 'Dientes o cortadores perdidos'],
+  ['NO', 'Sin características de desgaste'],
+  ['OC', 'Desgaste descentrado'],
+  ['PB', 'Barrena pellizcada'],
+  ['PN', 'Boquilla o paso de flujo taponado'],
+  ['RG', 'Calibre redondeado'],
+  ['RO', 'Anillo suelto (ring out)'],
+  ['SD', 'Daño en el faldón (shirttail)'],
+  ['SS', 'Desgaste auto-afilante'],
+  ['TR', 'Marcado de conos (tracking)'],
+  ['WO', 'Barrena lavada (washed out)'],
+  ['WT', 'Dientes o cortadores desgastados'],
+];
+
+const RC_LOCATION_CODES: [string, string][] = [
+  ['N', 'Fila de nariz (estructura de corte más interna)'],
+  ['M', 'Fila media'],
+  ['G', 'Fila de calibre (estructura de corte más externa)'],
+  ['A', 'Todas las filas'],
+  ['1, 2, 3', 'Número de cono, para un código que se rastrea a un cono específico'],
+];
+
+const FC_LOCATION_CODES: [string, string][] = [
+  ['C', 'Área de cono del perfil de corte'],
+  ['N', 'Área de nariz'],
+  ['T', 'Área de cono/taper'],
+  ['S', 'Área de hombro'],
+  ['G', 'Área de calibre'],
+  ['A', 'Todas las áreas'],
+];
+
+const REASON_PULLED_CODES: [string, string][] = [
+  ['BHA', 'Cambio de ensamblaje de fondo (BHA)'],
+  ['CM', 'Acondicionar el lodo'],
+  ['CP', 'Punto de coreo'],
+  ['DMF', 'Falla del motor de fondo'],
+  ['DP', 'Perforar tapón (drill plug)'],
+  ['DSF', 'Falla de la sarta de perforación'],
+  ['DST', 'Prueba de formación (drill stem test)'],
+  ['DTF', 'Falla de herramienta de fondo'],
+  ['FM', 'Cambio de formación'],
+  ['HP', 'Problemas de pozo'],
+  ['HR', 'Horas en la barrena'],
+  ['LIH', 'Dejado en el pozo (left in hole)'],
+  ['LOG', 'Correr registros'],
+  ['PP', 'Presión de bomba'],
+  ['PR', 'Tasa de penetración'],
+  ['RIG', 'Reparación de equipo'],
+  ['TD', 'Profundidad total / profundidad de revestimiento alcanzada'],
+  ['TQ', 'Torque'],
+  ['TW', 'Rotura por torsión (twist off)'],
+  ['WC', 'Condiciones climáticas'],
+  ['WO', 'Lavado — sarta de perforación'],
+];
+
+const GAUGE_CODES: [string, string][] = [
+  ['I', 'En calibre'],
+  ['1/16', 'Bajo calibre por 1/16"'],
+  ['1/8', 'Bajo calibre por 1/8"'],
+  ['3/16', 'Bajo calibre por 3/16"'],
+  ['1/4', 'Bajo calibre por 1/4"'],
+  ['5/16', 'Bajo calibre por 5/16"'],
+  ['3/8', 'Bajo calibre por 3/8"'],
+  ['7/16', 'Bajo calibre por 7/16"'],
+  ['1/2', 'Bajo calibre por 1/2" (y continuando en pasos de 1/16" para casos más severos)'],
+];
+
+const faq = [
+  {
+    q: '¿Qué significan las 8 posiciones de un código de calificación de desgaste, en orden?',
+    a: '(1) Desgaste de la estructura de corte en filas internas, (2) desgaste en filas externas, (3) la característica de desgaste primaria, (4) su ubicación en la barrena, (5) condición de rodamientos y sellos, (6) calibre, (7) cualquier característica de desgaste secundaria, y (8) la razón por la que se sacó la barrena. Las primeras cuatro cubren la estructura de corte como grupo; el resto cubre todo lo demás sobre la condición de la barrena y la decisión de sacarla.',
+  },
+  {
+    q: '¿Por qué se califican por separado las filas internas y externas?',
+    a: 'Porque rara vez se desgastan igual. Los cortadores externos de la fila de calibre hacen más trabajo manteniendo el diámetro del pozo y tienden a desgastarse más rápido en una corrida abrasiva, mientras que las filas internas todavía pueden mostrar bastante vida útil. Calificarlas como un solo número combinado ocultaría exactamente el patrón que le dice a un ingeniero de barrenas qué pasó realmente en el fondo.',
+  },
+  {
+    q: '¿Por qué la posición de rodamientos y sellos siempre es "X" en una barrena PDC u otro cortador fijo?',
+    a: 'Porque las barrenas de cortador fijo no tienen conos rotativos y por lo tanto no tienen rodamientos que calificar. "X" es la forma estándar de marcar que ese campo no aplica, en lugar de dejarlo en blanco, para que un código de calificación de desgaste siempre tenga exactamente ocho posiciones legibles sin importar el tipo de barrena.',
+  },
+  {
+    q: '¿Es el mismo sistema de calificación para barrenas de conos y PDC?',
+    a: 'Sí, desde que la revisión de IADC de 1987 lo unificó — la misma tabla de ocho posiciones se usa para ambas, con algunas posiciones (escala de desgaste de la estructura de corte, rodamientos/sellos, ubicación) leídas de forma ligeramente distinta según el tipo de barrena. Las listas de códigos de característica de desgaste y razón de salida son compartidas entre ambos tipos.',
+  },
+  {
+    q: '¿Quién llena realmente un código de calificación de desgaste, y cuándo?',
+    a: 'La barrena se califica cuando sale del pozo — típicamente por el registrador de lodo, el representante de la compañía, o un ingeniero de campo de la compañía de barrenas, a menudo cruzado con la propia inspección del fabricante cuando la barrena es devuelta. Se convierte en parte del registro de barrenas del pozo y alimenta la selección de la siguiente barrena en formación similar.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Tabla de Calificación de Desgaste IADC (Dull Grading)"
+  description="Referencia gratuita de calificación de desgaste IADC: el código de 8 posiciones para calificar una barrena desgastada — estructura de corte, características de desgaste, ubicación, rodamientos/sellos, calibre y razón de salida."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Calificación de Desgaste IADC', href: '/es/calculators/iadc-dull-bit-grading' }]}
+  lang="es"
+  alternateHref="/calculators/iadc-dull-bit-grading"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/iadc-dull-bit-grading" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Referencia</div>
+    <h1>Calificación de Desgaste <span>IADC</span></h1>
+    <p class="page-hero-sub">El código de ocho posiciones usado en toda la industria para registrar la condición de una barrena desgastada al salir del pozo — estructura de corte, características de desgaste, ubicación, condición de rodamientos y sellos, calibre, y razón de salida.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🔍 1 y 2 — Desgaste de Estructura de Corte (Interna / Externa)</div>
+          <p style="font-size:13px;color:var(--mist);line-height:1.7;margin-bottom:16px;">Una escala lineal de 0–8 en ambas posiciones. Las <strong>filas internas</strong> (posición 1) cubren aproximadamente los dos tercios internos del radio de la cara de la barrena; las <strong>filas externas</strong> (posición 2) cubren el tercio externo, incluyendo la fila de calibre. 0 es sin desgaste, 8 es pérdida total.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tipo de Barrena</th><th>0</th><th>8</th></tr></thead>
+              <tbody>
+                <tr><td>Diente de acero (fresado)</td><td>Sin pérdida de altura de diente</td><td>Pérdida total de altura de diente</td></tr>
+                <tr><td>Inserto / botón (TCI)</td><td>Sin insertos perdidos, desgastados o rotos</td><td>Todos los insertos perdidos, desgastados o rotos</td></tr>
+                <tr><td>Cortador fijo (PDC, diamante)</td><td>Sin cortadores perdidos, desgastados o rotos</td><td>100% de la estructura de corte perdida, desgastada o rota</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🔍 3 y 7 — Características de Desgaste</div>
+          <p style="font-size:13px;color:var(--mist);line-height:1.7;margin-bottom:16px;">La posición 3 registra la característica de desgaste <strong>primaria</strong>; la posición 7 registra una <strong>secundaria</strong> si aplica un segundo código. Misma lista de códigos para ambas, y para cualquier tipo de barrena.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Código</th><th>Significado</th></tr></thead>
+              <tbody>
+                {DULL_CHAR_CODES.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🔍 4 — Ubicación</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Código</th><th>Barrenas de Conos</th></tr></thead>
+              <tbody>
+                {RC_LOCATION_CODES.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div class="table-wrap mt-24">
+            <table>
+              <thead><tr><th>Código</th><th>Barrenas de Cortador Fijo</th></tr></thead>
+              <tbody>
+                {FC_LOCATION_CODES.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🔍 5 — Rodamientos y Sellos</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Código</th><th>Significado</th></tr></thead>
+              <tbody>
+                <tr><td>0–8</td><td>Rodamientos no sellados: estimado lineal de vida de rodamiento usada. 0 = sin vida usada, 8 = toda la vida usada.</td></tr>
+                <tr><td>E</td><td>Rodamientos sellados: sellos efectivos</td></tr>
+                <tr><td>F</td><td>Rodamientos sellados: sellos fallados</td></tr>
+                <tr><td>N</td><td>No se pudo calificar</td></tr>
+                <tr><td>X</td><td>Barrena de cortador fijo — no hay rodamientos que calificar</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🔍 6 — Calibre</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Código</th><th>Significado</th></tr></thead>
+              <tbody>
+                {GAUGE_CODES.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🔍 8 — Razón de Salida</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Código</th><th>Significado</th></tr></thead>
+              <tbody>
+                {REASON_PULLED_CODES.map((r) => (
+                  <tr><td>{r[0]}</td><td>{r[1]}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Solo referencia.</strong> Esta es la tabla estándar de ocho posiciones de IADC usada en toda la industria, no una versión específica de fabricante u operador. Siempre confirma contra la tabla IADC vigente o un ingeniero de campo de la compañía de barrenas para una calificación con consecuencias comerciales o de ingeniería.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Leyendo un Código Completo</h2>
+        <p>Juntando las ocho posiciones en orden, un código de calificación de desgaste se lee como un registro compacto. Por ejemplo:</p>
+        <div class="formula-block">
+          <div class="formula-label">Ejemplo Resuelto</div>
+          <div class="formula-eq">2 4 WT A E I NO TD</div>
+          <div class="formula-note">Filas internas 2/8 desgastadas, filas externas 4/8 desgastadas, característica de desgaste primaria dientes/cortadores desgastados, encontrada en todas las filas, sellos aún efectivos, la barrena salió en calibre, sin característica secundaria, sacada al alcanzar la profundidad total.</div>
+        </div>
+        <p>Una barrena de cortador fijo se lee con las mismas ocho posiciones, con la posición 5 siempre mostrando <span class="highlight">X</span> ya que no hay rodamientos en ese tipo de barrena, y la posición 4 tomada de los códigos de ubicación de cortador fijo en vez de los de conos.</p>
+
+        <h2 id="why-it-matters">Por Qué Importa Más Allá del Papeleo</h2>
+        <p>Un código de calificación de desgaste es lo más cercano que tiene la industria a un lenguaje compartido para "qué pasó realmente con esta barrena en el fondo". Las mismas ocho posiciones significan lo mismo sea que la barrena haya salido de un equipo en Texas o en el Mar del Norte, lo cual es lo que permite que un ingeniero de una compañía de barrenas a la distancia mire un código y entienda de inmediato si la barrena se ahogó, se desgastó normalmente, o falló. Ese registro alimenta directamente la selección de la siguiente barrena para una formación similar — una corrida que volvió con <span class="highlight">7 7 WT G X I NO TD</span> cuenta una historia muy distinta sobre la formación que una que volvió con <span class="highlight">2 2 BT N X I CT PR</span>.</p>
+        <p>Para la tabla complementaria — qué significan los tres o cuatro caracteres grabados en la barrena antes de que entre al pozo — ver la <a href="/es/calculators/iadc-bit-classification">referencia de clasificación IADC de barrenas de conos y PDC</a>. Y para dónde se ubica la barrena en el resto de la sarta y cómo llega el peso realmente hasta ella, ver <a href="/es/equipment/drill-string">la página de la sarta de perforación</a>.</p>
+        <p>Si el desgaste apunta a un problema de WOB o RPM en lugar de un desgaste normal, la <a href="/es/calculators/drill-off-test">hoja de trabajo de prueba drill-off</a> es la herramienta para aislar si los parámetros, no la barrena, son el factor limitante.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

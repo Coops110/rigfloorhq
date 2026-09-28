@@ -53,7 +53,7 @@ An impact is a different quantity. The same stored energy released over a few mi
 
 **Cocking.** The driller pulls overpull above the string's own weight. The jar stays closed because a detent — mechanical, hydraulic or a combination — holds it. Meanwhile the pipe above the jar stretches. Thousands of feet of steel under tension is a long spring, and it is storing real energy.
 
-**Firing.** At a set load, or after a hydraulic metering section has bled through, the detent releases. The stretched pipe contracts and drives a hammer section up into an anvil. The impact is transmitted down the [drill string](/equipment/drill-string) to the stuck point.
+**Firing.** At a set load, or after a hydraulic metering section has bled through, the detent releases. The stretched pipe contracts and drives a hammer section up into an anvil. The impact is transmitted down the [drill string](/equipment/drill-string) to the stuck point. See the [hydraulic jar equipment page](/equipment/hydraulic-jar) for an interactive 3D model of the splined mandrel and hammer/anvil section this cycle actually runs through.
 
 **Resetting.** The jar is set back down to close it, and the cycle repeats. Jarring is normally a repeated sequence over a period, not a single attempt — repeated blows work a bond loose in a way one does not.
 

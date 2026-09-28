@@ -1,0 +1,236 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Por qué un llenado del 25% no es el 25% del volumen del tanque?',
+    a: 'Porque un cilindro horizontal no tiene una sección transversal uniforme de arriba a abajo — la forma circular es más angosta en el fondo y más ancha en la mitad, así que las mismas pulgadas de altura de llenado cubren mucho menos volumen cerca del fondo que cerca de la mitad. Al 25% del diámetro este tanque contiene cerca del 19.5% de su volumen total, y al 75% del diámetro contiene cerca del 80.5% — esa diferencia es geometría, no un error, y se refleja exactamente alrededor de la marca del 50%, donde la altura de llenado y el volumen de llenado siempre coinciden.',
+  },
+  {
+    q: '¿Esto funciona también para tanques verticales?',
+    a: 'No — un tanque cilíndrico vertical (de pie) tiene una sección transversal circular constante a cualquier altura, así que su relación altura-a-volumen es una línea recta: volumen = área de sección transversal × altura, punto. Esta calculadora es específicamente para un tanque acostado de lado, donde la forma de segmento circular es lo que curva la relación en lugar de una línea recta.',
+  },
+  {
+    q: '¿Qué pasa si mi tanque tiene tapas abombadas en lugar de tapas planas?',
+    a: 'Esta calculadora trata el tanque como un cilindro simple y no agrega volumen por tapas abombadas, elípticas, o hemisféricas. La mayoría de los tanques de combustible y agua de campo pequeños a medianos usan tapas planas donde eso no es una fuente de error significativa, pero un tanque con tapas abombadas reales contendrá medible más que este número, y ese volumen extra necesita sumarse por separado usando la cifra de capacidad propia del fabricante para ese estilo de tapa.',
+  },
+  {
+    q: '¿Se asume que el tanque está perfectamente nivelado?',
+    a: 'Sí. Cualquier inclinación cambia la sección transversal mojada real en una lectura de varilla dada, y esta fórmula no lo toma en cuenta. Para un tanque en un patín o cimiento fijo eso suele ser una suposición segura; para uno en terreno dudoso, revisa el nivel antes de confiar en una lectura de altura de llenado contra esta tabla.',
+  },
+  {
+    q: '¿Puedo usar esto para una pileta de lodo u otro recipiente de campo, no solo combustible?',
+    a: 'La geometría es genérica — cualquier recipiente cilíndrico horizontal con tapas planas sigue la misma fórmula, ya sea que contenga combustible, agua, o fluido de perforación. Las piletas y tanques del sistema de control de sólidos real suelen ser rectangulares, no cilíndricos, así que esta forma específica es más común en tanques portátiles de combustible, agua y químicos en una locación que en el sistema de piletas mismo — ver la <a href="/equipment/mud-pit-system">página del sistema de piletas de lodo (inglés)</a> para cómo esos tanques rectangulares encajan en el procesamiento de fluidos.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
+  })),
+};
+---
+<BaseLayout
+  title="Calculadora de Capacidad de Tanque Horizontal"
+  description="Calculadora gratuita de capacidad de tanque cilíndrico horizontal: ingresa diámetro y longitud en galones/pulgadas o litros/centímetros y obtén una tabla de altura de llenado a volumen más una consulta instantánea."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Capacidad de Tanque Horizontal', href: '/es/calculators/horizontal-tank-capacity' }]}
+  lang="es"
+  alternateHref="/calculators/horizontal-tank-capacity"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/horizontal-tank-capacity" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Capacidad de Tanque <span>Horizontal</span></h1>
+    <p class="page-hero-sub">Diámetro y longitud entran, una tabla completa de altura de llenado a volumen sale — la geometría real de un tanque acostado de lado, donde la altura de llenado y el volumen de llenado nunca son el mismo porcentaje.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🛢 Dimensiones del Tanque</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tank-unit">Unidades</label>
+              <select id="tank-unit">
+                <option value="gal">Galones US (pulgadas)</option>
+                <option value="litre">Litros (centímetros)</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="tank-d">Diámetro (<span id="unit-d">in</span>)</label>
+              <input type="number" id="tank-d" value="48" step="any" min="0">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tank-l">Longitud (<span id="unit-l">in</span>)</label>
+              <input type="number" id="tank-l" value="120" step="any" min="0">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Capacidad Total (Lleno)</span><span class="output-value" id="out-total">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">📏 Consulta Rápida de Altura de Llenado</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tank-h">Altura de Llenado (<span id="unit-h">in</span>), desde el fondo</label>
+              <input type="number" id="tank-h" value="24" step="any" min="0">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line"><span class="output-label">Volumen a Esta Altura</span><span class="output-value" id="out-quick">—</span></div>
+            <div class="output-line" style="border-bottom:none;"><span class="output-label">% de Capacidad Total</span><span class="output-value" id="out-quick-pct">—</span></div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Solo cilindro de tapas planas.</strong> Esto no agrega volumen por tapas abombadas, elípticas, o hemisféricas, y asume que el tanque está nivelado. Ver las preguntas frecuentes para lo que esto significa en tu tanque específico.
+        </div>
+
+        <h2 style="margin-top:32px;font-size:18px;">Tabla de Altura de Llenado a Volumen</h2>
+        <p style="color:var(--fog);font-size:13px;max-width:700px;margin-bottom:12px;">Cada 5% del diámetro, de vacío a lleno, usando las dimensiones ingresadas arriba.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>% Lleno</th><th>Altura (<span id="unit-table">in</span>)</th><th>Volumen</th></tr>
+            </thead>
+            <tbody id="tank-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>La Fórmula Usada</h2>
+        <div class="formula-block">
+          <div class="formula-label">Área de Segmento Circular a Altura de Llenado h</div>
+          <div class="formula-eq">A(h) = r² × cos⁻¹((r − h) ÷ r) − (r − h) × √(2rh − h²)</div>
+          <div class="formula-note">r es el radio del tanque (la mitad del diámetro), h es la altura de llenado medida desde el fondo del tanque, 0 ≤ h ≤ 2r. Esta es el área exacta de la sección transversal circular mojada a esa altura de llenado — no una aproximación.</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">Volumen a Altura de Llenado h</div>
+          <div class="formula-eq">V(h) = A(h) × Longitud del Tanque</div>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Verificado antes de publicar.</strong> En h = 0 la fórmula da exactamente 0. En h = diámetro completo se reduce al volumen de cilindro simple, πr²L. En h = la mitad del diámetro da exactamente la mitad de ese volumen. Y los resultados a 25% y 75% de altura siempre suman exactamente el 100% del volumen total, por la propia simetría del círculo. Las cuatro verificaciones se cumplen con esta fórmula — esa simetría es lo que hace que una tabla de altura de llenado sea confiable y no solo verosímil.
+        </div>
+
+        <h2 id="why-not-linear">Por Qué la Tabla No Es una Línea Recta</h2>
+        <p>Un tanque vertical tiene la misma sección transversal a cualquier altura, así que su relación altura-a-volumen es lineal — duplica la altura, duplica el volumen. Un tanque horizontal no, porque la sección transversal mojada es un segmento circular que empieza con ancho cero en el fondo, se ensancha hacia la mitad, y se angosta de nuevo hasta cero en la parte superior. Por eso las primeras pulgadas desde el fondo de un tanque horizontal representan mucho menos volumen que las mismas pulgadas cerca de la mitad, y es exactamente lo que la tabla de la izquierda está construida para mostrar en lugar de aproximar.</p>
+
+        <h2 id="where-this-fits">Dónde Encaja Esto</h2>
+        <p>Esta es la misma familia de matemática de geometría a volumen que las cifras de capacidad y desplazamiento de la <a href="/es/calculators/drill-pipe-tally">calculadora de tally de tubería</a>, solo aplicada a una forma distinta — un segmento circular aquí en lugar de una sección transversal circular completa. Si el número que realmente necesitas es rendimiento de bomba o emboladas en lugar de un volumen de tanque estático, la <a href="/es/calculators/lag-and-volume">calculadora de retraso y volumen</a> cubre ese lado del sistema circulante.</p>
+        <p>Para dónde encaja un tanque portátil de combustible, agua, o químicos como este en relación con el propio equipo de procesamiento de fluidos del equipo, ver la <a href="/equipment/mud-pit-system">página del sistema de piletas de lodo / control de sólidos (inglés)</a> — una clase de tanque distinta, rectangular, haciendo un trabajo distinto.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p set:html={item.a} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  const GAL_DIVISOR = 231;      // in³ por galón US
+  const LITRE_DIVISOR = 1000;   // cm³ por litro
+
+  const DEFAULTS: Record<string, { d: number; l: number; h: number }> = {
+    gal: { d: 48, l: 120, h: 24 },
+    litre: { d: 120, l: 300, h: 60 },
+  };
+
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+  }
+
+  function segmentArea(r: number, h: number): number {
+    if (r <= 0) return 0;
+    const hh = Math.max(0, Math.min(2 * r, h));
+    const d = r - hh;
+    const arg = Math.max(-1, Math.min(1, d / r));
+    const under = Math.max(0, 2 * r * hh - hh * hh);
+    return r * r * Math.acos(arg) - d * Math.sqrt(under);
+  }
+
+  function calc() {
+    const unitEl = document.getElementById('tank-unit') as HTMLSelectElement | null;
+    const unit = unitEl?.value === 'litre' ? 'litre' : 'gal';
+    const divisor = unit === 'litre' ? LITRE_DIVISOR : GAL_DIVISOR;
+    const unitLabel = unit === 'litre' ? 'cm' : 'in';
+    const volLabel = unit === 'litre' ? 'L' : 'gal';
+
+    ['unit-d', 'unit-l', 'unit-h', 'unit-table'].forEach((id) => set(id, unitLabel));
+
+    const D = num('tank-d');
+    const L = num('tank-l');
+    const r = D / 2;
+
+    const fullVol = (segmentArea(r, D) * L) / divisor;
+    set('out-total', D > 0 && L > 0 ? fmt(fullVol, 1) + ' ' + volLabel : '—');
+
+    const h = num('tank-h');
+    const quickVol = (segmentArea(r, h) * L) / divisor;
+    set('out-quick', D > 0 && L > 0 ? fmt(quickVol, 1) + ' ' + volLabel : '—');
+    set('out-quick-pct', fullVol > 0 ? fmt((quickVol / fullVol) * 100, 1) + '%' : '—');
+
+    const tbody = document.getElementById('tank-table-body');
+    if (tbody) {
+      tbody.innerHTML = '';
+      if (D > 0 && L > 0) {
+        for (let pct = 0; pct <= 100; pct += 5) {
+          const rowH = (pct / 100) * D;
+          const rowVol = (segmentArea(r, rowH) * L) / divisor;
+          const tr = document.createElement('tr');
+          tr.innerHTML =
+            '<td>' + pct + '%</td>' +
+            '<td>' + fmt(rowH, 2) + '</td>' +
+            '<td>' + fmt(rowVol, 1) + ' ' + volLabel + '</td>';
+          tbody.appendChild(tr);
+        }
+      }
+    }
+  }
+
+  const unitSelect = document.getElementById('tank-unit') as HTMLSelectElement | null;
+  unitSelect?.addEventListener('change', () => {
+    const mode = unitSelect.value === 'litre' ? 'litre' : 'gal';
+    const d = DEFAULTS[mode];
+    (document.getElementById('tank-d') as HTMLInputElement).value = String(d.d);
+    (document.getElementById('tank-l') as HTMLInputElement).value = String(d.l);
+    (document.getElementById('tank-h') as HTMLInputElement).value = String(d.h);
+    calc();
+  });
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

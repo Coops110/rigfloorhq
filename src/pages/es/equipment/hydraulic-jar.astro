@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import HydraulicJar3D from '../../../components/HydraulicJar3D.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un martillo hidráulico?',
+    a: 'Un martillo hidráulico entrega una carga de impacto repentina a una sección atascada de la sarta, en lugar de un tiro constante. El sobretiro sostenido aplica fuerza de forma suave y a menudo es inefectivo contra una tubería genuinamente pegada, ya que el punto de pega simplemente puede absorber tensión constante sin soltarse nunca — una carga de impacto golpea con mucha más fuerza en mucho menos tiempo, y puede romper un enlace que la tensión constante nunca rompería.',
+  },
+  {
+    q: '¿Cuál es la diferencia entre un martillo ascendente y uno descendente?',
+    a: 'La dirección. Un martillo ascendente se arma jalando tensión hacia la herramienta desde superficie y dispara hacia arriba una vez que libera, la opción estándar cuando la sarta está pegada y necesita soltarse moviéndose hacia arriba. Un martillo descendente dispara hacia abajo en su lugar, usado donde la obstrucción está arriba del punto pegado en lugar de abajo — por ejemplo, para trabajar una barrena de vuelta hacia abajo a través de un puente o un empaquetamiento. Muchas sartas de perforación y de pesca corren uno de cada tipo, posicionados para la dirección que el trabajo tenga más probabilidad de necesitar.',
+  },
+  {
+    q: '¿Qué es un acelerador de martillo, y por qué a menudo se corre junto con el martillo?',
+    a: 'Un acelerador de martillo es una herramienta separada, normalmente corrida justo arriba o abajo del martillo mismo, que almacena energía adicional — típicamente mediante una cámara de gas comprimible o de resorte — y la libera en el mismo instante en que dispara el martillo. Por sí sola, la energía de impacto de un martillo está limitada por cuánto puede estirarse y almacenar tensión la propia sarta de perforación a lo largo de su longitud arriba de él; en un punto de pega poco profundo, no queda mucha longitud de sarta para estirar, así que el impacto del martillo resulta más débil. El acelerador agrega energía almacenada independiente del estiramiento de la sarta, restaurando un impacto fuerte aun cuando el punto de pega sea demasiado somero para que la sarta sola almacene mucha energía.',
+  },
+  {
+    q: '¿Qué causa que falle un martillo hidráulico?',
+    a: 'El disparo prematuro bajo cargas normales de perforación es una falla, armando y liberando el martillo cuando en realidad nada está pegado y no se pretendía que pasara nada — impactos desperdiciados, a veces dañinos, en una sarta que no los necesitaba. La falla en disparar cuando realmente se necesita es el problema opuesto y más grave, casi siempre por una sección de medición hidráulica desgastada o contaminada que ya no retrasa y libera correctamente bajo tensión. El desgaste de estrías en la sección antirrotación es la falla mecánica rutinaria de desgaste, dejando eventualmente que las caras del martillo y el yunque roten ligeramente fuera de alineación y pierdan algo de la efectividad del impacto.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Martillo Hidráulico: Cómo los Jars de Perforación Liberan Tubería Pegada"
+  description="Qué es un martillo hidráulico, martillo ascendente vs. descendente, cómo un acelerador de martillo almacena energía extra, fallas comunes, y en qué se diferencia de una junta de seguridad — con un modelo 3D interactivo."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Martillo Hidráulico', href: '/es/equipment/hydraulic-jar' }]}
+  lang="es"
+  alternateHref="/equipment/hydraulic-jar"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/hydraulic-jar" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Martillo <span>Hidráulico</span></h1>
+    <p class="page-hero-sub">Una herramienta de sarta que almacena energía bajo tensión y la libera como un impacto repentino — entregando el tipo de golpe que puede liberar tubería pegada donde un sobretiro constante no puede.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <HydraulicJar3D />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Martillo Hidráulico</h2>
+        <p>Un martillo hidráulico es una herramienta mecánica integrada en la <a href="/es/equipment/drill-string">sarta</a> que convierte tensión constante y almacenada en un impacto mecánico repentino. Por dentro está construido alrededor de un mandril estriado que se desliza por una carcasa, cronometrado por una sección de medición hidráulica — se jala tensión hacia la herramienta desde superficie, y una vez que el pistón de medición ha dejado pasar el fluido a un ritmo controlado, el mandril se libera y la cara del martillo golpea la cara del yunque con toda la energía almacenada, de una sola vez en lugar de gradualmente.</p>
+        <p>Ese impacto es la razón completa de ser de la herramienta. El sobretiro constante aplica fuerza de forma suave a lo largo del tiempo, y una sección de sarta genuinamente pegada contra la pared o atorada en chatarra simplemente puede absorber esa carga constante sin soltarse nunca. Un impacto agudo concentra la misma energía total, o menos, en una fracción de segundo — a menudo suficiente para romper un enlace que la tensión sostenida por sí sola nunca rompería.</p>
+
+        <h2 id="up-down">Martillo Ascendente vs. Descendente</h2>
+        <p>Los martillos son herramientas direccionales, y hacia dónde disparan importa tanto como el hecho de que disparen. Un <strong>martillo ascendente</strong> se arma jalando tensión hacia la sarta desde superficie y libera hacia arriba — la opción estándar cada vez que la sección pegada necesita soltarse moviéndose hacia arriba del pozo, lo cual cubre la mayoría de los eventos de tubería pegada. Un <strong>martillo descendente</strong> dispara hacia abajo en su lugar, usado donde la obstrucción está arriba del punto que necesita moverse — por ejemplo, trabajando una barrena o BHA de vuelta hacia abajo a través de un puente o empaquetamiento que lo bloquea desde arriba en lugar de agarrarlo desde abajo. Muchas sartas de perforación y de pesca corren uno de cada uno, posicionados para que la sarta tenga una herramienta de impacto lista en la dirección que el trabajo tenga más probabilidad de necesitar.</p>
+
+        <h2 id="accelerator">El Acelerador de Martillo</h2>
+        <p>La energía de impacto de un martillo en última instancia proviene de cuánto puede estirarse y almacenar tensión la sarta arriba de él — y cuánta longitud de sarta hay disponible para estirar depende enteramente de qué tan profundo está el punto de pega. En un punto de pega somero, simplemente no hay suficiente sarta arriba para almacenar mucha tensión, así que el propio impacto del martillo termina más débil justo cuando se necesita un golpe fuerte. Un <strong>acelerador de martillo</strong>, corrido justo arriba o abajo del martillo mismo, resuelve esto almacenando energía adicional independiente del estiramiento de la sarta — típicamente mediante una cámara de gas comprimible o de resorte — y liberándola en el mismo instante en que dispara el martillo, restaurando un impacto fuerte sin importar cuánta longitud de sarta esté realmente disponible arriba del punto de pega.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Disparo prematuro</strong> bajo cargas normales de perforación, armando y liberando el impacto del martillo cuando en realidad nada estaba pegado en el fondo — una carga de choque innecesaria sobre el resto de la sarta.</li>
+          <li><strong>Falla en disparar</strong> cuando realmente se necesita, casi siempre por una sección de medición hidráulica desgastada o contaminada que ya no retrasa y libera correctamente bajo la tensión aplicada.</li>
+          <li><strong>Desgaste de estrías</strong> en la sección antirrotación, dejando gradualmente que las caras del martillo y el yunque se desalineen y pierdan algo de la efectividad del impacto.</li>
+          <li><strong>Fatiga en las conexiones</strong> arriba y abajo del martillo por ciclos repetidos de martilleo — martillar es una operación diseñada con límites reales, no algo para repetir indefinidamente sin considerar la fatiga acumulada en la sarta que carga el impacto.</li>
+        </ul>
+
+        <h2 id="vs-safety-joint">Martillo Hidráulico vs. Junta de Seguridad</h2>
+        <p>Ambas herramientas se corren anticipando que una sarta se pegue, que es donde empieza la confusión, pero resuelven el problema en extremos opuestos. Un martillo hidráulico es una herramienta de recuperación — está ahí para intentar activamente romper la sección pegada mediante impacto, usada mientras la cuadrilla todavía intenta salvar toda la sarta. Una junta de seguridad (inglés: safety joint) es una herramienta de concesión — está ahí para que, si la sección pegada no puede liberarse, lo que esté arriba de la junta todavía pueda soltarse y recuperarse de forma limpia, aceptando la pérdida de lo que quede abajo. Una sarta de pesca o de perforación bien diseñada a menudo lleva ambas: el martillo para intentar liberar primero, la junta de seguridad como el respaldo planeado si el martillo no funciona.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#up-down">Ascendente vs. Descendente</a>
+          <a href="#accelerator">Acelerador de Martillo</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-safety-joint">vs. Junta de Seguridad</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Las cargas de viaje, clasificaciones de impacto, y el comportamiento de medición varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/equipment/safety-joint" class="card-link">→ Safety Joint (inglés)</a><br><br>
+          <a href="/pillars/stuck-pipe-and-fishing-operations" class="card-link">→ Stuck Pipe &amp; Fishing Operations (inglés)</a><br><br>
+          <a href="/es/equipment/reversing-tool" class="card-link">→ Herramienta de Reversa</a><br><br>
+          <a href="/es/equipment/drill-string" class="card-link">→ La Sarta de Perforación</a><br><br>
+          <a href="/es/blog/drilling-jars-explained" class="card-link">→ Martillos de Perforación Explicados (Ciclo de Armado y Disparo)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

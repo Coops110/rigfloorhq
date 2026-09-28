@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import Stabilizer3D from '../../components/Stabilizer3D.astro';
+
+const faq = [
+  {
+    q: 'What does a stabilizer do?',
+    a: "A stabilizer keeps the bottom hole assembly centered in the wellbore. Its blades run at full hole gauge, so instead of the BHA hanging off to one side of an oversize hole under gravity, it's held roughly on the wellbore's centerline. That controls how the assembly bends under compressive load, which is what actually determines whether the well holds its planned trajectory or drifts.",
+  },
+  {
+    q: 'What is the difference between string, near-bit, and roller-reamer stabilizers?',
+    a: "It's placement and blade type, not a different function. A near-bit stabilizer sits directly above the bit and has the largest single effect on build or drop tendency, since it controls the very first inches of side force the bit sees. A string stabilizer sits further up the BHA, typically above the drill collars, controlling the assembly's overall stiffness and where it contacts the wall further from the bit. A roller-reamer stabilizer replaces fixed blades with rotating cutting/friction-reducing rollers, cutting torque and wear in abrasive or directional-heavy sections at the cost of a more complex, more failure-prone tool than a fixed-blade design.",
+  },
+  {
+    q: 'Straight blade or spiral blade — does it matter?',
+    a: "Both hold the same full-gauge OD; the difference is how fluid moves past the tool. A straight-blade stabilizer has less flow area around it and can pack off faster in poor hole-cleaning conditions. A spiral-blade stabilizer's helical blades leave a wider flow channel around the body, cutting annular pressure loss and bit-balling risk at that point in the string — the standard reason spiral blades are the default choice unless a specific job calls for the simpler straight design.",
+  },
+  {
+    q: 'What causes a stabilizer to fail?',
+    a: 'Blade wear from abrasive formations is the routine failure, gradually reducing the OD until the tool no longer actually holds full gauge and stops doing its job even though it\'s still in the string. Blade breakage happens under high side loads in a severe dogleg or a stuck-pipe event. On a roller-reamer, the rollers themselves can seize or lose their bearings, at which point they behave like a worn fixed blade instead of the low-friction rolling contact they were run for.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Stabilizer: String, Near-Bit & Roller-Reamer Types Explained"
+  description="What a drill string stabilizer does, string vs. near-bit vs. roller-reamer placement, straight vs. spiral blade design, failure modes, and how it differs from an under-reamer — with an interactive 3D model."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Stabilizer', href: '/equipment/stabilizer' }]}
+  lang="en"
+  alternateHref="/es/equipment/stabilizer"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/equipment/stabilizer" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Stabilizer</h1>
+    <p class="page-hero-sub">A full-gauge BHA sub with hardfaced blades that hold the string on the wellbore's centerline, shaping how it bends and where it builds or drops angle.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <Stabilizer3D />
+      <div class="prose">
+        <h2 id="what-it-is">What a Stabilizer Is</h2>
+        <p>A stabilizer is a sub built into the <a href="/equipment/drill-string">bottom hole assembly (BHA)</a> with blades machined or welded at full hole gauge, running the length of its body. Unlike a bit or an <a href="/equipment/under-reamer">under-reamer</a>, it doesn't cut new hole — its blades ride against the wall the well is already drilled to, holding that section of the assembly centered rather than letting it sag or bow to one side under its own weight and compressive load.</p>
+        <p>Where a stabilizer sits, and how many are run in a given assembly, is one of the primary levers directional drillers use to control build, hold, or drop tendency — the same BHA with a stabilizer moved a few feet, or removed altogether, can behave completely differently downhole.</p>
+
+        <h2 id="placement-types">String, Near-Bit &amp; Roller-Reamer Placement</h2>
+        <p>The three names describe where a stabilizer sits and what its blades are built from, not three different jobs:</p>
+        <ul>
+          <li><strong>Near-bit stabilizer.</strong> Made up directly above the bit, sometimes as an integral part of the bit sub itself. It has the largest single effect on build or drop tendency in the assembly, since it sets the side force the bit sees in its very first inches of contact with the formation.</li>
+          <li><strong>String stabilizer.</strong> Placed further up the BHA, typically above the drill collars, shaping the assembly's overall stiffness and where it makes secondary contact with the wall further from the bit. Multiple string stabilizers at calculated spacing is how a packed-hole assembly holds a near-straight trajectory, or how a pendulum assembly is deliberately left without one to let gravity drop angle.</li>
+          <li><strong>Roller-reamer stabilizer.</strong> A placement-independent variant — it can be run near-bit or further up the string — that replaces fixed blades with rotating rollers. The rollers reduce torque and wear against the wall in abrasive or highly deviated sections, at the cost of a mechanically more complex tool with more that can go wrong than a fixed blade.</li>
+        </ul>
+
+        <h2 id="blade-design">Straight vs. Spiral Blade</h2>
+        <p>Both blade patterns hold the same full-gauge OD; what differs is the flow path fluid takes around the tool. A <strong>straight-blade</strong> stabilizer runs its blades parallel to the tool's axis, leaving less annular flow area at that point in the string and a higher risk of packing off in poor hole-cleaning conditions. A <strong>spiral-blade</strong> stabilizer runs its blades on a helical path along the body — the design modeled here — leaving a wider effective flow channel around the tool, which cuts annular pressure loss and reduces bit-balling risk. Spiral blades are the default choice on most modern BHAs unless a specific job calls for the mechanical simplicity of a straight design.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Blade wear</strong> from abrasive formations, gradually reducing the effective OD until the tool no longer holds true full gauge — a slow failure that shows up as trajectory drifting off plan rather than a sudden event.</li>
+          <li><strong>Blade breakage</strong> under high side loads, most often in a severe dogleg or during a stuck-pipe recovery attempt where the string is worked hard against the wall.</li>
+          <li><strong>Roller seizure</strong> on a roller-reamer variant, where a failed bearing locks the roller in place — at that point it behaves like a badly worn fixed blade rather than the low-friction rolling tool it was run to be.</li>
+          <li><strong>Undergauge hole left behind</strong> by a worn stabilizer, which can then cause a later, correctly-gauged tool to hang up trying to pass through the same section.</li>
+        </ul>
+
+        <h2 id="vs-under-reamer">Stabilizer vs. Under-Reamer</h2>
+        <p>Both tools run at full gauge in the BHA, which is where they get confused. A stabilizer centers the string in a hole that's already the diameter it's going to be — it does not cut, and its blade OD is fixed from the day it's made up. An <a href="/equipment/under-reamer">under-reamer</a> actively enlarges the wellbore, folding its arms to pass a restriction and then cutting a hole wider than that restriction once clear of it. A roller-reamer stabilizer sits closest to the line between the two, since its rollers can lightly work the hole wall, but it isn't built to remove meaningful volume the way an under-reamer's cutting structure is.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#placement-types">String / Near-Bit / Roller-Reamer</a>
+          <a href="#blade-design">Straight vs. Spiral Blade</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-under-reamer">vs. Under-Reamer</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Blade gauge tolerances and spacing recommendations vary by manufacturer, hole size, and directional program — always confirm against the actual tool's spec sheet and the well's directional plan before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/under-reamer" class="card-link">→ Under-Reamer</a><br><br>
+          <a href="/equipment/drill-string" class="card-link">→ The Drill String</a><br><br>
+          <a href="/equipment/mwd-tool" class="card-link">→ MWD Tool</a><br><br>
+          <a href="/drilling/directional" class="card-link">→ Directional Drilling</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

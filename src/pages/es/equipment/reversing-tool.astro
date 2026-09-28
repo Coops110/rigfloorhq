@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ReversingTool3D from '../../../components/ReversingTool3D.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa una herramienta de reversa?',
+    a: 'Una herramienta de reversa abre un juego de puertos en la sarta de trabajo que permiten circular fluido por el anular y de regreso por dentro de la sarta — lo contrario de la circulación normal. Se corre donde sea que escombros, chatarra, o un pez liberado necesite recogerse y subirse a superficie por dentro de la tubería en lugar de dejarse caer o empujarse más profundo por la circulación convencional bajando por la tubería.',
+  },
+  {
+    q: '¿En qué se diferencia la circulación inversa de la circulación normal?',
+    a: 'La circulación normal bombea fluido hacia abajo por la sarta de perforación, hacia afuera por la barrena o herramienta, y de regreso por el anular — la trayectoria estándar para enfriar la barrena y subir los recortes a superficie. La circulación inversa invierte eso: el fluido baja por el anular y regresa por dentro de la sarta. Es la dirección preferida cada vez que algo necesita levantarse y capturarse dentro de la tubería en lugar de lavarse por un anular abierto, ya que los escombros que suben por la sarta pueden atraparse en superficie de forma mucho más confiable que los que viajan por un anular abierto.',
+  },
+  {
+    q: '¿Cómo se activa una herramienta de reversa?',
+    a: 'La mayoría de los diseños usa una camisa deslizante interna, movida al dejar caer una bola sobre un asiento y aplicar presión de bombeo, o mediante una secuencia específica de peso aplicado y liberado desde superficie. Una vez desplazada, la camisa abre los puertos entre el anular y el interior de la sarta; una segunda secuencia, o un perfil distinto en el mismo desplazamiento, los cierra de nuevo para que la herramienta pueda volver a circulación normal o sacarse sin dejar los puertos abiertos.',
+  },
+  {
+    q: '¿Qué causa que falle una herramienta de reversa?',
+    a: 'Los puertos que no abren dejan a la cuadrilla sin poder circular en reversa, casi siempre por escombros alrededor de la camisa deslizante o un perfil de accionamiento desgastado que la bola o dardo de asentamiento no logra enganchar bien. Los puertos que no cierran de nuevo son el problema inverso y a menudo peor, ya que la circulación normal no puede restablecerse por completo con la herramienta derivando fluido por los puertos abiertos. La erosión alrededor de las aberturas de los puertos es la falla rutinaria de desgaste en trabajos que circulan en reversa chatarra o recortes abrasivos repetidamente.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Herramienta de Reversa: Cómo la Circulación Inversa Recupera Chatarra y Escombros"
+  description="Qué es una herramienta de reversa, en qué se diferencia la circulación inversa de la normal, accionamiento de puertos, fallas comunes, y en qué se diferencia de un sub flotador — con un modelo 3D interactivo."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Herramienta de Reversa', href: '/es/equipment/reversing-tool' }]}
+  lang="es"
+  alternateHref="/equipment/reversing-tool"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/reversing-tool" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Herramienta de <span>Reversa</span></h1>
+    <p class="page-hero-sub">Un sub con puertos que invierte la dirección de circulación a la orden — fluido baja por el anular, regresa por la sarta — para subir chatarra y escombros a superficie por dentro de la tubería en lugar de dejarlos en el anular abierto.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ReversingTool3D />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es una Herramienta de Reversa</h2>
+        <p>Una herramienta de reversa es un sub integrado en una sarta de trabajo con un anillo de puertos a través de su cuerpo y una camisa deslizante interna que controla si esos puertos están abiertos o cerrados. Cerrada, la herramienta pasa fluido con normalidad, igual que cualquier otro tramo de tubería. Abierta, los puertos conectan el anular directamente con el interior de la sarta, permitiendo que el fluido — y lo que esté cargando — se bombee por el anular y regrese por dentro de la tubería en lugar de bajar por ella.</p>
+        <p>Esa inversión es el propósito completo de la herramienta. Típicamente se corre como parte de una <a href="/pillars/stuck-pipe-and-fishing-operations">sarta de pesca (inglés)</a> o un ensamblaje de recuperación de chatarra, donde el trabajo consiste en recoger material del fondo o del anular y llevarlo a superficie capturado dentro de la tubería, en lugar de empujarlo más profundo o dejarlo suelto en un anular abierto.</p>
+
+        <h2 id="reverse-vs-normal">Circulación Inversa vs. Normal</h2>
+        <p>La circulación normal corre fluido hacia abajo por la sarta de perforación, hacia afuera por la barrena o herramienta en el fondo, y de regreso por el anular llevando recortes a las zarandas — la trayectoria estándar para prácticamente toda la perforación rutinaria. La circulación inversa corre en sentido contrario: el fluido baja por el anular y regresa por dentro de la sarta. La razón para preferirla es la captura — los escombros que viajan por un anular abierto pueden asentarse, quedar atrapados en un washout o una sección rugosa del hoyo, o simplemente no llegar del todo a superficie, mientras que los escombros que suben por dentro de la sarta quedan confinados todo el camino y se recuperan de forma mucho más confiable.</p>
+
+        <h2 id="activation">Cómo Se Activan los Puertos</h2>
+        <p>La mayoría de las herramientas de reversa usa una camisa deslizante interna, movida al dejar caer una bola o dardo sobre un asiento integrado en la herramienta y aplicar presión de bombeo, o mediante una secuencia definida de peso aplicado y liberado desde superficie. Una vez que la camisa se desplaza, los puertos entre el anular y el interior de la sarta se abren, y la sarta puede circularse en reversa. Una segunda secuencia distinta — a veces un perfil de asentamiento diferente, a veces una inversión de la misma firma de peso o presión — desplaza la camisa de vuelta y cierra los puertos, restableciendo la circulación normal antes de que la herramienta se vuelva a usar o se saque del pozo.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Los puertos no abren</strong>, casi siempre por escombros compactados alrededor de la camisa deslizante o un perfil de accionamiento desgastado que la bola o dardo de asentamiento no logra enganchar bien — dejando a la cuadrilla sin ninguna capacidad de circulación en reversa.</li>
+          <li><strong>Los puertos no cierran</strong> después del uso, una falla más grave ya que deja la herramienta derivando fluido por los puertos abiertos y la circulación normal no puede restablecerse por completo sin sacar la sarta.</li>
+          <li><strong>Erosión en las aberturas de los puertos</strong> en trabajos que circulan en reversa chatarra o recortes abrasivos repetidamente, agrandando gradualmente los puertos y reduciendo qué tan limpio sella la herramienta una vez cerrada.</li>
+          <li><strong>Camisa atascada a medio recorrido</strong>, dejando los puertos parcialmente abiertos — en algunos sentidos peor que estar totalmente abierta o totalmente cerrada, ya que el comportamiento del flujo en ese punto se vuelve impredecible.</li>
+        </ul>
+
+        <h2 id="vs-float-sub">Herramienta de Reversa vs. Sub Flotador</h2>
+        <p>Ambas herramientas controlan en qué dirección se permite mover el fluido por la sarta, que es todo lo que tienen en común. Un sub flotador (inglés: float sub) es una válvula de retención de un solo sentido — su único trabajo es evitar que el fluido regrese por la sarta una vez que las bombas se apagan, y no tiene ningún modo donde el flujo en reversa a través de él sea intencional. Una herramienta de reversa es el control opuesto: abre deliberadamente un camino para que el fluido se mueva en el sentido "equivocado", a la orden, específicamente para que puedan subirse y sacarse escombros por la sarta. Si el trabajo necesita detener un retroflujo no deseado, corresponde un sub flotador. Si el trabajo necesita crear deliberadamente flujo en reversa para recuperar algo, corresponde una herramienta de reversa.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#reverse-vs-normal">Reversa vs. Normal</a>
+          <a href="#activation">Activación de Puertos</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-float-sub">vs. Sub Flotador</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Las secuencias de activación y las clasificaciones de puertos varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/hydraulic-jar" class="card-link">→ Martillo Hidráulico</a><br><br>
+          <a href="/equipment/float-sub" class="card-link">→ Float Sub (inglés)</a><br><br>
+          <a href="/equipment/safety-joint" class="card-link">→ Safety Joint (inglés)</a><br><br>
+          <a href="/es/equipment/drill-string" class="card-link">→ La Sarta de Perforación</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

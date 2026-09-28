@@ -158,6 +158,57 @@ $topics = @(
     @{ e = 'FREE, NO SIGNUP'; h = 'Type into any box. Every other unit updates instantly.'; b = $null; f = 'rigfloorhq.com'; a = $white }
   ) },
 
+  # ── HOOK-REBUILD CALCULATOR RECORDINGS (12-15) ───────────────
+  # Frame1 is no longer a topic-lead-in sentence -- retention data showed
+  # viewers bailing in the first 0-3 seconds, diagnosed as a hook problem.
+  # Frame1 now shows the actual number/payoff itself (bold, short), matching
+  # the exact spoken hook line, which now plays as real audio here instead
+  # of the old 2s of silence (see make-tiktok-recordings.py, 2026-09-24).
+  @{ id = '12-ecd'; frames = @(
+    @{ e = "WHILE YOU'RE CIRCULATING"; h = '12.00 -> 12.41 PPG'; b = $null; f = $null; a = $ember },
+    @{ e = 'BEFORE YOU USE IT'; h = 'Learning tool only.'; b = 'Reference tool, not an operational authority. Real ECD decisions belong to the mud engineer and certified well control supervisor.'; f = $null; a = $danger; w = $true },
+    @{ e = 'FREE, NO SIGNUP'; h = 'Free ECD calculator. No login.'; b = $null; f = 'rigfloorhq.com'; a = $white }
+  ) },
+  @{ id = '13-gas-migration'; frames = @(
+    @{ e = 'SHUT-IN WELL'; h = '50 PSI/HR. NO PUMPS RUNNING.'; b = $null; f = $null; a = $ember },
+    @{ e = 'BEFORE YOU USE IT'; h = 'Learning tool only.'; b = "Reference only. Run the volumetric method under your company's approved well control procedure."; f = $null; a = $danger; w = $true },
+    @{ e = 'FREE, NO SIGNUP'; h = 'Free gas migration calculator. No login.'; b = $null; f = 'rigfloorhq.com'; a = $white }
+  ) },
+  @{ id = '14-buoyancy'; frames = @(
+    @{ e = 'SAME STRING, SAME MUD'; h = '16.52 vs 9.30 LB/FT'; b = $null; f = $null; a = $ember },
+    @{ e = 'BEFORE YOU USE IT'; h = 'Learning tool only.'; b = 'Reference only. Use actual pipe OD and ID from the tally book, and confirmed fluid weights, for a real calculation.'; f = $null; a = $danger; w = $true },
+    @{ e = 'FREE, NO SIGNUP'; h = 'Free buoyancy calculator. No login.'; b = $null; f = 'rigfloorhq.com'; a = $white }
+  ) },
+  @{ id = '15-riser-margin'; frames = @(
+    @{ e = 'IF THE RISER GOES'; h = 'MARGIN: 1.85 PPG'; b = $null; f = $null; a = $ember },
+    @{ e = 'BEFORE YOU USE IT'; h = 'Learning tool only.'; b = "Reference only. Riser margin is one input to your well's kick tolerance and shut-in procedure, decided by your drilling program."; f = $null; a = $danger; w = $true },
+    @{ e = 'FREE, NO SIGNUP'; h = 'Free riser margin calculator. No login.'; b = $null; f = 'rigfloorhq.com'; a = $white }
+  ) },
+
+  # ── BATCH 16-19: bullheading, pipe pull margin, bit torque, lag/volume ──
+  # Same hook-first shape as 12-15: frame1 shows the real number swing
+  # itself, spoken as its own audio clip, not a topic lead-in.
+  @{ id = '16-bullheading'; frames = @(
+    @{ e = 'AS KILL FLUID GOES IN'; h = '2,050 -> 1,738 PSI'; b = $null; f = $null; a = $ember },
+    @{ e = 'BEFORE YOU USE IT'; h = 'Learning tool only.'; b = "Reference tool, not an operational authority. A real bullhead job runs under your company's approved well-kill procedure, with engineering sign-off."; f = $null; a = $danger; w = $true },
+    @{ e = 'FREE, NO SIGNUP'; h = 'Free bullheading calculator. No login.'; b = $null; f = 'rigfloorhq.com'; a = $white }
+  ) },
+  @{ id = '17-pipe-pull-margin'; frames = @(
+    @{ e = 'WET PIPE vs DRY PIPE'; h = '441.9 -> 1,830.0 FT'; b = $null; f = $null; a = $ember },
+    @{ e = 'BEFORE YOU USE IT'; h = 'Learning tool only.'; b = "Reference tool, not an operational authority. Actual swab margin depends on trip speed and gel strength too -- use your company's approved trip sheet."; f = $null; a = $danger; w = $true },
+    @{ e = 'FREE, NO SIGNUP'; h = 'Free pipe pull margin calculator. No login.'; b = $null; f = 'rigfloorhq.com'; a = $white }
+  ) },
+  @{ id = '18-bit-torque'; frames = @(
+    @{ e = "MAKE-UP TORQUE ISN'T A FEEL"; h = '18,000 -> 23,500 FT-LB'; b = $null; f = $null; a = $ember },
+    @{ e = 'BEFORE YOU USE IT'; h = 'Learning tool only.'; b = "Reference tool, not an operational authority. Always check the specific bit's own spec sheet -- thread condition and compound shift the real number."; f = $null; a = $danger; w = $true },
+    @{ e = 'FREE, NO SIGNUP'; h = 'Free bit torque chart. No login.'; b = $null; f = 'rigfloorhq.com'; a = $white }
+  ) },
+  @{ id = '19-lag-and-volume'; frames = @(
+    @{ e = 'SAME PUMP, TWO DIFFERENT LAGS'; h = '37.0 -> 96.6 MIN'; b = $null; f = $null; a = $ember },
+    @{ e = 'BEFORE YOU USE IT'; h = 'Learning tool only.'; b = 'Reference tool, not an operational authority. Measure pump output against your actual equipment -- a worn pump throws off every number below it.'; f = $null; a = $danger; w = $true },
+    @{ e = 'FREE, NO SIGNUP'; h = 'Free lag and volume calculator. No login.'; b = $null; f = 'rigfloorhq.com'; a = $white }
+  ) },
+
   # ── ANIMATED DIAGRAM VIDEOS ──────────────────────────────────
   # Same hook/insight/close bookend shape as the informational 01-05
   # videos (no "before you use it" warning -- these aren't interactive

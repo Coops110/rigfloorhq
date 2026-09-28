@@ -1,0 +1,236 @@
+---
+// Pilot interactive 3D viewer — poster-image-first, drag-to-rotate only, no auto-spin.
+// Geometry is procedurally generated (primitives only, no downloaded mesh/model file),
+// built from generic hydraulic drilling jar anatomy: a long slender mandrel, a splined
+// mid-body section (keeps the hammer from rotating relative to the anvil), a hammer
+// collar, and top/bottom subs. Not modeled on any specific manufacturer's product.
+---
+<div class="tool3d-wrap" role="img" aria-label="Interactive 3D model of a generic hydraulic drilling jar — drag to rotate">
+  <div class="tool3d-poster" id="tool3d-poster">
+    <svg viewBox="0 0 200 200" class="tool3d-poster-icon" aria-hidden="true">
+      <rect x="90" y="10" width="20" height="55" rx="3" fill="#5a6470"/>
+      <rect x="82" y="65" width="36" height="70" rx="4" fill="#1a1c1e"/>
+      <rect x="86" y="78" width="28" height="8" fill="#3a4148"/>
+      <rect x="86" y="94" width="28" height="8" fill="#3a4148"/>
+      <rect x="86" y="110" width="28" height="8" fill="#3a4148"/>
+      <rect x="90" y="135" width="20" height="55" rx="3" fill="#5a6470"/>
+    </svg>
+    <div class="tool3d-poster-label">Tap to view 3D model — drag to rotate</div>
+  </div>
+  <canvas id="tool3d-canvas" class="tool3d-canvas" aria-hidden="true"></canvas>
+  <button type="button" class="tool3d-reset" id="tool3d-reset">⟲ Reset View</button>
+  <div class="tool3d-fallback" id="tool3d-fallback" hidden>
+    3D preview isn't available in this browser — the diagram above and the write-up below cover the same detail.
+  </div>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.169.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.169.0/examples/jsm/"
+  }
+}
+</script>
+
+<style>
+  .tool3d-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    max-height: 520px;
+    min-height: 340px;
+    background: radial-gradient(ellipse at 50% 45%, #333c45 0%, #1c2126 45%, #0e1113 100%);
+    border: 1px solid var(--iron, #2a2f35);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: grab;
+  }
+  .tool3d-wrap:active { cursor: grabbing; }
+  .tool3d-poster {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 14px;
+    background: radial-gradient(circle at 50% 40%, #23282d 0%, #14171a 80%);
+  }
+  .tool3d-poster-icon { width: 96px; height: 96px; }
+  .tool3d-poster-label {
+    color: #9aa4ad; font-size: 0.85rem; letter-spacing: 0.02em;
+  }
+  .tool3d-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: none; }
+  .tool3d-reset {
+    position: absolute; bottom: 14px; right: 14px; z-index: 2; display: none;
+    padding: 6px 14px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em;
+    color: #e8a020; background: rgba(14, 17, 19, 0.72); border: 1px solid rgba(232, 160, 32, 0.4);
+    border-radius: 999px; cursor: pointer;
+  }
+  .tool3d-reset:hover { background: rgba(14, 17, 19, 0.9); border-color: #e8a020; }
+  .tool3d-fallback {
+    position: absolute; inset: 0; display: none; align-items: center; justify-content: center;
+    padding: 24px; text-align: center; color: #9aa4ad; font-size: 0.9rem;
+  }
+</style>
+
+<script is:inline>
+  const wrap = document.querySelector('.tool3d-wrap');
+  const poster = document.getElementById('tool3d-poster');
+  const canvas = document.getElementById('tool3d-canvas');
+  const fallback = document.getElementById('tool3d-fallback');
+  const resetBtn = document.getElementById('tool3d-reset');
+  if (!wrap || !poster || !canvas || !fallback || !resetBtn) throw new Error('HydraulicJar3D: expected elements missing');
+
+  let started = false;
+
+  async function start() {
+    if (started) return;
+    started = true;
+
+    const probe = document.createElement('canvas');
+    const hasWebGL = !!(probe.getContext('webgl') || probe.getContext('experimental-webgl'));
+    if (!hasWebGL) {
+      poster.style.display = 'none';
+      fallback.style.display = 'flex';
+      return;
+    }
+
+    const THREE = await import('three');
+    const { TrackballControls } = await import('three/addons/controls/TrackballControls.js');
+    const { RoomEnvironment } = await import('three/addons/environments/RoomEnvironment.js');
+
+    poster.style.display = 'none';
+    canvas.style.display = 'block';
+    resetBtn.style.display = 'block';
+
+    const scene = new THREE.Scene();
+    scene.background = null;
+
+    // Jars run long and slender — pulled back further than a compact sub
+    // like the bridge plug or packer so the full length fits in frame.
+    const camera = new THREE.PerspectiveCamera(38, wrap.clientWidth / wrap.clientHeight, 0.1, 100);
+    camera.position.set(6.4, 1.92, 6.4);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(wrap.clientWidth, wrap.clientHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.25;
+
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+    const key = new THREE.DirectionalLight(0xfff4e6, 3.4);
+    key.position.set(3, 4.5, 2.5);
+    const fill = new THREE.DirectionalLight(0x9ecbff, 1.1);
+    fill.position.set(-3.5, 1.2, 2);
+    const rim = new THREE.DirectionalLight(0xffffff, 2.4);
+    rim.position.set(-1, 2.5, -4);
+    const kicker = new THREE.PointLight(0xffffff, 1.4, 12);
+    kicker.position.set(2, -0.5, 3);
+    const ambient = new THREE.HemisphereLight(0x6b7a8c, 0x14100c, 0.9);
+    scene.add(key, fill, rim, kicker, ambient);
+
+    // --- Generic hydraulic drilling jar, built from primitives ---
+    // Anatomy per generic industry reference: slender top mandrel sliding
+    // into a splined mid-body (the anti-rotation spline that keeps the
+    // hammer and anvil faces aligned through the stroke), a hammer/anvil
+    // collar at the working section, and a bottom mandrel/sub. No branded
+    // geometry copied.
+    const group = new THREE.Group();
+
+    const metal = new THREE.MeshStandardMaterial({ color: 0x9aa4ae, metalness: 0.9, roughness: 0.28 });
+    const darkMetal = new THREE.MeshStandardMaterial({ color: 0x5b636b, metalness: 0.85, roughness: 0.35 });
+    const bodyMetal = new THREE.MeshStandardMaterial({ color: 0x8b333a, metalness: 0.6, roughness: 0.4 });
+    const splineMetal = new THREE.MeshStandardMaterial({ color: 0x2b2e31, metalness: 0.6, roughness: 0.5 });
+
+    const upperLen = 1.5;
+    const midLen = 1.5;
+    const lowerLen = 1.5;
+    const totalHalf = (upperLen + midLen + lowerLen) / 2;
+
+    // Upper slick mandrel (slides inside the housing during the stroke)
+    const upper = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, upperLen, 24), metal);
+    upper.position.y = totalHalf - upperLen / 2;
+    group.add(upper);
+
+    // Splined mid-body housing — the anti-rotation working section
+    const midY = totalHalf - upperLen - midLen / 2;
+    const midHousing = new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.26, midLen, 20), bodyMetal);
+    midHousing.position.y = midY;
+    group.add(midHousing);
+
+    // Spline ridges running the length of the mid-body, evenly spaced —
+    // reads as the fluted/splined section visible on a real jar housing.
+    const splineCount = 10;
+    for (let i = 0; i < splineCount; i++) {
+      const angle = (i / splineCount) * Math.PI * 2;
+      const ridge = new THREE.Mesh(new THREE.BoxGeometry(0.035, midLen * 0.88, 0.05), splineMetal);
+      ridge.position.set(Math.cos(angle) * 0.27, midY, Math.sin(angle) * 0.27);
+      ridge.rotation.y = -angle;
+      group.add(ridge);
+    }
+
+    // Hammer collar — the impact ring, slightly larger OD, banded top and
+    // bottom of the splined section where the strike actually lands.
+    const bandTop = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 0.16, 24), darkMetal);
+    bandTop.position.y = midY + midLen / 2;
+    group.add(bandTop);
+    const bandBottom = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 0.16, 24), darkMetal);
+    bandBottom.position.y = midY - midLen / 2;
+    group.add(bandBottom);
+
+    // Lower mandrel/sub
+    const lower = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, lowerLen, 24), metal);
+    lower.position.y = midY - midLen / 2 - lowerLen / 2;
+    group.add(lower);
+
+    // Top and bottom connection subs
+    const topSub = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.18, 0.3, 20), metal);
+    topSub.position.y = totalHalf + 0.15;
+    group.add(topSub);
+    const bottomSub = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.14, 0.3, 20), metal);
+    bottomSub.position.y = -totalHalf - 0.15;
+    group.add(bottomSub);
+
+    scene.add(group);
+
+    const controls = new TrackballControls(camera, renderer.domElement);
+    controls.noZoom = true;
+    controls.noPan = true;
+    controls.rotateSpeed = 3.2;
+    controls.staticMoving = false;
+    controls.dynamicDampingFactor = 0.12;
+    controls.target.set(0, 0, 0);
+    controls.update();
+    resetBtn.addEventListener('click', () => controls.reset());
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function onResize() {
+      const w = wrap.clientWidth, h = wrap.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+      controls.handleResize();
+    }
+    window.addEventListener('resize', onResize);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+    void reduceMotion;
+  }
+
+  poster.addEventListener('click', start, { once: true });
+  const io = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        // Still requires a tap per the agreed UX spec.
+      }
+    }
+  }, { threshold: 0.4 });
+  io.observe(wrap);
+</script>

@@ -4,13 +4,20 @@ already-generated narration/captions and screen recordings.
 
 Unlike make-tiktok-videos.py's narrated-slideshow videos (01-05), these
 bookend a real screen recording:
-  frame1 (hook, ~2s) -> narrated+captioned recording -> frame2 (WARNING, ~3s,
+  frame1 (hook) -> narrated+captioned recording -> frame2 (WARNING, ~3s,
   never shortened) -> frame3 (close+domain, ~3s)
 per social/README.md's "Calculator screen recordings (06-08)" section.
 
+frame1's hook plays the actual hook-line audio the instant it appears (its
+duration follows however long that line takes to say) if <id>-hook.wav
+exists -- fixed 2026-09-24 after retention data showed viewers dropping off
+in the first 0-3 seconds, and this frame was previously silent dead air.
+Older videos with no -hook.wav fall back to HOOK_S of silence, unchanged.
+
 Expects, already in social/tiktok/:
   <id>-frame1.png / -frame2.png / -frame3.png   (make-tiktok-frames.ps1)
-  <id>.wav / <id>.srt                            (edge-tts narration + captions)
+  <id>-hook.wav                                  (edge-tts hook-line audio, optional)
+  <id>.wav / <id>.srt                            (edge-tts body narration + captions)
   _rec<NN>/*.webm                                 (Playwright screen recording)
 
 Requires: ffmpeg on PATH.
@@ -37,7 +44,7 @@ _spec.loader.exec_module(_mtv)
 verify_frame_rate = _mtv.verify_frame_rate
 srt_to_ass = _mtv.srt_to_ass
 
-HOOK_S = 2.0
+HOOK_S = 2.0  # fallback silent-hook duration, only used when no <id>-hook.wav exists
 WARNING_S = 3.0
 CLOSE_S = 3.0
 
@@ -48,6 +55,14 @@ VIDEOS = {
     "09": {"id": "09-mud-weight-converter", "rec_dir": "_rec09"},
     "10": {"id": "10-bop-ram-size", "rec_dir": "_rec10"},
     "11": {"id": "11-jackup-depth", "rec_dir": "_rec11"},
+    "12": {"id": "12-ecd", "rec_dir": "_rec12"},
+    "13": {"id": "13-gas-migration", "rec_dir": "_rec13"},
+    "14": {"id": "14-buoyancy", "rec_dir": "_rec14"},
+    "15": {"id": "15-riser-margin", "rec_dir": "_rec15"},
+    "16": {"id": "16-bullheading", "rec_dir": "_rec16"},
+    "17": {"id": "17-pipe-pull-margin", "rec_dir": "_rec17"},
+    "18": {"id": "18-bit-torque", "rec_dir": "_rec18"},
+    "19": {"id": "19-lag-and-volume", "rec_dir": "_rec19"},
 }
 
 
@@ -70,6 +85,9 @@ def build_video(vid: dict):
     if not (wav.exists() and srt.exists()):
         print(f"  SKIP {tag}: missing narration/captions -- run the narration step first")
         return
+    hook_wav = OUT / f"{tag}-hook.wav"
+    has_hook_audio = hook_wav.exists()
+    hook_dur = probe_duration(hook_wav) if has_hook_audio else HOOK_S
     rec_dir = OUT / vid["rec_dir"]
     # Playwright names each recording with a random hash, not a timestamp or
     # sequence number -- sorting alphabetically does NOT pick the most
@@ -108,16 +126,21 @@ def build_video(vid: dict):
         f"[v0][a0][v1][a1][v2][a2][v3][a3]concat=n=4:v=1:a=1[outv][outa]"
     )
 
-    print(f"  {tag}: assembling (hook {HOOK_S}s -> recording {mid_v_dur:.1f}s -> "
+    hook_tag = "spoken" if has_hook_audio else "silent"
+    print(f"  {tag}: assembling (hook {hook_dur:.2f}s [{hook_tag}] -> recording {mid_v_dur:.1f}s -> "
           f"warning {WARNING_S}s -> close {CLOSE_S}s)...")
+    hook_audio_input = (
+        ["-i", hook_wav.name] if has_hook_audio
+        else ["-f", "lavfi", "-t", str(hook_dur), "-i", "anullsrc=r=44100:cl=stereo"]
+    )
     subprocess.run([
         "ffmpeg", "-y",
-        "-loop", "1", "-t", str(HOOK_S), "-i", f1.name,
+        "-loop", "1", "-t", str(hook_dur), "-i", f1.name,
         "-i", rec.resolve().as_posix(),
         "-i", wav.name,
         "-loop", "1", "-t", str(WARNING_S), "-i", f2.name,
         "-loop", "1", "-t", str(CLOSE_S), "-i", f3.name,
-        "-f", "lavfi", "-t", str(HOOK_S), "-i", "anullsrc=r=44100:cl=stereo",
+        *hook_audio_input,
         "-f", "lavfi", "-t", str(WARNING_S), "-i", "anullsrc=r=44100:cl=stereo",
         "-f", "lavfi", "-t", str(CLOSE_S), "-i", "anullsrc=r=44100:cl=stereo",
         "-filter_complex", filter_complex,

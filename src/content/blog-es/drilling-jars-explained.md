@@ -53,7 +53,7 @@ Un impacto es una magnitud distinta. La misma energía almacenada, liberada en u
 
 **Armado.** El perforador aplica sobretensión por encima del peso propio de la sarta. El martillo permanece cerrado porque un retén — mecánico, hidráulico o combinado — lo sujeta. Mientras tanto la tubería por encima se estira. Miles de pies de acero bajo tensión son un resorte largo, y están almacenando energía real.
 
-**Disparo.** A una carga determinada, o tras purgar una sección hidráulica dosificadora, el retén se libera. La tubería estirada se contrae y lanza una sección de martillo contra un yunque. El impacto se transmite por la [sarta de perforación](/equipment/drill-string) hasta el punto de pega.
+**Disparo.** A una carga determinada, o tras purgar una sección hidráulica dosificadora, el retén se libera. La tubería estirada se contrae y lanza una sección de martillo contra un yunque. El impacto se transmite por la [sarta de perforación](/equipment/drill-string) hasta el punto de pega. Ver la [página de equipo del martillo hidráulico](/es/equipment/hydraulic-jar) para un modelo 3D interactivo del mandril estriado y la sección martillo/yunque por la que realmente pasa este ciclo.
 
 **Reinicio.** El martillo se vuelve a asentar para cerrarlo y el ciclo se repite. El martilleo es normalmente una secuencia repetida durante un periodo, no un intento único: los golpes repetidos aflojan una adherencia de una forma que uno solo no consigue.
 

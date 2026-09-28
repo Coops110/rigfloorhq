@@ -1,0 +1,224 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+// Mismos valores de referencia que la versión en inglés — verificados contra
+// ROP = Pies Perforados / Tiempo x 3600 antes de publicar esta página.
+const WOB_ROWS = [
+  { wob: 50, time: 60, ft: 0.6 },
+  { wob: 45, time: 68, ft: 0.55 },
+  { wob: 40, time: 73, ft: 0.55 },
+  { wob: 35, time: 75, ft: 0.45 },
+  { wob: 30, time: 82, ft: 0.5 },
+  { wob: 50, time: 62, ft: 0.6 },
+];
+
+const RPM_ROWS = [
+  { rpm: 140, time: 120 },
+  { rpm: 130, time: 110 },
+  { rpm: 120, time: 100 },
+  { rpm: 110, time: 108 },
+  { rpm: 100, time: 118 },
+  { rpm: 140, time: 124 },
+];
+
+const faq = [
+  {
+    q: '¿Qué es exactamente una prueba de drill-off (destete de peso)?',
+    a: 'Una prueba corta y deliberada que se corre mientras se perfora: se fija un peso conocido sobre la barrena y se cronometra cuánto tarda la sarta en "destetar" una cantidad fija de peso — 10,000 lb es el incremento común — de vuelta sobre la barrena mientras esta avanza, registrando los pies perforados en ese tiempo. Repetir esto en varios ajustes de peso sobre la barrena o de RPM da una imagen real, sobre el fondo, de cómo está respondiendo esta barrena específica en esta formación específica, en lugar de un rango recomendado genérico.',
+  },
+  {
+    q: '¿Por qué probar en más de un ajuste de peso sobre la barrena?',
+    a: 'Porque el ROP contra el peso sobre la barrena no es una línea recta para siempre. Hasta cierto punto, más peso corta más rápido; pasado ese punto, la barrena se satura de recortes más rápido de lo que puede limpiarlos (un fenómeno real llamado ahogamiento de la barrena) y agregar más peso deja de ayudar, o incluso empeora el ROP. Probar varios pasos de peso y comparar el ROP resultante es cómo se encuentra ese punto de verdad en una barrena y formación reales, en lugar de adivinarlo.',
+  },
+  {
+    q: '¿Aplica la misma lógica a la prueba rotativa (RPM)?',
+    a: 'Sí — el mecanismo es distinto pero la lectura es la misma. Más RPM generalmente corta más rápido hasta cierto punto, luego la vibración, el torque, o el desgaste de la barrena empiezan a jugar en contra y la ganancia de ROP por cada RPM agregado se reduce o se revierte. Correr el lado rotativo de esta hoja de trabajo de la misma forma que el lado de peso es cómo se encuentra ese techo específicamente para el eje de RPM.',
+  },
+  {
+    q: '¿Por qué la prueba rotativa usa "tiempo para perforar 1 pie" en vez de una columna de pies perforados?',
+    a: 'Es la misma fórmula con los pies perforados fijos en 1 ft en lugar de medidos en cada paso, lo cual es simplemente una forma más limpia de registrar una prueba puramente rotativa: mantener el peso constante, cambiar solo el RPM, y cronometrar cada pie. La matemática del ROP debajo es idéntica de cualquier forma — pies perforados dividido entre tiempo, convertido a pies por hora.',
+  },
+  {
+    q: '¿Puedo simplemente leer el óptimo directamente del número de ROP más alto?',
+    a: 'Solo como una señal aproximada, no como una determinación real. La forma correcta de leer una prueba de drill-off es graficar el ROP contra el peso sobre la barrena (o el RPM) a través de todos los pasos y ver la forma de la curva — el punto de ahogamiento es donde esa curva deja de subir, no necesariamente donde caiga el único número más alto de la tabla, especialmente con pocas lecturas. Esta hoja de trabajo marca el ROP más alto de cada tabla para que sea fácil de detectar, pero trátalo como punto de partida para esa gráfica, no como la respuesta final por sí sola.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Hoja de Trabajo de Prueba Drill-Off: Optimización de WOB y RPM"
+  description="Calculadora gratuita de prueba drill-off: registra lecturas de peso sobre la barrena y de rotación, y obtén la tasa de penetración (ROP) para cada paso, en vivo — el método de campo para hallar el WOB y RPM óptimos."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Prueba Drill-Off', href: '/es/calculators/drill-off-test' }]}
+  lang="es"
+  alternateHref="/calculators/drill-off-test"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/drill-off-test" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Hoja de Trabajo de Prueba <span>Drill-Off</span></h1>
+    <p class="page-hero-sub">Registra lecturas de peso sobre la barrena y de rotación de una prueba drill-off real y obtén la tasa de penetración para cada paso, en vivo — el método de campo para hallar el punto donde más WOB o RPM deja de ayudar.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">⚙ Optimización de Peso Sobre la Barrena (WOB)</div>
+          <div class="table-wrap">
+            <table id="wob-table">
+              <thead>
+                <tr><th>Paso</th><th>Peso de Barrena (Klbs)</th><th>Tiempo para Destetar 10K lb (seg)</th><th>Pies Perforados (ft)</th><th>ROP (ft/hr)</th></tr>
+              </thead>
+              <tbody>
+                {WOB_ROWS.map((r, i) => (
+                  <tr>
+                    <td>{i + 1}</td>
+                    <td><input type="number" class="row-in" id={`wob-wob-${i}`} value={r.wob} step="1" min="0"></td>
+                    <td><input type="number" class="row-in" id={`wob-time-${i}`} value={r.time} step="1" min="0"></td>
+                    <td><input type="number" class="row-in" id={`wob-ft-${i}`} value={r.ft} step="0.01" min="0"></td>
+                    <td class="rop-out" id={`wob-rop-${i}`}>—</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🔄 Optimización Rotativa (RPM)</div>
+          <div class="table-wrap">
+            <table id="rpm-table">
+              <thead>
+                <tr><th>Paso</th><th>RPM</th><th>Tiempo para Perforar 1 ft (seg)</th><th>ROP (ft/hr)</th></tr>
+              </thead>
+              <tbody>
+                {RPM_ROWS.map((r, i) => (
+                  <tr>
+                    <td>{i + 1}</td>
+                    <td><input type="number" class="row-in" id={`rpm-rpm-${i}`} value={r.rpm} step="1" min="0"></td>
+                    <td><input type="number" class="row-in" id={`rpm-time-${i}`} value={r.time} step="1" min="0"></td>
+                    <td class="rop-out" id={`rpm-rop-${i}`}>—</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Cómo leerlo.</strong> La fila resaltada en cada tabla es el paso con el ROP calculado más alto entre las lecturas ingresadas — un indicador de partida, no una determinación. La lectura real es la forma del ROP graficado contra el WOB (o el RPM) a través de todos los pasos: subir y luego aplanarse o caer es el punto de ahogamiento, y puede estar en cualquier parte del rango según la barrena y la formación, no necesariamente en el único número más alto registrado.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>La Fórmula Usada</h2>
+        <div class="formula-block">
+          <div class="formula-label">Tasa de Penetración</div>
+          <div class="formula-eq">ROP (ft/hr) = Pies Perforados (ft) ÷ Tiempo (seg) × 3600</div>
+          <div class="formula-note">La tabla rotativa mantiene los pies perforados fijos en 1 ft por paso, así que se reduce a ROP = 3600 ÷ Tiempo — la misma fórmula, solo que los pies perforados no son una variable en esa prueba.</div>
+        </div>
+
+        <h2 id="how-it-works">Corriendo la Prueba en el Piso</h2>
+        <p>Una prueba de drill-off es simple de correr y fácil de registrar mal, por lo que una hoja de trabajo limpia importa más de lo que parece. Para el lado del WOB: levanta del fondo, fija un peso conocido sobre la barrena, y cronometra cuánto tarda una cantidad fija de peso — 10,000 lb es el incremento común — en "destetarse" de vuelta sobre la barrena mientras la sarta avanza, registrando los pies hechos en ese tiempo. Repite en varios ajustes de WOB, idealmente cubriendo el rango en el que se espera que corra la barrena, no solo probando cada vez más alto.</p>
+        <p>El lado rotativo funciona igual con el RPM como variable: mantén el WOB constante, cambia solo el RPM entre pasos, y cronometra cada pie perforado. Cambiar más de una variable entre pasos es la forma más común en que una prueba de drill-off termina registrada de manera que después no se puede leer — mantén el WOB fijo mientras pruebas RPM, y el RPM fijo mientras pruebas WOB.</p>
+
+        <h2 id="where-this-fits">Dónde Encaja Esto</h2>
+        <p>WOB, RPM y ROP son tres de los parámetros que el perforador vigila continuamente desde <a href="/es/equipment/drill-string">la sarta de perforación</a> y su consola — esta hoja de trabajo es cómo una prueba deliberada de WOB/RPM sobre esos mismos números se convierte en un óptimo real en vez de una sensación. El WOB que este test está optimizando es exactamente la carga que la <a href="/es/calculators/bit-torque">conexión de la barrena</a> tiene que aguantar en el fondo, así que un WOB corrido más allá del rango probado aquí también empuja esa conexión más cerca de su límite.</p>
+        <p>Si las lecturas de esta prueba apuntan a desgaste de barrena en vez de un techo de WOB/RPM, la siguiente parada es calificar lo que realmente salió del pozo — ver la <a href="/es/calculators/iadc-dull-bit-grading">referencia de calificación de desgaste IADC</a>.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .row-in {
+    width: 100%;
+    min-width: 64px;
+    background: var(--steel);
+    border: 1px solid var(--iron);
+    color: var(--white);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 7px 9px;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .row-in:focus { border-color: var(--rust); }
+  .rop-out { font-family: var(--mono); font-weight: 700; color: var(--amber); white-space: nowrap; }
+  tr.best-row .rop-out { color: var(--white); background: rgba(232,160,32,0.14); }
+  tr.best-row td:first-child { color: var(--amber); }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  }
+
+  const WOB_COUNT = 6;
+  const RPM_COUNT = 6;
+
+  function calcWob() {
+    let bestIdx = -1, bestVal = -Infinity;
+    const values: number[] = [];
+    for (let i = 0; i < WOB_COUNT; i++) {
+      const time = num(`wob-time-${i}`);
+      const ft = num(`wob-ft-${i}`);
+      const rop = time > 0 ? (ft / time) * 3600 : 0;
+      values.push(rop);
+      const el = document.getElementById(`wob-rop-${i}`);
+      if (el) el.textContent = rop > 0 ? fmt(rop) + ' ft/hr' : '—';
+      if (rop > bestVal) { bestVal = rop; bestIdx = i; }
+    }
+    const table = document.getElementById('wob-table');
+    table?.querySelectorAll('tbody tr').forEach((tr, i) => tr.classList.toggle('best-row', i === bestIdx && values[i] > 0));
+  }
+
+  function calcRpm() {
+    let bestIdx = -1, bestVal = -Infinity;
+    const values: number[] = [];
+    for (let i = 0; i < RPM_COUNT; i++) {
+      const time = num(`rpm-time-${i}`);
+      const rop = time > 0 ? 3600 / time : 0;
+      values.push(rop);
+      const el = document.getElementById(`rpm-rop-${i}`);
+      if (el) el.textContent = rop > 0 ? fmt(rop) + ' ft/hr' : '—';
+      if (rop > bestVal) { bestVal = rop; bestIdx = i; }
+    }
+    const table = document.getElementById('rpm-table');
+    table?.querySelectorAll('tbody tr').forEach((tr, i) => tr.classList.toggle('best-row', i === bestIdx && values[i] > 0));
+  }
+
+  document.querySelectorAll('#wob-table .row-in').forEach((el) => el.addEventListener('input', calcWob));
+  document.querySelectorAll('#rpm-table .row-in').forEach((el) => el.addEventListener('input', calcRpm));
+  calcWob();
+  calcRpm();
+</script>
