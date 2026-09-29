@@ -77,14 +77,13 @@ export const LEGAL = {
   // controller is required; publishing a street address is not, though it does
   // strengthen the compliance position.
   address:
-    '483 Chaiyaphruek 3 Alley, Muang Pattaya, Bang Lamung District, Chon Buri 20150, Thailand',
+    'Unit 173637, PO Box 7169, Poole, BH15 9EL, United Kingdom',
   // Derived from SITE.email so the address in the privacy policy can never
   // drift from the one published elsewhere on the site.
   contactEmail: SITE.email,
-  // Operator is based in Thailand, so Thai law governs the terms. UK/EU data
-  // protection duties still apply to UK/EEA visitors regardless.
-  governingLaw: 'Thailand',
-  governingLawEs: 'Tailandia',
+  // Business and tax residency are UK-based, so UK law governs the terms.
+  governingLaw: 'United Kingdom',
+  governingLawEs: 'Reino Unido',
   // Must match GA4 → Admin → Data retention. Stating the actual figure is
   // better than "the period set on our property"; if you change it in GA,
   // change it here too.
