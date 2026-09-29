@@ -1,9 +1,15 @@
 ---
 // Pilot interactive 3D viewer — poster-image-first, drag-to-rotate only, no auto-spin.
 // Geometry is procedurally generated (primitives only, no downloaded mesh/model file),
-// built from generic reversing tool anatomy: a body sub with a ring of circulation/
-// reverse-out ports, an internal shifting-sleeve step visible at the cut of the top
-// sub, and a bottom sub. Not modeled on any specific manufacturer's product.
+// built from generic reversing/circulating-sub anatomy, checked against real spec
+// sheets and product photos of multi-opening circulation subs from oilfield tool
+// manufacturers (generic model names only, no branding/part numbers reproduced):
+// a long, slender body — real circulation subs run roughly 10-18x longer than their
+// OD, not a stubby 4:1 block — with just 2 large ports 180 degrees apart (spec
+// sheets consistently show 2 ports, not a dense ring of many small holes), a single
+// raised collar marking the internal shifting-sleeve section, and pin/box thread
+// ends that neck down narrower than the body. Not modeled on any specific
+// manufacturer's product.
 ---
 <div class="tool3d-wrap" role="img" aria-label="Interactive 3D model of a generic reversing tool — drag to rotate">
   <div class="tool3d-poster" id="tool3d-poster">
@@ -103,8 +109,11 @@
     const scene = new THREE.Scene();
     scene.background = null;
 
+    // Circulation subs run long and slender (real spec sheets: ~10-18x
+    // longer than their OD) — pulled back further than a compact sub like
+    // the crossover sub so the full length fits in frame.
     const camera = new THREE.PerspectiveCamera(38, wrap.clientWidth / wrap.clientHeight, 0.1, 100);
-    camera.position.set(4.4, 1.32, 4.4);
+    camera.position.set(6.6, 1.98, 6.6);
 
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -127,10 +136,12 @@
     const ambient = new THREE.HemisphereLight(0x6b7a8c, 0x14100c, 0.9);
     scene.add(key, fill, rim, kicker, ambient);
 
-    // --- Generic reversing tool, built from primitives ---
-    // Anatomy per generic industry reference: a body sub with a ring of
-    // circulation/reverse-out ports, a stepped internal-sleeve reveal cut
-    // into the top sub, and a bottom sub. No branded geometry copied.
+    // --- Generic reversing/circulating sub, built from primitives ---
+    // Anatomy confirmed against real multi-opening circulation sub spec
+    // sheets: one long slender body, 2 ports 180 degrees apart at the
+    // internal sleeve section (not a dense ring of many small holes), a
+    // single raised collar marking that section, and pin/box thread ends
+    // narrower than the body. No branded geometry copied.
     const group = new THREE.Group();
 
     const metal = new THREE.MeshStandardMaterial({ color: 0x9aa4ae, metalness: 0.9, roughness: 0.28 });
@@ -138,44 +149,44 @@
     const bodyMetal = new THREE.MeshStandardMaterial({ color: 0x8b333a, metalness: 0.6, roughness: 0.4 });
     const portMetal = new THREE.MeshStandardMaterial({ color: 0x14171a, metalness: 0.3, roughness: 0.7 });
 
-    const bodyHeight = 2.4;
+    const bodyRadius = 0.22;
+    const bodyHeight = 4.2;
 
-    // Main body
-    const body = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, bodyHeight, 28), bodyMetal);
+    // Main body — long and slender, matching real circulation-sub spec
+    // sheets (~10-18x longer than their OD).
+    const body = new THREE.Mesh(new THREE.CylinderGeometry(bodyRadius, bodyRadius, bodyHeight, 28), bodyMetal);
     group.add(body);
 
-    // Top sub, stepped down slightly to read as a separate connection
-    const topSub = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.26, 0.4, 24), metal);
-    topSub.position.y = bodyHeight / 2 + 0.2;
+    // Top sub — necks down to the exposed pin thread, narrower than the body
+    const subLen = 0.5;
+    const topSub = new THREE.Mesh(new THREE.CylinderGeometry(bodyRadius * 0.68, bodyRadius * 0.92, subLen, 24), metal);
+    topSub.position.y = bodyHeight / 2 + subLen / 2;
     group.add(topSub);
 
-    // Bottom sub
-    const bottomSub = new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.2, 0.4, 24), metal);
-    bottomSub.position.y = -bodyHeight / 2 - 0.2;
+    // Bottom sub — mirrored
+    const bottomSub = new THREE.Mesh(new THREE.CylinderGeometry(bodyRadius * 0.92, bodyRadius * 0.68, subLen, 24), metal);
+    bottomSub.position.y = -bodyHeight / 2 - subLen / 2;
     group.add(bottomSub);
 
-    // Two rings of circulation/reverse-out ports around the mid-body —
-    // small recessed cylinders standing in for the drilled port holes.
-    const ringYs = [0.25, -0.15];
-    const portsPerRing = 6;
-    ringYs.forEach((y) => {
-      for (let i = 0; i < portsPerRing; i++) {
-        const angle = (i / portsPerRing) * Math.PI * 2;
-        const port = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.12, 12), portMetal);
-        port.position.set(Math.cos(angle) * 0.3, y, Math.sin(angle) * 0.3);
-        port.rotation.z = Math.PI / 2;
-        port.rotation.y = -angle;
-        group.add(port);
-      }
-    });
+    // Two circulation/reverse-out ports, 180 degrees apart, at the internal
+    // shifting-sleeve section — matches real spec sheets (2 ports per size),
+    // not a dense ring of small holes.
+    // Offset by 45 degrees so one port faces the default camera azimuth
+    // directly, instead of both ports sitting edge-on and invisible.
+    const portRadius = bodyRadius * 0.36;
+    for (let i = 0; i < 2; i++) {
+      const angle = i * Math.PI + Math.PI / 4;
+      const port = new THREE.Mesh(new THREE.CylinderGeometry(portRadius, portRadius, bodyRadius * 0.9, 16), portMetal);
+      port.position.set(Math.cos(angle) * bodyRadius, 0, Math.sin(angle) * bodyRadius);
+      port.rotation.z = Math.PI / 2;
+      port.rotation.y = -angle;
+      group.add(port);
+    }
 
-    // Raised collar band marking the internal shifting-sleeve section
-    const collar = new THREE.Mesh(new THREE.CylinderGeometry(0.33, 0.33, 0.14, 28), darkMetal);
-    collar.position.y = 0.7;
+    // Single raised collar marking the internal shifting-sleeve section
+    const collar = new THREE.Mesh(new THREE.CylinderGeometry(bodyRadius * 1.18, bodyRadius * 1.18, 0.3, 28), darkMetal);
+    collar.position.y = 0;
     group.add(collar);
-    const collar2 = new THREE.Mesh(new THREE.CylinderGeometry(0.33, 0.33, 0.14, 28), darkMetal);
-    collar2.position.y = -0.65;
-    group.add(collar2);
 
     scene.add(group);
 
