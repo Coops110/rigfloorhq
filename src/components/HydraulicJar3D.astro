@@ -1,9 +1,15 @@
 ---
 // Pilot interactive 3D viewer — poster-image-first, drag-to-rotate only, no auto-spin.
 // Geometry is procedurally generated (primitives only, no downloaded mesh/model file),
-// built from generic hydraulic drilling jar anatomy: a long slender mandrel, a splined
-// mid-body section (keeps the hammer from rotating relative to the anvil), a hammer
-// collar, and top/bottom subs. Not modeled on any specific manufacturer's product.
+// built from generic hydraulic drilling jar anatomy, checked against real product photos
+// of double-acting hydraulic drilling jars from major oilfield equipment manufacturers
+// (searched via generic model names, not reproducing any specific manufacturer's paint
+// scheme, logo, or part number): a long, mostly constant-diameter slender body — the
+// spline/hammer/anvil mechanism lives inside the housing and is not visible from the
+// outside — with a couple of thin collar rings marking sub joints, and box/pin
+// connector subs at both ends that flare WIDER than the body before necking down to
+// the open thread bore (a standard rotary-shouldered connection, wider than the tube
+// body, same as any drill-string sub). Not modeled on any specific manufacturer's product.
 ---
 <div class="tool3d-wrap" role="img" aria-label="Interactive 3D model of a generic hydraulic drilling jar — drag to rotate">
   <div class="tool3d-poster" id="tool3d-poster">
@@ -131,65 +137,66 @@
     scene.add(key, fill, rim, kicker, ambient);
 
     // --- Generic hydraulic drilling jar, built from primitives ---
-    // Anatomy per generic industry reference: slender top mandrel sliding
-    // into a splined mid-body (the anti-rotation spline that keeps the
-    // hammer and anvil faces aligned through the stroke), a hammer/anvil
-    // collar at the working section, and a bottom mandrel/sub. No branded
-    // geometry copied.
+    // Anatomy confirmed against real double-acting hydraulic drilling jar
+    // product photos: one long, mostly constant-diameter body (the spline/
+    // hammer/anvil mechanism is sealed inside the housing and doesn't
+    // change the outer silhouette), a couple of thin collar rings marking
+    // where internal sub-assemblies join, and box/pin connector subs at
+    // both ends that flare WIDER than the body — a standard rotary-
+    // shouldered connection — before necking down to the open thread bore.
+    // No branded geometry copied.
     const group = new THREE.Group();
 
     const metal = new THREE.MeshStandardMaterial({ color: 0x9aa4ae, metalness: 0.9, roughness: 0.28 });
     const darkMetal = new THREE.MeshStandardMaterial({ color: 0x5b636b, metalness: 0.85, roughness: 0.35 });
-    const bodyMetal = new THREE.MeshStandardMaterial({ color: 0x8b333a, metalness: 0.6, roughness: 0.4 });
-    const splineMetal = new THREE.MeshStandardMaterial({ color: 0x2b2e31, metalness: 0.6, roughness: 0.5 });
+    const bodyMetal = new THREE.MeshStandardMaterial({ color: 0x3c5a72, metalness: 0.55, roughness: 0.4 });
 
-    const upperLen = 1.5;
-    const midLen = 1.5;
-    const lowerLen = 1.5;
+    const bodyRadius = 0.16;
+    const upperLen = 1.7;
+    const midLen = 1.0;
+    const lowerLen = 1.7;
     const totalHalf = (upperLen + midLen + lowerLen) / 2;
 
-    // Upper slick mandrel (slides inside the housing during the stroke)
-    const upper = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, upperLen, 24), metal);
+    // Upper mandrel — slides inside the housing during the stroke.
+    const upper = new THREE.Mesh(new THREE.CylinderGeometry(bodyRadius, bodyRadius, upperLen, 24), bodyMetal);
     upper.position.y = totalHalf - upperLen / 2;
     group.add(upper);
 
-    // Splined mid-body housing — the anti-rotation working section
+    // Mid working section (hammer/anvil + anti-rotation spline live inside
+    // this housing) — only marginally larger OD than the mandrel, matching
+    // real product photos where the jar reads as one continuous slender
+    // tube, not a dramatically fatter mid-body.
     const midY = totalHalf - upperLen - midLen / 2;
-    const midHousing = new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.26, midLen, 20), bodyMetal);
+    const midHousing = new THREE.Mesh(new THREE.CylinderGeometry(bodyRadius * 1.15, bodyRadius * 1.15, midLen, 24), bodyMetal);
     midHousing.position.y = midY;
     group.add(midHousing);
 
-    // Spline ridges running the length of the mid-body, evenly spaced —
-    // reads as the fluted/splined section visible on a real jar housing.
-    const splineCount = 10;
-    for (let i = 0; i < splineCount; i++) {
-      const angle = (i / splineCount) * Math.PI * 2;
-      const ridge = new THREE.Mesh(new THREE.BoxGeometry(0.035, midLen * 0.88, 0.05), splineMetal);
-      ridge.position.set(Math.cos(angle) * 0.27, midY, Math.sin(angle) * 0.27);
-      ridge.rotation.y = -angle;
-      group.add(ridge);
-    }
+    // Thin collar rings at the section joins — the subtle raised bands
+    // visible on real jar housings, not deep spline teeth (the actual
+    // splines are internal and don't show on the outside).
+    const collarTop = new THREE.Mesh(new THREE.CylinderGeometry(bodyRadius * 1.25, bodyRadius * 1.25, 0.05, 24), darkMetal);
+    collarTop.position.y = midY + midLen / 2;
+    group.add(collarTop);
+    const collarBottom = new THREE.Mesh(new THREE.CylinderGeometry(bodyRadius * 1.25, bodyRadius * 1.25, 0.05, 24), darkMetal);
+    collarBottom.position.y = midY - midLen / 2;
+    group.add(collarBottom);
 
-    // Hammer collar — the impact ring, slightly larger OD, banded top and
-    // bottom of the splined section where the strike actually lands.
-    const bandTop = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 0.16, 24), darkMetal);
-    bandTop.position.y = midY + midLen / 2;
-    group.add(bandTop);
-    const bandBottom = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 0.16, 24), darkMetal);
-    bandBottom.position.y = midY - midLen / 2;
-    group.add(bandBottom);
-
-    // Lower mandrel/sub
-    const lower = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, lowerLen, 24), metal);
+    // Lower mandrel
+    const lower = new THREE.Mesh(new THREE.CylinderGeometry(bodyRadius, bodyRadius, lowerLen, 24), bodyMetal);
     lower.position.y = midY - midLen / 2 - lowerLen / 2;
     group.add(lower);
 
-    // Top and bottom connection subs
-    const topSub = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.18, 0.3, 20), metal);
-    topSub.position.y = totalHalf + 0.15;
+    // Top and bottom rotary-shouldered connector subs — these flare OUT
+    // to a wider shoulder than the body before necking down to the open
+    // pin/box thread bore, same as any drill-string sub connection.
+    const subLen = 0.4;
+    const shoulderRadius = bodyRadius * 1.55;
+    const boreRadius = bodyRadius * 0.9;
+    const topSub = new THREE.Mesh(new THREE.CylinderGeometry(boreRadius, shoulderRadius, subLen, 24), metal);
+    topSub.position.y = totalHalf + subLen / 2;
     group.add(topSub);
-    const bottomSub = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.14, 0.3, 20), metal);
-    bottomSub.position.y = -totalHalf - 0.15;
+    const bottomSub = new THREE.Mesh(new THREE.CylinderGeometry(shoulderRadius, boreRadius, subLen, 24), metal);
+    bottomSub.position.y = -totalHalf - subLen / 2;
     group.add(bottomSub);
 
     scene.add(group);
