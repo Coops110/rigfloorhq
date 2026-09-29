@@ -1,10 +1,15 @@
 ---
 // Pilot interactive 3D viewer — poster-image-first, drag-to-rotate only, no auto-spin.
 // Geometry is procedurally generated (primitives only, no downloaded mesh/model file),
-// built from generic under-reamer / hole-opener anatomy: a full-gauge body, three
-// hinged arms carrying roller-cone cutter blocks shown in the extended (reaming)
-// position, a pilot nose, and a top sub. Not modeled on any specific manufacturer's
-// product — proportions cross-checked against the generic reference photo set only.
+// built from generic under-reamer / hole-opener anatomy, cross-checked against real
+// roller-cone underreamer/hole-opener product and field photos (Mills Machine, Bit
+// Brokers, drillingmanual.com's "Hole Opener - Variable Arms" reference set): a
+// full-gauge body, three short/stout hinged arms carrying LARGE roller-cone cutters
+// (proportioned close to body diameter, not undersized) swung down and out to the
+// reaming position, a small centered pilot nose below the cutter cluster, and a top
+// sub. Arms are built as a vector-aligned cylinder spanning hinge to cutter mount so
+// they visibly connect (not a lookAt'd box that leaves a gap). Not modeled on any
+// specific manufacturer's product — no branded geometry copied.
 ---
 <div class="tool3d-wrap" role="img" aria-label="Interactive 3D model of a generic under-reamer / hole opener with extended reaming arms — drag to rotate">
   <div class="tool3d-poster" id="tool3d-poster">
@@ -106,7 +111,7 @@
     scene.background = null;
 
     const camera = new THREE.PerspectiveCamera(38, wrap.clientWidth / wrap.clientHeight, 0.1, 100);
-    camera.position.set(4.6, 1.38, 4.6);
+    camera.position.set(6.2, 2.1, 6.2);
 
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -130,11 +135,17 @@
     scene.add(key, fill, rim, kicker, ambient);
 
     // --- Generic under-reamer / hole opener, built from primitives ---
-    // Anatomy per generic industry reference: full-gauge body sub, three
-    // hinged arms carrying roller-cone cutter blocks shown extended (the
-    // reaming position, once past the restriction that holds them closed
-    // on the way in), a tapered pilot nose, and a top sub. No branded
-    // geometry copied from any single manufacturer's tool.
+    // Anatomy cross-checked against real roller-cone underreamer / hole-opener
+    // product and field photos (Mills Machine, Bit Brokers, drillingmanual.com's
+    // "Hole Opener - Variable Arms" reference set): a full-gauge body sub, three
+    // SHORT, STOUT hinged arms (not long thin spider legs) carrying LARGE
+    // roller-cone cutters — nearly as large as the body itself — shown swung
+    // down and out to the reaming position, a small centered pilot nose below
+    // the cutters, and a top sub. Arms are built by spanning an actual vector
+    // from hinge point to cutter mount point (quaternion-aligned cylinder),
+    // not a lookAt'd box, so the arm visibly connects the two instead of
+    // floating disconnected between them. Not modeled on any specific
+    // manufacturer's product; no branded geometry copied.
     const group = new THREE.Group();
 
     const metal = new THREE.MeshStandardMaterial({ color: 0x9aa4ae, metalness: 0.9, roughness: 0.28 });
@@ -142,9 +153,10 @@
     const bodyMetal = new THREE.MeshStandardMaterial({ color: 0x8b333a, metalness: 0.6, roughness: 0.4 });
 
     const bodyHeight = 2.6;
+    const bodyRadius = 0.34;
 
     // Full-gauge main body
-    const body = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.34, bodyHeight, 28), bodyMetal);
+    const body = new THREE.Mesh(new THREE.CylinderGeometry(bodyRadius, bodyRadius, bodyHeight, 28), bodyMetal);
     group.add(body);
 
     // Top sub (connects to drill string / BHA above)
@@ -152,61 +164,97 @@
     topSub.position.y = bodyHeight / 2 + 0.21;
     group.add(topSub);
 
-    // Tapered pilot nose at the bottom, guiding the tool into the hole
-    const nose = new THREE.Mesh(new THREE.ConeGeometry(0.3, 0.5, 24), metal);
-    nose.position.y = -bodyHeight / 2 - 0.25;
-    group.add(nose);
-
-    // Three hinged arms, spaced 120° apart, shown swung out to the reaming
-    // position, each carrying a roller-cone cutter block at its outer end.
+    // Three hinged arms, spaced 120° apart, shown swung down and outward to
+    // the extended reaming position, each carrying a large roller-cone
+    // cutter at its outer end. Hinges sit low on the body, near the bottom
+    // rim, matching real hole-opener anatomy (the cutter head clusters below
+    // the main body rather than mid-body).
     const armCount = 3;
+    const hingeY = -bodyHeight / 2 + 0.35;
+    const hingeR = bodyRadius + 0.02;
+    const cutterCenterY = -bodyHeight / 2 - 0.55;
+    const cutterCenterR = 0.58;
+    const cutterRadius = 0.3;
+    const cutterHeight = 0.56;
+    const upAxis = new THREE.Vector3(0, 1, 0);
+
     for (let i = 0; i < armCount; i++) {
       const angle = (i / armCount) * Math.PI * 2;
       const armGroup = new THREE.Group();
 
-      // Hinge block, flush against the body
-      const hinge = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.5, 0.24), darkMetal);
-      hinge.position.set(Math.cos(angle) * 0.36, 0.15, Math.sin(angle) * 0.36);
-      hinge.lookAt(Math.cos(angle) * 2, 0.15, Math.sin(angle) * 2);
+      const hingePos = new THREE.Vector3(Math.cos(angle) * hingeR, hingeY, Math.sin(angle) * hingeR);
+      const cutterPos = new THREE.Vector3(Math.cos(angle) * cutterCenterR, cutterCenterY, Math.sin(angle) * cutterCenterR);
+      const dir = cutterPos.clone().sub(hingePos);
+      const dist = dir.length();
+      dir.normalize();
+      const armQuat = new THREE.Quaternion().setFromUnitVectors(upAxis, dir);
+
+      // Hinge block, flush against the body, oriented along the same
+      // outward/down direction the arm will travel
+      const hinge = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.3, 0.22), darkMetal);
+      hinge.position.copy(hingePos);
+      hinge.quaternion.copy(armQuat);
       armGroup.add(hinge);
 
-      // Arm blade, angled outward and slightly down from the hinge, as in
-      // the extended/reaming position
-      const armShape = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.85, 0.2), darkMetal);
-      const outR = 0.78;
-      armShape.position.set(Math.cos(angle) * outR, -0.15, Math.sin(angle) * outR);
-      armShape.lookAt(Math.cos(angle) * (outR + 1), -0.55, Math.sin(angle) * (outR + 1));
-      armGroup.add(armShape);
+      // Arm — a short, stout tapered blade spanning from the hinge to just
+      // past the cutter's mounting face (deliberately covers ~92% of the
+      // hinge-to-cutter distance so the cutter's wide base overlaps the arm
+      // tip with no visible gap, instead of floating apart from it).
+      const armLength = dist * 0.92;
+      const arm = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.11, armLength, 10), darkMetal);
+      arm.position.copy(hingePos).addScaledVector(dir, armLength / 2);
+      arm.quaternion.copy(armQuat);
+      armGroup.add(arm);
 
-      // Roller-cone cutter block at the arm's outer tip
-      const cutterR = 0.98;
-      const cutter = new THREE.Mesh(new THREE.SphereGeometry(0.24, 16, 12), metal);
-      cutter.scale.set(1, 0.85, 1);
-      cutter.position.set(Math.cos(angle) * cutterR, -0.42, Math.sin(angle) * cutterR);
+      // Large roller-cone cutter at the arm's outer tip — wide base toward
+      // the arm/journal, tapering to a rounded tip pointing further out and
+      // down, matching real tricone-style hole-opener cutters.
+      const cutter = new THREE.Mesh(new THREE.ConeGeometry(cutterRadius, cutterHeight, 18), metal);
+      cutter.position.copy(cutterPos);
+      cutter.quaternion.copy(armQuat);
       armGroup.add(cutter);
 
-      // Teeth ridges on the cutter block, added as children in the cutter's
-      // own local space so they sit evenly around its surface regardless of
-      // which arm angle this is.
-      for (let t = 0; t < 6; t++) {
-        const tooth = new THREE.Mesh(new THREE.ConeGeometry(0.035, 0.09, 6), darkMetal);
-        const tAngle = (t / 6) * Math.PI * 2;
-        tooth.position.set(0, Math.sin(tAngle) * 0.2, Math.cos(tAngle) * 0.2);
-        tooth.rotation.x = tAngle;
-        cutter.add(tooth);
+      // Two rings of insert teeth around the cutter's cone surface (base
+      // ring larger, mid ring smaller, following the cone's taper), added
+      // in the cutter's own local space so they rotate with it.
+      const toothRings = [
+        { yLocal: -cutterHeight * 0.32, rLocal: cutterRadius * 0.78, count: 7 },
+        { yLocal: cutterHeight * 0.05, rLocal: cutterRadius * 0.42, count: 6 },
+      ];
+      for (const ring of toothRings) {
+        for (let t = 0; t < ring.count; t++) {
+          const tAngle = (t / ring.count) * Math.PI * 2;
+          const tooth = new THREE.Mesh(new THREE.ConeGeometry(0.04, 0.1, 6), darkMetal);
+          tooth.position.set(Math.cos(tAngle) * ring.rLocal, ring.yLocal, Math.sin(tAngle) * ring.rLocal);
+          tooth.rotation.x = Math.PI / 2.1;
+          tooth.rotation.z = -tAngle;
+          cutter.add(tooth);
+        }
       }
 
       group.add(armGroup);
     }
 
+    // Small centered pilot nose below the cutter cluster, guiding the tool
+    // into the hole ahead of the reaming arms
+    const nose = new THREE.Mesh(new THREE.ConeGeometry(0.2, 0.4, 20), metal);
+    nose.position.y = cutterCenterY - cutterHeight * 0.55;
+    group.add(nose);
+
     // Full-gauge stabilizer pads on the body itself, between the arms
     for (let i = 0; i < armCount; i++) {
       const angle = (i / armCount) * Math.PI * 2 + Math.PI / armCount;
-      const pad = new THREE.Mesh(new THREE.BoxGeometry(0.1, 1.6, 0.14), darkMetal);
-      pad.position.set(Math.cos(angle) * 0.37, 0.3, Math.sin(angle) * 0.37);
-      pad.lookAt(Math.cos(angle) * 2, 0.3, Math.sin(angle) * 2);
+      const pad = new THREE.Mesh(new THREE.BoxGeometry(0.1, 1.3, 0.14), darkMetal);
+      pad.position.set(Math.cos(angle) * (bodyRadius + 0.03), -0.25, Math.sin(angle) * (bodyRadius + 0.03));
+      pad.lookAt(Math.cos(angle) * 2, -0.25, Math.sin(angle) * 2);
       group.add(pad);
     }
+
+    // The cutter cluster and pilot nose hang well below the body, so the
+    // geometry's true vertical center sits below y=0 — shift the whole
+    // group up so it's balanced in the fixed camera frame instead of being
+    // cropped at the bottom (the single most repeated bug on this project).
+    group.position.y = 0.32;
 
     scene.add(group);
 
