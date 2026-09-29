@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import CrossoverSub3D from '../../../components/CrossoverSub3D.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un sub de cruce?',
+    a: 'Un sub de cruce une dos secciones de tubería, tubería de producción, o sarta de herramientas que tienen distintos tipos o tamaños de rosca y que de otro modo no conectarían. Convierte una conexión en otra a lo largo de un tramo corto, permitiendo que equipo de distintos fabricantes o distintas generaciones de una sarta se armen juntos.',
+  },
+  {
+    q: '¿Por qué una sarta de perforación necesitaría distintos tipos de rosca en primer lugar?',
+    a: 'Las tuberías de distintos tamaños llevan distintas conexiones roscadas estándar por diseño — los lastrabarrenas de mayor diámetro usan roscas distintas a la tubería de perforación más pequeña, y distintos proveedores de equipo a veces usan conexiones propietarias. Un sub de cruce es lo que realmente permite que un ensamblaje de fondo (BHA) construido con componentes de tamaños y fuentes mezclados se arme en una sola sarta continua.',
+  },
+  {
+    q: '¿Cuál es la diferencia entre un sub de cruce y un sub de barrena?',
+    a: 'Ambos son subs conectores cortos, pero resuelven problemas distintos. Un sub de cruce existe puramente para convertir entre dos tipos o tamaños de rosca distintos. Un sub de barrena se ubica específicamente entre la barrena y el resto del BHA, y puede también llevar características adicionales como una válvula de retención o un perfil de diámetro interior específico que la barrena necesita, más allá de solo un cambio de rosca.',
+  },
+  {
+    q: '¿Qué causa que falle un sub de cruce?',
+    a: 'El hombro cónico donde se encuentran los dos diámetros es el punto de mayor esfuerzo de la herramienta, y los ciclos repetidos de conexión/desconexión o el torque alto pueden fatigarlo con el tiempo, llevando a un washout o una rotura (twist-off) en ese hombro. El desgaste o daño de rosca en cualquiera de las dos conexiones por uso repetido es el otro punto de falla común, ya que un sub de cruce ve cada ciclo de conexión que ambas sartas verían por separado de otro modo.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Sub de Cruce: Conectando Distintos Tamaños de Rosca en una Sarta"
+  description="Qué es un sub de cruce, por qué las sartas de perforación necesitan uno, en qué se diferencia de un sub de barrena, y fallas comunes en el hombro cónico."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Sub de Cruce', href: '/es/equipment/crossover-sub' }]}
+  lang="es"
+  alternateHref="/equipment/crossover-sub"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/crossover-sub" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Subs de Sarta y Revestimiento</div>
+    <h1>Sub de <span>Cruce</span></h1>
+    <p class="page-hero-sub">Un conector corto cuyo único trabajo es unir dos tipos o diámetros de rosca distintos en una sola sarta continua.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <CrossoverSub3D />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Sub de Cruce</h2>
+        <p>Un sub de cruce es un tramo corto de tubería maquinado con dos conexiones distintas — una en cada extremo — específicamente para que pueda unir secciones de una <a href="/es/equipment/drill-string">sarta de perforación</a>, sarta de revestimiento, o sarta de herramientas que de otro modo no enroscarían juntas. Un extremo coincide con la conexión de arriba, el otro extremo coincide con la conexión de abajo, y un hombro cónico o escalonado en medio lleva la transición de un diámetro al otro.</p>
+        <p>No lleva ninguna otra función propia — ninguna válvula, ningún elemento de corte, nada más allá de las dos conexiones y el cuerpo que las une. Su propósito completo es la compatibilidad.</p>
+
+        <h2 id="why-needed">Por Qué una Sarta Necesita Distintos Tipos de Rosca</h2>
+        <p>La tubería y las herramientas de distintos tamaños llevan distintas conexiones estándar por diseño — los lastrabarrenas de mayor diámetro usan formas de rosca distintas a la tubería de perforación de menor diámetro, y distintos proveedores de equipo a veces usan sus propias conexiones propietarias en herramientas especializadas. Un BHA construido con componentes de tamaños mezclados, o una sarta que mezcla equipo de más de un fabricante o generación, casi siempre necesitará al menos un cruce en algún punto de la sarta para realmente armar todo junto.</p>
+
+        <h2 id="body-design">Diseño del Cuerpo — el Hombro Cónico</h2>
+        <p>El cuerpo entre las dos conexiones es un cono recto o un hombro escalonado, dimensionado para llevar toda la carga y el torque que la sarta transmite a través de ese punto a pesar del cambio repentino de diámetro. Debido a que se ubica en una discontinuidad geométrica, este hombro concentra más esfuerzo del que llevaría una sección recta de tubería bajo la misma carga — por lo que los subs de cruce típicamente se construyen con una clasificación de resistencia más alta que la tubería a cada lado de ellos, no una igual o más baja.</p>
+
+        <h2 id="vs-bit-sub">Sub de Cruce vs. Sub de Barrena</h2>
+        <p>Ambos son subs conectores cortos, pero un sub de cruce existe puramente para resolver un problema de compatibilidad de rosca — convirtiendo una conexión en otra donde sea que se necesite en una sarta. Un sub de barrena es un conector específico, construido con un propósito, que siempre se ubica directamente arriba de la barrena, y más allá de cambiar el tipo de rosca puede también llevar una válvula de retención, un perfil de diámetro interior específico, u otras características que la barrena misma necesita. Todo sub de barrena es funcionalmente un tipo de cruce, pero no todo cruce es un sub de barrena.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Fatiga en el hombro cónico</strong> por ciclos repetidos de conexión y desconexión o torque alto sostenido, el punto de mayor esfuerzo de la herramienta y la ubicación más común para un washout o una rotura (twist-off).</li>
+          <li><strong>Desgaste o rayado de rosca (galling)</strong> en cualquiera de las dos conexiones por uso repetido, ya que un sub de cruce ve cada ciclo de conexión que ambas sartas verían de forma independiente de otro modo.</li>
+          <li><strong>Usar el cruce equivocado para el trabajo</strong> — especificaciones de rosca o clasificaciones de presión desiguales que nunca fueron realmente compatibles, detectadas (idealmente) antes de la conexión y no después.</li>
+        </ul>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#why-needed">Por Qué Se Necesita</a>
+          <a href="#body-design">Diseño del Cuerpo</a>
+          <a href="#vs-bit-sub">vs. Sub de Barrena</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Las especificaciones de rosca y las clasificaciones de resistencia varían por fabricante y estándar de conexión — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier detalle de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/drill-string" class="card-link">→ La Sarta de Perforación</a><br><br>
+          <a href="/es/equipment/float-sub" class="card-link">→ Sub Flotador</a><br><br>
+          <a href="/es/calculators/bit-torque" class="card-link">→ Calculadora de Torque de Barrena</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

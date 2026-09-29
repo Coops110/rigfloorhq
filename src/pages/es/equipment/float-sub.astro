@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import FloatSub3D from '../../../components/FloatSub3D.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un sub flotador?',
+    a: 'Un sub flotador es una sección corta corrida en la sarta de perforación o de revestimiento que aloja una válvula de retención, dejando que el fluido fluya libremente hacia abajo a través de ella pero bloqueando el flujo de regreso hacia arriba. Detiene el lodo o cemento de hacer efecto U de regreso hacia arriba por la sarta una vez que las bombas se apagan, y evita que la sarta se rellene con fluido del pozo mientras se corre dentro o fuera del hoyo.',
+  },
+  {
+    q: '¿En qué se diferencia un sub flotador de una zapata flotadora o un collar flotador?',
+    a: 'Los tres hacen el mismo trabajo básico — alojar una válvula de retención — pero una zapata flotadora va en la parte más baja de una sarta de revestimiento y la guía hacia el pozo, un collar flotador va uno o dos tubos arriba de la zapata como válvula de respaldo, y un sub flotador es una versión de propósito general que puede colocarse en cualquier parte de una sarta de perforación o de revestimiento donde se necesite una válvula de retención, no solo en la parte baja de una corrida de revestimiento.',
+  },
+  {
+    q: '¿Qué tipo de válvula usa un sub flotador?',
+    a: 'El diseño más común es una válvula de charnela (flapper) — un disco articulado que se abre bajo flujo hacia abajo y se cierra de golpe en el momento en que el flujo se detiene o se revierte. Algunos subs flotadores usan en su lugar una válvula de bola y asiento con resorte, que se asienta por su propia tensión de resorte en lugar de depender solo de la dirección del flujo.',
+  },
+  {
+    q: '¿Qué pasa si falla una válvula flotadora?',
+    a: 'Si la válvula no logra asentarse, el fluido puede regresar hacia arriba por la sarta una vez que las bombas se detienen — lodo o cemento haciendo efecto U de vuelta hacia la sarta de perforación, o fluido del pozo entrando por contraflujo al revestimiento antes de que el cemento fragüe. En un trabajo de cementación específicamente, un flotador fallido puede dejar que el cemento regrese hacia la zapata o la sarta antes de curar, comprometiendo todo el trabajo.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Sub Flotador: Cómo los Subs con Válvula de Retención Evitan el Contraflujo"
+  description="Qué es un sub flotador, cómo funciona su válvula de charnela o de bola y asiento, en qué se diferencia de una zapata o collar flotador, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Sub Flotador', href: '/es/equipment/float-sub' }]}
+  lang="es"
+  alternateHref="/equipment/float-sub"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/float-sub" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Subs de Sarta y Revestimiento</div>
+    <h1>Sub <span>Flotador</span></h1>
+    <p class="page-hero-sub">Un sub corto que lleva una válvula de retención — el flujo pasa libremente bajando, y se bloquea en el instante en que intenta revertirse.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <FloatSub3D />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Sub Flotador</h2>
+        <p>Un sub flotador es una sección corta de tubería, roscada para encajar en una <a href="/es/equipment/drill-string">sarta de perforación</a> o de revestimiento como cualquier otra conexión, que aloja una válvula de retención de un solo sentido dentro de su diámetro interior. El fluido bombeado hacia abajo a través de ella pasa libremente, pero la válvula se cierra en el momento en que el flujo se detiene o intenta revertirse, bloqueando cualquier cosa que intente fluir de regreso hacia arriba por ese punto de la sarta.</p>
+        <p>Esa única función resuelve un problema práctico real: sin una válvula flotadora en algún punto de la sarta, el lodo, cemento, o fluido del pozo pueden hacer efecto U de regreso hacia arriba por la tubería en el instante en que las bombas se apagan, rellenando la sarta con fluido que luego hay que manejar antes de la siguiente conexión o viaje. Una <a href="/es/equipment/reversing-tool">herramienta de reversa</a> está construida para hacer lo opuesto — abre deliberadamente un camino para que el fluido se mueva de regreso hacia arriba por la sarta a la orden, que es exactamente el contraflujo que un sub flotador existe para detener bajo cualquier otra condición.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Se Corre un Sub Flotador</h2>
+        <ul>
+          <li><strong>Prevenir el contraflujo hacia la sarta de perforación</strong> cada vez que las bombas se apagan a mitad de una operación, evitando que la sarta se llene con fluido del pozo y agregue peso o contaminación no planeados.</li>
+          <li><strong>Operaciones de cementación</strong>, donde un dispositivo flotador es esencial para evitar que el cemento regrese hacia la zapata o la sarta de revestimiento antes de tener tiempo de curar.</li>
+          <li><strong>Correr una sarta hacia un pozo con riesgo activo de surgencia</strong>, donde una válvula de retención funcional es una barrera real, aunque parcial, contra el flujo que regresa por la sarta.</li>
+          <li><strong>Colocación de propósito general</strong> en cualquier parte de una sarta que necesite una válvula de retención pero que no sea específicamente la posición de zapata o collar en la parte baja de una corrida de revestimiento.</li>
+        </ul>
+
+        <h2 id="valve-types">Tipos de Válvula: Charnela vs. Bola y Asiento</h2>
+        <p>La <strong>válvula de charnela (flapper)</strong> es el diseño más común — un disco articulado montado justo descentrado en el diámetro interior que se abre bajo flujo hacia abajo y se cierra de golpe en el instante en que el flujo disminuye o se revierte. Es simple, confiable, y tiene un diámetro completamente abierto al fluir, lo cual mantiene baja la pérdida de presión a través del sub. Una <strong>válvula de bola y asiento con resorte</strong> funciona distinto: una bola se asienta contra un asiento bajo tensión de resorte constante, despegándose del asiento solo cuando la presión de flujo supera al resorte, luego reasentándose de inmediato en cuanto esa presión baja. Los diseños de bola y asiento tienden a cerrar más rápido y de forma más positiva, a costa de un paso de flujo más angosto que una charnela.</p>
+
+        <h2 id="vs-shoe-collar">Sub Flotador vs. Zapata Flotadora vs. Collar Flotador</h2>
+        <p>Los tres son alojamientos de válvula de retención, y difieren principalmente en dónde se ubican y para qué trabajo específico están construidos. Una <strong>zapata flotadora</strong> está integrada en el tubo más bajo de una sarta de revestimiento, combinando la válvula de retención con una nariz redondeada y reforzada que guía la sarta hacia el pozo y ayuda a pasar obstrucciones. Un <strong>collar flotador</strong> va uno o dos tubos arriba de la zapata como válvula de respaldo, y también actúa como punto de asentamiento que detiene los tapones de cementación para que no se bombeen más abajo en la sarta. Un <strong>sub flotador</strong> es la versión de propósito general — una válvula de retención independiente que puede colocarse donde sea que una sarta necesite una, sin estar atada a la posición específica de zapata o collar en la parte baja del revestimiento.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>La charnela o bola no se asienta</strong> limpiamente, dejando que el fluido haga contraflujo en el momento en que las bombas se detienen — la falla central de cualquier válvula flotadora.</li>
+          <li><strong>Escombros o recortes alojados en el asiento de la válvula</strong>, manteniéndola parcialmente abierta y anulando la función de retención.</li>
+          <li><strong>Contraflujo por falla en el trabajo de cemento</strong>, donde un flotador defectuoso deja que el cemento regrese hacia la zapata antes de fraguar, contaminando la zapata y arriesgando un mal enlace de cemento en la parte baja de la sarta.</li>
+          <li><strong>Erosión del asiento o la charnela</strong> por ciclos repetidos o fluido abrasivo, degradando el sello con el tiempo incluso si la válvula todavía se mueve libremente.</li>
+        </ul>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#valve-types">Tipos de Válvula</a>
+          <a href="#vs-shoe-collar">vs. Zapata y Collar</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> El diseño y la colocación de la válvula varían por fabricante y trabajo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier detalle de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/drill-string" class="card-link">→ La Sarta de Perforación</a><br><br>
+          <a href="/es/equipment/crossover-sub" class="card-link">→ Sub de Cruce</a><br><br>
+          <a href="/es/equipment/reversing-tool" class="card-link">→ Herramienta de Reversa</a><br><br>
+          <a href="/es/drilling/casing" class="card-link">→ Diseño de Revestimiento Explicado</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

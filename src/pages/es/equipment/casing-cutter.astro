@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import CasingCutter3D from '../../../components/CasingCutter3D.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un cortador de revestimiento?',
+    a: 'Un cortador de revestimiento corta una sarta de revestimiento desde adentro, de forma limpia, a una profundidad elegida, para que todo lo que está arriba del corte pueda sacarse libre del pozo. Es la herramienta estándar para los trabajos de corte y extracción de taponamiento y abandono, para recuperar revestimiento pegado o no deseado en un workover, y cualquier vez que una sarta necesite salir del pozo en una sola pieza en lugar de molerse.',
+  },
+  {
+    q: '¿Cuál es la diferencia entre un cortador mecánico y uno químico?',
+    a: 'Un cortador mecánico de revestimiento usa cuchillas de acero endurecido, a menudo con caras de carburo, que se impulsan hacia afuera — hidráulicamente o por peso y rotación aplicados — para cortar físicamente la pared de la tubería. Un cortador químico en cambio libera un reactivo químico controlado contra el interior de la pared de la tubería que la corta sin ninguna cuchilla móvil ni rotación, lo cual es útil en espacios reducidos o donde rotar una sarta de trabajo no es práctico.',
+  },
+  {
+    q: '¿Cómo se corre un cortador de revestimiento al pozo?',
+    a: 'La mayoría de los cortadores de revestimiento corren en línea eléctrica (cable) con una herramienta de asentamiento/accionamiento dedicada, ya que el trabajo usualmente no necesita un viaje completo de sarta de trabajo. Los cortadores mecánicos más pesados, o trabajos que ya usan tubería o tubería flexible por otra razón, corren en una sarta de trabajo articulada en su lugar, con las cuchillas extendidas por peso y rotación aplicados una vez en profundidad.',
+  },
+  {
+    q: '¿En qué se diferencia un cortador de revestimiento de una fresa de sección?',
+    a: 'Un cortador de revestimiento hace un solo corte de separación limpio y angosto a través de la pared de la tubería a una profundidad — el revestimiento mismo, y cualquier cemento fuera de él, quedan por lo demás intactos. Una fresa de sección muele todo un intervalo de revestimiento y el cemento a su alrededor a lo largo de varios pies, convirtiendo hoyo revestido en hoyo abierto a través de esa sección. Si el objetivo es "córtalo para poder sacarlo", eso es un cortador de revestimiento; si el objetivo es "elimina esta sección por completo para tener hoyo abierto aquí", eso es una fresa de sección.',
+  },
+  {
+    q: '¿Qué causa que un cortador de revestimiento no logre separar completamente la tubería?',
+    a: 'La causa más común es el desgaste o desafilado de las cuchillas contra revestimiento de alto grado o de pared inesperadamente gruesa, dejando un corte parcial que no se libera bajo tensión. Una mala centralización en el pozo también puede causar un contacto desigual de las cuchillas alrededor de la circunferencia. La incrustación, productos de corrosión, o cemento adherido al exterior del revestimiento a la profundidad de corte también pueden impedir que la sección separada realmente se libere incluso después de un corte limpio.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Cortador de Revestimiento: Cómo Funcionan las Herramientas de Corte Interno"
+  description="Qué es un cortador de revestimiento, métodos de corte mecánico vs. químico, cómo se corre y acciona en el fondo, clasificaciones genéricas, fallas comunes, y en qué se diferencia de una fresa de sección."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Cortador de Revestimiento', href: '/es/equipment/casing-cutter' }]}
+  lang="es"
+  alternateHref="/equipment/casing-cutter"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/casing-cutter" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Cortador de <span>Revestimiento</span></h1>
+    <p class="page-hero-sub">Una herramienta de corte interno que separa el revestimiento limpiamente a una profundidad elegida, para que todo lo que está arriba del corte pueda sacarse del pozo en una sola pieza.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <CasingCutter3D />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Cortador de Revestimiento</h2>
+        <p>Un cortador de revestimiento es una herramienta de fondo corrida en línea eléctrica o en una sarta de trabajo y posicionada dentro de una sarta de revestimiento o tubería a una profundidad elegida, donde corta la pared de la tubería de adentro hacia afuera. El objetivo es un solo corte de separación limpio y de circunferencia completa — no remoción de material, no molienda, solo una separación controlada para que la sarta arriba del corte pueda recuperarse como una sección intacta.</p>
+        <p>Esa distinción importa porque un cortador de revestimiento es una herramienta de recuperación, no una destructiva. Todo lo que está arriba del corte sale entero y puede reutilizarse, venderse como chatarra por peso, o simplemente removerse para despejar el pozo; todo lo que está debajo del corte se queda en el pozo, ya sea porque está cementado permanentemente o porque el trabajo solo requiere remover la sección superior.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Se Corre un Cortador de Revestimiento</h2>
+        <ul>
+          <li><strong>"Corte y extracción" de taponamiento y abandono.</strong> Muchas regulaciones de abandono exigen que el revestimiento se remueva hasta una profundidad mínima, o a través de zonas específicas, en lugar de simplemente cementarse y dejarse en el pozo. Un cortador de revestimiento hace el corte de separación que permite sacar el intervalo requerido.</li>
+          <li><strong>Recuperar revestimiento pegado o no deseado</strong> durante un workover, cuando una sarta necesita salir pero el jalado convencional por sí solo no la libera de donde está asentada o pegada.</li>
+          <li><strong>Rescate de material (salvage).</strong> El revestimiento tiene valor real de chatarra y reutilización; cortarlo y sacarlo a superficie recupera ese valor en lugar de dejarlo enterrado.</li>
+          <li><strong>Despejar el pozo para reentrada</strong>, cuando una sección de una sarta vieja necesita salir antes de que pueda proceder una nueva completación o un desvío (sidetrack) — a menudo trabajando junto con una <a href="/equipment/section-mill">fresa de sección (inglés)</a> cuando el trabajo necesita más de una sarta recuperada intacta.</li>
+        </ul>
+
+        <h2 id="cutting-methods">Corte Mecánico vs. Químico</h2>
+        <p>Los <strong>cortadores mecánicos (de cuchilla)</strong> son el caballo de batalla de la categoría. Un juego de cuchillas de acero endurecido, a menudo con caras de carburo, se mantiene retraído dentro del cuerpo de la herramienta mientras se corre a profundidad, luego se extiende radialmente hacia afuera — accionado hidráulicamente por presión de bomba aplicada, o mecánicamente por peso y rotación desde la sarta de trabajo — hasta que las cuchillas muerden y cortan la pared de la tubería. Una vez confirmado el corte, las cuchillas se retraen y la herramienta se saca antes de recuperar el revestimiento separado.</p>
+        <p>Los <strong>cortadores químicos</strong> toman un enfoque completamente distinto: se libera un reactivo químico controlado contra el interior de la pared de la tubería, separándola mediante una reacción localizada en lugar de una cuchilla rotativa o accionada hidráulicamente. Esto tiene ventajas reales en espacios reducidos, en pozos donde lograr que una sarta de trabajo rote limpiamente a profundidad no es práctico, o donde se prefiere fuertemente un viaje solo a cable. La contrapartida es que la calidad y velocidad del corte dependen de la química y el tiempo de contacto en lugar de una fuerza mecánica que pueda sentirse y ajustarse en superficie.</p>
+        <p>Una tercera variante, el <strong>cortador de chorro abrasivo</strong>, erosiona la pared de la tubería con un chorro de lechada abrasiva de alta velocidad disparado radialmente hacia afuera. No requiere la centralización precisa que necesita un cortador de cuchilla, lo cual lo hace una opción útil para cortar varias sartas concéntricas (revestimiento dentro de revestimiento) en una sola corrida.</p>
+
+        <h2 id="running-actuation">Corrida y Accionamiento</h2>
+        <p>La mayoría de los trabajos de corte de revestimiento corren en línea eléctrica con una herramienta de asentamiento y accionamiento dedicada — rápida de armar, y la opción estándar cuando no hay otra razón para tener una sarta de trabajo en el pozo. Los cortadores mecánicos más pesados, cortes más profundos que requieren más torque, o trabajos donde ya se está corriendo tubería o tubería flexible por otra razón, usan una sarta de trabajo articulada en su lugar, con el cortador accionado por peso aplicado, rotación, o presión hidráulica bombeada por la sarta una vez confirmado en profundidad.</p>
+        <p>Después del corte, la herramienta se recupera y la sección separada arriba de ella se recupera con una herramienta de jalado estándar o un overshot/spear de pesca si la parte superior separada no queda agarrada directamente por la sarta de corrida. Confirmar un corte limpio y completo antes de intentar jalar es práctica estándar — un corte incompleto bajo carga puede separar el revestimiento de forma desigual o dañar la sarta de arriba.</p>
+
+        <h2 id="materials-ratings">Materiales y Clasificaciones Genéricas</h2>
+        <p>Las cuchillas de cortadores mecánicos son típicamente de acero de herramienta endurecido, frecuentemente con insertos de carburo de tungsteno para mantener el filo contra revestimiento de alto grado o pared pesada. Como guía genérica, los cortadores mecánicos de revestimiento estándar manejan un amplio rango de pesos y grados de revestimiento comunes, pero la capacidad de corte — el espesor de pared y grado máximos que un juego de cuchillas dado puede separar en un número razonable de ciclos — varía significativamente según el tamaño de herramienta y el diseño de cuchilla. La capacidad de corte calificada de la herramienta específica siempre debe confirmarse contra la especificación real del fabricante para el revestimiento que se está cortando, no asumirse a partir de una cifra genérica.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Corte incompleto</strong> por desgaste o desafilado de cuchillas contra revestimiento más duro o de pared más gruesa de lo esperado, dejando una separación parcial que no se libera limpiamente bajo tensión.</li>
+          <li><strong>Mala centralización</strong> en el pozo causando contacto desigual de las cuchillas alrededor de la circunferencia, así que un lado corta antes que el otro.</li>
+          <li><strong>Falla en liberarse después de un corte limpio</strong>, si incrustación, productos de corrosión, o cemento adherido al exterior del revestimiento a esa profundidad mantiene la sección separada en su lugar sin importar el corte mismo.</li>
+          <li><strong>Daño de cuchillas por escombros</strong> dentro del revestimiento — chatarra, incrustación, o finos de cemento — que las cuchillas encuentran antes o durante el corte.</li>
+          <li><strong>Profundidad de corte mal calculada</strong> respecto al punto libre real de la sarta, requiriendo una corrida nueva a una profundidad corregida.</li>
+        </ul>
+
+        <h2 id="vs-section-mill">Cortador de Revestimiento vs. Fresa de Sección</h2>
+        <p>Ambas herramientas se ocupan de revestimiento que necesita quitarse del camino, pero resuelven problemas distintos. Un <strong>cortador de revestimiento</strong> hace un corte de separación angosto para que el revestimiento arriba de él pueda sacarse intacto — el cemento y la formación alrededor de la tubería se dejan intactos. Una <a href="/equipment/section-mill">fresa de sección (inglés)</a> muele todo un intervalo de revestimiento, varios pies a la vez, junto con el cemento a su alrededor, dejando hoyo abierto y sobredimensionado donde antes había hoyo revestido. Si el plan es recuperar una sarta, es trabajo de un cortador de revestimiento; si el plan es crear hoyo abierto a través de un intervalo para un tapón de cemento entre formaciones o una reentrada, es trabajo de una fresa de sección — y los programas de abandono frecuentemente requieren ambas, en secuencia, a distintas profundidades del mismo pozo.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#cutting-methods">Mecánico vs. Químico</a>
+          <a href="#running-actuation">Corrida y Accionamiento</a>
+          <a href="#materials-ratings">Materiales y Clasificaciones</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-section-mill">vs. Fresa de Sección</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> La capacidad de corte y las especificaciones varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/equipment/section-mill" class="card-link">→ Fresa de Sección (inglés)</a><br><br>
+          <a href="/es/equipment/bridge-plug" class="card-link">→ Tapón Puente</a><br><br>
+          <a href="/equipment/safety-joint" class="card-link">→ Junta de Seguridad (inglés)</a><br><br>
+          <a href="/es/drilling/casing" class="card-link">→ Diseño de Revestimiento Explicado</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

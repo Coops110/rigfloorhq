@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import CementRetainer3D from '../../../components/CementRetainer3D.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un retenedor de cemento?',
+    a: 'Un retenedor de cemento aísla una zona durante un trabajo de cementación por squeeze, dejando bombear cemento a través de su cuerpo bajo presión hacia el intervalo debajo o al lado de él, luego cerrándose para sostener esa presión una vez terminado el squeeze. Es la herramienta que permite a una cuadrilla hacer squeeze de cemento en un intervalo perforado (con cañón) específico sin que el cemento caiga libremente por el resto del pozo.',
+  },
+  {
+    q: '¿Cómo se asienta y opera un retenedor de cemento?',
+    a: 'Corre en línea eléctrica o en una sarta de trabajo, se asienta a la profundidad objetivo de la misma forma que un tapón puente (herramienta de asentamiento a cable o accionamiento mecánico/hidráulico), luego se introduce un stinger o sarta de trabajo en la parte superior del retenedor para abrir su válvula interna. El cemento se bombea a través del stinger, a través de la válvula del retenedor, y hacia la zona aislada. Una vez completo el squeeze, la válvula se cierra y el stinger se saca, dejando al retenedor sosteniendo presión desde arriba.',
+  },
+  {
+    q: '¿Un retenedor de cemento es perforable o recuperable?',
+    a: 'Existen ambas versiones, igual que con un tapón puente. Los retenedores perforables usan hierro fundido y componentes compuestos para poder molerse si la zona de abajo alguna vez necesita reabrirse. Los retenedores recuperables usan un cuerpo de acero y un mecanismo de liberación para que todo el ensamblaje pueda engancharse y sacarse intacto una vez terminado su trabajo.',
+  },
+  {
+    q: '¿Qué pasa si la válvula no cierra después de un trabajo de squeeze?',
+    a: 'Si la válvula no cierra limpiamente, la presión aplicada desde arriba durante el squeeze no se sostendrá, y el trabajo efectivamente falla en aislar cualquier cosa — el cemento o la presión pueden migrar de vuelta hacia arriba pasando el retenedor. Por esto el stinger típicamente se saca despacio y se prueba presión contra el retenedor inmediatamente después de liberarlo, antes de asumir que el squeeze realmente se sostuvo.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Retenedor de Cemento: Cómo Funcionan las Herramientas de Aislamiento para Squeeze"
+  description="Qué es un retenedor de cemento, cómo funciona su válvula de paso durante un trabajo de squeeze, versiones perforable vs. recuperable, y en qué se diferencia de un tapón puente."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Retenedor de Cemento', href: '/es/equipment/cement-retainer' }]}
+  lang="es"
+  alternateHref="/equipment/cement-retainer"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/cement-retainer" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Retenedor de <span>Cemento</span></h1>
+    <p class="page-hero-sub">Una herramienta de aislamiento de fondo con una válvula de paso, corrida para sostener presión debajo de ella mientras se hace squeeze de cemento hacia una zona objetivo desde arriba.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <CementRetainer3D />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Retenedor de Cemento</h2>
+        <p>Un retenedor de cemento es una herramienta de fondo asentada dentro del revestimiento o la tubería que crea un sello hermético a la presión a través del diámetro interior, de la misma forma que lo hace un <a href="/es/equipment/bridge-plug">tapón puente</a> — excepto que un retenedor tiene una válvula que corre a través de su cuerpo. Esa válvula permanece cerrada en condiciones normales, sosteniendo presión desde arriba, pero puede abrirse introduciendo un stinger o sarta de trabajo en la parte superior de la herramienta, dejando bombear cemento directamente a través de ella bajo presión durante un trabajo de squeeze.</p>
+        <p>Una vez terminado el squeeze y sacado el stinger, la válvula se cierra de nuevo y el retenedor sigue sosteniendo presión — que es exactamente lo que permite a una cuadrilla hacer squeeze de cemento en un intervalo específico sin que caiga libremente por el resto del pozo abierto debajo.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Se Corre un Retenedor de Cemento</h2>
+        <ul>
+          <li><strong>Squeeze de cemento en un intervalo perforado específico</strong> — reparar un canal detrás del revestimiento, aislar una zona con exceso de agua o agotada, o cerrar un intervalo que produce fluido no deseado.</li>
+          <li><strong>Taponamiento hacia atrás de un pozo</strong> donde las regulaciones exigen un tapón de cemento colocado bajo presión a una profundidad específica, en lugar de solo una barrera mecánica.</li>
+          <li><strong>Cementación correctiva</strong> después de que un trabajo de cementación primaria deja canales o vacíos que necesitan taponarse por squeeze antes de continuar el trabajo de completación.</li>
+        </ul>
+
+        <h2 id="setting-operating">Asentamiento y Operación de la Válvula</h2>
+        <p>Un retenedor de cemento se corre y asienta de la misma forma que un tapón puente — a cable con una herramienta de asentamiento dedicada y un registro CCL para correlacionar la profundidad exacta, o en una sarta de trabajo con accionamiento mecánico o hidráulico. Una vez asentado y sosteniendo, se introduce un stinger en un diámetro de sello en la parte superior del retenedor, lo cual abre la válvula interna de bola y asiento y crea un paso sellado directo a través de la herramienta. El cemento se bombea por la sarta de trabajo, a través de la válvula abierta, y hacia la zona aislada debajo o al lado del retenedor. Cuando el trabajo termina, se saca el stinger — cerrando la válvula tras él — y el retenedor se deja en su lugar sosteniendo presión desde arriba.</p>
+
+        <h2 id="drillable-retrievable">Perforable vs. Recuperable</h2>
+        <p>La misma división que aplica a los tapones puente aplica aquí. Los <strong>retenedores perforables</strong> usan hierro fundido y slips y componentes de válvula compuestos, diseñados para romperse limpiamente bajo una barrena si la zona de abajo alguna vez se vuelve a necesitar. Los <strong>retenedores recuperables</strong> usan un cuerpo de acero y un perfil de liberación mecánica para que todo el ensamblaje pueda engancharse, desasentarse, y sacarse a superficie intacto una vez terminado su trabajo de aislamiento.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>La válvula no cierra</strong> limpiamente después de liberar el stinger, dejando que la presión o el cemento migren de vuelta pasando el retenedor y efectivamente fallando el squeeze.</li>
+          <li><strong>Falla de los slips en morder</strong> revestimiento dañado o de diámetro insuficiente, el mismo riesgo que carga un tapón puente.</li>
+          <li><strong>Falla del sello del stinger</strong> mientras se bombea cemento, perdiendo el paso hermético a la presión a través de la herramienta a mitad del trabajo.</li>
+          <li><strong>Molienda incompleta</strong> en un retenedor perforable si sus componentes compuestos no se rompen como está diseñado.</li>
+        </ul>
+
+        <h2 id="vs-bridge-plug">Retenedor de Cemento vs. Tapón Puente</h2>
+        <p>La diferencia mecánica es simple: un <strong>retenedor de cemento</strong> tiene una válvula que corre a través de su cuerpo y se abre bajo un stinger para dejar pasar cemento bajo presión, luego se cierra para sostener presión una vez terminado el trabajo. Un <a href="/es/equipment/bridge-plug">tapón puente</a> no tiene ninguna válvula de paso — es un sello mecánico puro, asentado y dejado ahí, sin nada diseñado para bombearse a través de él después. Si un trabajo necesita bombear cemento o fluido a través de la herramienta misma, corresponde un retenedor; si es un sello de aislamiento sencillo sin bombeo a través de él después, corresponde un tapón puente.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#setting-operating">Asentamiento y Operación</a>
+          <a href="#drillable-retrievable">Perforable vs. Recuperable</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-bridge-plug">vs. Tapón Puente</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> El diseño de la válvula y los mecanismos de asentamiento varían por fabricante y trabajo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier detalle de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/bridge-plug" class="card-link">→ Tapón Puente</a><br><br>
+          <a href="/es/drilling/casing" class="card-link">→ Diseño de Revestimiento Explicado</a><br><br>
+          <a href="/es/drilling/well-control" class="card-link">→ Control de Pozos y Surgencias</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

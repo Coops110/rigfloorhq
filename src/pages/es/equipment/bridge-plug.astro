@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import BridgePlug3D from '../../../components/BridgePlug3D.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un tapón puente?',
+    a: 'Un tapón puente crea un sello mecánico hermético a la presión dentro del revestimiento o la tubería, aislando todo lo que está debajo de él de todo lo que está arriba. Se corre para abandonar una zona agotada, para proteger una zona inferior mientras se hace un workover o se completa una zona más arriba, para sostener presión durante una prueba de integridad de revestimiento, o como parte del abandono temporal o permanente del pozo.',
+  },
+  {
+    q: '¿Cuál es la diferencia entre un tapón puente perforable y uno recuperable?',
+    a: 'Un tapón puente perforable (de hierro fundido) está hecho de hierro fundido y componentes compuestos específicamente para que pueda molerse con un taladro si la zona de abajo alguna vez necesita volver a accederse — está diseñado para destruirse, no para recuperarse intacto. Un tapón puente recuperable usa un cuerpo de acero y un mecanismo de liberación (típicamente un perfil tipo J-slot o similar) para que pueda engancharse, desasentarse, y sacarse completo del pozo, luego reutilizarse.',
+  },
+  {
+    q: '¿Cómo se asienta un tapón puente en el fondo del pozo?',
+    a: 'Dos métodos de asentamiento cubren la mayoría de los trabajos. El asentamiento a cable corre el tapón en línea eléctrica, primero correlacionado a la profundidad exacta con un registro CCL (localizador de coples de revestimiento), luego se asienta con una herramienta que enciende una carga de pólvora/gas para impulsar los slips y el elemento a su lugar — rápido, y la opción estándar cuando no hay ya tubería o tubería flexible en el pozo. El asentamiento mecánico o hidráulico corre el tapón en una sarta de trabajo, luego lo asienta aplicando peso y rotación, o aplicando presión hidráulica por la sarta, dependiendo de la herramienta.',
+  },
+  {
+    q: '¿Cuál es la diferencia entre un tapón puente y un retenedor de cemento?',
+    a: 'Ambos aíslan una zona, pero un retenedor de cemento tiene una válvula a través de su cuerpo que se abre para dejar bombear cemento a través de ella bajo presión durante un trabajo de squeeze, luego se cierra para sostener presión desde arriba una vez terminado el trabajo. Un tapón puente no tiene ninguna válvula de paso — es un sello mecánico puro, asentado y dejado ahí, sin nada diseñado para bombearse a través de él después.',
+  },
+  {
+    q: '¿Qué causa que falle un tapón puente?',
+    a: 'La falla más común es la extrusión o fuga del elemento una vez que la presión diferencial o la temperatura excede lo que el tapón específico está calificado para soportar. La falla de los slips — el tapón deslizándose en lugar de morder — ocurre más seguido en revestimiento dañado, desgastado, o de diámetro insuficiente. Un tapón recuperable también puede fallar en liberarse limpiamente si su J-slot o mecanismo de asentamiento se ha corroído o dañado desde que fue asentado, y un tapón perforable puede tardar más de lo esperado en molerse si su compuesto no se rompe como su diseño pretende.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Tapón Puente: Qué Es, Cómo Se Asienta, Perforable vs. Recuperable"
+  description="Qué es un tapón puente, cuándo se corre, cómo se asientan y recuperan las versiones perforable y recuperable, clasificaciones genéricas de presión/temperatura, fallas comunes, y en qué se diferencia de un retenedor de cemento."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Tapón Puente', href: '/es/equipment/bridge-plug' }]}
+  lang="es"
+  alternateHref="/equipment/bridge-plug"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/bridge-plug" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Tapón <span>Puente</span></h1>
+    <p class="page-hero-sub">Una herramienta de fondo que sella una sección del pozo de otra — asentada una vez, ya sea perforada después o sacada completa, dependiendo de qué tipo se corra.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <BridgePlug3D />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Tapón Puente</h2>
+        <p>Un tapón puente es una herramienta de fondo corrida en línea eléctrica o en una sarta de trabajo y asentada dentro del revestimiento o la tubería para crear un sello mecánico hermético a la presión a través de todo el diámetro interior. Una vez asentado, separa físicamente el pozo en dos secciones aisladas — nada fluye más allá de él en ninguna dirección.</p>
+        <p>La herramienta en sí está construida alrededor de un juego de slips que muerden la pared del revestimiento para mantenerla en su lugar bajo presión diferencial, y un elemento sellante de elastómero, comprimido entre dos zapatas de respaldo, que hace el sellado real. Es una herramienta de aislamiento de un solo propósito, no una válvula ni un dispositivo de control de flujo — una vez asentado, la única forma de cambiar lo que ocurre a esa profundidad es recuperarlo (si es un diseño recuperable) o molerlo (si es uno perforable).</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="when-used">Cuándo y Por Qué Se Corre un Tapón Puente</h2>
+        <p>Los tapones puente aparecen donde sea que un pozo necesite una barrera sólida y confiable a una profundidad específica en lugar de un workover completo de todo lo que está debajo. Los trabajos más comunes:</p>
+        <ul>
+          <li><strong>Aislamiento zonal.</strong> Sellar una zona productora agotada o con exceso de agua para que otra zona, más arriba en el mismo pozo, pueda perforarse (con cañón) y producirse sin interferencia.</li>
+          <li><strong>Proteger una zona inferior durante trabajo de workover o completación</strong> hecho más arriba en el mismo pozo, para que nada del trabajo de arriba afecte la presión o el fluido en el intervalo aislado debajo.</li>
+          <li><strong>Probar presión en el <a href="/es/drilling/casing">revestimiento</a></strong> arriba de una profundidad conocida, usando el tapón como el punto de aislamiento que permite sostener la presión de prueba contra un intervalo definido en lugar de todo el pozo.</li>
+          <li><strong>Abandono temporal o permanente del pozo</strong>, donde los requisitos regulatorios de taponamiento exigen una barrera mecánica a profundidades específicas, a menudo respaldada con cemento arriba de ella.</li>
+        </ul>
+
+        <h2 id="setting-retrieval">Cómo Se Asienta y Se Recupera</h2>
+        <p>El método de asentamiento y la recuperabilidad son dos elecciones separadas, y un tapón se especifica en ambas:</p>
+        <p><strong>Los tapones asentados a cable</strong> corren en línea eléctrica con una herramienta de asentamiento dedicada. Antes de asentar, se corre un registro CCL (localizador de coples de revestimiento) para correlacionar la posición exacta de la herramienta contra los coples reales de revestimiento, confirmando que está en la profundidad prevista en lugar de confiar solo en la profundidad de cable. Una vez correlacionada, la cuadrilla jala ligeramente el cable como verificación final de una indicación buena y positiva de que la herramienta está libre y bien posicionada antes de disparar. La herramienta de asentamiento entonces enciende una carga de pólvora/gas (una carga "pirotécnica" o de "potencia") a la orden desde superficie — no una explosión violenta, sino una combustión controlada a presión de gas — que empuja un mandril a través del cuerpo del tapón, comprimiendo los slips hacia afuera contra la pared del revestimiento y apretando el elemento sellante en su lugar. Este es el método de asentamiento más rápido y común cuando no hay tubería o tubería flexible ya en el pozo para correr en su lugar.</p>
+        <p><strong>Los tapones de asentamiento mecánico o hidráulico</strong> corren en una sarta de trabajo articulada o tubería flexible. Una herramienta de asentamiento mecánico se dispara aplicando peso y rotación desde superficie una vez en profundidad; una herramienta de asentamiento hidráulico se dispara bombeando presión por la sarta contra una bola o tapón asentado en la herramienta de asentamiento. Ambas son más lentas de armar que una corrida a cable, pero son la única opción cuando el tapón necesita entrar junto con otro trabajo transportado por tubería en el mismo viaje.</p>
+        <p><strong>Los tapones perforables (de hierro fundido)</strong> están hechos de hierro fundido y slips y elementos compuestos específicamente para que se muelan limpiamente si la zona de abajo se vuelve a necesitar algún día — todo el diseño asume que eventualmente será destruido por una barrena, no recuperado. <strong>Los tapones recuperables</strong> usan un cuerpo de acero y un perfil de liberación mecánica, más comúnmente un J-slot, para que una herramienta recuperadora corrida de vuelta a cable o tubería pueda engancharlo, rotar o jalar para desasentar los slips y el elemento, y sacar todo el ensamblaje del pozo intacto para reutilizarlo o inspeccionarlo.</p>
+
+        <h2 id="ratings">Clasificaciones de Presión y Temperatura</h2>
+        <p>Las clasificaciones varían por fabricante y modelo, pero como guía genérica: los tapones puente de servicio estándar comúnmente están calificados para presiones diferenciales en el rango de 5,000–10,000 psi y temperaturas hasta aproximadamente 300–350°F, lo cual cubre la gran mayoría de los pozos convencionales. Los diseños de alta presión/alta temperatura (HP/HT) se extienden mucho más allá en ambos ejes, usando compuestos de elastómero y metalurgia distintos para mantener su sello en pozos donde los elementos de servicio estándar se extruirían, endurecerían, o fallarían por completo. Las cifras calificadas para el tapón específico que se esté corriendo siempre deben confirmarse contra la hoja de especificaciones real del fabricante para ese modelo — este rango es una referencia de partida, no un sustituto de revisar la herramienta real.</p>
+
+        <h2 id="materials">Materiales y Capacidad de Molienda</h2>
+        <p>La elección de material se deriva directamente de si el tapón está pensado para destruirse o recuperarse. Los tapones perforables usan cuerpos y slips de hierro fundido, y zapatas de respaldo y componentes de asentamiento compuestos (en lugar de acero), elegidos específicamente porque se rompen en piezas pequeñas y moledoras bajo una barrena en lugar de atascarse o girar. Los tapones recuperables usan acero de alta resistencia en todo el cuerpo, ya que todo el punto es que el ensamblaje sobreviva a ser desasentado, jalado, y corrido de nuevo — la capacidad de molienda nunca es un objetivo de diseño para una herramienta recuperable. Los elementos sellantes en ambos tipos son típicamente un elastómero nitrilo o HNBR para servicio estándar, pasando a compuestos más resistentes químicamente (como mezclas HNBR o materiales a base de PEEK) para servicio HP/HT o de fluidos corrosivos.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Extrusión o fuga del elemento</strong> una vez que la presión diferencial o la temperatura a profundidad excede lo que el tapón específico está calificado para soportar — la forma más común en que un tapón puente realmente falla en sostener.</li>
+          <li><strong>Falla de los slips en morder</strong> revestimiento dañado, corroído, o de diámetro insuficiente, dejando que todo el tapón se deslice bajo carga en lugar de anclarse.</li>
+          <li><strong>Asentamiento prematuro</strong> en el pozo por golpe o vibración durante la bajada, más a menudo en una herramienta de asentamiento a cable si el mecanismo de seguridad de la herramienta de asentamiento está comprometido.</li>
+          <li><strong>Recuperación fallida</strong> en un tapón recuperable, si su J-slot o mecanismo de liberación se ha corroído, o se ha acumulado incrustación o escombros a su alrededor, desde que fue asentado originalmente.</li>
+          <li><strong>Molienda lenta o incompleta</strong> en un tapón perforable, si sus componentes compuestos no se rompen como el diseño pretende, extendiendo el tiempo de taladro en lo que debería ser una molienda rutinaria.</li>
+        </ul>
+
+        <h2 id="vs-cement-retainer">Tapón Puente vs. Retenedor de Cemento</h2>
+        <p>Las dos herramientas se confunden porque hacen trabajos de aislamiento de apariencia similar, pero la diferencia mecánica es simple: un <a href="/es/equipment/cement-retainer"><strong>retenedor de cemento</strong></a> tiene una válvula que corre a través de su cuerpo. Esa válvula se abre para dejar bombear cemento a través de ella bajo presión durante un trabajo de cementación por squeeze, luego se cierra después para sostener presión desde arriba una vez terminado el trabajo. Un <strong>tapón puente</strong> no tiene ninguna válvula de paso — es un sello mecánico puro sin nada diseñado para bombearse a través de él una vez asentado. Si el trabajo requiere bombear cemento (o cualquier otra cosa) a través de la herramienta misma, corresponde un retenedor; si es un sello de aislamiento sencillo sin bombeo a través de él después, corresponde un tapón puente.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#setting-retrieval">Asentamiento y Recuperación</a>
+          <a href="#ratings">Clasificaciones de Presión y Temp.</a>
+          <a href="#materials">Materiales y Molienda</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-cement-retainer">vs. Retenedor de Cemento</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Las clasificaciones y especificaciones varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/cement-retainer" class="card-link">→ Retenedor de Cemento</a><br><br>
+          <a href="/es/equipment/bop" class="card-link">→ Tipos de Preventor de Reventones y Cómo Funciona un BOP</a><br><br>
+          <a href="/es/equipment/casing-cutter" class="card-link">→ Cortador de Revestimiento</a><br><br>
+          <a href="/es/equipment/packer" class="card-link">→ Empacador</a><br><br>
+          <a href="/es/drilling/well-control" class="card-link">→ Control de Pozos y Surgencias</a><br><br>
+          <a href="/es/calculators/kill-sheet" class="card-link">→ Calculadora de Hoja de Control de Pozo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
