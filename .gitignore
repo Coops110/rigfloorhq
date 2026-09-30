@@ -18,3 +18,5 @@ social/*
 
 .vscode/
 .env
+.vercel
+.env*
