@@ -90,4 +90,4 @@ SIDPP is defined as the difference between **fluid hydrostatic pressure in the d
 
 ---
 
-For the formulas behind these, the [hydrostatic pressure calculator](/calculators/hydrostatic) and [mud weight converter](/calculators/mud-weight-converter) run the same math live. Background theory lives on the [well control reference page](/drilling/well-control). The same hydrostatic math shows up again, worked as full numeric problems, in the [pit volumes and MAASP mistakes](/blog/pit-volumes-maasp-math-mistakes) page.
+For the formulas behind these, the [hydrostatic pressure calculator](/calculators/hydrostatic) and [mud weight converter](/calculators/mud-weight-converter) run the same math live. Background theory lives on the [well control reference page](/drilling/well-control). The same hydrostatic math shows up again, worked as full numeric problems, in the [pit volumes and MAASP mistakes](/blog/pit-volumes-maasp-math-mistakes) page. And if the 0.052 in that math has ever seemed like something that should vary by mud type, [the actual derivation](/blog/hydrostatic-pressure-0052-constant) explains why it doesn't.

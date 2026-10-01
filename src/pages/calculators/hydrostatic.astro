@@ -67,7 +67,7 @@ import Footer from '../../components/Footer.astro';
         <div class="formula-block">
           <div class="formula-label">Hydrostatic Pressure</div>
           <div class="formula-eq">HP (psi) = 0.052 × MW (ppg) × TVD (ft)</div>
-          <div class="formula-note">0.052 is the unit conversion constant relating pounds per gallon and feet to psi.</div>
+          <div class="formula-note">0.052 is the unit conversion constant relating pounds per gallon and feet to psi — see <a href="/blog/hydrostatic-pressure-0052-constant">why it never changes between mud types</a> for the full derivation.</div>
         </div>
         <p>It then compares your hydrostatic pressure against the pore pressure and fracture pressure at the same depth (calculated from the gradients you enter) to determine whether your mud weight sits safely inside the mud weight window.</p>
 
@@ -79,7 +79,7 @@ import Footer from '../../components/Footer.astro';
           <li><strong style="color:var(--danger);">Underbalanced / Overbalanced (critical)</strong> — hydrostatic pressure has crossed pore or fracture pressure entirely. Immediate review required.</li>
         </ul>
 
-        <p>For full formula derivations and worked examples, see the <a href="/drilling/mud-weight">mud weight and pressure reference page</a>. If you're working through an active kick, use the <a href="/calculators/kill-sheet">kill sheet calculator</a> instead.</p>
+        <p>For full formula derivations and worked examples, see the <a href="/drilling/mud-weight">mud weight and pressure reference page</a>. If you're working through an active kick, use the <a href="/calculators/kill-sheet">kill sheet calculator</a> instead. For the complete reference on hydrostatic pressure itself — pore/fracture pressure, ECD, trip margin, and MAASP all tied together — see the <a href="/pillars/hydrostatic-pressure">hydrostatic pressure pillar page</a>.</p>
       </div>
     </div>
   </section>
