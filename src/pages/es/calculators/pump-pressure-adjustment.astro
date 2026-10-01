@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Por qué la presión de bomba escala con el cuadrado de la tasa de embolada?',
+    a: 'Las pérdidas de presión circulante son pérdidas por fricción, y la pérdida de presión por fricción a través de un sistema fijo sube con el cuadrado de la tasa de flujo. Duplica las emboladas por minuto y la presión no solo se duplica — aproximadamente se cuadruplica, que es por qué la fórmula de nuevas emboladas eleva al cuadrado la razón en lugar de usarla directamente.',
+  },
+  {
+    q: '¿Por qué la nueva pérdida de presión escala directamente con el peso de lodo, no al cuadrado?',
+    a: 'La pérdida de presión por fricción también es directamente proporcional a la densidad del fluido — un lodo más pesado simplemente es más difícil de empujar por la misma tubería y anular a la misma tasa. A diferencia de la relación con la tasa de flujo, esa es una relación lineal (línea recta), así que la fórmula del nuevo lodo usa una razón directa en lugar de una al cuadrado.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Calculadora de Nueva Presión de Bomba: Cambios de Tasa de Embolada y Peso de Lodo"
+  description="Calculadora gratuita para la nueva presión circulante después de un cambio de tasa de embolada o un cambio de peso de lodo, usando las fórmulas estándar de proporcionalidad IWCF."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Ajuste de Presión de Bomba', href: '/es/calculators/pump-pressure-adjustment' }]}
+  lang="es"
+  alternateHref="/calculators/pump-pressure-adjustment"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/pump-pressure-adjustment" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Ajuste de Nueva <span>Presión de Bomba</span></h1>
+    <p class="page-hero-sub">Calcula la nueva presión circulante después de un cambio de tasa de embolada o un cambio de peso de lodo, sin volver a medir en superficie.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Nueva Presión de Bomba Con Nuevas Emboladas</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="ppa-p1">Presión Actual (psi)</label>
+              <input type="number" id="ppa-p1" value="1500" step="1">
+            </div>
+            <div class="input-group">
+              <label for="ppa-spm1">SPM Actual</label>
+              <input type="number" id="ppa-spm1" value="80" step="1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="ppa-spm2">Nuevo SPM</label>
+              <input type="number" id="ppa-spm2" value="100" step="1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Nueva Presión de Bomba</span><span class="output-value" id="out-newp">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🧭 Nueva Pérdida de Presión Con Nuevo Lodo</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="ppa-op">Pérdida de Presión Original (psi)</label>
+              <input type="number" id="ppa-op" value="2222" step="1">
+            </div>
+            <div class="input-group">
+              <label for="ppa-mw1">Peso de Lodo Original (ppg)</label>
+              <input type="number" id="ppa-mw1" value="9" step="0.1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="ppa-mw2">Nuevo Peso de Lodo (ppg)</label>
+              <input type="number" id="ppa-mw2" value="9.1" step="0.1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Nueva Pérdida de Presión</span><span class="output-value" id="out-newpl">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Las Fórmulas Usadas</h2>
+        <div class="formula-block">
+          <div class="formula-label">Nueva Presión de Bomba Con Nuevas Emboladas</div>
+          <div class="formula-eq">P2 = P1 × (SPM2 ÷ SPM1)²</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">Nueva Pérdida de Presión Con Nuevo Lodo</div>
+          <div class="formula-eq">P2 = P1 × (Peso de Lodo2 ÷ Peso de Lodo1)</div>
+        </div>
+
+        <h3>Dónde Encaja Esto</h3>
+        <p>Ambos cálculos responden la misma pregunta práctica desde direcciones diferentes: qué debería leer el manómetro de la bomba una vez que algo cambie, sin bombear a la nueva condición primero para averiguarlo. La versión de tasa de embolada es lo que establece las presiones de tasa lenta de circulación (SCR) usadas directamente en la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> — las lecturas de SCR normalmente se toman a tasa reducida, luego esta misma relación al cuadrado es lo que un perforador usa para verificar presión a cualquier otra tasa. La versión de peso de lodo importa cada vez que el lodo se carga o se aligera a mitad del pozo y la presión de bomba a la misma tasa necesita reestablecerse antes de poder compararse contra una línea base para un indicador de amago o lavado.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const p1 = num('ppa-p1'), spm1 = num('ppa-spm1'), spm2 = num('ppa-spm2');
+    const newP = spm1 > 0 ? p1 * Math.pow(spm2 / spm1, 2) : 0;
+    set('out-newp', fmt(newP, 0) + ' psi');
+
+    const op = num('ppa-op'), mw1 = num('ppa-mw1'), mw2 = num('ppa-mw2');
+    const newPl = mw1 > 0 ? op * (mw2 / mw1) : 0;
+    set('out-newpl', fmt(newPl, 0) + ' psi');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

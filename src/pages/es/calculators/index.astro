@@ -17,7 +17,37 @@ import Footer from '../../../components/Footer.astro';
     <div class="page-hero-eyebrow">07 — Herramientas Interactivas</div>
     <h1>Calculadoras de <span>Perforación</span></h1>
     <p class="page-hero-sub">Realiza cálculos reales de presión de perforación usando las fórmulas exactas enseñadas en la certificación de control de pozos de IWCF e IADC. Cada calculadora muestra la fórmula que utiliza, para que puedas verificar el cálculo a mano en lugar de confiar ciegamente en un número en pantalla.</p>
+    <p class="page-hero-sub">Las calculadoras de lodo gratuitas de esta página cubren las matemáticas básicas usadas en toda la industria: ventana de peso de lodo, presión hidrostática, peso de lodo de matanza, y gradiente de presión — cada fórmula mostrada, sin registro.</p>
   </div>
+
+  <section class="block">
+    <div class="prose">
+      <h2 id="quick-hydrostatic">Empieza Aquí: Presión Hidrostática</h2>
+      <p>El peso de lodo y la profundidad es el cálculo sobre el que se construye todo lo demás en esta página. Escribe en ambas casillas y se calcula mientras avanzas.</p>
+    </div>
+
+    <div class="calc-box" style="max-width:620px;">
+      <div class="calc-title">⚙ Hidrostática Rápida</div>
+      <div class="input-row">
+        <div class="input-group">
+          <label for="q-mw">Peso de Lodo (ppg)</label>
+          <input type="number" id="q-mw" placeholder="ej. 12.0" step="any" min="0">
+        </div>
+        <div class="input-group">
+          <label for="q-tvd">Profundidad Vertical Verdadera (ft)</label>
+          <input type="number" id="q-tvd" placeholder="ej. 10000" step="any" min="0">
+        </div>
+      </div>
+      <div class="calc-output" id="q-output">
+        <div class="output-line"><span class="output-label">Presión Hidrostática</span><span class="output-value" id="q-hp">—</span></div>
+        <div class="output-line" style="border-bottom:none;"><span class="output-label">Gradiente de Presión</span><span class="output-value" id="q-grad">—</span></div>
+      </div>
+    </div>
+
+    <div class="prose mt-24">
+      <p>Eso es solo la columna estática. Para revisarla contra la presión de poro y fractura y obtener una alerta de surgencia o pérdida de circulación, usa la <a href="/es/calculators/hydrostatic">calculadora completa de presión hidrostática</a>.</p>
+    </div>
+  </section>
 
   <section class="block">
     <div class="prose">
@@ -124,6 +154,13 @@ import Footer from '../../../components/Footer.astro';
         <p>Calcula el peso de lodo de matanza, la presión de formación, y la presión de circulación inicial/final después de cerrar el pozo por una surgencia.</p>
         <p class="card-formula"><strong>Fórmula:</strong> PLM = PLO + (SIDPP ÷ (0.052 × TVD))</p>
         <a href="/es/calculators/kill-sheet" class="card-link">Abrir Calculadora →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">⚖</span>
+        <h3>Convertidor de Peso de Lodo (inglés)</h3>
+        <p>Convierte peso de lodo entre ppg, gravedad específica, lb/ft³, kg/m³ y psi/ft, además de presión y profundidad. Cada campo se actualiza mientras escribes.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> psi/ft = ppg × 0.052</p>
+        <a href="/calculators/mud-weight-converter" class="card-link">Abrir Convertidor →</a>
       </div>
       <div class="card">
         <span class="card-icon">📊</span>
@@ -236,6 +273,76 @@ import Footer from '../../../components/Footer.astro';
         <p>La surgencia equivalente en ppg que tu MAASP actual puede absorber en la zapata, usando el supuesto estándar de gradiente cero.</p>
         <p class="card-formula"><strong>Fórmula:</strong> KT = [MAASP − (Alt. Surgencia × MW × 0.052)] ÷ (0.052 × TVD)</p>
         <a href="/es/calculators/kick-tolerance" class="card-link">Abrir Calculadora →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🧭</span>
+        <h3>Calculadora MAMW y Nuevo MAASP</h3>
+        <p>Peso máximo admisible de lodo a partir de tu prueba LOT/FIT, luego el nuevo MAASP una vez establecido un peso de lodo de matanza.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> MAMW = MW + [LOT/FIT ÷ (0.052 × TVD)]</p>
+        <a href="/es/calculators/mamw" class="card-link">Abrir Calculadora →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">📐</span>
+        <h3>Margen de Viaje / Factor de Seguridad</h3>
+        <p>El peso de lodo extra cargado encima del balance de formación para proteger contra el swabbing al sacar la sarta.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> TM/SF = MW + [Margen de Seguridad ÷ (0.052 × TVD)]</p>
+        <a href="/es/calculators/trip-margin" class="card-link">Abrir Calculadora →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">💨</span>
+        <h3>Calculadora de Velocidad Anular</h3>
+        <p>Qué tan rápido se mueve el fluido hacia arriba en una sección anular dada a un ritmo de bomba elegido — el número que decide la limpieza del pozo.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> AV = Rendimiento de Bomba ÷ Capacidad Anular</p>
+        <a href="/es/calculators/annular-velocity" class="card-link">Abrir Calculadora →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">⏱</span>
+        <h3>Ajuste de Nueva Presión de Bomba</h3>
+        <p>Nueva presión circulante después de un cambio de tasa de embolada o un cambio de peso de lodo.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> P2 = P1 × (SPM2 ÷ SPM1)²</p>
+        <a href="/es/calculators/pump-pressure-adjustment" class="card-link">Abrir Calculadora →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">⚖️</span>
+        <h3>Calculadora de Barita Requerida</h3>
+        <p>Libras de barita por barril necesarias para aumentar el lodo de un peso actual a un peso objetivo más pesado.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> lb/bbl = 1500 × (MW2 − MW1) ÷ (35.5 − MW2)</p>
+        <a href="/es/calculators/barite-required" class="card-link">Abrir Calculadora →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🕳</span>
+        <h3>Geometría de Influjo de Amago</h3>
+        <p>Longitud de influjo, altura vertical verdadera, y presión de revestimiento con pozo cerrado a partir de un volumen de amago e inclinación del pozo.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> IVH = LoIAH × cos(Inclinación)</p>
+        <a href="/es/calculators/kick-influx-geometry" class="card-link">Abrir Calculadora →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">📉</span>
+        <h3>Efectos de Presión al Viajar</h3>
+        <p>Caída de presión por pie al sacar tubería seca o mojada, y caída de nivel de lodo al sacar sin rellenar.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> ΔP/ft = MW × 0.052 × [Desp. de Acero ÷ (Cap − Desp. de Acero)]</p>
+        <a href="/es/calculators/tripping-pressure-effects" class="card-link">Abrir Calculadora →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔒</span>
+        <h3>Relación de Cierre y Apertura de BOP</h3>
+        <p>Presión operativa hidráulica necesaria para cerrar o abrir un BOP a una presión de cabezal de pozo y relación clasificada dadas.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> Presión Requerida = Presión de Cabezal de Pozo ÷ Relación</p>
+        <a href="/es/calculators/bop-closing-ratio" class="card-link">Abrir Calculadora →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">🛢</span>
+        <h3>Volumen de Slug y Ganancia de Presa</h3>
+        <p>Volumen de slug para una longitud deseada de tubería seca, y la ganancia de presa esperada al bombearlo.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> V = (Longitud × Capacidad × MW) ÷ (Peso de Slug − MW)</p>
+        <a href="/es/calculators/slug-calculation" class="card-link">Abrir Calculadora →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">💨</span>
+        <h3>Calculadora de Hidráulica de Barrena</h3>
+        <p>Área de flujo total a partir de tamaños reales de boquillas, luego velocidad de chorro, caballaje hidráulico de barrena, y HSI.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> Vn = 0.32 × Tasa de Flujo ÷ TFA</p>
+        <a href="/es/calculators/bit-hydraulics" class="card-link">Abrir Calculadora →</a>
       </div>
       <div class="card">
         <span class="card-icon">⚙</span>
@@ -378,6 +485,42 @@ import Footer from '../../../components/Footer.astro';
     ]
   })} />
 </BaseLayout>
+
+<script>
+  // En vivo, sin botón de Calcular — igual que el convertidor. El 0.052 aquí es
+  // el valor exacto 1728/231/144 en lugar del valor redondeado, igual que
+  // cualquier otra calculadora del sitio.
+  const PSI_PER_FT_PER_PPG = 0.05194805194805;
+
+  const mw = document.getElementById('q-mw') as HTMLInputElement | null;
+  const tvd = document.getElementById('q-tvd') as HTMLInputElement | null;
+  const hpOut = document.getElementById('q-hp');
+  const gradOut = document.getElementById('q-grad');
+  const box = document.getElementById('q-output');
+
+  function run() {
+    if (!mw || !tvd || !hpOut || !gradOut) return;
+    const w = parseFloat(mw.value);
+    const d = parseFloat(tvd.value);
+
+    if (isFinite(w) && w > 0) {
+      gradOut.textContent = (w * PSI_PER_FT_PER_PPG).toFixed(4) + ' psi/ft';
+      box?.classList.add('visible');
+    } else {
+      gradOut.textContent = '—';
+    }
+
+    if (isFinite(w) && isFinite(d) && w > 0 && d > 0) {
+      hpOut.textContent = Math.round(w * PSI_PER_FT_PER_PPG * d).toLocaleString() + ' psi';
+      box?.classList.add('visible');
+    } else {
+      hpOut.textContent = '—';
+    }
+  }
+
+  mw?.addEventListener('input', run);
+  tvd?.addEventListener('input', run);
+</script>
 
 <style>
   .calc-table {

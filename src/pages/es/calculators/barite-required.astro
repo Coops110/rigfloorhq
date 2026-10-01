@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿De dónde viene la constante de 35.5 ppg?',
+    a: 'Representa la densidad absoluta propia de la barita expresada en ppg (una gravedad específica de aproximadamente 4.2-4.3, el material de carga estándar API barita) — el peso de lodo teórico si el lodo fuera barita pura sin agua ni fase de aceite en absoluto. La fórmula funciona porque está encontrando qué fracción de ese máximo teórico necesita agregarse para alcanzar el peso objetivo.',
+  },
+  {
+    q: '¿Esto toma en cuenta el aumento de volumen por agregar barita?',
+    a: 'No — esto da el peso de barita (en lb por barril de lodo inicial) necesario para alcanzar el peso objetivo, tratando los sólidos agregados como si reemplazaran un volumen líquido equivalente. Un cálculo completo de ingeniería de lodos también rastrea el aumento de volumen resultante y el contenido de sólidos; esta calculadora responde específicamente la pregunta del material de carga, no el volumen total del sistema.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Calculadora de Barita Requerida: Cargando el Lodo de Perforación"
+  description="Calculadora gratuita de cuánta barita, en libras por barril, se necesita para subir el lodo de perforación de un peso a un peso objetivo más pesado."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Barita Requerida', href: '/es/calculators/barite-required' }]}
+  lang="es"
+  alternateHref="/calculators/barite-required"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/barite-required" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Barita Requerida <span>para Subir Peso de Lodo</span></h1>
+    <p class="page-hero-sub">Cuántas libras de barita por barril de lodo inicial se necesitan para cargar desde un peso de lodo actual a un peso objetivo más pesado.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Datos de Carga</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="br-mw1">Peso de Lodo Actual (ppg)</label>
+              <input type="number" id="br-mw1" value="11" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="br-mw2">Peso de Lodo Objetivo (ppg)</label>
+              <input type="number" id="br-mw2" value="12" step="0.1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Barita Requerida</span><span class="output-value" id="out-barite">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>La Fórmula Usada</h2>
+        <div class="formula-block">
+          <div class="formula-label">Barita Requerida</div>
+          <div class="formula-eq">Barita (lb/bbl) = 1500 × (MW Objetivo − MW Actual) ÷ (35.5 − MW Objetivo)</div>
+          <div class="formula-note">Ambos pesos de lodo en ppg. El resultado es libras de barita por barril de lodo inicial.</div>
+        </div>
+
+        <h3>Dónde Encaja Esto</h3>
+        <p>Este es el paso práctico de carga detrás de varias otras calculadoras en el sitio: el ingeniero de lodos necesita esta cifra cada vez que una <a href="/es/calculators/kill-sheet">hoja de control de pozo</a> o la <a href="/es/calculators/mamw">calculadora MAMW</a> requiere un peso de lodo de control más pesado del que actualmente hay en las presas, o cada vez que el <a href="/es/calculators/maasp">MAASP</a> o la ventana de peso de lodo requiere cargar antes de perforar hacia una zona de mayor presión. Conforme el peso objetivo se acerca más a la densidad absoluta propia de la barita de 35.5 ppg, el denominador se reduce y la cantidad requerida por barril sube bruscamente — un techo práctico real de qué tan pesado se puede realmente cargar un lodo base agua o aceite solo con barita.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const mw1 = num('br-mw1'), mw2 = num('br-mw2');
+    const denom = 35.5 - mw2;
+    const barite = denom > 0 ? 1500 * (mw2 - mw1) / denom : 0;
+    set('out-barite', fmt(barite, 1) + ' lb/bbl');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

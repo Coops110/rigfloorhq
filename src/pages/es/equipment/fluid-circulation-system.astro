@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Qué hace realmente el sistema de circulación, más allá de solo mover el lodo?',
+    a: 'Tres trabajos a la vez: transporta los recortes hacia arriba por el espacio anular y los aleja de la barrena para que el pozo siga avanzando en lugar de empacarse, enfría y lubrica la barrena y la sarta de perforación, y — crítico para el control de pozos — es lo que aplica la presión hidrostática que contiene la presión de la formación en primer lugar. Las tres dependen de las mismas bombas y del mismo fluido moviéndose por la misma trayectoria.',
+  },
+  {
+    q: '¿Por qué la mayoría de los taladros usan bombas triplex en lugar de dúplex?',
+    a: 'Una bomba triplex (tres cilindros, de acción simple) produce un flujo más suave y continuo que un diseño dúplex más antiguo (dos cilindros, de doble acción), con menos partes móviles y más ligeras para la misma producción — una ventaja real a las presiones y tasas de flujo más altas que la perforación moderna requiere. Las bombas dúplex son en gran parte un diseño heredado a estas alturas, aunque el principio de doble acción detrás de ellas no es incorrecto, solo menos eficiente a escala que el triplex.',
+  },
+  {
+    q: '¿Cuál es la trayectoria real que sigue el fluido de perforación?',
+    a: 'Desde las presas de lodo, a través de la bomba, hacia arriba por el standpipe (una tubería rígida montada en la torre), a través de una manguera rotaria flexible (o a través del paso interno propio del top drive), hacia abajo por toda la longitud de la sarta de perforación, hacia afuera por las boquillas de la barrena, y de vuelta hacia arriba por el espacio anular entre la sarta y la pared del pozo hasta la línea de retorno — que alimenta directamente al sistema de control de sólidos antes de que el fluido regrese a las presas para ser bombeado de nuevo.',
+  },
+  {
+    q: '¿Qué es la producción de la bomba, y por qué importa para la limpieza del pozo?',
+    a: 'La producción de la bomba es el volumen real de fluido que la bomba mueve por minuto a una tasa de embolada dada — fija directamente la velocidad anular que transporta los recortes a superficie. Una producción de bomba demasiado baja para el tamaño de pozo en uso significa que los recortes se asientan de nuevo en lugar de llegar a superficie, una de las causas mecánicas directas de un incidente de tubería pegada. Consulta las calculadoras de ajuste de presión de bomba y velocidad anular para las cifras reales de un trabajo específico.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Sistema de Circulación de Fluido: Bombas de Lodo, Standpipe y Trayectoria de Flujo"
+  description="Cómo funciona el sistema de circulación de fluido de un taladro: bombas de lodo, el standpipe y la manguera rotaria, la trayectoria completa de flujo de las presas a la barrena y de vuelta, y por qué importa la producción de la bomba para la limpieza del pozo."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Sistema de Circulación de Fluido', href: '/es/equipment/fluid-circulation-system' }]}
+  lang="es"
+  alternateHref="/equipment/fluid-circulation-system"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/fluid-circulation-system" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Sistemas Principales</div>
+    <h1>Sistema de Circulación <span>de Fluido</span></h1>
+    <p class="page-hero-sub">Las bombas de lodo y la trayectoria de flujo que transportan los recortes a superficie, enfrían la barrena, y contienen la presión de la formación — todo con el mismo fluido, moviéndose por el mismo circuito.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="what-it-is">Qué Hace el Sistema de Circulación</h2>
+        <p>La circulación está haciendo tres trabajos simultáneamente, con el mismo fluido en el mismo circuito: transportar los recortes hacia arriba por el espacio anular y alejarlos de la barrena para que el pozo siga avanzando, enfriar y lubricar la barrena y la sarta contra la fricción de la perforación, y aplicar la presión hidrostática que contiene la presión de la formación — la base entera del control primario de pozos. Todo en este sistema existe para mantener ese único fluido moviéndose de forma confiable por toda su trayectoria.</p>
+
+        <h2 id="pumps">Bombas de Lodo</h2>
+        <p>Las bombas son la fuente de poder del sistema — bombas de desplazamiento positivo reciprocantes que empujan el fluido de perforación a la presión y tasa que un trabajo dado necesita. La mayoría de los taladros modernos usan <strong>bombas triplex</strong> (tres cilindros, de acción simple), que producen un flujo más suave y continuo que el diseño <strong>dúplex</strong> más antiguo (dos cilindros, de doble acción) con partes móviles menos numerosas y más ligeras para una producción dada — una ventaja real a las presiones y tasas de flujo más altas que la perforación moderna rutinariamente requiere. Las bombas dúplex todavía se encuentran en algunos taladros más antiguos o pequeños, pero el triplex es el estándar en todo lo construido en décadas recientes.</p>
+        <p>La producción real de una bomba — el volumen que mueve por minuto a una tasa de embolada dada — es una cifra directa y calculable, no solo una clasificación en una placa; ve la <a href="/es/calculators/pump-pressure-adjustment">calculadora de ajuste de presión de bomba</a> para cómo cambia la producción con la tasa de embolada y el peso del lodo.</p>
+
+        <h2 id="flow-path">La Trayectoria Completa de Flujo</h2>
+        <p>El fluido sale de las <strong>presas de lodo</strong>, entra a la bomba, y se empuja hacia arriba por un <strong>standpipe</strong> rígido montado en la torre. De ahí pasa por una <strong>manguera rotaria</strong> flexible (o por el paso de fluido interno propio de un top drive, en un taladro con top drive — ve el <a href="/es/equipment/rotating-system">sistema rotatorio</a>) hacia la parte superior de la <a href="/es/equipment/drill-string">sarta de perforación</a>, viaja toda la longitud de la sarta, y sale por las <a href="/es/calculators/bit-hydraulics">boquillas de la barrena</a> en el fondo. De ahí da vuelta y viaja de regreso hacia arriba por el <strong>espacio anular</strong> — el espacio entre la sarta y la pared del pozo — llevando los recortes con él, hasta que llega a superficie por la <strong>línea de retorno</strong> y alimenta directamente al <a href="/es/equipment/mud-pit-system">sistema de control de sólidos</a> antes de volver a las presas para ser bombeado de nuevo.</p>
+
+        <h2 id="pressure-flow">Presión, Tasa de Flujo, y Limpieza del Pozo</h2>
+        <p>La bomba tiene que entregar suficiente tasa de flujo para transportar los recortes a superficie a una <a href="/es/calculators/annular-velocity">velocidad anular</a> funcional para el tamaño de pozo y sistema de lodo específicos en uso — una tasa de flujo demasiado baja para el pozo deja que los recortes se asienten de nuevo en lugar de llegar a superficie, una causa mecánica directa de empaque y tubería pegada. Al mismo tiempo, la presión de la bomba está limitada por la propia clasificación de presión del sistema y por cuánta de esa presión se está perdiendo en fricción en lugar de llegar realmente a la barrena — ve <a href="/es/calculators/bit-hydraulics">hidráulica de barrena</a> para lo que está pasando justo en la cara de la barrena una vez que el flujo llega ahí.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Hace</a>
+          <a href="#pumps">Bombas de Lodo</a>
+          <a href="#flow-path">Trayectoria de Flujo</a>
+          <a href="#pressure-flow">Presión, Flujo y Limpieza</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/mud-pit-system" class="card-link">→ Sistema de Control de Sólidos</a><br><br>
+          <a href="/es/calculators/bit-hydraulics" class="card-link">→ Calculadora de Hidráulica de Barrena</a><br><br>
+          <a href="/es/calculators/annular-velocity" class="card-link">→ Calculadora de Velocidad Anular</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

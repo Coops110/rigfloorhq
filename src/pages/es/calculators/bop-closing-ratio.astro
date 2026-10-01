@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Qué es una relación de cierre/apertura de BOP?',
+    a: 'Es la ventaja mecánica construida en un diseño de preventor anular o ariete — el múltiplo por el cual la presión operativa hidráulica se convierte en la fuerza real de sellado o apertura contra la presión del pozo. Una relación de cierre 7:1 significa que el sistema operativo solo necesita suministrar presión a 1/7 de la presión de cabezal de pozo contra la que tiene que mantenerse cerrado.',
+  },
+  {
+    q: '¿Por qué la relación de apertura usualmente es un número más pequeño que la relación de cierre?',
+    a: 'Cerrar tiene que generar suficiente fuerza para sellar contra la presión total del pozo, lo cual necesita una gran ventaja mecánica. Abrir solo tiene que vencer la resistencia del elemento sellante propio del preventor y cualquier presión residual que quede, una fuerza mucho menor — así que los sistemas de apertura no necesitan tanta ventaja mecánica y se construyen con una relación más baja.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Calculadora de Relación de Cierre y Apertura de BOP"
+  description="Calculadora gratuita para la presión operativa hidráulica requerida para cerrar o abrir un BOP a una presión de cabezal de pozo y relación clasificada de la herramienta dadas."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Relación de Cierre de BOP', href: '/es/calculators/bop-closing-ratio' }]}
+  lang="es"
+  alternateHref="/calculators/bop-closing-ratio"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/bop-closing-ratio" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Relación de Cierre y <span>Apertura de BOP</span></h1>
+    <p class="page-hero-sub">La presión operativa hidráulica que un BOP realmente necesita para cerrar o abrir, dada la presión de cabezal de pozo y la relación mecánica clasificada propia de la herramienta.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Relación de Cierre</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="bop-whp1">Presión de Cabezal de Pozo en BOP (psi)</label>
+              <input type="number" id="bop-whp1" value="10000" step="1">
+            </div>
+            <div class="input-group">
+              <label for="bop-cr">Relación de Cierre (a 1)</label>
+              <input type="number" id="bop-cr" value="7" step="0.1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Presión Requerida para Cerrar</span><span class="output-value" id="out-close">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🧭 Relación de Apertura</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="bop-whp2">Presión de Cabezal de Pozo en BOP (psi)</label>
+              <input type="number" id="bop-whp2" value="2000" step="1">
+            </div>
+            <div class="input-group">
+              <label for="bop-or">Relación de Apertura (a 1)</label>
+              <input type="number" id="bop-or" value="2.3" step="0.1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Presión Requerida para Abrir</span><span class="output-value" id="out-open">—</span></div>
+          </div>
+        </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>Esta es una herramienta de referencia, no una autoridad operacional.</strong> Las relaciones reales de cierre y apertura están estampadas en la hoja de especificaciones del fabricante del BOP específico — siempre confirma la relación clasificada real para la herramienta exacta en uso, no una cifra genérica.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>La Fórmula Usada</h2>
+        <div class="formula-block">
+          <div class="formula-label">Presión Requerida de Cierre / Apertura de BOP</div>
+          <div class="formula-eq">Presión Requerida = Presión de Cabezal de Pozo ÷ Relación</div>
+          <div class="formula-note">Tanto la presión de cabezal de pozo como la presión requerida en psi. La relación es adimensional (expresada como N:1).</div>
+        </div>
+
+        <h3>Dónde Encaja Esto</h3>
+        <p>Este es el enlace mecánico entre una lectura de presión de cabezal de pozo y lo que la unidad de cierre realmente tiene que suministrar para sostenerla — directamente relevante en la <a href="/es/equipment/bop">página de equipo de BOP</a> y cada vez que la <a href="/es/equipment/accumulator">prueba funcional del acumulador</a> se revisa contra presiones de cierre reales en lugar de un objetivo genérico. Mientras la presión de cabezal de pozo sube durante un evento de control de pozo, esta es la revisión rápida de si el sistema de acumulador del taladro tiene suficiente margen de presión de trabajo arriba de lo que una relación dada realmente demanda a la presión de cierre actual.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const whp1 = num('bop-whp1'), cr = num('bop-cr');
+    set('out-close', fmt(cr > 0 ? whp1 / cr : 0, 0) + ' psi');
+
+    const whp2 = num('bop-whp2'), or_ = num('bop-or');
+    set('out-open', fmt(or_ > 0 ? whp2 / or_ : 0, 0) + ' psi');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

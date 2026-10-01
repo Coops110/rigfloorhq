@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import Whipstock3D from '../../../components/Whipstock3D.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un whipstock?',
+    a: 'Un whipstock desvía una fresa hacia un lado contra la pared del revestimiento, cortando una ventana que permite perforar un nuevo pozo en una dirección diferente — es la herramienta que hace posible un sidetrack físicamente. Sin él, una fresa corrida por el pozo existente simplemente continuaría recto en lugar de ser dirigida hacia la pared de la tubería en una profundidad elegida.',
+  },
+  {
+    q: '¿Cómo desvía realmente el whipstock la fresa?',
+    a: 'Su cara cóncava larga e inclinada actúa como una rampa: mientras la fresa se trabaja hacia abajo contra ella bajo peso y rotación, la inclinación de la cara empuja la fresa hacia un lado contra la pared del revestimiento en lugar de dejarla continuar recta por el pozo existente. El whipstock mismo está anclado en el revestimiento de antemano, así que se queda fijo mientras la fresa corre contra él.',
+  },
+  {
+    q: '¿Para qué es el pilot lug?',
+    a: 'El pilot lug se ubica en la parte superior del whipstock y da a la fresa inicial un punto controlado para engancharse por primera vez con la pared del revestimiento, en lugar de que el cuerpo a calibre completo de la fresa se encuentre con la tubería en frío. Se corta limpiamente una vez que comienza el fresado real, habiendo hecho su trabajo de establecer exactamente dónde comienza el corte.',
+  },
+  {
+    q: '¿Cómo se orienta el whipstock en la dirección correcta antes de empezar a fresar?',
+    a: 'La orientación se confirma con herramientas de topografía antes de que el ancla se asiente, ya que la cara cóncava del whipstock tiene que apuntar en la dirección exacta de compás hacia la que el nuevo pozo necesita construir. El ancla y la orientación suceden juntas — orientar mal y todo el sidetrack comienza en la dirección equivocada, ya que todo lo fresado y perforado después sigue la línea que estableció la cara del whipstock.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Whipstock: Cómo Funcionan las Herramientas de Desviación para Sidetrack"
+  description="Qué es un whipstock, cómo su cara cóncava desvía una fresa de ventana hacia la pared del revestimiento, el pilot lug y el ancla, y cómo se establece la orientación antes de fresar."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Whipstock', href: '/es/equipment/whipstock' }]}
+  lang="es"
+  alternateHref="/equipment/whipstock"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/whipstock" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Whipstock</h1>
+    <p class="page-hero-sub">Una rampa larga e inclinada anclada dentro del revestimiento que desvía una fresa hacia un lado contra la pared de la tubería — la herramienta que hace posible un sidetrack físicamente.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <Whipstock3D />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Whipstock</h2>
+        <p>Un whipstock es una herramienta larga en forma de cuña con una cara cóncava inclinada, corrida y anclada dentro del revestimiento a la profundidad exacta donde un sidetrack está destinado a comenzar. Su trabajo entero es la desviación: una <a href="/es/equipment/window-mill">fresa de ventana</a> corrida hacia abajo contra la cara de rampa del whipstock es empujada hacia un lado contra la pared del revestimiento en lugar de continuar recta por el pozo existente, cortando la apertura que permite que comience una nueva trayectoria de pozo. Sin el whipstock dando esa superficie fija e inclinada, nada sobre una operación de fresado de ventana realmente dirigiría la fresa a ningún lado.</p>
+
+        <h2 id="anatomy">Anatomía — Cara de Rampa, Ancla, y Pilot Lug</h2>
+        <p>La <strong>cara cóncava</strong> es la superficie de trabajo central del whipstock — una rampa curva y lisa que corre la mayor parte de la longitud de la herramienta, contra la cual el cuerpo de la fresa se apoya mientras se trabaja hacia abajo bajo peso y rotación. La inclinación es lo que convierte la fuerza recta hacia abajo en desviación hacia un lado.</p>
+        <p>El <strong>ancla</strong> se ubica en la base y fija el whipstock en su lugar dentro del revestimiento antes de que comience cualquier fresado — anclado mecánicamente, contra un tapón de cemento asentado debajo de él, o vía un ancla tipo empacador dedicada dependiendo de la sarta de herramientas específica y el trabajo. Sea cual sea el mecanismo, el whipstock tiene que quedarse completamente fijo mientras la fresa trabaja contra su cara, o el punto de desviación se desplaza y la ventana sale en el lugar equivocado.</p>
+        <p>El <strong>pilot lug</strong> se ubica en la parte superior y da a la fresa inicial un punto controlado y preciso para engancharse por primera vez con la pared del revestimiento, en lugar de que el cuerpo a calibre completo de la fresa se encuentre con la tubería en frío sin guía. Se corta limpiamente una vez que comienza el fresado real, habiendo hecho su único trabajo de establecer exactamente dónde comienza el corte.</p>
+
+        <h2 id="orientation">Orientación Antes de Fresar</h2>
+        <p>Antes de que el ancla se asiente, la orientación se confirma con herramientas de topografía — la cara cóncava del whipstock tiene que apuntar en la dirección exacta de compás hacia la que el nuevo pozo necesita construir. Este no es un paso que pueda corregirse después del hecho: todo lo fresado y perforado una vez cortada la ventana sigue la línea que estableció la cara del whipstock, así que un error de orientación aquí envía todo el sidetrack en la dirección equivocada desde el primer corte.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Se Corre un Whipstock</h2>
+        <ul>
+          <li><strong>Sidetrack alrededor de un problema irrecuperable</strong> más abajo en el pozo original — un objeto que no pudo liberarse, una sección colapsada, o una falla mecánica que hace impráctico continuar la trayectoria original.</li>
+          <li><strong>Reentrada a un pozo viejo</strong> para alcanzar un nuevo objetivo desde un pozo revestido existente, en lugar de perforar y revestir un pozo enteramente nuevo desde superficie.</li>
+          <li><strong>Construcción de pozo multilateral</strong>, donde varios pozos se ramifican de un pozo madre revestido, cada uno requiriendo su propia corrida de whipstock y fresa de ventana en su propia profundidad de desviación.</li>
+        </ul>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#anatomy">Anatomía</a>
+          <a href="#orientation">Orientación Antes de Fresar</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> El diseño del ancla y las dimensiones del whipstock varían por fabricante y trabajo — siempre confirma contra el programa real de sidetrack antes de confiar en cualquier detalle de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/window-mill" class="card-link">→ Fresa de Ventana</a><br><br>
+          <a href="/es/equipment/section-mill" class="card-link">→ Fresa de Sección</a><br><br>
+          <a href="/pillars/stuck-pipe-and-fishing-operations" class="card-link">→ Stuck Pipe &amp; Fishing Operations (inglés)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

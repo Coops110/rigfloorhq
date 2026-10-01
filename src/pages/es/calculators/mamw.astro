@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿En qué se diferencia MAMW de MAASP?',
+    a: 'Expresan el mismo límite de zapata en dos unidades diferentes. <a href="/es/calculators/maasp">MAASP</a> replantea el límite como una presión de superficie en vivo en psi al peso de lodo de hoy. MAMW replantea el límite como un peso de lodo equivalente en ppg — el lodo más pesado que la zapata podría soportar con cero presión de superficie mostrando. Convertidos a las mismas unidades, ambos deberían coincidir.',
+  },
+  {
+    q: '¿Por qué el New MAASP necesita el peso de lodo de control, no el peso de lodo actual?',
+    a: 'Una vez que un control está en marcha, el peso de lodo en el pozo está cambiando a propósito, y a la zapata le importa cualquier peso de lodo que realmente esté en el anular una vez que se circule el peso de lodo de control — no el peso de lodo que estaba en el pozo cuando se tomó el amago. Recalcular MAASP contra el peso de lodo de control, no el peso de lodo original, es lo que te dice si el peso de lodo de control planeado mismo es seguro para la zapata.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Calculadora MAMW: Peso Máximo Admisible de Lodo y Nuevo MAASP"
+  description="Calculadora gratuita de MAMW: peso máximo admisible de lodo a partir de tu prueba LOT/FIT y TVD de zapata, más el nuevo MAASP una vez establecido un peso de lodo de control."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'MAMW', href: '/es/calculators/mamw' }]}
+  lang="es"
+  alternateHref="/calculators/mamw"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/mamw" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Calculadora <span>MAMW</span></h1>
+    <p class="page-hero-sub">Peso Máximo Admisible de Lodo replantea el límite LOT/FIT de tu zapata como un peso de lodo equivalente, luego lo usa para calcular el nuevo MAASP una vez establecido un peso de lodo de control.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Peso Máximo Admisible de Lodo</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="mamw-mw">Peso de Lodo Actual (ppg)</label>
+              <input type="number" id="mamw-mw" value="9.4" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="mamw-lp">Presión LOT/FIT (psi)</label>
+              <input type="number" id="mamw-lp" value="415" step="1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="mamw-tvd">TVD de Zapata (ft)</label>
+              <input type="number" id="mamw-tvd" value="6108" step="1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">MAMW</span><span class="output-value" id="out-mamw">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🧭 Nuevo MAASP Con Peso de Lodo de Control</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="mamw-killmw">Peso de Lodo de Control (ppg)</label>
+              <input type="number" id="mamw-killmw" value="11.5" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="mamw-tvd2">TVD de Zapata (ft)</label>
+              <input type="number" id="mamw-tvd2" value="10000" step="1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="mamw-mamw2">MAMW (ppg)</label>
+              <input type="number" id="mamw-mamw2" value="12.54" step="0.01">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Nuevo MAASP</span><span class="output-value" id="out-newmaasp">—</span></div>
+          </div>
+        </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>Esta es una herramienta de referencia, no una autoridad operacional.</strong> Los límites reales de zapata usados durante el control de pozos pertenecen a tu supervisor certificado de control de pozos, trabajando a partir del LOT/FIT real registrado en este pozo y los procedimientos aprobados de tu compañía.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Las Fórmulas Usadas</h2>
+        <div class="formula-block">
+          <div class="formula-label">Peso Máximo Admisible de Lodo</div>
+          <div class="formula-eq">MAMW = MW Actual + [Presión LOT/FIT ÷ (0.052 × TVD de Zapata)]</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">Nuevo MAASP Con Peso de Lodo de Control</div>
+          <div class="formula-eq">Nuevo MAASP = (MAMW − Peso de Lodo de Control) × 0.052 × TVD de Zapata</div>
+          <div class="formula-note">Ambos pesos de lodo en ppg, TVD de zapata en pies, MAASP y presión LOT/FIT en psi.</div>
+        </div>
+
+        <h3>Dónde Encaja Esto</h3>
+        <p>MAMW y <a href="/es/calculators/maasp">MAASP</a> vienen de la misma prueba LOT/FIT y describen el mismo límite idéntico de zapata, solo en unidades diferentes — uno como un peso de lodo equivalente, uno como una presión de superficie en vivo. Una vez que se confirma un amago y se elige un peso de lodo de control en la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a>, la segunda caja aquí responde la pregunta operacional real: ¿es ese peso de lodo de control realmente seguro para esta zapata, y si no, cuánta presión de superficie queda antes de que no lo sea? Un New MAASP negativo o muy pequeño significa que el peso de lodo de control planeado está cerca de o pasado el límite real de la zapata, lo cual requiere la atención del supervisor de control de pozos antes de empezar a bombear, no después.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p set:html={item.a} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const mw = num('mamw-mw'), lp = num('mamw-lp'), tvd = num('mamw-tvd');
+    const mamw = mw + lp / (0.052 * tvd);
+    set('out-mamw', fmt(mamw, 2) + ' ppg');
+
+    const killmw = num('mamw-killmw'), tvd2 = num('mamw-tvd2'), mamw2 = num('mamw-mamw2');
+    const newMaasp = (mamw2 - killmw) * 0.052 * tvd2;
+    set('out-newmaasp', fmt(newMaasp, 0) + ' psi');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

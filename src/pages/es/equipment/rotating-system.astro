@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Qué gira realmente la sarta de perforación?',
+    a: 'En casi todo taladro moderno, un top drive — una unidad de motor que viaja en la torre junto al bloque viajero y se conecta directamente a la parte superior de la sarta de perforación. Los taladros más antiguos, y algunos todavía en servicio, usan una mesa rotaria en el piso de perforación girando un kelly cuadrado o hexagonal que pasa por un buje de kelly correspondiente, con el resto de la sarta colgando debajo.',
+  },
+  {
+    q: '¿Por qué la industria pasó de mesa rotaria y kelly a top drives?',
+    a: 'Un top drive puede rotar mientras el bloque se mueve, lo cual un kelly no puede — un kelly es de longitud fija, así que una vez que se ha corrido tan abajo como llega, la rotación se detiene mientras se agrega un nuevo tramo. Un top drive permite que todo un tramo (o más) se perfore en un movimiento rotatorio continuo, las conexiones se hacen mecánicamente en lugar de a mano, y puede rotar mientras se viaja dentro o fuera del pozo, lo cual es una ventaja real para la limpieza del pozo y para evitar tubería pegada en un viaje marginal.',
+  },
+  {
+    q: '¿Está la mesa rotaria completamente obsoleta?',
+    a: 'No del todo — muchos taladros mantienen una mesa rotaria instalada incluso con un top drive, ya que todavía hace trabajo útil: respaldar conexiones durante el manejo de tubería, y dar una forma de rotar la sarta desde el piso de perforación si el top drive mismo está fuera por mantenimiento. Un puñado de taladros más antiguos o pequeños todavía perforan solo con kelly y mesa rotaria sin ningún top drive.',
+  },
+  {
+    q: '¿Qué es la unión giratoria, y un top drive todavía necesita una?',
+    a: 'La unión giratoria es lo que permite que la sarta rotatoria de abajo se conecte al gancho y bloque viajero no rotatorios de arriba, mientras también pasa fluido de perforación desde el standpipe/manguera estacionario hacia la sarta rotatoria. Un top drive tiene su propia función de unión giratoria integrada dentro de la unidad misma — no es un componente colgante separado como lo es en un taladro de kelly y mesa rotaria, pero el mismo trabajo básico (conexión rotatoria más paso de fluido) todavía tiene que suceder en algún lugar del ensamblaje.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Sistema Rotatorio: Top Drive vs. Mesa Rotaria y Kelly"
+  description="Cómo un taladro gira la sarta de perforación: top drive versus la configuración más antigua de mesa rotaria y kelly, la unión giratoria, y por qué la industria en gran parte pasó a top drives."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Sistema Rotatorio', href: '/es/equipment/rotating-system' }]}
+  lang="es"
+  alternateHref="/equipment/rotating-system"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/rotating-system" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Sistemas Principales</div>
+    <h1>Sistema <span>Rotatorio</span></h1>
+    <p class="page-hero-sub">Qué gira realmente la sarta de perforación y la barrena — un top drive moderno, o la configuración más antigua de mesa rotaria y kelly que en gran parte reemplazó.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="what-it-is">Qué Hace el Sistema Rotatorio</h2>
+        <p>La rotación es lo que convierte el peso sobre la barrena y el fluido de perforación en un pozo real — la barrena solo corta roca mientras está girando. El sistema rotatorio es lo que sea que transmita esa rotación desde superficie, a través de la <a href="/es/equipment/drill-string">sarta de perforación</a>, hasta la barrena. Dos configuraciones fundamentalmente diferentes han hecho este trabajo a lo largo de la historia de la industria, y entender ambas importa porque muchos taladros todavía corren la más antigua.</p>
+
+        <h2 id="top-drive">Top Drive</h2>
+        <p>Un top drive es una unidad de motor autocontenida que cuelga en la torre desde el bloque viajero y se conecta directamente a la parte superior de la sarta de perforación, rotándola desde arriba mientras todo el ensamblaje se sube o baja. Ha reemplazado la mesa rotaria y el kelly como el estándar en la gran mayoría de los taladros modernos, por una razón real y práctica: puede rotar continuamente mientras el bloque viaja, lo cual una configuración de kelly no puede.</p>
+        <p>Esa sola capacidad cambia mucho sobre cómo realmente sucede la perforación. Un tramo entero — a veces más — puede perforarse en una sola corrida rotatoria continua en lugar de detener la rotación cada longitud de kelly para agregar una junta. Las conexiones se hacen y se rompen mecánicamente a través del top drive mismo en lugar de a mano con llaves en el piso de perforación. Y la sarta puede rotarse mientras se viaja dentro o fuera del pozo, lo cual es una ventaja genuina para mantener los recortes en movimiento y evitar una sarta mecánicamente pegada en un viaje marginal.</p>
+
+        <h2 id="rotary-kelly">Mesa Rotaria y Kelly</h2>
+        <p>La configuración más antigua gira un <strong>kelly</strong> cuadrado o hexagonal — una junta de longitud fija, no redonda, cerca de la parte superior de la sarta — pasándolo por un <strong>buje de kelly</strong> correspondiente asentado en la <strong>mesa rotaria</strong> en el piso de perforación. La mesa rotaria misma es impulsada por el sistema de poder del taladro y gira el buje y el kelly juntos; todo debajo del kelly rota con él.</p>
+        <p>La limitación real es la longitud fija del kelly: una vez que se ha corrido tan abajo como llega, la rotación tiene que detenerse para que se agregue una nueva junta o tramo debajo de él, luego el kelly se vuelve a subir y el proceso se repite. Esta es la razón por la que la perforación de rotación continua no era posible en un taladro de kelly puro, y por qué la capacidad del top drive de rotar a través de la adición de un tramo completo fue un cambio operacional tan significativo una vez que estuvo disponible.</p>
+        <p><strong>La mesa rotaria no está totalmente obsoleta incluso en un taladro con top drive.</strong> Muchos taladros mantienen una instalada para respaldar conexiones durante el manejo de tubería, y como una forma de respaldo para rotar la sarta desde el piso de perforación si el top drive mismo necesita mantenimiento. Varios taladros más antiguos o pequeños todavía perforan solo con kelly y mesa rotaria, sin ningún top drive instalado.</p>
+
+        <h2 id="swivel">El Trabajo de la Unión Giratoria, Cualquiera Sea la Configuración Usada</h2>
+        <p>En algún lugar del ensamblaje, una conexión rotatoria tiene que dejar que la sarta de abajo gire libremente mientras el gancho y el bloque viajero de arriba permanecen estacionarios, y el fluido de perforación tiene que pasar desde la manguera del standpipe estacionario hacia la sarta rotatoria sin fugarse. En un taladro de kelly, la <strong>unión giratoria</strong> es un componente colgante distinto haciendo exactamente ese trabajo, ubicado directamente arriba del kelly. Un top drive tiene esta misma función integrada dentro de la unidad misma en lugar de como un componente visible separado — el trabajo no desaparece, solo se mueve dentro de la carcasa propia del top drive.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Hace</a>
+          <a href="#top-drive">Top Drive</a>
+          <a href="#rotary-kelly">Mesa Rotaria y Kelly</a>
+          <a href="#swivel">La Unión Giratoria</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/drill-string" class="card-link">→ La Sarta de Perforación</a><br><br>
+          <a href="/es/equipment/hoisting-system" class="card-link">→ Sistema de Izaje</a><br><br>
+          <a href="/es/equipment/mwd-tool" class="card-link">→ Herramienta MWD</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

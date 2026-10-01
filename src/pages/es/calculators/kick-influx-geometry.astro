@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Por qué importa la longitud del influjo a lo largo del pozo por separado de su altura vertical?',
+    a: 'Responden preguntas diferentes. La longitud a lo largo del pozo es una conversión de volumen a espacio — cuánto pozo realmente llena el volumen del amago, a lo largo de la dirección en que se perforó el pozo. La altura vertical convierte esa misma longitud a pies verticales verdaderos, que es lo que realmente importa para la presión, ya que la presión hidrostática depende de la profundidad vertical verdadera, no de la profundidad medida a lo largo de un pozo inclinado u horizontal.',
+  },
+  {
+    q: '¿Qué pasa con la altura vertical del influjo en un pozo horizontal?',
+    a: 'Se acerca a cero conforme la inclinación se acerca a 90 grados, ya que una longitud puramente horizontal de pozo gana casi ninguna altura vertical verdadera. Esa es exactamente la razón por la que los amagos tomados en una sección horizontal o de alto ángulo son tan difíciles de detectar y manejar solo con presión — un volumen de influjo grande puede ocupar una longitud larga de pozo mientras apenas se registra como un cambio de presión en superficie.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Calculadora de Geometría de Influjo de Amago: Longitud, Altura, Gradiente, SICP"
+  description="Calculadora gratuita de longitud de influjo a lo largo del pozo, altura vertical verdadera, gradiente de influjo, y presión de revestimiento con pozo cerrado a partir del volumen e inclinación de un amago."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Geometría de Influjo de Amago', href: '/es/calculators/kick-influx-geometry' }]}
+  lang="es"
+  alternateHref="/calculators/kick-influx-geometry"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/kick-influx-geometry" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Geometría de <span>Influjo de Amago</span></h1>
+    <p class="page-hero-sub">Convierte un volumen de amago en la longitud del influjo a lo largo del pozo y su altura vertical verdadera, luego usa esa altura para revisar la presión de revestimiento con pozo cerrado.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Longitud y Altura Vertical del Influjo</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="kig-kv">Volumen de Amago (bbl)</label>
+              <input type="number" id="kig-kv" value="20" step="1">
+            </div>
+            <div class="input-group">
+              <label for="kig-ac">Capacidad Anular (bbl/ft)</label>
+              <input type="number" id="kig-ac" value="0.0836" step="0.0001">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="kig-inc">Inclinación del Pozo (grados desde vertical)</label>
+              <input type="number" id="kig-inc" value="45" step="1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line"><span class="output-label">Longitud de Influjo a lo Largo del Pozo</span><span class="output-value" id="out-loiah">—</span></div>
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Altura Vertical de Influjo</span><span class="output-value" id="out-ivh">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🧭 Revisión de Presión de Revestimiento con Pozo Cerrado</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="kig-mw">Peso de Lodo (ppg)</label>
+              <input type="number" id="kig-mw" value="12" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="kig-sidpp">SIDPP (psi)</label>
+              <input type="number" id="kig-sidpp" value="450" step="1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="kig-ig">Gradiente de Influjo (psi/ft)</label>
+              <input type="number" id="kig-ig" value="0.11" step="0.01">
+            </div>
+            <div class="input-group">
+              <label for="kig-ivh2">Altura Vertical de Influjo (ft)</label>
+              <input type="number" id="kig-ivh2" value="150" step="1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Presión de Revestimiento con Pozo Cerrado</span><span class="output-value" id="out-sicp">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Las Fórmulas Usadas</h2>
+        <div class="formula-block">
+          <div class="formula-label">Longitud de Influjo a lo Largo del Pozo</div>
+          <div class="formula-eq">LoIAH = Volumen de Amago ÷ Capacidad Anular</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">Altura Vertical de Influjo</div>
+          <div class="formula-eq">IVH = LoIAH × cos(Inclinación del Pozo)</div>
+          <div class="formula-note">Inclinación medida desde vertical. Esta calculadora aplica la trigonometría correctamente en grados — ve la nota abajo sobre un error real encontrado en la hoja de cálculo fuente contra la que se revisó esto.</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">Presión de Revestimiento con Pozo Cerrado</div>
+          <div class="formula-eq">SICP = SIDPP + [Altura Vertical de Influjo × (Gradiente de Lodo − Gradiente de Influjo)]</div>
+          <div class="formula-note">Gradiente de lodo = Peso de Lodo × 0.052.</div>
+        </div>
+
+        <div class="note-box mt-24">
+          <strong>Un error real detectado al construir esta página:</strong> la hoja de cálculo de referencia contra la que se revisó esto calculaba la altura vertical de influjo alimentando un valor en grados a una función coseno que esperaba radianes — un error clásico de unidad en hoja de cálculo. Eso produce una altura vertical físicamente incorrecta, demasiado pequeña. Esta calculadora usa la trigonometría correcta (grados convertidos a radianes internamente), lo cual da una altura vertical notablemente mayor y correcta para las mismas entradas.
+        </div>
+
+        <h3>Dónde Encaja Esto</h3>
+        <p>Estas tres fórmulas se encadenan en un amago real: el volumen de amago en bbl es una lectura de ganancia de presa, pero ni la acción de <a href="/es/drilling/well-control">control de pozos</a> ni una revisión de presión pueden usar bbl directamente — primero tiene que convertirse en una longitud de pozo, luego en una altura vertical verdadera, antes de que signifique algo en un manómetro. Una vez que se conoce la altura vertical de influjo, pásala a la segunda caja junto con el gradiente de presión propio del influjo (un <a href="/es/calculators/gas-migration">gradiente de gas estimado</a> si es un amago de gas) para revisar la presión de revestimiento con pozo cerrado resultante contra lo que realmente se está leyendo en superficie — un desajuste real ahí vale la pena investigarlo antes de asumir que cualquiera de los números es correcto.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const kv = num('kig-kv'), ac = num('kig-ac'), inc = num('kig-inc');
+    const loiah = ac > 0 ? kv / ac : 0;
+    const ivh = loiah * Math.cos(inc * Math.PI / 180);
+    set('out-loiah', fmt(loiah, 1) + ' ft');
+    set('out-ivh', fmt(ivh, 1) + ' ft');
+
+    const mw = num('kig-mw'), sidpp = num('kig-sidpp'), ig = num('kig-ig'), ivh2 = num('kig-ivh2');
+    const mudGrad = mw * 0.052;
+    const sicp = sidpp + ivh2 * (mudGrad - ig);
+    set('out-sicp', fmt(sicp, 0) + ' psi');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import SectionMill3D from '../../../components/SectionMill3D.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa una fresa de sección?',
+    a: 'Una fresa de sección remueve un intervalo entero de revestimiento, y el cemento a su alrededor, a lo largo de una corrida de varios pies hasta decenas de pies, convirtiendo pozo revestido en agujero abierto a través de esa sección. Es la herramienta estándar para exponer formación y asentar un tapón de cemento de anular completo en un programa de abandono, para despejar un intervalo antes de un sidetrack, y para remover revestimiento a través de una zona donde el corte más angosto de una fresa de ventana no es suficiente.',
+  },
+  {
+    q: '¿Cuál es la diferencia entre una fresa de un viaje y una de dos viajes?',
+    a: 'Una fresa de un viaje desbasta la pared del revestimiento y fresa el intervalo en una sola corrida continua, retrayéndose y saliendo del pozo una vez fresada la longitud objetivo. Una fresa de dos viajes usa una fresa inicial más pequeña en la primera corrida para establecer y desbastar el tope del intervalo, luego una fresa de desbaste a calibre completo en una segunda corrida para completar el corte más ancho — usada cuando el trabajo necesita un inicio más limpio y controlado del que permite la mordida inicial más agresiva de una fresa de un viaje.',
+  },
+  {
+    q: '¿Cuánto revestimiento se puede fresar en una corrida?',
+    a: 'Depende de la tasa de desgaste de las cuchillas, el peso sobre la barrena, la velocidad rotatoria, y qué tan bien se esté circulando la viruta (recortes de acero fresado) fuera del pozo, pero un trabajo bien ejecutado típicamente fresa unos pocos pies por hora una vez a través de la pared. El metraje total por corrida usualmente está limitado por la vida de las cuchillas y la capacidad de manejo de viruta en lugar de un límite de profundidad fijo — los trabajos se planean alrededor del desgaste esperado de cuchillas para el grado y peso específicos de revestimiento que se está fresando.',
+  },
+  {
+    q: '¿Qué pasa con la viruta producida por el fresado de sección?',
+    a: 'La viruta son los recortes de acero desmenuzados que las cuchillas de la fresa producen mientras muelen a través de la pared del revestimiento y el cemento. Se circula a superficie en los retornos de fluido de perforación de la misma forma que los recortes de roca, luego se separa en las zarandas. La viruta es más pesada y más abrasiva que los recortes de roca, así que las propiedades del lodo y la tasa de circulación se manejan específicamente para mantenerla en movimiento y evitar que se empaque alrededor del BHA o se asiente en un punto bajo del pozo.',
+  },
+  {
+    q: '¿En qué se diferencia una fresa de sección de un cortador de revestimiento?',
+    a: 'Una fresa de sección muele un intervalo completo de revestimiento y cemento a lo largo de varios pies, dejando agujero abierto donde antes había pozo revestido. Un cortador de revestimiento hace un solo corte angosto de separación a una profundidad única para que el revestimiento arriba pueda simplemente sacarse — la tubería y el cemento a su alrededor se dejan intactos por lo demás. Si el plan es "exponer este intervalo como agujero abierto," es trabajo de una fresa de sección; si el plan es "cortar aquí para poder sacar lo que está arriba," es trabajo de un cortador de revestimiento.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Fresa de Sección: Cómo Funciona el Fresado de Sección de Revestimiento"
+  description="Qué es una fresa de sección, diseños de un viaje vs. dos viajes, manejo de viruta, clasificaciones genéricas, fallas comunes, y en qué se diferencia de un cortador de revestimiento."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Fresa de Sección', href: '/es/equipment/section-mill' }]}
+  lang="es"
+  alternateHref="/equipment/section-mill"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/section-mill" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Fresa de <span>Sección</span></h1>
+    <p class="page-hero-sub">Una herramienta de fresado que remueve un intervalo completo de revestimiento y cemento, convirtiendo pozo revestido en agujero abierto a través de esa sección.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <SectionMill3D />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es una Fresa de Sección</h2>
+        <p>Una fresa de sección es una herramienta de fondo corrida en una sarta de trabajo y usada para moler un intervalo entero de revestimiento, junto con el cemento adherido a su exterior, a lo largo de una corrida de varios pies hasta decenas de pies. A diferencia del corte único angosto de separación de un cortador de revestimiento, una fresa de sección remueve material a través de todo el intervalo, dejando agujero abierto — revestimiento y cemento ambos removidos — donde antes había pozo revestido.</p>
+        <p>El cuerpo de la fresa carga cuchillas de desbaste articuladas o a resorte que se extienden hacia afuera una vez que se aplica peso y rotación, moliendo radialmente hacia afuera hasta alcanzar y cortar a través de toda la pared del revestimiento, luego continúa despejando el intervalo mientras la sarta se trabaja hacia arriba o abajo por la zona objetivo.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Se Corre una Fresa de Sección</h2>
+        <ul>
+          <li><strong>Tapones de abandono de anular completo.</strong> Muchas regulaciones de abandono requieren un tapón de cemento adherido directamente a la formación a través de un intervalo calificado, no solo cemento dentro del revestimiento viejo — una fresa de sección expone esa formación para que el tapón pueda asentarse correctamente.</li>
+          <li><strong>Preparación de sidetrack</strong>, cuando el plan requiere agujero abierto a través de un intervalo en lugar de la ventana única más angosta que un whipstock y una <a href="/es/equipment/window-mill">fresa de ventana</a> cortarían.</li>
+          <li><strong>Remoción de revestimiento dañado o no deseado</strong> a través de un intervalo más largo de lo que un solo corte de separación y jalón pueden atender, especialmente donde el revestimiento está atascado o colapsado y no puede simplemente sacarse.</li>
+          <li><strong>Fresado multi-sarta</strong>, cuando sartas concéntricas (revestimiento dentro de revestimiento) ambas necesitan removerse a través del mismo intervalo, trabajando junto con fresas de desbaste abrasivas o especializadas adecuadas para cortar a través de múltiples paredes.</li>
+        </ul>
+
+        <h2 id="trip-types">Fresas de Un Viaje vs. Dos Viajes</h2>
+        <p>Las <strong>fresas de un viaje</strong> desbastan la pared del revestimiento y fresan el intervalo objetivo completo en una sola corrida continua, saliendo del pozo una vez terminadas. Son la opción más simple y rápida cuando el tope del intervalo no necesita manejo especial.</p>
+        <p>Las <strong>fresas de dos viajes</strong> dividen el trabajo: una fresa inicial de perfil más pequeño establece y desbasta un punto de entrada controlado en la primera corrida, luego una fresa de desbaste a calibre completo completa el corte más ancho en una segunda corrida. Esto se usa cuando un trabajo necesita un inicio más limpio y predecible del que permite el enganche inicial más agresivo de una fresa de un viaje con la pared de tubería — particularmente en revestimiento más duro o de pared más gruesa donde una primera mordida sin control arriesga desalinear la fresa.</p>
+
+        <h2 id="running-operation">Corrida y Operación</h2>
+        <p>La fresa se corre hasta el tope del intervalo objetivo en una sarta de trabajo, luego se aplica peso y rotación para extender las cuchillas de desbaste y comenzar a cortar. Una vez a través de la pared, la sarta se trabaja a través de todo el intervalo objetivo a una tasa de penetración controlada, con las propiedades del lodo y la tasa de circulación manejadas específicamente para llevar la viruta (recortes de acero desmenuzados) fuera del pozo en lugar de dejar que se empaque alrededor del BHA o se asiente en un punto bajo.</p>
+        <p>La tasa de fresado depende de la condición de las cuchillas, el peso aplicado, la velocidad rotatoria, y el grado y peso del revestimiento — los trabajos se planean alrededor del desgaste de cuchillas esperado para el revestimiento específico que se está fresando, con la condición de las cuchillas revisada entre corridas y las cuchillas o todo el ensamblaje de la fresa reemplazados una vez que el desgaste reduce la eficiencia de corte debajo de una tasa aceptable.</p>
+
+        <h2 id="materials-ratings">Materiales y Clasificaciones Genéricas</h2>
+        <p>Las cuchillas de desbaste son típicamente de acero de herramienta endurecido revestido con carburo de tungsteno o insertos resistentes al desgaste similares, dimensionados y perfilados al DE específico de revestimiento que se está fresando. Como guía genérica, la selección de la fresa toma en cuenta el diámetro exterior del revestimiento, el espesor de pared, y el grado, junto con la dureza esperada de formación y cemento detrás de él — la capacidad de corte clasificada de la herramienta específica y el metraje esperado por juego de cuchillas siempre deben confirmarse contra la especificación real del fabricante en lugar de asumirse de una cifra genérica.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Desgaste o rotura de cuchillas</strong> contra grado de revestimiento o formación más duros de lo esperado, ralentizando o deteniendo la penetración a mitad de corrida.</li>
+          <li><strong>Empaque de viruta</strong> alrededor del BHA o en el anular cuando la tasa de circulación o las propiedades del lodo no mantienen los recortes de acero más pesados en movimiento, lo cual puede pegar la sarta.</li>
+          <li><strong>Fresado descentrado</strong> por mala centralización, produciendo un orificio desigual a través del intervalo en lugar de un corte limpio y redondo.</li>
+          <li><strong>Detención de la fresa</strong> por peso excesivo aplicado demasiado rápido, especialmente en el enganche inicial de una fresa de un viaje con la pared de tubería.</li>
+          <li><strong>Retracción prematura de cuchillas o falla de la fresa</strong> requiriendo una corrida de pesca para recuperar partes dejadas en el pozo antes de que el trabajo pueda continuar.</li>
+        </ul>
+
+        <h2 id="vs-casing-cutter">Fresa de Sección vs. Cortador de Revestimiento</h2>
+        <p>Ambas herramientas tratan con revestimiento que está en el camino, pero resuelven problemas diferentes. Una <strong>fresa de sección</strong> muele un intervalo entero de revestimiento y el cemento a su alrededor, dejando agujero abierto a través de esa sección — el objetivo es remoción, no recuperación. Un <a href="/es/equipment/casing-cutter">cortador de revestimiento</a> hace un solo corte angosto de separación a una profundidad única para que el revestimiento arriba pueda sacarse intacto, con el cemento y la tubería debajo del corte dejados intactos. Si el plan es "exponer este intervalo como agujero abierto," es trabajo de una fresa de sección; si el plan es "cortar aquí para poder sacar lo que está arriba," es trabajo de un cortador de revestimiento — y los programas de abandono frecuentemente requieren ambos, a diferentes profundidades en el mismo pozo.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#trip-types">Un Viaje vs. Dos Viajes</a>
+          <a href="#running-operation">Corrida y Operación</a>
+          <a href="#materials-ratings">Materiales y Clasificaciones</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-casing-cutter">vs. Cortador de Revestimiento</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> La tasa de fresado y especificaciones varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/casing-cutter" class="card-link">→ Cortador de Revestimiento</a><br><br>
+          <a href="/es/equipment/window-mill" class="card-link">→ Fresa de Ventana</a><br><br>
+          <a href="/es/drilling/casing" class="card-link">→ Diseño de Revestimiento Explicado</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

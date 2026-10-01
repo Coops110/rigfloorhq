@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Por qué bombear un slug antes de sacar la sarta del pozo?',
+    a: 'Un slug es un pequeño volumen de lodo más pesado bombeado a la parte superior de la sarta de perforación antes de viajar, para que una vez que la sarta se rompa y drene en superficie, la tubería salga con una sección seca conocida en lugar de derramar lodo en el piso de perforación en cada conexión. Es una medida de orden y seguridad, no una barrera de control de pozos.',
+  },
+  {
+    q: '¿Por qué bombear un slug causa una ganancia de presa?',
+    a: 'El slug es más pesado que el lodo que ya está en las presas, así que bombearlo adentro y desplazar un volumen igual de lodo más ligero de vuelta a las presas — el efecto de U-tubing — se muestra como una ganancia de presa real y esperada. Confirmar que esta ganancia esperada coincide con lo que predice la calculadora es exactamente cómo una cuadrilla descarta que un amago real aparezca en el mismo momento en que se bombea un slug.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Calculadora de Volumen de Slug y Ganancia de Presa"
+  description="Calculadora gratuita para el volumen de slug necesario para una longitud deseada de tubería seca, y la ganancia de presa esperada al bombear ese slug."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Cálculo de Slug', href: '/es/calculators/slug-calculation' }]}
+  lang="es"
+  alternateHref="/calculators/slug-calculation"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/slug-calculation" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Volumen de Slug y <span>Ganancia de Presa</span></h1>
+    <p class="page-hero-sub">El volumen de slug necesario para una longitud deseada de tubería seca antes de viajar, y la ganancia de presa que ese slug causará una vez bombeado.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Volumen de Slug</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="slug-len">Longitud Deseada de Tubería Seca (ft)</label>
+              <input type="number" id="slug-len" value="255.75" step="0.01">
+            </div>
+            <div class="input-group">
+              <label for="slug-cap">Capacidad de Tubería de Perforación (bbl/ft)</label>
+              <input type="number" id="slug-cap" value="0.0207" step="0.0001">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="slug-mw">Peso de Lodo (ppg)</label>
+              <input type="number" id="slug-mw" value="10.2" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="slug-sw">Peso del Slug (ppg)</label>
+              <input type="number" id="slug-sw" value="12" step="0.1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Volumen de Slug</span><span class="output-value" id="out-slugvol">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🧭 Ganancia de Presa por U-Tubing</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="slug-vol2">Volumen de Slug (bbl)</label>
+              <input type="number" id="slug-vol2" value="30" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="slug-mw2">Peso de Lodo (ppg)</label>
+              <input type="number" id="slug-mw2" value="10" step="0.1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="slug-sw2">Peso del Slug (ppg)</label>
+              <input type="number" id="slug-sw2" value="11.3" step="0.1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Ganancia de Presa Esperada</span><span class="output-value" id="out-pitgain">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Las Fórmulas Usadas</h2>
+        <div class="formula-block">
+          <div class="formula-label">Volumen de Slug</div>
+          <div class="formula-eq">V = (Longitud × Capacidad de Tubería × Peso de Lodo) ÷ (Peso de Slug − Peso de Lodo)</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">Ganancia de Presa por U-Tubing del Slug</div>
+          <div class="formula-eq">Ganancia de Presa = Volumen de Slug × (Peso de Slug − Peso de Lodo) ÷ Peso de Lodo</div>
+        </div>
+
+        <h3>Dónde Encaja Esto</h3>
+        <p>La cifra de volumen de slug alimenta directamente al cálculo de ganancia de presa — bombea el volumen de slug de la primera caja, luego usa esa misma cifra en la segunda caja para saber exactamente cuánta ganancia de presa esperar solo del efecto de U-tubing. Ese número esperado es contra lo que una cuadrilla revisa la lectura real de nivel de presa justo después de bombear un slug, en cualquier viaje, que es también el mismo hábito rutinario de verificación que importa en la discusión más amplia de monitoreo de viajes de la página de <a href="/pillars/stuck-pipe-and-fishing-operations">tubería pegada y operaciones de pesca (inglés)</a> — una ganancia inexplicada más allá de esta cifra predicha es la primera señal real de que algo más está pasando en el pozo al mismo tiempo.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const len = num('slug-len'), cap = num('slug-cap'), mw = num('slug-mw'), sw = num('slug-sw');
+    const denom = sw - mw;
+    const slugVol = denom > 0 ? (len * cap * mw) / denom : 0;
+    set('out-slugvol', fmt(slugVol, 2) + ' bbl');
+
+    const vol2 = num('slug-vol2'), mw2 = num('slug-mw2'), sw2 = num('slug-sw2');
+    const pitGain = mw2 > 0 ? vol2 * (sw2 - mw2) / mw2 : 0;
+    set('out-pitgain', fmt(pitGain, 2) + ' bbl');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Por qué importa la velocidad anular para la limpieza del pozo?',
+    a: 'Los recortes solo se transportan a superficie si el fluido moviéndose más allá de ellos va hacia arriba más rápido de lo que los recortes pueden caer a través de él. Una velocidad anular demasiado baja en la parte más ancha del anular deja que los recortes resbalen de vuelta hacia abajo y se acumulen, lo cual es la causa mecánica directa de un empaque o tubería pegada.',
+  },
+  {
+    q: '¿Cuál sección anular es la que realmente importa?',
+    a: 'La sección de mayor diámetro y menor velocidad del anular — usualmente alrededor de los lastrabarrenas o el intervalo de agujero abierto más ancho — ya que ahí es donde la velocidad es más baja y los recortes tienen más probabilidad de asentarse. Una sarta con varias secciones anulares de diferente capacidad necesita que se revise la velocidad anular en cada una, no solo en una profundidad conveniente.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Calculadora de Velocidad Anular"
+  description="Calculadora gratuita de velocidad anular: qué tan rápido se mueve el fluido de perforación hacia arriba por el anular a una tasa de bomba y capacidad anular dadas, para revisiones de limpieza del pozo."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Velocidad Anular', href: '/es/calculators/annular-velocity' }]}
+  lang="es"
+  alternateHref="/calculators/annular-velocity"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/annular-velocity" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Calculadora de <span>Velocidad Anular</span></h1>
+    <p class="page-hero-sub">Qué tan rápido se mueve realmente el fluido de perforación hacia arriba por una sección anular dada a una tasa de bomba elegida — la cifra que decide si los recortes se transportan a superficie o se asientan de vuelta.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Datos de Velocidad Anular</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="av-po">Producción de Bomba (bbl/min)</label>
+              <input type="number" id="av-po" value="29.2" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="av-ac">Capacidad Anular (bbl/ft)</label>
+              <input type="number" id="av-ac" value="0.4464" step="0.0001">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Velocidad Anular</span><span class="output-value" id="out-av">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>La Fórmula Usada</h2>
+        <div class="formula-block">
+          <div class="formula-label">Velocidad Anular</div>
+          <div class="formula-eq">AV = Producción de Bomba ÷ Capacidad Anular</div>
+          <div class="formula-note">Producción de bomba en bbl/min, capacidad anular en bbl/ft, AV en ft/min.</div>
+        </div>
+
+        <h3>Dónde Encaja Esto</h3>
+        <p>La velocidad anular es el enlace directo entre una tasa de bomba elegida y si el pozo realmente se está limpiando — el mismo problema real del mundo que la <a href="/es/blog/hole-cleaning-high-angle-wells">guía de limpieza del pozo</a> del sitio cubre desde el lado operacional (barridos, rotación de tubería, back-reaming). Obtén la capacidad anular para la sección específica de un <a href="/es/calculators/drill-pipe-tally">conteo de tubería de perforación</a> o un cálculo directo de agujero/DE de tubería, pasa la producción de bomba por esta calculadora, y compara el resultado contra el objetivo mínimo conocido de velocidad anular del pozo para ese tamaño de agujero y sistema de lodo antes de comprometerte a una tasa de bomba. La misma cifra de producción de bomba y concepto de capacidad anular también alimentan la <a href="/es/calculators/ecd">calculadora de ECD</a>, ya que la pérdida de presión por fricción anular es impulsada por el mismo flujo.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const po = num('av-po'), ac = num('av-ac');
+    const av = ac > 0 ? po / ac : 0;
+    set('out-av', fmt(av, 1) + ' ft/min');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

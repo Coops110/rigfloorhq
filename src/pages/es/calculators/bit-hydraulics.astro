@@ -1,0 +1,205 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Qué es el Área de Flujo Total (TFA) y por qué importa?',
+    a: 'TFA es el área de sección transversal combinada de cada boquilla en la barrena — la apertura total por la que el fluido de perforación tiene que pasar en su camino de salida. Un TFA más pequeño para la misma tasa de flujo fuerza al fluido a pasar más rápido, que es exactamente el mecanismo que convierte la presión de bomba en velocidad de chorro y fuerza de limpieza del pozo en la cara de la barrena. Los tamaños de boquilla se especifican convencionalmente en 32avos de pulgada (una boquilla "12" es 12/32", o 0.375").',
+  },
+  {
+    q: '¿Por qué importa más la velocidad de chorro que la tasa de flujo sola?',
+    a: 'La tasa de flujo te dice volumen por minuto; la velocidad de chorro te dice qué tan fuerte realmente golpea ese fluido el fondo del pozo y los recortes. Dos barrenas diferentes pueden correr la misma tasa de flujo y producir velocidades de chorro muy diferentes dependiendo del TFA — una barrena con boquillas más pequeñas concentra el mismo flujo en chorros más rápidos y más fuertes, que es por qué la selección de boquillas es una decisión hidráulica real, no solo una formalidad.',
+  },
+  {
+    q: '¿De dónde viene la caída de presión de la barrena si esta calculadora no la calcula desde cero?',
+    a: 'En el campo usualmente se lee directamente: presión de bomba con la barrena fuera del fondo (solo circulando) restada de la presión de bomba mientras se perfora, o tomada de un desglose de pérdida de presión que el ingeniero de lodos ya rastrea para el resto del sistema circulante. Esta calculadora pide esa cifra directamente en lugar de volver a derivarla de peso de lodo, tasa de flujo, y TFA, ya que la constante exacta usada para esa derivación varía entre referencias y no pudo confirmarse con confianza contra un ejemplo real resuelto — ve la nota abajo.',
+  },
+  {
+    q: '¿Qué significan realmente los rangos objetivo de HSI y velocidad de chorro?',
+    a: 'Son objetivos de regla general usados para juzgar si la hidráulica de una barrena es adecuada para el sistema de lodo en uso, no límites estrictos: aproximadamente 4-8 HSI y 350-550 ft/seg de velocidad de chorro para lodos base agua, versus 3-6 HSI y 250-450 ft/seg para lodos base aceite, que necesitan chorros menos agresivos. Caer muy fuera de estos rangos usualmente es señal de que el dimensionamiento de boquillas no corresponde con la tasa de bomba que se está corriendo.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Calculadora de Hidráulica de Barrena: TFA, Velocidad de Chorro, HHP, HSI"
+  description="Calculadora gratuita de hidráulica de barrena: área de flujo total a partir de tamaños de boquilla, velocidad de chorro, caballaje hidráulico de barrena, y caballaje hidráulico por pulgada cuadrada (HSI)."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Hidráulica de Barrena', href: '/es/calculators/bit-hydraulics' }]}
+  lang="es"
+  alternateHref="/calculators/bit-hydraulics"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/bit-hydraulics" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Hidráulica de <span>Barrena</span></h1>
+    <p class="page-hero-sub">Área de flujo total a partir de tamaños reales de boquilla, luego velocidad de chorro, caballaje hidráulico de barrena, y HSI — las cifras que dicen si la hidráulica de una barrena realmente corresponde con la tasa de bomba que se está corriendo.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Área de Flujo Total a Partir de Tamaños de Boquilla</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="bh-n1">Boquilla 1 (32avos de pulgada)</label>
+              <input type="number" id="bh-n1" value="12" step="1" min="0">
+            </div>
+            <div class="input-group">
+              <label for="bh-n2">Boquilla 2 (32avos de pulgada)</label>
+              <input type="number" id="bh-n2" value="12" step="1" min="0">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="bh-n3">Boquilla 3 (32avos de pulgada)</label>
+              <input type="number" id="bh-n3" value="12" step="1" min="0">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Área de Flujo Total (TFA)</span><span class="output-value" id="out-tfa">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🧭 Velocidad de Chorro</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="bh-q">Tasa de Flujo (gpm)</label>
+              <input type="number" id="bh-q" value="950" step="1">
+            </div>
+            <div class="input-group">
+              <label for="bh-tfa2">TFA (in²)</label>
+              <input type="number" id="bh-tfa2" value="0.81" step="0.01">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Velocidad de Chorro</span><span class="output-value" id="out-jv">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🧭 Caballaje Hidráulico de Barrena y HSI</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="bh-dp">Caída de Presión de Barrena (psi)</label>
+              <input type="number" id="bh-dp" value="1129" step="1">
+            </div>
+            <div class="input-group">
+              <label for="bh-q2">Tasa de Flujo (gpm)</label>
+              <input type="number" id="bh-q2" value="950" step="1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="bh-size">Tamaño de Barrena / Agujero (pulgadas)</label>
+              <input type="number" id="bh-size" value="12.25" step="0.01">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line"><span class="output-label">Caballaje Hidráulico de Barrena</span><span class="output-value" id="out-hhp">—</span></div>
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">HSI (HHP por pulg. cuad.)</span><span class="output-value" id="out-hsi">—</span></div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24">
+          <strong>Reglas generales.</strong> Lodo base agua: apunta a 4-8 HSI, velocidades de chorro 350-550 ft/seg. Lodo base aceite: 3-6 HSI, velocidades de chorro 250-450 ft/seg. Agujeros sobre 17½" necesitan velocidad de chorro mínima lograda por encima de otras consideraciones; agujeros más pequeños pueden empujar más hacia la parte alta del rango de porcentaje de HHP en la barrena dependiendo de la formación.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Las Fórmulas Usadas</h2>
+        <div class="formula-block">
+          <div class="formula-label">Área de Flujo Total</div>
+          <div class="formula-eq">TFA = Σ [ π/4 × (Tamaño de Boquilla ÷ 32)² ] para cada boquilla</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">Velocidad de Chorro</div>
+          <div class="formula-eq">Vn (ft/seg) = 0.32 × Tasa de Flujo (gpm) ÷ TFA (in²)</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">Caballaje Hidráulico de Barrena</div>
+          <div class="formula-eq">HHP = (Caída de Presión de Barrena × Tasa de Flujo) ÷ 1714</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">HSI (Caballaje Hidráulico por Pulgada Cuadrada)</div>
+          <div class="formula-eq">HSI = HHP ÷ [π/4 × (Tamaño de Barrena)²]</div>
+        </div>
+
+        <div class="note-box mt-24">
+          <strong>Lo que deliberadamente no se deriva aquí:</strong> la caída de presión de la barrena misma no se calcula a partir de peso de lodo, tasa de flujo, y TFA — la constante exacta de esa fórmula varía entre referencias dependiendo del coeficiente de descarga de boquilla asumido, y no pudo confirmarse con confianza contra un ejemplo real resuelto al construir esta página. La caída de presión de la barrena entra como un valor conocido (leído de la diferencia de presión de standpipe con/sin la barrena en el fondo) en lugar de arriesgar una fórmula que esté equivocada por un margen significativo en un trabajo real.
+        </div>
+
+        <h3>Dónde Encaja Esto</h3>
+        <p>Estas cuatro cifras se encadenan en el orden en que realmente corre una revisión hidráulica real: elige tamaños de boquilla, obtén TFA; revisa la velocidad de chorro contra el objetivo de tipo de lodo de arriba; confirma por separado que la caída de presión de la barrena está entregando suficiente <a href="/es/calculators/pump-pressure-adjustment">caballaje de bomba</a> a la cara de la barrena vía HHP y HSI. La <a href="/es/calculators/lag-and-volume">producción de bomba y velocidad anular</a> cubren el resto de la hidráulica del sistema circulante — esta página es específicamente lo que está pasando justo en la barrena.</p>
+        <p>La hidráulica es la mitad de hacer que la barrena realmente rinda; la otra mitad es si el peso sobre la barrena y las RPM están ajustados para lo que la barrena está perforando. Una vez que el dimensionamiento de boquillas y la tasa de flujo se confirman aquí, la <a href="/es/calculators/drill-off-test">hoja de trabajo de prueba drill-off</a> es el método de campo para encontrar ese óptimo de WOB/RPM en el lado mecánico.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function tfaFor32nds(n: number): number {
+    const d = n / 32;
+    return Math.PI / 4 * d * d;
+  }
+
+  function calc() {
+    const n1 = num('bh-n1'), n2 = num('bh-n2'), n3 = num('bh-n3');
+    const tfa = tfaFor32nds(n1) + tfaFor32nds(n2) + tfaFor32nds(n3);
+    set('out-tfa', fmt(tfa, 3) + ' in²');
+
+    const q = num('bh-q'), tfa2 = num('bh-tfa2');
+    const jv = tfa2 > 0 ? 0.32 * q / tfa2 : 0;
+    set('out-jv', fmt(jv, 1) + ' ft/sec');
+
+    const dp = num('bh-dp'), q2 = num('bh-q2'), size = num('bh-size');
+    const hhp = dp * q2 / 1714;
+    const bitArea = Math.PI / 4 * size * size;
+    const hsi = bitArea > 0 ? hhp / bitArea : 0;
+    set('out-hhp', fmt(hhp, 1) + ' hp');
+    set('out-hsi', fmt(hsi, 2) + ' hp/in²');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

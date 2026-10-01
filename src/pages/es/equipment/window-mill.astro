@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import WindowMill3D from '../../../components/WindowMill3D.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa una fresa de ventana?',
+    a: 'Una fresa de ventana corta una apertura — una "ventana" — a través de un lado de la pared del revestimiento sobre un intervalo corto, para que un nuevo pozo pueda perforarse a través de ella en una dirección diferente. Es la herramienta que realmente crea el punto de salida para un sidetrack, trabajando contra un whipstock que ha sido asentado y orientado para desviar la fresa hacia la pared del revestimiento en la profundidad de desviación planeada.',
+  },
+  {
+    q: '¿Cuál es la secuencia de ensamblaje de fresado para cortar una ventana?',
+    a: 'Una corrida completa de corte de ventana típicamente usa tres fresas en secuencia contra el whipstock: una fresa inicial (o líder) con una nariz angulada que primero engancha la pared del revestimiento y comienza el corte, una fresa de ventana (a veces llamada fresa sandía por su forma de barril) que ensancha y da forma a la apertura a calibre completo, y una fresa cónica o de sarta que desbasta el borde inferior de la ventana para que la sarta de perforación pueda pasar a través de ella limpiamente en corridas posteriores sin engancharse.',
+  },
+  {
+    q: '¿Cómo se asienta y orienta el whipstock antes de fresar?',
+    a: 'El whipstock se corre a la profundidad de desviación planeada en una herramienta de asentamiento y se ancla en el revestimiento — mecánicamente o con un ancla tipo empacador de cemento o mecánica — luego se orienta para que su cara cóncava apunte en la dirección exacta hacia la que el nuevo pozo necesita ir. Las herramientas de topografía confirman la orientación antes de asentar el ancla, ya que el ángulo y la dirección de la cara del whipstock determinan dónde se corta la ventana y hacia dónde construye inicialmente el sidetrack.',
+  },
+  {
+    q: '¿Qué causa un mal corte de ventana?',
+    a: 'Los problemas más comunes son una ventana de tamaño insuficiente o irregular que una sarta de perforación completa o equipo de completación posterior no puede pasar limpiamente, un keyseat desgastado en el borde inferior de la ventana por corridas repetidas sobre una transición filosa, y un whipstock que se desplazó o se orientó incorrectamente, enviando la ventana en la dirección equivocada o a la profundidad equivocada. Confirmar la calidad de la ventana — usualmente corriendo una fresa o barrena a calibre completo de vuelta a través de ella — antes de seguir perforando es práctica estándar.',
+  },
+  {
+    q: '¿En qué se diferencia una fresa de ventana de una fresa de sección?',
+    a: 'Una fresa de ventana corta una apertura a través de un lado del revestimiento sobre un intervalo corto para que un nuevo pozo pueda salir a través de ella — el resto de la circunferencia del revestimiento y el intervalo arriba y abajo quedan intactos. Una fresa de sección remueve la circunferencia completa de revestimiento y el cemento a su alrededor sobre un intervalo más largo, dejando agujero abierto en lugar de un solo punto de salida. Una fresa de ventana es para comenzar una nueva trayectoria desde un pozo existente; una fresa de sección es para despejar un intervalo por completo.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Fresa de Ventana: Cómo Funciona el Fresado de Ventana para Sidetrack"
+  description="Qué es una fresa de ventana, la secuencia de fresa inicial/ventana/cónica, asentamiento y orientación del whipstock, fallas comunes, y en qué se diferencia de una fresa de sección."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Fresa de Ventana', href: '/es/equipment/window-mill' }]}
+  lang="es"
+  alternateHref="/equipment/window-mill"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/window-mill" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Fresa de <span>Ventana</span></h1>
+    <p class="page-hero-sub">Una herramienta de fresado corrida contra un whipstock para cortar una apertura de salida a través de la pared del revestimiento, comenzando un sidetrack en una nueva dirección.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <WindowMill3D />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es una Fresa de Ventana</h2>
+        <p>Una fresa de ventana es una herramienta de fresado de fondo usada para cortar una apertura — una "ventana" — a través de un lado de la pared del revestimiento sobre un intervalo corto, típicamente nombrada por su forma tipo barril, que es también por qué a veces se llama fresa sandía. No trabaja sola: se corre contra un <a href="/es/equipment/whipstock">whipstock</a>, una rampa larga inclinada anclada dentro del revestimiento a la profundidad de desviación planeada, cuya cara angulada desvía la fresa hacia un lado contra la pared del revestimiento en lugar de dejarla continuar recta por el pozo existente.</p>
+        <p>El resultado es una apertura limpia a través de un lado de la tubería, posicionada y angulada para que una barrena pueda correrse a través de ella después para comenzar a perforar una nueva trayectoria de pozo — un sidetrack — mientras el pozo original debajo de la ventana se deja revestido y sin perturbar a menos que se tapone deliberadamente.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Se Corre una Fresa de Ventana</h2>
+        <ul>
+          <li><strong>Sidetrack alrededor de un problema irrecuperable</strong> más abajo en el pozo original — un objeto que no puede recuperarse después de un <a href="/es/equipment/safety-joint">desenrosque</a>, una sección colapsada o inutilizable, o una falla mecánica que hace impráctico continuar en la trayectoria original.</li>
+          <li><strong>Reentrada a un pozo viejo para alcanzar un nuevo objetivo</strong>, perforando una nueva trayectoria desde un pozo existente en lugar del gasto de perforar y revestir un pozo enteramente nuevo desde superficie.</li>
+          <li><strong>Construcción de pozo multilateral</strong>, donde varios pozos individuales se ramifican de un solo pozo madre revestido para alcanzar múltiples objetivos o puntos de drenaje desde una ubicación de superficie.</li>
+          <li><strong>Corrección de trayectoria del pozo</strong> cuando la trayectoria original perdió su zona objetivo y se necesita una nueva trayectoria desde un punto todavía dentro de revestimiento útil.</li>
+        </ul>
+
+        <h2 id="milling-sequence">La Secuencia de Fresa Inicial, de Ventana, y Cónica</h2>
+        <p>Cortar una ventana limpia es normalmente un trabajo de tres fresas corridas en secuencia en el mismo viaje o a través de viajes escalonados contra el mismo whipstock asentado. La <strong>fresa inicial</strong> (o fresa líder) tiene una nariz angulada y cónica construida para cabalgar la cara del whipstock y comenzar a engancharse con la pared del revestimiento exactamente donde la ventana necesita abrirse. La <strong>fresa de ventana</strong> sigue, ensanchando y dando forma a ese corte inicial a calibre completo a lo largo de la longitud del whipstock. Una <strong>fresa cónica o de sarta</strong> termina el trabajo, desbastando el borde inferior de la ventana suave para que corridas posteriores — corriendo la sarta de perforación, revestimiento, o equipo de completación de vuelta a través de la misma ventana — no se enganchen o desgasten un keyseat en una transición filosa.</p>
+
+        <h2 id="whipstock-setting">Asentamiento y Orientación del Whipstock</h2>
+        <p>El whipstock se corre en una herramienta de asentamiento a la profundidad de desviación planeada y se ancla dentro del revestimiento antes de que comience cualquier fresado — anclado mecánicamente, con un tapón de cemento asentado debajo de él, o con un ancla tipo empacador dedicada, dependiendo de la sarta de herramientas y el trabajo. La orientación es crítica y se confirma con herramientas de topografía antes de que el ancla se asiente: la cara cóncava del whipstock tiene que apuntar en la dirección exacta de compás hacia la que el nuevo pozo está destinado a construir, ya que el ángulo y dirección de la cara son lo que realmente dirige la fresa — y todo lo perforado después — una vez que comienza el fresado.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Desplazamiento o mala orientación del whipstock</strong>, enviando la ventana en la dirección equivocada o a la profundidad equivocada si el ancla no sostiene o el paso de topografía/orientación estuvo mal.</li>
+          <li><strong>Ventana de tamaño insuficiente o irregular</strong> por fresado incompleto, dejando una apertura demasiado estrecha o irregular para que una sarta a calibre completo o equipo de completación pase a través de ella después.</li>
+          <li><strong>Desgaste de keyseat</strong> en el borde inferior de la ventana por corridas repetidas sobre una transición filosa y mal desbastada, lo cual eventualmente puede atrapar o dañar la sarta.</li>
+          <li><strong>Falla de fresa o cuchilla a mitad de corte</strong>, requiriendo una corrida de pesca para despejar partes antes de que el fresado pueda reanudarse.</li>
+          <li><strong>Whipstock dejado en el pozo después del fresado</strong> volviéndose una obstrucción si no se recupera o se considera en la planeación de viajes posteriores.</li>
+        </ul>
+
+        <h2 id="vs-section-mill">Fresa de Ventana vs. Fresa de Sección</h2>
+        <p>Ambas herramientas cortan a través de revestimiento, pero para propósitos diferentes. Una <strong>fresa de ventana</strong> abre un solo punto de salida a través de un lado de la tubería sobre un intervalo corto para que un nuevo pozo pueda perforarse a través de él — la mayor parte del revestimiento a esa profundidad se queda intacto. Una <a href="/es/equipment/section-mill">fresa de sección</a> remueve la circunferencia completa de revestimiento, y el cemento a su alrededor, sobre un intervalo más largo, dejando agujero abierto en lugar de una sola salida direccional. Ninguna hace el corte único y angosto de separación que hace un <a href="/es/equipment/casing-cutter">cortador de revestimiento</a> cuando el objetivo es simplemente recuperar la sarta arriba de una profundidad elegida. Usa una fresa de ventana para comenzar un sidetrack desde dentro de revestimiento existente; usa una fresa de sección cuando el plan requiere despejar un intervalo por completo.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#milling-sequence">Secuencia de Fresado</a>
+          <a href="#whipstock-setting">Asentamiento del Whipstock</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-section-mill">vs. Fresa de Sección</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> La secuencia de fresas y el diseño del whipstock varían por fabricante y trabajo — siempre confirma contra el programa real de sidetrack antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/section-mill" class="card-link">→ Fresa de Sección</a><br><br>
+          <a href="/es/equipment/casing-cutter" class="card-link">→ Cortador de Revestimiento</a><br><br>
+          <a href="/es/equipment/whipstock" class="card-link">→ Whipstock</a><br><br>
+          <a href="/es/drilling/casing" class="card-link">→ Diseño de Revestimiento Explicado</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Para qué sirve realmente el sistema de izaje?',
+    a: 'Sube y baja todo lo que entra y sale del pozo — la sarta de perforación durante un viaje, el revestimiento mientras se corre, y toda la carga mientras se perfora, ya que el peso sobre la barrena es en realidad el malacate soltando línea a una tasa controlada en lugar de que la sarta caiga libremente. Cada libra de esa carga finalmente cuelga de la torre y de la línea de perforación.',
+  },
+  {
+    q: '¿Qué son la "línea rápida" y la "línea muerta"?',
+    a: 'La línea rápida es el extremo de la línea de perforación que se enrolla en el tambor del malacate — se mueve más rápido ya que toma más línea por cada pie de recorrido del gancho. La línea muerta está anclada en un punto fijo (el ancla de línea muerta) y no se mueve en absoluto. Todo lo que está entre medio se enreda alrededor de las poleas de la corona y del bloque viajero, y ese enhebrado es lo que crea la ventaja mecánica.',
+  },
+  {
+    q: '¿Cómo multiplica el enhebrado la capacidad de izaje del malacate?',
+    a: 'Cada pasada de línea entre la corona y el bloque viajero comparte la carga a través de otro segmento de línea, así que un taladro enhebrado con, digamos, 10 líneas tiene aproximadamente 1/10 de la tensión en cada línea comparado con una sola línea cargando el mismo peso en el gancho (menos las pérdidas por fricción). Esta es la razón por la que un malacate con una clasificación de tiro de línea sencilla modesta puede izar una carga muchas veces más pesada una vez enhebrado a través de suficientes poleas.',
+  },
+  {
+    q: '¿Qué sostiene realmente el freno del malacate, y qué pasa si falla?',
+    a: 'El freno principal sostiene todo el peso de la sarta o el revestimiento suspendido en el pozo cada vez que el izaje se detiene — no hay otro mecanismo que impida que esa carga caiga libremente una vez que está fuera del fondo. Los malacates modernos combinan el freno mecánico de banda o disco con un freno auxiliar (electromagnético o hidrodinámico) que absorbe la mayor parte de la energía durante un descenso controlado, reservando el freno principal para sostener y para la parada final en lugar de un servicio de frenado continuo. Una falla del freno principal sin un freno auxiliar funcional es una de las fallas de izaje más graves posibles.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Sistema de Izaje: Torre, Malacate, y Línea de Perforación Explicados"
+  description="Cómo funciona el sistema de izaje de un taladro: torre y corona, bloque viajero, malacate y frenos, enhebrado de la línea de perforación, y qué sostiene realmente el peso de la sarta."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Sistema de Izaje', href: '/es/equipment/hoisting-system' }]}
+  lang="es"
+  alternateHref="/equipment/hoisting-system"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/hoisting-system" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Sistemas Principales</div>
+    <h1>Sistema de <span>Izaje</span></h1>
+    <p class="page-hero-sub">La torre, el malacate, y la línea de perforación que suben y bajan todo lo que entra y sale del pozo — y lo único que se interpone entre una sarta suspendida y una caída libre.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="what-it-is">Qué Hace el Sistema de Izaje</h2>
+        <p>Cada viaje, cada conexión, y cada pie de pozo nuevo depende de que el sistema de izaje pueda subir y bajar carga de forma controlada. Mientras se perfora, también es lo que aplica el peso sobre la barrena — el malacate suelta línea de perforación a una tasa controlada para que la barrena cargue una porción fija del peso de la sarta en lugar de que toda la sarta cuelgue libre o que toda la carga descanse en el fondo sin control.</p>
+        <p>El sistema está construido alrededor de cinco componentes principales trabajando juntos: la <strong>torre</strong> (o mástil) que da la estructura superior, la <strong>corona</strong> en su parte más alta, el <strong>bloque viajero y el gancho</strong> que realmente se mueven hacia arriba y abajo dentro de ella, el <strong>malacate</strong> que enrolla la línea, y la <strong>línea de perforación</strong> misma conectando todo.</p>
+
+        <h2 id="derrick-crown">Torre y Corona</h2>
+        <p>La torre o mástil es la estructura que carga el peso sobre el piso de perforación — todo lo que el sistema de izaje levanta finalmente transfiere su peso a las patas y la base de esta estructura. La corona se ubica fija en la parte más alta: un juego de poleas por donde se enhebra la línea de perforación en su camino desde el malacate hacia abajo al bloque viajero. Debido a que la corona nunca se mueve, todo el recorrido real del gancho ocurre debajo de ella.</p>
+
+        <h2 id="traveling-block">Bloque Viajero y Gancho</h2>
+        <p>El bloque viajero es el juego equivalente de poleas que sí se mueve — sube y baja dentro de la torre, llevando el gancho (y lo que esté conectado debajo: elevadores, un top drive, o la unión giratoria y el kelly en un taladro más antiguo) con él. La línea de perforación se enhebra de ida y vuelta entre la corona arriba y el bloque viajero abajo varias veces antes de terminar en el ancla de línea muerta, y ese enhebrado repetido es lo que hace el trabajo mecánico real.</p>
+
+        <h2 id="reeving">Línea de Perforación y Enhebrado</h2>
+        <p>La línea de perforación corre desde un carrete de almacenamiento, sube sobre el tambor del malacate (la <strong>línea rápida</strong>, que se mueve más rápido ya que toma más línea por cada pie de recorrido del gancho), sube a la corona, baja al bloque viajero, y vuelve a subir — repitiendo varias veces dependiendo de cómo esté enhebrado el taladro — antes de terminar en un <strong>ancla de línea muerta</strong> fija que nunca se mueve en absoluto. Cada pasada adicional comparte la carga del gancho a través de otro segmento de línea, que es la razón entera por la que un malacate con una clasificación de tiro de línea sencilla modesta puede izar una carga muchas veces más pesada una vez correctamente enhebrado.</p>
+        <p>La línea de perforación es un artículo de desgaste real, no un componente de instalar y olvidar — toma tensión cíclica y esfuerzo de flexión sobre las poleas en cada viaje, y un programa de deslizamiento y corte (alimentando periódicamente línea fresca por el sistema y cortando la sección desgastada en la línea muerta) es práctica estándar para evitar que una sola sección acumule daño por fatiga más allá de un punto seguro.</p>
+
+        <h2 id="drawworks-brakes">Malacate y Frenos</h2>
+        <p>El malacate es el torno en el corazón del sistema — el tambor donde se enrolla la línea rápida, impulsado por el sistema de poder del taladro (ve el <a href="/es/equipment/power-generation-system">sistema de generación de energía</a> para cómo le llega realmente ese poder) y controlado desde la consola del perforador. Tanto iza carga como, igual de importante, la suelta de regreso de forma controlada.</p>
+        <p>El <strong>freno principal</strong> (de banda o disco) es lo que sostiene toda la carga suspendida estacionaria cada vez que el izaje se detiene — no hay otro componente sosteniendo ese peso por sí solo. Los taladros modernos lo combinan con un <strong>freno auxiliar</strong> (electromagnético o hidrodinámico) que absorbe la mayor parte de la energía durante un descenso controlado, así el freno principal se reserva para sostener y para la parada final en lugar de un servicio de frenado continuo a lo largo de todo un viaje. Una falla del freno principal con un freno auxiliar no funcional es una de las fallas de izaje más graves que puede tener un taladro.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Hace</a>
+          <a href="#derrick-crown">Torre y Corona</a>
+          <a href="#traveling-block">Bloque Viajero y Gancho</a>
+          <a href="#reeving">Línea y Enhebrado</a>
+          <a href="#drawworks-brakes">Malacate y Frenos</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/rotating-system" class="card-link">→ Sistema Rotatorio</a><br><br>
+          <a href="/es/equipment/power-generation-system" class="card-link">→ Sistema de Generación de Energía</a><br><br>
+          <a href="/es/equipment/rig-types" class="card-link">→ Tipos de Taladros de Perforación</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

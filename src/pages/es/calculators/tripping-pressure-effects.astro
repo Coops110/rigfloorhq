@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Por qué la caída de presión por pie es diferente para tubería seca vs. mojada?',
+    a: 'Sacar tubería seca (vacía, sin fluido adentro) solo remueve el volumen propio de acero de la tubería del pozo, así que la caída de nivel de lodo está impulsada por el desplazamiento de acero contra la capacidad total del pozo abierto o revestimiento. Sacar tubería mojada (todavía llena de fluido) también remueve el fluido dentro del diámetro interior de la tubería, así que la caída está impulsada por el desplazamiento de acero más la capacidad interna de la tubería, contra solo la capacidad anular en lugar de la capacidad total del pozo — una caída por pie significativamente diferente, usualmente mayor.',
+  },
+  {
+    q: '¿Por qué mantener el lodo lleno mientras se saca la sarta?',
+    a: 'Conforme sale la tubería, el nivel de lodo en el pozo baja, y un nivel de lodo bajando significa presión hidrostática bajando en el fondo del pozo. Si se saca suficiente tubería sin llenar el anular, la presión hidrostática puede caer por debajo de la presión de formación y el pozo empieza a fluir — llenar el pozo con lodo conforme se viaja mantiene la presión hidrostática aproximadamente constante en su lugar.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Calculadora de Efectos de Presión al Viajar: Tubería Seca, Mojada, Caída de Nivel de Lodo"
+  description="Calculadora gratuita de caída de presión por pie al sacar tubería seca o mojada, y qué tanto baja el nivel de lodo al sacar del pozo sin rellenar."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Efectos de Presión al Viajar', href: '/es/calculators/tripping-pressure-effects' }]}
+  lang="es"
+  alternateHref="/calculators/tripping-pressure-effects"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/tripping-pressure-effects" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Efectos de Presión <span>al Viajar</span></h1>
+    <p class="page-hero-sub">Cuánta presión hidrostática se pierde por pie al sacar tubería seca o mojada, y qué tanto baja realmente el nivel de lodo al sacar del pozo sin rellenar.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Caída de Presión por Pie — Tubería Seca</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tpe-mw">Peso de Lodo (ppg)</label>
+              <input type="number" id="tpe-mw" value="11" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="tpe-sd">Desplazamiento de Acero (bbl/ft)</label>
+              <input type="number" id="tpe-sd" value="0.00653" step="0.00001">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tpe-cc">Capacidad de Revestimiento/Pozo (bbl/ft)</label>
+              <input type="number" id="tpe-cc" value="0.1481" step="0.0001">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Caída de Presión — Seca</span><span class="output-value" id="out-dry">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🧭 Caída de Presión por Pie — Tubería Mojada</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tpe-mw2">Peso de Lodo (ppg)</label>
+              <input type="number" id="tpe-mw2" value="11" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="tpe-dpc">Capacidad Interna de Tubería de Perforación (bbl/ft)</label>
+              <input type="number" id="tpe-dpc" value="0.01776" step="0.00001">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tpe-ac">Capacidad Anular (bbl/ft)</label>
+              <input type="number" id="tpe-ac" value="0.12381" step="0.00001">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Caída de Presión — Mojada</span><span class="output-value" id="out-wet">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🧭 Caída de Nivel de Lodo al Sacar (Seca)</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tpe-len">Longitud de Tubulares Sacados (ft)</label>
+              <input type="number" id="tpe-len" value="200" step="1">
+            </div>
+            <div class="input-group">
+              <label for="tpe-sd2">Desplazamiento de Acero (bbl/ft)</label>
+              <input type="number" id="tpe-sd2" value="0.00653" step="0.00001">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tpe-cc2">Capacidad de Revestimiento/Riser (bbl/ft)</label>
+              <input type="number" id="tpe-cc2" value="0.1481" step="0.0001">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Caída de Nivel de Lodo</span><span class="output-value" id="out-drop">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Las Fórmulas Usadas</h2>
+        <div class="formula-block">
+          <div class="formula-label">Caída de Presión/ft — Tubería Seca</div>
+          <div class="formula-eq">ΔP/ft = Peso de Lodo × 0.052 × [Desp. de Acero ÷ (Capacidad − Desp. de Acero)]</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">Caída de Presión/ft — Tubería Mojada</div>
+          <div class="formula-eq">ΔP/ft = Peso de Lodo × 0.052 × [(Desp. de Acero + Capacidad de Tubería) ÷ Capacidad Anular]</div>
+        </div>
+        <div class="formula-block mt-24">
+          <div class="formula-label">Caída de Nivel de Lodo (Seca)</div>
+          <div class="formula-eq">Caída = Longitud Sacada × Desp. de Acero ÷ Capacidad</div>
+        </div>
+
+        <h3>Dónde Encaja Esto</h3>
+        <p>Estos tres cálculos son la mecánica detrás del mismo riesgo de swab contra el que planean tanto la <a href="/calculators/trip-margin">calculadora de margen de viaje (inglés)</a> como la <a href="/calculators/pipe-pull-margin">calculadora de margen de extracción de tubería seca y mojada (inglés)</a> — el margen de viaje establece cuánto peso de lodo extra cargar, el margen de extracción dice qué tan lejos puede salir la tubería con seguridad, y esta página calcula la consecuencia real de presión y nivel de lodo de una longitud específica sacada seca o mojada. En un viaje real, la caída de nivel de lodo es lo que le dice a la cuadrilla exactamente cuánto rellenar el anular después de cada parada o conexión para que la presión hidrostática no se desplome conforme sale la tubería.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const mw = num('tpe-mw'), sd = num('tpe-sd'), cc = num('tpe-cc');
+    const dry = (cc - sd) > 0 ? mw * 0.052 * (sd / (cc - sd)) : 0;
+    set('out-dry', fmt(dry, 4) + ' psi/ft');
+
+    const mw2 = num('tpe-mw2'), dpc = num('tpe-dpc'), ac = num('tpe-ac');
+    const wet = ac > 0 ? mw2 * 0.052 * ((sd + dpc) / ac) : 0;
+    set('out-wet', fmt(wet, 4) + ' psi/ft');
+
+    const len = num('tpe-len'), sd2 = num('tpe-sd2'), cc2 = num('tpe-cc2');
+    const drop = cc2 > 0 ? len * sd2 / cc2 : 0;
+    set('out-drop', fmt(drop, 1) + ' ft');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import Packer3D from '../../../components/Packer3D.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un empacador?',
+    a: 'Un empacador crea un sello mecánico hermético a la presión entre el exterior de una sarta de tubería y el interior del revestimiento, aislando el anular arriba de él del anular debajo. A diferencia de un tapón puente, no bloquea el orificio mismo — la tubería de producción (o un ensamblaje sellante insertado en su receptáculo pulido) pasa directamente a través, así que el fluido puede seguir fluyendo por el centro mientras el anular permanece aislado.',
+  },
+  {
+    q: '¿Cuál es la diferencia entre un empacador permanente y uno recuperable?',
+    a: 'Un empacador permanente está diseñado para quedarse en el pozo y, si alguna vez necesita salir, típicamente se fresa en lugar de sacarse intacto. Un empacador recuperable está construido para liberarse y sacarse a superficie como una unidad completa — usualmente vía rotación a la derecha o izquierda, o un mecanismo de liberación por tiro recto — haciéndolo la opción cuando se espera que un workover necesite mover o remover el empacador.',
+  },
+  {
+    q: '¿Qué es un receptáculo de orificio pulido, y por qué importa?',
+    a: 'Es la sección lisa y de acabado de precisión del orificio justo debajo del elemento sellante en la que un ensamblaje sellante separado (corrido en el fondo de la sarta de tubería) se inserta y sella contra ella. Este diseño de dos piezas permite que la tubería se saque y vuelva a correr sin perturbar el empacador mismo, ya que solo el ensamblaje sellante sale — el empacador, ya asentado, se queda exactamente donde está.',
+  },
+  {
+    q: '¿En qué se diferencia un empacador de un tapón puente?',
+    a: 'Comparten mecanismos de asentamiento muy similares — slips, un elemento sellante, un cono de asentamiento — pero resuelven problemas diferentes. Un tapón puente bloquea completamente el orificio, aislando todo lo que está debajo sin que nada pase a través. Un empacador sella el anular alrededor de una sarta de tubería mientras todavía permite flujo a través de la tubería misma. Si el trabajo necesita que el pozo esté completamente cerrado debajo de un punto, es trabajo de un tapón puente; si el trabajo necesita que la tubería de producción esté aislada del anular mientras sigue produciendo, es trabajo de un empacador.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Empacador: Empacadores de Producción Permanentes vs. Recuperables Explicados"
+  description="Qué es un empacador de producción, diseños permanentes vs. recuperables, el receptáculo de orificio pulido y el ensamblaje sellante, y en qué se diferencia de un tapón puente."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Empacador', href: '/es/equipment/packer' }]}
+  lang="es"
+  alternateHref="/equipment/packer"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/packer" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Empacador</h1>
+    <p class="page-hero-sub">Un sello de fondo que aísla el anular alrededor de la tubería de producción sin bloquear el orificio — el flujo sigue pasando, solo el anular se cierra.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <Packer3D />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Empacador</h2>
+        <p>Un empacador es una herramienta de fondo que crea un sello mecánico hermético a la presión entre el exterior de una sarta de tubería y el interior del revestimiento, aislando el anular arriba del empacador de lo que sea que esté debajo. La distinción crítica con herramientas como un <a href="/es/equipment/bridge-plug">tapón puente</a> es que un empacador no bloquea el orificio mismo — la tubería de producción, o un ensamblaje sellante corrido en el fondo de esa tubería, pasa directamente a través del propio receptáculo pulido del empacador, así que el fluido sigue fluyendo por el centro del pozo mientras el anular a su alrededor permanece sellado.</p>
+        <p>Esto hace del empacador la herramienta estándar para aislar una zona productora del resto del anular del pozo, proteger el revestimiento arriba del empacador de fluidos y presión producidos, y establecer completaciones multi-zona donde diferentes intervalos necesitan producirse o tratarse independientemente.</p>
+
+        <h2 id="permanent-retrievable">Permanente vs. Recuperable</h2>
+        <p>Un <strong>empacador permanente</strong> está diseñado para quedarse en el pozo a largo plazo. Si alguna vez genuinamente necesita salir, eso usualmente se hace fresándolo en lugar de sacarlo intacto — está construido para confiabilidad en su lugar, no para remoción repetida.</p>
+        <p>Un <strong>empacador recuperable</strong> está construido de la forma opuesta: diseñado desde el inicio para liberarse y sacarse a superficie como una unidad completa, típicamente a través de una secuencia de rotación a la derecha o izquierda, o un mecanismo de liberación por tiro recto específico de la herramienta. Los empacadores recuperables son la elección estándar cuando un programa de workover espera que el empacador mismo podría necesitar moverse o sacarse — un empacador permanente que tiene que fresarse en su lugar es una operación más lenta y más destructiva de lo que liberar uno recuperable alguna vez estuvo pensado para ser.</p>
+
+        <h2 id="components">Componentes Principales</h2>
+        <ul>
+          <li><strong>Elemento sellante.</strong> La sección de hule o elastómero que realmente forma el sello contra el DI del revestimiento una vez comprimida — la parte de mayor diámetro exterior de la herramienta, similar en principio al elemento sellante propio de un tapón puente.</li>
+          <li><strong>Slips.</strong> Segmentos dentados que muerden la pared del revestimiento para anclar el empacador contra movimiento una vez asentado, sosteniéndolo en su lugar contra la presión diferencial a través del sello.</li>
+          <li><strong>Cono de asentamiento.</strong> Impulsa los slips hacia afuera contra la pared del revestimiento durante el asentamiento, ya sea que ese asentamiento se haga mecánicamente, hidráulicamente, o vía línea eléctrica.</li>
+          <li><strong>Receptáculo de orificio pulido (PBR).</strong> Una sección lisa y de acabado de precisión del orificio justo debajo del elemento sellante en la que un ensamblaje sellante separado — corrido en el fondo de la sarta de tubería — se inserta y sella.</li>
+        </ul>
+
+        <h2 id="pbr-seal-assembly">Por Qué Importa el Receptáculo de Orificio Pulido</h2>
+        <p>El diseño de dos piezas de empacador y ensamblaje sellante existe por una razón operacional real: permite que la sarta de tubería se saque y se vuelva a correr — para un workover, una reparación, o un cambio de completación — sin perturbar el empacador mismo. Solo el ensamblaje sellante sale con la tubería; el empacador, ya asentado y sellado contra el revestimiento, se queda exactamente donde está. Volver a correr tubería significa insertar un ensamblaje sellante fresco (o el mismo) de vuelta en el mismo orificio pulido en lugar de reasentar todo el empacador desde cero.</p>
+
+        <h2 id="vs-bridge-plug">Empacador vs. Tapón Puente</h2>
+        <p>Un empacador y un <a href="/es/equipment/bridge-plug">tapón puente</a> comparten mecanismos internos muy similares — slips, un elemento sellante, un cono de asentamiento — que es por qué sus modelos 3D se ven ampliamente parecidos. La diferencia real está en lo que pasa en el orificio: un tapón puente lo bloquea completamente, aislando todo lo que está debajo sin que nada pueda pasar en absoluto. Un empacador deja el orificio abierto a través de su propio receptáculo pulido, sellando solo el anular alrededor de la tubería o ensamblaje sellante que corra a través de él. Si el trabajo requiere que el pozo esté completamente cerrado debajo de una profundidad dada, eso es trabajo de un tapón puente. Si el trabajo requiere que la tubería de producción esté aislada del anular circundante mientras el pozo sigue produciendo, para eso es un empacador.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#permanent-retrievable">Permanente vs. Recuperable</a>
+          <a href="#components">Componentes Principales</a>
+          <a href="#pbr-seal-assembly">Receptáculo de Orificio Pulido</a>
+          <a href="#vs-bridge-plug">vs. Tapón Puente</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Los mecanismos de asentamiento y clasificaciones de presión/temperatura varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/bridge-plug" class="card-link">→ Tapón Puente</a><br><br>
+          <a href="/es/equipment/liner-hanger" class="card-link">→ Colgador de Liner</a><br><br>
+          <a href="/es/drilling/casing" class="card-link">→ Diseño de Revestimiento Explicado</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Contra qué protege realmente un margen de viaje?',
+    a: 'Contra el swabbing — la tendencia del movimiento de la tubería, especialmente al sacarla del pozo, a reducir momentáneamente la presión de fondo por debajo del valor hidrostático estático. Un margen de viaje agrega un peso de lodo extra pequeño encima del mínimo necesario para balancear la presión de formación, para que el swabbing durante un viaje normal no deje que el pozo fluya.',
+  },
+  {
+    q: '¿Cómo se elige la cifra del margen de seguridad?',
+    a: 'Típicamente se establece como una cifra de política de la compañía o específica del pozo — comúnmente en el rango de 100-200 psi equivalente en superficie — basada en las presiones de swab esperadas para la sarta y la velocidad de viaje usadas, no calculada de nuevo para cada viaje. Revisa la política de control de pozos de tu operador para la cifra real a usar en un pozo real.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Calculadora de Margen de Viaje / Factor de Seguridad"
+  description="Calculadora gratuita de margen de viaje (factor de seguridad): el peso de lodo extra cargado encima del balance de formación para proteger contra un amago por swabbing al viajar."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Margen de Viaje', href: '/es/calculators/trip-margin' }]}
+  lang="es"
+  alternateHref="/calculators/trip-margin"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/trip-margin" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Margen de Viaje <span>/ Factor de Seguridad</span></h1>
+    <p class="page-hero-sub">El peso de lodo cargado encima del balance de formación para que la presión de swab al sacar la sarta no deje que el pozo fluya.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Entradas de Margen de Viaje</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tm-mw">Peso de Lodo Base (ppg)</label>
+              <input type="number" id="tm-mw" value="9" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="tm-sm">Margen de Seguridad (psi)</label>
+              <input type="number" id="tm-sm" value="415" step="1">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="tm-tvd">TVD (ft)</label>
+              <input type="number" id="tm-tvd" value="8197" step="1">
+            </div>
+          </div>
+          <div class="calc-output visible" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Margen de Viaje / Factor de Seguridad</span><span class="output-value" id="out-tmsf">—</span></div>
+          </div>
+        </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>Esta es una herramienta de referencia, no una autoridad operacional.</strong> La cifra real del margen de seguridad y la política de margen de viaje para un pozo real pertenecen a los procedimientos aprobados de control de pozos de tu operador.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>La Fórmula Usada</h2>
+        <div class="formula-block">
+          <div class="formula-label">Margen de Viaje / Factor de Seguridad</div>
+          <div class="formula-eq">TM/SF = Peso de Lodo Base + [Margen de Seguridad ÷ (0.052 × TVD)]</div>
+          <div class="formula-note">Peso de lodo base en ppg, margen de seguridad en psi, TVD en pies, resultado en ppg.</div>
+        </div>
+
+        <h3>Dónde Encaja Esto</h3>
+        <p>El margen de viaje convierte una presión de margen de seguridad de política en un peso de lodo real que puedes cargar en el pozo, encima de lo que se necesita para balancear solo la presión de formación. Es la respuesta del lado del peso de lodo al mismo riesgo de swab que la <a href="/calculators/pipe-pull-margin">calculadora de margen de extracción de tubería seca y mojada (inglés)</a> aborda desde el lado de la longitud extraída — el margen de viaje dice cuánto más pesado correr el lodo, el margen de extracción dice qué tan lejos puede salir la tubería antes de que la hidrostática baje demasiado, y un plan de viaje real revisa ambos. Si el margen de viaje calculado sale apenas arriba del peso de lodo base, es una señal de que la cifra misma del margen de seguridad, o el sobrebalance real del pozo, necesita una segunda revisión antes de sacar tubería.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p set:html={item.a} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script>
+  function num(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    const v = parseFloat(el?.value ?? '');
+    return isFinite(v) ? v : 0;
+  }
+  function fmt(n: number, d: number): string {
+    if (!isFinite(n)) return '0';
+    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+  function set(id: string, text: string) {
+    (document.getElementById(id) as HTMLElement).textContent = text;
+  }
+
+  function calc() {
+    const mw = num('tm-mw'), sm = num('tm-sm'), tvd = num('tm-tvd');
+    const tmsf = mw + sm / (0.052 * tvd);
+    set('out-tmsf', fmt(tmsf, 2) + ' ppg');
+  }
+
+  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
+  calc();
+</script>

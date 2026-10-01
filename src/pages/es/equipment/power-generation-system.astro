@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const faq = [
+  {
+    q: '¿Por qué la mayoría de los taladros modernos generan su propia electricidad en lugar de correr el equipo directamente con motores diésel?',
+    a: 'Un taladro eléctrico (o "SCR"/"AC") puede enviar poder exactamente a donde se necesita, en exactamente la cantidad necesaria, desde un conjunto compartido de generadores — el malacate, las bombas de lodo, y el top drive todos toman poder del mismo bus eléctrico en lugar de que cada uno necesite su propio tren de transmisión mecánica dedicado. Esa flexibilidad es una razón importante por la que la mayoría de los taladros construidos en décadas recientes son diésel-eléctricos en lugar de transmisión mecánica directa.',
+  },
+  {
+    q: '¿Qué significa realmente SCR, y qué hace?',
+    a: 'Rectificador Controlado de Silicio — el componente electrónico (y por extensión todo el sistema de conversión de poder construido alrededor de él) que convierte la salida de CA de los generadores en poder de CD, que los taladros diésel-eléctricos más antiguos usaban para impulsar motores de CD en el malacate y las bombas de lodo. "Taladro SCR" se volvió una forma abreviada de la industria para toda esta generación de taladros diésel-eléctricos, aunque muchos taladros modernos ya han pasado a variadores de frecuencia.',
+  },
+  {
+    q: '¿Qué es un VFD, y en qué se diferencia de un sistema SCR?',
+    a: 'Un Variador de Frecuencia convierte la salida de CA de frecuencia fija de los generadores en un suministro de CA de frecuencia variable, que impulsa motores de CA modernos a una velocidad precisamente controlada — sin el paso de conversión a CD en el que dependían los sistemas SCR. Los motores de CA con control VFD son ahora el estándar en taladros recién construidos: necesitan menos mantenimiento que los motores de CD que impulsa un sistema SCR, y dan un control de velocidad más fino y responsivo.',
+  },
+  {
+    q: '¿Qué pasa si el sistema de generación de energía falla mientras se viaja o se perfora?',
+    a: 'En cualquier taladro, una pérdida total de poder significa que el malacate, las bombas de lodo, y el top drive se detienen todos a la vez — por lo que la redundancia de generadores (correr suficientes unidades para que una pueda estar fuera por mantenimiento sin perder capacidad total) es práctica estándar, no un lujo. Una falla de poder a mitad de un viaje con la sarta parcialmente fuera del pozo es un problema operacional real, ya que el freno auxiliar del sistema de izaje y la circulación continua de lodo dependen ambos del mismo suministro de poder manteniéndose activo.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Sistema de Generación de Energía: Taladros Diésel-Eléctricos, SCR, y VFD Explicados"
+  description="Cómo funciona el sistema de generación de energía de un taladro: generadores diésel, el modelo diésel-eléctrico (SCR/VFD) que usa la mayoría de los taladros modernos, y por qué reemplazó la transmisión mecánica directa."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Sistema de Generación de Energía', href: '/es/equipment/power-generation-system' }]}
+  lang="es"
+  alternateHref="/equipment/power-generation-system"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/power-generation-system" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Sistemas Principales</div>
+    <h1>Sistema de Generación <span>de Energía</span></h1>
+    <p class="page-hero-sub">Los generadores diésel y la distribución eléctrica que alimentan todos los demás sistemas del taladro — malacate, bombas de lodo, y top drive por igual.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="what-it-is">Qué Hace el Sistema de Generación de Energía</h2>
+        <p>Todo otro sistema en el taladro — <a href="/es/equipment/hoisting-system">izaje</a>, <a href="/es/equipment/rotating-system">rotación</a>, y <a href="/es/equipment/fluid-circulation-system">circulación de fluido</a> — necesita poder real para realmente moverse, y en la mayoría de los taladros modernos ese poder viene de un suministro eléctrico compartido en lugar de que cada sistema tenga su propia transmisión mecánica independiente. Los motores diésel impulsan generadores, los generadores alimentan un bus eléctrico compartido, y las piezas individuales de equipo toman de ese bus según se necesite.</p>
+
+        <h2 id="diesel-electric">Por Qué Diésel-Eléctrico en Lugar de Transmisión Mecánica Directa</h2>
+        <p>Los taladros más antiguos, y algunos todavía en servicio, corrían transmisión mecánica directa: motores diésel conectados a través de cadenas, bandas, o una transmisión compuesta directamente al malacate y las bombas, con embragues enganchando el equipo que necesitara poder en un momento dado. Eso funciona, pero es inflexible — el enlace mecánico entre el motor y el equipo es fijo, y balancear poder entre múltiples piezas de equipo corriendo simultáneamente es una limitación real.</p>
+        <p>Un taladro <strong>diésel-eléctrico</strong> evita eso convirtiendo el poder mecánico en poder eléctrico una vez, en los generadores, y luego distribuyéndolo eléctricamente a donde se necesite. El malacate, las bombas de lodo, y el top drive pueden cada uno tomar exactamente el poder que necesitan del mismo conjunto compartido, y agregar o quitar carga de un sistema no requiere volver a enganchar un embrague físico en otro. Esta flexibilidad es la razón principal por la que la mayoría de los taladros construidos en décadas recientes son diésel-eléctricos.</p>
+
+        <h2 id="scr-vfd">Sistemas SCR y VFD</h2>
+        <p><strong>Los sistemas SCR (Rectificador Controlado de Silicio)</strong> fueron la primera generación de este enfoque: los generadores producen poder de CA, que el sistema SCR convierte a CD para impulsar motores de CD en el malacate y las bombas de lodo. "Taladro SCR" se volvió una forma abreviada de la industria para toda esta clase de taladro diésel-eléctrico, incluso en equipo que ya ha pasado más allá del componente SCR mismo.</p>
+        <p><strong>Los sistemas VFD (Variador de Frecuencia)</strong> son el enfoque más moderno: en lugar de convertir a CD, un VFD convierte la CA de frecuencia fija de los generadores en un suministro de CA de frecuencia variable que impulsa motores de CA modernos a velocidad precisamente controlada. Los motores de CA bajo control VFD necesitan menos mantenimiento que los motores de CD que impulsa un sistema SCR, y dan un control de velocidad más fino y responsivo — por lo que el VFD se ha vuelto el estándar en taladros recién construidos.</p>
+
+        <h2 id="redundancy">Redundancia de Generadores y Consecuencias de Falla</h2>
+        <p>Una pérdida total de poder detiene el malacate, las bombas de lodo, y el top drive simultáneamente — no hay una ruta de respaldo independiente para ninguno de ellos una vez que el suministro eléctrico compartido está caído. Esa es exactamente la razón por la que los taladros corren más capacidad de generador que el mínimo necesario en un momento dado: suficiente redundancia para que una unidad pueda sacarse por mantenimiento sin perder poder total disponible, y suficiente reserva para que arrancar una carga grande adicional (como las bombas de lodo acelerando) no arriesgue por sí misma una sobrecarga. Una falla de poder con tubería parcialmente fuera del pozo es una situación genuinamente seria, ya que el freno auxiliar del sistema de izaje y la circulación continua de lodo dependen ambos de ese mismo suministro de poder.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Hace</a>
+          <a href="#diesel-electric">Por Qué Diésel-Eléctrico</a>
+          <a href="#scr-vfd">Sistemas SCR y VFD</a>
+          <a href="#redundancy">Redundancia y Falla</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/hoisting-system" class="card-link">→ Sistema de Izaje</a><br><br>
+          <a href="/es/equipment/rotating-system" class="card-link">→ Sistema Rotatorio</a><br><br>
+          <a href="/es/equipment/rig-types" class="card-link">→ Tipos de Taladros de Perforación</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

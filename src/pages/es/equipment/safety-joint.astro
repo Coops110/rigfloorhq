@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import SafetyJoint3D from '../../../components/SafetyJoint3D.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa una junta de seguridad?',
+    a: 'Una junta de seguridad es un punto débil deliberado construido en una sarta de trabajo — más a menudo una sarta de pesca o una sarta de corrida de liner — para que si la herramienta debajo de ella se atasca permanentemente, la sarta arriba pueda liberarse y sacarse limpiamente en lugar de perder toda la sarta en el pozo. Convierte una pérdida total potencial en un trabajo de pesca mucho más pequeño y recuperable.',
+  },
+  {
+    q: '¿Dónde se coloca una junta de seguridad en la sarta?',
+    a: 'Una junta de seguridad se arma directamente arriba de la herramienta o ensamblaje con más probabilidad de atascarse — por ejemplo justo arriba de una herramienta de pesca enganchando un objeto perdido de fondo, o justo arriba de un colgador de liner y herramienta de corrida en una sarta de liner. Todo debajo de la junta de seguridad se acepta como de algún riesgo; todo arriba está protegido, ya que esa es la parte de la sarta que la operación puede permitirse perder si las cosas salen mal.',
+  },
+  {
+    q: '¿Cómo se libera una junta de seguridad?',
+    a: 'Los dos diseños comunes se liberan de forma diferente. Una junta de seguridad mecánica (roscada) se libera con rotación a la izquierda aplicada desde superficie, desenroscando una conexión gruesa de rosca inversa una vez que el tiro recto y la rotación normal han fallado en liberar el ensamblaje atascado. Un tipo hidráulico o de ranura J se libera a través de una secuencia específica de peso aplicado, presión, o una combinación de levantamiento y rotación definida por el perfil propio de liberación de la herramienta, en lugar de simple rotación de desenrosque.',
+  },
+  {
+    q: '¿Cuándo se usaría una junta de seguridad en lugar de simplemente arriesgar toda la sarta?',
+    a: 'Cada vez que el trabajo involucre correr un ensamblaje hacia una condición de pozo con una probabilidad real y conocida de atascarse — pescando un objeto perdido específico, corriendo un liner hacia un pozo con puntos estrechos o repisas conocidas, o trabajando en una sección con historial de atascamiento en pozos vecinos. El costo de agregar una junta de seguridad es pequeño comparado con perder toda una sarta costosa y el trabajo de pesca extendido que sigue si todo el ensamblaje se atasca sin un punto de liberación planeado.',
+  },
+  {
+    q: '¿Cuáles son las fallas de una junta de seguridad?',
+    a: 'Los dos modos de falla opuestos importan ambos: liberarse prematuramente bajo cargas normales de perforación, torque, o vibración cuando no estaba destinada a soltarse, lo que puede convertir un trabajo rutinario en un trabajo de pesca no planeado por sí mismo; y fallar en liberarse cuando realmente se necesita, usualmente por escombros o incrustación atascando el mecanismo de liberación, o por una junta mecánica desenroscándose solo parcialmente y luego agarrotándose antes de desacoplarse completamente.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Junta de Seguridad: Cómo Funcionan los Puntos de Liberación de Sartas de Pesca"
+  description="Qué es una junta de seguridad, diseños de liberación mecánica vs. hidráulica, dónde se coloca en una sarta de pesca o de liner, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Junta de Seguridad', href: '/es/equipment/safety-joint' }]}
+  lang="es"
+  alternateHref="/equipment/safety-joint"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/safety-joint" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Junta de <span>Seguridad</span></h1>
+    <p class="page-hero-sub">Un punto de liberación deliberado construido en una sarta de trabajo, para que una herramienta atascada debajo de él pueda dejarse atrás en lugar de perder toda la sarta.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <SafetyJoint3D />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es una Junta de Seguridad</h2>
+        <p>Una junta de seguridad es una conexión construida en una sarta de trabajo con un trabajo específico: dejar que la sarta arriba de ella se desconecte limpiamente del ensamblaje debajo de ella, a comando, si ese ensamblaje inferior se atasca permanentemente. Es un punto débil planeado, no accidental — todo sobre su diseño apunta a liberarse confiablemente cuando realmente se necesita, y quedarse sólidamente armada el resto del tiempo.</p>
+        <p>Las <a href="/pillars/stuck-pipe-and-fishing-operations">operaciones de pesca (inglés)</a> y los trabajos de corrida de liner son los dos usos más comunes. En una sarta de pesca, la junta de seguridad se ubica justo arriba de la herramienta de pesca que está tratando de agarrar y recuperar un objeto perdido de fondo — si el objeto no se libera, la junta de seguridad permite que la sarta de pesca misma se recupere en lugar de agregar un segundo ensamblaje atascado encima del primero. En una sarta de liner, se ubica arriba del colgador de liner y la herramienta de corrida, así que si el liner no puede asentarse o liberarse limpiamente, la sarta de corrida arriba no se pierde junto con él. Muchas sartas de pesca también corren un <a href="/es/equipment/hydraulic-jar">martillo hidráulico</a> debajo de la junta de seguridad, tratando de liberar el objeto con impacto antes de que la liberación de la junta de seguridad se necesite alguna vez como respaldo.</p>
+
+        <h2 id="placement">Dónde Se Coloca en la Sarta</h2>
+        <p>Una junta de seguridad se arma directamente arriba de cualquier componente en la sarta que cargue el mayor riesgo de atascarse — la herramienta de pesca misma, un ensamblaje de asentamiento de liner, o cualquier otro componente, como un <a href="/es/equipment/casing-cutter">cortador de revestimiento</a> trabajando en un pozo estrecho o incierto, siendo corrido hacia una condición de pozo con una probabilidad conocida de atascarse. Todo debajo de la junta de seguridad se acepta como de algún riesgo de quedarse en el pozo; todo arriba es lo que la operación realmente está tratando de proteger y traer de vuelta.</p>
+
+        <h2 id="release-methods">Liberación Mecánica vs. Hidráulica</h2>
+        <p>Las <strong>juntas de seguridad mecánicas (de desenrosque roscado)</strong> usan una conexión gruesa de rosca inversa que se libera con rotación a la izquierda aplicada desde superficie — el siguiente paso estándar una vez que el sobretiro recto y la rotación normal a la derecha han fallado en liberar lo que sea que esté atascado debajo. Son simples, no dependen de integridad hidráulica, y son la elección más común en sartas de pesca.</p>
+        <p>Las <strong>juntas de liberación hidráulica o de ranura J</strong> se liberan a través de una secuencia específica de peso aplicado, presión, o una combinación definida de levantamiento y rotación establecida por el perfil interno propio de la herramienta, en lugar de simple rotación. Estas son comunes en herramientas de corrida de liner, donde la liberación también tiene que suceder en una secuencia específica relativa al asentamiento del colgador de liner y no siempre es práctico controlarla solo por rotación desde superficie, especialmente en un pozo altamente desviado u horizontal.</p>
+
+        <h2 id="operational-use">Uso Operacional</h2>
+        <p>Antes de correr cualquier sarta con una junta de seguridad, el procedimiento de liberación se confirma y se entiende por todos en sitio — dirección de rotación, torque o firma de peso esperada al liberarse, y cómo se ve una liberación exitosa en superficie (una caída repentina de torque o peso, para una junta mecánica) versus cómo se ve una liberación atascada o parcial. Correr la junta en el rango de trabajo correcto de peso, torque, y rotación durante operaciones normales importa tanto como el procedimiento de liberación mismo, ya que operar fuera de ese rango es exactamente lo que arriesga una liberación prematura bajo carga normal.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Liberación prematura</strong> bajo cargas normales de perforación o corrida, torque, o vibración — convirtiendo un trabajo rutinario en un trabajo de pesca no planeado para el ensamblaje inferior por sí solo.</li>
+          <li><strong>Falla en liberarse cuando realmente se necesita</strong>, más a menudo por escombros, incrustación, o recortes atascando el mecanismo de liberación.</li>
+          <li><strong>Desenrosque parcial y agarrotamiento</strong> en una junta mecánica, donde las roscas empiezan a liberarse pero se traban antes de desacoplarse completamente, a veces requiriendo ciclos de torque adicionales o un método de recuperación totalmente diferente.</li>
+          <li><strong>Secuencia de liberación incorrecta aplicada</strong> en un diseño hidráulico o de ranura J, donde un error del operador en la secuencia de levantamiento/rotación/presión evita la liberación intencionada.</li>
+        </ul>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#placement">Ubicación en la Sarta</a>
+          <a href="#release-methods">Mecánica vs. Hidráulica</a>
+          <a href="#operational-use">Uso Operacional</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Los procedimientos de liberación y especificaciones de torque/presión varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/casing-cutter" class="card-link">→ Cortador de Revestimiento</a><br><br>
+          <a href="/es/equipment/bridge-plug" class="card-link">→ Tapón Puente</a><br><br>
+          <a href="/es/equipment/hydraulic-jar" class="card-link">→ Martillo Hidráulico</a><br><br>
+          <a href="/es/equipment/reversing-tool" class="card-link">→ Herramienta de Reversa</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
