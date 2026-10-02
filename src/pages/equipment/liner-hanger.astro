@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import LinerHanger3D from '../../components/LinerHanger3D.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
 
 const faq = [
   {
@@ -52,7 +52,7 @@ const jsonLd = {
 
   <section class="block">
     <div class="two-col">
-      <LinerHanger3D />
+      <ToolGallery image1="/images/equipment/liner-hanger-1.jpg" image2="/images/equipment/liner-hanger-2.jpg" alt="a generic liner hanger" />
       <div class="prose">
         <h2 id="what-it-is">What a Liner Hanger Is</h2>
         <p>A liner hanger suspends a liner — a casing string that covers new open hole plus some overlap into the <a href="/drilling/casing">previous casing string</a>, but does not run all the way back to surface — from inside that previous casing rather than from the wellhead. It's the mechanical link that transfers the liner's entire weight into the existing casing at the overlap, which is what makes running a liner instead of a full string possible in the first place.</p>

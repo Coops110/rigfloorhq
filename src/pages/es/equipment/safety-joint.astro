@@ -2,7 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
-import SafetyJoint3D from '../../../components/SafetyJoint3D.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
 
 const faq = [
   {
@@ -56,7 +56,7 @@ const jsonLd = {
 
   <section class="block">
     <div class="two-col">
-      <SafetyJoint3D />
+      <ToolGallery image1="/images/equipment/safety-joint-1.jpg" image2="/images/equipment/safety-joint-2.jpg" alt="una junta de seguridad genérica" />
       <div class="prose">
         <h2 id="what-it-is">Qué Es una Junta de Seguridad</h2>
         <p>Una junta de seguridad es una conexión construida en una sarta de trabajo con un trabajo específico: dejar que la sarta arriba de ella se desconecte limpiamente del ensamblaje debajo de ella, a comando, si ese ensamblaje inferior se atasca permanentemente. Es un punto débil planeado, no accidental — todo sobre su diseño apunta a liberarse confiablemente cuando realmente se necesita, y quedarse sólidamente armada el resto del tiempo.</p>

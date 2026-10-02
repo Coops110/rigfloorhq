@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import BridgePlug3D from '../../components/BridgePlug3D.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
 
 const faq = [
   {
@@ -56,7 +56,7 @@ const jsonLd = {
 
   <section class="block">
     <div class="two-col">
-      <BridgePlug3D />
+      <ToolGallery image1="/images/equipment/bridge-plug-1.jpg" image2="/images/equipment/bridge-plug-2.jpg" alt="a generic drillable bridge plug" />
       <div class="prose">
         <h2 id="what-it-is">What a Bridge Plug Is</h2>
         <p>A bridge plug is a downhole tool run on wireline or a work string and set inside casing or tubing to create a pressure-tight mechanical seal across the full bore. Once set, it physically separates the wellbore into two isolated sections — nothing flows past it in either direction.</p>

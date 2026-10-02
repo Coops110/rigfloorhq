@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import Packer3D from '../../components/Packer3D.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
 
 const faq = [
   {
@@ -52,7 +52,7 @@ const jsonLd = {
 
   <section class="block">
     <div class="two-col">
-      <Packer3D />
+      <ToolGallery image1="/images/equipment/packer-1.jpg" image2="/images/equipment/packer-2.jpg" alt="a generic packer" />
       <div class="prose">
         <h2 id="what-it-is">What a Packer Is</h2>
         <p>A packer is a downhole tool that creates a pressure-tight mechanical seal between the outside of a tubing string and the inside of the casing, isolating the annulus above the packer from whatever is below it. The critical distinction from tools like a <a href="/equipment/bridge-plug">bridge plug</a> is that a packer does not block the bore itself — production tubing, or a seal assembly run on the bottom of that tubing, passes straight through the packer's own polished bore, so fluid keeps flowing up the middle of the well while the annulus around it stays sealed off.</p>

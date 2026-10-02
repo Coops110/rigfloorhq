@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import WindowMill3D from '../../components/WindowMill3D.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
 
 const faq = [
   {
@@ -56,7 +56,7 @@ const jsonLd = {
 
   <section class="block">
     <div class="two-col">
-      <WindowMill3D />
+      <ToolGallery image1="/images/equipment/window-mill-1.jpg" image2="/images/equipment/window-mill-2.jpg" alt="a generic window mill" />
       <div class="prose">
         <h2 id="what-it-is">What a Window Mill Is</h2>
         <p>A window mill is a downhole milling tool used to cut an opening — a "window" — through one side of the casing wall over a short interval, typically named for its barrel-like shape, which is also why it's sometimes called a watermelon mill. It doesn't work alone: it's run against a <a href="/equipment/whipstock">whipstock</a>, a long inclined ramp anchored inside the casing at the planned kickoff depth, whose angled face deflects the mill sideways into the casing wall instead of letting it continue straight down the existing bore.</p>

@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import CementRetainer3D from '../../components/CementRetainer3D.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
 
 const faq = [
   {
@@ -52,7 +52,7 @@ const jsonLd = {
 
   <section class="block">
     <div class="two-col">
-      <CementRetainer3D />
+      <ToolGallery image1="/images/equipment/cement-retainer-1.jpg" image2="/images/equipment/cement-retainer-2.jpg" alt="a generic downhole cement retainer" />
       <div class="prose">
         <h2 id="what-it-is">What a Cement Retainer Is</h2>
         <p>A cement retainer is a downhole tool set inside casing or tubing that creates a pressure-tight seal across the bore, the same way a <a href="/equipment/bridge-plug">bridge plug</a> does — except a retainer has a valve running through its body. That valve stays closed under normal conditions, holding pressure from above, but can be opened by stabbing a stinger or work string into the top of the tool, letting cement be pumped straight through it under pressure during a squeeze job.</p>

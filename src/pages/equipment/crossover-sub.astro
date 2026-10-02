@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import CrossoverSub3D from '../../components/CrossoverSub3D.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
 
 const faq = [
   {
@@ -52,7 +52,7 @@ const jsonLd = {
 
   <section class="block">
     <div class="two-col">
-      <CrossoverSub3D />
+      <ToolGallery image1="/images/equipment/crossover-sub-1.jpg" image2="/images/equipment/crossover-sub-2.jpg" alt="a generic crossover sub" />
       <div class="prose">
         <h2 id="what-it-is">What a Crossover Sub Is</h2>
         <p>A crossover sub is a short length of pipe machined with two different connections — one on each end — specifically so it can join sections of a <a href="/equipment/drill-string">drill string</a>, casing string, or tool string that would not otherwise thread together. One end matches the connection above it, the other end matches the connection below it, and a tapered or stepped shoulder in between carries the transition from one diameter to the other.</p>

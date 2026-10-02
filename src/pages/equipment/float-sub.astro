@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import FloatSub3D from '../../components/FloatSub3D.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
 
 const faq = [
   {
@@ -52,7 +52,7 @@ const jsonLd = {
 
   <section class="block">
     <div class="two-col">
-      <FloatSub3D />
+      <ToolGallery image1="/images/equipment/float-sub-1.jpg" image2="/images/equipment/float-sub-2.jpg" alt="a generic float sub" />
       <div class="prose">
         <h2 id="what-it-is">What a Float Sub Is</h2>
         <p>A float sub is a short section of pipe, threaded to fit into a <a href="/equipment/drill-string">drill string</a> or casing string like any other connection, that houses a one-way check valve inside its bore. Fluid pumped down through it passes freely, but the valve closes the moment flow stops or tries to reverse, blocking anything from flowing back up through that point in the string.</p>

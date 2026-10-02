@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import MWDTool3D from '../../components/MWDTool3D.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
 
 const faq = [
   {
@@ -56,7 +56,7 @@ const jsonLd = {
 
   <section class="block">
     <div class="two-col">
-      <MWDTool3D />
+      <ToolGallery image1="/images/equipment/mwd-tool-1.jpg" image2="/images/equipment/mwd-tool-2.jpg" alt="a generic MWD tool" />
       <div class="prose">
         <h2 id="what-it-is">What an MWD Tool Is</h2>
         <p>MWD (Measurement While Drilling) is a downhole tool built into the bottom hole assembly that continuously measures the wellbore's inclination (how far off vertical it is), azimuth (the compass direction it's heading), and toolface (the orientation of a bent housing or steering tool relative to the wellbore) as drilling progresses. Before MWD, getting this data meant stopping the bit, running a separate wireline survey instrument down the string, and pulling it back out — slow, and only a snapshot at one moment. MWD instead reports continuously, in near real time, without ever stopping drilling to take a reading, which is what makes real-time <a href="/drilling/directional">directional drilling</a> control possible.</p>

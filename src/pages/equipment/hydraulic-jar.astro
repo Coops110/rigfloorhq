@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import HydraulicJar3D from '../../components/HydraulicJar3D.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
 
 const faq = [
   {
@@ -52,7 +52,7 @@ const jsonLd = {
 
   <section class="block">
     <div class="two-col">
-      <HydraulicJar3D />
+      <ToolGallery image1="/images/equipment/hydraulic-jar-1.jpg" image2="/images/equipment/hydraulic-jar-2.jpg" alt="a generic hydraulic drilling jar" />
       <div class="prose">
         <h2 id="what-it-is">What a Hydraulic Jar Is</h2>
         <p>A hydraulic jar is a mechanical tool made up in the <a href="/equipment/drill-string">string</a> that converts steady, stored tension into a sudden mechanical impact. Internally it's built around a splined mandrel that slides through a housing, timed by a hydraulic metering section — pull tension into the tool from surface, and once the metering piston has bled through the fluid at a controlled rate, the mandrel releases and the hammer face strikes the anvil face with the full stored energy, all at once rather than gradually.</p>

@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import SafetyJoint3D from '../../components/SafetyJoint3D.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
 
 const faq = [
   {
@@ -56,7 +56,7 @@ const jsonLd = {
 
   <section class="block">
     <div class="two-col">
-      <SafetyJoint3D />
+      <ToolGallery image1="/images/equipment/safety-joint-1.jpg" image2="/images/equipment/safety-joint-2.jpg" alt="a generic safety joint" />
       <div class="prose">
         <h2 id="what-it-is">What a Safety Joint Is</h2>
         <p>A safety joint is a connection built into a work string with one specific job: to let the string above it disconnect cleanly from the assembly below it, on command, if that lower assembly becomes permanently stuck. It's a planned weak point, not an accidental one — everything about its design is aimed at releasing reliably when actually needed, and staying solidly made up the rest of the time.</p>

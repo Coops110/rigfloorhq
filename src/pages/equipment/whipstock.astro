@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import Whipstock3D from '../../components/Whipstock3D.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
 
 const faq = [
   {
@@ -52,7 +52,7 @@ const jsonLd = {
 
   <section class="block">
     <div class="two-col">
-      <Whipstock3D />
+      <ToolGallery image1="/images/equipment/whipstock-1.jpg" image2="/images/equipment/whipstock-2.jpg" alt="a generic whipstock" />
       <div class="prose">
         <h2 id="what-it-is">What a Whipstock Is</h2>
         <p>A whipstock is a long, wedge-shaped tool with an angled concave face, run and anchored inside casing at the exact depth a sidetrack is meant to start. Its entire job is deflection: a <a href="/equipment/window-mill">window mill</a> run down against the whipstock's ramp face gets pushed sideways into the casing wall instead of continuing straight down the existing bore, cutting the opening that lets a new wellbore path begin. Without the whipstock providing that fixed, angled surface, nothing about a window-milling operation would actually steer the mill anywhere.</p>
