@@ -383,17 +383,23 @@ section.block:nth-of-type(odd) { background: var(--ink); }
 }
 .card { background: var(--steel); padding: 26px; transition: background 0.2s; }
 .card:hover { background: var(--iron); }
+a.card { display: block; text-decoration: none; color: inherit; cursor: pointer; }
 .card-icon { font-size: 26px; margin-bottom: 10px; display: block; }
+.card-thumb {
+  width: 100%; aspect-ratio: 1 / 1; object-fit: contain; margin-bottom: 10px;
+  background: radial-gradient(ellipse at 50% 45%, #333c45 0%, #1c2126 45%, #0e1113 100%);
+  border: 1px solid var(--iron); border-radius: 4px;
+}
 .card h3 {
   font-family: var(--cond); font-weight: 700; font-size: 17px;
   text-transform: uppercase; color: var(--white); letter-spacing: 0.03em; margin-bottom: 8px;
 }
 .card p { font-size: 13px; color: var(--fog); line-height: 1.65; }
-.card a.card-link {
+.card .card-link {
   display: inline-block; margin-top: 12px; font-family: var(--mono); font-size: 11px;
   color: var(--amber); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase;
 }
-.card a.card-link:hover { text-decoration: underline; }
+.card:hover .card-link { text-decoration: underline; }
 .card-tag {
   display: inline-block; margin-top: 12px; font-family: var(--mono); font-size: 10px;
   color: var(--amber); letter-spacing: 0.1em; text-transform: uppercase;
