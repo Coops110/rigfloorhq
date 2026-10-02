@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+<BaseLayout
+  title="What Does a Company Man Do? — Career Path & Requirements"
+  description="What a company man actually does, how the role differs from a toolpusher or OIM, the path into it, and what it pays."
+  breadcrumbs={[{ label: 'Careers', href: '/careers' }, { label: 'Company Man', href: '/careers/company-man' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Careers — Operator Side</div>
+    <h1>What Does a <span>Company Man</span> Do?</h1>
+    <p class="page-hero-sub">The operator's representative on location, with final say over the well program. A genuinely different career track from the drilling-contractor supervisory roles it's constantly confused with.</p>
+    <div class="page-meta">
+      <span class="page-meta-item">Pay: <strong>$150K–$300K+/yr</strong></span>
+      <span class="page-meta-item">Timeline: <strong>15+ years, often via engineering</strong></span>
+      <span class="page-meta-item">Employer: <strong>The Operator, Not the Contractor</strong></span>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="what-a-company-man-does">What a Company Man Does</h2>
+        <p>The company man is the on-site representative of the operator — the oil company that owns the well and is paying for everything happening on it. Every other role covered in this section, from roughneck through OIM, works for the drilling contractor hired to physically drill the well. The company man works for the client funding that contract, and holds final authority over the well program itself: what gets drilled, to what depth, with what casing and cement design, and what happens when something unexpected turns up downhole.</p>
+        <p>Day to day, that means reviewing drilling reports and logs against the well plan, approving or rejecting procedures proposed by the toolpusher or OIM, authorizing any deviation from the program, and managing the relationship with every service company on location (mud, cementing, wireline, directional drilling) on the operator's behalf. When a real decision has to be made about the well itself — not the rig, the well — the company man makes it.</p>
+
+        <h2 id="company-man-vs-toolpusher-vs-oim">Company Man vs. Toolpusher vs. OIM</h2>
+        <p>This is the single most confused set of titles on a rig, because all three work on location together daily. The distinction is employer and scope, not seniority:</p>
+        <ul>
+          <li><strong>Toolpusher</strong> — works for the drilling contractor, runs the rig and its crews. See the <a href="/careers/toolpusher">toolpusher guide</a>.</li>
+          <li><strong>OIM / Rig Manager</strong> — works for the contractor or installation owner, commands the entire installation. See the <a href="/careers/oim-rig-manager">OIM / Rig Manager guide</a>.</li>
+          <li><strong>Company Man</strong> — works for the operator, owns the well program and the final decision on it.</li>
+        </ul>
+        <p>A toolpusher can tell the company man a procedure is unsafe or impractical for the rig to execute. The company man can tell the toolpusher the well program requires it anyway. Neither outranks the other in the usual sense — they represent different interests that have to be reconciled on every well, which is exactly why clear communication between these roles is treated as a core professional skill, not a soft one.</p>
+
+        <h2 id="how-people-get-here">How People Get Here</h2>
+        <p>Unlike the driller-to-toolpusher-to-OIM ladder, there's no single standard path into a company man role. Two real routes exist side by side:</p>
+        <div class="career-path" style="margin-top:24px;">
+          <div class="career-step">
+            <h3>Field-Up Route</h3>
+            <p>Experienced drillers or toolpushers move to the operator side, trading contractor-side rig operations knowledge for well-program authority. Common where deep field experience is valued as much as formal engineering training.</p>
+          </div>
+          <div class="career-step">
+            <h3>Engineering Route</h3>
+            <p>Petroleum or drilling engineers move into a company man / drilling supervisor role after years in an operator's engineering or operations group, bringing well-planning and subsurface knowledge rather than rig-floor experience first.</p>
+          </div>
+        </div>
+        <p>Both routes converge on the same core requirement: enough real well experience, from either side of the fence, to make the program-level calls that actually hold up when something goes wrong 2,000 feet underground.</p>
+
+        <h2 id="what-certification-is-required">What Certification Is Required</h2>
+        <p>Company men need the same well control competency as a toolpusher or OIM — <strong>IWCF Level 4 / IADC WellSharp Supervisor</strong> — since approving well control procedures is squarely part of the role. See the full ladder at <a href="/pillars/rig-floor-leadership">Rig Floor Leadership</a> and the certification breakdown at <a href="/careers/certifications">certifications</a>.</p>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-a-company-man-does">What the Role Does</a>
+          <a href="#company-man-vs-toolpusher-vs-oim">vs. Toolpusher vs. OIM</a>
+          <a href="#how-people-get-here">How People Get Here</a>
+          <a href="#what-certification-is-required">Required Certification</a>
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/pillars/rig-floor-leadership" class="card-link">→ Rig Floor Leadership: The Full Ladder</a><br><br>
+          <a href="/careers/toolpusher" class="card-link">→ How to Become a Toolpusher</a><br><br>
+          <a href="/careers/oim-rig-manager" class="card-link">→ How to Become an OIM / Rig Manager</a><br><br>
+          <a href="/careers/certifications" class="card-link">→ All Certifications Explained</a><br><br>
+          <a href="/careers/salary" class="card-link">→ Full Salary Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

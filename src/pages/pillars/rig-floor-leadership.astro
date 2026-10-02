@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const faq = [
+  {
+    q: 'What is the career path from driller to toolpusher to OIM?',
+    a: 'Driller runs one crew from the console. Toolpusher oversees all the crews and equipment on a single rig, coordinating across every tour. OIM (Offshore Installation Manager) — or rig manager onshore — holds the top operational authority on that installation, responsible for every person and operation aboard, not just drilling. Each step up trades hands-on technical control for broader operational and personnel responsibility.',
+  },
+  {
+    q: 'What certification does a toolpusher or OIM need?',
+    a: 'IWCF Level 4 or the equivalent IADC WellSharp Supervisor level — the top tier of well control certification, above the Level 3 (Driller) tier. It covers supervisory-level well control decision-making, not just execution, and is a hard requirement most operators will not waive.',
+  },
+  {
+    q: 'Is a company man the same as a toolpusher?',
+    a: "No, and this is the most commonly confused pair of roles on a rig. A toolpusher works for the drilling contractor and manages the contractor's crews and equipment. A company man works for the operator (the oil company funding the well) and holds final authority over well program decisions. They work side by side daily but answer to different employers with different priorities.",
+  },
+  {
+    q: 'How long does it take to become a toolpusher?',
+    a: "There's no fixed timeline, but most toolpushers have spent 10-15 years in drilling operations, including several years as a driller, before stepping up. The promotion is earned through demonstrated judgment under pressure across many wells, not through certification alone — the certification is necessary but not sufficient.",
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Rig Floor Leadership: The Supervisory Career Ladder",
+      "description": "The career path from driller through toolpusher, OIM/rig manager, and company man — what distinguishes each tier, and what supervisory-level certification actually requires.",
+      "about": "Oil rig supervisory career progression"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faq.map((f) => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a },
+      })),
+    },
+  ],
+};
+---
+<BaseLayout
+  title="Rig Floor Leadership: The Supervisory Career Ladder"
+  description="The path from driller to toolpusher to OIM or rig manager to company man — what each tier actually does, what distinguishes them, and the IADC WellSharp Supervisor certification that gates the step up."
+  breadcrumbs={[{ label: 'Careers', href: '/careers' }, { label: 'Rig Floor Leadership', href: '/pillars/rig-floor-leadership' }]}
+  jsonLd={jsonLd}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Core Reference — Careers</div>
+    <h1>Rig Floor <span>Leadership</span></h1>
+    <p class="page-hero-sub">Driller is only the first supervisory rung. Here's the full ladder above it — toolpusher, OIM or rig manager, and company man — what separates each tier, and what it actually takes to climb it.</p>
+  </div>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <h2 id="why-driller-isnt-the-top">Why Driller Isn't the Top</h2>
+      <p>Most career content on the rig floor stops at driller, because it's the first role with real supervisory authority and the one most people picture when they think "runs the rig." But a driller supervises one crew, for one tour, on one console. Above that sits a second tier of leadership that runs the whole rig, the whole installation, or the whole well program — jobs that trade hands-on technical execution for broader operational and personnel responsibility.</p>
+      <p>That tier is genuinely under-covered relative to how much it pays and how directly it ties into the certification track every driller is already on. This page is the map of it.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">The Ladder</div>
+    <h2 class="section-title">Driller <span>→ Toolpusher → OIM → Company Man</span></h2>
+    <p style="color:var(--fog);max-width:740px;margin-bottom:24px;">Each step changes what you're responsible for, not just how much you're paid.</p>
+
+    <div class="card-grid grid-3">
+      <div class="card">
+        <h3>Toolpusher</h3>
+        <p>Supervises every crew and all equipment on a single rig for the drilling contractor — the rig's top on-site operational authority. See the full <a href="/careers/toolpusher">Toolpusher career guide</a>.</p>
+      </div>
+      <div class="card">
+        <h3>OIM / Rig Manager</h3>
+        <p>Top operational authority on the entire installation — offshore platform or onshore pad — responsible for every person and operation aboard, not drilling alone. See the full <a href="/careers/oim-rig-manager">OIM / Rig Manager career guide</a>.</p>
+      </div>
+      <div class="card">
+        <h3>Company Man</h3>
+        <p>Works for the operator, not the drilling contractor. Final say on well program decisions. A genuinely different career track from the other three. See the full <a href="/careers/company-man">Company Man career guide</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">The Gate</div>
+    <h2 class="section-title">IADC WellSharp <span>Supervisor Level</span></h2>
+    <div class="two-col">
+      <div class="prose">
+        <p>The certification track doesn't stop at driller. <a href="/careers/certifications">IWCF Level 3 or IADC WellSharp Driller</a> gets you into the console seat — but toolpusher and OIM-level roles require the next tier up: <strong>IWCF Level 4</strong>, or the equivalent <strong>IADC WellSharp Supervisor</strong> certification.</p>
+        <p>The supervisor tier covers well control decision-making from a management perspective — approving kill procedures, managing multiple simultaneous operations, and making the calls a driller executes but doesn't have the authority to originate. It's a hard requirement at most operators, not a formality, and it's renewed on the same multi-year exam cycle as every other IWCF/WellSharp level.</p>
+      </div>
+      <div class="card" style="border:1px solid var(--iron);border-radius:4px;">
+        <h3>Reviewed by a Working Supervisor</h3>
+        <p>Jabin Travis, who <a href="/about#reviewed-by-a-working-driller">reviews our safety-critical content</a>, holds IADC WellSharp Supervisor certification himself. His input shaped the toolpusher and OIM pages linked above — not generic descriptions, but what the certification and the step up actually involve day to day.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Common Confusion</div>
+    <h2 class="section-title">Toolpusher <span>vs. Company Man</span></h2>
+    <p style="max-width:740px;color:var(--mist);line-height:1.8;">These two roles get mixed up constantly because they work side by side on the same rig every day — but they don't share an employer, and they don't share a priority. The <a href="/careers/toolpusher">toolpusher</a> works for the <strong>drilling contractor</strong> and is accountable for the rig running safely and efficiently. The <a href="/careers/company-man">company man</a> works for the <strong>operator</strong> funding the well and holds final authority over the well program itself. A toolpusher can recommend; a company man decides. Understanding that split is the fastest way to understand how authority actually works on a rig.</p>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+    <div class="accordion">
+      {faq.map((item, i) => (
+        <div class="acc-item">
+          <button class="acc-header"><h3>{item.q}</h3><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><p set:html={item.a} /></div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="block">
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="/careers/driller" class="btn btn-outline">How to Become a Driller</a>
+      <a href="/careers/salary" class="btn btn-outline">Full Salary Guide</a>
+      <a href="/careers/certifications" class="btn btn-primary">Certifications Explained</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+function toggleAcc(btn: HTMLElement) {
+  const body = btn.nextElementSibling as HTMLElement;
+  const arrow = btn.querySelector('.acc-arrow') as HTMLElement;
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.acc-arrow').forEach(a => (a as HTMLElement).style.transform = '');
+  if (!isOpen) {
+    body.classList.add('open');
+    arrow.style.transform = 'rotate(180deg)';
+  }
+}
+document.querySelectorAll('.acc-header').forEach(btn => {
+  btn.addEventListener('click', () => toggleAcc(btn as HTMLElement));
+});
+</script>

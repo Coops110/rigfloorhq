@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+<BaseLayout
+  title="How to Become an OIM / Rig Manager — Career Path & Requirements"
+  description="What an Offshore Installation Manager (OIM) or onshore rig manager actually does, the path from toolpusher, required certifications, and pay."
+  breadcrumbs={[{ label: 'Careers', href: '/careers' }, { label: 'OIM / Rig Manager', href: '/careers/oim-rig-manager' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Careers — Top Operational Role</div>
+    <h1>How to Become an <span>OIM / Rig Manager</span></h1>
+    <p class="page-hero-sub">The top operational authority on the entire installation — not just drilling. Here's what changes from toolpusher, what offshore adds, and what it takes to get there.</p>
+    <div class="page-meta">
+      <span class="page-meta-item">Pay: <strong>$150K–$280K+/yr</strong></span>
+      <span class="page-meta-item">Timeline: <strong>15+ years from entry</strong></span>
+      <span class="page-meta-item">Required: <strong>IWCF Level 4 / WellSharp Supervisor</strong></span>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="what-an-oim-rig-manager-does">What an OIM / Rig Manager Does</h2>
+        <p>The Offshore Installation Manager (OIM) — or rig manager, the equivalent onshore title — holds the top operational authority on the entire installation, not just the drilling operation. Where a toolpusher is accountable for the rig's drilling performance on behalf of the contractor, the OIM is accountable for everything happening on that platform or pad: drilling, production if present, marine operations on a floating rig, catering and accommodation, emergency response, and the safety of every person aboard regardless of which company employs them.</p>
+        <p>In an emergency — a well control event, a fire, a medical evacuation, severe weather offshore — the OIM is the designated person in command, full stop. That single point of command is a regulatory requirement on most offshore installations, not just an organizational convenience.</p>
+
+        <h2 id="offshore-vs-onshore-oim-vs-rig-manager">Offshore vs. Onshore: OIM vs. Rig Manager</h2>
+        <p>The title and the scope split by environment. <strong>OIM</strong> is the offshore title, carrying statutory emergency-command responsibility defined by the regulator in that jurisdiction (e.g. the UK's Offshore Installations regulations or equivalent). <strong>Rig manager</strong> is the onshore equivalent — same top-of-rig operational authority, without the offshore-specific marine and evacuation-command requirements, since onshore emergency response typically hands off to local services rather than the rig's own command structure.</p>
+
+        <h2 id="the-path-from-toolpusher">The Path From Toolpusher</h2>
+        <div class="career-path" style="margin-top:24px;">
+          <div class="career-step">
+            <h3>Toolpusher <span class="inline-badge badge-senior">Yr 10–15</span></h3>
+            <p>Run full operational authority over a single rig for the drilling contractor. See the <a href="/careers/toolpusher">full toolpusher guide</a>.</p>
+          </div>
+          <div class="career-step">
+            <h3>Senior Toolpusher / Barge Engineer <span class="inline-badge badge-senior">Yr 15–18</span></h3>
+            <p>Take on broader cross-discipline coordination — marine, production, or multi-rig oversight depending on the installation type.</p>
+          </div>
+          <div class="career-step">
+            <h3>OIM / Rig Manager <span class="inline-badge badge-senior">Yr 15+</span></h3>
+            <p>Full command authority over the installation. IWCF Level 4 or IADC WellSharp Supervisor required, plus offshore-specific emergency command training for OIM roles specifically.</p>
+          </div>
+        </div>
+
+        <h2 id="certification-and-regulatory-requirements">Certification and Regulatory Requirements</h2>
+        <p>The well control certification requirement is the same tier as toolpusher — <strong>IWCF Level 4 / IADC WellSharp Supervisor</strong> — since an OIM has to be able to approve and oversee well control decisions, same as a toolpusher does. OIM roles specifically add jurisdiction-specific command and emergency-response training on top of that (offshore safety regulators typically mandate a dedicated OIM or "Controller of Emergencies" qualification). See the certification ladder at <a href="/pillars/rig-floor-leadership">Rig Floor Leadership</a> and the full breakdown on <a href="/careers/certifications">certifications</a>.</p>
+
+        <h2 id="what-this-role-is-not">What This Role Is Not</h2>
+        <p>An OIM or rig manager is not the same as a <strong>company man</strong>. The company man works for the operator (the oil company funding the well) and holds final say over the well program itself — what gets drilled, to what depth, with what casing design. The OIM works for the drilling contractor or installation owner and commands the people and physical operation of the installation. The two roles work side by side daily, but answer to different employers with different scopes. See the <a href="/careers/company-man">company man guide</a> for the full distinction.</p>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-an-oim-rig-manager-does">What the Role Does</a>
+          <a href="#offshore-vs-onshore-oim-vs-rig-manager">Offshore vs. Onshore</a>
+          <a href="#the-path-from-toolpusher">Path From Toolpusher</a>
+          <a href="#certification-and-regulatory-requirements">Certification Requirements</a>
+          <a href="#what-this-role-is-not">What This Role Is Not</a>
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/pillars/rig-floor-leadership" class="card-link">→ Rig Floor Leadership: The Full Ladder</a><br><br>
+          <a href="/careers/toolpusher" class="card-link">→ How to Become a Toolpusher</a><br><br>
+          <a href="/careers/company-man" class="card-link">→ What Does a Company Man Do?</a><br><br>
+          <a href="/careers/certifications" class="card-link">→ All Certifications Explained</a><br><br>
+          <a href="/careers/salary" class="card-link">→ Full Salary Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
