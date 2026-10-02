@@ -386,9 +386,8 @@ section.block:nth-of-type(odd) { background: var(--ink); }
 a.card { display: block; text-decoration: none; color: inherit; cursor: pointer; }
 .card-icon { font-size: 26px; margin-bottom: 10px; display: block; }
 .card-thumb {
-  width: 100%; aspect-ratio: 1 / 1; object-fit: contain; margin-bottom: 10px;
-  background: radial-gradient(ellipse at 50% 45%, #333c45 0%, #1c2126 45%, #0e1113 100%);
-  border: 1px solid var(--iron); border-radius: 4px;
+  width: 32px; height: 32px; object-fit: cover; object-position: center 35%;
+  margin-bottom: 10px; border-radius: 3px; display: block;
 }
 .card h3 {
   font-family: var(--cond); font-weight: 700; font-size: 17px;
