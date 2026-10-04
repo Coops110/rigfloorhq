@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un empacador de liner con orificio sellante?',
+    a: 'Un empacador de liner con orificio sellante provee el sello de presión en la parte superior de un liner, donde el liner se superpone con el revestimiento de arriba, presentando un orificio liso y de acabado de precisión en el que un ensamblaje sellante de tieback o producción se inserta y sella desde arriba. Completa el trabajo de aislamiento de presión que el mecanismo de colgado del liner por sí solo no garantiza.',
+  },
+  {
+    q: '¿Colgar el peso del liner no es lo mismo que sellarlo?',
+    a: 'No — las dos son funciones relacionadas pero separadas manejadas por partes diferentes del ensamblaje de superposición. El trabajo de soportar el peso del liner lo hace los slips del colgador, que anclan mecánicamente el liner al revestimiento de arriba. El trabajo de sellado de presión a través de la superposición es una función separada, provista por el empacador de liner con orificio sellante (o en algunos diseños, un elemento de empacador integrado dentro del ensamblaje del colgador mismo).',
+  },
+  {
+    q: '¿Qué se inserta en el orificio sellante?',
+    a: 'Un ensamblaje sellante o espiga de tieback, corrido en el fondo de la sarta que se conecta desde arriba — ya sea una sarta de tieback extendiendo el aislamiento del liner hasta superficie, o el ensamblaje sellante propio de una sarta de producción — se asienta y sella dentro del orificio sellante pulido, completando la barrera de presión a través de la superposición.',
+  },
+  {
+    q: '¿Qué causa que falle en sellar un empacador de liner con orificio sellante?',
+    a: 'Los escombros o residuos de cemento dejados en el orificio sellante por la operación de cementación pueden evitar que el ensamblaje sellante se inserte limpiamente o selle por completo una vez asentado. El desgaste de elementos sellantes en el ensamblaje de inserción mismo, en lugar del orificio, es otra causa común, particularmente después de que el ensamblaje sellante se ha corrido y sacado más de una vez.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Empacador de Liner con Orificio Sellante: Sellando la Superposición Liner-Revestimiento"
+  description="Qué es un empacador de liner con orificio sellante, cómo sella la superposición liner-revestimiento separado del trabajo de peso del colgador, qué se inserta en el orificio, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Empacador de Liner con Orificio Sellante', href: '/es/equipment/seal-bore-liner-packer' }]}
+  lang="es"
+  alternateHref="/equipment/seal-bore-liner-packer"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/seal-bore-liner-packer" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Completación</div>
+    <h1>Empacador de Liner con <span>Orificio Sellante</span></h1>
+    <p class="page-hero-sub">Provee el sello de presión en la superposición liner-revestimiento a través de un orificio pulido en el que un ensamblaje sellante de tieback o producción se inserta desde arriba.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/seal-bore-liner-packer-1.jpg" image2="/images/equipment/seal-bore-liner-packer-2.jpg" alt="un empacador genérico de liner con orificio sellante" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Empacador de Liner con Orificio Sellante</h2>
+        <p>Un empacador de liner con orificio sellante se asienta en la parte superior de un <a href="/es/equipment/liner-hanger">liner</a>, donde el liner se superpone con el revestimiento de arriba, presentando un orificio liso y de acabado de precisión. Un ensamblaje sellante o espiga de tieback separado, corrido en la sarta de arriba, se inserta en ese orificio pulido y sella contra él — completando la barrera de presión a través del intervalo de superposición.</p>
+
+        <h2 id="hanging-vs-sealing">Colgar el Peso del Liner Es un Trabajo Separado</h2>
+        <p>Es fácil asumir que colgar un liner y sellarlo son la misma operación, pero se manejan por separado dentro del ensamblaje de superposición. El peso del liner lo carga los slips del <a href="/es/equipment/liner-hanger">colgador de liner</a>, que muerden el revestimiento de arriba y anclan mecánicamente el liner en su lugar. El sello de presión a través de esa misma superposición es una función distinta — provista por un empacador de liner con orificio sellante dedicado como este, o en algunos diseños por un elemento de empacador integrado construido dentro del ensamblaje del colgador mismo.</p>
+
+        <h2 id="what-stabs-in">Qué Se Inserta en el Orificio Sellante</h2>
+        <p>Un ensamblaje sellante o espiga de tieback — corrido en el fondo de cualquier sarta que se conecte desde arriba, ya sea un tieback extendiendo el aislamiento hasta superficie o el ensamblaje sellante propio de una sarta de producción — se asienta dentro del orificio sellante pulido y sella contra él, completando la barrera de presión. Debido a que el orificio sellante es una superficie fija de precisión, esa conexión de inserción típicamente puede hacerse, sacarse, y rehacerse varias veces sin perturbar el liner mismo.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Residuos de escombros o cemento</strong> dejados en el orificio sellante por la operación de cementación, evitando una inserción limpia o un sello completo una vez que el ensamblaje sellante se asienta.</li>
+          <li><strong>Desgaste de elementos sellantes</strong> en el ensamblaje de inserción mismo, particularmente después de que se ha corrido y sacado más de una vez durante la vida del pozo.</li>
+          <li><strong>Desalineación en la inserción</strong>, si la sarta de corrida no está correctamente centrada respecto al orificio sellante durante el intento de conexión.</li>
+        </ul>
+
+        <h2 id="vs-liner-hanger">Empacador de Liner con Orificio Sellante vs. Colgador de Liner</h2>
+        <p>Los dos trabajan juntos en la misma ubicación pero hacen trabajos diferentes. El <a href="/es/equipment/liner-hanger">colgador de liner</a> es lo que realmente soporta el peso del liner contra el revestimiento de arriba. El empacador de liner con orificio sellante es lo que realmente detiene la comunicación de presión a través de la superposición. Una completación puede, en principio, colgar un liner sin un empacador de orificio sellante si no se requiere aislamiento a través de la superposición — pero cualquier trabajo que necesite esa superposición aislada a presión necesita este componente específicamente.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#hanging-vs-sealing">Colgar vs. Sellar</a>
+          <a href="#what-stabs-in">Qué Se Inserta</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-liner-hanger">vs. Colgador de Liner</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Las dimensiones del orificio sellante y las clasificaciones de presión varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/liner-hanger" class="card-link">→ Colgador de Liner</a><br><br>
+          <a href="/es/equipment/packer" class="card-link">→ Empacador</a><br><br>
+          <a href="/es/equipment/expandable-sand-screen" class="card-link">→ Malla Expandible de Control de Arena</a><br><br>
+          <a href="/es/drilling/casing" class="card-link">→ Diseño de Revestimiento Explicado</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

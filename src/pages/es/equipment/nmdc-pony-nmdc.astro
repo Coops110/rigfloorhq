@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Qué es un NMDC y por qué necesita ser no magnético?',
+    a: 'Un NMDC es un Lastrabarrena No Magnético (Non-Magnetic Drill Collar), maquinado de una aleación austenítica que no lleva esencialmente ninguna firma magnética, colocado en el BHA inmediatamente alrededor del magnetómetro de una herramienta MWD o de registro. Los lastrabarrenas de acero ordinario arriba y abajo llevan una firma magnética suficientemente fuerte para distorsionar el campo magnético de la Tierra tal como se mide justo en el sensor, lo cual corrompería la lectura de azimut que el magnetómetro intenta tomar.',
+  },
+  {
+    q: '¿Qué es específicamente un pony NMDC?',
+    a: 'Un pony NMDC es simplemente una sección más corta del mismo collar no magnético, usado para afinar el espaciado no magnético total alrededor del sensor a la distancia exacta que requiere la especificación de la herramienta MWD. Los NMDC de longitud estándar vienen en tamaños fijos, así que una sección pony llena el vacío cuando el espaciado ideal cae entre longitudes estándar.',
+  },
+  {
+    q: '¿Cuánto espaciado no magnético realmente necesita una herramienta MWD?',
+    a: 'Varía por modelo de herramienta y por la fuerza magnética de los componentes de la sarta de perforación cercanos, que es exactamente por qué el espaciado se calcula para cada configuración de BHA en lugar de asumirse — el fabricante del MWD provee el espaciado no magnético requerido para su sensor específico, y la combinación de NMDC más pony se selecciona para cumplirlo con precisión.',
+  },
+  {
+    q: '¿Qué pasa si el espaciado no magnético está mal calculado?',
+    a: 'Un espaciado insuficiente deja que la interferencia magnética de los collares de acero llegue al magnetómetro, corrompiendo la lectura de azimut de una forma que puede no ser obvia en superficie — la herramienta puede reportar un número de apariencia confiable que simplemente está equivocado. Este es uno de los errores de BHA más insidiosos porque una mala lectura de azimut no se ve como una falla de herramienta; se ve como un registro normal que resulta ser inexacto.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="NMDC / Pony NMDC: Protegiendo Herramientas MWD de Interferencia Magnética"
+  description="Qué son un Lastrabarrena No Magnético (NMDC) y un pony NMDC, por qué las herramientas MWD necesitan espaciado no magnético, cómo se calcula el espaciado requerido, y qué pasa cuando está mal."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'NMDC / Pony NMDC', href: '/es/equipment/nmdc-pony-nmdc' }]}
+  lang="es"
+  alternateHref="/equipment/nmdc-pony-nmdc"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/nmdc-pony-nmdc" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Sarta de Perforación / BHA</div>
+    <h1>NMDC / <span>Pony NMDC</span></h1>
+    <p class="page-hero-sub">Lastrabarrenas no magnéticos colocados alrededor del magnetómetro de una herramienta MWD para protegerlo de la firma magnética de los collares de acero ordinarios cercanos.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/nmdc-pony-nmdc-1.jpg" image2="/images/equipment/nmdc-pony-nmdc-2.jpg" alt="un lastrabarrena no magnético genérico" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un NMDC</h2>
+        <p>Un Lastrabarrena No Magnético (NMDC) es un componente de BHA de pared pesada maquinado de una aleación austenítica — en lugar de acero de lastrabarrena ordinario — que no lleva esencialmente ninguna firma magnética propia. Se coloca inmediatamente alrededor del magnetómetro dentro de una <a href="/es/equipment/mwd-tool">herramienta MWD</a>, protegiendo a ese sensor de la distorsión del campo magnético que de otra forma introducirían los collares de acero ordinarios arriba y abajo justo en el punto de medición.</p>
+        <p>Un <strong>pony NMDC</strong> es la misma aleación y función en una longitud más corta, usado puramente para afinar el espaciado no magnético total alrededor del sensor a la distancia exacta que requiere la especificación de la herramienta MWD, ya que los NMDC de longitud estándar vienen en tamaños fijos que rara vez suman el espaciado preciso necesario por sí solos.</p>
+
+        <h2 id="why-it-matters">Por Qué Importa la Interferencia Magnética</h2>
+        <p>La medición de azimut de una herramienta MWD depende de que un magnetómetro lea con precisión el campo magnético de la Tierra en la ubicación del sensor. Los lastrabarrenas de acero ordinario llevan suficiente magnetismo residual para distorsionar esa lectura de campo local si se colocan demasiado cerca del sensor — y críticamente, una lectura corrompida no necesariamente se ve mal en superficie. Puede reportar un azimut de apariencia perfectamente confiable y plausible que simplemente es inexacto, lo cual es lo que hace que la interferencia magnética sea un modo de falla particularmente insidioso en lugar de una falla obvia de herramienta.</p>
+
+        <h2 id="spacing-calculation">Calculando el Espaciado Requerido</h2>
+        <p>La cantidad de espaciado no magnético necesaria es específica al modelo de herramienta MWD y a la fuerza magnética de los componentes específicos de la sarta de perforación a su alrededor — no hay una cifra universal. El fabricante del MWD especifica la distancia no magnética requerida para su sensor, y el BHA se construye con una combinación de NMDC de longitud completa más un pony NMDC para lograr ese espaciado exacto, en lugar de redondear hacia arriba o abajo a lo que sean las longitudes estándar disponibles.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Importa Esto en la Práctica</h2>
+        <ul>
+          <li><strong>Cualquier pozo direccional u horizontal</strong> que dependa de datos de azimut MWD para la colocación del pozo, donde un azimut inexacto se traduce directamente en un pozo que falla su objetivo planeado.</li>
+          <li><strong>Diseño y rediseño de BHA</strong>, cada vez que cambian los componentes de lastrabarrena cerca de la herramienta MWD, requiriendo que el espaciado no magnético se verifique de nuevo en lugar de asumirse correcto.</li>
+        </ul>
+
+        <h2 id="vs-mwd-tool">NMDC vs. la Herramienta MWD Misma</h2>
+        <p>Los dos son fáciles de confundir pero cumplen roles diferentes. La <a href="/es/equipment/mwd-tool">herramienta MWD</a> es el paquete de sensores mismo, tomando las mediciones reales. El NMDC y el pony NMDC son lastrabarrenas estructurales sin función de sensado propia — su trabajo completo es crear el ambiente magnéticamente limpio que el magnetómetro de la herramienta MWD necesita para tomar una lectura precisa en primer lugar.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#why-it-matters">Por Qué Importa</a>
+          <a href="#spacing-calculation">Cálculo del Espaciado</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#vs-mwd-tool">vs. Herramienta MWD</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> El espaciado no magnético requerido varía por fabricante de MWD y configuración de BHA — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/mwd-tool" class="card-link">→ Herramienta MWD</a><br><br>
+          <a href="/es/equipment/stabilizer" class="card-link">→ Estabilizador</a><br><br>
+          <a href="/es/equipment/positive-displacement-mud-motor" class="card-link">→ Motor de Lodo de Desplazamiento Positivo</a><br><br>
+          <a href="/es/equipment/drill-string" class="card-link">→ La Sarta de Perforación</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

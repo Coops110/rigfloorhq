@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa una junta pup?',
+    a: 'Una junta pup es una longitud de tubería más corta que una junta estándar, usada para lograr un espaciado preciso en una sarta de tubería o revestimiento — posicionando una herramienta a una profundidad exacta, llenando un vacío en la parte superior o inferior de una sarta, o ajustando la longitud total de la sarta para asentar un componente crítico exactamente donde necesita estar.',
+  },
+  {
+    q: '¿Una junta pup cambia el tipo de rosca o el diámetro de la sarta?',
+    a: 'No — una junta pup lleva el mismo tipo de conexión y diámetro que el resto de la sarta a su alrededor. Su única característica distintiva es la longitud; existe puramente para agregar un incremento específico de tubería más corto que lo estándar donde un cálculo de espaciado exacto lo requiere.',
+  },
+  {
+    q: '¿En qué longitudes típicamente vienen las juntas pup?',
+    a: 'Las longitudes comunes de inventario vienen en incrementos bien por debajo de una junta estándar, permitiendo que un diseñador de sarta combine juntas estándar con una o más juntas pup para lograr una longitud total exacta. Las longitudes específicas disponibles dependen del fabricante y del tamaño y conexión de tubería en uso para ese trabajo.',
+  },
+  {
+    q: '¿Qué causa un error de espaciado con juntas pup?',
+    a: 'Calcular mal la longitud total de sarta necesaria antes de seleccionar las longitudes de junta pup es la causa más directa, a menudo por un error en el cálculo de profundidad de asentamiento o espaciado de herramienta en lugar de la junta pup misma. Usar una junta pup con una conexión o espesor de pared diferente al especificado para el resto de la sarta también puede introducir un punto débil no intencional o una incompatibilidad de rosca.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Junta Pup: Espaciado Preciso en Sartas de Tubería y Revestimiento"
+  description="Qué es una junta pup, cómo logra un espaciado preciso de sarta, por qué mantiene la misma rosca y diámetro que el resto de la sarta, y en qué se diferencia de un sub de cruce."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Junta Pup', href: '/es/equipment/pup-joint' }]}
+  lang="es"
+  alternateHref="/equipment/pup-joint"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/pup-joint" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Sarta de Perforación / BHA</div>
+    <h1>Junta <span>Pup</span></h1>
+    <p class="page-hero-sub">Una longitud de tubería más corta que lo estándar usada para lograr un cálculo de espaciado exacto en una sarta de tubería o revestimiento.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/pup-joint-1.jpg" image2="/images/equipment/pup-joint-2.jpg" alt="una junta pup genérica" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es una Junta Pup</h2>
+        <p>Una junta pup es simplemente una longitud de tubería más corta que una junta estándar, que lleva el mismo tipo de conexión y diámetro que el resto de la sarta en la que se corre. Su única característica distintiva es la longitud — existe para permitir que una sarta se construya a una longitud total precisa, en lugar de estar limitada a múltiplos completos de la longitud de junta estándar.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Se Corre una Junta Pup</h2>
+        <ul>
+          <li><strong>Asentar una herramienta a una profundidad exacta.</strong> Si un empacador, niple, u otro componente de completación necesita quedar a una profundidad específica, una junta pup llena la brecha de longitud que queda entre lo que las juntas estándar solas pueden lograr y el espaciado exacto que requiere el trabajo.</li>
+          <li><strong>Llenar un vacío en la parte superior o inferior de una sarta</strong>, donde la longitud total de la sarta necesita ajustarse por menos de una junta completa para asentar correctamente respecto al cabezal de pozo o un punto de referencia de fondo.</li>
+          <li><strong>Acomodar cambios de diseño</strong> a mitad de la completación, donde una junta pup ofrece una forma rápida de ajustar la longitud total sin rediseñar toda la sarta.</li>
+        </ul>
+
+        <h2 id="same-connection">La Misma Conexión, Solo Más Corta</h2>
+        <p>A diferencia de un <a href="/es/equipment/crossover-sub">sub de cruce</a>, una junta pup no cambia nada sobre el tipo de rosca o el diámetro de la sarta — es una sección más corta directa de la misma tubería idéntica. Las longitudes disponibles varían por fabricante y tamaño de tubería, permitiendo que un diseñador de sarta combine juntas estándar con una o más juntas pup para lograr una longitud total exacta requerida.</p>
+
+        <h2 id="failure-modes">Errores Comunes de Espaciado</h2>
+        <ul>
+          <li><strong>Longitud total de sarta mal calculada</strong> antes de siquiera seleccionar las longitudes de junta pup, usualmente trazable a un error en el cálculo de profundidad de asentamiento o espaciado de herramienta en lugar de la junta pup misma.</li>
+          <li><strong>Conexión o espesor de pared no coincidentes</strong> si se usa una junta pup de una especificación diferente al resto de la sarta, introduciendo un punto débil no intencional o una incompatibilidad de rosca.</li>
+        </ul>
+
+        <h2 id="vs-crossover-sub">Junta Pup vs. Sub de Cruce</h2>
+        <p>Ambas son piezas cortas de tubería usadas para completar un diseño de sarta, pero resuelven problemas opuestos. Una junta pup mantiene todo igual — conexión, diámetro — y solo cambia la longitud. Un <a href="/es/equipment/crossover-sub">sub de cruce</a> deliberadamente cambia el tipo de rosca o el diámetro para unir dos secciones de sarta de otra forma incompatibles. Si la sarta necesita ser de una longitud específica, es una junta pup; si la sarta necesita conectar dos especificaciones de tubería diferentes, es un sub de cruce.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#same-connection">La Misma Conexión, Más Corta</a>
+          <a href="#failure-modes">Errores de Espaciado</a>
+          <a href="#vs-crossover-sub">vs. Sub de Cruce</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Las longitudes disponibles y las conexiones varían por fabricante y tamaño de tubería — siempre confirma contra el diseño de completación real antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/crossover-sub" class="card-link">→ Sub de Cruce</a><br><br>
+          <a href="/es/equipment/landing-nipple" class="card-link">→ Niple de Asiento</a><br><br>
+          <a href="/es/equipment/lifting-sub" class="card-link">→ Sub de Izaje</a><br><br>
+          <a href="/es/drilling/casing" class="card-link">→ Diseño de Revestimiento Explicado</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

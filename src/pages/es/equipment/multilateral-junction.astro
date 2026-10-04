@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Qué es una unión multilateral?',
+    a: 'Una unión multilateral es el punto estructural donde un pozo lateral (rama) intersecta el pozo principal en un pozo con más de una rama productora. El trabajo de la unión es manejar lo que sea que el diseño del pozo requiera en soporte estructural y aislamiento hidráulico en esa intersección, desde nada en absoluto hasta aislamiento de presión completo entre los dos orificios.',
+  },
+  {
+    q: '¿Qué son los niveles TAML, y por qué importan para una unión?',
+    a: 'Los niveles TAML (Technology Advancement for Multi-Laterals) clasifican las uniones multilaterales del 1 al 6 según cuánto soporte mecánico y aislamiento de presión provee la unión, desde una unión abierta simple sin soporte (Nivel 1) hasta una unión completamente revestida, cementada, y aislada a presión con acceso selectivo a cada lateral (Nivel 6). Elegir un nivel es una decisión central en cualquier diseño de pozo multilateral, intercambiando complejidad y costo contra integridad estructural y control de flujo.',
+  },
+  {
+    q: '¿Por qué elegiría un diseño de pozo una unión simple en lugar de una compleja?',
+    a: 'Una unión simple sin soporte cuesta mucho menos y es mecánicamente directa, una elección razonable en formaciones competentes y estables donde la unión no necesita refuerzo mecánico y donde el flujo mezclado y no controlado entre laterales es aceptable. Una unión compleja y aislada cuesta más y agrega complejidad de ingeniería pero se justifica cuando la estabilidad de la formación, el control zonal selectivo, o los requisitos regulatorios lo exigen.',
+  },
+  {
+    q: '¿Qué causa que falle una unión multilateral?',
+    a: 'El colapso de formación en una unión sin soporte puede bloquear parcial o totalmente uno de los laterales si el diseño asumió más estabilidad de hoyo de la que realmente existía. En uniones de nivel más alto y aisladas a presión, la falla de sello en los elementos de aislamiento puede permitir comunicación no deseada entre laterales, anulando el control selectivo alrededor del cual se construyó el diseño.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Unión Multilateral: Niveles TAML y Diseño de Pozos Laterales"
+  description="Qué es una unión multilateral, cómo los niveles TAML clasifican el soporte y aislamiento de una unión, cuándo se elige una unión simple vs. compleja, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Unión Multilateral', href: '/es/equipment/multilateral-junction' }]}
+  lang="es"
+  alternateHref="/equipment/multilateral-junction"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/multilateral-junction" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Completación</div>
+    <h1>Unión <span>Multilateral</span></h1>
+    <p class="page-hero-sub">El punto de control estructural e hidráulico donde un pozo lateral se ramifica del pozo principal — desde una intersección abierta simple hasta una unión completamente aislada y selectivamente accesible.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/multilateral-junction-1.jpg" image2="/images/equipment/multilateral-junction-2.jpg" alt="una unión genérica de pozo multilateral" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es una Unión Multilateral</h2>
+        <p>Una unión multilateral es el punto donde un pozo lateral, o rama, intersecta el pozo principal en un pozo perforado con más de una rama productora. Lo que la unión realmente contiene varía enormemente por diseño — desde nada más que una intersección abierta en formación estable, hasta una estructura completamente revestida, cementada, y aislada a presión que permite acceso selectivo e independiente a cada lateral.</p>
+
+        <h2 id="taml-levels">Niveles TAML</h2>
+        <p>Los niveles TAML (Technology Advancement for Multi-Laterals) clasifican las uniones multilaterales del 1 al 6 según cuánto soporte mecánico y aislamiento hidráulico provean:</p>
+        <ul>
+          <li><strong>Nivel 1-2:</strong> Uniones abiertas o con soporte mínimo, típicamente en formación competente sin cemento ni soporte de revestimiento a través de la intersección misma.</li>
+          <li><strong>Nivel 3-4:</strong> La unión gana soporte mecánico — revestimiento o un liner a través de la intersección — con integración creciente de ese soporte con el revestimiento propio del pozo principal.</li>
+          <li><strong>Nivel 5-6:</strong> Aislamiento de presión completo en la unión, con el Nivel 6 agregando acceso selectivo y controlable a cada lateral de forma independiente, acercándose a la flexibilidad de una completación de un solo orificio aplicada por separado a cada rama.</li>
+        </ul>
+
+        <h2 id="choosing-a-level">Por Qué un Diseño Elige un Nivel Sobre Otro</h2>
+        <p>Una unión simple y de bajo nivel cuesta mucho menos y es mecánicamente directa, una elección razonable en formaciones competentes y estables donde la unión no necesita refuerzo y donde el flujo mezclado entre laterales, sin control selectivo, es aceptable para el plan de manejo del yacimiento. Una unión compleja y de alto nivel cuesta significativamente más y agrega dificultad real de ingeniería e instalación, pero se justifica cuando la inestabilidad de formación, la necesidad de control zonal independiente entre laterales, o los requisitos regulatorios lo exigen.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Colapso de formación en una unión sin soporte</strong>, bloqueando parcial o totalmente un lateral si el diseño asumió más estabilidad de hoyo de la que realmente existía.</li>
+          <li><strong>Falla de sello en uniones de nivel más alto</strong>, permitiendo comunicación no deseada de presión o fluido entre laterales y anulando el aislamiento selectivo alrededor del cual se construyó el diseño.</li>
+          <li><strong>Falla de herramienta de acceso</strong> en diseños Nivel 6, donde el mecanismo pensado para dirigir selectivamente el acceso a un lateral u otro falla.</li>
+        </ul>
+
+        <h2 id="vs-sliding-sleeve">Unión Multilateral vs. Camisa Deslizante</h2>
+        <p>Ambas pueden proveer control de flujo selectivo en una completación compleja, pero a escalas diferentes. Una <a href="/es/equipment/sliding-sleeve">camisa deslizante</a> controla flujo entre el orificio de tubería y el anular a una profundidad dentro de un solo pozo. Una unión multilateral controla la integridad estructural y, en diseños TAML más altos, el acceso de flujo entre dos pozos separados completos que se encuentran en un punto. Una completación multilateral sofisticada puede usar ambas — uniones para manejar las ramas, y camisas deslizantes dentro de cada rama para control zonal más fino.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#taml-levels">Niveles TAML</a>
+          <a href="#choosing-a-level">Eligiendo un Nivel</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-sliding-sleeve">vs. Camisa Deslizante</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> El diseño de la unión y la clasificación TAML varían por ingeniería específica del pozo — siempre confirma contra el diseño de completación real antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/sliding-sleeve" class="card-link">→ Camisa Deslizante</a><br><br>
+          <a href="/es/equipment/orienting-sub" class="card-link">→ Sub Orientador</a><br><br>
+          <a href="/es/equipment/whipstock" class="card-link">→ Whipstock</a><br><br>
+          <a href="/es/drilling/directional" class="card-link">→ Perforación Direccional</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

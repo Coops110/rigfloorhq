@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un motor de lodo de desplazamiento positivo?',
+    a: 'Un motor de lodo de desplazamiento positivo (PDM) convierte la energía hidráulica del fluido de perforación bombeado por la sarta en rotación de la barrena, independientemente de si la sarta de arriba está rotando desde superficie. Es la herramienta de dirección central en la mayoría de la perforación direccional y horizontal, ya que una sección de carcasa doblada antes del motor permite dirigir la barrena mientras el motor mismo impulsa la rotación.',
+  },
+  {
+    q: '¿Cómo genera realmente un motor de lodo rotación a partir del flujo de fluido?',
+    a: 'Usa el principio Moineau: un rotor helicoidal multilobulado gira dentro de un estator helicoidal correspondiente mientras el fluido de perforación se fuerza a través de cavidades progresivamente selladas entre ellos. Ese movimiento relativo convierte la presión y la tasa de flujo del fluido directamente en torque y velocidad rotacional en el rotor, el cual se conecta mecánicamente por un eje de transmisión hacia la barrena.',
+  },
+  {
+    q: '¿Qué es deslizar vs. rotar con un motor de lodo?',
+    a: 'Deslizar es cuando la sarta de superficie permanece estacionaria (o casi) mientras solo el motor rota la barrena, permitiendo que la carcasa doblada mantenga un toolface fijo y dirija el pozo en una dirección específica. Rotar es cuando la sarta de superficie también gira, lo cual anula el efecto de dirección de la carcasa doblada y perfora un camino más recto — usado para extender una sección una vez lograda la dirección deseada.',
+  },
+  {
+    q: '¿Qué causa que un motor de lodo falle o rinda por debajo de lo esperado?',
+    a: 'La presión diferencial excesiva a través del motor — a menudo por embolamiento de la barrena o una obstrucción — puede frenar el rotor o dañar componentes internos. El desgaste del elastómero del estator por alta temperatura, aditivos agresivos del fluido de perforación, o tiempo de corrida extendido reduce la salida de torque durante la vida del motor. Y los escombros o material de control de pérdida de circulación en la corriente de fluido pueden dañar el sello rotor-estator, reduciendo la eficiencia incluso antes de una falla total.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Motor de Lodo de Desplazamiento Positivo: Cómo Funcionan los Motores de Perforación de Fondo"
+  description="Qué es un motor de lodo de desplazamiento positivo (PDM), cómo el principio Moineau convierte flujo de fluido en rotación de barrena, deslizar vs. rotar, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Motor de Lodo de Desplazamiento Positivo', href: '/es/equipment/positive-displacement-mud-motor' }]}
+  lang="es"
+  alternateHref="/equipment/positive-displacement-mud-motor"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/positive-displacement-mud-motor" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Sarta de Perforación / BHA</div>
+    <h1>Motor de Lodo de <span>Desplazamiento Positivo</span></h1>
+    <p class="page-hero-sub">Convierte el flujo de fluido de perforación directamente en rotación de barrena en el fondo — la herramienta de dirección central detrás de la mayoría de la perforación direccional y horizontal.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/positive-displacement-mud-motor-1.jpg" image2="/images/equipment/positive-displacement-mud-motor-2.jpg" alt="un motor de lodo de desplazamiento positivo genérico" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Motor de Lodo de Desplazamiento Positivo</h2>
+        <p>Un motor de lodo de desplazamiento positivo (PDM) es un motor de fondo colocado en el BHA que convierte la energía hidráulica del fluido de perforación bombeado por la sarta en potencia rotacional en la barrena, sin requerir que la sarta de arriba rote. Una sección de carcasa doblada integrada en el ensamblaje del motor permite dirigir la barrena en una dirección elegida mientras el motor solo impulsa la rotación — haciendo del PDM el núcleo mecánico de la mayoría de los programas de perforación direccional y horizontal.</p>
+
+        <h2 id="how-it-works">Cómo Funciona el Principio Moineau</h2>
+        <p>Dentro del motor, un rotor helicoidal multilobulado se asienta dentro de un estator de elastómero helicoidal correspondiente. Mientras se bombea fluido de perforación, llena y se fuerza a través de una secuencia de cavidades progresivamente selladas formadas entre los lóbulos del rotor y el estator, y esa progresión forzada impulsa al rotor a girar y avanzar a través del estator. La rotación y el torque resultantes se transmiten por un eje de transmisión, a través de un ensamblaje de rodamientos, hacia la barrena — todo sin ninguna rotación de entrada desde superficie.</p>
+
+        <h2 id="sliding-vs-rotating">Deslizar vs. Rotar</h2>
+        <p>La perforación <strong>deslizando</strong> mantiene la sarta de superficie estacionaria, o casi, permitiendo que solo el motor rote la barrena mientras la carcasa doblada mantiene un toolface fijo — así es como realmente se logra el cambio direccional, dirigiendo el pozo hacia un objetivo específico. La perforación <strong>rotando</strong> agrega rotación desde superficie encima de la rotación propia del motor, lo cual anula el efecto de dirección de la carcasa doblada y perfora un camino más recto en su lugar; este modo se usa para extender una sección una vez que ya se ha logrado la dirección deseada, ya que generalmente es más rápido que deslizar.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Presión diferencial excesiva</strong> a través del motor, a menudo por embolamiento de la barrena o una obstrucción de fondo, lo cual puede frenar el rotor o dañar componentes internos bajo el pico de presión resultante.</li>
+          <li><strong>Desgaste del elastómero del estator</strong> por alta temperatura de fondo, aditivos agresivos del fluido de perforación, o tiempo de corrida extendido, reduciendo gradualmente la salida de torque durante la vida operativa del motor.</li>
+          <li><strong>Escombros o material de control de pérdida de circulación</strong> en la corriente de fluido dañando el sello rotor-estator, reduciendo la eficiencia del motor incluso antes de una falla completa.</li>
+        </ul>
+
+        <h2 id="vs-mwd-tool">Motor de Lodo vs. Herramienta MWD</h2>
+        <p>Los dos casi siempre se corren juntos en un BHA direccional pero hacen trabajos completamente diferentes. El motor de lodo provee potencia — rota la barrena y, a través de su carcasa doblada, provee el mecanismo de dirección. Una <a href="/es/equipment/mwd-tool">herramienta MWD</a> provee medición — reporta la inclinación, azimut, y toolface resultantes de vuelta a superficie para que el perforador sepa si la dirección del motor realmente está llevando el pozo a donde debe ir. Uno impulsa el pozo; la otra reporta hacia dónde realmente se dirige.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#how-it-works">Cómo Funciona</a>
+          <a href="#sliding-vs-rotating">Deslizar vs. Rotar</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-mwd-tool">vs. Herramienta MWD</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Las clasificaciones de torque, velocidad, y ángulo de doblez varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/mwd-tool" class="card-link">→ Herramienta MWD</a><br><br>
+          <a href="/es/equipment/nmdc-pony-nmdc" class="card-link">→ NMDC / Pony NMDC</a><br><br>
+          <a href="/es/equipment/stabilizer" class="card-link">→ Estabilizador</a><br><br>
+          <a href="/es/drilling/directional" class="card-link">→ Perforación Direccional</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

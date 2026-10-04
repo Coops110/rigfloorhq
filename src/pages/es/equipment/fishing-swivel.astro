@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un swivel de pesca?',
+    a: 'Un swivel de pesca se coloca en una sarta de pesca para permitir que la herramienta enganchada en el pescado rote independientemente de la sarta de trabajo arriba de ella, mientras aún permite que el peso, el jalado, y la circulación se transmitan a través de la herramienta. Se usa cada vez que la herramienta de pesca misma necesita rotar para liberarse — una lanza de liberación rotativa o un overshot, por ejemplo — sin requerir que toda la sarta de arriba rote en simpatía.',
+  },
+  {
+    q: '¿Por qué no simplemente rotar toda la sarta en lugar de usar un swivel?',
+    a: 'Rotar toda la sarta de trabajo para accionar una herramienta de liberación en el fondo trabaja mucho torque a través de miles de pies de tubería y arriesga desenroscar conexiones no intencionalmente en otra parte de la sarta, o rotar otras herramientas en el BHA que nunca estaban pensadas para girar. Un swivel de pesca aísla esa rotación a solo la conexión debajo de él, así que solo el mecanismo de liberación deseado realmente gira.',
+  },
+  {
+    q: '¿Un swivel de pesca transmite torque en absoluto?',
+    a: 'No — ese es todo el punto de la herramienta. Un swivel de pesca está construido para aislar el torque, no para transmitirlo, usando una interfaz de rodamiento entre sus conexiones superior e inferior. Sí transmite carga axial (jalado y peso) y permite circulación a través de su orificio, pero la fuerza rotacional arriba del swivel no pasa al pescado debajo de él.',
+  },
+  {
+    q: '¿Qué causa que un swivel de pesca falle?',
+    a: 'El desgaste o agarrotamiento del rodamiento por carga lateral o fluido con arena es la falla más común, lo cual puede causar que el swivel se atasque y comience a transmitir torque no deseado, o se trabe por completo. La falla del sello en la interfaz del rodamiento, dejando que entren escombros a la pista del rodamiento, también acelera este desgaste, y exceder la carga axial calificada de la herramienta puede dañar la pista del rodamiento bajo aislamiento de torque combinado con jalado pesado.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Swivel de Pesca: Cómo Funcionan las Herramientas Aislantes de Torque"
+  description="Qué es un swivel de pesca, por qué aísla la rotación de la sarta de trabajo arriba de él, cómo funciona con lanzas de liberación rotativas y overshots, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Swivel de Pesca', href: '/es/equipment/fishing-swivel' }]}
+  lang="es"
+  alternateHref="/equipment/fishing-swivel"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/fishing-swivel" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Swivel de <span>Pesca</span></h1>
+    <p class="page-hero-sub">Una herramienta aislada por rodamiento que permite que un mecanismo de liberación en el pescado rote libremente, sin girar los miles de pies de tubería arriba de él.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/fishing-swivel-1.jpg" image2="/images/equipment/fishing-swivel-2.jpg" alt="un swivel de pesca genérico" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Swivel de Pesca</h2>
+        <p>Un swivel de pesca es una herramienta equipada con rodamiento colocada en una sarta de pesca entre la sarta de trabajo arriba y la herramienta de pesca enganchada en el pescado abajo. Su interfaz de rodamiento permite que la conexión inferior rote independientemente de la superior, mientras aún transmite carga axial — peso y jalado — y permite que el fluido circule a través de su orificio. El torque, deliberadamente, no pasa a través.</p>
+        <p>Ese aislamiento es toda la razón de ser de la herramienta: ciertos mecanismos de liberación de herramientas de pesca, más notablemente las lanzas de liberación rotativas y algunos diseños de overshot, se accionan rotando la herramienta misma respecto al pescado. Un swivel de pesca permite que eso suceda en el fondo de la sarta sin rotar todo lo de arriba.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Se Corre un Swivel de Pesca</h2>
+        <ul>
+          <li><strong>Mecanismos de liberación rotativa.</strong> Cualquier herramienta de pesca — comúnmente una lanza de liberación rotativa — que se desengancha del pescado vía un número específico de rotaciones necesita que esa rotación se aísle a solo la herramienta misma, no transmitida por toda la sarta.</li>
+          <li><strong>Proteger las conexiones de arriba.</strong> Trabajar torque por miles de pies de tubería articulada para accionar una herramienta de fondo de pozo arriesga desenroscar conexiones en otra parte de la sarta que nunca estuvieron pensadas para ver esa rotación.</li>
+          <li><strong>Evitar rotación simpática de otras herramientas del BHA.</strong> Si otros componentes arriba del swivel — estabilizadores, martillos, otros subs — no están pensados para rotar durante la secuencia de liberación, el swivel mantiene esa rotación contenida debajo de él.</li>
+        </ul>
+
+        <h2 id="how-it-works">Cómo Funciona</h2>
+        <p>Internamente, los mandriles superior e inferior del swivel se conectan a través de un ensamblaje de rodamiento axial y radial en lugar de una conexión rígida o estriada. El rodamiento carga la carga axial que pasa por la herramienta — el jalado aplicado para trabajar el pescado, más el peso propio de la herramienta — mientras permite rotación relativa libre entre los dos mandriles. Un orificio central a través de ambos mandriles, sellado a través de la sección del rodamiento, preserva la ruta de circulación por la herramienta.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Desgaste o agarrotamiento del rodamiento</strong> por carga lateral o fluido con arena pasando por la herramienta, lo cual puede causar atascamiento y comenzar a transmitir torque no deseado — anulando el propósito de la herramienta.</li>
+          <li><strong>Falla del sello</strong> en la interfaz del rodamiento, dejando que escombros del pozo entren a la pista del rodamiento y acelerando el desgaste.</li>
+          <li><strong>Sobrecarga en la pista del rodamiento</strong> si se excede la carga axial calificada de la herramienta, particularmente bajo cargas de golpeo pesado combinadas con la función de aislamiento de torque.</li>
+        </ul>
+
+        <h2 id="vs-bumper-sub">Swivel de Pesca vs. Sub de Golpe</h2>
+        <p>Ambas herramientas aíslan algo entre la sarta de trabajo y el pescado, pero cosas diferentes. Un <a href="/es/equipment/bumper-sub">sub de golpe</a> aísla el movimiento axial — permite que la sarta de arriba viaje una distancia corta respecto a la herramienta de abajo, que es lo que permite que un martillo golpee. Un swivel de pesca aísla la rotación — permite que la herramienta de abajo gire independientemente de la sarta de arriba, que es lo que permite que un mecanismo de liberación rotativa se accione. Un BHA de pesca puede llevar ambos, por razones diferentes, en el mismo viaje.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#how-it-works">Cómo Funciona</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-bumper-sub">vs. Sub de Golpe</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Las clasificaciones de carga del rodamiento varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/bumper-sub" class="card-link">→ Sub de Golpe</a><br><br>
+          <a href="/es/equipment/wash-pipe" class="card-link">→ Tubería de Lavado</a><br><br>
+          <a href="/es/equipment/hydraulic-jar" class="card-link">→ Martillo Hidráulico</a><br><br>
+          <a href="/pillars/stuck-pipe-and-fishing-operations" class="card-link">→ Pesca y Tubería Pegada (inglés)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

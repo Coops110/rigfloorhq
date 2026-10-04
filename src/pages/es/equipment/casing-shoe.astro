@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa una zapata de revestimiento?',
+    a: 'Una zapata de revestimiento se arma en la junta más baja de una sarta de revestimiento antes de correrla al pozo. Su nariz redondeada o cónica guía la sarta pasando doglegs, repisas, y restricciones menores mientras desciende, evitando que el fondo de la sarta se atasque o raye la pared del pozo en el camino hacia abajo.',
+  },
+  {
+    q: '¿Cuál es la diferencia entre una zapata guía y una zapata flotadora?',
+    a: 'Una zapata guía simple solo guía la sarta — no tiene válvula interna y permite que el fluido pase libremente en ambas direcciones por su orificio. Una zapata flotadora agrega una función de válvula de retención (una charnela o una de bola y asiento) en la misma posición de fondo, lo cual guía la sarta de la misma forma pero también evita que el fluido fluya de vuelta hacia arriba del revestimiento una vez corrido, reduciendo la posibilidad de que la sarta flote o tome una carga tipo U-tube en el camino hacia adentro.',
+  },
+  {
+    q: '¿En qué se diferencia una zapata de revestimiento de un sub flotador?',
+    a: 'Pueden hacer un trabajo de válvula de retención muy similar, pero la posición es la diferencia real. Una zapata de revestimiento se asienta en el fondo absoluto de la sarta, armada en la última junta. Un sub flotador se coloca más arriba en la sarta — comúnmente una o más juntas arriba del fondo — cuando el trabajo específico requiere la función de válvula en esa posición más alta en lugar del fondo mismo.',
+  },
+  {
+    q: '¿Qué causa que falle una zapata de revestimiento?',
+    a: 'En una zapata flotadora específicamente, los escombros o recortes alojados en el asiento de la válvula pueden evitar que selle, anulando la función de prevención de contraflujo mientras la función guía sigue trabajando normalmente. En una zapata guía simple, el problema más común es simplemente encontrar una restricción demasiado ajustada o filosa para que el perfil de la nariz la desvíe, requiriendo que la sarta se trabaje o que la restricción se atienda antes de continuar corriendo hacia adentro.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Zapata de Revestimiento: Zapata Guía vs. Zapata Flotadora Explicadas"
+  description="Qué es una zapata de revestimiento, diseños de zapata guía vs. zapata flotadora, en qué se diferencia de un sub flotador colocado más arriba en la sarta, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Zapata de Revestimiento', href: '/es/equipment/casing-shoe' }]}
+  lang="es"
+  alternateHref="/equipment/casing-shoe"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/casing-shoe" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Zapata de <span>Revestimiento</span></h1>
+    <p class="page-hero-sub">La nariz redondeada armada en el fondo absoluto de una sarta de revestimiento, guiándola pasando repisas y asegurando que no se atasque en el camino hacia el pozo.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/casing-shoe-1.jpg" image2="/images/equipment/casing-shoe-2.jpg" alt="una zapata guía de revestimiento genérica" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es una Zapata de Revestimiento</h2>
+        <p>Una zapata de revestimiento se arma en la junta de fondo de una sarta de revestimiento antes de correr al pozo. Su perfil de nariz redondeado o cónico está diseñado específicamente para desviar la sarta suavemente pasando doglegs, repisas, y restricciones menores del pozo mientras desciende, en lugar de atascarse en ellas como lo haría un extremo de tubería plano o cuadrado.</p>
+        <p>Existen dos tipos básicos, distinguidos por lo que hay dentro de la zapata en lugar de por la función guía misma, que ambos comparten.</p>
+
+        <h2 id="guide-vs-float">Zapata Guía vs. Zapata Flotadora</h2>
+        <p>Una <strong>zapata guía</strong> es puramente mecánica — un orificio abierto con el perfil de nariz guía, permitiendo que el fluido fluya libremente en ambas direcciones a través de ella mientras la sarta corre hacia adentro y el cemento se bombea después durante el trabajo de cementación. No agrega nada más que la forma.</p>
+        <p>Una <strong>zapata flotadora</strong> agrega un elemento de válvula de retención — un diseño de charnela o de bola y asiento — en la misma posición de fondo. Esa válvula aún permite que se bombee fluido hacia abajo por la zapata (necesario para el trabajo de cemento posterior) pero evita que el flujo regrese hacia arriba del revestimiento, reduciendo la posibilidad de que la sarta flote mientras se corre y evitando un efecto U-tube que puede complicar correr la sarta de forma controlada y con el peso adecuado.</p>
+
+        <h2 id="when-used">Cuándo Se Elige Cada Una</h2>
+        <ul>
+          <li><strong>Zapata guía</strong> cuando la preocupación principal es simplemente llevar la sarta al fondo limpiamente, sin necesidad particular de controlar el contraflujo durante la corrida.</li>
+          <li><strong>Zapata flotadora</strong> cuando es importante correr la sarta con un nivel de llenado controlado — común en sartas más largas o desviadas donde un efecto U-tube no controlado durante la corrida podría complicar el control del pozo o el manejo de la sarta.</li>
+        </ul>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Ensuciamiento del asiento de la válvula</strong> en una zapata flotadora, donde escombros o recortes se alojan en el asiento y evitan un sello completo, anulando la función de prevención de contraflujo mientras el perfil guía sigue funcionando normalmente.</li>
+          <li><strong>Restricción demasiado severa</strong> para que el perfil de la nariz la desvíe, requiriendo trabajar o rotar la sarta, o atender la restricción antes de continuar corriendo hacia adentro.</li>
+          <li><strong>Daño de la zapata en una corrida áspera</strong>, particularmente en un pozo desviado o con doglegs, lo cual puede desafilar el perfil guía a mitad de la corrida.</li>
+        </ul>
+
+        <h2 id="vs-float-sub">Zapata de Revestimiento vs. Sub Flotador</h2>
+        <p>Una zapata de revestimiento y un <a href="/es/equipment/float-sub">sub flotador</a> pueden cumplir una función de válvula de retención casi idéntica, pero en posiciones diferentes de la sarta. La zapata de revestimiento se asienta en el fondo absoluto, armada en la última junta, combinando la válvula con la nariz guía. Un sub flotador se coloca más arriba — una o más juntas arriba del fondo — cuando el trabajo específicamente requiere la función de válvula en esa posición más alta en lugar del fondo mismo de la sarta.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#guide-vs-float">Guía vs. Flotadora</a>
+          <a href="#when-used">Cuándo Se Elige Cada Una</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-float-sub">vs. Sub Flotador</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> El diseño de la válvula y las clasificaciones de presión varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/float-sub" class="card-link">→ Sub Flotador</a><br><br>
+          <a href="/es/equipment/mule-shoe" class="card-link">→ Zapata Mula</a><br><br>
+          <a href="/es/equipment/centralizer" class="card-link">→ Centralizador</a><br><br>
+          <a href="/es/drilling/casing" class="card-link">→ Diseño de Revestimiento Explicado</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

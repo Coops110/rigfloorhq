@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa una fresa de rebaba?',
+    a: 'Una fresa de rebaba dresa y remueve rebabas filosas, bordes rugosos, u obstrucciones metálicas pequeñas dejadas por una operación de corte o fresado previa — alisando el borde de una ventana después del fresado de ventana, o limpiando un labio irregular dejado por un cortador de revestimiento, para que una sarta o herramienta posterior pueda pasar limpiamente sin atascarse o dañarse.',
+  },
+  {
+    q: '¿En qué se diferencia una fresa de rebaba de una fresa de sección?',
+    a: 'Una fresa de sección es una herramienta de remoción masiva de metal, moliendo todo un intervalo de revestimiento y cemento a lo largo de varios pies para convertir hoyo revestido en hoyo abierto. Una fresa de rebaba es una herramienta de acabado — remueve solo pequeñas cantidades de material en un borde rugoso o rebaba localizada, no una sección completa de tubería. Si el trabajo necesita que un intervalo de revestimiento desaparezca por completo, eso es una fresa de sección; si el trabajo necesita que un borde filoso se alise, eso es una fresa de rebaba.',
+  },
+  {
+    q: '¿Cuándo se corre típicamente una fresa de rebaba?',
+    a: 'Más comúnmente justo después de una operación de fresado de ventana o corte de revestimiento, como una pasada de limpieza antes de correr un liner, whipstock, o sarta de completación de vuelta por el mismo intervalo — atrapando cualquier borde filoso que la operación previa haya dejado antes de que pueda dañar una herramienta más sensible.',
+  },
+  {
+    q: '¿Qué causa que un trabajo de fresa de rebaba quede incompleto?',
+    a: 'Correr la fresa con peso o RPM insuficientes para la dureza del material de la rebaba puede dejarla solo parcialmente dresada. Mal juzgar la profundidad o extensión del borde rugoso también puede dejar parte de él sin tocar, requiriendo una pasada repetida una vez que se identifica la rebaba restante — a menudo al sentir resistencia al correr una sarta posterior a través.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Fresa de Rebaba: Cómo las Fresas de Acabado Dresan Bordes Filosos en el Fondo"
+  description="Qué es una fresa de rebaba, cómo dresa bordes filosos y rebabas dejadas por un corte o fresado previo, en qué se diferencia de una fresa de sección, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Fresa de Rebaba', href: '/es/equipment/burr-mill' }]}
+  lang="es"
+  alternateHref="/equipment/burr-mill"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/burr-mill" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Fresa de <span>Rebaba</span></h1>
+    <p class="page-hero-sub">Una fresa de acabado que dresa rebabas filosas y bordes rugosos dejados por un corte o fresado previo, para que las herramientas posteriores puedan pasar limpiamente.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/burr-mill-1.jpg" image2="/images/equipment/burr-mill-2.jpg" alt="una fresa de rebaba genérica" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es una Fresa de Rebaba</h2>
+        <p>Una fresa de rebaba es una herramienta de fresado con una cabeza de corte dresada, a menudo cónica o redondeada, construida para remover pequeñas cantidades de material en un borde rugoso localizado en lugar de moler una sección completa de tubería. Es una herramienta de acabado: donde una operación previa — un <a href="/es/equipment/casing-cutter">cortador de revestimiento</a>, una <a href="/es/equipment/window-mill">fresa de ventana</a>, o similar — ha dejado un borde filoso, irregular, o con rebaba, una fresa de rebaba lo limpia.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Se Corre una Fresa de Rebaba</h2>
+        <ul>
+          <li><strong>Después de fresar una ventana</strong>, para alisar el borde del revestimiento en la ventana antes de correr un liner, equipo relacionado con whipstock, o una sarta de completación de vuelta por el mismo intervalo.</li>
+          <li><strong>Después de una corrida de cortador de revestimiento</strong>, dresando un labio de separación irregular dejado donde se cortó el revestimiento, antes de sacar la sección separada o correr otras herramientas pasándolo.</li>
+          <li><strong>Cualquier borde rugoso localizado</strong> identificado en el fondo — de una operación mecánica previa, corrosión, o daño — que de otra forma una herramienta más sensible atraparía o dañaría.</li>
+        </ul>
+
+        <h2 id="how-it-works">Cómo Funciona</h2>
+        <p>La cabeza de corte de la fresa se corre a la ubicación conocida o sospechada de la rebaba y se trabaja contra ella con rotación y peso, esmerilando el material elevado o filoso hasta que la superficie esté suficientemente lisa para que la herramienta posterior planeada pueda pasar. Debido a que el objetivo es pequeño y localizado en lugar de una pared completa de tubería, una fresa de rebaba típicamente remueve mucho menos material en mucho menos tiempo del que necesitarían una fresa de sección o una fresa de ventana para sus respectivos trabajos.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Peso o RPM insuficientes</strong> para la dureza del material de la rebaba, dejándola solo parcialmente dresada.</li>
+          <li><strong>Extensión mal juzgada del borde rugoso</strong>, dejando parte de él sin tocar y requiriendo una pasada repetida una vez que se siente resistencia al correr una sarta posterior.</li>
+          <li><strong>Desgaste de la fresa</strong> por una rebaba inesperadamente dura o extensa, reduciendo la eficiencia de corte a mitad del trabajo.</li>
+        </ul>
+
+        <h2 id="vs-section-mill">Fresa de Rebaba vs. Fresa de Sección</h2>
+        <p>Ambas son herramientas de fresado, pero en escalas completamente diferentes de remoción de material. Una <a href="/es/equipment/section-mill">fresa de sección</a> muele todo un intervalo de revestimiento y el cemento a su alrededor, varios pies a la vez, convirtiendo hoyo revestido en hoyo abierto. Una fresa de rebaba remueve solo una pequeña cantidad de material en un punto rugoso localizado, terminando un borde en lugar de eliminar una sección de tubería. Si el plan requiere remover un intervalo de revestimiento por completo, eso es trabajo de una fresa de sección; si el plan requiere alisar un borde filoso dejado por otra operación, para eso es una fresa de rebaba.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#how-it-works">Cómo Funciona</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-section-mill">vs. Fresa de Sección</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> El diseño de la cabeza de corte y las tasas de remoción de material varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/section-mill" class="card-link">→ Fresa de Sección</a><br><br>
+          <a href="/es/equipment/window-mill" class="card-link">→ Fresa de Ventana</a><br><br>
+          <a href="/es/equipment/casing-roller-dressing-tool" class="card-link">→ Rodillo / Herramienta de Dresado de Revestimiento</a><br><br>
+          <a href="/es/equipment/casing-cutter" class="card-link">→ Cortador de Revestimiento</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

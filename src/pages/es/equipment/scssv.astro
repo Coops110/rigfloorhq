@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Qué significa SCSSV y qué hace?',
+    a: 'SCSSV significa Válvula de Seguridad Subsuperficial Controlada desde Superficie (Surface-Controlled Subsurface Safety Valve). Es una válvula a prueba de fallas instalada en la sarta de tubería, mantenida abierta por presión hidráulica suministrada desde superficie a través de una línea de control, que se cierra automáticamente y cierra el pozo si esa presión de control se pierde en algún momento.',
+  },
+  {
+    q: '¿Por qué se cierra la válvula al perder presión en lugar de necesitar presión para cerrarse?',
+    a: 'Ese diseño a prueba de fallas es todo el punto de la herramienta: cualquier falla que interrumpa la línea de control — un incendio, daño al equipo de superficie, una ruptura de línea — remueve la presión que mantiene la válvula abierta, y el resorte interno propio de la válvula entonces la cierra automáticamente. Si la válvula en cambio requiriera presión para cerrarse, las mismas emergencias que existe para proteger contra la dejarían atascada abierta.',
+  },
+  {
+    q: '¿Un SCSSV es requerido por regulación?',
+    a: 'En la mayoría de las jurisdicciones productoras, sí — un SCSSV o una válvula de seguridad subsuperficial equivalente es un requisito regulatorio estándar en pozos productores, particularmente en costa afuera, como última línea de control de pozo si el equipo de superficie falla o se daña.',
+  },
+  {
+    q: '¿Qué causa que falle un SCSSV?',
+    a: 'El daño a la línea de control o una fuga lenta reduciendo la presión hidráulica por debajo de lo necesario para mantener la válvula abierta es una causa directa de cierre prematuro, lo cual es una falla segura pero aún un cierre no planeado. Los escombros o incrustación en la charnela o asiento de la válvula también pueden evitar que selle por completo una vez cerrada, o pueden evitar que vuelva a abrir limpiamente después de un cierre, ambos requiriendo intervención para resolverse.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="SCSSV: Cómo Funcionan las Válvulas de Seguridad Controladas desde Superficie"
+  description="Qué es una Válvula de Seguridad Subsuperficial Controlada desde Superficie (SCSSV), por qué es a prueba de fallas por diseño, requisitos regulatorios, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'SCSSV', href: '/es/equipment/scssv' }]}
+  lang="es"
+  alternateHref="/equipment/scssv"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/scssv" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Completación</div>
+    <h1>Válvula de Seguridad <span>SCSSV</span></h1>
+    <p class="page-hero-sub">Una válvula de fondo a prueba de fallas mantenida abierta por presión hidráulica de superficie, que automáticamente cierra el pozo en el instante en que se pierde esa presión.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/scssv-1.jpg" image2="/images/equipment/scssv-2.jpg" alt="una válvula de seguridad subsuperficial controlada desde superficie genérica" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un SCSSV</h2>
+        <p>Una Válvula de Seguridad Subsuperficial Controlada desde Superficie (SCSSV) es una válvula instalada en la sarta de tubería, típicamente a unos cientos de pies debajo del cabezal de pozo, mantenida en la posición abierta por presión hidráulica suministrada continuamente desde superficie a través de una línea de control dedicada. Mientras se mantenga esa presión de control, el pozo produce normalmente a través de la válvula abierta.</p>
+
+        <h2 id="fail-safe-design">Por Qué Es a Prueba de Fallas por Diseño</h2>
+        <p>La función de seguridad completa de la válvula descansa en una sola decisión de diseño: requiere presión para mantenerse abierta, no para cerrarse. Un resorte interno siempre está trabajando para cerrar la válvula; la presión hidráulica de superficie a través de la línea de control es lo que supera ese resorte y la mantiene abierta. Cualquier evento que interrumpa la línea de control — incendio dañando equipo de superficie, daño mecánico a la línea, un cierre iniciado por el operador — remueve esa presión de retención, y el resorte cierra la válvula automáticamente, cerrando el pozo sin necesitar que ningún otro sistema funcione correctamente en el momento de la emergencia.</p>
+
+        <h2 id="regulatory">Rol Regulatorio</h2>
+        <p>En la mayoría de las jurisdicciones productoras, un SCSSV o una válvula de seguridad subsuperficial equivalente es un requisito regulatorio estándar en pozos productores, especialmente costa afuera, sirviendo como la última línea de control de pozo si el equipo de superficie se daña, se destruye, o de otra forma queda fuera de servicio. Es una de las pocas piezas de hardware de completación cuyo trabajo completo es no hacer nada en absoluto hasta el único momento en que todo lo demás ya salió mal.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Daño de línea de control o fugas lentas</strong> reduciendo la presión hidráulica por debajo de lo necesario para mantener la válvula abierta, provocando un cierre seguro pero no planeado.</li>
+          <li><strong>Escombros o incrustación en la charnela o asiento</strong> evitando un sello completo una vez cerrada, socavando el cierre que la válvula debía proveer.</li>
+          <li><strong>Ensuciamiento que evita una reapertura limpia</strong> después de un cierre, requiriendo intervención antes de que la producción pueda reanudarse incluso una vez resuelto el disparador subyacente.</li>
+        </ul>
+
+        <h2 id="vs-packer">SCSSV vs. Empacador</h2>
+        <p>Ambos son componentes de completación relevantes para la seguridad pero atienden riesgos diferentes. Un <a href="/es/equipment/packer">empacador</a> provee un sello estático, siempre en su lugar, aislando el anular alrededor de la tubería. Un SCSSV provee una barrera dinámica a prueba de fallas dentro del orificio de tubería mismo, diseñada específicamente para cerrarse automáticamente en una emergencia en lugar de simplemente sellar un punto fijo permanentemente.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#fail-safe-design">Diseño a Prueba de Fallas</a>
+          <a href="#regulatory">Rol Regulatorio</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-packer">vs. Empacador</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Los requisitos de presión de control y las clasificaciones de válvula varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/packer" class="card-link">→ Empacador</a><br><br>
+          <a href="/es/equipment/landing-nipple" class="card-link">→ Niple de Asiento</a><br><br>
+          <a href="/es/equipment/bop" class="card-link">→ Tipos de Preventor de Reventones y Cómo Funciona un BOP</a><br><br>
+          <a href="/es/drilling/well-control" class="card-link">→ Control de Pozos y Surgencias</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

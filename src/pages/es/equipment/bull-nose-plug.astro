@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un tapón de nariz de toro?',
+    a: 'Un tapón de nariz de toro es una nariz sólida, redondeada, y ciega armada en el fondo de una sarta de tubería o de trabajo. Guía la sarta pasando restricciones menores de la misma forma que lo hace una zapata mula, pero no tiene paso de flujo interno en absoluto — se usa específicamente cuando no hay necesidad, o no se desea, circular por el fondo de la sarta mientras corre hacia adentro.',
+  },
+  {
+    q: '¿Por qué querría un trabajo una nariz ciega en lugar de una que permita flujo?',
+    a: 'Proteger un orificio sellante, perfil, o la cavidad de un empacador debajo de la sarta en corrida de escombros o fluido de pozo entrando por el fondo de la sarta es una razón común — una nariz ciega mantiene el orificio de la sarta aislado de lo que haya debajo hasta que la sarta esté en posición. También es simplemente la elección correcta cuando el trabajo no tiene ningún requisito de circulación por el fondo de la sarta durante la corrida.',
+  },
+  {
+    q: '¿En qué se diferencia un tapón de nariz de toro de un tapón de tubería?',
+    a: 'Un tapón de nariz de toro es una herramienta de corrida — una nariz fija y sólida armada en la sarta antes de que entre al pozo, sin función más allá de guiar y bloquear flujo en el fondo durante esa corrida. Un tapón de tubería es un componente de completación recuperable, asentado independientemente en un perfil de niple de asiento a una profundidad elegida y recuperado después en cable. Uno es un accesorio de corrida permanente-para-el-viaje; el otro es una barrera deliberadamente temporal y recuperable.',
+  },
+  {
+    q: '¿Qué causa que falle un tapón de nariz de toro?',
+    a: 'Debido a que no tiene partes móviles ni un sello que mantener, la falla casi siempre es mecánica — un bisel demasiado superficial para despejar la restricción que encuentra, o daño a la rosca durante el armado que compromete su conexión a la sarta de arriba.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Tapón de Nariz de Toro: Herramientas de Nariz Guía Sólida Explicadas"
+  description="Qué es un tapón de nariz de toro, por qué corre ciego sin paso de flujo, en qué se diferencia de una zapata mula y un tapón de tubería, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Tapón de Nariz de Toro', href: '/es/equipment/bull-nose-plug' }]}
+  lang="es"
+  alternateHref="/equipment/bull-nose-plug"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/bull-nose-plug" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Tapón de Nariz <span>de Toro</span></h1>
+    <p class="page-hero-sub">Una nariz guía sólida y ciega que protege lo que haya debajo de la sarta de escombros, sin ningún paso de flujo a través de ella.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/bull-nose-plug-1.jpg" image2="/images/equipment/bull-nose-plug-2.jpg" alt="un tapón de nariz de toro genérico" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Tapón de Nariz de Toro</h2>
+        <p>Un tapón de nariz de toro es una nariz sólida y redondeada armada en el fondo de una sarta de tubería o de trabajo antes de correr al pozo. Igual que una <a href="/es/equipment/mule-shoe">zapata mula</a>, su perfil redondeado ayuda a la sarta a desviarse pasando restricciones menores y repisas en el camino hacia abajo. A diferencia de una zapata mula, es completamente ciego — sin puertos, sin orificio abierto, nada pasa a través de él.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Se Corre un Tapón de Nariz de Toro</h2>
+        <ul>
+          <li><strong>Proteger un perfil u orificio sellante debajo de la sarta</strong> de escombros o fluido de pozo entrando por el fondo de la sarta durante el viaje hacia adentro, manteniendo el orificio arriba del tapón aislado de lo que sea que haya debajo hasta que la sarta alcance su posición pretendida.</li>
+          <li><strong>Sin requisito de circulación para la corrida</strong>, donde el trabajo simplemente no necesita bombear por el fondo de la sarta, haciendo que una nariz guía con puertos sea una complicación innecesaria.</li>
+          <li><strong>Correr una sarta que será probada a presión</strong> desde superficie antes de que algo debajo se abra, usando la nariz sólida como barrera temporal para esa prueba.</li>
+        </ul>
+
+        <h2 id="why-blind">Por Qué Ciego en Lugar de con Puertos</h2>
+        <p>Una nariz guía con puertos, como una zapata mula, es la herramienta correcta cada vez que el trabajo necesita circular por el fondo de la sarta durante la corrida. Un tapón de nariz de toro se elige para la situación opuesta — cuando mantener el interior de la sarta aislado del pozo debajo de ella importa más que la capacidad de circulación, o cuando simplemente no hay necesidad de circulación para la cual diseñar.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Bisel insuficiente</strong> para la restricción que encuentra, ya que tiene la misma preocupación básica de geometría guía que cualquier herramienta de nariz.</li>
+          <li><strong>Daño de rosca o conexión</strong> durante el armado a la sarta de arriba, lo cual es realmente el único punto de falla mecánica en una herramienta sin partes móviles y sin sello que mantener.</li>
+        </ul>
+
+        <h2 id="vs-tubing-plug">Tapón de Nariz de Toro vs. Tapón de Tubería</h2>
+        <p>A pesar de que ambos se llaman "tapones," hacen trabajos muy diferentes. Un tapón de nariz de toro es un accesorio de corrida — fijo al fondo de la sarta antes de que entre al pozo, sin función más allá de guiar y bloquear flujo en esa posición para ese viaje. Un <a href="/es/equipment/tubing-plug">tapón de tubería</a> es un componente de completación recuperable, asentado independientemente en un perfil de <a href="/es/equipment/landing-nipple">niple de asiento</a> a una profundidad elegida después de que la sarta ya está en su lugar, y recuperado después en cable cuando ya no se necesita. Uno viaja hacia abajo con la sarta; el otro se asienta y se saca por su cuenta.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#why-blind">Por Qué Ciego</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-tubing-plug">vs. Tapón de Tubería</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> La geometría de la nariz varía por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/mule-shoe" class="card-link">→ Zapata Mula</a><br><br>
+          <a href="/es/equipment/tubing-plug" class="card-link">→ Tapón de Tubería</a><br><br>
+          <a href="/es/equipment/landing-nipple" class="card-link">→ Niple de Asiento</a><br><br>
+          <a href="/es/equipment/casing-shoe" class="card-link">→ Zapata de Revestimiento</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

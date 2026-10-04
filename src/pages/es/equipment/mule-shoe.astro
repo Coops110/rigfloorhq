@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa una zapata mula?',
+    a: 'Una zapata mula es una nariz guía biselada y redondeada armada en el fondo de una sarta de tubería, revestimiento, o BHA para ayudarla a deslizarse pasando repisas, bordes de ventana, y restricciones menores sin atascarse — más comúnmente después de correr por una ventana recién fresada donde un borde filoso de revestimiento de otra forma podría atrapar un extremo de tubería plano.',
+  },
+  {
+    q: '¿Una zapata mula permite que el fluido fluya a través de ella?',
+    a: 'La mayoría de los diseños de zapata mula incluyen puertos o un orificio abierto que permiten que el fluido fluya o circule a través de la nariz guía, lo cual es una de las características que distingue a una zapata mula de un tapón de nariz de toro ciego corrido para el mismo propósito guía general.',
+  },
+  {
+    q: '¿Dónde se corre típicamente una zapata mula?',
+    a: 'Muy comúnmente en el fondo de una sarta que se corre de vuelta al pozo después de un sidetrack, pasando una ventana recién fresada donde el borde expuesto del revestimiento es filoso y poco perdonador. También se usa generalmente en cualquier sarta donde el extremo de fondo necesita ayuda para deslizarse pasando repisas o doglegs menores en el camino hacia adentro, independientemente de un trabajo de fresado de ventana específicamente.',
+  },
+  {
+    q: '¿Qué causa que una zapata mula falle en pasar una restricción?',
+    a: 'Un ángulo de bisel demasiado superficial para la severidad de la repisa o el borde que necesita pasar aún puede atascarse a pesar de la forma guía. Los escombros compactados contra la restricción también pueden anular el perfil guía sin importar su diseño. Y una zapata mula dimensionada para el hoyo o la dimensión de ventana equivocados simplemente no despejará una restricción para la que nunca fue dimensionada a pasar.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Zapata Mula: Cómo Funcionan las Herramientas de Nariz Guía"
+  description="Qué es una zapata mula, cómo su nariz biselada guía una sarta pasando repisas y bordes de ventana filosos, cuándo se corre, y en qué se diferencia de un tapón de nariz de toro."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Zapata Mula', href: '/es/equipment/mule-shoe' }]}
+  lang="es"
+  alternateHref="/equipment/mule-shoe"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/mule-shoe" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Zapata <span>Mula</span></h1>
+    <p class="page-hero-sub">Una nariz guía biselada que ayuda a una sarta a deslizarse pasando repisas y bordes de ventana filosos en el camino hacia adentro, en lugar de atascarse en ellos.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/mule-shoe-1.jpg" image2="/images/equipment/mule-shoe-2.jpg" alt="una nariz guía de zapata mula genérica" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es una Zapata Mula</h2>
+        <p>Una zapata mula es una nariz guía biselada y redondeada armada en el fondo de una sarta de tubería, revestimiento, o BHA. Su perfil angulado — que se asemeja a la punta de una herradura de mula, de ahí el nombre — permite que la sarta se desvíe suavemente pasando repisas, doglegs, y bordes filosos mientras corre hacia adentro, en lugar de atascar un extremo de tubería plano contra el obstáculo.</p>
+        <p>A diferencia de una guía sólida, la mayoría de los diseños de zapata mula tienen puertos o un orificio abierto, permitiendo que el fluido fluya o circule a través de la herramienta en lugar de bloquearla por completo.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Se Corre una Zapata Mula</h2>
+        <ul>
+          <li><strong>Correr de vuelta pasando una ventana fresada.</strong> Después de que una <a href="/es/equipment/window-mill">fresa de ventana</a> corta una abertura en el revestimiento para un sidetrack, el borde de revestimiento expuesto en la ventana es filoso y poco perdonador para un extremo de tubería plano — una zapata mula en la sarta que se corre de vuelta ayuda a que se desvíe pasando ese borde limpiamente.</li>
+          <li><strong>Despeje general de repisas y doglegs</strong> en cualquier lugar donde el extremo de fondo de una sarta necesite ayuda para deslizarse pasando una restricción menor en el camino hacia el pozo, independientemente de un trabajo de fresado de ventana específicamente.</li>
+          <li><strong>Proteger la conexión delantera de la sarta</strong> del impacto directo contra una restricción que un extremo de tubería cuadrado absorbería de frente.</li>
+        </ul>
+
+        <h2 id="design">Consideraciones de Diseño</h2>
+        <p>El ángulo de bisel y la longitud de la nariz guía se eligen en relación con la severidad de la restricción esperada — un bisel superficial funciona para repisas menores, mientras que un cono más agresivo se necesita para un borde de ventana filoso o un dogleg más ajustado. Debido a que la mayoría de los diseños tienen puertos, la zapata mula no bloquea la circulación de la forma en que lo haría una guía sólida, haciéndola compatible con trabajos que necesitan bombear a través de la sarta mientras corren hacia adentro.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Ángulo de bisel insuficiente</strong> para la severidad de la restricción, lo cual aún puede atascar la sarta a pesar de la forma guía.</li>
+          <li><strong>Escombros compactados contra la restricción</strong>, anulando el perfil guía sin importar su diseño.</li>
+          <li><strong>Dimensionamiento equivocado</strong> para el hoyo o la dimensión de ventana real, lo cual simplemente no despejará una restricción para la que nunca fue dimensionada.</li>
+        </ul>
+
+        <h2 id="vs-bull-nose">Zapata Mula vs. Tapón de Nariz de Toro</h2>
+        <p>Ambas son narices guía corridas en el fondo de una sarta por la misma razón básica, pero se diferencian en flujo. Una zapata mula típicamente tiene puertos o está abierta, permitiendo circulación a través de la herramienta. Un <a href="/es/equipment/bull-nose-plug">tapón de nariz de toro</a> es sólido y ciego — sin paso de flujo en absoluto — elegido específicamente cuando no hay necesidad, o no se desea, bombear a través del fondo de la sarta mientras corre hacia adentro.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#design">Consideraciones de Diseño</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-bull-nose">vs. Tapón de Nariz de Toro</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> La geometría del bisel y el dimensionamiento de puertos varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/bull-nose-plug" class="card-link">→ Tapón de Nariz de Toro</a><br><br>
+          <a href="/es/equipment/window-mill" class="card-link">→ Fresa de Ventana</a><br><br>
+          <a href="/es/equipment/casing-shoe" class="card-link">→ Zapata de Revestimiento</a><br><br>
+          <a href="/es/equipment/whipstock" class="card-link">→ Whipstock</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

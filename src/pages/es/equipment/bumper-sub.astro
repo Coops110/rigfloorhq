@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Qué hace un sub de golpe en una sarta de pesca?',
+    a: 'Un sub de golpe es una herramienta telescópica hecha de dos secciones de mandril estriadas que pueden deslizarse una distancia limitada entre sí mientras aún transmiten torque y circulación. Ese recorrido libre es lo que permite que el impacto de un martillo golpee limpiamente en lugar de absorberse como estiramiento en la tubería, y lo que permite que una sarta de trabajo absorba el movimiento de un taladro flotante sin cargar y descargar constantemente el pescado.',
+  },
+  {
+    q: '¿Dónde se coloca un sub de golpe en la sarta?',
+    a: 'Se coloca justo arriba de la herramienta de pesca, debajo de los martillos y los lastrabarrenas que proveen el peso de golpeo. Esa posición permite que el recorrido libre del sub de golpe aísle la herramienta de pesca enganchada del movimiento de la sarta arriba de ella, mientras sigue lo suficientemente cerca del martillo para que el impacto se entregue eficientemente en lugar de amortiguarse a lo largo de un intervalo largo de tubería.',
+  },
+  {
+    q: '¿Un sub de golpe reemplaza a un martillo?',
+    a: 'No. Un martillo es la herramienta que almacena y libera energía para entregar un impacto certero; un sub de golpe simplemente permite el recorrido para que ese impacto (o el oleaje en superficie, o recoger holgura) pueda ocurrir sin atascar la sarta. Los dos casi siempre se corren juntos — el sub de golpe no libera nada por sí solo, solo permite que el resto de la sarta funcione correctamente.',
+  },
+  {
+    q: '¿Qué causa que un sub de golpe falle o se atasque?',
+    a: 'La falla más común es que las estrías del mandril se agarroten o atasquen bajo carga lateral, calor, o ingreso de escombros, lo cual bloquea la acción telescópica y anula todo el propósito de la herramienta. El desgaste de los sellos internos del mandril también puede dejar que el fluido de perforación se desvíe internamente, y un recorrido excesivo más allá del rango calificado de la herramienta bajo golpeo pesado puede dañar la estría o el hombro.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Sub de Golpe: Cómo Funcionan las Herramientas Telescópicas de Pesca"
+  description="Qué es un sub de golpe, cómo funciona su mandril telescópico estriado con un martillo, dónde se ubica en una sarta de pesca, diseños de acción simple vs. doble, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Sub de Golpe', href: '/es/equipment/bumper-sub' }]}
+  lang="es"
+  alternateHref="/equipment/bumper-sub"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/bumper-sub" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Sub de <span>Golpe</span></h1>
+    <p class="page-hero-sub">Una herramienta telescópica de sarta de pesca que le da espacio a un martillo para golpear, y a un taladro flotante espacio para respirar, sin perder torque ni circulación.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/bumper-sub-1.jpg" image2="/images/equipment/bumper-sub-2.jpg" alt="un sub de golpe genérico" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Sub de Golpe</h2>
+        <p>Un sub de golpe está construido con dos secciones de mandril — una interna y una externa — conectadas por una interfaz estriada que les permite deslizarse una distancia limitada entre sí mientras aún transmiten torque completo y permiten que el fluido circule por el centro. Esa ventana corta de recorrido libre, usualmente de unos pocos pies, es toda la función de la herramienta: desacopla el movimiento de la sarta de arriba de la herramienta enganchada en el pescado abajo, dentro de ese rango de recorrido.</p>
+        <p>Por sí solo, un sub de golpe no libera nada. Es una adaptación mecánica que permite que el resto de la sarta de pesca — particularmente un <a href="/es/equipment/hydraulic-jar">martillo hidráulico</a> — realmente haga su trabajo.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Se Corre un Sub de Golpe</h2>
+        <ul>
+          <li><strong>Trabajando con un martillo.</strong> Un martillo almacena energía y la libera como un impacto certero. Si la sarta arriba del martillo es rígida hasta superficie, buena parte de ese impacto se absorbe como estiramiento elástico en miles de pies de tubería en lugar de llegar al pescado. Un sub de golpe colocado cerca del martillo permite que el martillo y el yunque realmente se separen y golpeen.</li>
+          <li><strong>Taladros flotantes y oleaje.</strong> En un semisumergible o buque de perforación sin compensación de oleaje completa, el taladro mismo se mueve verticalmente con el estado del mar. Un sub de golpe absorbe ese movimiento en su recorrido libre en lugar de transmitirlo directamente a una herramienta agarrada al pescado, lo cual de otra forma lo cargaría y descargaría con cada ola.</li>
+          <li><strong>Recoger holgura antes de golpear.</strong> Le da al perforador espacio para levantar la sarta y dejarla caer a través de un recorrido controlado, que es exactamente cómo se accionan los martillos mecánicos.</li>
+        </ul>
+
+        <h2 id="single-double-acting">Diseños de Acción Simple vs. Doble</h2>
+        <p>Los subs de golpe vienen en dos tipos básicos de acción, cubiertos con más detalle en la página de <a href="/es/equipment/sabs-dabs">SABS vs. DABS</a>: un diseño de <strong>acción simple</strong> tiene un hombro interno que solo hace contacto y transmite impacto en una dirección de recorrido (típicamente hacia arriba), dejando la otra dirección libre de cualquier golpeo. Un diseño de <strong>acción doble</strong> tiene hombros en ambas direcciones, así que transmite impacto ya sea que la sarta se mueva hacia arriba o hacia abajo. Cuál requiere un trabajo depende de si el plan necesita golpear el pescado libre solo en una dirección, o necesita la libertad de trabajarlo tanto hacia arriba como hacia abajo.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Agarrotamiento o atascamiento de las estrías</strong> bajo carga lateral, calor, o ingreso de escombros entre las secciones del mandril, lo cual bloquea el recorrido telescópico y anula por completo la herramienta.</li>
+          <li><strong>Desgaste de sellos internos</strong> que deja que el fluido de perforación se desvíe por los sellos del mandril, lo cual puede afectar la eficiencia de circulación aguas abajo.</li>
+          <li><strong>Daño por recorrido excesivo</strong> a la estría o los hombros extremos si la herramienta se golpea o recorre más allá de su longitud de recorrido calificada.</li>
+          <li><strong>Acumulación de escombros</strong> alrededor del mandril expuesto en fluido de pozo sucio o arenoso, acelerando el desgaste en la interfaz deslizante.</li>
+        </ul>
+
+        <h2 id="vs-jar">Sub de Golpe vs. Martillo Hidráulico</h2>
+        <p>Un <a href="/es/equipment/hydraulic-jar">martillo hidráulico</a> genera el impacto — almacena energía bajo tensión o compresión y la libera repentinamente como un golpe de martillo transmitido por la sarta. Un sub de golpe no genera ninguna fuerza propia; simplemente provee la holgura mecánica que permite que ese impacto, o el oleaje en superficie, ocurra sin atascar la sarta por completo. Casi siempre se corren juntos en un BHA de pesca, con el sub de golpe típicamente posicionado entre el martillo y la herramienta de pesca enganchada en el pescado.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#single-double-acting">Acción Simple vs. Doble</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-jar">vs. Martillo Hidráulico</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> La longitud de recorrido y las clasificaciones de carga varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/sabs-dabs" class="card-link">→ SABS vs. DABS</a><br><br>
+          <a href="/es/equipment/hydraulic-jar" class="card-link">→ Martillo Hidráulico</a><br><br>
+          <a href="/es/equipment/fishing-swivel" class="card-link">→ Swivel de Pesca</a><br><br>
+          <a href="/pillars/stuck-pipe-and-fishing-operations" class="card-link">→ Pesca y Tubería Pegada (inglés)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

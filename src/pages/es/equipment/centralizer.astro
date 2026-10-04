@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un centralizador?',
+    a: 'Un centralizador se sujeta alrededor del exterior de una sarta de revestimiento o liner a intervalos y la mantiene separada de la pared del pozo, manteniendo la sarta centrada en lugar de recostada contra un lado del hoyo. Esa separación es crítica durante la cementación, ya que una sarta descentrada produce una capa de cemento anular desigual alrededor de la tubería — gruesa en un lado, delgada o ausente en el otro — lo cual puede dejar un canal para migración de fluido justo donde más importa.',
+  },
+  {
+    q: '¿Cuál es la diferencia entre centralizadores de resorte de arco y rígidos?',
+    a: 'Un centralizador de resorte de arco usa arcos flexibles de acero de resorte que se comprimen al pasar la sarta por puntos ajustados y vuelven a extenderse contra la pared del pozo, proveyendo separación mediante fuerza de resorte. Un centralizador rígido (cuerpo sólido) usa aletas o nervaduras fijas que no flexionan en su lugar, dando una separación mecánica fija que no depende de fuerza de resorte — generalmente elegido en pozos de mayor temperatura o donde la fatiga del resorte de arco con el tiempo o la profundidad es una preocupación específica.',
+  },
+  {
+    q: '¿Cuántos centralizadores necesita una sarta de revestimiento?',
+    a: 'No hay un número universal — la colocación y el espaciado se calculan para cada trabajo a partir de la desviación específica del pozo, el tope de cemento planeado, y el peso del revestimiento, buscando un porcentaje de separación adecuado a través del intervalo cementado en lugar de una cuenta fija. Un ingeniero de cementación o diseño de revestimiento típicamente corre ese cálculo de colocación en lugar de aplicar una regla general.',
+  },
+  {
+    q: '¿Qué causa que un centralizador falle en proveer separación adecuada?',
+    a: 'Subdimensionar el centralizador para el diámetro real del hoyo es la causa más directa, dejando menos fuerza de separación que la que asumió el trabajo. La fatiga del resorte de arco por alta temperatura o un tiempo extendido en el pozo antes de cementar también puede reducir la fuerza del resorte por debajo de su separación calificada. Y en un intervalo severamente desviado o con doglegs, incluso un centralizador correctamente calificado puede quedar atrapado contra el lado bajo del hoyo por gravedad, superando localmente su fuerza de resorte.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Centralizador: Centralizadores de Resorte de Arco vs. Rígidos"
+  description="Qué es un centralizador de revestimiento, diseños de resorte de arco vs. rígidos, por qué importa la separación para la cementación, consideraciones de colocación, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Centralizador', href: '/es/equipment/centralizer' }]}
+  lang="es"
+  alternateHref="/equipment/centralizer"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/centralizer" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Centralizador de <span>Revestimiento</span></h1>
+    <p class="page-hero-sub">Se sujeta al DE del revestimiento y mantiene la sarta centrada en el hoyo, para que el cemento forme una capa pareja alrededor de la tubería en lugar de canalizarse por un lado.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/centralizer-1.jpg" image2="/images/equipment/centralizer-2.jpg" alt="un centralizador de revestimiento de resorte de arco genérico" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Centralizador</h2>
+        <p>Un centralizador se sujeta alrededor del exterior de una junta de revestimiento o liner a intervalos planeados a lo largo de la sarta, manteniendo esa sección de tubería separada de la pared del pozo en lugar de recostada contra un lado del hoyo bajo su propio peso. El objetivo es una sarta de revestimiento que quede razonablemente centrada a través del intervalo que después se cementará.</p>
+        <p>Ese centrado importa casi por completo por lo que sucede después: una sarta descentrada produce una capa de cemento anular desigual, gruesa donde la tubería se separa de la pared y delgada — o ausente por completo — donde descansa contra ella. Una capa de cemento delgada o faltante es exactamente donde puede formarse un canal de migración de fluido, socavando el aislamiento zonal que el trabajo de cemento debía proveer.</p>
+
+        <h2 id="bow-spring-vs-rigid">Centralizadores de Resorte de Arco vs. Rígidos</h2>
+        <p>Un <strong>centralizador de resorte de arco</strong> usa arcos curvos de acero de resorte alrededor del cuerpo que se comprimen hacia adentro al pasar la sarta por puntos ajustados del hoyo, y luego vuelven a extenderse hacia afuera contra la pared del pozo para proveer separación mediante fuerza de resorte continua. Es la opción más común en condiciones moderadas y es relativamente económico por junta.</p>
+        <p>Un <strong>centralizador rígido (cuerpo sólido)</strong> usa aletas o nervaduras fijas en lugar de arcos flexibles, proveyendo una separación mecánica fija que no depende de fuerza de resorte y por lo tanto no fatiga de la forma en que puede fatigar un resorte de arco a alta temperatura o un tiempo extendido en el pozo antes de cementar. Los centralizadores rígidos generalmente se favorecen en condiciones de pozo más severas donde la fatiga del resorte de arco es una preocupación específica conocida.</p>
+
+        <h2 id="placement">Colocación y Espaciado</h2>
+        <p>No hay una regla fija sobre cuántos centralizadores necesita una sarta o qué tan separados van — el espaciado se calcula para cada trabajo con base en el perfil de desviación del pozo, el tope de cemento planeado, y el peso y rigidez propios del revestimiento, buscando un porcentaje de separación adecuado a través del intervalo que se cementará. Ese cálculo típicamente lo corre un ingeniero de cementación o diseño de revestimiento en lugar de aplicarse como una regla genérica, ya que el espaciado correcto en un pozo casi vertical puede estar muy equivocado en uno altamente desviado.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Subdimensionamiento</strong> del centralizador para el diámetro real del hoyo, proveyendo menos fuerza de separación que la que asumió el diseño de cemento.</li>
+          <li><strong>Fatiga del resorte de arco</strong> por alta temperatura de fondo o tiempo extendido en el pozo antes del trabajo de cemento, reduciendo la fuerza del resorte por debajo de la separación calificada.</li>
+          <li><strong>Desviación severa o doglegs</strong> atrapando incluso a un centralizador correctamente calificado contra el lado bajo del hoyo, donde la gravedad puede superar localmente su fuerza de resorte sin importar la clasificación.</li>
+        </ul>
+
+        <h2 id="vs-stabilizer">Centralizador vs. Estabilizador</h2>
+        <p>Ambas herramientas se sujetan a una sarta y manejan su posición en el hoyo, pero trabajan en contextos completamente diferentes. Un centralizador se corre en revestimiento o liner que se va a cementar en su lugar, puramente para controlar la separación para el trabajo de cemento. Un <a href="/es/equipment/stabilizer">estabilizador</a> se corre como parte de un BHA de perforación activo, controlando la trayectoria y el patrón de contacto de la sarta de perforación mientras perfora activamente. Uno centra tubería que se quedará en el pozo permanentemente; el otro dirige tubería que está cortando hoyo nuevo activamente.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#bow-spring-vs-rigid">Resorte de Arco vs. Rígido</a>
+          <a href="#placement">Colocación y Espaciado</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-stabilizer">vs. Estabilizador</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Las clasificaciones de separación y los cálculos de espaciado varían por fabricante, tamaño de hoyo, y diseño de pozo — siempre confirma contra el programa de cementación real antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/stabilizer" class="card-link">→ Estabilizador</a><br><br>
+          <a href="/es/equipment/casing-shoe" class="card-link">→ Zapata de Revestimiento</a><br><br>
+          <a href="/es/equipment/liner-hanger" class="card-link">→ Colgador de Liner</a><br><br>
+          <a href="/es/drilling/casing" class="card-link">→ Diseño de Revestimiento Explicado</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

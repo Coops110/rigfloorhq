@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Qué significan SABS y DABS?',
+    a: 'SABS es un Sub de Golpe de Acción Simple (Single-Acting Bumper Sub); DABS es un Sub de Golpe de Acción Doble (Double-Acting Bumper Sub). Ambas son variantes de la misma herramienta telescópica de sub de golpe, y se diferencian solo en si el hombro interno que transmite el impacto se activa en una dirección de recorrido o en ambas.',
+  },
+  {
+    q: '¿Cuándo elegiría una cuadrilla un SABS en lugar de un DABS, o viceversa?',
+    a: 'Se elige un SABS cuando el plan solo necesita impacto entregado en una dirección — más comúnmente hacia arriba, para ayudar a jalar un pescado atascado — y la otra dirección debe permanecer libre de cualquier golpe, por ejemplo mientras se corre o se hacen conexiones. Se elige un DABS cuando el trabajo puede necesitar trabajar el pescado tanto hacia arriba como hacia abajo, como liberar tubería pegada diferencialmente donde el movimiento en cualquier dirección puede ayudar a romper el punto pegado, o al asentar y desasentar una herramienta que necesita golpeo en ambas carreras.',
+  },
+  {
+    q: '¿Se puede usar un SABS en lugar de un DABS?',
+    a: 'No de forma intercambiable para un trabajo que genuinamente necesita impacto en dos direcciones — un SABS simplemente no tiene hombro para transmitir fuerza en su lado de recorrido libre, así que correr uno donde se necesita un DABS significa que la mitad del golpeo planeado no hace nada. La sustitución inversa es menos costosa: un DABS usualmente puede sustituir a un SABS, ya que golpear en la dirección innecesaria rara vez es dañino, solo innecesario.',
+  },
+  {
+    q: '¿Las herramientas SABS y DABS se desgastan de forma diferente?',
+    a: 'Un DABS recibe carga de impacto en ambas carreras, así que sus hombros y estrías generalmente acumulan desgaste más rápido que un SABS corrido bajo un programa de golpeo similar, donde solo un lado del mecanismo recibe golpes. Eso hace que la inspección y la condición de los hombros sean especialmente importantes de revisar en un DABS que ha pasado por un trabajo de pesca extendido.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="SABS vs. DABS: Subs de Golpe de Acción Simple y Doble Explicados"
+  description="La diferencia entre un Sub de Golpe de Acción Simple (SABS) y uno de Acción Doble (DABS), cuándo se elige cada uno para un trabajo de pesca, y cómo difieren sus patrones de desgaste."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'SABS vs. DABS', href: '/es/equipment/sabs-dabs' }]}
+  lang="es"
+  alternateHref="/equipment/sabs-dabs"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/sabs-dabs" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>SABS <span>vs. DABS</span></h1>
+    <p class="page-hero-sub">Los Subs de Golpe de Acción Simple y Doble hacen el mismo trabajo telescópico — la diferencia es si el impacto se transmite en una dirección o en ambas.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/sabs-dabs-1.jpg" image2="/images/equipment/sabs-dabs-2.jpg" alt="un par genérico de subs de golpe de acción simple y doble" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Son SABS y DABS</h2>
+        <p>SABS y DABS no son tanto dos herramientas distintas sino dos configuraciones de la misma herramienta — el <a href="/es/equipment/bumper-sub">sub de golpe</a>. Ambas usan el mismo mandril telescópico estriado que permite que una sección interna y una externa se deslicen una distancia limitada entre sí mientras aún transmiten torque y circulación. La diferencia está en la geometría del hombro interno que realmente entrega el impacto de golpeo al final de ese recorrido.</p>
+        <p>Un <strong>Sub de Golpe de Acción Simple (SABS)</strong> tiene un hombro que hace contacto y transmite impacto en solo una dirección de recorrido — casi siempre la carrera hacia arriba, ya que la mayoría de los trabajos de pesca buscan jalar algo libre. Moverse en la dirección opuesta no produce ningún impacto; el mandril simplemente se desliza libre.</p>
+        <p>Un <strong>Sub de Golpe de Acción Doble (DABS)</strong> tiene hombros posicionados para transmitir impacto en ambas direcciones, así que el golpeo está disponible ya sea que la sarta se mueva hacia arriba o hacia abajo.</p>
+
+        <h2 id="choosing">Eligiendo Entre Ellos</h2>
+        <ul>
+          <li><strong>Trabajos sencillos de jalar libre</strong> donde el pescado solo necesita fuerza hacia arriba típicamente corren un SABS — más simple, y mantiene la carrera hacia abajo libre de impacto no deseado mientras se corre o se reposiciona.</li>
+          <li><strong>Tubería pegada diferencialmente</strong>, donde trabajar la sarta en cualquier dirección puede ayudar a romper el intervalo pegado, favorece un DABS para que la energía de golpeo no se desperdicie en solo la mitad de las carreras disponibles.</li>
+          <li><strong>Asentar o liberar herramientas</strong> que necesitan un golpe tanto en la carrera de asentamiento como en la de liberación también requieren un DABS, ya que un SABS solo ayudaría a una de las dos operaciones.</li>
+        </ul>
+
+        <h2 id="wear-inspection">Desgaste e Inspección</h2>
+        <p>Debido a que un DABS recibe carga de impacto en cada carrera en ambas direcciones, sus hombros y estrías acumulan desgaste más rápido en un programa de golpeo equivalente que un SABS, que solo carga un lado del mecanismo. En un trabajo de pesca que ha pasado por golpeo extendido, inspeccionar la condición de los hombros y el ajuste de las estrías en un DABS merece atención particular antes de confiar en él para otra corrida.</p>
+
+        <h2 id="vs-plain-bumper-sub">SABS/DABS vs. un Sub de Golpe Genérico de Referencia</h2>
+        <p>Cada vez que un programa de pesca simplemente requiere "un sub de golpe" sin especificar el tipo de acción, la decisión real que se está posponiendo es exactamente esta elección entre SABS y DABS. Ver la página principal de <a href="/es/equipment/bumper-sub">sub de golpe</a> para cómo la herramienta se integra con el resto de la sarta junto a un <a href="/es/equipment/hydraulic-jar">martillo hidráulico</a> — esta página cubre solo la distinción entre acción simple y doble.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Son</a>
+          <a href="#choosing">Eligiendo Entre Ellos</a>
+          <a href="#wear-inspection">Desgaste e Inspección</a>
+          <a href="#vs-plain-bumper-sub">vs. Sub de Golpe Genérico</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> El diseño de hombros y las clasificaciones de recorrido varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/bumper-sub" class="card-link">→ Sub de Golpe</a><br><br>
+          <a href="/es/equipment/hydraulic-jar" class="card-link">→ Martillo Hidráulico</a><br><br>
+          <a href="/es/equipment/safety-joint" class="card-link">→ Junta de Seguridad</a><br><br>
+          <a href="/pillars/stuck-pipe-and-fishing-operations" class="card-link">→ Pesca y Tubería Pegada (inglés)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

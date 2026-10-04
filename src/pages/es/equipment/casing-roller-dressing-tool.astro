@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un rodillo de revestimiento o herramienta de dresado?',
+    a: 'Un rodillo de revestimiento — también llamado herramienta de dresado — se corre para enderezar una sección abollada, fuera de redondez, o de otra forma deformada de revestimiento, restaurando un perfil interno redondo para que herramientas posteriores, empacadores, o liners puedan pasar y sellar correctamente. Funciona rodando o bruñendo la pared del revestimiento de vuelta hacia la redondez en lugar de cortar o remover metal.',
+  },
+  {
+    q: '¿En qué se diferencia un rodillo de revestimiento de una fresa de rebaba?',
+    a: 'Un rodillo de revestimiento restaura la forma sin remover metal significativo — trabaja la pared de tubería existente de vuelta hacia la redondez mediante presión de rodado. Una fresa de rebaba realmente remueve pequeñas cantidades de metal, típicamente para alisar bordes rugosos o rebabas dejadas por un corte o fresado previo. Si el revestimiento está fuera de redondez pero la pared misma está sana, un rodillo es la herramienta correcta; si hay una rebaba o borde filoso y duro que necesita esmerilarse, una fresa de rebaba es la herramienta correcta.',
+  },
+  {
+    q: '¿Un rodillo de revestimiento repara una fuga o brecha en el revestimiento?',
+    a: 'No — atiende la forma, no la integridad. Una sección de revestimiento que está abollada u ovalizada pero no rota es un buen candidato para rodarse. Si el revestimiento tiene un hueco, grieta, o brecha real, eso es trabajo de un parche de revestimiento en su lugar, ya que rodar no hace nada para restaurar la integridad de presión a través de una brecha.',
+  },
+  {
+    q: '¿Qué causa que falle un trabajo de rodillo de revestimiento?',
+    a: 'Una deformación demasiado severa para el rango de trabajo del rodillo puede dejar el revestimiento aún fuera de redondez después de la pasada, requiriendo un enfoque de reparación diferente por completo. Trabajar la herramienta demasiado agresivamente contra revestimiento duro o de alto grado también puede dañar los elementos del rodillo mismo en lugar de la tubería, y no dresar completamente el intervalo deformado en una pasada puede dejar una zona de transición que aún atrapa herramientas corridas después.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Rodillo de Revestimiento / Herramienta de Dresado: Restaurando Revestimiento Redondo"
+  description="Qué es un rodillo de revestimiento o herramienta de dresado, cómo restaura un perfil redondo a revestimiento abollado o deformado, en qué se diferencia de una fresa de rebaba y un parche de revestimiento, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Rodillo de Revestimiento / Herramienta de Dresado', href: '/es/equipment/casing-roller-dressing-tool' }]}
+  lang="es"
+  alternateHref="/equipment/casing-roller-dressing-tool"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/casing-roller-dressing-tool" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Rodillo de Revestimiento / <span>Herramienta de Dresado</span></h1>
+    <p class="page-hero-sub">Restaura un perfil interno redondo a revestimiento abollado o deformado rodando la pared de vuelta hacia su forma, sin cortar metal.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/casing-roller-dressing-tool-1.jpg" image2="/images/equipment/casing-roller-dressing-tool-2.jpg" alt="una herramienta genérica de rodillo de revestimiento" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Rodillo de Revestimiento</h2>
+        <p>Un rodillo de revestimiento, también llamado herramienta de dresado, se corre hacia una sección de revestimiento que se ha abollado, ovalizado, o deformado de otra forma — por herramientas de corrida, movimiento de formación, o carga externa — y trabaja la pared de la tubería de vuelta hacia un perfil interno redondo. Hace esto mediante presión de rodado o bruñido contra la sección deformada, no cortando o removiendo cantidades significativas de metal.</p>
+        <p>El objetivo es simple: restaurar un orificio redondo y correctamente dimensionado para que herramientas posteriores, empacadores, liners, o equipo de completación puedan pasar y funcionar de la forma en que están diseñados, en lugar de atascarse o fallar en sellar contra una sección fuera de redondez.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Se Corre un Rodillo de Revestimiento</h2>
+        <ul>
+          <li><strong>Abolladuras de herramientas de corrida</strong> que golpearon la pared del revestimiento lo suficientemente fuerte para deformarla sin romperla.</li>
+          <li><strong>Movimiento de formación o carga externa</strong> que ha ovalizado una sección de revestimiento con el tiempo, común en ciertos entornos geológicos.</li>
+          <li><strong>Precondicionar una sección</strong> antes de correr un empacador o liner que necesita un orificio verdaderamente redondo para sellar contra él, donde se sospecha o confirma que el revestimiento está levemente fuera de redondez.</li>
+        </ul>
+
+        <h2 id="how-it-works">Cómo Funciona</h2>
+        <p>Los elementos de rodado de la herramienta — típicamente rodillos endurecidos o un mandril con forma — se expanden contra el DI del revestimiento mientras la herramienta rota y trabaja a través del intervalo deformado, aplicando presión de rodado que reconforma la pared de tubería de vuelta hacia la redondez en lugar de esmerilarla o cortarla. Debido a que el proceso trabaja el metal existente en lugar de removerlo, preserva más del espesor de pared y la resistencia original del revestimiento de lo que lo haría un enfoque de corte o fresado.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Deformación más allá del rango de trabajo de la herramienta</strong>, dejando el revestimiento aún fuera de redondez después de la pasada y requiriendo un enfoque de reparación diferente.</li>
+          <li><strong>Daño de elementos de rodado</strong> por trabajar demasiado agresivamente contra revestimiento duro o de alto grado.</li>
+          <li><strong>Dresado incompleto</strong> del intervalo deformado completo en una pasada, dejando una zona de transición que aún puede atrapar herramientas corridas después.</li>
+        </ul>
+
+        <h2 id="vs-burr-mill-vs-patch">Rodillo de Revestimiento vs. Fresa de Rebaba vs. Parche de Revestimiento</h2>
+        <p>Tres herramientas atienden tres problemas diferentes que pueden parecer similares a primera vista. Un rodillo de revestimiento restaura la <em>forma</em> — corrige una sección fuera de redondez pero por lo demás sana de tubería. Una <a href="/es/equipment/burr-mill">fresa de rebaba</a> remueve un <em>borde filoso o rebaba</em> — pequeñas cantidades de metal dejadas por un corte o fresado previo. Un <a href="/es/equipment/casing-patch">parche de revestimiento</a> restaura la <em>integridad de presión</em> — sella una brecha, hueco, o grieta real en la tubería. Si el revestimiento está abollado pero intacto, rodarlo es la solución; si hay una rebaba o borde rugoso, fresarlo; si hay una brecha, parcharlo.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#how-it-works">Cómo Funciona</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-burr-mill-vs-patch">vs. Fresa de Rebaba vs. Parche</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> El rango de trabajo y las especificaciones del rodillo varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/burr-mill" class="card-link">→ Fresa de Rebaba</a><br><br>
+          <a href="/es/equipment/casing-patch" class="card-link">→ Parche de Revestimiento</a><br><br>
+          <a href="/es/equipment/casing-cutter" class="card-link">→ Cortador de Revestimiento</a><br><br>
+          <a href="/es/drilling/casing" class="card-link">→ Diseño de Revestimiento Explicado</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

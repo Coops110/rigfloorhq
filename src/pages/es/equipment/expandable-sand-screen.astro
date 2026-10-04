@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa una malla expandible de control de arena?',
+    a: 'Una malla expandible de control de arena controla la producción de arena en una completación de hoyo abierto o levemente revestida filtrando la arena de formación del fluido producido, mientras se expande radialmente contra la formación o la pared del hoyo después de correrse a un DE más pequeño — mejorando el área de flujo y el contacto con la formación comparado con una malla convencional no expandible.',
+  },
+  {
+    q: '¿Por qué correrla pequeña y expandirla después en lugar de correrla a tamaño completo?',
+    a: 'Correr a un diámetro exterior reducido permite que la malla pase por restricciones más ajustadas en el camino hacia el pozo, incluyendo secciones donde una malla de tamaño completo podría no caber o arriesgar daño durante la corrida. Una vez posicionada, la expansión mecánica o hidráulica la lleva a su diámetro completo de trabajo, cerca de la formación, lo cual también reduce el espacio anular que dejarían diseños no expandibles alrededor de la malla.',
+  },
+  {
+    q: '¿Cómo se compara una malla expandible con una malla convencional de alambre enrollado más empaque de grava?',
+    a: 'Un enfoque convencional corre una malla de alambre enrollado de diámetro estándar y empaca grava en el anular a su alrededor, usando la grava misma para filtrar arena antes de que llegue a las ranuras de la malla. Una malla expandible en cambio minimiza ese espacio anular directamente a través de su propia expansión, lo cual en las condiciones de formación correctas puede reducir o eliminar la necesidad de una operación separada de empaque de grava, aunque el empaque de grava sigue siendo la mejor opción en muchas otras formaciones.',
+  },
+  {
+    q: '¿Qué causa que falle un trabajo de malla expandible de control de arena?',
+    a: 'Una expansión incompleta o desigual contra una sección irregular o parcialmente colapsada de hoyo abierto puede dejar huecos donde arena sin filtrar aún llega a la tubería. El daño a la malla durante la corrida, antes de la expansión, por una restricción inesperadamente ajustada también puede comprometer la malla filtrante antes de que la herramienta llegue a profundidad.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Malla Expandible de Control de Arena: Cómo la Expansión Mejora el Control de Arena"
+  description="Qué es una malla expandible de control de arena, por qué corre pequeña y se expande contra la formación, cómo se compara con una malla convencional y empaque de grava, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Malla Expandible de Control de Arena', href: '/es/equipment/expandable-sand-screen' }]}
+  lang="es"
+  alternateHref="/equipment/expandable-sand-screen"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/expandable-sand-screen" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Completación</div>
+    <h1>Malla Expandible de <span>Control de Arena</span></h1>
+    <p class="page-hero-sub">Corre a un diámetro reducido, luego se expande radialmente contra la pared de la formación — filtrando arena mientras minimiza el espacio anular que deja una malla convencional.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/expandable-sand-screen-1.jpg" image2="/images/equipment/expandable-sand-screen-2.jpg" alt="una malla expandible de control de arena genérica" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es una Malla Expandible de Control de Arena</h2>
+        <p>Una malla expandible de control de arena es un dispositivo de control de arena corrido en una completación de hoyo abierto o levemente revestida a un diámetro exterior reducido, luego expandido mecánica o hidráulicamente de forma radial una vez posicionado, llevándola a contacto cercano con la formación o la pared del hoyo. Su malla filtrante o ranuras mantienen la arena de formación fuera del fluido producido mientras el cuerpo expandido minimiza el espacio anular que queda entre la malla y la formación.</p>
+
+        <h2 id="why-run-small">Por Qué Correr Pequeña y Expandir Después</h2>
+        <p>Correr a un diámetro reducido permite que la malla pase por restricciones más ajustadas en el camino hacia la profundidad que una malla de tamaño completo podría no despejar, o podría arriesgar daño intentando pasar. Una vez que la malla llega a su posición pretendida, la expansión la lleva a diámetro completo de trabajo — cerca de la formación — lo cual también reduce el espacio anular disponible para que arena sin filtrar migre alrededor de la malla en lugar de a través de ella.</p>
+
+        <h2 id="vs-conventional-gravel-pack">Malla Expandible vs. Malla Convencional + Empaque de Grava</h2>
+        <p>Una completación convencional corre una malla de alambre enrollado de diámetro estándar y empaca grava en el anular a su alrededor, usando la grava misma para filtrar arena antes de que llegue a las ranuras de la malla. Una malla expandible en cambio minimiza ese espacio anular directamente a través de su propia expansión, lo cual en las condiciones de formación correctas puede reducir o eliminar la necesidad de una operación separada de empaque de grava — aunque el empaque de grava sigue siendo la opción más adecuada en muchas formaciones, particularmente donde la estabilidad del hoyo o el tamaño de grano de arena hacen que la expansión sola sea insuficiente.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Expansión incompleta o desigual</strong> contra una sección irregular o parcialmente colapsada de hoyo abierto, dejando huecos donde arena sin filtrar aún puede llegar a la tubería.</li>
+          <li><strong>Daño de malla durante la corrida</strong>, antes de la expansión, por una restricción inesperadamente ajustada que compromete la malla filtrante antes de que la herramienta llegue a profundidad.</li>
+          <li><strong>Movimiento de formación después de la expansión</strong> que reabre un hueco que la expansión debía cerrar, particularmente en formaciones menos estables.</li>
+        </ul>
+
+        <h2 id="vs-blast-joint">Malla Expandible de Control de Arena vs. Junta de Impacto</h2>
+        <p>Ambas atienden preocupaciones relacionadas con arena pero atacan el problema desde extremos opuestos. Una malla expandible de control de arena filtra la arena antes de que entre a la tubería en absoluto, atendiendo el problema en la cara de la formación. Una <a href="/es/equipment/blast-joint">junta de impacto</a> en cambio acepta que ocurrirá algo de flujo erosivo y simplemente usa tubería más resistente y de pared más gruesa para soportarlo en un punto específico aguas abajo. Una completación expuesta a riesgo significativo de arena bien puede usar ambas, en puntos diferentes del diseño.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#why-run-small">Por Qué Correr Pequeña</a>
+          <a href="#vs-conventional-gravel-pack">vs. Convencional + Empaque</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-blast-joint">vs. Junta de Impacto</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Las tasas de expansión y el dimensionamiento de malla varían por fabricante y condiciones de formación — siempre confirma contra el diseño de completación real antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/blast-joint" class="card-link">→ Junta de Impacto</a><br><br>
+          <a href="/es/equipment/casing-patch" class="card-link">→ Parche de Revestimiento</a><br><br>
+          <a href="/es/equipment/seal-bore-liner-packer" class="card-link">→ Empacador de Liner con Orificio Sellante</a><br><br>
+          <a href="/es/equipment/liner-hanger" class="card-link">→ Colgador de Liner</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

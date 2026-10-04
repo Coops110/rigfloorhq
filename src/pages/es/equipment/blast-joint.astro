@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa una junta de impacto?',
+    a: 'Una junta de impacto es una sección de tubería de pared gruesa y resistente al desgaste colocada a través de un intervalo perforado — más a menudo opuesta a una perforación productora o al punto de inyección de un mandril de levantamiento por gas — para proteger la tubería de la erosión causada por fluido de alta velocidad, a veces cargado de arena, chorreando desde o hacia el pozo a esa profundidad.',
+  },
+  {
+    q: '¿Por qué ese intervalo específico necesita espesor de pared adicional?',
+    a: 'El fluido moviéndose por una perforación o un puerto de válvula de levantamiento por gas a alta velocidad, especialmente si lleva arena u otros sólidos abrasivos, erosiona la pared de tubería ordinaria mucho más rápido que el mismo fluido moviéndose suavemente por una sección recta de tubería. La pared más gruesa y el material resistente al desgaste de una junta de impacto le dan muchísima más vida ante la erosión justo en la profundidad donde se espera ese desgaste concentrado.',
+  },
+  {
+    q: '¿Dónde se posiciona típicamente una junta de impacto?',
+    a: 'Directamente opuesta al intervalo perforado o a los puertos de inyección del mandril de levantamiento por gas — posicionada deliberadamente para que la sección de tubería extra robusta, no una junta ordinaria, sea lo que realmente absorbe el flujo erosivo a esa profundidad específica.',
+  },
+  {
+    q: '¿Qué causa que falle una junta de impacto a pesar de su pared más gruesa?',
+    a: 'Subestimar la tasa de erosión para la tasa de producción real, el contenido de arena, o la velocidad de fluido a esa profundidad aún puede desgastar una junta de impacto más rápido de lo planeado, solo más lentamente de lo que lo haría una junta ordinaria. Un mal posicionamiento relativo a la perforación real o el punto de inyección — incluso por un margen modesto — también puede dejar la zona verdadera de alta erosión sin protección mientras la junta de impacto queda ligeramente fuera de objetivo.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Junta de Impacto: Tubería Resistente a la Erosión en Intervalos Perforados"
+  description="Qué es una junta de impacto, por qué se coloca opuesta a perforaciones o mandriles de levantamiento por gas, cómo su pared gruesa resiste el flujo erosivo, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Junta de Impacto', href: '/es/equipment/blast-joint' }]}
+  lang="es"
+  alternateHref="/equipment/blast-joint"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/blast-joint" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Completación</div>
+    <h1>Junta de <span>Impacto</span></h1>
+    <p class="page-hero-sub">Una junta de tubería de pared gruesa y resistente al desgaste posicionada opuesta a una perforación o válvula de levantamiento por gas, absorbiendo flujo erosivo que de otra forma desgastaría tubería ordinaria.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/blast-joint-1.jpg" image2="/images/equipment/blast-joint-2.jpg" alt="una junta de impacto genérica" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es una Junta de Impacto</h2>
+        <p>Una junta de impacto es una sección de tubería con pared sustancialmente más gruesa y, a menudo, un material más duro o resistente al desgaste que las juntas ordinarias a su alrededor, colocada deliberadamente a través de un intervalo perforado u opuesta a los puertos de inyección de un <a href="/es/equipment/gas-lift-mandrel">mandril de levantamiento por gas</a>. Su propósito completo es absorber el desgaste erosivo exactamente en la profundidad donde se espera que pase fluido de alta velocidad a través de o cerca de la pared de la tubería.</p>
+
+        <h2 id="why-needed">Por Qué Ese Intervalo Necesita Protección Extra</h2>
+        <p>El fluido moviéndose por una perforación o un puerto de válvula de levantamiento por gas a alta velocidad — particularmente si lleva arena u otros sólidos abrasivos — erosiona la pared de tubería ordinaria mucho más rápido que el mismo fluido fluyendo suavemente a lo largo de una sección recta y sin perforar de tubería. El espesor de pared aumentado de una junta de impacto le da dramáticamente más vida ante la erosión a esa profundidad específica, extendiendo el intervalo entre fallas o remplazos comparado con dejar una junta estándar en esa posición.</p>
+
+        <h2 id="placement">Posicionamiento</h2>
+        <p>Una junta de impacto se posiciona directamente opuesta al intervalo perforado o al punto de inyección del mandril de levantamiento por gas, para que la sección reforzada — no una junta ordinaria — sea lo que realmente queda donde se concentra el flujo erosivo. Lograr este posicionamiento correctamente depende de una correlación de profundidad precisa entre el diseño de completación y el programa de perforación o asentamiento de mandril.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Tasa de erosión subestimada</strong> para la tasa de producción real, el contenido de arena, o la velocidad de fluido a esa profundidad, desgastando la junta de impacto más rápido de lo planeado aunque mucho más lento de lo que lo haría una junta ordinaria.</li>
+          <li><strong>Error de posicionamiento</strong> relativo a la perforación real o el punto de inyección, dejando la zona verdadera de alta erosión expuesta a una junta estándar mientras la junta de impacto queda ligeramente fuera de objetivo.</li>
+          <li><strong>Incompatibilidad de selección de material</strong> para la química de fluido o contenido de sólidos específicos, donde el recubrimiento o aleación resistente al desgaste de una junta de impacto rinde por debajo de lo esperado ante condiciones para las que no fue diseñada.</li>
+        </ul>
+
+        <h2 id="vs-expandable-sand-screen">Junta de Impacto vs. Malla Expandible de Control de Arena</h2>
+        <p>Ambas atienden preocupaciones relacionadas con arena, pero de formas diferentes. Una junta de impacto es armadura pasiva — una sección de tubería más gruesa y resistente que simplemente sobrevive al flujo erosivo que pasa a través o cerca de ella. Una <a href="/es/equipment/expandable-sand-screen">malla expandible de control de arena</a> filtra activamente la arena del fluido producido antes de que llegue a la tubería, atendiendo el problema de arena en su origen en lugar de solo resistir sus efectos aguas abajo.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#why-needed">Por Qué Se Necesita</a>
+          <a href="#placement">Posicionamiento</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-expandable-sand-screen">vs. Malla Expandible</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> El espesor de pared y el grado de material varían por fabricante y condiciones de servicio esperadas — siempre confirma contra el diseño de completación real antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/gas-lift-mandrel" class="card-link">→ Mandril de Levantamiento por Gas</a><br><br>
+          <a href="/es/equipment/expandable-sand-screen" class="card-link">→ Malla Expandible de Control de Arena</a><br><br>
+          <a href="/es/equipment/tcp-gun" class="card-link">→ Cañón TCP</a><br><br>
+          <a href="/es/equipment/sliding-sleeve" class="card-link">→ Camisa Deslizante</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

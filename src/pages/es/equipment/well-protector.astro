@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un protector de pozo?',
+    a: 'Un protector de pozo es un dispositivo temporal instalado sobre o dentro de un cabezal de pozo, colgador de tubería, o perfil de asentamiento para proteger sus superficies sellantes críticas y roscas de daño mientras se arma, corre, o saca otro equipo y herramientas durante una intervención o workover.',
+  },
+  {
+    q: '¿Qué tipo de daño realmente previene un protector de pozo?',
+    a: 'Herramientas caídas, resbalones de equipo de corrida, hardware de cable, o simplemente el tráfico del piso del taladro pueden todos rayar, raspar, o deformar una superficie sellante de precisión o un perfil de rosca en un cabezal de pozo o colgador — un daño que puede parecer menor en el momento pero que después puede evitar que se forme un sello adecuado. Un protector de pozo cubre y aísla esa superficie de exactamente este tipo de contacto incidental mientras el pozo está abierto para trabajo.',
+  },
+  {
+    q: '¿Cuándo se instala y se remueve un protector de pozo?',
+    a: 'Se instala antes de que comience el trabajo de intervención — armando cable, tubería flexible, o un taladro de workover — y se remueve una vez que ese equipo se desarma y la superficie crítica que protegía necesita exponerse de nuevo para su función real, como asentar un colgador o hacer un sello final.',
+  },
+  {
+    q: '¿Qué pasa si se omite un protector de pozo?',
+    a: 'Omitirlo no garantiza daño, pero elimina el margen de seguridad específicamente diseñado para atrapar los percances rutinarios — un resbalón caído, una herramienta arrastrada — que suceden con suficiente frecuencia en un piso de taladro activo para justificar proteger la única superficie del pozo que absolutamente debe sellar correctamente una vez terminado el trabajo.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Protector de Pozo: Protegiendo Superficies del Cabezal Durante Intervenciones"
+  description="Qué es un protector de pozo, qué tipo de daño previene en las superficies sellantes del cabezal y el colgador, cuándo se instala y remueve, y por qué importa omitirlo."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Protector de Pozo', href: '/es/equipment/well-protector' }]}
+  lang="es"
+  alternateHref="/equipment/well-protector"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/well-protector" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Protector de <span>Pozo</span></h1>
+    <p class="page-hero-sub">Un escudo temporal sobre las superficies sellantes críticas de un cabezal de pozo, manteniéndolas seguras de los percances rutinarios de un piso de taladro activo durante trabajo de intervención.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/well-protector-1.jpg" image2="/images/equipment/well-protector-2.jpg" alt="un protector de pozo de cabezal genérico" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Protector de Pozo</h2>
+        <p>Un protector de pozo es un dispositivo de cobertura o aislamiento temporal instalado sobre o dentro de un cabezal de pozo, colgador de tubería, o perfil de asentamiento, protegiendo sus superficies sellantes de precisión y roscas de daño incidental mientras se arma, corre, y desarma equipo de intervención a su alrededor. No cumple ninguna función de fondo propia — existe puramente para proteger otra cosa de daño durante trabajo que sucede cerca.</p>
+
+        <h2 id="why-it-matters">Qué Tipo de Daño Previene</h2>
+        <p>Un piso de taladro activo durante un workover o intervención ve un flujo constante de herramientas, resbalones, hardware de cable, y tráfico general de equipo moviéndose cerca del cabezal de pozo. Cualquiera de ellos puede rayar, raspar, o deformar una superficie sellante metal-metal de precisión o un perfil de rosca que parece menor en el momento pero después evita que se forme un sello adecuado — un colgador de tubería que no asienta correctamente, o una conexión que gotea por daño que nadie notó durante el trabajo. Un protector de pozo cubre esa superficie vulnerable durante la duración del trabajo, quitándola de la lista de cosas que pueden recibir un golpe por accidente.</p>
+
+        <h2 id="when-used">Cuándo Se Instala y Se Remueve</h2>
+        <ul>
+          <li><strong>Instalado antes de que comience el trabajo de intervención</strong> — armando cable, tubería flexible, o un taladro de workover sobre el cabezal de pozo.</li>
+          <li><strong>Removido una vez que ese equipo se desarma</strong> y la superficie protegida necesita exponerse de nuevo para su función real, como asentar un colgador o hacer el sello final que buscaba el trabajo.</li>
+          <li><strong>Reinstalado entre operaciones</strong> si un trabajo tiene varias fases con tiempo inactivo en el piso del taladro entre ellas, manteniendo la superficie cubierta cada vez que no se necesita expuesta activamente.</li>
+        </ul>
+
+        <h2 id="consequence-of-skipping">Qué Pasa Si Se Omite</h2>
+        <p>Omitir un protector de pozo no garantiza que ocurra daño — la mayoría de los trabajos salen bien sin incidente de todas formas. Lo que elimina es el margen de seguridad específicamente integrado para atrapar los percances rutinarios que suceden con suficiente frecuencia en un piso de taladro ocupado — un resbalón caído, una herramienta arrastrada, un golpe inesperado — para justificar proteger la única superficie del pozo que absolutamente debe sellar correctamente una vez terminado el trabajo.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#why-it-matters">Por Qué Importa</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#consequence-of-skipping">Si Se Omite</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> El diseño y el ajuste varían por fabricante y modelo de cabezal de pozo — siempre confirma contra la hoja de especificaciones real del cabezal de pozo antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/landing-nipple" class="card-link">→ Niple de Asiento</a><br><br>
+          <a href="/es/equipment/on-off-tool" class="card-link">→ Herramienta On-Off</a><br><br>
+          <a href="/es/equipment/bop" class="card-link">→ Tipos de Preventor de Reventones y Cómo Funciona un BOP</a><br><br>
+          <a href="/es/drilling/well-control" class="card-link">→ Control de Pozos y Surgencias</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

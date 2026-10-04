@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa la tubería de lavado?',
+    a: 'La tubería de lavado se corre sobre un pescado atascado, con una zapata de corte en el fondo, para lavar el relleno, arena, recortes, o material de formación colapsada que realmente está agarrando al pescado — en lugar de intentar jalar el pescado directamente contra lo que lo está sujetando. Circular fluido por la tubería de lavado y de vuelta por el anular entre ella y el pescado erosiona ese material compactado sin fresar o cortar el pescado mismo.',
+  },
+  {
+    q: '¿En qué se diferencia un trabajo de lavado de simplemente jalar más fuerte?',
+    a: 'Jalar más fuerte un pescado atascado trabaja contra lo que sea que lo esté agarrando; si ese agarre es relleno, arena, o formación colapsada compactada alrededor del pescado en lugar de un verdadero atascamiento mecánico, ningún jalado liberará nada y jalar en exceso arriesga partir la sarta en lugar de liberarlo. Un trabajo de lavado remueve la causa real del atascamiento primero, así que el pescado a menudo puede recuperarse con fuerza de jalado normal una vez que ya no está compactado en su sitio.',
+  },
+  {
+    q: '¿Qué es la zapata de la tubería de lavado, y corta al pescado?',
+    a: 'La zapata es el extremo inferior de la sarta de tubería de lavado, típicamente un borde de corte dentado o serrado dimensionado para pasar sobre el diámetro exterior del pescado con holgura de trabajo. No está pensada para cortar o fresar al pescado mismo — está dimensionada y corrida para despejar escombros externos y material de formación mientras la tubería de lavado avanza sobre el pescado, no para engancharse o dañar la superficie propia del pescado.',
+  },
+  {
+    q: '¿Qué causa que un trabajo de lavado falle en liberar al pescado?',
+    a: 'Una holgura insuficiente entre el DI de la tubería de lavado y el DE del pescado puede evitar que la tubería de lavado avance más allá de una acumulación, hinchazón, o una sección agrandada del pescado. Una tasa de circulación insuficiente también puede fallar en realmente llevar el material erosionado fuera del anular, dejando que se recompacte detrás de la zapata. Y si la causa real del atascamiento es un verdadero key seat mecánico o un pegado diferencial real en lugar de relleno, lavar no logra nada relevante porque no hay escombros que remover.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Tubería de Lavado: Cómo Funcionan los Trabajos de Lavado en Pesca"
+  description="Qué es la tubería de lavado, cómo un trabajo de lavado libera un pescado atascado removiendo relleno y escombros en lugar de jalar directamente, la zapata de lavado, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Tubería de Lavado', href: '/es/equipment/wash-pipe' }]}
+  lang="es"
+  alternateHref="/equipment/wash-pipe"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/wash-pipe" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Tubería de <span>Lavado</span></h1>
+    <p class="page-hero-sub">Tubería de gran diámetro corrida sobre un pescado atascado para circular y remover el relleno y escombros que realmente lo agarran, en lugar de jalar directamente contra el agarre.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/wash-pipe-1.jpg" image2="/images/equipment/wash-pipe-2.jpg" alt="una sarta genérica de tubería de lavado con zapata de corte" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es la Tubería de Lavado</h2>
+        <p>La tubería de lavado es una sarta de tubería de gran diámetro, equipada con una zapata de corte en el fondo, dimensionada para pasar sobre el exterior de un pescado atascado con holgura de trabajo. Se corre y rota con circulación bajando por su orificio y subiendo por el anular entre la tubería de lavado y el pescado, erosionando el relleno, arena, recortes, o material de formación colapsada compactado alrededor del pescado mientras la sarta avanza.</p>
+        <p>La herramienta no agarra, corta, ni fresa al pescado mismo. Ataca la causa del atascamiento — material compactado alrededor del exterior del pescado — en lugar de intentar superarlo con fuerza.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Se Corre un Trabajo de Lavado</h2>
+        <ul>
+          <li><strong>Pescado atascado por relleno o arena.</strong> Cuando un pescado tiene relleno, arena, o recortes compactados sólidamente a su alrededor, el jalado directo trabaja contra ese material compactado en lugar de liberar algo.</li>
+          <li><strong>Formación colapsada o derrumbada</strong> alrededor del pescado en una sección de hoyo abierto, donde el material de formación se ha derrumbado y agarrado la sarta.</li>
+          <li><strong>Preparar para una corrida de herramienta de pesca</strong>, despejando suficiente del exterior y la parte superior del pescado para permitir que un overshot o una lanza se engancharen limpiamente una vez completado el lavado.</li>
+        </ul>
+
+        <h2 id="shoe-mechanics">La Zapata de la Tubería de Lavado</h2>
+        <p>La zapata en el fondo de la sarta de tubería de lavado es típicamente dentada o serrada y dimensionada para holgura de trabajo sobre el diámetro exterior conocido o estimado del pescado. Mientras la tubería de lavado rota y avanza, la zapata rompe el material compactado en el borde delantero mientras la circulación lleva el escombro erosionado por el anular y fuera del pozo. La holgura es deliberada — suficiente para despejar escombros, pero no tanta que la tubería de lavado no pueda mantener velocidad de circulación efectiva en el anular para realmente levantar los recortes.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Holgura insuficiente</strong> entre el DI de la tubería de lavado y una sección agrandada o hinchada del pescado, deteniendo el avance de la tubería de lavado.</li>
+          <li><strong>Tasa de circulación inadecuada</strong> que no logra llevar el material erosionado fuera del anular, dejando que se asiente y recompacte detrás de la zapata.</li>
+          <li><strong>Causa de atascamiento mal diagnosticada</strong> — si el pescado realmente está atascado por un key seat mecánico o un pegado diferencial real en lugar de relleno compactado, lavar no remueve nada relevante y no lo liberará.</li>
+        </ul>
+
+        <h2 id="vs-jetting-tool">Tubería de Lavado vs. Herramienta de Chorro</h2>
+        <p>Ambas usan fluido circulante para despejar material, pero en alcance y ubicación diferentes. La tubería de lavado rodea y avanza sobre un pescado externo para despejar un anular a su alrededor. Una <a href="/es/equipment/jetting-tool">herramienta de chorro</a> en cambio dirige chorros de fluido desde dentro del orificio — radial o hacia abajo — para limpiar relleno, incrustación, o escombros de dentro de un pozo o en un intervalo específico, sin pescado ni tubería externa involucrados. Si el trabajo es lavar sobre algo atascado en el pozo, es tubería de lavado; si el trabajo es limpiar relleno o escombros de dentro del orificio mismo, es una herramienta de chorro.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#shoe-mechanics">La Zapata de Lavado</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-jetting-tool">vs. Herramienta de Chorro</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Los requisitos de holgura y circulación varían por trabajo y tamaño de herramienta — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/jetting-tool" class="card-link">→ Herramienta de Chorro</a><br><br>
+          <a href="/es/equipment/fishing-swivel" class="card-link">→ Swivel de Pesca</a><br><br>
+          <a href="/es/equipment/hydraulic-jar" class="card-link">→ Martillo Hidráulico</a><br><br>
+          <a href="/pillars/stuck-pipe-and-fishing-operations" class="card-link">→ Pesca y Tubería Pegada (inglés)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un sub de izaje?',
+    a: 'Un sub de izaje es un sub corto y de servicio pesado armado temporalmente sobre un componente de BHA — un estabilizador, escariador, u otra herramienta pesada — para darle a la cuadrilla del piso del taladro un punto de sujeción calificado para un cable de izaje, elevador, o eslinga, de modo que ese componente pueda levantarse, moverse, y guardarse de forma segura sin depender de una rosca o superficie no calificada.',
+  },
+  {
+    q: '¿Un sub de izaje es una herramienta funcional de fondo?',
+    a: 'No — es un accesorio de manejo, no una herramienta que hace algo una vez en el pozo. Se arma para propósitos de manejo en el piso del taladro antes de correr un componente y típicamente se remueve una vez que ese componente está donde necesita estar, en lugar de correr al fondo como parte funcional del BHA.',
+  },
+  {
+    q: '¿En qué se diferencia un sub de izaje de un sub de cruce?',
+    a: 'Un sub de cruce resuelve un problema de fondo — unir dos componentes con diferentes tipos de rosca o diámetros para que la sarta pueda armarse y correrse como fue diseñada. Un sub de izaje resuelve un problema de manejo en superficie — darle a un componente pesado un punto seguro y calificado desde el cual ser levantado en el piso del taladro. Uno es parte funcional de la sarta de corrida; el otro es una ayuda de manejo que típicamente se remueve antes o poco después de que el componente entra al pozo.',
+  },
+  {
+    q: '¿Qué causa un incidente de sub de izaje?',
+    a: 'Usar un sub de izaje calificado por debajo del peso real del componente que se levanta es el riesgo más serio, ya que la clasificación de carga existe precisamente para prevenir una falla por sobrecarga durante un izaje. Las roscas desgastadas o dañadas en el sub mismo, o conexiones mal armadas entre el sub y el componente, son las otras causas comunes de una carga caída o desplazada durante el manejo.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Sub de Izaje: Manejo en el Piso del Taladro para Componentes de BHA Pesados"
+  description="Qué es un sub de izaje, por qué es un accesorio de manejo en lugar de una herramienta de fondo, en qué se diferencia de un sub de cruce, y causas comunes de falla de manejo."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Sub de Izaje', href: '/es/equipment/lifting-sub' }]}
+  lang="es"
+  alternateHref="/equipment/lifting-sub"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/lifting-sub" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Sarta de Perforación / BHA</div>
+    <h1>Sub de <span>Izaje</span></h1>
+    <p class="page-hero-sub">Un punto de sujeción calificado armado sobre un componente de BHA pesado para que la cuadrilla del piso del taladro pueda levantarlo y manejarlo de forma segura — no una herramienta funcional de fondo.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/lifting-sub-1.jpg" image2="/images/equipment/lifting-sub-2.jpg" alt="un sub de izaje genérico" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Sub de Izaje</h2>
+        <p>Un sub de izaje es un sub corto y de servicio pesado armado temporalmente sobre un componente de BHA — comúnmente un <a href="/es/equipment/stabilizer">estabilizador</a>, un <a href="/es/equipment/under-reamer">escariador bajo restricción</a>, u otra herramienta pesada — para proveer a la cuadrilla del piso del taladro un punto de sujeción calificado y diseñado para un cable de izaje, elevador, o eslinga. Existe completamente para el manejo en superficie: levantar el componente, moverlo a posición, y guardarlo de forma segura sin levantarlo desde una rosca o superficie no calificada que nunca fue diseñada para cargar ese peso.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Se Usa un Sub de Izaje</h2>
+        <ul>
+          <li><strong>Mover componentes pesados de BHA</strong> por el piso del taladro o el catwalk, donde las conexiones propias del componente no están calificadas o diseñadas para un izaje directo.</li>
+          <li><strong>Guardar y desguardar</strong> herramientas en almacenamiento, especialmente componentes de mayor diámetro o forma irregular sin un punto de izaje natural.</li>
+          <li><strong>Cualquier izaje pesado</strong> donde un punto de sujeción calificado y conocido elimina la incertidumbre sobre si una rosca o superficie dada puede cargar la carga de forma segura.</li>
+        </ul>
+
+        <h2 id="not-a-downhole-tool">No Es una Herramienta Funcional de Fondo</h2>
+        <p>A diferencia de casi todo lo demás en un BHA, un sub de izaje no hace nada una vez que la sarta está en el pozo — no tiene función de fondo, ningún rol en la ruta de flujo, ningún propósito mecánico más allá del manejo en superficie para el cual se armó. Típicamente se remueve una vez que el componente al que estaba sujeto está en posición, en lugar de correr al fondo como parte del ensamblaje de trabajo.</p>
+
+        <h2 id="failure-modes">Fallas Comunes de Manejo</h2>
+        <ul>
+          <li><strong>Sub subcalificado para la carga real</strong>, el riesgo más serio, ya que todo el punto de una clasificación de carga es prevenir una falla por sobrecarga durante un izaje.</li>
+          <li><strong>Roscas desgastadas o dañadas</strong> en el sub mismo por uso repetido, reduciendo su clasificación efectiva por debajo de su especificación original.</li>
+          <li><strong>Armado incorrecto</strong> entre el sub y el componente que se levanta, lo cual puede desplazarse o fallar bajo carga incluso si el sub mismo está correctamente calificado.</li>
+        </ul>
+
+        <h2 id="vs-crossover-sub">Sub de Izaje vs. Sub de Cruce</h2>
+        <p>Ambos son "subs" en el sentido amplio de una pieza corta de conexión, pero resuelven problemas completamente diferentes. Un <a href="/es/equipment/crossover-sub">sub de cruce</a> resuelve un problema de fondo — unir componentes con diferentes tipos de rosca o diámetros para que una sarta pueda armarse y correrse como fue diseñada, y permanece en la sarta como una conexión funcional. Un sub de izaje resuelve un problema de manejo en superficie y típicamente no es parte permanente del ensamblaje de corrida en absoluto.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#not-a-downhole-tool">No Es una Herramienta de Fondo</a>
+          <a href="#failure-modes">Fallas de Manejo</a>
+          <a href="#vs-crossover-sub">vs. Sub de Cruce</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Las clasificaciones de carga varían por fabricante y modelo — siempre confirma contra la capacidad calificada real del sub antes de confiar en cualquier cifra de aquí para un izaje real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/crossover-sub" class="card-link">→ Sub de Cruce</a><br><br>
+          <a href="/es/equipment/stabilizer" class="card-link">→ Estabilizador</a><br><br>
+          <a href="/es/equipment/under-reamer" class="card-link">→ Escariador Bajo Restricción</a><br><br>
+          <a href="/es/equipment/pup-joint" class="card-link">→ Junta Pup</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

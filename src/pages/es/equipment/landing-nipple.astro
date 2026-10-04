@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un niple de asiento?',
+    a: 'Un niple de asiento es un sub corto con un perfil interno maquinado de precisión — ranuras de traba más un orificio sellante — instalado en la sarta de tubería para proveer un punto de asiento fijo, conocido, y recuperable en cable. Tapones, chokes, válvulas de seguridad, o medidores pueden todos asentarse en un niple de asiento y después recuperarse de él, sin sacar la sarta de tubería misma.',
+  },
+  {
+    q: '¿Cuántos niples de asiento tiene típicamente una completación?',
+    a: 'Varía por diseño de completación — algunos pozos tienen solo uno o dos, otros tienen varios a distintas profundidades para propósitos diferentes (un punto de asiento de tapón de tubería, una ubicación de mandril de traba de SCSSV, un perfil de colgador de medidor). El perfil de traba y el DI de cada niple se eligen deliberadamente como parte del diseño de completación, no se agregan incidentalmente.',
+  },
+  {
+    q: '¿Se puede asentar cualquier tapón o herramienta en cualquier niple de asiento?',
+    a: 'No — el perfil de traba y el orificio sellante de un niple dado coinciden con una familia específica de mandriles de traba y ensamblajes sellantes. Una herramienta construida para un perfil o DI diferente simplemente no se trabará ni sellará correctamente, que es por qué los diseños de completación especifican los perfiles de niple con precisión y por qué asentar selectivamente una herramienta en un niple particular (cuando hay varios niples en la sarta) depende del dimensionamiento, no solo de la posición.',
+  },
+  {
+    q: '¿Qué causa que un niple de asiento falle en sostener una herramienta asentada?',
+    a: 'Los escombros o incrustación acumulados en las ranuras de traba o el orificio sellante del niple pueden evitar que un mandril de traba se enganche por completo o que un sello selle. El desgaste en el perfil interno del niple por ciclos repetidos de asentamiento y recuperación durante la vida del pozo también puede degradar su capacidad de sostener una herramienta de forma segura.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Niple de Asiento: Puntos Fijos de Asentamiento en Cable en una Sarta de Tubería"
+  description="Qué es un niple de asiento, cómo su perfil de traba provee un punto de asiento fijo y recuperable en cable para tapones y otras herramientas, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Niple de Asiento', href: '/es/equipment/landing-nipple' }]}
+  lang="es"
+  alternateHref="/equipment/landing-nipple"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/landing-nipple" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Completación</div>
+    <h1>Niple de <span>Asiento</span></h1>
+    <p class="page-hero-sub">Un perfil maquinado de precisión en la sarta de tubería que le da a tapones, válvulas, y medidores un punto fijo y conocido para trabarse y recuperarse en cable.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/landing-nipple-1.jpg" image2="/images/equipment/landing-nipple-2.jpg" alt="un niple de asiento genérico" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Niple de Asiento</h2>
+        <p>Un niple de asiento es un sub corto instalado en un punto específico de la sarta de tubería, maquinado internamente con un perfil de traba preciso — típicamente un juego de ranuras — emparejado con un orificio sellante de diámetro conocido y consistente. Juntas, esas características le dan a herramientas corridas en cable o tubería flexible una ubicación fija donde trabarse y sellar, cada vez, sin requerir que la sarta de tubería misma se saque.</p>
+
+        <h2 id="what-sets-into-it">Qué Se Asienta en un Niple de Asiento</h2>
+        <ul>
+          <li><strong>Un <a href="/es/equipment/tubing-plug">tapón de tubería</a></strong>, bloqueando flujo por la tubería a esa profundidad para una prueba de presión o aislamiento temporal.</li>
+          <li><strong>Un mandril de traba de SCSSV</strong>, anclando un inserto de válvula de seguridad recuperable en cable en la posición del niple.</li>
+          <li><strong>Medidores o chokes</strong>, cuando el diseño de completación requiere hardware de monitoreo de fondo o control de flujo asentado a una profundidad específica y repetible.</li>
+        </ul>
+
+        <h2 id="profile-specificity">La Especificidad del Perfil Importa</h2>
+        <p>El perfil de traba y el DI del orificio sellante de un niple dado coinciden con una familia específica de mandriles de traba y ensamblajes sellantes — una herramienta construida para un perfil o diámetro diferente simplemente no se trabará ni sellará correctamente. Esto es deliberado: los diseños de completación con múltiples niples en la misma sarta dependen de esta especificidad para que una herramienta particular llegue a su niple pretendido en lugar de cualquier niple en el que simplemente encaje holgadamente.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Acumulación de escombros o incrustación</strong> en las ranuras de traba o el orificio sellante, evitando que un mandril de traba se enganche por completo o que un sello selle correctamente.</li>
+          <li><strong>Desgaste del perfil</strong> por ciclos repetidos de asentamiento y recuperación durante la vida del pozo, degradando gradualmente la capacidad del niple de sostener una herramienta de forma segura.</li>
+          <li><strong>Selección equivocada de herramienta</strong> para el perfil específico de niple instalado, un error de planeación en lugar de un defecto de herramienta o niple.</li>
+        </ul>
+
+        <h2 id="vs-on-off-tool">Niple de Asiento vs. Herramienta On-Off</h2>
+        <p>Ambos proveen un punto fijo de enganche en una completación, pero para tipos diferentes de hardware. Un niple de asiento es un perfil pasivo en el que se trabán herramientas corridas en cable desde dentro del orificio de tubería. Una <a href="/es/equipment/on-off-tool">herramienta on-off</a> es un conector mecánico activo que une la sarta de tubería misma a un empacador o completación inferior, liberado y reconectado por rotación o jalado en lugar de correr una herramienta separada en cable.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#what-sets-into-it">Qué Se Asienta</a>
+          <a href="#profile-specificity">Especificidad del Perfil</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-on-off-tool">vs. Herramienta On-Off</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Los perfiles de traba y los tamaños de orificio sellante varían por fabricante y modelo — siempre confirma contra el diseño de completación real antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/tubing-plug" class="card-link">→ Tapón de Tubería</a><br><br>
+          <a href="/es/equipment/on-off-tool" class="card-link">→ Herramienta On-Off</a><br><br>
+          <a href="/es/equipment/scssv" class="card-link">→ SCSSV</a><br><br>
+          <a href="/es/equipment/bull-nose-plug" class="card-link">→ Tapón de Nariz de Toro</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

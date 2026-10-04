@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Qué es un cañón TCP?',
+    a: 'TCP significa Perforación Conveyada por Tubería (Tubing-Conveyed Perforating). Un cañón TCP es una sarta de cañones de perforación, cargada con cargas explosivas moldeadas, corrida en el pozo en la tubería de producción misma en lugar de en cable, y disparada una vez en posición para crear perforaciones a través del revestimiento y el cemento hacia la formación, estableciendo una vía de flujo para la producción.',
+  },
+  {
+    q: '¿Por qué correr un cañón de perforación en tubería en lugar de cable?',
+    a: 'La conveyance por tubería soporta sartas de cañones mucho más pesadas y largas de lo que puede manejar el cable, lo cual importa en completaciones profundas, altamente desviadas, o de intervalo largo donde una sarta de cañones conveyada por cable no puede llegar a profundidad de forma confiable o no puede cargar suficientes cargas para la longitud de intervalo requerida. El TCP también permite correr otro hardware de completación en el mismo viaje que los cañones de perforación, ahorrando un viaje separado al pozo.',
+  },
+  {
+    q: '¿Cómo se dispara realmente un cañón TCP?',
+    a: 'Los métodos de disparo varían — algunos usan un cabezal de disparo activado por presión que se activa al aplicar una presión de superficie específica una vez que la sarta está en posición, otros usan una barra de disparo mecánica que se deja caer por la tubería, y algunos usan un sistema de iniciación eléctrica o de percusión. Cualquiera que sea el método usado, el objetivo es disparar las cargas solo una vez que se confirma que la sarta está a la profundidad correcta y el pozo está listo para las perforaciones resultantes.',
+  },
+  {
+    q: '¿Qué causa que un trabajo de TCP rinda por debajo de lo esperado o falle?',
+    a: 'Una falla de disparo del cañón por un mal funcionamiento del sistema de disparo puede dejar algunas o todas las cargas sin detonar, requiriendo un viaje repetido para perforar el intervalo perdido. Los escombros de la detonación misma, o cañones que no se recuperan o liberan completamente después de disparar, también pueden dejar obstrucción en el pozo que complica pasos de completación posteriores.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Cañón TCP: Cómo Funciona la Perforación Conveyada por Tubería"
+  description="Qué es un cañón TCP, por qué se corre en tubería en lugar de cable, cómo se dispara en el fondo, y fallas comunes en trabajos de perforación conveyada por tubería."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Cañón TCP', href: '/es/equipment/tcp-gun' }]}
+  lang="es"
+  alternateHref="/equipment/tcp-gun"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/tcp-gun" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Completación</div>
+    <h1>Cañón <span>TCP</span></h1>
+    <p class="page-hero-sub">Una sarta de cañones de perforación corrida en tubería de producción en lugar de cable, usada para completaciones profundas, desviadas, o de intervalo largo que un cañón de cable no puede manejar de forma confiable.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/tcp-gun-1.jpg" image2="/images/equipment/tcp-gun-2.jpg" alt="un cañón genérico de perforación conveyado por tubería" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Cañón TCP</h2>
+        <p>Un cañón TCP (Perforación Conveyada por Tubería) es una sarta de cañones de perforación cargada con cargas explosivas moldeadas, armada en el fondo de la sarta de tubería de producción y corrida al pozo como parte de esa sarta en lugar de por separado en cable. Una vez posicionada en el intervalo objetivo, las cargas se disparan, perforando a través del revestimiento y el cemento circundante hacia la formación y estableciendo una vía de flujo para la producción.</p>
+
+        <h2 id="why-tubing">Por Qué la Conveyance por Tubería en Lugar de Cable</h2>
+        <p>La tubería soporta mucho más peso y longitud que el cable, lo cual importa directamente en pozos profundos, completaciones altamente desviadas u horizontales, o intervalos perforados largos — situaciones donde una sarta de cañones conveyada por cable no puede llegar de forma confiable a la profundidad objetivo o no puede cargar suficientes cargas para el intervalo completo en una sola corrida. Correr los cañones en tubería también permite que otro hardware de completación se arme en la misma sarta y se corra en el mismo viaje, ahorrando un viaje separado al pozo que de otra forma requeriría un trabajo de perforación por cable seguido de una corrida de tubería.</p>
+
+        <h2 id="firing-methods">Cómo Se Dispara un Cañón TCP</h2>
+        <p>Se usan varios métodos de disparo dependiendo del trabajo y la preferencia del operador: un <strong>cabezal de disparo activado por presión</strong> se activa una vez que se aplica una presión de superficie específica con la sarta confirmada a profundidad; una <strong>barra de disparo mecánica</strong> se deja caer por la tubería para golpear físicamente el mecanismo de disparo; y los sistemas de iniciación eléctrica o de percusión proveen rutas de activación alternativas. Cualquiera que sea el método especificado, la secuencia de disparo se diseña para que la detonación solo suceda una vez confirmadas la profundidad y la disposición del pozo, no automáticamente al correr hacia adentro.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Falla de disparo del cañón</strong> por un mal funcionamiento del sistema de disparo, dejando algunas o todas las cargas sin detonar y requiriendo un viaje repetido para perforar el intervalo perdido.</li>
+          <li><strong>Escombros posteriores al disparo</strong> de la detonación misma obstruyendo el pozo, complicando pasos de completación posteriores.</li>
+          <li><strong>Cañones no recuperados o liberados completamente</strong> después de disparar, dependiendo del diseño específico de liberación del cañón, dejando hardware gastado en una posición que interfiere con operaciones posteriores.</li>
+        </ul>
+
+        <h2 id="vs-jetting-tool">Cañón TCP vs. Herramienta de Chorro</h2>
+        <p>Ambos crean aberturas o despejan material usando una herramienta de fondo, pero por mecanismos completamente diferentes. Un cañón TCP usa cargas explosivas moldeadas para perforar a través del revestimiento, el cemento, y hacia la formación — una acción destructiva e irreversible de una sola vez que crea una vía de flujo permanente. Una <a href="/es/equipment/jetting-tool">herramienta de chorro</a> usa chorros de fluido de alta velocidad para erosionar relleno o escombros sueltos, una acción de limpieza no explosiva y repetible sin propósito de penetrar la formación.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#why-tubing">Por Qué Tubería</a>
+          <a href="#firing-methods">Métodos de Disparo</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-jetting-tool">vs. Herramienta de Chorro</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> La selección de cargas y el diseño del sistema de disparo varían por fabricante y trabajo — siempre confirma contra el programa de perforación real antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/jetting-tool" class="card-link">→ Herramienta de Chorro</a><br><br>
+          <a href="/es/equipment/blast-joint" class="card-link">→ Junta de Impacto</a><br><br>
+          <a href="/es/equipment/gas-lift-mandrel" class="card-link">→ Mandril de Levantamiento por Gas</a><br><br>
+          <a href="/es/equipment/bridge-plug" class="card-link">→ Tapón Puente</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

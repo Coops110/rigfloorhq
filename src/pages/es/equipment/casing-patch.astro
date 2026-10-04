@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un parche de revestimiento?',
+    a: 'Un parche de revestimiento repara una sección comprometida de revestimiento — una grieta, un hueco de corrosión, una perforación no intencional, o una conexión con fuga — asentando un liner expandible corto a través del intervalo dañado y expandiéndolo contra el DI del revestimiento existente, restaurando la integridad de presión sin sacar y reemplazar la sarta de revestimiento misma.',
+  },
+  {
+    q: '¿En qué se diferencia un parche de revestimiento de un squeeze de cemento?',
+    a: 'Un squeeze de cemento, corrido con un retenedor de cemento, fuerza cemento a través de una vía de fuga y hacia la formación o el anular detrás de ella, confiando en que el cemento fragüe para sellar la fuga desde afuera. Un parche de revestimiento en cambio instala una nueva barrera mecánica en el interior del revestimiento mismo, expandida para sellar directamente contra el DI del revestimiento en y alrededor del intervalo dañado — una solución estructural en lugar de una basada en cemento.',
+  },
+  {
+    q: '¿Un parche de revestimiento reduce el diámetro interno del revestimiento?',
+    a: 'Sí, por diseño — el parche se asienta dentro del revestimiento existente, así que el DI a través del intervalo parchado es más pequeño que el DI original del revestimiento, aproximadamente por el espesor de pared del parche. Esa reducción tiene que tomarse en cuenta en cualquier herramienta o equipo de completación que necesite pasar por ese intervalo después.',
+  },
+  {
+    q: '¿Qué causa que falle un trabajo de parche de revestimiento?',
+    a: 'Una expansión incompleta que deja huecos en el sello contra el DI del revestimiento original es la falla más directa, a menudo por escombros o incrustación en la pared del revestimiento que impiden el contacto completo. Asentar el parche a la profundidad equivocada respecto al daño real, dejando parte del intervalo dañado fuera de la cobertura del parche, es otra causa común, junto con un mal funcionamiento del expansor o de la herramienta de asentamiento durante la corrida.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Parche de Revestimiento: Cómo Funcionan las Herramientas Expandibles de Reparación"
+  description="Qué es un parche de revestimiento, cómo se expande contra revestimiento dañado para restaurar la integridad de presión, en qué se diferencia de un squeeze de cemento, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Parche de Revestimiento', href: '/es/equipment/casing-patch' }]}
+  lang="es"
+  alternateHref="/equipment/casing-patch"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/casing-patch" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Parche de <span>Revestimiento</span></h1>
+    <p class="page-hero-sub">Un liner expandible corto asentado y expandido a través de revestimiento dañado para restaurar la integridad de presión desde adentro, sin sacar la sarta.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/casing-patch-1.jpg" image2="/images/equipment/casing-patch-2.jpg" alt="un parche de revestimiento expandible genérico" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Parche de Revestimiento</h2>
+        <p>Un parche de revestimiento es una sección corta de tubería expandible, corrida en una sarta de trabajo y posicionada a través de un intervalo dañado de revestimiento — una grieta, un hueco de corrosión, una perforación no intencional, o una conexión con fuga. Una vez en posición, un expansor interno (mecánico o hidráulico) fuerza el parche radialmente hacia afuera hasta que contacta y sella contra el DI del revestimiento original, con sellos en cada extremo del parche proveyendo la barrera de presión a través del intervalo reparado.</p>
+        <p>El resultado es una reparación hecha desde adentro, sin sacar el revestimiento dañado — valioso porque sacar y reemplazar una sarta de revestimiento es una de las intervenciones más costosas y lentas que puede sufrir un pozo.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Se Corre un Parche de Revestimiento</h2>
+        <ul>
+          <li><strong>Corrosión o daño mecánico</strong> que ha roto la integridad del revestimiento a una profundidad específica e identificable, donde el resto de la sarta permanece sana.</li>
+          <li><strong>Perforaciones no intencionales o comunicación</strong> entre zonas que no deberían estar en contacto, donde sellar la brecha específica restaura el aislamiento zonal adecuado.</li>
+          <li><strong>Conexiones con fuga o secciones colapsadas</strong> que amenazan la integridad del pozo pero no justifican un workover completo para sacar la sarta.</li>
+        </ul>
+
+        <h2 id="how-it-works">Cómo Funciona la Expansión</h2>
+        <p>El parche se corre a un diámetro exterior reducido, suficientemente pequeño para pasar por el revestimiento existente sin atascarse. Una vez posicionado a través del intervalo dañado, un cono expansor o una herramienta de expansión hidráulica se jala o bombea a través del orificio del parche, deformándolo plásticamente hacia afuera hasta que contacta el DI del revestimiento en toda su longitud. Los sellos de elastómero en cada extremo del parche, también expandidos contra la pared del revestimiento, proveen la barrera de presión real; el cuerpo de tubería expandido restaura el soporte mecánico a través de la sección dañada.</p>
+
+        <h2 id="id-reduction">Reducción del Diámetro Interno</h2>
+        <p>Debido a que el parche se asienta dentro del revestimiento existente en lugar de reemplazarlo, el DI resultante a través del intervalo parchado es más pequeño que el DI original del revestimiento — aproximadamente por el espesor de pared del parche después de la expansión. Cualquier herramienta, empacador, o equipo de completación planeado para pasar por ese intervalo después tiene que revisarse contra el DI reducido, lo cual puede limitar opciones futuras en esa sección del pozo.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Expansión incompleta</strong> dejando huecos entre el parche y el DI del revestimiento, a menudo por incrustación, escombros, o una sección de revestimiento fuera de redondez que impide el contacto completo.</li>
+          <li><strong>Profundidad mal ubicada</strong>, asentando el parche de forma que parte del intervalo realmente dañado queda fuera de su cobertura.</li>
+          <li><strong>Mal funcionamiento del expansor o de la herramienta de asentamiento</strong> durante la corrida, dejando el parche parcialmente expandido o atascado a medio expandir.</li>
+        </ul>
+
+        <h2 id="vs-cement-retainer">Parche de Revestimiento vs. Squeeze de Cemento</h2>
+        <p>Ambos reparan un intervalo comprometido, pero por mecanismos muy diferentes. Un squeeze de cemento, armado con un <a href="/es/equipment/cement-retainer">retenedor de cemento</a>, fuerza cemento a través de la vía de fuga misma y hacia el anular o la formación detrás de ella, sellando desde afuera mientras el cemento fragua. Un parche de revestimiento instala un nuevo liner mecánico dentro del revestimiento, sellando directamente contra el DI del revestimiento en lugar de confiar en que el cemento alcance y selle una fuga externa. Donde la vía de fuga es accesible y bien definida, un parche suele ser la solución más predecible; donde el cemento necesita llegar detrás de la tubería misma, un squeeze es la única opción.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#how-it-works">Cómo Funciona la Expansión</a>
+          <a href="#id-reduction">Reducción del DI</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-cement-retainer">vs. Squeeze de Cemento</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Las tasas de expansión y la reducción del DI varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/cement-retainer" class="card-link">→ Retenedor de Cemento</a><br><br>
+          <a href="/es/equipment/casing-cutter" class="card-link">→ Cortador de Revestimiento</a><br><br>
+          <a href="/es/equipment/casing-roller-dressing-tool" class="card-link">→ Rodillo / Herramienta de Dresado de Revestimiento</a><br><br>
+          <a href="/es/drilling/casing" class="card-link">→ Diseño de Revestimiento Explicado</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

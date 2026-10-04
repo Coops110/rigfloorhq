@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un sub orientador?',
+    a: 'Un sub orientador mantiene una relación rotacional fija y conocida entre una referencia en superficie y una característica específica de una herramienta de fondo — más comúnmente la cara cóncava de un whipstock — para que esa herramienta pueda asentarse apuntando en una dirección deliberadamente elegida (toolface) en el pozo, en lugar de cualquier dirección en la que caiga por casualidad.',
+  },
+  {
+    q: '¿Cómo se confirma realmente la orientación en el fondo?',
+    a: 'Históricamente, mediante una cuchilla de marcado o rascador integrado en el ensamblaje orientador que marca la pared del revestimiento a un desplazamiento conocido de la característica de referencia de la herramienta, y luego se saca la sarta y se mide la posición de la marca contra una referencia de superficie conocida. En trabajos modernos, una herramienta de registro MWD o giroscópica corrida con o cerca del sub orientador provee una lectura de toolface en tiempo real en superficie, permitiendo rotar la herramienta a posición y confirmarla sin sacarla del pozo.',
+  },
+  {
+    q: '¿Por qué importa la orientación para una corrida de whipstock?',
+    a: 'La cara cóncava de un whipstock tiene que apuntar hacia la dirección planeada del sidetrack antes de que se corra una fresa de ventana para cortar el revestimiento. Si el whipstock se asienta apuntando en la dirección equivocada, la ventana resultante — y todo lo fresado o perforado a través de ella — sale mal, a menudo requiriendo que todo el asentamiento se vuelva a fresar y repetir.',
+  },
+  {
+    q: '¿Qué causa que falle un trabajo de orientación?',
+    a: 'El arrastre o pérdida de torque mientras se corre la sarta puede causar que el toolface real de fondo difiera de lo que sugiere la indicación en superficie, particularmente en pozos desviados o de alta fricción. Una marca de rascador también puede leerse mal u oscurecerse por escombros en la pared del revestimiento. Y en registros en tiempo real, una fuente de interferencia magnética demasiado cerca del sensor puede devolver una lectura de toolface inexacta aunque el equipo parezca estar funcionando normalmente.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Sub Orientador: Cómo Funciona la Orientación de Herramientas de Fondo"
+  description="Qué es un sub orientador, cómo se confirma la orientación de toolface en el fondo con rascadores o registros en tiempo real, por qué importa para asentar un whipstock, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Sub Orientador', href: '/es/equipment/orienting-sub' }]}
+  lang="es"
+  alternateHref="/equipment/orienting-sub"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/orienting-sub" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Sub <span>Orientador</span></h1>
+    <p class="page-hero-sub">Mantiene una referencia rotacional conocida para que una herramienta de fondo — más comúnmente un whipstock — pueda asentarse apuntando en una dirección deliberadamente elegida, no la que sea que caiga por casualidad.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/orienting-sub-1.jpg" image2="/images/equipment/orienting-sub-2.jpg" alt="un sub orientador genérico" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Sub Orientador</h2>
+        <p>Un sub orientador es un componente del BHA que mantiene una relación rotacional fija y conocida entre una referencia de superficie y una característica específica de la herramienta corrida debajo de él — más comúnmente la cara cóncava deflectora de un <a href="/es/equipment/whipstock">whipstock</a>. Correr un sub orientador convierte "asienta la herramienta en algún lugar allá abajo" en "asienta la herramienta apuntando a esta dirección de brújula específica," lo cual importa enormemente para cualquier trabajo donde la dirección a la que apunta una herramienta determina a dónde va el pozo después.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Importa la Orientación</h2>
+        <ul>
+          <li><strong>Asentamiento de whipstock para un sidetrack.</strong> La cara cóncava del whipstock tiene que apuntar hacia la dirección de desviación planeada antes de que se corra una <a href="/es/equipment/window-mill">fresa de ventana</a> para cortar la ventana en el revestimiento — equivocar el toolface y la ventana resultante, y todo lo fresado o perforado a través de ella, sale en la dirección equivocada.</li>
+          <li><strong>Colocación de herramientas direccionales</strong> en general, en cualquier lugar donde la posición rotacional de una característica de fondo determina un resultado planeado en lugar de uno incidental.</li>
+          <li><strong>Reentrada y trabajos multilaterales</strong>, donde un lateral específico o una característica de unión necesita asentarse apuntando a un azimut conocido respecto al pozo original.</li>
+        </ul>
+
+        <h2 id="how-confirmed">Cómo Se Confirma la Orientación en el Fondo</h2>
+        <p>Existen dos métodos amplios. El enfoque tradicional usa una <strong>cuchilla de marcado o rascador</strong> integrado en el ensamblaje orientador, que marca la pared del revestimiento a un desplazamiento angular conocido de la característica de referencia propia de la herramienta; luego se saca la sarta y se mide la posición de la marca contra una referencia de superficie conocida para calcular inversamente la orientación real de fondo de la herramienta. El enfoque moderno corre una <strong>herramienta MWD o giroscópica</strong> con o cerca del sub orientador, proveyendo una lectura de toolface en tiempo real en superficie para que la sarta pueda rotarse a la posición correcta y confirmarse de inmediato, sin salir del pozo a revisar una marca de rascador.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Pérdida de torque o arrastre de sarta</strong> en un pozo desviado o de alta fricción, causando que el toolface real de fondo difiera de lo que sugeriría la rotación en superficie.</li>
+          <li><strong>Marcas de rascador oscurecidas o mal leídas</strong> en la pared del revestimiento, por escombros, mala visibilidad, o una marca superficial.</li>
+          <li><strong>Interferencia magnética</strong> cerca de un sensor de registro en tiempo real, devolviendo una lectura de toolface inexacta a pesar de que el equipo funcione normalmente — la misma preocupación que aborda el espaciado no magnético en el <a href="/es/equipment/nmdc-pony-nmdc">NMDC / pony NMDC</a> usado cerca de herramientas MWD.</li>
+        </ul>
+
+        <h2 id="vs-whipstock">Sub Orientador vs. Whipstock</h2>
+        <p>Los dos casi siempre se corren juntos pero cumplen funciones diferentes. Un <a href="/es/equipment/whipstock">whipstock</a> es la herramienta deflectora misma — su cara cóncava guía físicamente una fresa hacia la pared del revestimiento. El sub orientador es lo que asegura que esa cara cóncava realmente apunte en la dirección correcta antes de que el whipstock se asiente y se corra la fresa. El whipstock hace la deflexión; el sub orientador asegura que deflecte en la dirección correcta.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#how-confirmed">Cómo Se Confirma</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-whipstock">vs. Whipstock</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Las tolerancias de orientación y los métodos varían por trabajo y fabricante de la herramienta — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/whipstock" class="card-link">→ Whipstock</a><br><br>
+          <a href="/es/equipment/window-mill" class="card-link">→ Fresa de Ventana</a><br><br>
+          <a href="/es/equipment/nmdc-pony-nmdc" class="card-link">→ NMDC / Pony NMDC</a><br><br>
+          <a href="/es/equipment/mwd-tool" class="card-link">→ Herramienta MWD</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa una herramienta de chorro?',
+    a: 'Una herramienta de chorro dirige chorros de fluido de alta velocidad — radialmente, hacia abajo, o ambos, dependiendo de la configuración de boquillas — para limpiar relleno, incrustación, o escombros de un pozo, cortar un rathole antes de asentar un tapón, o despejar un intervalo de material acumulado sin corte o fresado mecánico.',
+  },
+  {
+    q: '¿Cómo limpia el chorreo el relleno sin una fresa?',
+    a: 'El fluido mismo hace el trabajo: bombeado a alta presión por boquillas pequeñas, sale a alta velocidad y erosiona material suelto o semi-consolidado — arena, recortes, incrustación — mediante impacto directo, mientras el flujo de retorno lleva el material erosionado hacia arriba y fuera del camino. No se necesita ninguna estructura de corte rotativa porque el material que se está removiendo no es tubería o formación sólida, solo escombros sueltos o blandos acumulados.',
+  },
+  {
+    q: '¿Para qué se usa comúnmente una herramienta de chorro antes de asentar un tapón?',
+    a: 'Cortar un rathole limpio o despejar relleno del intervalo donde necesita asentarse un tapón puente o un retenedor de cemento, asegurando que el tapón se asiente contra una sección limpia de revestimiento en lugar de encima de escombros asentados que podrían evitar un sello adecuado.',
+  },
+  {
+    q: '¿Qué causa que un trabajo de chorreo sea inefectivo?',
+    a: 'La presión o tasa de flujo de bomba insuficientes para el tipo de material que se está despejando es la causa más común, ya que la efectividad del chorreo depende directamente de la velocidad del chorro. El desgaste o taponamiento de boquillas por escombros en el fluido también puede reducir la velocidad del chorro durante el trabajo, y los escombros consolidados o cementados — en lugar de relleno suelto — simplemente pueden ser demasiado duros para que el chorreo por sí solo los remueva.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Herramienta de Chorro: Cómo Funciona la Limpieza por Chorro de Fluido en el Fondo"
+  description="Qué es una herramienta de chorro, cómo los chorros de fluido de alta velocidad limpian relleno y escombros sin corte mecánico, su uso antes de asentar tapones, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Herramienta de Chorro', href: '/es/equipment/jetting-tool' }]}
+  lang="es"
+  alternateHref="/equipment/jetting-tool"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/jetting-tool" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Fondo</div>
+    <h1>Herramienta de <span>Chorro</span></h1>
+    <p class="page-hero-sub">Dirige chorros de fluido a alta velocidad para erosionar relleno y escombros del pozo, despejando un intervalo sin ninguna estructura de corte rotativa.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/jetting-tool-1.jpg" image2="/images/equipment/jetting-tool-2.jpg" alt="una herramienta de chorro de fondo genérica" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es una Herramienta de Chorro</h2>
+        <p>Una herramienta de chorro es un ensamblaje corrido en el pozo con boquillas diseñadas para dirigir fluido bombeado a alta velocidad — radialmente hacia afuera, hacia abajo, o ambos, dependiendo de la configuración de boquillas — contra relleno, incrustación, o escombros dentro del pozo. La velocidad del fluido, no una estructura de corte rotativa, hace el trabajo de erosionar y desalojar el material objetivo.</p>
+
+        <h2 id="how-it-works">Cómo Funciona</h2>
+        <p>El fluido de alta presión bombeado por la sarta de trabajo sale por boquillas pequeñas y precisamente dimensionadas en la herramienta, convirtiendo presión de bomba en velocidad de chorro. Esa corriente de alta velocidad impacta directamente el material suelto o semi-consolidado, rompiéndolo y suspendiéndolo en el flujo de retorno, que lleva los escombros erosionados hacia arriba y fuera del intervalo objetivo. Debido a que ninguna estructura de corte mecánica está enganchando tubería o formación sólida, el chorreo funciona bien en relleno suelto y escombros blandos pero no sustituye a una fresa contra algo genuinamente duro o consolidado.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Se Corre una Herramienta de Chorro</h2>
+        <ul>
+          <li><strong>Limpiar relleno, arena, o recortes</strong> que se han asentado en el pozo, restaurando un orificio limpio antes de correr más herramientas.</li>
+          <li><strong>Cortar un rathole</strong> antes de asentar un <a href="/es/equipment/bridge-plug">tapón puente</a> o <a href="/es/equipment/cement-retainer">retenedor de cemento</a>, asegurando que el tapón se asiente contra revestimiento limpio en lugar de encima de escombros asentados.</li>
+          <li><strong>Despejar incrustación o escombros ligeros</strong> en un intervalo específico para el cual una pasada mecánica completa sería excesiva.</li>
+        </ul>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Presión o tasa de flujo de bomba insuficientes</strong> para el material que se está despejando, ya que la efectividad del chorreo escala directamente con la velocidad del chorro.</li>
+          <li><strong>Desgaste o taponamiento de boquillas</strong> por escombros en el fluido circulante, reduciendo la velocidad del chorro a mitad del trabajo.</li>
+          <li><strong>Escombros consolidados o cementados</strong> demasiado duros para que el chorreo por sí solo los remueva, requiriendo un enfoque de fresado mecánico en su lugar.</li>
+        </ul>
+
+        <h2 id="vs-wash-pipe">Herramienta de Chorro vs. Tubería de Lavado</h2>
+        <p>Ambas usan velocidad de fluido para despejar material, pero en alcance diferente. Una herramienta de chorro trabaja desde dentro del orificio hacia afuera o hacia abajo en un intervalo específico, generalmente sin pescado o tubería externa involucrados. La <a href="/es/equipment/wash-pipe">tubería de lavado</a> en cambio rodea y avanza sobre un pescado externo, despejando un anular a su alrededor para liberar un objeto atascado. Si el trabajo es limpiar relleno o escombros de dentro del orificio mismo, es una herramienta de chorro; si el trabajo es lavar sobre algo atascado en el pozo, es tubería de lavado.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#how-it-works">Cómo Funciona</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-wash-pipe">vs. Tubería de Lavado</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> El dimensionamiento de boquillas y los requisitos de presión varían por fabricante, modelo, y trabajo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/wash-pipe" class="card-link">→ Tubería de Lavado</a><br><br>
+          <a href="/es/equipment/bridge-plug" class="card-link">→ Tapón Puente</a><br><br>
+          <a href="/es/equipment/cement-retainer" class="card-link">→ Retenedor de Cemento</a><br><br>
+          <a href="/es/equipment/burr-mill" class="card-link">→ Fresa de Rebaba</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

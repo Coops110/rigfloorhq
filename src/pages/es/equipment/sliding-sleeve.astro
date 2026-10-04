@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa una camisa deslizante?',
+    a: 'Una camisa deslizante es un componente de completación con una manga interna con puertos que puede desplazarse a la posición abierta o cerrada mediante una herramienta de desplazamiento corrida en cable o tubería flexible, abriendo o bloqueando el flujo entre el orificio de tubería y el anular o la formación a esa profundidad específica. Le da a una completación control de flujo selectivo y repetible en una zona elegida sin sacar la tubería.',
+  },
+  {
+    q: '¿Cómo se desplaza realmente abierta o cerrada una camisa deslizante?',
+    a: 'Una herramienta de desplazamiento, dimensionada para engancharse en un perfil específico maquinado en la camisa, se corre hacia abajo hasta que localiza y se traba en ese perfil. Aplicar fuerza hacia arriba o abajo a través de la sarta de corrida entonces desliza la manga interna a la posición abierta o cerrada, alineando o bloqueando sus puertos respecto a los puertos correspondientes en la carcasa externa.',
+  },
+  {
+    q: '¿Para qué se usa comúnmente una camisa deslizante en una completación?',
+    a: 'Establecer circulación para operaciones como desplazar fluido de completación o apoyar un trabajo de cementación, mezclar producción de múltiples zonas a través de una sola sarta, o aislar selectivamente una zona que está produciendo fluido no deseado sin tener que sacar toda la completación para atenderla.',
+  },
+  {
+    q: '¿Qué causa que una camisa deslizante falle en desplazarse o sellar?',
+    a: 'La incrustación, escombros, o arena producida acumulándose alrededor de la camisa puede evitar que se desplace por completo, o evitar que sus sellos sellen incluso una vez que llega a posición. El desgaste de sellos por ciclos de desplazamiento repetidos o por flujo erosivo a través de los puertos con el tiempo también puede degradar la integridad del sello en la posición cerrada.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Camisa Deslizante: Control de Flujo Desplazado por Cable Explicado"
+  description="Qué es una camisa deslizante, cómo una herramienta de desplazamiento la abre y cierra, usos comunes de completación como circulación y aislamiento zonal, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Camisa Deslizante', href: '/es/equipment/sliding-sleeve' }]}
+  lang="es"
+  alternateHref="/equipment/sliding-sleeve"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/sliding-sleeve" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Completación</div>
+    <h1>Camisa <span>Deslizante</span></h1>
+    <p class="page-hero-sub">Un componente de completación con puertos que puede desplazarse abierto o cerrado en cable, dando control de flujo selectivo en una zona elegida sin sacar tubería.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/sliding-sleeve-1.jpg" image2="/images/equipment/sliding-sleeve-2.jpg" alt="una camisa deslizante de completación genérica" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es una Camisa Deslizante</h2>
+        <p>Una camisa deslizante es un componente de completación instalado en la sarta de tubería con una manga interna que puede desplazarse mecánicamente entre las posiciones abierta y cerrada. En la posición abierta, los puertos en la manga interna se alinean con puertos correspondientes en la carcasa externa, permitiendo flujo entre el orificio de tubería y el anular o la formación a esa profundidad. En la posición cerrada, la manga interna bloquea esos puertos, aislando el orificio del anular en ese punto.</p>
+
+        <h2 id="how-shifted">Cómo Se Desplaza</h2>
+        <p>Una herramienta de desplazamiento, corrida en cable o tubería flexible y dimensionada a un perfil específico maquinado en la camisa, se baja hasta que localiza y se traba en ese perfil. Aplicar fuerza hacia arriba o abajo a través de la sarta de corrida entonces desliza la manga interna a la posición opuesta — de abierta a cerrada, o de cerrada a abierta — sin requerir que la sarta de tubería misma se saque o mueva.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Se Corre una Camisa Deslizante</h2>
+        <ul>
+          <li><strong>Establecer circulación.</strong> Abrir una camisa crea una vía para circular fluido entre la tubería y el anular, útil para desplazar fluido de completación o apoyar una operación de cementación.</li>
+          <li><strong>Mezclar producción</strong> de múltiples zonas a través de una sola sarta de tubería, abriendo camisas en cada zona que debería contribuir flujo.</li>
+          <li><strong>Aislamiento zonal selectivo</strong>, cerrando una camisa en una zona que produce fluido no deseado (agua, gas) sin sacar toda la completación para atender solo ese intervalo.</li>
+        </ul>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Acumulación de escombros o incrustación</strong> alrededor de la camisa, evitando que se desplace por completo o evitando que sus sellos sellen incluso una vez que llega a posición.</li>
+          <li><strong>Desgaste de sellos</strong> por ciclos de desplazamiento repetidos o flujo erosivo a través de los puertos con el tiempo, degradando la integridad del sello en la posición cerrada.</li>
+          <li><strong>Incompatibilidad de la herramienta de desplazamiento</strong>, donde la herramienta de perfil equivocado falla en trabarse en el perfil de desplazamiento de la camisa.</li>
+        </ul>
+
+        <h2 id="vs-on-off-tool">Camisa Deslizante vs. Herramienta On-Off</h2>
+        <p>Ambas le dan flexibilidad a una completación sin sacar tubería, pero controlan cosas diferentes. Una camisa deslizante controla el <em>flujo</em> entre el orificio de tubería y el anular a una profundidad específica. Una <a href="/es/equipment/on-off-tool">herramienta on-off</a> controla la <em>conexión</em> — si la sarta de tubería de arriba está mecánicamente conectada a un empacador o completación inferior debajo. Una es una válvula; la otra es una desconexión.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#how-shifted">Cómo Se Desplaza</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-on-off-tool">vs. Herramienta On-Off</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Los perfiles de desplazamiento y el dimensionamiento de puertos varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/on-off-tool" class="card-link">→ Herramienta On-Off</a><br><br>
+          <a href="/es/equipment/landing-nipple" class="card-link">→ Niple de Asiento</a><br><br>
+          <a href="/es/equipment/packer" class="card-link">→ Empacador</a><br><br>
+          <a href="/es/equipment/multilateral-junction" class="card-link">→ Unión Multilateral</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

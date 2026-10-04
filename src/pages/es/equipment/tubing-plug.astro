@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un tapón de tubería?',
+    a: 'Un tapón de tubería se asienta en un perfil de niple de asiento a una profundidad elegida para bloquear flujo por la tubería en ese punto. Se usa para probar a presión la sarta de tubería, aislar todo lo debajo de una cierta profundidad durante una intervención, o cerrar temporalmente una zona, y se recupera en cable una vez que ya no se necesita.',
+  },
+  {
+    q: '¿Cómo se asienta y se recupera un tapón de tubería?',
+    a: 'Se corre hacia abajo en cable con una herramienta de asentamiento, que localiza el niple de asiento objetivo por su perfil específico, asienta el mandril de traba del tapón en ese perfil, y se libera. La recuperación funciona al revés: una herramienta de recuperación en cable separada se traba en el tapón y lo jala libre del niple, restaurando flujo a esa profundidad.',
+  },
+  {
+    q: '¿En qué se diferencia un tapón de tubería de un tapón puente?',
+    a: 'Un tapón de tubería es pequeño y se asienta en un perfil específico de niple de asiento maquinado en la tubería misma, recuperado rutinariamente en cable como parte normal de las operaciones del pozo. Un tapón puente se asienta directamente contra el DI del revestimiento usando slips y un elemento sellante, es mucho más robusto, y a menudo está pensado para permanecer en su lugar por un período extendido o permanentemente en lugar de ser una herramienta recuperada rutinariamente.',
+  },
+  {
+    q: '¿Qué causa que un tapón de tubería falle en sostener presión?',
+    a: 'Los escombros o incrustación en el orificio sellante del niple que evitan un sello completo son una causa común, junto con el desgaste en los elementos sellantes propios del tapón por un asentamiento previo o por tiempo pasado en el fondo. Asentar el tapón en un niple cuyo perfil no coincide precisamente con el mandril de traba del tapón también puede evitar un asentamiento seguro y hermético a la presión desde el principio.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Tapón de Tubería: Barreras de Flujo Asentadas en Cable en Niples de Asiento"
+  description="Qué es un tapón de tubería, cómo se asienta y recupera en cable en un niple de asiento, en qué se diferencia de un tapón puente, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Tapón de Tubería', href: '/es/equipment/tubing-plug' }]}
+  lang="es"
+  alternateHref="/equipment/tubing-plug"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/tubing-plug" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Completación</div>
+    <h1>Tapón de <span>Tubería</span></h1>
+    <p class="page-hero-sub">Un tapón recuperable en cable asentado en un niple de asiento para bloquear flujo de tubería a una profundidad elegida, para una prueba de presión o aislamiento temporal.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/tubing-plug-1.jpg" image2="/images/equipment/tubing-plug-2.jpg" alt="un tapón de tubería genérico" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Tapón de Tubería</h2>
+        <p>Un tapón de tubería es un tapón pequeño y recuperable en cable que se traba en un perfil de <a href="/es/equipment/landing-nipple">niple de asiento</a> maquinado en la sarta de tubería a una profundidad elegida, sellando contra el orificio del niple para bloquear flujo por la tubería en ese punto. Es una barrera deliberadamente temporal, diseñada para asentarse y después sacarse como parte de operaciones normales y rutinarias del pozo en lugar de dejarse permanentemente en su lugar.</p>
+
+        <h2 id="when-used">Cuándo y Por Qué Se Corre un Tapón de Tubería</h2>
+        <ul>
+          <li><strong>Probar a presión la sarta de tubería</strong> desde superficie, usando el tapón para aislar la sección bajo prueba de lo que haya debajo.</li>
+          <li><strong>Aislar una zona o intervalo</strong> debajo de una profundidad elegida durante una intervención, sin afectar equipo u operaciones arriba de ese punto.</li>
+          <li><strong>Cerrar temporalmente un pozo</strong> a nivel de tubería para una pausa planeada en operaciones, recuperando después el tapón cuando se reanuda la producción o intervención.</li>
+        </ul>
+
+        <h2 id="setting-retrieving">Asentamiento y Recuperación</h2>
+        <p>Una herramienta de asentamiento corrida en cable lleva el tapón hacia abajo al niple objetivo, identificado por su perfil específico, y asienta el mandril de traba del tapón en ese perfil antes de liberarse de la herramienta de corrida. La recuperación invierte el proceso: una herramienta de recuperación en cable separada se traba en el tapón y lo jala libre, restaurando flujo a esa profundidad una vez que el tapón ya no se necesita.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Escombros o incrustación en el orificio sellante del niple</strong>, evitando que los elementos sellantes del tapón logren un sello completo y hermético a la presión.</li>
+          <li><strong>Desgaste de elementos sellantes</strong> por un ciclo de asentamiento previo o tiempo extendido en el fondo, degradando el rendimiento del sello en un asentamiento posterior.</li>
+          <li><strong>Incompatibilidad de perfil</strong>, asentando el tapón en un niple cuyo perfil no coincide precisamente con el mandril de traba del tapón, evitando un asentamiento seguro.</li>
+        </ul>
+
+        <h2 id="vs-bridge-plug">Tapón de Tubería vs. Tapón Puente</h2>
+        <p>Ambos bloquean flujo a una profundidad elegida, pero en escalas y duraciones muy diferentes. Un tapón de tubería es pequeño, se asienta en un perfil específico de niple dentro de la tubería, y se saca y reasenta rutinariamente como parte de operaciones normales. Un <a href="/es/equipment/bridge-plug">tapón puente</a> se asienta directamente contra el DI del revestimiento usando slips y un elemento sellante, es sustancialmente más grande y robusto, y a menudo está pensado para colocación extendida o permanente en lugar de recuperación rutinaria.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#when-used">Cuándo Se Usa</a>
+          <a href="#setting-retrieving">Asentamiento y Recuperación</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-bridge-plug">vs. Tapón Puente</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> Los perfiles de mandril de traba y las clasificaciones de presión varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/landing-nipple" class="card-link">→ Niple de Asiento</a><br><br>
+          <a href="/es/equipment/bridge-plug" class="card-link">→ Tapón Puente</a><br><br>
+          <a href="/es/equipment/bull-nose-plug" class="card-link">→ Tapón de Nariz de Toro</a><br><br>
+          <a href="/es/equipment/scssv" class="card-link">→ SCSSV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

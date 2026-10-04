@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Para qué se usa un mandril de levantamiento por gas?',
+    a: 'Un mandril de levantamiento por gas se instala en la sarta de tubería para alojar una válvula de levantamiento por gas, permitiendo que el gas inyectado en el anular desde superficie entre a la tubería a una profundidad elegida. Ese gas inyectado aligera la columna de fluido arriba de él, reduciendo la presión de fondo necesaria para levantar la producción a superficie — un método estándar de levantamiento artificial para pozos que ya no fluyen fuertemente por sí solos.',
+  },
+  {
+    q: '¿Qué es un mandril de bolsillo lateral, y por qué importa?',
+    a: 'Un mandril de bolsillo lateral desplaza su bolsillo de válvula hacia un lado del orificio principal de tubería, lo cual permite que la válvula de levantamiento por gas misma se instale o recupere en ese bolsillo usando una herramienta de volteo en cable, sin sacar la tubería. Un mandril convencional, en cambio, tiene su válvula fija en el orificio principal y generalmente requiere sacar tubería para dar servicio a la válvula.',
+  },
+  {
+    q: '¿Cuántos mandriles de levantamiento por gas tiene típicamente un pozo?',
+    a: 'Depende del diseño de levantamiento — algunos pozos usan un solo mandril a una profundidad óptima calculada, mientras otros usan varios mandriles a distintas profundidades para permitir desahogar el pozo en etapas mientras cambian la presión de inyección y el nivel de fluido durante el arranque. El número y las profundidades específicas provienen de un cálculo de diseño de levantamiento por gas, no de una regla fija.',
+  },
+  {
+    q: '¿Qué causa que falle o rinda por debajo de lo esperado una válvula de levantamiento por gas?',
+    a: 'Una válvula que abre o cierra a la presión de inyección equivocada — por desgaste, escombros, o una carga de domo mal calibrada — puede inyectar gas de forma ineficiente o a la profundidad equivocada por completo. Los escombros o incrustación en el bolsillo lateral también pueden evitar que una herramienta de volteo en cable recupere o reinstale la válvula limpiamente, requiriendo tiempo de intervención extra para resolverse.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Mandril de Levantamiento por Gas: Cómo Funciona el Levantamiento Artificial de Bolsillo Lateral"
+  description="Qué es un mandril de levantamiento por gas, cómo un diseño de bolsillo lateral permite recuperación de válvula en cable, espaciado de mandriles para desahogo en etapas, y fallas comunes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Mandril de Levantamiento por Gas', href: '/es/equipment/gas-lift-mandrel' }]}
+  lang="es"
+  alternateHref="/equipment/gas-lift-mandrel"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/gas-lift-mandrel" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Herramientas de Completación</div>
+    <h1>Mandril de <span>Levantamiento por Gas</span></h1>
+    <p class="page-hero-sub">Aloja una válvula de levantamiento por gas en la sarta de tubería, permitiendo que gas inyectado desde el anular aligere la columna de fluido y levante producción sin sacar tubería para darle servicio.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/gas-lift-mandrel-1.jpg" image2="/images/equipment/gas-lift-mandrel-2.jpg" alt="un mandril de levantamiento por gas de bolsillo lateral genérico" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Mandril de Levantamiento por Gas</h2>
+        <p>Un mandril de levantamiento por gas es un componente de la sarta de tubería que aloja una válvula de levantamiento por gas, posicionado para permitir que el gas inyectado desde superficie hacia el anular pase a la tubería a una profundidad elegida. Ese gas inyectado se mezcla con y aligera la columna de fluido producido arriba del punto de inyección, reduciendo la presión de fondo necesaria para levantar fluido a superficie — el mecanismo central detrás del levantamiento por gas como método de levantamiento artificial.</p>
+
+        <h2 id="side-pocket">Mandriles de Bolsillo Lateral vs. Convencionales</h2>
+        <p>Un <strong>mandril de bolsillo lateral</strong> desplaza su bolsillo de válvula hacia un lado del orificio principal de tubería, lo cual es lo que permite que una herramienta de volteo en cable instale o recupere la válvula de levantamiento por gas directamente, sin sacar la sarta de tubería en absoluto. Un <strong>mandril convencional</strong> en cambio mantiene su válvula fija en el orificio principal de la tubería, lo cual generalmente significa sacar toda la sarta para dar servicio o remplazar la válvula. Los diseños de bolsillo lateral dominan las completaciones modernas de levantamiento por gas específicamente por esta ventaja de servicio en cable.</p>
+
+        <h2 id="mandrel-spacing">Espaciado de Mandriles y Desahogo en Etapas</h2>
+        <p>Algunos pozos corren un solo mandril a una profundidad óptima de inyección calculada. Otros corren varios mandriles a distintas profundidades específicamente para apoyar el desahogo en etapas — inyectando progresivamente más profundo mientras el nivel de fluido en el anular baja durante el arranque, con la válvula de cada mandril más superficial cerrándose una vez que el pozo puede inyectar efectivamente a través de uno más profundo. El número y la profundidad de los mandriles en una completación dada provienen de un cálculo de diseño de levantamiento por gas adaptado a las presiones y tasas específicas de ese pozo, no de una cuenta estándar.</p>
+
+        <h2 id="failure-modes">Fallas Comunes</h2>
+        <ul>
+          <li><strong>Válvula abriendo o cerrando a la presión de inyección equivocada</strong>, por desgaste, escombros, o una carga de domo mal calibrada, inyectando gas de forma ineficiente o a una profundidad no intencionada.</li>
+          <li><strong>Escombros o incrustación en el bolsillo lateral</strong>, evitando que una herramienta de volteo en cable recupere o reinstale la válvula limpiamente.</li>
+          <li><strong>Erosión en el puerto de la válvula</strong> por inyección sostenida de gas a alta velocidad, que es parte de por qué a menudo se coloca una <a href="/es/equipment/blast-joint">junta de impacto</a> opuesta al punto de inyección del mandril.</li>
+        </ul>
+
+        <h2 id="vs-sliding-sleeve">Mandril de Levantamiento por Gas vs. Camisa Deslizante</h2>
+        <p>Ambos permiten flujo entre la tubería y el anular a una profundidad elegida, pero por propósitos y mecanismos diferentes. Una <a href="/es/equipment/sliding-sleeve">camisa deslizante</a> se desplaza mecánicamente abierta o cerrada a demanda por una herramienta de desplazamiento en cable, dando control de flujo deliberado de encendido/apagado. La válvula de un mandril de levantamiento por gas abre y cierra automáticamente según condiciones de presión, regulando continuamente el flujo de gas inyectado como parte del sistema de levantamiento en lugar de activarse manualmente para propósitos de aislamiento.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#side-pocket">Bolsillo Lateral vs. Convencional</a>
+          <a href="#mandrel-spacing">Espaciado de Mandriles</a>
+          <a href="#failure-modes">Fallas Comunes</a>
+          <a href="#vs-sliding-sleeve">vs. Camisa Deslizante</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> La calibración de válvula y el espaciado de mandriles varían por fabricante y diseño de levantamiento específico del pozo — siempre confirma contra el diseño de completación real antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/blast-joint" class="card-link">→ Junta de Impacto</a><br><br>
+          <a href="/es/equipment/sliding-sleeve" class="card-link">→ Camisa Deslizante</a><br><br>
+          <a href="/es/equipment/landing-nipple" class="card-link">→ Niple de Asiento</a><br><br>
+          <a href="/es/equipment/scssv" class="card-link">→ SCSSV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
