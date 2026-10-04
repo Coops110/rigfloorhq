@@ -1,5 +1,6 @@
 ---
 import { SITE, GA_ID } from '../lib/site.js';
+import NewsletterSignup from './NewsletterSignup.astro';
 
 export interface Props {
   lang?: 'en' | 'es';
@@ -20,6 +21,7 @@ const year = new Date().getFullYear();
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82c-.9-.98-1.4-2.26-1.4-3.6h-3.16v14.1c0 1.56-1.27 2.83-2.83 2.83a2.83 2.83 0 0 1 0-5.66c.26 0 .52.04.76.11V10.4a6.02 6.02 0 0 0-.76-.05A6.01 6.01 0 0 0 3.2 16.36a6.01 6.01 0 0 0 6.01 6.01 6.01 6.01 0 0 0 6.01-6.01V9.02a8.3 8.3 0 0 0 4.86 1.56V7.42c-1.1 0-2.1-.36-2.9-.98a5.5 5.5 0 0 1-.58-.62Z"/></svg>
         </a>
       </div>
+      <NewsletterSignup lang="es" variant="footer" />
     </div>
 
     <div class="footer-col">
@@ -66,6 +68,7 @@ const year = new Date().getFullYear();
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82c-.9-.98-1.4-2.26-1.4-3.6h-3.16v14.1c0 1.56-1.27 2.83-2.83 2.83a2.83 2.83 0 0 1 0-5.66c.26 0 .52.04.76.11V10.4a6.02 6.02 0 0 0-.76-.05A6.01 6.01 0 0 0 3.2 16.36a6.01 6.01 0 0 0 6.01 6.01 6.01 6.01 0 0 0 6.01-6.01V9.02a8.3 8.3 0 0 0 4.86 1.56V7.42c-1.1 0-2.1-.36-2.9-.98a5.5 5.5 0 0 1-.58-.62Z"/></svg>
         </a>
       </div>
+      <NewsletterSignup lang="en" variant="footer" />
     </div>
 
     <div class="footer-col">

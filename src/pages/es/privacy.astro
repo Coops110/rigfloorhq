@@ -93,6 +93,16 @@ const processors = analytics
           <strong>Correspondencia.</strong> Si nos escribe, conservamos su dirección de
           correo y lo que nos haya escrito durante el tiempo necesario para atenderlo.
         </li>
+        <li>
+          <strong>Suscripción al boletín, solo si decide suscribirse.</strong> Si se suscribe,
+          recopilamos la dirección de correo que nos proporciona. La procesa nuestro proveedor
+          de correo, Buttondown (buttondown.com), conforme a su propia política de privacidad,
+          y se usa únicamente para enviarle el boletín al que se suscribió — nunca se comparte,
+          vende ni se usa para ningún otro fin. La base jurídica es su consentimiento, dado al
+          enviar el formulario. Conservamos y usamos su dirección mientras siga suscrito; si se
+          da de baja mediante el enlace incluido en cada correo, se elimina de los sistemas de
+          Buttondown.
+        </li>
       </ul>
 
       <h2>Qué no recopilamos</h2>
@@ -113,13 +123,11 @@ const processors = analytics
             <li>utiliza Google Analytics ni ninguna otra herramienta de analítica o seguimiento;</li>
           </>
         )}
-        {/* Esta línea no es condicional, a diferencia del texto sobre cookies,
-            que depende de GA_ID. Añadir un boletín, un formulario de contacto o
-            cualquier inicio de sesión haría falsa esta política sin que nada lo
-            impida. Reescríbela, junto con su equivalente en privacy.astro, en el
-            mismo commit que el formulario, e indica la base jurídica y el plazo
-            de conservación. El razonamiento está en CONTENT-PLAN.md. */}
-        <li>gestiona cuentas de usuario, inicios de sesión, boletines ni formularios de contacto;</li>
+        {/* Suscripción al boletín añadida el 2026-10-04 vía Buttondown — ver
+            la divulgación en "Qué recopilamos" arriba. Se quitó "boletines"
+            de esta línea porque ya no es cierto; las cuentas de usuario, los
+            inicios de sesión y los formularios de contacto siguen sin existir. */}
+        <li>gestiona cuentas de usuario, inicios de sesión ni formularios de contacto;</li>
         <li>muestra publicidad ni colabora con redes publicitarias o intermediarios de datos;</li>
         <li>emplea píxeles de seguimiento, huella digital del navegador, grabación de sesiones ni mapas de calor;</li>
         <li>recopila datos de pago — en este sitio no se vende nada;</li>

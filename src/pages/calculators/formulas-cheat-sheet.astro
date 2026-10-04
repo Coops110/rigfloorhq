@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import NewsletterSignup from '../../components/NewsletterSignup.astro';
+
+const faq = [
+  {
+    q: 'Does this cheat sheet do the math for me?',
+    a: 'No — it\'s a quick reference for which formula applies and what it needs, not a calculator. Each one links to the real, interactive calculator on this site where you actually enter your numbers and get a result.',
+  },
+  {
+    q: 'Why not just list worked examples here?',
+    a: 'Because a worked example uses someone else\'s numbers, not yours. The calculators are free, show their formulas openly, and take seconds to run with your actual figures — that\'s a safer habit to build than memorizing a sample answer.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Drilling Formulas Quick-Reference Cheat Sheet",
+      "description": "The core drilling formulas used on the rig floor — hydrostatic pressure, kill mud weight, MAASP, kick tolerance, ECD, trip margin, buoyancy factor, and capacity/displacement — with links to run each one on real numbers.",
+      "about": "Drilling and well control formulas"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faq.map((f) => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    }
+  ]
+};
+---
+<BaseLayout
+  title="Drilling Formulas Cheat Sheet — Quick Reference"
+  description="The core drilling formulas rig floor crew actually need: hydrostatic pressure, kill mud weight, MAASP, kick tolerance, ECD, trip margin, buoyancy factor, and capacity/displacement. Free, no signup required to read."
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Formulas Cheat Sheet', href: '/calculators/formulas-cheat-sheet' }]}
+  lang="en"
+  alternateHref="/es/calculators/formulas-cheat-sheet"
+  jsonLd={jsonLd}
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators/formulas-cheat-sheet" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Quick Reference</div>
+    <h1>Drilling Formulas <span>Cheat Sheet</span></h1>
+    <p class="page-hero-sub">The eight formulas that come up most on the rig floor — well control and basic string math — in one place. This is a reference for which formula applies and what it needs — for the actual number, use the linked calculator with your real figures.</p>
+  </div>
+
+  <section class="block">
+    <div class="prose">
+      <p>Every formula below is reviewed for accuracy by <a href="/about#reviewed-by-a-working-driller" style="color:var(--amber);">Jabin Travis</a>, IADC WellSharp-certified driller, same as the calculators themselves.</p>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-label">Hydrostatic Pressure</div>
+      <div class="formula-eq">HP (psi) = 0.052 × MW (ppg) × TVD (ft)</div>
+      <div class="formula-note">The static mud column pressure at a given depth. Run it: <a href="/calculators/hydrostatic">Hydrostatic Pressure Calculator</a>.</div>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-label">Kill Mud Weight</div>
+      <div class="formula-eq">KMW = OMW + (SIDPP ÷ (0.052 × TVD))</div>
+      <div class="formula-note">The mud weight needed to balance the well after a kick, from shut-in drill pipe pressure. Run it: <a href="/calculators/kill-sheet">Kill Sheet Calculator</a>.</div>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-label">Maximum Allowable Annular Surface Pressure</div>
+      <div class="formula-eq">MAASP = LOT/FIT Pressure + [(LOT/FIT MW − Current MW) × 0.052 × Shoe TVD]</div>
+      <div class="formula-note">The ceiling on surface pressure before the shoe takes fluid. Run it: <a href="/calculators/maasp">MAASP Calculator</a>.</div>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-label">Kick Tolerance</div>
+      <div class="formula-eq">KT = [MAASP − (Influx Height × MW × 0.052)] ÷ (0.052 × Shoe TVD)</div>
+      <div class="formula-note">How much kick the well can take before MAASP is exceeded. Run it: <a href="/calculators/kick-tolerance">Kick Tolerance Calculator</a>.</div>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-label">Equivalent Circulating Density</div>
+      <div class="formula-eq">ECD = MW + (Annular Friction Loss ÷ 0.052 ÷ TVD)</div>
+      <div class="formula-note">The effective mud weight while circulating, once friction pressure is added. Run it: <a href="/calculators/ecd">ECD Calculator</a>.</div>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-label">Trip Margin / Safety Factor</div>
+      <div class="formula-eq">TM/SF = Base Mud Weight + [Safety Margin ÷ (0.052 × TVD)]</div>
+      <div class="formula-note">Extra mud weight carried to cover swab pressure while tripping. Run it: <a href="/calculators/trip-margin">Trip Margin Calculator</a>.</div>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-label">Buoyancy Factor</div>
+      <div class="formula-eq">BF = 1 − (Fluid Weight (ppg) ÷ 65.5)</div>
+      <div class="formula-note">The fraction of a string's air weight it actually hangs as once submerged in fluid. Run it: <a href="/calculators/buoyancy">Buoyancy &amp; Tubular Weight Calculator</a>.</div>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-label">Capacity &amp; Displacement</div>
+      <div class="formula-eq">Capacity (bbl/ft) = ID² ÷ 1029.4<br />Displacement (bbl/ft) = (OD² − ID²) ÷ 1029.4</div>
+      <div class="formula-note">Volume per foot inside the pipe, and volume per foot the pipe itself displaces. Run it: <a href="/calculators/drill-pipe-tally">Drill Pipe Tally Calculator</a>.</div>
+    </div>
+
+    <div class="prose mt-24">
+      <p>For the full concept behind these — how pore pressure, fracture pressure, and mud weight window all tie together — see the <a href="/pillars/hydrostatic-pressure">hydrostatic pressure reference page</a>. For the complete list of tools, back to <a href="/calculators">all drilling calculators</a>.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <NewsletterSignup lang="en" />
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+    <div class="accordion">
+      {faq.map((item) => (
+        <div class="acc-item">
+          <button class="acc-header"><h3>{item.q}</h3><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><p set:html={item.a} /></div>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+function toggleAcc(btn: HTMLElement) {
+  const body = btn.nextElementSibling as HTMLElement;
+  const arrow = btn.querySelector('.acc-arrow') as HTMLElement;
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.acc-arrow').forEach(a => (a as HTMLElement).style.transform = '');
+  if (!isOpen) {
+    body.classList.add('open');
+    arrow.style.transform = 'rotate(180deg)';
+  }
+}
+document.querySelectorAll('.acc-header').forEach(btn => {
+  btn.addEventListener('click', () => toggleAcc(btn as HTMLElement));
+});
+</script>

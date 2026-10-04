@@ -92,6 +92,15 @@ const processors = analytics
           <strong>Correspondence.</strong> If you email us, we hold your email address and
           whatever you wrote, for as long as it takes to deal with it.
         </li>
+        <li>
+          <strong>Newsletter signup, only if you choose to subscribe.</strong> If you sign up,
+          we collect the email address you provide. It is processed by our email provider,
+          Buttondown (buttondown.com), under their own privacy policy, and used only to send
+          you the newsletter you signed up for — never shared, sold, or used for anything
+          else. The lawful basis is your consent, given when you submit the form. We keep and
+          use your address for as long as you stay subscribed; if you unsubscribe, using the
+          link included in every email, it is removed from Buttondown's systems.
+        </li>
       </ul>
 
       <h2>What we do not collect</h2>
@@ -112,14 +121,11 @@ const processors = analytics
             <li>run Google Analytics or any other analytics or tracking product;</li>
           </>
         )}
-        {/* This line is unconditional, unlike the cookie wording above, which
-            branches on GA_ID. Adding a newsletter signup, contact form or any
-            login therefore makes this policy false with nothing to stop it —
-            the GA_ID coupling does not cover this claim. Rewrite this line, and
-            its twin in es/privacy.astro, in the same commit as any such form,
-            and state the lawful basis and retention period for the data.
-            CONTENT-PLAN.md carries the reasoning and the 500-sessions trigger. */}
-        <li>operate user accounts, logins, newsletters or contact forms;</li>
+        {/* Newsletter signup added 2026-10-04 via Buttondown — see the
+            disclosure under "What we collect" above. "Newsletters" removed
+            from this line since that claim is no longer true; user accounts,
+            logins and contact forms still genuinely don't exist. */}
+        <li>operate user accounts, logins, or contact forms;</li>
         <li>display advertising, or work with advertising or data brokers;</li>
         <li>use tracking pixels, fingerprinting, session recording or heatmaps;</li>
         <li>collect payment details — nothing on this site is for sale;</li>

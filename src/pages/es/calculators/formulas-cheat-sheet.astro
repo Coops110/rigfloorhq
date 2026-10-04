@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import NewsletterSignup from '../../../components/NewsletterSignup.astro';
+
+const faq = [
+  {
+    q: '¿Esta hoja de referencia hace los cálculos por mí?',
+    a: 'No — es una referencia rápida de qué fórmula aplica y qué datos necesita, no una calculadora. Cada una enlaza a la calculadora real e interactiva de este sitio, donde se ingresan sus propios números y se obtiene un resultado.',
+  },
+  {
+    q: '¿Por qué no incluir ejemplos resueltos aquí?',
+    a: 'Porque un ejemplo resuelto usa los números de otra persona, no los suyos. Las calculadoras son gratuitas, muestran sus fórmulas abiertamente, y toman segundos en ejecutarse con sus cifras reales — es un hábito más seguro que memorizar una respuesta de muestra.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Hoja de Referencia Rápida de Fórmulas de Perforación",
+      "description": "Las fórmulas de perforación que el equipo de piso de perforación realmente necesita: presión hidrostática, peso de lodo de control, MAASP, tolerancia de surgencia, ECD, margen de viaje, factor de flotación y capacidad/desplazamiento, con enlaces para ejecutar cada una con datos reales.",
+      "about": "Fórmulas de perforación y control de pozo"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faq.map((f) => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    }
+  ]
+};
+---
+<BaseLayout
+  title="Hoja de Referencia de Fórmulas de Perforación"
+  description="Las fórmulas de perforación que el equipo de piso de perforación realmente necesita: presión hidrostática, peso de lodo de control, MAASP, tolerancia de surgencia, ECD, margen de viaje, factor de flotación y capacidad/desplazamiento. Gratis, sin registro para leer."
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Hoja de Fórmulas', href: '/es/calculators/formulas-cheat-sheet' }]}
+  lang="es"
+  alternateHref="/calculators/formulas-cheat-sheet"
+  jsonLd={jsonLd}
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/formulas-cheat-sheet" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Referencia Rápida</div>
+    <h1>Hoja de Fórmulas <span>de Perforación</span></h1>
+    <p class="page-hero-sub">Las ocho fórmulas más usadas en el piso de perforación — control de pozo y matemática básica de sarta — en un solo lugar. Esto es una referencia de qué fórmula aplica y qué datos necesita — para el número real, use la calculadora enlazada con sus propias cifras.</p>
+  </div>
+
+  <section class="block">
+    <div class="prose">
+      <p>Cada fórmula a continuación fue revisada para precisión por <a href="/about#reviewed-by-a-working-driller" style="color:var(--amber);">Jabin Travis</a>, perforador certificado IADC WellSharp, igual que las calculadoras mismas.</p>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-label">Presión Hidrostática</div>
+      <div class="formula-eq">HP (psi) = 0.052 × MW (ppg) × TVD (ft)</div>
+      <div class="formula-note">La presión estática de la columna de lodo a una profundidad dada. Ejecútala: <a href="/es/calculators/hydrostatic">Calculadora de Presión Hidrostática</a>.</div>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-label">Peso de Lodo de Control</div>
+      <div class="formula-eq">KMW = OMW + (SIDPP ÷ (0.052 × TVD))</div>
+      <div class="formula-note">El peso de lodo necesario para balancear el pozo después de una surgencia, a partir de la presión de tubería de perforación cerrada. Ejecútala: <a href="/es/calculators/kill-sheet">Calculadora de Hoja de Control</a>.</div>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-label">Presión Máxima Permisible en Superficie Anular</div>
+      <div class="formula-eq">MAASP = Presión LOT/FIT + [(MW LOT/FIT − MW Actual) × 0.052 × TVD del Zapato]</div>
+      <div class="formula-note">El límite de presión en superficie antes de que el zapato tome fluido. Ejecútala: <a href="/es/calculators/maasp">Calculadora MAASP</a>.</div>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-label">Tolerancia de Surgencia</div>
+      <div class="formula-eq">KT = [MAASP − (Altura de Influjo × MW × 0.052)] ÷ (0.052 × TVD del Zapato)</div>
+      <div class="formula-note">Cuánta surgencia puede tolerar el pozo antes de exceder el MAASP. Ejecútala: <a href="/es/calculators/kick-tolerance">Calculadora de Tolerancia de Surgencia</a>.</div>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-label">Densidad Circulante Equivalente</div>
+      <div class="formula-eq">ECD = MW + (Pérdida de Fricción Anular ÷ 0.052 ÷ TVD)</div>
+      <div class="formula-note">El peso de lodo efectivo mientras se circula, al sumar la presión de fricción. Ejecútala: <a href="/es/calculators/ecd">Calculadora ECD</a>.</div>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-label">Margen de Viaje / Factor de Seguridad</div>
+      <div class="formula-eq">TM/SF = Peso de Lodo Base + [Margen de Seguridad ÷ (0.052 × TVD)]</div>
+      <div class="formula-note">Peso de lodo adicional para cubrir la presión de suabeo durante el viaje. Ejecútala: <a href="/es/calculators/trip-margin">Calculadora de Margen de Viaje</a>.</div>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-label">Factor de Flotación</div>
+      <div class="formula-eq">BF = 1 − (Peso del Fluido (ppg) ÷ 65.5)</div>
+      <div class="formula-note">La fracción del peso al aire de una sarta que realmente cuelga una vez sumergida en fluido. Ejecútala: <a href="/es/calculators/buoyancy">Calculadora de Flotación y Peso Tubular</a>.</div>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-label">Capacidad y Desplazamiento</div>
+      <div class="formula-eq">Capacidad (bbl/ft) = ID² ÷ 1029.4<br />Desplazamiento (bbl/ft) = (OD² − ID²) ÷ 1029.4</div>
+      <div class="formula-note">Volumen por pie dentro de la tubería, y volumen por pie que la tubería misma desplaza. Ejecútala: <a href="/es/calculators/drill-pipe-tally">Calculadora de Conteo de Tubería de Perforación</a>.</div>
+    </div>
+
+    <div class="prose mt-24">
+      <p>Para el concepto completo detrás de estas — cómo se relacionan la presión de poro, la presión de fractura y la ventana de peso de lodo — vea la <a href="/pillars/hydrostatic-pressure">página de referencia de presión hidrostática</a>. Para la lista completa de herramientas, vuelva a <a href="/es/calculators">todas las calculadoras de perforación</a>.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <NewsletterSignup lang="es" />
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title">Preguntas <span>Frecuentes</span></h2>
+    <div class="accordion">
+      {faq.map((item) => (
+        <div class="acc-item">
+          <button class="acc-header"><h3>{item.q}</h3><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><p set:html={item.a} /></div>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+function toggleAcc(btn: HTMLElement) {
+  const body = btn.nextElementSibling as HTMLElement;
+  const arrow = btn.querySelector('.acc-arrow') as HTMLElement;
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.acc-arrow').forEach(a => (a as HTMLElement).style.transform = '');
+  if (!isOpen) {
+    body.classList.add('open');
+    arrow.style.transform = 'rotate(180deg)';
+  }
+}
+document.querySelectorAll('.acc-header').forEach(btn => {
+  btn.addEventListener('click', () => toggleAcc(btn as HTMLElement));
+});
+</script>

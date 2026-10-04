@@ -1,0 +1,56 @@
+---
+export interface Props {
+  lang?: 'en' | 'es';
+  variant?: 'inline' | 'footer';
+}
+const { lang = 'en', variant = 'inline' } = Astro.props as Props;
+
+const copy = lang === 'es' ? {
+  heading: 'Boletín Quincenal de Referencia',
+  sub: 'Contenido de referencia de perforación cada dos semanas — sin spam, cancele cuando quiera.',
+  footerHeading: 'Boletín',
+  footerSub: 'Contenido de referencia, cada dos semanas.',
+  placeholder: 'usted@ejemplo.com',
+  button: 'Suscribirse',
+} : {
+  heading: 'Fortnightly Drilling Reference Newsletter',
+  sub: 'Drilling reference content every two weeks — no spam, unsubscribe anytime.',
+  footerHeading: 'Newsletter',
+  footerSub: 'Reference content, every two weeks.',
+  placeholder: 'you@example.com',
+  button: 'Subscribe',
+};
+---
+{variant === 'footer' ? (
+  <div class="footer-newsletter">
+    <h2>{copy.footerHeading}</h2>
+    <p class="footer-sub" style="margin-top:0;margin-bottom:12px;">{copy.footerSub}</p>
+    <form
+      action="https://buttondown.com/api/emails/embed-subscribe/ccooperh"
+      method="post"
+      target="popupwindow"
+      onsubmit="window.open('https://buttondown.com/api/emails/embed-subscribe/ccooperh', 'popupwindow')"
+      class="newsletter-form newsletter-form-footer"
+    >
+      <input type="email" name="email" required placeholder={copy.placeholder} class="newsletter-input" />
+      <button type="submit" class="btn-primary newsletter-btn">{copy.button}</button>
+    </form>
+  </div>
+) : (
+  <div class="newsletter-box">
+    <div class="newsletter-box-text">
+      <strong>{copy.heading}</strong>
+      <p>{copy.sub}</p>
+    </div>
+    <form
+      action="https://buttondown.com/api/emails/embed-subscribe/ccooperh"
+      method="post"
+      target="popupwindow"
+      onsubmit="window.open('https://buttondown.com/api/emails/embed-subscribe/ccooperh', 'popupwindow')"
+      class="newsletter-form"
+    >
+      <input type="email" name="email" required placeholder={copy.placeholder} class="newsletter-input" />
+      <button type="submit" class="btn-primary newsletter-btn">{copy.button}</button>
+    </form>
+  </div>
+)}
