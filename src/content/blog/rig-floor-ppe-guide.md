@@ -85,7 +85,7 @@ Layering matters here. Cotton or synthetic blends worn underneath FR outerwear c
 
 ## Foot Protection
 
-ASTM F2413 steel toe or composite toe boots are the floor-level minimum, but rig floor work introduces additional hazard categories basic steel toes don't cover. Metatarsal guards protect the top of the foot from dropped tongs, chain, and pipe, and are increasingly specified for derrickman and floor hand positions handling tubulars. Electrical hazard (EH) rated soles are required around the SCR house, generator skids, and top drive electrical connections.
+ASTM F2413 steel toe or composite toe boots are the floor-level minimum, but rig floor work introduces additional hazard categories basic steel toes don't cover. Metatarsal guards protect the top of the foot from dropped tongs, chain, and pipe, and are increasingly specified for derrickman and floor hand positions handling tubulars. Electrical hazard (EH) rated soles are required around the SCR house, generator skids, and top drive electrical connections. For reading the certification label, choosing between steel and composite toes, and pull-on vs lace-up, see [how to choose oil rig boots](/blog/oil-rig-boots).
 
 ## Hearing Protection
 
