@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What does SCSSV stand for and what does it do?',
+    a: 'SCSSV stands for Surface-Controlled Subsurface Safety Valve. It is a fail-safe valve installed in the tubing string, held open by hydraulic pressure maintained from surface through a control line, that automatically closes and shuts in the well if that control pressure is ever lost.',
+  },
+  {
+    q: 'Why does the valve close on losing pressure instead of needing pressure to close?',
+    a: 'That fail-safe design is the entire point of the tool: any failure that interrupts the control line — a fire, damage to surface equipment, a line rupture — removes the pressure holding the valve open, and the valve\'s own internal spring then drives it closed automatically. If the valve instead required pressure to close, the exact emergencies it exists to protect against would leave it stuck open.',
+  },
+  {
+    q: 'Is an SCSSV required by regulation?',
+    a: 'In most producing jurisdictions, yes — an SCSSV or an equivalent subsurface safety valve is a standard regulatory requirement on producing wells, particularly offshore, as a last line of well control if surface equipment fails or is damaged.',
+  },
+  {
+    q: 'What causes an SCSSV to fail?',
+    a: 'Control line damage or a slow leak reducing hydraulic pressure below what\'s needed to hold the valve open is a direct cause of premature closure, which is a safe failure but still an unplanned shut-in. Debris or scale on the valve\'s flapper or seat can prevent it from sealing fully once closed, or can prevent it from reopening cleanly after a closure, both of which require intervention to resolve.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="SCSSV: How Surface-Controlled Subsurface Safety Valves Work"
+  description="What a Surface-Controlled Subsurface Safety Valve (SCSSV) is, why it's fail-safe by design, regulatory requirements, and common failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'SCSSV', href: '/equipment/scssv' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Completion Tools</div>
+    <h1>SCSSV <span>Safety Valve</span></h1>
+    <p class="page-hero-sub">A fail-safe downhole valve held open by surface hydraulic pressure, that automatically shuts in the well the instant that pressure is lost.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/scssv-1.jpg" image2="/images/equipment/scssv-2.jpg" alt="a generic surface-controlled subsurface safety valve" />
+      <div class="prose">
+        <h2 id="what-it-is">What an SCSSV Is</h2>
+        <p>A Surface-Controlled Subsurface Safety Valve (SCSSV) is a valve installed in the tubing string, typically a few hundred feet below the wellhead, held in the open position by hydraulic pressure supplied continuously from surface through a dedicated control line. As long as that control pressure is maintained, the well produces normally through the open valve.</p>
+
+        <h2 id="fail-safe-design">Why It's Fail-Safe by Design</h2>
+        <p>The valve's entire safety function rests on a single design choice: it requires pressure to stay open, not to close. An internal spring is always working to close the valve; surface hydraulic pressure through the control line is what overcomes that spring and holds it open. Any event that interrupts the control line — fire damaging surface equipment, mechanical damage to the line, an operator-initiated shutdown — removes that holding pressure, and the spring closes the valve automatically, shutting in the well without needing any other system to function correctly in the moment of the emergency.</p>
+
+        <h2 id="regulatory">Regulatory Role</h2>
+        <p>In most producing jurisdictions, an SCSSV or an equivalent subsurface safety valve is a standard regulatory requirement on producing wells, especially offshore, serving as the last line of well control if surface equipment is damaged, destroyed, or otherwise taken out of service. It's one of the few pieces of completion hardware whose entire job is doing nothing at all until the one moment everything else has already gone wrong.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Control line damage or slow leaks</strong> reducing hydraulic pressure below what's needed to hold the valve open, triggering a safe but unplanned closure.</li>
+          <li><strong>Debris or scale on the flapper or seat</strong> preventing a full seal once closed, undermining the shut-in the valve was supposed to provide.</li>
+          <li><strong>Fouling preventing a clean reopen</strong> after a closure, requiring intervention before production can resume even once the underlying trigger is resolved.</li>
+        </ul>
+
+        <h2 id="vs-packer">SCSSV vs. Packer</h2>
+        <p>Both are safety-relevant completion components but address different risks. A <a href="/equipment/packer">packer</a> provides a static, always-in-place seal isolating the annulus around the tubing. An SCSSV provides a dynamic, fail-safe barrier inside the tubing bore itself, specifically designed to close automatically in an emergency rather than simply sealing a fixed point permanently.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#fail-safe-design">Fail-Safe Design</a>
+          <a href="#regulatory">Regulatory Role</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-packer">vs. Packer</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Control pressure requirements and valve ratings vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/packer" class="card-link">→ Packer</a><br><br>
+          <a href="/equipment/landing-nipple" class="card-link">→ Landing Nipple</a><br><br>
+          <a href="/equipment/bop" class="card-link">→ Blowout Preventer Types &amp; How a BOP Works</a><br><br>
+          <a href="/drilling/well-control" class="card-link">→ Well Control &amp; Kicks</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

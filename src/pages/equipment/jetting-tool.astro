@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is a jetting tool used for?',
+    a: 'A jetting tool directs high-velocity fluid jets — radially, downward, or both, depending on nozzle configuration — to clean fill, scale, or debris out of a wellbore, cut a rathole ahead of setting a plug, or clear an interval of accumulated material without mechanical cutting or milling.',
+  },
+  {
+    q: 'How does jetting clean out fill without a mill?',
+    a: 'The fluid itself does the work: pumped at high pressure through small nozzles, it exits at high velocity and erodes loose or semi-consolidated material — sand, cuttings, scale — through direct impingement, while the returning flow carries the eroded material up and out of the way. No rotating cutting structure is needed because the material being removed isn\'t solid pipe or formation, just loose or soft accumulated debris.',
+  },
+  {
+    q: 'What is a jetting tool commonly used for before setting a plug?',
+    a: 'Cutting a clean rathole or clearing fill from the interval where a bridge plug or cement retainer needs to land, ensuring the plug sets against a clean section of casing rather than on top of settled debris that could prevent a proper seal.',
+  },
+  {
+    q: 'What causes a jetting job to be ineffective?',
+    a: 'Insufficient pump pressure or flow rate for the type of material being cleared is the most common cause, since jetting effectiveness depends directly on jet velocity. Nozzle wear or plugging from debris in the fluid can also reduce jet velocity over the course of a job, and consolidated or cemented debris — rather than loose fill — may simply be too hard for jetting alone to remove.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Jetting Tool: How Fluid-Jet Cleanout Works Downhole"
+  description="What a jetting tool is, how high-velocity fluid jets clear fill and debris without mechanical cutting, its use ahead of setting plugs, and common failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Jetting Tool', href: '/equipment/jetting-tool' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Jetting <span>Tool</span></h1>
+    <p class="page-hero-sub">Directs high-velocity fluid jets to erode fill and debris out of the wellbore, clearing an interval without any rotating cutting structure.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/jetting-tool-1.jpg" image2="/images/equipment/jetting-tool-2.jpg" alt="a generic downhole jetting tool" />
+      <div class="prose">
+        <h2 id="what-it-is">What a Jetting Tool Is</h2>
+        <p>A jetting tool is a run-in-hole assembly with nozzles designed to direct pumped fluid at high velocity — radially outward, downward, or both, depending on the nozzle configuration — against fill, scale, or debris inside the wellbore. The fluid's velocity, not a rotating cutting structure, does the work of eroding and dislodging the target material.</p>
+
+        <h2 id="how-it-works">How It Works</h2>
+        <p>High-pressure fluid pumped down the work string exits through small, precisely sized nozzles at the tool, converting pump pressure into jet velocity. That high-velocity stream impinges directly on loose or semi-consolidated material, breaking it apart and suspending it in the returning flow, which carries the eroded debris up and out of the target interval. Because no mechanical cutting structure is engaging solid pipe or formation, jetting works well on loose fill and soft debris but isn't a substitute for a mill against anything genuinely hard or consolidated.</p>
+
+        <h2 id="when-used">When and Why a Jetting Tool Is Run</h2>
+        <ul>
+          <li><strong>Cleaning out fill, sand, or cuttings</strong> that have settled in the wellbore, restoring a clear bore before running further tools.</li>
+          <li><strong>Cutting a rathole</strong> ahead of setting a <a href="/equipment/bridge-plug">bridge plug</a> or <a href="/equipment/cement-retainer">cement retainer</a>, ensuring the plug lands against clean casing rather than on top of settled debris.</li>
+          <li><strong>Clearing scale or light debris</strong> at a specific interval that a full mechanical pass would be overkill for.</li>
+        </ul>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Insufficient pump pressure or flow rate</strong> for the material being cleared, since jetting effectiveness scales directly with jet velocity.</li>
+          <li><strong>Nozzle wear or plugging</strong> from debris in the circulating fluid, reducing jet velocity partway through the job.</li>
+          <li><strong>Consolidated or cemented debris</strong> that is too hard for jetting alone to remove, requiring a mechanical milling approach instead.</li>
+        </ul>
+
+        <h2 id="vs-wash-pipe">Jetting Tool vs. Wash Pipe</h2>
+        <p>Both use fluid velocity to clear material, but at different scope. A jetting tool works from inside the bore outward or downward at a specific interval, generally with no external fish or pipe involved. <a href="/equipment/wash-pipe">Wash pipe</a> instead surrounds and advances over an external fish, clearing an annulus around it to free a stuck object. If the job is cleaning fill or debris out of the bore itself, it's a jetting tool; if the job is washing over something stuck in the hole, it's wash pipe.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#when-used">When It's Used</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-wash-pipe">vs. Wash Pipe</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Nozzle sizing and pressure requirements vary by manufacturer, model, and job — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/wash-pipe" class="card-link">→ Wash Pipe</a><br><br>
+          <a href="/equipment/bridge-plug" class="card-link">→ Bridge Plug</a><br><br>
+          <a href="/equipment/cement-retainer" class="card-link">→ Cement Retainer</a><br><br>
+          <a href="/equipment/burr-mill" class="card-link">→ Burr Mill</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is a positive displacement mud motor used for?',
+    a: 'A positive displacement mud motor (PDM) converts the hydraulic energy of drilling fluid pumped down the string into rotation of the bit, independent of whether the string above it is rotating from surface. It is the core steering tool in most directional and horizontal drilling, since a bent housing section ahead of the motor lets the bit be steered while the motor itself drives the rotation.',
+  },
+  {
+    q: 'How does a mud motor actually generate rotation from fluid flow?',
+    a: 'It uses the Moineau principle: a helical, multi-lobe rotor spins inside a matching helical stator as drilling fluid is forced through the progressively sealed cavities between them. That relative motion converts fluid pressure and flow rate directly into rotational torque and speed at the rotor, which is mechanically connected down through a drive shaft to the bit.',
+  },
+  {
+    q: 'What is sliding vs. rotating drilling with a mud motor?',
+    a: 'Sliding is when the surface string stays stationary (or nearly so) while the motor alone rotates the bit, letting the bent housing hold a fixed toolface and steer the well in a specific direction. Rotating is when the surface string also rotates, which washes out the bent housing\'s steering effect and drills a straighter path — used to extend a section once the desired direction has been achieved.',
+  },
+  {
+    q: 'What causes a mud motor to fail or underperform?',
+    a: 'Excessive differential pressure across the motor — often from bit balling or an obstruction — can stall the rotor or damage internal components. Elastomer stator wear from high temperature, aggressive drilling fluid additives, or extended run time reduces torque output over the life of the motor. And debris or lost circulation material in the fluid stream can damage the rotor-stator seal, cutting efficiency even before outright failure.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Positive Displacement Mud Motor: How Downhole Drilling Motors Work"
+  description="What a positive displacement mud motor (PDM) is, how the Moineau principle converts fluid flow into bit rotation, sliding vs. rotating drilling, and common failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Positive Displacement Mud Motor', href: '/equipment/positive-displacement-mud-motor' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Drill String / BHA</div>
+    <h1>Positive Displacement <span>Mud Motor</span></h1>
+    <p class="page-hero-sub">Converts drilling fluid flow directly into bit rotation downhole — the core steering tool behind most directional and horizontal drilling.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/positive-displacement-mud-motor-1.jpg" image2="/images/equipment/positive-displacement-mud-motor-2.jpg" alt="a generic positive displacement mud motor" />
+      <div class="prose">
+        <h2 id="what-it-is">What a Positive Displacement Mud Motor Is</h2>
+        <p>A positive displacement mud motor (PDM) is a downhole motor placed in the BHA that converts the hydraulic energy of drilling fluid pumped down the string into rotational power at the bit, without requiring the string above it to rotate. A bent housing section built into the motor assembly lets the bit be steered in a chosen direction while the motor alone drives rotation — making the PDM the mechanical core of most directional and horizontal drilling programs.</p>
+
+        <h2 id="how-it-works">How the Moineau Principle Works</h2>
+        <p>Inside the motor, a helical, multi-lobe rotor sits inside a matching helical elastomer stator. As drilling fluid is pumped through, it fills and forces its way through a sequence of progressively sealed cavities formed between the rotor and stator lobes, and that forced progression drives the rotor to spin and advance through the stator. The resulting rotation and torque transmit down a drive shaft, through a bearing assembly, to the bit — all without any rotation input from surface.</p>
+
+        <h2 id="sliding-vs-rotating">Sliding vs. Rotating</h2>
+        <p><strong>Sliding</strong> drilling keeps the surface string stationary, or nearly so, letting the motor alone rotate the bit while the bent housing holds a fixed toolface — this is how directional change is actually achieved, steering the well toward a specific target. <strong>Rotating</strong> drilling adds rotation from surface on top of the motor's own rotation, which washes out the bent housing's steering effect and drills a straighter path instead; this mode is used to extend a section once the desired direction has already been achieved, since it's generally faster than sliding.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Excessive differential pressure</strong> across the motor, often from bit balling or a downhole obstruction, which can stall the rotor or damage internal components under the resulting pressure spike.</li>
+          <li><strong>Elastomer stator wear</strong> from high bottomhole temperature, aggressive drilling fluid additives, or extended run time, gradually reducing torque output over the motor's operating life.</li>
+          <li><strong>Debris or lost circulation material</strong> in the fluid stream damaging the rotor-stator seal, cutting motor efficiency even before complete failure occurs.</li>
+        </ul>
+
+        <h2 id="vs-mwd-tool">Mud Motor vs. MWD Tool</h2>
+        <p>The two are almost always run together in a directional BHA but do entirely different jobs. The mud motor provides power — it rotates the bit and, through its bent housing, provides the steering mechanism. An <a href="/equipment/mwd-tool">MWD tool</a> provides measurement — it reports the resulting inclination, azimuth, and toolface back to surface so the driller knows whether the motor's steering is actually putting the well where it's supposed to go. One drives the well; the other reports where it's actually heading.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#sliding-vs-rotating">Sliding vs. Rotating</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-mwd-tool">vs. MWD Tool</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Torque, speed, and bend angle ratings vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/mwd-tool" class="card-link">→ MWD Tool</a><br><br>
+          <a href="/equipment/nmdc-pony-nmdc" class="card-link">→ NMDC / Pony NMDC</a><br><br>
+          <a href="/equipment/stabilizer" class="card-link">→ Stabilizer</a><br><br>
+          <a href="/drilling/directional" class="card-link">→ Directional Drilling</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

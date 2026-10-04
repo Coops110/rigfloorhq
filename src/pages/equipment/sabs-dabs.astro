@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What do SABS and DABS stand for?',
+    a: 'SABS is a Single-Acting Bumper Sub; DABS is a Double-Acting Bumper Sub. Both are variants of the same telescoping bumper sub tool, differing only in whether the internal shoulder that transmits impact engages in one direction of travel or both.',
+  },
+  {
+    q: 'When would a crew choose a SABS over a DABS, or the reverse?',
+    a: 'A SABS is chosen when the plan only needs impact delivered in one direction — most commonly upward, to help pull a stuck fish free — and the other direction should stay free of any jolt, for example while running in or making connections. A DABS is chosen when the job may need to work the fish both up and down, such as freeing differentially stuck pipe where movement in either direction can help break the stuck point, or when setting and unsetting a tool that needs impact on both strokes.',
+  },
+  {
+    q: 'Can a SABS be used in place of a DABS?',
+    a: 'Not interchangeably for a job that genuinely needs two-directional impact — a SABS simply has no shoulder to transmit force on its free-travel side, so running one where a DABS is needed means half the planned jarring action does nothing. The reverse substitution is less costly: a DABS can usually stand in for a SABS, since striking in the unneeded direction is rarely harmful, just unnecessary.',
+  },
+  {
+    q: 'Do SABS and DABS tools wear differently?',
+    a: 'A DABS sees impact loading on both strokes, so its shoulders and splines generally accumulate wear faster than a SABS run under a similar jarring program, where only one side of the mechanism ever takes a hit. That makes inspection interval and spline condition especially worth checking on a DABS that has been through an extended fishing job.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="SABS vs. DABS: Single- and Double-Acting Bumper Subs Explained"
+  description="The difference between a Single-Acting Bumper Sub (SABS) and a Double-Acting Bumper Sub (DABS), when each is chosen for a fishing job, and how their wear patterns differ."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'SABS vs. DABS', href: '/equipment/sabs-dabs' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>SABS <span>vs. DABS</span></h1>
+    <p class="page-hero-sub">Single-Acting and Double-Acting Bumper Subs do the same telescoping job — the difference is whether impact transmits in one direction or both.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/sabs-dabs-1.jpg" image2="/images/equipment/sabs-dabs-2.jpg" alt="a generic single and double-acting bumper sub pair" />
+      <div class="prose">
+        <h2 id="what-it-is">What SABS and DABS Are</h2>
+        <p>SABS and DABS are not two different tools so much as two configurations of the same tool — the <a href="/equipment/bumper-sub">bumper sub</a>. Both use the same splined, telescoping mandrel that lets an inner and outer section slide a limited distance relative to each other while still transmitting torque and circulation. The difference is in the internal shoulder geometry that actually delivers a jarring impact at the end of that travel.</p>
+        <p>A <strong>Single-Acting Bumper Sub (SABS)</strong> has a shoulder that contacts and transmits impact in only one direction of travel — almost always the upward stroke, since most fishing jobs are trying to pull something free. Moving the opposite way produces no impact at all; the mandrel simply slides free.</p>
+        <p>A <strong>Double-Acting Bumper Sub (DABS)</strong> has shoulders positioned to transmit impact in both directions, so jarring action is available whether the string is moved up or down.</p>
+
+        <h2 id="choosing">Choosing Between Them</h2>
+        <ul>
+          <li><strong>Straightforward pull-free jobs</strong> where the fish only needs upward force typically run a SABS — simpler, and it keeps the downward stroke free of unwanted impact while running in or repositioning.</li>
+          <li><strong>Differentially stuck pipe</strong>, where working the string in either direction can help break the stuck interval loose, favors a DABS so jarring energy isn't wasted on only half the available strokes.</li>
+          <li><strong>Setting or releasing tools</strong> that need a jolt on both the set and release strokes also call for a DABS, since a SABS would only assist one of the two operations.</li>
+        </ul>
+
+        <h2 id="wear-inspection">Wear and Inspection</h2>
+        <p>Because a DABS takes impact loading on every stroke in both directions, its shoulders and splines accumulate wear faster over an equivalent jarring program than a SABS, which only ever loads one side of the mechanism. On a fishing job that has gone through extended jarring, inspecting shoulder condition and spline fit on a DABS deserves particular attention before trusting it for another run.</p>
+
+        <h2 id="vs-plain-bumper-sub">SABS/DABS vs. a Generic Bumper Sub Reference</h2>
+        <p>Any time a fishing program simply calls for "a bumper sub" without specifying action type, the real decision being deferred is exactly this SABS-or-DABS choice. See the main <a href="/equipment/bumper-sub">bumper sub</a> page for how the tool fits into the rest of the string alongside a <a href="/equipment/hydraulic-jar">hydraulic jar</a> — this page covers only the single- vs. double-acting distinction itself.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What They Are</a>
+          <a href="#choosing">Choosing Between Them</a>
+          <a href="#wear-inspection">Wear &amp; Inspection</a>
+          <a href="#vs-plain-bumper-sub">vs. Generic Bumper Sub</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Shoulder design and stroke ratings vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/bumper-sub" class="card-link">→ Bumper Sub</a><br><br>
+          <a href="/equipment/hydraulic-jar" class="card-link">→ Hydraulic Jar</a><br><br>
+          <a href="/equipment/safety-joint" class="card-link">→ Safety Joint</a><br><br>
+          <a href="/pillars/stuck-pipe-and-fishing-operations" class="card-link">→ Stuck Pipe &amp; Fishing Operations</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

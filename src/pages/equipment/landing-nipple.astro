@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is a landing nipple used for?',
+    a: 'A landing nipple is a short sub with a precision-machined internal profile — locking grooves plus a sealing bore — installed in the tubing string to provide a fixed, known, wireline-retrievable set point. Plugs, chokes, safety valve lock mandrels, or gauges can all be set into a landing nipple and later retrieved from it, without pulling the tubing string itself.',
+  },
+  {
+    q: 'How many landing nipples does a completion typically have?',
+    a: 'It varies by completion design — some wells have just one or two, others have several at different depths for different purposes (a tubing plug set point, an SCSSV lock mandrel location, a gauge hanger profile). Each nipple\'s locking profile and ID are chosen deliberately as part of the completion design, not added incidentally.',
+  },
+  {
+    q: 'Can any plug or tool be set in any landing nipple?',
+    a: 'No — a given nipple\'s locking profile and sealing bore ID match a specific family of lock mandrels and seal assemblies. A tool built for a different profile or ID simply won\'t latch or seal correctly, which is why completion designs specify nipple profiles precisely and why selectively landing a tool at a particular nipple (when multiple nipples are in the string) relies on sizing, not just position.',
+  },
+  {
+    q: 'What causes a landing nipple to fail to hold a set tool?',
+    a: 'Debris or scale built up in the nipple\'s locking grooves or sealing bore can prevent a lock mandrel from fully engaging or a seal from sealing. Wear on the nipple\'s internal profile from repeated setting and retrieving cycles over the life of the well can also degrade its ability to hold a tool securely.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Landing Nipple: Fixed Wireline Set Points in a Tubing String"
+  description="What a landing nipple is, how its locking profile provides a fixed wireline-retrievable set point for plugs and other tools, and common failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Landing Nipple', href: '/equipment/landing-nipple' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Completion Tools</div>
+    <h1>Landing <span>Nipple</span></h1>
+    <p class="page-hero-sub">A precision-machined profile in the tubing string giving plugs, valves, and gauges a fixed, known point to lock into and be retrieved from on wireline.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/landing-nipple-1.jpg" image2="/images/equipment/landing-nipple-2.jpg" alt="a generic landing nipple" />
+      <div class="prose">
+        <h2 id="what-it-is">What a Landing Nipple Is</h2>
+        <p>A landing nipple is a short sub installed at a specific point in the tubing string, machined internally with a precise locking profile — typically a set of grooves — paired with a sealing bore of a known, consistent diameter. Together, those features give wireline or coiled-tubing-run tools a fixed location to latch into and seal against, every time, without requiring the tubing string itself to be pulled.</p>
+
+        <h2 id="what-sets-into-it">What Sets Into a Landing Nipple</h2>
+        <ul>
+          <li><strong>A <a href="/equipment/tubing-plug">tubing plug</a></strong>, blocking flow through the tubing at that depth for a pressure test or temporary isolation.</li>
+          <li><strong>An SCSSV lock mandrel</strong>, anchoring a wireline-retrievable safety valve insert at the nipple's position.</li>
+          <li><strong>Gauges or chokes</strong>, when the completion design calls for downhole monitoring or flow control hardware set at a specific, repeatable depth.</li>
+        </ul>
+
+        <h2 id="profile-specificity">Profile Specificity Matters</h2>
+        <p>A given nipple's locking profile and sealing bore ID are matched to a specific family of lock mandrels and seal assemblies — a tool built for a different profile or diameter simply won't latch or seal correctly. This is deliberate: completion designs with multiple nipples in the same string rely on this specificity so a particular tool lands at its intended nipple rather than any nipple it happens to fit loosely.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Debris or scale buildup</strong> in the locking grooves or sealing bore, preventing a lock mandrel from fully engaging or a seal from sealing properly.</li>
+          <li><strong>Profile wear</strong> from repeated setting and retrieving cycles over the life of the well, gradually degrading the nipple's ability to hold a tool securely.</li>
+          <li><strong>Wrong tool selection</strong> for the specific nipple profile installed, a planning error rather than a tool or nipple defect.</li>
+        </ul>
+
+        <h2 id="vs-on-off-tool">Landing Nipple vs. On-Off Tool</h2>
+        <p>Both provide a fixed point of engagement in a completion, but for different kinds of hardware. A landing nipple is a passive profile that wireline-run tools lock into from inside the tubing bore. An <a href="/equipment/on-off-tool">on-off tool</a> is an active mechanical connector joining the tubing string itself to a packer or lower completion, released and reconnected by rotation or pull rather than by running a separate tool on wireline.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#what-sets-into-it">What Sets Into It</a>
+          <a href="#profile-specificity">Profile Specificity</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-on-off-tool">vs. On-Off Tool</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Locking profiles and sealing bore sizes vary by manufacturer and model — always confirm against the actual completion design before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/tubing-plug" class="card-link">→ Tubing Plug</a><br><br>
+          <a href="/equipment/on-off-tool" class="card-link">→ On-Off Tool</a><br><br>
+          <a href="/equipment/scssv" class="card-link">→ SCSSV</a><br><br>
+          <a href="/equipment/bull-nose-plug" class="card-link">→ Bull Nose Plug</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

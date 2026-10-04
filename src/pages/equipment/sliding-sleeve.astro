@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is a sliding sleeve used for?',
+    a: 'A sliding sleeve is a completion component with a ported inner sleeve that can be shifted open or closed by a shifting tool run on wireline or coiled tubing, opening or blocking flow between the tubing bore and the annulus or formation at that specific depth. It gives a completion selective, repeatable flow control at a chosen zone without pulling the tubing string.',
+  },
+  {
+    q: 'How is a sliding sleeve actually shifted open or closed?',
+    a: 'A shifting tool, sized to engage a specific profile machined into the sleeve, is run down on wireline or coiled tubing until it locates and latches that profile. Applying up or down force through the work string then slides the inner sleeve to the open or closed position, aligning or blocking its ports relative to matching ports in the outer housing.',
+  },
+  {
+    q: 'What is a sliding sleeve commonly used for in a completion?',
+    a: 'Establishing circulation for operations like displacing completion fluid or cementing, commingling production from multiple zones through a single string, or selectively isolating a zone that is producing unwanted fluid without having to pull the whole completion to address it.',
+  },
+  {
+    q: 'What causes a sliding sleeve to fail to shift or seal?',
+    a: 'Scale, debris, or produced sand accumulating around the sleeve can prevent it from shifting fully, or prevent its seals from sealing even once it reaches position. Seal wear from repeated cycling or from erosive flow across the ports over time can also degrade sealing integrity in the closed position, allowing unwanted communication across the sleeve.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Sliding Sleeve: Wireline-Shifted Flow Control Explained"
+  description="What a sliding sleeve is, how a shifting tool opens and closes it, common completion uses like circulation and zonal isolation, and failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Sliding Sleeve', href: '/equipment/sliding-sleeve' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Completion Tools</div>
+    <h1>Sliding <span>Sleeve</span></h1>
+    <p class="page-hero-sub">A ported completion component that can be shifted open or closed on wireline, giving selective flow control at a chosen zone without pulling tubing.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/sliding-sleeve-1.jpg" image2="/images/equipment/sliding-sleeve-2.jpg" alt="a generic sliding sleeve completion tool" />
+      <div class="prose">
+        <h2 id="what-it-is">What a Sliding Sleeve Is</h2>
+        <p>A sliding sleeve is a completion component installed in the tubing string with an inner sleeve that can be mechanically shifted between open and closed positions. In the open position, ports in the inner sleeve align with matching ports in the outer housing, allowing flow between the tubing bore and the annulus or formation at that depth. In the closed position, the inner sleeve blocks those ports, isolating the bore from the annulus at that point.</p>
+
+        <h2 id="how-shifted">How It's Shifted</h2>
+        <p>A shifting tool, run on wireline or coiled tubing and sized to a specific profile machined into the sleeve, is lowered until it locates and latches onto that profile. Applying up or down force through the running string then slides the inner sleeve to the opposite position — open to closed, or closed to open — without requiring the tubing string itself to be pulled or moved.</p>
+
+        <h2 id="when-used">When and Why a Sliding Sleeve Is Run</h2>
+        <ul>
+          <li><strong>Establishing circulation.</strong> Opening a sleeve creates a path to circulate fluid between the tubing and annulus, useful for displacing completion fluid or supporting a cementing operation.</li>
+          <li><strong>Commingling production</strong> from multiple zones through a single tubing string, by opening sleeves at each zone that should contribute flow.</li>
+          <li><strong>Selective zonal isolation</strong>, closing a sleeve at a zone producing unwanted fluid (water, gas) without pulling the entire completion to address just that interval.</li>
+        </ul>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Debris or scale accumulation</strong> around the sleeve, preventing it from shifting fully or preventing its seals from sealing even once it reaches position.</li>
+          <li><strong>Seal wear</strong> from repeated shifting cycles or erosive flow across the ports over time, degrading sealing integrity in the closed position.</li>
+          <li><strong>Shifting tool mismatch</strong>, where the wrong tool profile fails to latch the sleeve's shifting profile correctly.</li>
+        </ul>
+
+        <h2 id="vs-on-off-tool">Sliding Sleeve vs. On-Off Tool</h2>
+        <p>Both give a completion flexibility without pulling tubing, but control different things. A sliding sleeve controls <em>flow</em> between the tubing bore and the annulus at a specific depth. An <a href="/equipment/on-off-tool">on-off tool</a> controls <em>connection</em> — whether the tubing string above is mechanically attached to a packer or lower completion below. One is a valve; the other is a disconnect.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#how-shifted">How It's Shifted</a>
+          <a href="#when-used">When It's Used</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-on-off-tool">vs. On-Off Tool</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Shifting profiles and port sizing vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/on-off-tool" class="card-link">→ On-Off Tool</a><br><br>
+          <a href="/equipment/landing-nipple" class="card-link">→ Landing Nipple</a><br><br>
+          <a href="/equipment/packer" class="card-link">→ Packer</a><br><br>
+          <a href="/equipment/multilateral-junction" class="card-link">→ Multilateral Junction</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

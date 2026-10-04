@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is wash pipe used for?',
+    a: 'Wash pipe is run over a stuck fish, with a cutting shoe on bottom, to wash away the fill, sand, cuttings, or collapsed formation material that is actually gripping the fish — rather than trying to pull the fish directly against whatever is holding it. Circulating fluid down the wash pipe and back up the annulus between it and the fish erodes that packed material away without milling or cutting the fish itself.',
+  },
+  {
+    q: 'How is a washover job different from just pulling harder?',
+    a: 'Pulling harder on a stuck fish works against whatever is gripping it; if that grip is fill, sand, or collapsed formation packed around the fish rather than a true mechanical stick, no amount of straight pull will free it and excessive pull risks parting the string instead. A washover job removes the actual cause of the stick first, so the fish can often be retrieved with normal pulling force once it is no longer packed in.',
+  },
+  {
+    q: 'What is the wash pipe shoe, and does it cut the fish?',
+    a: 'The shoe is the bottom end of the wash pipe string, typically a mill-toothed or serrated cutting edge sized to pass over the fish\'s outside diameter with working clearance. It is not meant to cut or mill the fish itself — it is sized and run to clear away external debris and formation material as the wash pipe advances over the fish, not to engage or damage the fish\'s own surface.',
+  },
+  {
+    q: 'What causes a washover job to fail to free the fish?',
+    a: 'Undersized clearance between the wash pipe ID and the fish OD can prevent the wash pipe from advancing past a buildup, swelling, or an enlarged section of the fish. Insufficient circulation rate can fail to actually carry eroded material out of the annulus, letting it repack behind the shoe. And if the real cause of the stick is a genuine mechanical key seat or differential sticking rather than fill, washing over accomplishes nothing because there is no debris to remove.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Wash Pipe: How Washover Fishing Jobs Work"
+  description="What wash pipe is, how a washover job frees a stuck fish by removing fill and debris instead of pulling directly, the wash pipe shoe, and common failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Wash Pipe', href: '/equipment/wash-pipe' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Wash <span>Pipe</span></h1>
+    <p class="page-hero-sub">Large-diameter pipe run over a stuck fish to circulate away the fill and debris actually gripping it, rather than pulling against the grip directly.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/wash-pipe-1.jpg" image2="/images/equipment/wash-pipe-2.jpg" alt="a generic wash pipe string with cutting shoe" />
+      <div class="prose">
+        <h2 id="what-it-is">What Wash Pipe Is</h2>
+        <p>Wash pipe is a string of large-diameter pipe, fitted with a cutting shoe on bottom, sized to pass over the outside of a stuck fish with working clearance. It is run and rotated with circulation down its bore and back up the annulus between the wash pipe and the fish, eroding away the fill, sand, cuttings, or collapsed formation material packed around the fish as the string advances.</p>
+        <p>The tool does not grip, cut, or mill the fish itself. It addresses the cause of the stick — material packed around the outside of the fish — rather than attempting to overcome it with force.</p>
+
+        <h2 id="when-used">When and Why a Washover Job Is Run</h2>
+        <ul>
+          <li><strong>Fish stuck by fill or sand.</strong> When a fish has settled fill, sand, or cuttings packed solidly around it, direct pull works against that packed material rather than freeing anything.</li>
+          <li><strong>Collapsed or sloughing formation</strong> around the fish in an open-hole section, where formation material has caved in and gripped the string.</li>
+          <li><strong>Preparing for a fishing tool run</strong>, by clearing enough of the fish's exterior and top to allow an overshot or spear to engage cleanly once the washover is complete.</li>
+        </ul>
+
+        <h2 id="shoe-mechanics">The Wash Pipe Shoe</h2>
+        <p>The shoe at the bottom of the wash pipe string is typically mill-toothed or serrated and sized for working clearance over the fish's known or estimated outside diameter. As the wash pipe rotates and advances, the shoe breaks up packed material at the leading edge while circulation carries the eroded debris up the annulus and out of the hole. The clearance is deliberate — enough to clear debris, not so much that the wash pipe can't maintain effective circulation velocity in the annulus to actually lift cuttings.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Insufficient clearance</strong> between the wash pipe ID and an enlarged or swollen section of the fish, stopping the wash pipe from advancing.</li>
+          <li><strong>Inadequate circulation rate</strong> failing to carry eroded material out of the annulus, letting it settle and repack behind the shoe.</li>
+          <li><strong>Misdiagnosed stuck cause</strong> — if the fish is actually stuck by a mechanical key seat or true differential sticking rather than packed fill, washing over removes nothing relevant and will not free it.</li>
+        </ul>
+
+        <h2 id="vs-jetting-tool">Wash Pipe vs. Jetting Tool</h2>
+        <p>Both use circulating fluid to clear material, but at different scope and location. Wash pipe surrounds and advances over an external fish to clear an annulus around it. A <a href="/equipment/jetting-tool">jetting tool</a> instead directs fluid jets from inside the bore — radially or downward — to clean fill, scale, or debris from inside a wellbore or at a specific interval, with no fish or external pipe involved. If the job is washing over something stuck in the hole, it's wash pipe; if the job is cleaning fill or debris out of the bore itself, it's a jetting tool.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#when-used">When It's Used</a>
+          <a href="#shoe-mechanics">The Wash Pipe Shoe</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-jetting-tool">vs. Jetting Tool</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Clearance and circulation requirements vary by job and tool size — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/jetting-tool" class="card-link">→ Jetting Tool</a><br><br>
+          <a href="/equipment/fishing-swivel" class="card-link">→ Fishing Swivel</a><br><br>
+          <a href="/equipment/hydraulic-jar" class="card-link">→ Hydraulic Jar</a><br><br>
+          <a href="/pillars/stuck-pipe-and-fishing-operations" class="card-link">→ Stuck Pipe &amp; Fishing Operations</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

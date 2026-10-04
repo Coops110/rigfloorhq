@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is a casing shoe used for?',
+    a: 'A casing shoe is made up on the very bottom joint of a casing string before it is run into the hole. Its rounded or tapered nose guides the string past doglegs, ledges, and minor restrictions as it descends, preventing the bottom of the string from hanging up or gouging the wellbore wall on the way down.',
+  },
+  {
+    q: 'What is the difference between a guide shoe and a float shoe?',
+    a: 'A plain guide shoe only guides the string — it has no internal valve and allows fluid to pass freely in both directions through its bore. A float shoe adds a check-valve function (a flapper or ball-and-seat) at the same bottom position, which guides the string the same way but also prevents fluid from flowing back up into the casing once run, reducing the chance of the string floating or taking a U-tube loading on the way in.',
+  },
+  {
+    q: 'How does a casing shoe differ from a float sub?',
+    a: 'They can do a very similar check-valve job, but position is the real difference. A casing shoe sits at the absolute bottom of the string, made up on the last joint. A float sub is placed further up the string — commonly one or more joints above bottom — when the specific job calls for the valve function at that higher position instead of at the very bottom.',
+  },
+  {
+    q: 'What causes a casing shoe to fail?',
+    a: 'On a float shoe specifically, debris or cuttings lodging in the valve seat can prevent it from sealing, defeating the backflow-prevention function while the guide function still works normally. On a plain guide shoe, the most common issue is simply running into a restriction too tight or too sharp for the nose profile to deflect past, requiring the string to be worked or the restriction addressed before continuing in.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Casing Shoe: Guide Shoe vs. Float Shoe Explained"
+  description="What a casing shoe is, guide shoe vs. float shoe designs, how it differs from a float sub placed higher in the string, and common failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Casing Shoe', href: '/equipment/casing-shoe' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Casing <span>Shoe</span></h1>
+    <p class="page-hero-sub">The rounded nose made up on the very bottom of a casing string, guiding it past ledges and ensuring it doesn't hang up on the way into the hole.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/casing-shoe-1.jpg" image2="/images/equipment/casing-shoe-2.jpg" alt="a generic casing guide shoe" />
+      <div class="prose">
+        <h2 id="what-it-is">What a Casing Shoe Is</h2>
+        <p>A casing shoe is made up on the bottom joint of a casing string before running in hole. Its rounded or tapered nose profile is specifically designed to deflect the string smoothly past doglegs, ledges, and minor wellbore restrictions as it descends, rather than catching on them the way a flat or square pipe end would.</p>
+        <p>Two basic types exist, distinguished by what's inside the shoe rather than by the guiding function itself, which both share.</p>
+
+        <h2 id="guide-vs-float">Guide Shoe vs. Float Shoe</h2>
+        <p>A <strong>guide shoe</strong> is purely mechanical — an open bore with the guiding nose profile, allowing fluid to flow freely in both directions through it as the string runs in and cement is later pumped through during the cement job. It adds nothing but the shape.</p>
+        <p>A <strong>float shoe</strong> adds a check-valve element — a flapper or ball-and-seat design — at the same bottom position. That valve still allows fluid to be pumped down through the shoe (necessary for the later cement job) but prevents flow from coming back up into the casing, reducing the chance of the string floating as it's run and avoiding a U-tube effect that can complicate running the string in a controlled, weighted manner.</p>
+
+        <h2 id="when-used">When Each Is Chosen</h2>
+        <ul>
+          <li><strong>Guide shoe</strong> when the primary concern is simply getting the string to bottom cleanly, with no particular need to control backflow during running.</li>
+          <li><strong>Float shoe</strong> when running the string with a controlled fill level is important — common on longer or deviated strings where an uncontrolled U-tube effect during running could complicate well control or string handling.</li>
+        </ul>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Valve seat fouling</strong> on a float shoe, where debris or cuttings lodge in the seat and prevent a full seal, defeating the backflow-prevention function while the guide profile keeps working normally.</li>
+          <li><strong>Restriction too severe</strong> for the nose profile to deflect past, requiring the string to be worked, rotated, or the restriction addressed before continuing to run in.</li>
+          <li><strong>Shoe damage on a rough trip in</strong>, particularly in a deviated or doglegged wellbore, which can blunt the guiding profile partway down the run.</li>
+        </ul>
+
+        <h2 id="vs-float-sub">Casing Shoe vs. Float Sub</h2>
+        <p>A casing shoe and a <a href="/equipment/float-sub">float sub</a> can perform a nearly identical check-valve function, but at different positions in the string. The casing shoe sits at the absolute bottom, made up on the last joint, combining the valve with the guiding nose. A float sub is placed further up — one or more joints above bottom — when the job specifically calls for the valve function at that higher position rather than at the very bottom of the string.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#guide-vs-float">Guide vs. Float Shoe</a>
+          <a href="#when-used">When Each Is Chosen</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-float-sub">vs. Float Sub</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Valve design and pressure ratings vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/float-sub" class="card-link">→ Float Sub</a><br><br>
+          <a href="/equipment/mule-shoe" class="card-link">→ Mule Shoe</a><br><br>
+          <a href="/equipment/centralizer" class="card-link">→ Centralizer</a><br><br>
+          <a href="/drilling/casing" class="card-link">→ Casing Design Explained</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

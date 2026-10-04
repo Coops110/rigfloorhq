@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is a TCP gun?',
+    a: 'TCP stands for Tubing-Conveyed Perforating. A TCP gun is a perforating gun string, loaded with shaped explosive charges, run into the well on the production tubing itself rather than on wireline, and fired once in position to create perforations through the casing and cement into the formation, establishing a flow path for production.',
+  },
+  {
+    q: 'Why run a perforating gun on tubing instead of wireline?',
+    a: 'Tubing conveyance supports far heavier and longer gun strings than wireline can handle, which matters in deep, highly deviated, or long-interval completions where a wireline gun string either can\'t reach depth reliably or can\'t carry enough charges for the interval length required. TCP also allows other completion hardware to be run in the same trip as the perforating guns, saving a separate trip into the well.',
+  },
+  {
+    q: 'How is a TCP gun actually fired?',
+    a: 'Firing methods vary — some use a pressure-activated firing head triggered by applying a specific surface pressure once the string is in position, others use a mechanical firing bar dropped down the tubing, and some use an electrical or percussion initiation system. Whichever method is used, the goal is firing the charges only once the string is confirmed at the correct depth and the well is ready for the resulting perforations.',
+  },
+  {
+    q: 'What causes a TCP job to underperform or fail?',
+    a: 'Gun misfire from a firing system malfunction can leave some or all charges undetonated, requiring a repeat trip to perforate the missed interval. Debris from the detonation itself, or guns that aren\'t fully retrieved or dropped clear after firing, can also leave obstruction in the wellbore that complicates subsequent completion steps.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="TCP Gun: How Tubing-Conveyed Perforating Works"
+  description="What a TCP gun is, why it's run on tubing instead of wireline, how it's fired downhole, and common failure modes for tubing-conveyed perforating jobs."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'TCP Gun', href: '/equipment/tcp-gun' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Completion Tools</div>
+    <h1>TCP <span>Gun</span></h1>
+    <p class="page-hero-sub">A perforating gun string run on production tubing rather than wireline, used for deep, deviated, or long-interval completions a wireline gun can't reliably handle.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/tcp-gun-1.jpg" image2="/images/equipment/tcp-gun-2.jpg" alt="a generic tubing-conveyed perforating gun" />
+      <div class="prose">
+        <h2 id="what-it-is">What a TCP Gun Is</h2>
+        <p>A TCP (Tubing-Conveyed Perforating) gun is a perforating gun string loaded with shaped explosive charges, made up on the bottom of the production tubing string and run into the well as part of that string rather than separately on wireline. Once positioned at the target interval, the charges are fired, perforating through the casing and surrounding cement into the formation and establishing a flow path for production.</p>
+
+        <h2 id="why-tubing">Why Tubing Conveyance Instead of Wireline</h2>
+        <p>Tubing supports far greater weight and length than wireline, which matters directly for deep wells, highly deviated or horizontal completions, or long perforated intervals — situations where a wireline-conveyed gun string either can't reliably reach target depth or can't carry enough charges for the full interval in one run. Running the guns on tubing also allows other completion hardware to be made up in the same string and run in the same trip, saving a separate run into the well that a wireline perforating job followed by a tubing run would otherwise require.</p>
+
+        <h2 id="firing-methods">How a TCP Gun Is Fired</h2>
+        <p>Several firing methods are used depending on the job and operator preference: a <strong>pressure-activated firing head</strong> triggers once a specific surface pressure is applied with the string confirmed at depth; a <strong>mechanical firing bar</strong> is dropped down the tubing to physically strike the firing mechanism; and electrical or percussion initiation systems provide alternative triggering paths. Whichever method is specified, the firing sequence is designed so detonation only happens once depth and well readiness are confirmed, not automatically on run-in.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Gun misfire</strong> from a firing system malfunction, leaving some or all charges undetonated and requiring a repeat trip to perforate the missed interval.</li>
+          <li><strong>Post-firing debris</strong> from the detonation itself obstructing the wellbore, complicating subsequent completion steps.</li>
+          <li><strong>Guns not fully retrieved or dropped clear</strong> after firing, depending on the specific gun release design, leaving spent hardware in a position that interferes with later operations.</li>
+        </ul>
+
+        <h2 id="vs-jetting-tool">TCP Gun vs. Jetting Tool</h2>
+        <p>Both create openings or clear material using a downhole tool, but by entirely different mechanisms. A TCP gun uses explosive shaped charges to punch perforations through casing, cement, and into formation — a one-time, destructive, irreversible action creating a permanent flow path. A <a href="/equipment/jetting-tool">jetting tool</a> uses high-velocity fluid jets to erode loose fill or debris, a non-explosive, repeatable cleanout action with no formation-penetrating purpose.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#why-tubing">Why Tubing Conveyance</a>
+          <a href="#firing-methods">Firing Methods</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-jetting-tool">vs. Jetting Tool</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Charge selection and firing system design vary by manufacturer and job — always confirm against the actual perforating program before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/jetting-tool" class="card-link">→ Jetting Tool</a><br><br>
+          <a href="/equipment/blast-joint" class="card-link">→ Blast Joint</a><br><br>
+          <a href="/equipment/gas-lift-mandrel" class="card-link">→ Gas Lift Mandrel</a><br><br>
+          <a href="/equipment/bridge-plug" class="card-link">→ Bridge Plug</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

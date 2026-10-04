@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is a pup joint used for?',
+    a: 'A pup joint is a length of pipe shorter than a standard joint, used to achieve precise spacing in a tubing or casing string — positioning a tool at an exact depth, filling a gap left at the top or bottom of a string, or adjusting total string length to land a critical component exactly where it needs to be.',
+  },
+  {
+    q: 'Does a pup joint change the thread type or diameter of the string?',
+    a: 'No — a pup joint carries the same connection type and diameter as the rest of the string around it. Its only distinguishing feature is length; it exists purely to add a specific, shorter-than-standard increment of pipe where an exact spacing calculation calls for one.',
+  },
+  {
+    q: 'What lengths do pup joints typically come in?',
+    a: 'Common stocked lengths run in increments well short of a standard joint, letting a string designer combine standard joints and one or more pup joints to hit an exact total length. The specific lengths available depend on the manufacturer and the pipe size and connection in use for that job.',
+  },
+  {
+    q: 'What causes a pup joint spacing error?',
+    a: 'Miscalculating the total string length needed before selecting pup joint lengths is the most direct cause, often from an error in the landing depth or tool spacing calculation rather than the pup joint itself. Using a pup joint with a different connection or wall thickness than specified for the rest of the string can also introduce an unintended weak point or thread mismatch.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Pup Joint: Precise Spacing in Tubing and Casing Strings"
+  description="What a pup joint is, how it achieves precise string spacing, why it keeps the same thread and diameter as the rest of the string, and how it differs from a crossover sub."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Pup Joint', href: '/equipment/pup-joint' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Drill String / BHA</div>
+    <h1>Pup <span>Joint</span></h1>
+    <p class="page-hero-sub">A shorter-than-standard length of pipe used to hit an exact spacing calculation in a tubing or casing string.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/pup-joint-1.jpg" image2="/images/equipment/pup-joint-2.jpg" alt="a generic pup joint" />
+      <div class="prose">
+        <h2 id="what-it-is">What a Pup Joint Is</h2>
+        <p>A pup joint is simply a length of pipe shorter than a standard joint, carrying the same connection type and diameter as the rest of the string it's run in. Its only distinguishing feature is length — it exists to let a string be built to a precise total length, rather than being limited to whole multiples of standard joint length.</p>
+
+        <h2 id="when-used">When and Why a Pup Joint Is Run</h2>
+        <ul>
+          <li><strong>Landing a tool at an exact depth.</strong> If a packer, nipple, or other completion component needs to sit at a specific depth, a pup joint fills whatever length gap stands between what standard joints alone can achieve and the exact spacing the job calls for.</li>
+          <li><strong>Filling a gap at the top or bottom of a string</strong>, where the total string length needs to be adjusted by less than a full joint to land correctly relative to the wellhead or a downhole reference point.</li>
+          <li><strong>Accommodating design changes</strong> mid-completion, where a pup joint offers a quick way to adjust total length without re-engineering the entire string.</li>
+        </ul>
+
+        <h2 id="same-connection">Same Connection, Just Shorter</h2>
+        <p>Unlike a <a href="/equipment/crossover-sub">crossover sub</a>, a pup joint doesn't change anything about the string's thread type or diameter — it's a straightforward shorter section of the identical pipe. Available lengths vary by manufacturer and pipe size, letting a string designer combine standard joints with one or more pup joints to reach an exact required total length.</p>
+
+        <h2 id="failure-modes">Common Spacing Errors</h2>
+        <ul>
+          <li><strong>Miscalculated total string length</strong> before pup joint lengths are even selected, usually tracing back to an error in the landing depth or tool spacing calculation rather than the pup joint itself.</li>
+          <li><strong>Mismatched connection or wall thickness</strong> if a pup joint from a different specification than the rest of the string is used, introducing an unintended weak point or thread incompatibility.</li>
+        </ul>
+
+        <h2 id="vs-crossover-sub">Pup Joint vs. Crossover Sub</h2>
+        <p>Both are short pieces of pipe used to complete a string design, but they solve opposite problems. A pup joint keeps everything the same — connection, diameter — and only changes length. A <a href="/equipment/crossover-sub">crossover sub</a> deliberately changes thread type or diameter to join two otherwise incompatible sections of string. If the string needs to be a specific length, it's a pup joint; if the string needs to connect two different pipe specifications, it's a crossover sub.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#when-used">When It's Used</a>
+          <a href="#same-connection">Same Connection, Just Shorter</a>
+          <a href="#failure-modes">Spacing Errors</a>
+          <a href="#vs-crossover-sub">vs. Crossover Sub</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Available lengths and connections vary by manufacturer and pipe size — always confirm against the actual completion design before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/crossover-sub" class="card-link">→ Crossover Sub</a><br><br>
+          <a href="/equipment/landing-nipple" class="card-link">→ Landing Nipple</a><br><br>
+          <a href="/equipment/lifting-sub" class="card-link">→ Lifting Sub</a><br><br>
+          <a href="/drilling/casing" class="card-link">→ Casing Design Explained</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

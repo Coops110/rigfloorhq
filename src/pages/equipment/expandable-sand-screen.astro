@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is an expandable sand screen used for?',
+    a: 'An expandable sand screen controls sand production in an open-hole or lightly-cased completion by filtering formation sand out of produced fluid, while being expanded radially against the formation or hole wall after running in at a smaller OD — improving flow area and formation contact compared to a conventional, non-expandable screen.',
+  },
+  {
+    q: 'Why run it small and expand it later instead of running it full size?',
+    a: 'Running at a reduced outside diameter lets the screen pass through tighter restrictions in the wellbore on the way to depth, including sections where a full-size screen might not fit or might risk damage during running. Once positioned, mechanical or hydraulic expansion brings it out to its full working diameter, close against the formation, which also reduces the annular gap that unexpanded designs leave around the screen.',
+  },
+  {
+    q: 'How does an expandable screen compare to a conventional wire-wrap screen plus gravel pack?',
+    a: 'A conventional approach runs a standard-diameter wire-wrap screen and packs gravel in the annulus around it to filter sand before it reaches the screen slots. An expandable screen instead minimizes that annular gap directly through expansion, which can reduce or eliminate the need for a separate gravel pack operation in the right formation conditions, though gravel packing remains the right choice in many others.',
+  },
+  {
+    q: 'What causes an expandable sand screen job to fail?',
+    a: 'Incomplete or uneven expansion against an irregular or collapsed section of open hole can leave gaps where unfiltered sand still reaches the tubing. Screen damage from an unexpectedly tight restriction during running, before expansion, can also compromise the filtering mesh before the tool even reaches its intended depth.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Expandable Sand Screen: How Expansion Improves Sand Control"
+  description="What an expandable sand screen is, why it runs small and expands against the formation, how it compares to a conventional screen and gravel pack, and common failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Expandable Sand Screen', href: '/equipment/expandable-sand-screen' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Completion Tools</div>
+    <h1>Expandable <span>Sand Screen</span></h1>
+    <p class="page-hero-sub">Runs at a reduced diameter, then expands radially against the formation wall — filtering sand while minimizing the annular gap a conventional screen leaves behind.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/expandable-sand-screen-1.jpg" image2="/images/equipment/expandable-sand-screen-2.jpg" alt="a generic expandable sand screen" />
+      <div class="prose">
+        <h2 id="what-it-is">What an Expandable Sand Screen Is</h2>
+        <p>An expandable sand screen is a sand control device run into an open-hole or lightly-cased completion at a reduced outside diameter, then mechanically or hydraulically expanded radially outward once positioned, bringing it into close contact with the formation or hole wall. Its filtering mesh or slots keep formation sand out of produced fluid while the expanded body minimizes the annular gap left between the screen and the formation.</p>
+
+        <h2 id="why-run-small">Why Run Small and Expand Later</h2>
+        <p>Running at a reduced diameter lets the screen pass through tighter restrictions on the way to depth that a full-size screen might not clear, or might risk damage attempting to pass. Once the screen reaches its intended position, expansion brings it out to full working diameter — close against the formation — which also reduces the annular space available for unfiltered sand to migrate around the screen rather than through it.</p>
+
+        <h2 id="vs-conventional-gravel-pack">Expandable Screen vs. Conventional Screen + Gravel Pack</h2>
+        <p>A conventional completion runs a standard-diameter wire-wrap screen and packs gravel into the annulus around it, using the gravel itself to filter sand before it ever reaches the screen's slots. An expandable screen instead minimizes that annular gap directly through its own expansion, which in the right formation conditions can reduce or eliminate the need for a separate gravel pack operation — though gravel packing remains the better-suited choice in many formations, particularly where hole stability or sand grain size make expansion alone insufficient.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Incomplete or uneven expansion</strong> against an irregular or partially collapsed section of open hole, leaving gaps where unfiltered sand can still reach the tubing.</li>
+          <li><strong>Screen damage during running</strong>, before expansion, from an unexpectedly tight restriction compromising the filtering mesh before the tool reaches depth.</li>
+          <li><strong>Formation movement after expansion</strong> that reopens a gap the expansion was meant to close, particularly in less stable formations.</li>
+        </ul>
+
+        <h2 id="vs-blast-joint">Expandable Sand Screen vs. Blast Joint</h2>
+        <p>Both address sand-related concerns but attack the problem from opposite ends. An expandable sand screen filters sand out before it enters the tubing at all, addressing the problem at the formation face. A <a href="/equipment/blast-joint">blast joint</a> instead accepts that some erosive flow will occur and simply uses tougher, thicker-walled pipe to withstand it at a specific point downstream. A completion exposed to significant sand risk may well use both, at different points in the design.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#why-run-small">Why Run Small</a>
+          <a href="#vs-conventional-gravel-pack">vs. Conventional + Gravel Pack</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-blast-joint">vs. Blast Joint</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Expansion ratios and mesh sizing vary by manufacturer and formation conditions — always confirm against the actual completion design before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/blast-joint" class="card-link">→ Blast Joint</a><br><br>
+          <a href="/equipment/casing-patch" class="card-link">→ Casing Patch</a><br><br>
+          <a href="/equipment/seal-bore-liner-packer" class="card-link">→ Seal Bore Liner Packer</a><br><br>
+          <a href="/equipment/liner-hanger" class="card-link">→ Liner Hanger</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

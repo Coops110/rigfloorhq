@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is a blast joint used for?',
+    a: 'A blast joint is a thick-walled, wear-resistant section of tubing placed across a perforated interval — most often opposite a producing perforation or a gas lift mandrel\'s injection point — to protect the tubing from erosion caused by high-velocity, sometimes sand-laden fluid jetting out of or into the wellbore at that depth.',
+  },
+  {
+    q: 'Why does that specific interval need extra wall thickness?',
+    a: 'Fluid moving through a perforation or a gas lift valve port at high velocity, especially if it carries sand or other abrasive solids, erodes ordinary tubing wall much faster than the same fluid moving smoothly through a straight section of pipe. A blast joint\'s thicker wall and wear-resistant material give it far more erosion life at exactly the depth where that concentrated wear is expected.',
+  },
+  {
+    q: 'Where is a blast joint typically positioned?',
+    a: 'Directly opposite the perforated interval or the gas lift mandrel\'s injection ports — positioned deliberately so the extra-tough section of tubing, not an ordinary joint, is what actually absorbs the erosive flow at that specific depth.',
+  },
+  {
+    q: 'What causes a blast joint to fail despite its thicker wall?',
+    a: 'Underestimating the erosion rate for the actual production rate, sand content, or fluid velocity at that depth can still wear through a blast joint faster than planned, just more slowly than it would an ordinary joint. Misplacement relative to the actual perforation or injection point — even by a modest margin — can also leave the true high-erosion zone unprotected while the blast joint sits slightly off target.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Blast Joint: Erosion-Resistant Tubing at Perforated Intervals"
+  description="What a blast joint is, why it's placed opposite perforations or gas lift mandrels, how its thick wall resists erosive flow, and common failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Blast Joint', href: '/equipment/blast-joint' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Completion Tools</div>
+    <h1>Blast <span>Joint</span></h1>
+    <p class="page-hero-sub">A thick-walled, wear-resistant joint of tubing positioned opposite a perforation or gas lift valve, absorbing erosive flow that would otherwise wear through ordinary pipe.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/blast-joint-1.jpg" image2="/images/equipment/blast-joint-2.jpg" alt="a generic blast joint" />
+      <div class="prose">
+        <h2 id="what-it-is">What a Blast Joint Is</h2>
+        <p>A blast joint is a section of tubing with substantially thicker wall and, often, a harder or more wear-resistant material than the ordinary joints around it, placed deliberately across a perforated interval or opposite a <a href="/equipment/gas-lift-mandrel">gas lift mandrel's</a> injection ports. Its entire purpose is absorbing erosive wear at exactly the depth where high-velocity fluid is expected to pass through or near the tubing wall.</p>
+
+        <h2 id="why-needed">Why That Interval Needs Extra Protection</h2>
+        <p>Fluid moving through a perforation or a gas lift valve port at high velocity — particularly if it's carrying sand or other abrasive solids — erodes ordinary tubing wall far faster than the same fluid flowing smoothly along a straight, unperforated section of pipe. A blast joint's increased wall thickness gives it dramatically more erosion life at that specific depth, extending the interval between failures or replacements compared to leaving a standard joint in that position.</p>
+
+        <h2 id="placement">Placement</h2>
+        <p>A blast joint is positioned directly opposite the perforated interval or the gas lift mandrel's injection point, so the reinforced section — not an ordinary joint — is what actually sits where the erosive flow concentrates. Getting this placement right depends on accurate depth correlation between the completion design and the perforating or mandrel-setting program.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Underestimated erosion rate</strong> for the actual production rate, sand content, or fluid velocity at that depth, wearing through the blast joint faster than planned even if far slower than an ordinary joint would have.</li>
+          <li><strong>Placement error</strong> relative to the true perforation or injection point, leaving the actual high-erosion zone exposed to a standard joint while the blast joint sits slightly off target.</li>
+          <li><strong>Material selection mismatch</strong> for the specific fluid chemistry or solids content, where a blast joint's wear-resistant coating or alloy underperforms against conditions it wasn't designed for.</li>
+        </ul>
+
+        <h2 id="vs-expandable-sand-screen">Blast Joint vs. Expandable Sand Screen</h2>
+        <p>Both address sand-related wear concerns, but in different ways. A blast joint is passive armor — a thicker, tougher section of pipe that simply outlasts the erosive flow passing through or near it. An <a href="/equipment/expandable-sand-screen">expandable sand screen</a> actively filters sand out of the produced fluid before it ever reaches the tubing, addressing the sand problem at its source rather than just withstanding its effects downstream.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#why-needed">Why It's Needed</a>
+          <a href="#placement">Placement</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-expandable-sand-screen">vs. Expandable Sand Screen</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Wall thickness and material grade vary by manufacturer and expected service conditions — always confirm against the actual completion design before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/gas-lift-mandrel" class="card-link">→ Gas Lift Mandrel</a><br><br>
+          <a href="/equipment/expandable-sand-screen" class="card-link">→ Expandable Sand Screen</a><br><br>
+          <a href="/equipment/tcp-gun" class="card-link">→ TCP Gun</a><br><br>
+          <a href="/equipment/sliding-sleeve" class="card-link">→ Sliding Sleeve</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is a gas lift mandrel used for?',
+    a: 'A gas lift mandrel is installed in the tubing string to house a gas lift valve, allowing gas injected into the annulus from surface to enter the tubing at a chosen depth. That injected gas lightens the fluid column above it, reducing the bottomhole pressure needed to lift production to surface — a standard artificial lift method for wells that no longer flow strongly on their own.',
+  },
+  {
+    q: 'What is a side-pocket mandrel, and why does it matter?',
+    a: 'A side-pocket mandrel offsets its valve pocket to one side of the main tubing bore, which allows the gas lift valve itself to be installed into or retrieved from that pocket using a wireline kickover tool, without pulling the tubing string. A conventional mandrel, by contrast, has its valve fixed in the main bore and generally requires pulling tubing to service the valve.',
+  },
+  {
+    q: 'How many gas lift mandrels does a well typically have?',
+    a: 'It depends on the lift design — some wells use a single mandrel at a calculated optimum depth, while others use several mandrels at different depths to allow unloading the well in stages as injection pressure and fluid level change during startup. The specific number and depths come from a gas lift design calculation, not a fixed rule.',
+  },
+  {
+    q: 'What causes a gas lift valve to fail or underperform?',
+    a: 'A valve that opens or closes at the wrong injection pressure — from wear, debris, or a miscalibrated dome charge — can inject gas inefficiently or at the wrong depth entirely. Debris or scale in the side pocket can also prevent a wireline kickover tool from retrieving or reinstalling the valve cleanly, requiring extra intervention time to resolve.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Gas Lift Mandrel: How Side-Pocket Artificial Lift Works"
+  description="What a gas lift mandrel is, how a side-pocket design allows wireline valve retrieval, mandrel spacing for staged unloading, and common failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Gas Lift Mandrel', href: '/equipment/gas-lift-mandrel' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Completion Tools</div>
+    <h1>Gas Lift <span>Mandrel</span></h1>
+    <p class="page-hero-sub">Houses a gas lift valve in the tubing string, letting injected annulus gas lighten the fluid column and lift production without pulling the string to service it.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/gas-lift-mandrel-1.jpg" image2="/images/equipment/gas-lift-mandrel-2.jpg" alt="a generic side-pocket gas lift mandrel" />
+      <div class="prose">
+        <h2 id="what-it-is">What a Gas Lift Mandrel Is</h2>
+        <p>A gas lift mandrel is a tubing string component that houses a gas lift valve, positioned to let gas injected from surface into the annulus pass into the tubing at a chosen depth. That injected gas mixes with and lightens the produced fluid column above the injection point, reducing the bottomhole pressure needed to lift fluid to surface — the core mechanism behind gas lift as an artificial lift method.</p>
+
+        <h2 id="side-pocket">Side-Pocket vs. Conventional Mandrels</h2>
+        <p>A <strong>side-pocket mandrel</strong> offsets its valve pocket to one side of the main tubing bore, which is what allows a wireline kickover tool to install or retrieve the gas lift valve directly, without pulling the tubing string at all. A <strong>conventional mandrel</strong> instead holds its valve fixed in the main bore of the tubing, which generally means pulling the whole string to service or replace the valve. Side-pocket designs dominate modern gas lift completions specifically because of this wireline-serviceable advantage.</p>
+
+        <h2 id="mandrel-spacing">Mandrel Spacing and Staged Unloading</h2>
+        <p>Some wells run a single mandrel at a calculated optimum injection depth. Others run several mandrels at different depths specifically to support staged unloading — injecting progressively deeper as the fluid level in the annulus drops during startup, with each shallower mandrel's valve closing once the well can inject effectively through a deeper one. The number and depth of mandrels in a given completion come from a gas lift design calculation tailored to that well's specific pressures and rates, not a standard count.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Valve opening or closing at the wrong injection pressure</strong>, from wear, debris, or a miscalibrated dome charge, injecting gas inefficiently or at an unintended depth.</li>
+          <li><strong>Debris or scale in the side pocket</strong>, preventing a wireline kickover tool from cleanly retrieving or reinstalling the valve.</li>
+          <li><strong>Erosion at the valve port</strong> from sustained high-velocity gas injection, which is part of why a <a href="/equipment/blast-joint">blast joint</a> is often placed opposite the mandrel's injection point.</li>
+        </ul>
+
+        <h2 id="vs-sliding-sleeve">Gas Lift Mandrel vs. Sliding Sleeve</h2>
+        <p>Both allow flow between the tubing and annulus at a chosen depth, but for different purposes and by different mechanisms. A <a href="/equipment/sliding-sleeve">sliding sleeve</a> is mechanically shifted open or closed on demand by a wireline shifting tool, giving deliberate, on/off flow control. A gas lift mandrel's valve opens and closes automatically based on pressure conditions, continuously regulating injected gas flow as part of the lift system rather than being manually toggled for isolation purposes.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#side-pocket">Side-Pocket vs. Conventional</a>
+          <a href="#mandrel-spacing">Mandrel Spacing</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-sliding-sleeve">vs. Sliding Sleeve</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Valve calibration and mandrel spacing vary by manufacturer and well-specific lift design — always confirm against the actual completion design before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/blast-joint" class="card-link">→ Blast Joint</a><br><br>
+          <a href="/equipment/sliding-sleeve" class="card-link">→ Sliding Sleeve</a><br><br>
+          <a href="/equipment/landing-nipple" class="card-link">→ Landing Nipple</a><br><br>
+          <a href="/equipment/scssv" class="card-link">→ SCSSV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

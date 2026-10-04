@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is a multilateral junction?',
+    a: 'A multilateral junction is the structural point where a lateral (branch) wellbore intersects the main wellbore in a well with more than one producing branch. The junction\'s job is handling whatever structural support and hydraulic isolation the well design requires at that intersection, ranging from nothing at all to full pressure isolation between the two bores.',
+  },
+  {
+    q: 'What are TAML levels, and why do they matter for a junction?',
+    a: 'TAML (Technology Advancement for Multi-Laterals) levels classify multilateral junctions from 1 to 6 based on how much mechanical support and pressure isolation the junction provides, from a simple open junction with no support (Level 1) up to a fully cased, cemented, and pressure-isolated junction with selective access to each lateral (Level 6). Choosing a level is a core decision in any multilateral well design, trading complexity and cost against structural integrity and flow control.',
+  },
+  {
+    q: 'Why would a well design choose a simple junction over a complex one?',
+    a: 'A simple, unsupported junction costs far less and is mechanically straightforward, which is a reasonable choice in competent, stable formations where the junction doesn\'t need mechanical reinforcement and where commingled, uncontrolled flow between laterals is acceptable. A complex, isolated junction costs more and adds engineering complexity but is justified when formation stability, selective zonal control, or regulatory requirements demand it.',
+  },
+  {
+    q: 'What causes a multilateral junction to fail?',
+    a: 'Formation collapse at an unsupported junction can partially or fully block one of the laterals if the design assumed more hole stability than actually existed. On higher-level, pressure-isolated junctions, seal failure at the isolation elements can allow unwanted communication between laterals, defeating the selective control the design was built around.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Multilateral Junction: TAML Levels and Branch Wellbore Design"
+  description="What a multilateral junction is, how TAML levels classify junction support and isolation, when a simple vs. complex junction is chosen, and common failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Multilateral Junction', href: '/equipment/multilateral-junction' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Completion Tools</div>
+    <h1>Multilateral <span>Junction</span></h1>
+    <p class="page-hero-sub">The structural and hydraulic control point where a lateral wellbore branches off the main bore — ranging from a simple open intersection to a fully isolated, selectively accessible junction.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/multilateral-junction-1.jpg" image2="/images/equipment/multilateral-junction-2.jpg" alt="a generic multilateral well junction" />
+      <div class="prose">
+        <h2 id="what-it-is">What a Multilateral Junction Is</h2>
+        <p>A multilateral junction is the point where a lateral, or branch, wellbore intersects the main wellbore in a well drilled with more than one producing leg. What the junction actually consists of varies enormously by design — from nothing more than an open intersection in stable formation, to a fully cased, cemented, and pressure-isolated structure allowing selective, independent access to each lateral.</p>
+
+        <h2 id="taml-levels">TAML Levels</h2>
+        <p>TAML (Technology Advancement for Multi-Laterals) levels classify multilateral junctions from 1 to 6 by how much mechanical support and hydraulic isolation they provide:</p>
+        <ul>
+          <li><strong>Level 1-2:</strong> Open or minimally supported junctions, typically in competent formation with no cement or casing support across the intersection itself.</li>
+          <li><strong>Level 3-4:</strong> The junction gains mechanical support — casing or a liner across the intersection — with increasing integration of that support with the main bore's own casing.</li>
+          <li><strong>Level 5-6:</strong> Full pressure isolation at the junction, with Level 6 adding selective, controllable access to each lateral independently, approaching the flexibility of a single-bore completion applied separately to each branch.</li>
+        </ul>
+
+        <h2 id="choosing-a-level">Why a Design Chooses One Level Over Another</h2>
+        <p>A simple, low-level junction costs far less and is mechanically straightforward, a reasonable choice in competent, stable formations where the junction doesn't need reinforcement and where commingled flow between laterals, without selective control, is acceptable for the reservoir management plan. A complex, high-level junction costs significantly more and adds real engineering and installation difficulty, but is justified when formation instability, the need for independent zonal control between laterals, or regulatory requirements demand it.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Formation collapse at an unsupported junction</strong>, partially or fully blocking a lateral if the design assumed more hole stability than actually existed.</li>
+          <li><strong>Seal failure on higher-level junctions</strong>, allowing unwanted pressure or fluid communication between laterals and defeating the selective isolation the design was built around.</li>
+          <li><strong>Access tool failure</strong> on Level 6 designs, where the mechanism intended to selectively route access to one lateral or another malfunctions.</li>
+        </ul>
+
+        <h2 id="vs-sliding-sleeve">Multilateral Junction vs. Sliding Sleeve</h2>
+        <p>Both can provide selective flow control in a complex completion, but at different scales. A <a href="/equipment/sliding-sleeve">sliding sleeve</a> controls flow between the tubing bore and the annulus at one depth within a single wellbore. A multilateral junction controls structural integrity and, in higher-TAML designs, flow access between two entire separate wellbores meeting at one point. A sophisticated multilateral completion can use both — junctions to manage the branches, and sliding sleeves within each branch for finer zonal control.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#taml-levels">TAML Levels</a>
+          <a href="#choosing-a-level">Choosing a Level</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-sliding-sleeve">vs. Sliding Sleeve</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Junction design and TAML classification vary by well-specific engineering — always confirm against the actual completion design before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/sliding-sleeve" class="card-link">→ Sliding Sleeve</a><br><br>
+          <a href="/equipment/orienting-sub" class="card-link">→ Orienting Sub</a><br><br>
+          <a href="/equipment/whipstock" class="card-link">→ Whipstock</a><br><br>
+          <a href="/drilling/directional" class="card-link">→ Directional Drilling</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

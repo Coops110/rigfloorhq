@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is an orienting sub used for?',
+    a: 'An orienting sub holds a known, fixed rotational relationship between a surface reference and a specific feature on a downhole tool — most commonly a whipstock\'s concave face — so that tool can be set pointing in a deliberately chosen direction (toolface) in the wellbore, rather than whatever direction it happens to land in.',
+  },
+  {
+    q: 'How is orientation actually confirmed downhole?',
+    a: 'Historically, by a scribe knife or scratcher built into the orienting assembly that marks the casing wall at a known offset from the tool\'s reference feature, then pulling the string and measuring the scribe mark\'s position against a known surface reference. On modern jobs, an MWD or gyro survey tool run with or near the orienting sub provides a real-time toolface reading at surface, letting the tool be rotated into position and confirmed without pulling out of the hole.',
+  },
+  {
+    q: 'Why does orientation matter for a whipstock run?',
+    a: 'A whipstock\'s concave face has to point toward the planned direction of the sidetrack before a window mill is run in to cut the casing. If the whipstock is set facing the wrong direction, the resulting window — and everything milled or drilled through it — comes out wrong, often requiring the whole setting to be milled out and redone.',
+  },
+  {
+    q: 'What causes an orientation job to fail?',
+    a: 'Drag or torque loss while running the string can cause the actual downhole toolface to differ from what surface indication suggests, particularly in deviated or high-friction wellbores. A scribe mark can also be misread or obscured by debris on the casing wall. And on real-time surveys, a magnetic interference source too close to the sensor can return an inaccurate toolface reading even though the equipment appears to be working normally.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Orienting Sub: How Downhole Tool Orientation Works"
+  description="What an orienting sub is, how toolface orientation is confirmed downhole with scribes or real-time surveys, why it matters for whipstock setting, and common failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Orienting Sub', href: '/equipment/orienting-sub' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Orienting <span>Sub</span></h1>
+    <p class="page-hero-sub">Holds a known rotational reference so a downhole tool — most often a whipstock — can be set facing a deliberately chosen direction, not whatever direction it lands in.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/orienting-sub-1.jpg" image2="/images/equipment/orienting-sub-2.jpg" alt="a generic orienting sub" />
+      <div class="prose">
+        <h2 id="what-it-is">What an Orienting Sub Is</h2>
+        <p>An orienting sub is a BHA component that maintains a fixed, known rotational relationship between a surface reference and a specific feature on the tool being run below it — most commonly the concave deflecting face of a <a href="/equipment/whipstock">whipstock</a>. Running an orienting sub turns "set the tool somewhere down there" into "set the tool facing this specific compass direction," which matters enormously for any job where the direction a tool points determines where the well goes next.</p>
+
+        <h2 id="when-used">When and Why Orientation Matters</h2>
+        <ul>
+          <li><strong>Whipstock setting for a sidetrack.</strong> The whipstock's concave face has to point toward the planned deflection direction before a <a href="/equipment/window-mill">window mill</a> is run in to cut the casing window — get the toolface wrong and the resulting window, and everything milled or drilled through it, comes out in the wrong direction.</li>
+          <li><strong>Directional tool placement</strong> generally, anywhere a downhole feature's rotational position determines a planned outcome rather than an incidental one.</li>
+          <li><strong>Re-entry and multilateral work</strong>, where a specific lateral or junction feature needs to be set facing a known azimuth relative to the original wellbore.</li>
+        </ul>
+
+        <h2 id="how-confirmed">How Orientation Is Confirmed Downhole</h2>
+        <p>Two broad methods exist. The traditional approach uses a <strong>scribe knife or scratcher</strong> built into the orienting assembly, which marks the casing wall at a known angular offset from the tool's own reference feature; the string is then pulled and the scribe mark's position measured against a known surface reference to back-calculate the tool's actual downhole orientation. The modern approach runs an <strong>MWD or gyro survey tool</strong> with or near the orienting sub, providing a real-time toolface reading at surface so the string can be rotated into the correct position and confirmed immediately, without tripping out of the hole to check a scribe mark.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Torque loss or string drag</strong> in a deviated or high-friction wellbore, causing the actual downhole toolface to differ from what surface rotation would suggest.</li>
+          <li><strong>Obscured or misread scribe marks</strong> on the casing wall, from debris, poor visibility, or a shallow mark.</li>
+          <li><strong>Magnetic interference</strong> near a real-time survey sensor returning an inaccurate toolface reading despite the equipment functioning normally — the same concern addressed by non-magnetic spacing in the <a href="/equipment/nmdc-pony-nmdc">NMDC / pony NMDC</a> used near MWD tools.</li>
+        </ul>
+
+        <h2 id="vs-whipstock">Orienting Sub vs. Whipstock</h2>
+        <p>The two are almost always run together but serve different functions. A <a href="/equipment/whipstock">whipstock</a> is the deflecting tool itself — its concave face physically guides a mill into the casing wall. The orienting sub is what ensures that concave face is actually pointed in the right direction before the whipstock is set and the mill is run. The whipstock does the deflecting; the orienting sub makes sure it deflects the right way.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#when-used">When It's Used</a>
+          <a href="#how-confirmed">How It's Confirmed</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-whipstock">vs. Whipstock</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Orientation tolerances and methods vary by job and tool manufacturer — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/whipstock" class="card-link">→ Whipstock</a><br><br>
+          <a href="/equipment/window-mill" class="card-link">→ Window Mill</a><br><br>
+          <a href="/equipment/nmdc-pony-nmdc" class="card-link">→ NMDC / Pony NMDC</a><br><br>
+          <a href="/equipment/mwd-tool" class="card-link">→ MWD Tool</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

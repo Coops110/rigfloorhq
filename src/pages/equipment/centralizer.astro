@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is a centralizer used for?',
+    a: 'A centralizer clamps around the outside of a casing or liner string at intervals and holds it standing off from the wellbore wall, keeping the string centered rather than lying against one side of the hole. That standoff is critical during cementing, since an off-center string produces an uneven cement sheath around the pipe — thick on one side, thin or absent on the other — which can leave a channel for fluid migration right where it matters most.',
+  },
+  {
+    q: 'What is the difference between bow-spring and rigid centralizers?',
+    a: 'A bow-spring centralizer uses flexible, spring-steel bows that compress as the string passes through tight spots and spring back out against the wellbore wall, providing standoff through spring force. A rigid (solid-body) centralizer uses fixed, non-flexing blades or ribs instead, giving a set standoff that doesn\'t depend on spring force — generally chosen in higher-temperature wells or where bow-spring fatigue over time or depth is a specific concern.',
+  },
+  {
+    q: 'How many centralizers does a casing string need?',
+    a: 'There is no universal number — placement and spacing are calculated for each job from the specific well\'s deviation, planned cement top, and casing weight, aiming for adequate standoff percentage across the cemented interval rather than a fixed count. A cementing or casing design engineer typically runs that placement calculation rather than applying a rule of thumb.',
+  },
+  {
+    q: 'What causes a centralizer to fail to provide adequate standoff?',
+    a: 'Under-sizing the centralizer for the actual hole diameter is the most direct cause, leaving less standoff force than the job assumed. Bow-spring fatigue from high temperature or an extended time in the hole before cementing can also reduce spring force below its rated standoff. And in a severely deviated or doglegged interval, even a correctly rated centralizer can be pinned against the low side of the hole by gravity, overwhelming its spring force locally.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Centralizer: Bow-Spring vs. Rigid Casing Centralizers"
+  description="What a casing centralizer is, bow-spring vs. rigid designs, why standoff matters for cementing, placement considerations, and common failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Centralizer', href: '/equipment/centralizer' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Casing <span>Centralizer</span></h1>
+    <p class="page-hero-sub">Clamps onto the casing OD and holds the string centered in the hole, so cement forms an even sheath around the pipe instead of channeling along one side.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/centralizer-1.jpg" image2="/images/equipment/centralizer-2.jpg" alt="a generic bow-spring casing centralizer" />
+      <div class="prose">
+        <h2 id="what-it-is">What a Centralizer Is</h2>
+        <p>A centralizer is clamped around the outside of a casing or liner joint at planned intervals along the string, holding that section of pipe standing off from the wellbore wall rather than lying against one side of the hole under its own weight. The goal is a casing string that sits reasonably centered through the interval that will later be cemented.</p>
+        <p>That centering matters almost entirely because of what happens next: an off-center string produces an uneven annular cement sheath, thick where the pipe stands away from the wall and thin — or missing entirely — where it rests against it. A thin or missing cement sheath is exactly where a fluid migration channel can form behind the pipe, undermining the zonal isolation the cement job was meant to provide.</p>
+
+        <h2 id="bow-spring-vs-rigid">Bow-Spring vs. Rigid Centralizers</h2>
+        <p>A <strong>bow-spring centralizer</strong> uses curved, spring-steel bows around the body that compress inward as the string passes through tight spots in the hole, then spring back outward against the wellbore wall to provide standoff through continuous spring force. It's the more common choice in moderate conditions and is relatively low cost per joint.</p>
+        <p>A <strong>rigid (solid-body) centralizer</strong> uses fixed blades or ribs instead of flexing bows, providing a set mechanical standoff that doesn't rely on spring force and therefore doesn't fatigue the way a bow-spring can over high temperature or extended time in the hole before cementing. Rigid centralizers are generally favored in harsher well conditions where bow-spring fatigue is a specific, known concern.</p>
+
+        <h2 id="placement">Placement and Spacing</h2>
+        <p>There's no fixed rule for how many centralizers a string needs or how far apart they go — spacing is calculated for each job based on the well's deviation profile, the planned top of cement, and the casing's own weight and stiffness, targeting an adequate standoff percentage across the interval that will be cemented. That calculation is typically run by a cementing or casing design engineer rather than applied as a generic rule of thumb, since the right spacing in a near-vertical well can be badly wrong in a highly deviated one.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Under-sizing</strong> the centralizer for the actual hole diameter, providing less standoff force than the cement design assumed.</li>
+          <li><strong>Bow-spring fatigue</strong> from high bottomhole temperature or extended time in the hole before the cement job, reducing spring force below rated standoff.</li>
+          <li><strong>Severe deviation or doglegs</strong> pinning even a correctly rated centralizer against the low side of the hole, where gravity can locally overwhelm its spring force regardless of rating.</li>
+        </ul>
+
+        <h2 id="vs-stabilizer">Centralizer vs. Stabilizer</h2>
+        <p>Both tools clamp onto a string and manage its position in the hole, but they work in entirely different contexts. A centralizer is run on casing or liner being cemented in place, purely to control standoff for the cement job. A <a href="/equipment/stabilizer">stabilizer</a> is run as part of an active drilling BHA, controlling the trajectory and contact pattern of the drill string while actively drilling. One centers pipe that will stay in the hole permanently; the other steers pipe that's actively cutting new hole.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#bow-spring-vs-rigid">Bow-Spring vs. Rigid</a>
+          <a href="#placement">Placement &amp; Spacing</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-stabilizer">vs. Stabilizer</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Standoff ratings and spacing calculations vary by manufacturer, hole size, and well design — always confirm against the actual cementing program before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/stabilizer" class="card-link">→ Stabilizer</a><br><br>
+          <a href="/equipment/casing-shoe" class="card-link">→ Casing Shoe</a><br><br>
+          <a href="/equipment/liner-hanger" class="card-link">→ Liner Hanger</a><br><br>
+          <a href="/drilling/casing" class="card-link">→ Casing Design Explained</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

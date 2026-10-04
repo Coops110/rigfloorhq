@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is a casing roller or dressing tool used for?',
+    a: 'A casing roller — also called a dressing tool — is run to true up a dented, out-of-round, or otherwise deformed section of casing, restoring a round internal profile so that later tools, packers, or liners can pass through and seal properly. It works by rolling or burnishing the casing wall back toward round rather than by cutting or removing metal.',
+  },
+  {
+    q: 'How does a casing roller differ from a burr mill?',
+    a: 'A casing roller restores shape without removing significant metal — it works the existing pipe wall back toward round through rolling pressure. A burr mill actually removes small amounts of metal, typically to dress rough edges or burrs left behind by a previous cutting or milling pass. If the casing is out of round but the wall itself is sound, a roller is the right tool; if there\'s a sharp, hard burr or edge that needs grinding away, a burr mill is the right tool.',
+  },
+  {
+    q: 'Does a casing roller repair a leak or breach in the casing?',
+    a: 'No — it addresses shape, not integrity. A section of casing that is dented or ovalized but not breached is a good candidate for rolling. If the casing has an actual hole, split, or breach, that\'s a job for a casing patch instead, since rolling does nothing to restore pressure integrity across a breach.',
+  },
+  {
+    q: 'What causes a casing roller job to fail?',
+    a: 'Deformation too severe for the roller\'s working range can leave the casing still out of round after the pass, requiring a different repair approach entirely. Working the tool too aggressively against hard or high-grade casing can also damage the roller elements themselves rather than the pipe, and failing to fully dress the deformed interval in one pass can leave a transition zone that still catches tools run through later.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Casing Roller / Dressing Tool: Restoring Round Casing"
+  description="What a casing roller or dressing tool is, how it restores a round profile to dented or deformed casing, how it differs from a burr mill and a casing patch, and common failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Casing Roller / Dressing Tool', href: '/equipment/casing-roller-dressing-tool' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Casing Roller / <span>Dressing Tool</span></h1>
+    <p class="page-hero-sub">Restores a round internal profile to dented or deformed casing by rolling the wall back toward shape, without cutting away metal.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/casing-roller-dressing-tool-1.jpg" image2="/images/equipment/casing-roller-dressing-tool-2.jpg" alt="a generic casing roller dressing tool" />
+      <div class="prose">
+        <h2 id="what-it-is">What a Casing Roller Is</h2>
+        <p>A casing roller, also called a dressing tool, is run into a section of casing that has become dented, ovalized, or otherwise deformed — from running tools, formation movement, or external loading — and works the pipe wall back toward a round internal profile. It does this through rolling or burnishing pressure against the deformed section, not by cutting or removing meaningful amounts of metal.</p>
+        <p>The goal is simple: restore a round, properly dimensioned bore so that later tools, packers, liners, or completion hardware can pass through and function the way they're designed to, rather than catching or failing to seal against an out-of-round section.</p>
+
+        <h2 id="when-used">When and Why a Casing Roller Is Run</h2>
+        <ul>
+          <li><strong>Dents from running tools</strong> that struck the casing wall hard enough to deform it without breaching it.</li>
+          <li><strong>Formation movement or external loading</strong> that has ovalized a section of casing over time, common in certain geological settings.</li>
+          <li><strong>Pre-conditioning a section</strong> before running a packer or liner that needs a true round bore to seal against, where the casing is suspected or confirmed to be slightly out of round.</li>
+        </ul>
+
+        <h2 id="how-it-works">How It Works</h2>
+        <p>The tool's rolling elements — typically hardened rollers or a shaped mandrel — are expanded against the casing ID as the tool rotates and works through the deformed interval, applying rolling pressure that reshapes the pipe wall back toward round rather than grinding or cutting it away. Because the process works the existing metal rather than removing it, it preserves more of the casing's original wall thickness and strength than a cutting or milling approach would.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Deformation beyond the tool's working range</strong>, leaving the casing still out of round after the pass and requiring a different repair approach.</li>
+          <li><strong>Roller element damage</strong> from working too aggressively against hard or high-grade casing.</li>
+          <li><strong>Incomplete dressing</strong> of the full deformed interval in one pass, leaving a transition zone that can still catch tools run through later.</li>
+        </ul>
+
+        <h2 id="vs-burr-mill-vs-patch">Casing Roller vs. Burr Mill vs. Casing Patch</h2>
+        <p>Three tools address three different problems that can look similar at a glance. A casing roller restores <em>shape</em> — it corrects an out-of-round but otherwise sound section of pipe. A <a href="/equipment/burr-mill">burr mill</a> removes a <em>sharp edge or burr</em> — small amounts of metal left behind by a previous cutting or milling operation. A <a href="/equipment/casing-patch">casing patch</a> restores <em>pressure integrity</em> — it seals an actual breach, hole, or split in the pipe. If the casing is dented but intact, roll it; if there's a burr or rough edge, mill it; if there's a breach, patch it.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#when-used">When It's Used</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-burr-mill-vs-patch">vs. Burr Mill vs. Casing Patch</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Working range and roller specifications vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/burr-mill" class="card-link">→ Burr Mill</a><br><br>
+          <a href="/equipment/casing-patch" class="card-link">→ Casing Patch</a><br><br>
+          <a href="/equipment/casing-cutter" class="card-link">→ Casing Cutter</a><br><br>
+          <a href="/drilling/casing" class="card-link">→ Casing Design Explained</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

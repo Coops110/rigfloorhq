@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is a lifting sub used for?',
+    a: 'A lifting sub is a short, heavy-duty sub made up temporarily onto a BHA component — a stabilizer, reamer, or other heavy tool — to give the rig floor crew a rated attachment point for a lifting bail, elevator, or sling, so that component can be picked up, moved, and racked safely without relying on an unrated thread or surface.',
+  },
+  {
+    q: 'Is a lifting sub a downhole functional tool?',
+    a: 'No — it\'s a handling accessory, not a tool that does anything once in the well. It\'s made up for rig-floor handling purposes before a component is run and typically removed once that component is where it needs to be, rather than running downhole as a functional part of the BHA.',
+  },
+  {
+    q: 'How does a lifting sub differ from a crossover sub?',
+    a: 'A crossover sub solves a downhole problem — joining two components with different thread types or diameters so the string can be made up and run as designed. A lifting sub solves a surface handling problem — giving a heavy component a safe, rated point to be lifted from on the rig floor. One is a functional part of the running string; the other is a handling aid that\'s typically removed before or shortly after the component goes in the hole.',
+  },
+  {
+    q: 'What causes a lifting sub incident?',
+    a: 'Using a lifting sub rated below the actual weight of the component being lifted is the most serious risk, since the load rating exists precisely to prevent an overload failure during a lift. Worn or damaged threads on the sub itself, or improperly made-up connections between the sub and the component, are the other common causes of a dropped or shifted load during handling.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Lifting Sub: Rig Floor Handling for Heavy BHA Components"
+  description="What a lifting sub is, why it's a handling accessory rather than a downhole tool, how it differs from a crossover sub, and common handling failure causes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Lifting Sub', href: '/equipment/lifting-sub' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Drill String / BHA</div>
+    <h1>Lifting <span>Sub</span></h1>
+    <p class="page-hero-sub">A rated attachment point made up onto a heavy BHA component so the rig floor crew can lift and handle it safely — not a downhole functional tool.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/lifting-sub-1.jpg" image2="/images/equipment/lifting-sub-2.jpg" alt="a generic lifting sub" />
+      <div class="prose">
+        <h2 id="what-it-is">What a Lifting Sub Is</h2>
+        <p>A lifting sub is a short, heavy-duty sub made up temporarily onto a BHA component — commonly a <a href="/equipment/stabilizer">stabilizer</a>, an <a href="/equipment/under-reamer">under-reamer</a>, or another heavy tool — to provide the rig floor crew a rated, purpose-built attachment point for a lifting bail, elevator, or sling. It exists entirely for surface handling: picking the component up, moving it into position, and racking it safely without lifting from an unrated thread or surface that was never designed to carry that load.</p>
+
+        <h2 id="when-used">When and Why a Lifting Sub Is Used</h2>
+        <ul>
+          <li><strong>Moving heavy BHA components</strong> around the rig floor or catwalk, where the component's own connections aren't rated or suited for a direct lift.</li>
+          <li><strong>Racking and unracking</strong> tools in and out of storage, especially larger-diameter or irregularly shaped components without a natural lifting point.</li>
+          <li><strong>Any heavy lift</strong> where a rated, known attachment point removes guesswork about whether a given thread or surface can safely carry the load.</li>
+        </ul>
+
+        <h2 id="not-a-downhole-tool">Not a Downhole Functional Tool</h2>
+        <p>Unlike nearly everything else in a BHA, a lifting sub does nothing once the string is in the well — it has no downhole function, no flow path role, no mechanical purpose beyond the surface handling it was made up for. It's typically removed once the component it was attached to is in position, rather than running downhole as part of the working assembly.</p>
+
+        <h2 id="failure-modes">Common Handling Failures</h2>
+        <ul>
+          <li><strong>Under-rated sub for the actual load</strong>, the most serious risk, since the entire point of a load rating is preventing overload failure during a lift.</li>
+          <li><strong>Worn or damaged threads</strong> on the sub itself from repeated use, reducing its effective rating below its original specification.</li>
+          <li><strong>Improper make-up</strong> between the sub and the component being lifted, which can shift or fail under load even if the sub itself is rated correctly.</li>
+        </ul>
+
+        <h2 id="vs-crossover-sub">Lifting Sub vs. Crossover Sub</h2>
+        <p>Both are "subs" in the loose sense of a short connecting piece, but they solve entirely different problems. A <a href="/equipment/crossover-sub">crossover sub</a> solves a downhole problem — joining components with different thread types or diameters so a string can be made up and run as designed, and it stays in the string as a functional connection. A lifting sub solves a surface handling problem and is typically not a permanent part of the running assembly at all.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#when-used">When It's Used</a>
+          <a href="#not-a-downhole-tool">Not a Downhole Tool</a>
+          <a href="#failure-modes">Handling Failures</a>
+          <a href="#vs-crossover-sub">vs. Crossover Sub</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Load ratings vary by manufacturer and model — always confirm against the actual sub's rated capacity before relying on any figure here for a real lift.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/crossover-sub" class="card-link">→ Crossover Sub</a><br><br>
+          <a href="/equipment/stabilizer" class="card-link">→ Stabilizer</a><br><br>
+          <a href="/equipment/under-reamer" class="card-link">→ Under-Reamer</a><br><br>
+          <a href="/equipment/pup-joint" class="card-link">→ Pup Joint</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

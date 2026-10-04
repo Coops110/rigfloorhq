@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is a well protector used for?',
+    a: 'A well protector is a temporary device installed over or inside a wellhead, tubing hanger, or landing profile to shield its critical sealing surfaces and threads from damage while other equipment and tools are rigged up, run, or pulled during an intervention or workover.',
+  },
+  {
+    q: 'What kind of damage is a well protector actually preventing?',
+    a: 'Dropped tools, slips from running equipment, wireline hardware, or simple rig floor traffic can all nick, scratch, or deform a precision sealing surface or thread profile on a wellhead or hanger — damage that might seem minor but can prevent a proper metal-to-metal or elastomer seal from forming later. A well protector covers and isolates that surface from exactly this kind of incidental contact while the well is open for work.',
+  },
+  {
+    q: 'When is a well protector installed and removed?',
+    a: 'It goes on before intervention work begins — rigging up wireline, coiled tubing, or a workover rig — and comes off once that equipment is rigged down and the critical surface it was protecting needs to be exposed again for its actual function, such as landing a hanger or making a final seal.',
+  },
+  {
+    q: 'What happens if a well protector is skipped?',
+    a: 'Skipping it doesn\'t guarantee damage, but it removes the margin of safety specifically meant to catch the routine mishaps — a dropped slip, a dragged tool — that happen often enough on an active rig floor to justify protecting the one surface that absolutely has to seal correctly once work is done.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Well Protector: Shielding Wellhead Surfaces During Intervention"
+  description="What a well protector is, what kind of damage it prevents on wellhead and hanger sealing surfaces, when it's installed and removed, and why skipping it matters."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Well Protector', href: '/equipment/well-protector' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Well <span>Protector</span></h1>
+    <p class="page-hero-sub">A temporary shield over a wellhead's critical sealing surfaces, keeping them safe from the routine mishaps of an active rig floor during intervention work.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/well-protector-1.jpg" image2="/images/equipment/well-protector-2.jpg" alt="a generic wellhead well protector" />
+      <div class="prose">
+        <h2 id="what-it-is">What a Well Protector Is</h2>
+        <p>A well protector is a temporary cover or isolation device installed over or inside a wellhead, tubing hanger, or landing profile, shielding its precision sealing surfaces and threads from incidental damage while intervention equipment is rigged up, run, and rigged down around it. It performs no downhole function of its own — it exists purely to protect something else from getting damaged during work that happens nearby.</p>
+
+        <h2 id="why-it-matters">What Kind of Damage It Prevents</h2>
+        <p>An active rig floor during a workover or intervention sees a steady stream of tools, slips, wireline hardware, and general equipment traffic moving past the wellhead. Any of it can nick, scratch, or deform a precision metal-to-metal sealing surface or a thread profile that looks minor at the time but later prevents a proper seal from forming — a tubing hanger that won't seat correctly, or a connection that leaks because of damage no one noticed during the job. A well protector covers that vulnerable surface for the duration of the work, removing it from the list of things that can get hit by accident.</p>
+
+        <h2 id="when-used">When It's Installed and Removed</h2>
+        <ul>
+          <li><strong>Installed before intervention work begins</strong> — rigging up wireline, coiled tubing, or a workover rig over the wellhead.</li>
+          <li><strong>Removed once that equipment is rigged down</strong> and the protected surface needs to be exposed again for its actual function, such as landing a hanger or making the final seal the job was working toward.</li>
+          <li><strong>Reinstalled between operations</strong> if a job has multiple phases with idle time on the rig floor in between, keeping the surface covered any time it isn't actively needed exposed.</li>
+        </ul>
+
+        <h2 id="consequence-of-skipping">What Happens If It's Skipped</h2>
+        <p>Skipping a well protector doesn't guarantee damage will occur — most jobs go fine without incident regardless. What it removes is the margin of safety specifically built in to catch the routine mishaps that happen often enough on a busy rig floor — a dropped slip, a dragged tool, an unexpected bump — to justify protecting the one surface on the well that absolutely has to seal correctly once the work is done.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#why-it-matters">Why It Matters</a>
+          <a href="#when-used">When It's Used</a>
+          <a href="#consequence-of-skipping">If It's Skipped</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Design and fit vary by wellhead manufacturer and model — always confirm against the actual wellhead's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/landing-nipple" class="card-link">→ Landing Nipple</a><br><br>
+          <a href="/equipment/on-off-tool" class="card-link">→ On-Off Tool</a><br><br>
+          <a href="/equipment/bop" class="card-link">→ Blowout Preventer Types &amp; How a BOP Works</a><br><br>
+          <a href="/drilling/well-control" class="card-link">→ Well Control &amp; Kicks</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

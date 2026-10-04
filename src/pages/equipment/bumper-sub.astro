@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What does a bumper sub do in a fishing string?',
+    a: 'A bumper sub is a telescoping tool made of two splined mandrel sections that can slide a limited distance relative to each other while still transmitting torque and circulation. That free travel lets the string above move independently of the tool engaged on the fish below, which is what allows a jar\'s impact to actually strike cleanly instead of being absorbed as stretch in the pipe, and what lets a work string ride out heave on a floating rig without constantly loading or unloading the fish.',
+  },
+  {
+    q: 'Where is a bumper sub placed in the string?',
+    a: 'It sits just above the fishing tool, below any jars and the drill collars that provide jarring weight. That position lets the bumper sub\'s free travel isolate the engaged fishing tool from string movement above it, while still being close enough to the jar that impact is delivered efficiently rather than dampened over a long interval of pipe.',
+  },
+  {
+    q: 'Does a bumper sub replace a jar?',
+    a: 'No. A jar is the tool that stores and releases energy to deliver a sharp impact; a bumper sub simply allows travel so that impact (or surface heave, or picking up slack) can happen without binding the string. The two are almost always run together — the bumper sub does nothing to free stuck pipe on its own, it just lets the rest of the string work properly.',
+  },
+  {
+    q: 'What causes a bumper sub to fail or stick?',
+    a: 'The most common failure is the splined mandrel galling or sticking under side load, heat, or debris ingress, which locks the telescoping action and defeats the whole purpose of the tool. Seal wear on the internal mandrel can also let drilling fluid bypass internally, and over-travel past the tool\'s rated stroke under heavy jarring can damage the spline or shoulder.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Bumper Sub: How Telescoping Fishing Tools Work"
+  description="What a bumper sub is, how its splined telescoping mandrel works with a jar, where it sits in a fishing string, single- vs. double-acting designs, and common failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Bumper Sub', href: '/equipment/bumper-sub' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Bumper <span>Sub</span></h1>
+    <p class="page-hero-sub">A telescoping fishing-string tool that gives a jar room to strike, and gives a floating rig room to breathe, without losing torque or circulation.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/bumper-sub-1.jpg" image2="/images/equipment/bumper-sub-2.jpg" alt="a generic bumper sub" />
+      <div class="prose">
+        <h2 id="what-it-is">What a Bumper Sub Is</h2>
+        <p>A bumper sub is built from two mandrel sections — an inner and an outer — connected by a splined interface that lets them slide a limited distance relative to each other while still transmitting full torque and allowing fluid to circulate through the center. That short window of free travel, usually a few feet, is the entire function of the tool: it decouples movement of the string above from the tool engaged on the fish below, within that stroke length.</p>
+        <p>On its own a bumper sub frees nothing. It is a mechanical accommodation that lets the rest of the fishing string — particularly a <a href="/equipment/hydraulic-jar">hydraulic jar</a> — actually do its job.</p>
+
+        <h2 id="when-used">When and Why a Bumper Sub Is Run</h2>
+        <ul>
+          <li><strong>Working with a jar.</strong> A jar stores energy and releases it as a sharp impact. If the string above the jar is rigid all the way to surface, much of that impact gets absorbed as elastic stretch in thousands of feet of pipe instead of landing on the fish. A bumper sub placed near the jar lets the jar's hammer and anvil actually separate and strike.</li>
+          <li><strong>Floating rigs and heave.</strong> On a semi-submersible or drillship without full heave compensation, the rig itself moves vertically with the sea state. A bumper sub absorbs that motion in its free travel instead of transmitting it directly into a tool gripped on the fish, which would otherwise load and unload the fish with every wave.</li>
+          <li><strong>Picking up slack before jarring.</strong> It gives the driller room to pick the string up and let it fall through a controlled stroke, which is exactly how mechanical jars are actuated.</li>
+        </ul>
+
+        <h2 id="single-double-acting">Single- vs. Double-Acting Designs</h2>
+        <p>Bumper subs come in two basic action types, covered in more depth on the <a href="/equipment/sabs-dabs">SABS vs. DABS</a> page: a <strong>single-acting</strong> design has an internal shoulder that only contacts and transmits impact in one direction of travel (typically up), leaving the other direction free of any striking action. A <strong>double-acting</strong> design has shoulders in both directions, so it transmits impact whether the string is moving up or down. Which one a job calls for depends on whether the plan needs to jar the fish loose in one direction only, or needs the freedom to work it both up and down.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Spline galling or sticking</strong> under side load, heat, or debris ingress between the mandrel sections, which locks the telescoping travel and defeats the tool entirely.</li>
+          <li><strong>Internal seal wear</strong> letting drilling fluid bypass the mandrel seals, which can affect circulation efficiency downstream.</li>
+          <li><strong>Over-travel damage</strong> to the spline or end shoulders if the tool is jarred or stroked beyond its rated travel length.</li>
+          <li><strong>Debris packing</strong> around the exposed mandrel in dirty or sandy wellbore fluid, accelerating wear on the sliding interface.</li>
+        </ul>
+
+        <h2 id="vs-jar">Bumper Sub vs. Hydraulic Jar</h2>
+        <p>A <a href="/equipment/hydraulic-jar">hydraulic jar</a> generates the impact — it stores energy under tension or compression and releases it suddenly as a hammer blow transmitted down the string. A bumper sub generates no force of its own; it simply provides the mechanical slack that lets that impact, or surface heave, happen without binding the string solid. They are almost always run together in a fishing BHA, with the bumper sub typically positioned between the jar and the fishing tool engaged on the fish.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#when-used">When It's Used</a>
+          <a href="#single-double-acting">Single vs. Double-Acting</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-jar">vs. Hydraulic Jar</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Stroke length and load ratings vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/sabs-dabs" class="card-link">→ SABS vs. DABS Bumper Subs</a><br><br>
+          <a href="/equipment/hydraulic-jar" class="card-link">→ Hydraulic Jar</a><br><br>
+          <a href="/equipment/fishing-swivel" class="card-link">→ Fishing Swivel</a><br><br>
+          <a href="/pillars/stuck-pipe-and-fishing-operations" class="card-link">→ Stuck Pipe &amp; Fishing Operations</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

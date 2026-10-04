@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is a casing patch used for?',
+    a: 'A casing patch repairs a compromised section of casing — a split, a corrosion hole, an unintended perforation, or a parted connection — by setting a short expandable liner across the damaged interval and expanding it against the existing casing ID, restoring pressure integrity without pulling and replacing the casing string itself.',
+  },
+  {
+    q: 'How is a casing patch different from cementing a squeeze?',
+    a: 'A cement squeeze, run with a cement retainer, forces cement through a leak path and into the formation or annulus behind it, relying on the cement setting to seal the leak from the outside. A casing patch instead installs a new mechanical barrier on the inside of the casing itself, expanded to seal directly against the casing ID at and around the damaged interval — a structural fix rather than a cement-based one.',
+  },
+  {
+    q: 'Does a casing patch reduce the inside diameter of the casing?',
+    a: 'Yes, by design — the patch sits inside the existing casing, so the ID through the patched interval is smaller than the original casing ID by roughly the patch\'s wall thickness. That reduction has to be accounted for in any tool or completion hardware that needs to pass through that interval afterward.',
+  },
+  {
+    q: 'What causes a casing patch job to fail?',
+    a: 'Incomplete expansion leaving gaps in the seal against the original casing ID is the most direct failure, often from debris or scale on the casing wall preventing full contact. Setting the patch at the wrong depth relative to the actual damage, so part of the damaged interval is left outside the patch\'s coverage, is another common cause, along with expander or setting tool malfunction during the run.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Casing Patch: How Expandable Casing Repair Tools Work"
+  description="What a casing patch is, how it expands against damaged casing to restore pressure integrity, how it differs from a cement squeeze, and common failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Casing Patch', href: '/equipment/casing-patch' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Casing <span>Patch</span></h1>
+    <p class="page-hero-sub">A short expandable liner set and expanded across damaged casing to restore pressure integrity from the inside, without pulling the string.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/casing-patch-1.jpg" image2="/images/equipment/casing-patch-2.jpg" alt="a generic expandable casing patch" />
+      <div class="prose">
+        <h2 id="what-it-is">What a Casing Patch Is</h2>
+        <p>A casing patch is a short section of expandable pipe, run on a work string and positioned across a damaged interval of casing — a split, a corrosion hole, an unintended perforation, or a leaking connection. Once in position, an internal expander (mechanical or hydraulic) forces the patch radially outward until it contacts and seals against the original casing ID, with seals at each end of the patch providing the pressure barrier across the repaired interval.</p>
+        <p>The result is a repair made from the inside, without pulling the damaged casing string — valuable because pulling and replacing a casing string is one of the most expensive and time-consuming interventions a well can undergo.</p>
+
+        <h2 id="when-used">When and Why a Casing Patch Is Run</h2>
+        <ul>
+          <li><strong>Corrosion or mechanical damage</strong> that has breached casing integrity at a specific, identifiable depth, where the rest of the string remains sound.</li>
+          <li><strong>Unintended perforations or communication</strong> between zones that shouldn't be in contact, where sealing the specific breach restores proper zonal isolation.</li>
+          <li><strong>Leaking connections or collapsed sections</strong> that threaten well integrity but don't justify a full workover pulling the string.</li>
+        </ul>
+
+        <h2 id="how-it-works">How Expansion Works</h2>
+        <p>The patch is run in at a reduced outside diameter, small enough to pass through the existing casing without catching. Once positioned across the damaged interval, an expander cone or hydraulic expansion tool is drawn or pumped through the patch's bore, plastically deforming it outward until it contacts the casing ID along its full length. Elastomer seals at each end of the patch, also expanded against the casing wall, provide the actual pressure barrier; the expanded pipe body itself restores mechanical support across the damaged section.</p>
+
+        <h2 id="id-reduction">Reduced Inside Diameter</h2>
+        <p>Because the patch sits inside the existing casing rather than replacing it, the resulting ID through the patched interval is smaller than the original casing ID — by roughly the patch's wall thickness after expansion. Any tool, packer, or completion hardware planned to pass through that interval afterward has to be checked against the reduced ID, which can constrain future options in that section of the well.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Incomplete expansion</strong> leaving gaps between the patch and the casing ID, often from scale, debris, or an out-of-round casing section preventing full contact.</li>
+          <li><strong>Misplaced depth</strong>, setting the patch so part of the actual damaged interval falls outside its coverage.</li>
+          <li><strong>Expander or setting tool malfunction</strong> during the run, leaving the patch partially expanded or stuck mid-expansion.</li>
+        </ul>
+
+        <h2 id="vs-cement-retainer">Casing Patch vs. Cement Squeeze</h2>
+        <p>Both repair a compromised interval, but by very different mechanisms. A cement squeeze, set up with a <a href="/equipment/cement-retainer">cement retainer</a>, forces cement through the leak path itself and into the annulus or formation behind it, sealing from the outside as the cement cures. A casing patch installs a new mechanical liner on the inside of the casing, sealing directly against the casing ID rather than relying on cement reaching and sealing an external leak path. Where the leak path is accessible and well-defined, a patch is often the more predictable fix; where cement needs to reach behind the pipe itself, a squeeze is the only option.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#when-used">When It's Used</a>
+          <a href="#how-it-works">How Expansion Works</a>
+          <a href="#id-reduction">Reduced ID</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-cement-retainer">vs. Cement Squeeze</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Expansion ratios and ID reduction vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/cement-retainer" class="card-link">→ Cement Retainer</a><br><br>
+          <a href="/equipment/casing-cutter" class="card-link">→ Casing Cutter</a><br><br>
+          <a href="/equipment/casing-roller-dressing-tool" class="card-link">→ Casing Roller / Dressing Tool</a><br><br>
+          <a href="/drilling/casing" class="card-link">→ Casing Design Explained</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

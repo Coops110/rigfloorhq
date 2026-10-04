@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is an NMDC and why does it need to be non-magnetic?',
+    a: 'An NMDC is a Non-Magnetic Drill Collar, machined from an austenitic alloy that carries essentially no magnetic signature, placed in the BHA immediately around an MWD or survey tool\'s magnetometer. Ordinary steel drill collars above and below carry a magnetic signature strong enough to distort the Earth\'s magnetic field as measured right at the sensor, which would corrupt the azimuth reading the magnetometer is trying to take.',
+  },
+  {
+    q: 'What is a pony NMDC, specifically?',
+    a: 'A pony NMDC is simply a shorter length of the same non-magnetic collar, used to fine-tune the total non-magnetic spacing around the sensor to the exact distance the MWD tool\'s specification calls for. Standard-length NMDCs come in fixed sizes, so a pony section fills the gap when the ideal spacing falls between standard lengths.',
+  },
+  {
+    q: 'How much non-magnetic spacing does an MWD tool actually need?',
+    a: 'It varies by tool model and by the magnetic strength of the drill string components nearby, which is exactly why the spacing is calculated for each BHA configuration rather than assumed — the MWD manufacturer provides the required non-magnetic spacing for their specific sensor, and the NMDC-plus-pony combination is selected to meet it precisely.',
+  },
+  {
+    q: 'What happens if the non-magnetic spacing is wrong?',
+    a: 'Insufficient spacing lets magnetic interference from the steel collars reach the magnetometer, corrupting the azimuth reading in a way that may not be obvious at surface — the tool can report a confident-looking number that is simply wrong. This is one of the more insidious BHA errors because a bad azimuth reading doesn\'t look like a tool failure; it looks like a normal survey that happens to be inaccurate.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="NMDC / Pony NMDC: Shielding MWD Tools From Magnetic Interference"
+  description="What a Non-Magnetic Drill Collar (NMDC) and pony NMDC are, why MWD tools need non-magnetic spacing, how required spacing is calculated, and what happens when it's wrong."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'NMDC / Pony NMDC', href: '/equipment/nmdc-pony-nmdc' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Drill String / BHA</div>
+    <h1>NMDC / <span>Pony NMDC</span></h1>
+    <p class="page-hero-sub">Non-magnetic drill collars placed around an MWD sensor's magnetometer to shield it from the magnetic signature of ordinary steel collars nearby.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/nmdc-pony-nmdc-1.jpg" image2="/images/equipment/nmdc-pony-nmdc-2.jpg" alt="a generic non-magnetic drill collar" />
+      <div class="prose">
+        <h2 id="what-it-is">What an NMDC Is</h2>
+        <p>A Non-Magnetic Drill Collar (NMDC) is a heavy-wall BHA component machined from an austenitic alloy — rather than ordinary drill collar steel — that carries essentially no magnetic signature of its own. It's placed immediately around the magnetometer inside an <a href="/equipment/mwd-tool">MWD tool</a>, shielding that sensor from the magnetic field distortion that ordinary steel collars above and below would otherwise introduce right at the measurement point.</p>
+        <p>A <strong>pony NMDC</strong> is the same alloy and function in a shorter length, used purely to fine-tune the total non-magnetic spacing around the sensor to whatever exact distance the MWD tool's specification requires, since standard-length NMDCs come in fixed sizes that rarely add up to the precise spacing needed on their own.</p>
+
+        <h2 id="why-it-matters">Why Magnetic Interference Matters</h2>
+        <p>An MWD tool's azimuth measurement relies on a magnetometer reading the Earth's magnetic field accurately at the sensor's location. Ordinary steel drill collars carry enough residual magnetism to distort that local field reading if they sit too close to the sensor — and critically, a corrupted reading doesn't necessarily look wrong at surface. It can report a perfectly confident, plausible-looking azimuth that is simply inaccurate, which is what makes magnetic interference a particularly insidious failure mode rather than an obvious tool malfunction.</p>
+
+        <h2 id="spacing-calculation">Calculating Required Spacing</h2>
+        <p>The amount of non-magnetic spacing needed is specific to the MWD tool model and to the magnetic strength of the specific drill string components around it — there's no universal figure. The MWD manufacturer specifies the required non-magnetic distance for their sensor, and the BHA is built with a combination of full-length NMDCs plus a pony NMDC to hit that exact spacing, rather than rounding up or down to whatever standard lengths happen to be on hand.</p>
+
+        <h2 id="when-used">When and Why This Matters in Practice</h2>
+        <ul>
+          <li><strong>Any directional or horizontal well</strong> relying on MWD azimuth data for wellbore placement, where inaccurate azimuth translates directly into a wellbore that misses its planned target.</li>
+          <li><strong>BHA design and redesign</strong>, any time drill collar components near the MWD tool change, requiring the non-magnetic spacing to be re-verified rather than assumed to still be correct.</li>
+        </ul>
+
+        <h2 id="vs-mwd-tool">NMDC vs. the MWD Tool Itself</h2>
+        <p>The two are easy to conflate but serve different roles. The <a href="/equipment/mwd-tool">MWD tool</a> is the sensor package itself, taking the actual measurements. The NMDC and pony NMDC are structural drill collars with no sensing function of their own — their entire job is creating the magnetically clean environment the MWD tool's magnetometer needs to take an accurate reading in the first place.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#why-it-matters">Why It Matters</a>
+          <a href="#spacing-calculation">Spacing Calculation</a>
+          <a href="#when-used">When It's Used</a>
+          <a href="#vs-mwd-tool">vs. MWD Tool</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Required non-magnetic spacing varies by MWD manufacturer and BHA configuration — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/mwd-tool" class="card-link">→ MWD Tool</a><br><br>
+          <a href="/equipment/stabilizer" class="card-link">→ Stabilizer</a><br><br>
+          <a href="/equipment/positive-displacement-mud-motor" class="card-link">→ Positive Displacement Mud Motor</a><br><br>
+          <a href="/equipment/drill-string" class="card-link">→ The Drill String</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is a mule shoe used for?',
+    a: 'A mule shoe is a beveled, rounded guide nose made up on the bottom of a tubing, casing, or BHA string to help it slide past ledges, window edges, and minor restrictions without hanging up — most commonly after running through a freshly milled window where a sharp casing edge could otherwise catch a flat pipe end.',
+  },
+  {
+    q: 'Does a mule shoe allow fluid to flow through it?',
+    a: 'Most mule shoe designs include ports or an open bore that allow fluid to flow or circulate through the guide nose, which is one of the features that distinguishes a mule shoe from a solid, blind bull nose plug run for the same general guiding purpose.',
+  },
+  {
+    q: 'Where is a mule shoe typically run?',
+    a: 'Very commonly on the bottom of a string being run back into the hole after a sidetrack, past a freshly milled window where the exposed casing edge is sharp and unforgiving. It is also used generally on any string where the bottom end needs to deflect past ledges or minor doglegs on the way in, independent of a window milling job specifically.',
+  },
+  {
+    q: 'What causes a mule shoe to fail to pass a restriction?',
+    a: 'A bevel angle too shallow for the severity of the ledge or edge it needs to pass can still hang up despite the guiding shape. Debris packed against the restriction can also defeat the guide profile regardless of its design. And a mule shoe sized for the wrong hole or window dimension simply won\'t clear a restriction it was never sized to pass in the first place.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Mule Shoe: How Guide Nose Tools Work"
+  description="What a mule shoe is, how its beveled nose guides a string past ledges and window edges, when it's run, and how it differs from a bull nose plug."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Mule Shoe', href: '/equipment/mule-shoe' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Mule <span>Shoe</span></h1>
+    <p class="page-hero-sub">A beveled guide nose that helps a string slide past ledges and sharp window edges on the way in, instead of catching on them.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/mule-shoe-1.jpg" image2="/images/equipment/mule-shoe-2.jpg" alt="a generic mule shoe guide nose" />
+      <div class="prose">
+        <h2 id="what-it-is">What a Mule Shoe Is</h2>
+        <p>A mule shoe is a beveled, rounded guide nose made up on the bottom of a tubing, casing, or BHA string. Its angled profile — resembling the toe of a mule's shoe, hence the name — lets the string deflect smoothly past ledges, doglegs, and sharp edges as it runs in, rather than catching a flat pipe end against the obstruction.</p>
+        <p>Unlike a solid guide, most mule shoe designs are ported or open-bore, allowing fluid to flow or circulate through the tool rather than blocking it entirely.</p>
+
+        <h2 id="when-used">When and Why a Mule Shoe Is Run</h2>
+        <ul>
+          <li><strong>Running back in past a milled window.</strong> After a <a href="/equipment/window-mill">window mill</a> cuts an opening in the casing for a sidetrack, the exposed casing edge at the window is sharp and unforgiving to a flat pipe end — a mule shoe on the string being run back through helps it deflect past that edge cleanly.</li>
+          <li><strong>General ledge and dogleg clearance</strong> anywhere a string's bottom end needs help sliding past a minor restriction on the way into the hole, independent of a window milling job specifically.</li>
+          <li><strong>Protecting the string's leading connection</strong> from direct impact against a restriction that a square pipe end would absorb head-on.</li>
+        </ul>
+
+        <h2 id="design">Design Considerations</h2>
+        <p>The bevel angle and length of the guide nose are chosen relative to the severity of the restriction expected — a shallow bevel works for minor ledges, while a more aggressive taper is needed for a sharp window edge or tighter dogleg. Because most designs are ported, the mule shoe doesn't block circulation the way a solid guide would, making it compatible with jobs that need to pump through the string while running in.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Insufficient bevel angle</strong> for the severity of the restriction, which can still hang up the string despite the guiding shape.</li>
+          <li><strong>Debris packed against the restriction</strong>, defeating the guide profile regardless of its design.</li>
+          <li><strong>Wrong sizing</strong> for the actual hole or window dimension, which simply won't clear a restriction it was never sized to pass.</li>
+        </ul>
+
+        <h2 id="vs-bull-nose">Mule Shoe vs. Bull Nose Plug</h2>
+        <p>Both are guide noses run on the bottom of a string for the same basic reason, but they differ on flow. A mule shoe is typically ported or open, allowing circulation through the tool. A <a href="/equipment/bull-nose-plug">bull nose plug</a> is solid and blind — no flow passage at all — chosen specifically when there is no need, or no desire, to pump through the bottom of the string while running in.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#when-used">When It's Used</a>
+          <a href="#design">Design Considerations</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-bull-nose">vs. Bull Nose Plug</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Bevel geometry and port sizing vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/bull-nose-plug" class="card-link">→ Bull Nose Plug</a><br><br>
+          <a href="/equipment/window-mill" class="card-link">→ Window Mill</a><br><br>
+          <a href="/equipment/casing-shoe" class="card-link">→ Casing Shoe</a><br><br>
+          <a href="/equipment/whipstock" class="card-link">→ Whipstock</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

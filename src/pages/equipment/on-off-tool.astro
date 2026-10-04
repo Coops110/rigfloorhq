@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is an on-off tool used for?',
+    a: 'An on-off tool mechanically connects the tubing string above it to a packer or lower completion below, in a way that can be deliberately disconnected and later reconnected — typically by rotation, a straight pull, or both — without disturbing or unseating the packer itself. It is the standard way a completion plans for a future workover that needs to pull tubing while leaving the lower assembly exactly where it is.',
+  },
+  {
+    q: 'How does an on-off tool differ from a safety joint?',
+    a: 'A safety joint is generally built around a single planned release, often in a fishing context where the tool above is expected to be abandoned or the connection is a last resort. An on-off tool is designed for repeated, routine connect-and-disconnect cycles as part of normal completion planning — a workover pulls the tubing, reconnects a new string to the same on-off tool later, and the packer below is never disturbed through any of it.',
+  },
+  {
+    q: 'Does disconnecting an on-off tool affect the packer\'s seal?',
+    a: 'No — that is the specific advantage of the design. The packer stays set and sealed against the casing throughout; only the connection between the tubing string and the packer\'s top assembly is made or broken. The seal the packer provides around the annulus is unaffected by connecting or disconnecting the tubing above it.',
+  },
+  {
+    q: 'What causes an on-off tool to fail to reconnect?',
+    a: 'Debris or scale accumulation on the connecting profile between trips can prevent a clean re-latch. Wear on the locking or sealing elements from repeated connect-disconnect cycles over the life of the well can also degrade the tool\'s ability to reseal on a later reconnection, sometimes requiring the tool to be replaced rather than reused indefinitely.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="On-Off Tool: Disconnecting Tubing From a Packer Without Unseating It"
+  description="What an on-off tool is, how it lets tubing be disconnected and reconnected to a packer for a workover, how it differs from a safety joint, and common failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'On-Off Tool', href: '/equipment/on-off-tool' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Completion Tools</div>
+    <h1>On-Off <span>Tool</span></h1>
+    <p class="page-hero-sub">Lets the tubing string above be disconnected and later reconnected to a packer below, for a workover, without ever unseating the packer itself.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/on-off-tool-1.jpg" image2="/images/equipment/on-off-tool-2.jpg" alt="a generic on-off tool" />
+      <div class="prose">
+        <h2 id="what-it-is">What an On-Off Tool Is</h2>
+        <p>An on-off tool is a mechanical connector joining the tubing string to the top of a <a href="/equipment/packer">packer</a> or lower completion assembly, built to be deliberately disconnected and later reconnected — commonly by rotation, a straight pull, or a combination of both — without disturbing the packer's own seal or set position below it.</p>
+
+        <h2 id="why-it-matters">Why This Matters for Completion Planning</h2>
+        <p>Pulling and resetting a packer is slow and invasive compared to simply unlatching the tubing above it. Any completion planned with the expectation of future workovers — replacing tubing, running different downhole hardware, addressing a problem higher in the string — benefits from an on-off tool at the packer connection, since it turns "pull everything, including the packer" into "disconnect at the on-off tool, pull tubing, reconnect a new or repaired string later."</p>
+
+        <h2 id="unaffected-seal">The Packer's Seal Stays Unaffected</h2>
+        <p>Because the on-off tool's connect and disconnect motion happens entirely above the packer's own sealing elements, the packer stays set and sealed against the casing throughout the process. Disconnecting the tubing does not unseat, loosen, or otherwise affect the annular seal the packer provides — only the mechanical connection between the tubing and the packer's top assembly is made or broken.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Debris or scale on the connecting profile</strong> between trips, preventing a clean re-latch on reconnection.</li>
+          <li><strong>Wear on locking or sealing elements</strong> from repeated connect-disconnect cycles over the life of the well, potentially requiring tool replacement rather than indefinite reuse.</li>
+          <li><strong>Incomplete disconnect</strong> if the release sequence (rotation, pull, or both) isn't fully executed, leaving the tool partially engaged.</li>
+        </ul>
+
+        <h2 id="vs-safety-joint">On-Off Tool vs. Safety Joint</h2>
+        <p>Both release a connection deliberately, but for different purposes. A <a href="/equipment/safety-joint">safety joint</a> is generally a single-use, last-resort release — often in a fishing context, where the tool above is expected to be abandoned once released. An on-off tool is designed for routine, repeated connect-and-disconnect cycles as part of planned completion maintenance, reconnecting a string to the same packer assembly trip after trip over the life of the well.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#why-it-matters">Why It Matters</a>
+          <a href="#unaffected-seal">The Packer's Seal</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-safety-joint">vs. Safety Joint</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Release mechanisms and load ratings vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/packer" class="card-link">→ Packer</a><br><br>
+          <a href="/equipment/safety-joint" class="card-link">→ Safety Joint</a><br><br>
+          <a href="/equipment/landing-nipple" class="card-link">→ Landing Nipple</a><br><br>
+          <a href="/equipment/sliding-sleeve" class="card-link">→ Sliding Sleeve</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is a bull nose plug used for?',
+    a: 'A bull nose plug is a solid, rounded, blind nose run on the bottom of a tubing or work string. It guides the string past minor restrictions the same way a mule shoe does, but has no internal flow passage at all — it is used specifically when there is no need, or no desire, to circulate through the bottom of the string while running in.',
+  },
+  {
+    q: 'Why would a job want a blind nose instead of one that allows flow?',
+    a: 'Protecting a seal bore, profile, or packer bore below the running string from debris or wellbore fluid entering through the bottom of the string is a common reason — a blind nose keeps the string\'s bore isolated from whatever is below it until the string is in position. It is also simply the right choice whenever the job has no circulation requirement through the bottom of the string during the run.',
+  },
+  {
+    q: 'How does a bull nose plug differ from a tubing plug?',
+    a: 'A bull nose plug is a running tool — a fixed, solid nose made up on the string before it goes in the hole, with no function beyond guiding and blocking flow at the bottom during that run. A tubing plug is a retrievable completion component, set independently into a landing nipple profile at a chosen depth and later retrieved on wireline. One is a permanent-for-the-trip running accessory; the other is a deliberately temporary, retrievable barrier.',
+  },
+  {
+    q: 'What causes a bull nose plug to fail?',
+    a: 'Because it has no moving parts and no seal to maintain, failure is almost always mechanical — a bevel too shallow to clear the restriction it encounters, or thread damage during make-up that compromises its connection to the string above it.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Bull Nose Plug: Solid Guide Nose Tools Explained"
+  description="What a bull nose plug is, why it's run blind with no flow passage, how it differs from a mule shoe and a tubing plug, and common failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Bull Nose Plug', href: '/equipment/bull-nose-plug' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Bull Nose <span>Plug</span></h1>
+    <p class="page-hero-sub">A solid, blind guide nose that protects whatever is below the string from debris, with no flow passage through it at all.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/bull-nose-plug-1.jpg" image2="/images/equipment/bull-nose-plug-2.jpg" alt="a generic bull nose plug" />
+      <div class="prose">
+        <h2 id="what-it-is">What a Bull Nose Plug Is</h2>
+        <p>A bull nose plug is a solid, rounded nose made up on the bottom of a tubing or work string before it runs in hole. Like a <a href="/equipment/mule-shoe">mule shoe</a>, its rounded profile helps the string deflect past minor restrictions and ledges on the way down. Unlike a mule shoe, it is completely blind — no ports, no open bore, nothing passes through it.</p>
+
+        <h2 id="when-used">When and Why a Bull Nose Plug Is Run</h2>
+        <ul>
+          <li><strong>Protecting a profile or seal bore below the string</strong> from debris or wellbore fluid entering through the bottom of the string during the trip in, keeping the bore above the plug isolated from whatever lies below until the string reaches its intended position.</li>
+          <li><strong>No circulation requirement for the run</strong>, where the job simply has no need to pump through the bottom of the string, making a ported guide nose an unnecessary complication.</li>
+          <li><strong>Running a string that will be pressure-tested</strong> from surface before anything below it is opened up, using the solid nose as a temporary barrier for that test.</li>
+        </ul>
+
+        <h2 id="why-blind">Why Blind Instead of Ported</h2>
+        <p>A ported guide nose, like a mule shoe, is the right tool whenever the job needs to circulate through the bottom of the string during the run. A bull nose plug is chosen for the opposite situation — when keeping the string's interior isolated from the wellbore below it matters more than circulation capability, or when there's simply no circulation need to design around.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Insufficient bevel</strong> for the restriction it encounters, since it has the same basic guiding geometry concern as any nose tool.</li>
+          <li><strong>Thread or connection damage</strong> during make-up to the string above it, which is really the only mechanical failure point on a tool with no moving parts and no seal to maintain.</li>
+        </ul>
+
+        <h2 id="vs-tubing-plug">Bull Nose Plug vs. Tubing Plug</h2>
+        <p>Despite both being called "plugs," they do very different jobs. A bull nose plug is a running accessory — fixed to the bottom of the string before it goes in the hole, with no function beyond guiding and blocking flow at that one position for that one trip. A <a href="/equipment/tubing-plug">tubing plug</a> is a retrievable completion component, set independently into a <a href="/equipment/landing-nipple">landing nipple</a> profile at a chosen depth after the string is already in place, and later retrieved on wireline when it's no longer needed. One travels down with the string; the other is set and pulled on its own.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#when-used">When It's Used</a>
+          <a href="#why-blind">Why Blind</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-tubing-plug">vs. Tubing Plug</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Nose geometry varies by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/mule-shoe" class="card-link">→ Mule Shoe</a><br><br>
+          <a href="/equipment/tubing-plug" class="card-link">→ Tubing Plug</a><br><br>
+          <a href="/equipment/landing-nipple" class="card-link">→ Landing Nipple</a><br><br>
+          <a href="/equipment/casing-shoe" class="card-link">→ Casing Shoe</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

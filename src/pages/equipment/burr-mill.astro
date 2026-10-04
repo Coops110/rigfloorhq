@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is a burr mill used for?',
+    a: 'A burr mill dresses and removes sharp burrs, rough edges, or small metal obstructions left behind by a previous cutting or milling operation — smoothing a window edge after window milling, or clearing a ragged lip left by a casing cutter, so a later string or tool can pass cleanly without catching or being damaged.',
+  },
+  {
+    q: 'How is a burr mill different from a section mill?',
+    a: 'A section mill is a bulk metal-removal tool, grinding away an entire interval of casing and cement over several feet to convert cased hole into open hole. A burr mill is a finishing tool — it removes only small amounts of material at a localized rough edge or burr, not a full section of pipe. If the job needs an interval of casing gone entirely, that\'s a section mill; if the job needs a sharp edge smoothed down, that\'s a burr mill.',
+  },
+  {
+    q: 'When is a burr mill typically run?',
+    a: 'Most commonly right after a window milling or casing cutting operation, as a cleanup pass before running a liner, whipstock, or completion string back through the same interval — catching any sharp edges the prior operation left behind before they can damage a more sensitive tool.',
+  },
+  {
+    q: 'What causes a burr mill job to be incomplete?',
+    a: 'Running the mill at insufficient weight or RPM for the hardness of the burr material can leave it only partially dressed. Misjudging the depth or extent of the rough edge can also leave part of it untouched, requiring a repeat pass once the remaining burr is identified — often by feeling resistance when running a subsequent string through.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Burr Mill: How Finishing Mills Dress Sharp Edges Downhole"
+  description="What a burr mill is, how it dresses sharp edges and burrs left by a previous cutting or milling pass, how it differs from a section mill, and common failure modes."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Burr Mill', href: '/equipment/burr-mill' }]}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Burr <span>Mill</span></h1>
+    <p class="page-hero-sub">A finishing mill that dresses sharp burrs and rough edges left by a prior cutting or milling pass, so later tools can pass through cleanly.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/burr-mill-1.jpg" image2="/images/equipment/burr-mill-2.jpg" alt="a generic burr mill" />
+      <div class="prose">
+        <h2 id="what-it-is">What a Burr Mill Is</h2>
+        <p>A burr mill is a milling tool with a dressed, often tapered or rounded cutting head, built to remove small amounts of material at a localized rough edge rather than grind away a whole section of pipe. It's a finishing tool: wherever a previous operation — a <a href="/equipment/casing-cutter">casing cutter</a>, a <a href="/equipment/window-mill">window mill</a>, or similar — has left a sharp, ragged, or burred edge behind, a burr mill cleans it up.</p>
+
+        <h2 id="when-used">When and Why a Burr Mill Is Run</h2>
+        <ul>
+          <li><strong>After window milling</strong>, to smooth the casing edge at the window before running a liner, whipstock-related hardware, or completion string back through the same interval.</li>
+          <li><strong>After a casing cutter run</strong>, dressing a ragged parting lip left where the casing was cut, before pulling the severed section or running other tools past it.</li>
+          <li><strong>Any localized rough edge</strong> identified downhole — from a prior mechanical operation, corrosion, or damage — that a more sensitive tool would otherwise catch on or be damaged by.</li>
+        </ul>
+
+        <h2 id="how-it-works">How It Works</h2>
+        <p>The mill's cutting head is run to the known or suspected location of the burr and worked against it with rotation and weight, grinding away the raised or sharp material until the surface is smooth enough for the intended follow-up tool to pass. Because the target is small and localized rather than a full pipe wall, a burr mill typically removes far less material in far less time than a section mill or window mill would need for their respective jobs.</p>
+
+        <h2 id="failure-modes">Common Failure Modes</h2>
+        <ul>
+          <li><strong>Insufficient weight or RPM</strong> for the hardness of the burr material, leaving it only partially dressed.</li>
+          <li><strong>Misjudged extent of the rough edge</strong>, leaving part of it untouched and requiring a repeat pass once resistance is felt running a later string through.</li>
+          <li><strong>Mill wear</strong> from an unexpectedly hard or extensive burr, reducing cutting efficiency partway through the job.</li>
+        </ul>
+
+        <h2 id="vs-section-mill">Burr Mill vs. Section Mill</h2>
+        <p>Both are milling tools, but at completely different scales of material removal. A <a href="/equipment/section-mill">section mill</a> grinds away an entire interval of casing and the cement around it, several feet at a time, converting cased hole into open hole. A burr mill removes only a small amount of material at a localized rough spot, finishing an edge rather than eliminating a section of pipe. If the plan calls for removing an interval of casing entirely, that's a section mill's job; if the plan calls for smoothing a sharp edge left by another operation, that's what a burr mill is for.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#when-used">When It's Used</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#failure-modes">Failure Modes</a>
+          <a href="#vs-section-mill">vs. Section Mill</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Cutting head design and material removal rates vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/section-mill" class="card-link">→ Section Mill</a><br><br>
+          <a href="/equipment/window-mill" class="card-link">→ Window Mill</a><br><br>
+          <a href="/equipment/casing-roller-dressing-tool" class="card-link">→ Casing Roller / Dressing Tool</a><br><br>
+          <a href="/equipment/casing-cutter" class="card-link">→ Casing Cutter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
