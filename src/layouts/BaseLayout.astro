@@ -262,5 +262,75 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
   <slot name="footer" />
 
   <ConsentBanner lang={lang} />
+
+  {/* Mobile number-input steppers, site-wide. Desktop already gets native
+      up/down spinners on type="number" for free from the browser; mobile
+      (iOS Safari especially) doesn't render a usable version of those, so
+      this wraps every number input with real tap targets instead. Runs
+      once on load, no-ops on pages with no number inputs. step="any"
+      inputs (unit converters) are skipped deliberately — an "any" step
+      has no sensible increment to tap, same as native browser behavior. */}
+  <script is:inline>
+    (function () {
+      function enhance(input) {
+        if (input.closest('.number-stepper')) return; // already wrapped
+        if ((input.getAttribute('step') || '').toLowerCase() === 'any') return;
+        var wrap = document.createElement('div');
+        wrap.className = 'number-stepper';
+        input.parentNode.insertBefore(wrap, input);
+        wrap.appendChild(input);
+
+        var btns = document.createElement('div');
+        btns.className = 'number-stepper-btns';
+        var up = document.createElement('button');
+        up.type = 'button';
+        up.className = 'number-stepper-btn';
+        up.setAttribute('aria-label', 'Increase');
+        up.textContent = '▲';
+        var down = document.createElement('button');
+        down.type = 'button';
+        down.className = 'number-stepper-btn';
+        down.setAttribute('aria-label', 'Decrease');
+        down.textContent = '▼';
+        btns.appendChild(up);
+        btns.appendChild(down);
+        wrap.appendChild(btns);
+
+        function step(dir) {
+          var before = input.value;
+          if (typeof input.stepUp === 'function' && typeof input.stepDown === 'function') {
+            try {
+              dir > 0 ? input.stepUp() : input.stepDown();
+            } catch (e) {
+              // stepUp/stepDown throw if the resulting value violates min/max
+              // step alignment — fall back to plain arithmetic below.
+              var stepSize = parseFloat(input.getAttribute('step') || '1') || 1;
+              var cur = parseFloat(input.value) || 0;
+              input.value = String(cur + dir * stepSize);
+            }
+          } else {
+            var stepSize2 = parseFloat(input.getAttribute('step') || '1') || 1;
+            var cur2 = parseFloat(input.value) || 0;
+            input.value = String(cur2 + dir * stepSize2);
+          }
+          if (input.value !== before) {
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+        }
+        up.addEventListener('click', function () { step(1); });
+        down.addEventListener('click', function () { step(-1); });
+      }
+
+      function run() {
+        document.querySelectorAll('input[type="number"]').forEach(enhance);
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', run);
+      } else {
+        run();
+      }
+    })();
+  </script>
 </body>
 </html>

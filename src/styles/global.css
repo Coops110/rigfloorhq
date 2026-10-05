@@ -497,6 +497,52 @@ td:first-child { font-family: var(--cond); font-weight: 700; font-size: 14px; co
   font-size: 14px; padding: 10px 14px; border-radius: 2px; outline: none; transition: border-color 0.2s; width: 100%;
 }
 .input-group input:focus, .input-group select:focus { border-color: var(--rust); }
+
+/* ── NUMBER STEPPER (mobile only) ───────────────────────
+   Desktop browsers render native up/down spinners on
+   <input type="number"> for free. Mobile browsers (iOS
+   Safari especially) don't show a usable version of those,
+   so below 640px every number input gets wrapped with real
+   tap targets instead. Added once, globally, by the script
+   in BaseLayout — never add this markup by hand in a page. */
+.number-stepper { display: flex; align-items: stretch; width: 100%; }
+.number-stepper input[type="number"] {
+  border-radius: 2px 0 0 2px;
+  border-right: none;
+  -moz-appearance: textfield;
+}
+.number-stepper input[type="number"]::-webkit-inner-spin-button,
+.number-stepper input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.number-stepper-btns {
+  display: none;
+  flex-direction: column;
+  border: 1px solid var(--iron);
+  border-left: none;
+  border-radius: 0 2px 2px 0;
+  overflow: hidden;
+}
+.number-stepper-btn {
+  background: var(--steel);
+  border: none;
+  color: var(--fog);
+  width: 34px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  font-size: 10px;
+  line-height: 1;
+}
+.number-stepper-btn:first-child { border-bottom: 1px solid var(--iron); }
+.number-stepper-btn:active { background: var(--rust); color: var(--white); }
+@media (max-width: 639px) {
+  .number-stepper-btns { display: flex; }
+}
 .newsletter-input {
   background: var(--steel); border: 1px solid var(--iron); color: var(--white); font-family: var(--mono);
   font-size: 14px; padding: 10px 14px; border-radius: 2px; outline: none; transition: border-color 0.2s;
