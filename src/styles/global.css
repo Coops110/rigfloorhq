@@ -50,7 +50,7 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   width: 100%;
-  max-width: 100vw;
+  max-width: 100%;
 }
 
 img, table, .table-wrap, pre, code { max-width: 100%; }
@@ -102,7 +102,7 @@ nav.site-nav {
   gap: 0;
   padding: 0 16px;
   height: 48px;
-  max-width: 100vw;
+  max-width: 100%;
 }
 
 .nav-logo {
@@ -200,7 +200,7 @@ nav.site-nav a.nav-link.active { color: var(--amber); border-bottom-color: var(-
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
-  max-width: 100vw;
+  max-width: 100%;
 }
 .nav-mobile-menu.open {
   max-height: 100vh;
@@ -240,7 +240,7 @@ nav.site-nav a.nav-link.active { color: var(--amber); border-bottom-color: var(-
   letter-spacing: 0.04em;
   overflow-x: auto;
   white-space: nowrap;
-  max-width: 100vw;
+  max-width: 100%;
 }
 .breadcrumb a { color: var(--fog); text-decoration: none; }
 .breadcrumb a:hover { color: var(--amber); }
@@ -260,7 +260,7 @@ nav.site-nav a.nav-link.active { color: var(--amber); border-bottom-color: var(-
   border-bottom: 1px solid var(--iron);
   position: relative;
   overflow: hidden;
-  max-width: 100vw;
+  max-width: 100%;
 }
 .page-hero-eyebrow {
   font-family: var(--mono);
@@ -317,7 +317,7 @@ nav.site-nav a.nav-link.active { color: var(--amber); border-bottom-color: var(-
 section.block {
   padding: 40px 16px;
   border-bottom: 1px solid var(--iron);
-  max-width: 100vw;
+  max-width: 100%;
   overflow-x: hidden;
 }
 section.block:nth-of-type(even) { background: var(--steel); }
@@ -635,7 +635,7 @@ td:first-child { font-family: var(--cond); font-weight: 700; font-size: 14px; co
 /* ── FOOTER ──────────────────────────────────────────── */
 footer.site-footer {
   background: var(--ink); border-top: 1px solid var(--iron); padding: 32px 16px;
-  display: grid; grid-template-columns: 1fr; gap: 28px; max-width: 100vw; overflow-x: hidden;
+  display: grid; grid-template-columns: 1fr; gap: 28px; max-width: 100%; overflow-x: hidden;
 }
 .footer-logo { font-family: var(--cond); font-weight: 900; font-size: 22px; color: var(--rust); text-transform: uppercase; letter-spacing: 0.05em; }
 .footer-sub { font-size: 12px; color: var(--fog); margin-top: 8px; line-height: 1.6; max-width: 320px; }
@@ -674,7 +674,7 @@ footer.site-footer {
 .hero {
   min-height: 88vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
   padding: 56px 16px 48px; position: relative; overflow: hidden; background: var(--ink);
-  max-width: 100vw;
+  max-width: 100%;
 }
 .hero-grid {
   position: absolute; inset: 0;
