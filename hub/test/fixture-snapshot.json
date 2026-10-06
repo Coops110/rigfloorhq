@@ -1,0 +1,41 @@
+{
+  "generated_at": 1791285000000,
+  "brands": [
+    {
+      "id": "rigfloorhq", "name": "RigFloorHQ", "site": "https://rigfloorhq.com", "generated_at": 1791285000000,
+      "networks": [
+        { "network": "tiktok", "label": "TikTok", "configured": true, "handle": "@rigfloorhq", "link": "https://www.tiktok.com/@rigfloorhq", "ok": true,
+          "profile": { "followers": 1480, "likes": 2210, "posts": 14 },
+          "totals": { "posts": 3, "views": 2177, "likes": 11, "comments": 0, "shares": 1 },
+          "delta": { "days": 7, "since": "2026-09-29", "followers": 36, "views": 420, "likes": 4, "comments": 0, "shares": 1 },
+          "notes": [],
+          "posts": [
+            { "id": "1", "title": "Nothing's pumping and the pressure is still climbing. That's gas migration.", "url": "https://www.tiktok.com/@rigfloorhq/video/1", "date": "2026-10-04T09:00:00Z", "thumb": null, "views": 159, "likes": 1, "comments": 0, "shares": 0 },
+            { "id": "2", "title": "Your mud weight number is only half the story. ECD is what the well actually feels.", "url": "https://www.tiktok.com/@rigfloorhq/video/2", "date": "2026-10-02T09:00:00Z", "thumb": null, "views": 123, "likes": 3, "comments": 0, "shares": 1 },
+            { "id": "3", "title": "Why collars push and pipe pulls", "url": "https://www.tiktok.com/@rigfloorhq/video/3", "date": "2026-09-10T09:00:00Z", "thumb": null, "views": 1895, "likes": 7, "comments": 0, "shares": 0 }
+          ] },
+        { "network": "facebook", "label": "Facebook", "configured": true, "handle": "1215544864984509", "link": "https://www.facebook.com/1215544864984509", "error": "Facebook/Instagram not connected yet" }
+      ]
+    },
+    { "id": "airprohq", "name": "AirProHQ", "site": "https://airprohq.com", "generated_at": 1791285000000,
+      "networks": [
+        { "network": "facebook", "label": "Facebook", "configured": false, "handle": "", "link": null, "error": "No account set in config.js yet" },
+        { "network": "tiktok", "label": "TikTok", "configured": false, "handle": "", "link": null, "error": "No account set in config.js yet" }
+      ] },
+    { "id": "hotdailydiaries", "name": "Hot Daily Diaries", "site": "", "generated_at": 1791285000000,
+      "networks": [
+        { "network": "instagram", "label": "Instagram", "configured": true, "handle": "@hotdailydiaries", "link": "https://www.instagram.com/hotdailydiaries/", "ok": true,
+          "profile": { "followers": 1203400 }, "totals": { "posts": 2, "views": 1850000, "likes": 42000, "comments": 310, "shares": 980 },
+          "notes": ["Instagram insights (views, shares) unavailable; showing likes and comments only."],
+          "posts": [ { "id": "a", "title": "Office look today", "url": "https://www.instagram.com/p/a/", "date": "2026-10-01T09:00:00Z", "thumb": null, "views": 1200000, "likes": 30000, "comments": 200, "shares": 600 } ] }
+      ] },
+    { "id": "calmbrainco", "name": "Calm Brain Co", "site": "", "generated_at": null, "networks": [] }
+  ],
+  "unassigned": [ { "network": "tiktok", "handle": "someotherhandle", "name": "@someotherhandle" } ],
+  "providers": {
+    "meta": { "label": "Facebook Pages + Instagram", "configured": true, "networks": ["facebook", "instagram"] },
+    "tiktok": { "label": "TikTok", "configured": true, "networks": ["tiktok"] },
+    "youtube": { "label": "YouTube", "configured": false, "networks": ["youtube"] },
+    "pinterest": { "label": "Pinterest", "configured": false, "networks": ["pinterest"] }
+  }
+}

@@ -1,0 +1,35 @@
+# Cloudflare Worker config for the social hub.
+# Free plan is enough: Workers (100k req/day), KV (1 GB), 5 cron triggers.
+name = "social-hub"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+workers_dev = true
+
+# The PWA page, manifest and icons live in ./public. The Worker runs first so
+# it can gate the page behind HUB_SECRET before handing off to static assets.
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = true
+
+# Refresh all accounts every 4 hours (6 runs/day). The page also refreshes on
+# demand, so this mostly exists to keep tokens alive while you are not looking.
+[triggers]
+crons = ["0 */4 * * *"]
+
+# Create with:  npx wrangler kv namespace create HUB_KV
+# then paste the printed id here.
+[[kv_namespaces]]
+binding = "HUB_KV"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+# Secrets (set with `npx wrangler secret put NAME`, never commit them):
+#   HUB_SECRET            your own password for the page
+#   META_APP_ID           Meta developer app  (Facebook Pages + Instagram)
+#   META_APP_SECRET
+#   TIKTOK_CLIENT_KEY     TikTok developer app (Display API)
+#   TIKTOK_CLIENT_SECRET
+#   GOOGLE_CLIENT_ID      Google Cloud OAuth client (YouTube)
+#   GOOGLE_CLIENT_SECRET
+#   PINTEREST_APP_ID      Pinterest developer app
+#   PINTEREST_APP_SECRET
