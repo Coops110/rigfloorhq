@@ -4,21 +4,24 @@
 // a long-lived user token do not expire, so this rarely needs reconnecting.
 import { fetchJson, form, now, seconds, num } from '../lib/util.js';
 import { kvGet, kvPut } from '../lib/kv.js';
-import { POSTS_PER_ACCOUNT, BRANDS } from '../config.js';
+import { POSTS_PER_ACCOUNT } from '../config.js';
 
 const V = 'v23.0';
 const G = `https://graph.facebook.com/${V}`;
 const KEY = 'tokens:meta';
 
-// Only ask for Instagram scopes if a brand actually has an Instagram account
-// configured. Meta rejects the whole OAuth request if a scope isn't granted
-// on the app, so requesting a scope nothing uses yet breaks the connection
-// for everyone -- asking for exactly what's configured keeps this working
-// as brands are added or removed from config.js without another code change.
+// Page-only scopes. This connection only ever covers one Facebook login at a
+// time (see the "one Meta login at a time" limitation logged 2026-10-07), and
+// the brands reachable from the main login (RigFloorHQ, AirProHQ,
+// GarageDoorProHQ, Calm Brain Co) have no Instagram accounts configured.
+// Hot Daily Diaries' Instagram needs its own separate login/app connection
+// regardless of scopes requested here, since it can't share this token slot
+// anyway -- so there's no config-driven way to "need" Instagram from this
+// single connection today. Add instagram_basic/instagram_manage_insights
+// back (and get them approved on the Meta app) once multi-connection
+// support is built.
 function scopesForConfig() {
-  const base = ['pages_show_list', 'pages_read_engagement', 'read_insights'];
-  const needsInstagram = BRANDS.some((b) => b.instagram && b.instagram.username);
-  return needsInstagram ? [...base, 'instagram_basic', 'instagram_manage_insights'] : base;
+  return ['pages_show_list', 'pages_read_engagement', 'read_insights'];
 }
 
 async function fetchAll(url, max = 200) {
