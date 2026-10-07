@@ -4,6 +4,7 @@ import { BRANDS, NETWORKS } from './config.js';
 import { PROVIDERS, providerForNetwork } from './providers/index.js';
 import { kvGet, kvPut } from './lib/kv.js';
 import { now, isoDay, days } from './lib/util.js';
+import { checkHealth, fetchSearchStats, fetchAnalyticsStats } from './extras.js';
 
 export const SNAPSHOT_KEY = 'snapshot';
 export const HISTORY_KEY = 'history';
@@ -112,7 +113,12 @@ async function collectBrand(env, brand) {
     }
     networks.push(entry);
   }
-  return { id: brand.id, name: brand.name, site: brand.site || '', generated_at: now(), networks };
+  const [health, search, analytics] = await Promise.all([
+    checkHealth(brand.site),
+    fetchSearchStats(env, brand.gscSite),
+    fetchAnalyticsStats(env, brand.ga4PropertyId),
+  ]);
+  return { id: brand.id, name: brand.name, site: brand.site || '', generated_at: now(), networks, health, search, analytics };
 }
 
 async function unassignedAccounts(env, brands) {
@@ -135,7 +141,7 @@ async function unassignedAccounts(env, brands) {
 export function emptySnapshot() {
   return {
     generated_at: null,
-    brands: BRANDS.map((b) => ({ id: b.id, name: b.name, site: b.site || '', generated_at: null, networks: [] })),
+    brands: BRANDS.map((b) => ({ id: b.id, name: b.name, site: b.site || '', generated_at: null, networks: [], health: null, search: null, analytics: null })),
     unassigned: [],
     providers: {},
   };
@@ -153,7 +159,7 @@ export async function refreshBrands(env, brandIds = null) {
   const existing = (await kvGet(env, SNAPSHOT_KEY)) || emptySnapshot();
   const byId = new Map((existing.brands || []).map((b) => [b.id, b]));
   for (const b of fresh) byId.set(b.id, b);
-  const brands = BRANDS.map((b) => byId.get(b.id) || { id: b.id, name: b.name, site: b.site || '', generated_at: null, networks: [] });
+  const brands = BRANDS.map((b) => byId.get(b.id) || { id: b.id, name: b.name, site: b.site || '', generated_at: null, networks: [], health: null, search: null, analytics: null });
 
   const history = trimHistory((await kvGet(env, HISTORY_KEY)) || {});
   const today = isoDay();

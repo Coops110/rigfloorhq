@@ -127,7 +127,40 @@ views, likes and comments and notes that shares are unavailable.
 Pinterest has no likes or comments as such; the card maps reactions to likes,
 comments to comments, saves to shares and impressions to views.
 
-## 3. Put the handles in config
+## 3. Site health, Search Console and Analytics (optional, no login flow needed)
+
+Each brand card can also show a small status line: whether the site is up,
+search clicks over the last 7 days, and analytics sessions over the last 7
+days. Site-up uses a plain HTTP check, no setup needed. Search and analytics
+read via a Google **service account** instead of a per-platform OAuth
+connection -- simpler, because a service account just needs read access
+granted once per property rather than a login flow.
+
+1. You likely already have one: the same service-account key used for GA4
+   reporting elsewhere in this environment lives at
+   `C:\Users\ccoop\.keys\analytics-reader-key.json`. Reuse it rather than
+   creating a new one. If it doesn't exist, create a service account in
+   Google Cloud Console, enable the **Search Console API** and **Analytics
+   Data API** on that project, and download its JSON key.
+2. Upload it as a Worker secret straight from the file, so the key itself
+   never passes through a terminal history or gets typed anywhere:
+   ```bash
+   npx wrangler secret put GOOGLE_SERVICE_ACCOUNT_JSON < "C:\Users\ccoop\.keys\analytics-reader-key.json"
+   ```
+3. **Search Console needs one extra one-off step per site**, since GA4 access
+   doesn't carry over automatically: open Search Console → pick the property
+   → **Settings → Users and permissions → Add user**, and add the service
+   account's email (the `client_email` field in that JSON file) as at least
+   **Restricted**. GA4 access only needs checking -- it's already granted on
+   AirProHQ, RigFloorHQ, GarageDoorProHQ and Calm Brain Co's properties.
+4. In `src/config.js`, each brand already has `gscSite` and `ga4PropertyId`
+   filled in from what's connected today. Leave either blank on a brand to
+   just omit that figure -- nothing else breaks.
+
+If `GOOGLE_SERVICE_ACCOUNT_JSON` is never set, the hub still works fine;
+those two figures just don't appear.
+
+## 4. Put the handles in config
 
 Any connected account that is not referenced in `src/config.js` shows under
 **Connected but not in config.js yet** on the page, with the exact handle or
@@ -138,6 +171,17 @@ npx wrangler deploy
 ```
 
 and tap **Refresh** on that brand.
+
+## 5. Quick links
+
+The **Quick links** section near the bottom of the page is a static list of
+deep-links straight to each real login page (Namecheap, Cloudflare, Vercel,
+GitHub, Zoho Mail, Search Console, Analytics, Metricool) -- edit the
+`QUICK_LINKS` array in `src/config.js` to add, remove, or relabel one, then
+redeploy. **This deliberately never stores a password or any other
+credential** -- it only ever opens the real site's own login page in a new
+tab. Keep it that way; a web page, even one gated behind `HUB_SECRET`, is not
+where real account passwords belong.
 
 ## How it works
 

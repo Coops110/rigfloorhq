@@ -1,4 +1,4 @@
-import { BRANDS } from './config.js';
+import { BRANDS, QUICK_LINKS } from './config.js';
 import { PROVIDERS } from './providers/index.js';
 import { isAuthed, handleKeyLogin, logoutResponse, loginPage } from './lib/auth.js';
 import { json, html, redirect, randomId, escapeHtml } from './lib/util.js';
@@ -36,6 +36,8 @@ export default {
       }
 
       if (path === '/api/brands') return json(BRANDS.map((b) => ({ id: b.id, name: b.name })));
+
+      if (path === '/api/links') return json(QUICK_LINKS);
 
       if (path === '/api/cron' && request.method === 'POST') {
         // Manual trigger of the scheduled run, for testing.

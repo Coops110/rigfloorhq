@@ -33,3 +33,6 @@ id = "REPLACE_WITH_KV_NAMESPACE_ID"
 #   GOOGLE_CLIENT_SECRET
 #   PINTEREST_APP_ID      Pinterest developer app
 #   PINTEREST_APP_SECRET
+#   GOOGLE_SERVICE_ACCOUNT_JSON  optional -- full JSON key for the service account
+#                                 behind Search Console + GA4 figures. See README
+#                                 section 3. Site health works fine without it.

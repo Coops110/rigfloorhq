@@ -46,6 +46,7 @@
       if (brand.site) { site.href = brand.site; site.textContent = brand.site.replace(/^https?:\/\//, ''); }
       const btn = $('.brand-refresh', node);
       btn.addEventListener('click', () => refresh([brand.id], btn));
+      renderStatusStrip($('.status-strip', node), brand);
       const cards = $('.cards', node);
       if (!brand.networks.length) {
         const p = document.createElement('p');
@@ -137,6 +138,44 @@
     return node;
   }
 
+  function renderStatusStrip(el, brand) {
+    el.replaceChildren();
+    const items = [];
+    if (brand.health) {
+      const h = brand.health;
+      items.push({ cls: h.ok ? 'up' : 'down', text: h.ok ? `Up · ${h.ms}ms` : `Down${h.status ? ' · ' + h.status : ''}` });
+    }
+    if (brand.search && !brand.search.error) items.push({ cls: 'flat', text: `${fmt(brand.search.clicks)} search clicks/7d` });
+    if (brand.analytics && !brand.analytics.error) items.push({ cls: 'flat', text: `${fmt(brand.analytics.sessions)} sessions/7d` });
+    if (!items.length) { el.hidden = true; return; }
+    el.hidden = false;
+    for (const it of items) {
+      const span = document.createElement('span');
+      span.className = `status-item ${it.cls}`;
+      span.textContent = it.text;
+      el.append(span);
+    }
+  }
+
+  async function loadLinks() {
+    const grid = $('#links-grid');
+    try {
+      const links = await (await fetch('/api/links')).json();
+      grid.replaceChildren();
+      for (const l of links) {
+        const a = document.createElement('a');
+        a.className = 'link-btn';
+        a.href = l.url;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.textContent = l.label;
+        grid.append(a);
+      }
+    } catch (e) {
+      grid.textContent = `Could not load links: ${e.message}`;
+    }
+  }
+
   function renderConnections(snap) {
     const provs = $('#providers');
     provs.replaceChildren();
@@ -191,5 +230,6 @@
   });
 
   load().catch((e) => { $('#loading').textContent = `Could not load: ${e.message}`; });
+  loadLinks();
   document.addEventListener('visibilitychange', () => { if (!document.hidden) load().catch(() => {}); });
 })();
