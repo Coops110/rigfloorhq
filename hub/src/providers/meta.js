@@ -20,8 +20,16 @@ const KEY = 'tokens:meta';
 // single connection today. Add instagram_basic/instagram_manage_insights
 // back (and get them approved on the Meta app) once multi-connection
 // support is built.
+//
+// business_management is required here even though this code never calls
+// the Business Manager API directly: Meta's me/accounts endpoint silently
+// omits any Page owned by a Business Portfolio (as opposed to a page sitting
+// directly on the personal profile) unless the login explicitly grants
+// business_management. Confirmed 2026-10-07 -- RigFloorHQ and Calm Brain
+// Co's Pages are both Business Portfolio assets, and me/accounts returned
+// zero Pages on every attempt until this scope was added to the request.
 function scopesForConfig() {
-  return ['pages_show_list', 'pages_read_engagement', 'read_insights'];
+  return ['pages_show_list', 'pages_read_engagement', 'read_insights', 'business_management'];
 }
 
 async function fetchAll(url, max = 200) {
