@@ -4,18 +4,22 @@
 // a long-lived user token do not expire, so this rarely needs reconnecting.
 import { fetchJson, form, now, seconds, num } from '../lib/util.js';
 import { kvGet, kvPut } from '../lib/kv.js';
-import { POSTS_PER_ACCOUNT } from '../config.js';
+import { POSTS_PER_ACCOUNT, BRANDS } from '../config.js';
 
 const V = 'v23.0';
 const G = `https://graph.facebook.com/${V}`;
 const KEY = 'tokens:meta';
-const SCOPES = [
-  'pages_show_list',
-  'pages_read_engagement',
-  'read_insights',
-  'instagram_basic',
-  'instagram_manage_insights',
-];
+
+// Only ask for Instagram scopes if a brand actually has an Instagram account
+// configured. Meta rejects the whole OAuth request if a scope isn't granted
+// on the app, so requesting a scope nothing uses yet breaks the connection
+// for everyone -- asking for exactly what's configured keeps this working
+// as brands are added or removed from config.js without another code change.
+function scopesForConfig() {
+  const base = ['pages_show_list', 'pages_read_engagement', 'read_insights'];
+  const needsInstagram = BRANDS.some((b) => b.instagram && b.instagram.username);
+  return needsInstagram ? [...base, 'instagram_basic', 'instagram_manage_insights'] : base;
+}
 
 async function fetchAll(url, max = 200) {
   const out = [];
@@ -53,7 +57,7 @@ export const meta = {
     const p = form({
       client_id: env.META_APP_ID,
       redirect_uri: `${origin}/auth/meta/callback`,
-      scope: SCOPES.join(','),
+      scope: scopesForConfig().join(','),
       response_type: 'code',
       state,
     });
