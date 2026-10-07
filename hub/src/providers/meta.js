@@ -28,8 +28,11 @@ const KEY = 'tokens:meta';
 // business_management. Confirmed 2026-10-07 -- RigFloorHQ and Calm Brain
 // Co's Pages are both Business Portfolio assets, and me/accounts returned
 // zero Pages on every attempt until this scope was added to the request.
+// pages_read_user_content is required separately from pages_read_engagement
+// for the /posts endpoint itself (confirmed 2026-10-07 via a real HTTP 400:
+// "(#10) This endpoint requires the 'pages_read_user_content' permission").
 function scopesForConfig() {
-  return ['pages_show_list', 'pages_read_engagement', 'read_insights', 'business_management'];
+  return ['pages_show_list', 'pages_read_engagement', 'pages_read_user_content', 'read_insights', 'business_management'];
 }
 
 async function fetchAll(url, max = 200) {
