@@ -71,6 +71,7 @@
     if (!n.ok) {
       art.classList.add('err');
       $('.followers', node).remove();
+      $('.profile-stats', node).remove();
       $('.totals', node).remove();
       $('.posts', node).remove();
       const p = $('.note', node);
@@ -85,6 +86,16 @@
       d.textContent = `${signed(n.delta.followers)} in ${n.delta.days}d`;
       d.classList.add(n.delta.followers > 0 ? 'up' : n.delta.followers < 0 ? 'down' : 'flat');
     } else d.remove();
+
+    const profileStats = $('.profile-stats', node);
+    for (const { label, value } of n.profile?.extra || []) {
+      const el = document.createElement('div');
+      el.className = 'stat';
+      el.innerHTML = `<span class="v"></span><span class="k"></span>`;
+      $('.v', el).textContent = fmt(value);
+      $('.k', el).textContent = label;
+      profileStats.append(el);
+    }
 
     const totals = $('.totals', node);
     for (const [key, label] of METRICS) {

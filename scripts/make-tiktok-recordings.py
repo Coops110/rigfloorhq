@@ -63,6 +63,9 @@ VIDEOS = {
     "17": {"id": "17-pipe-pull-margin", "rec_dir": "_rec17"},
     "18": {"id": "18-bit-torque", "rec_dir": "_rec18"},
     "19": {"id": "19-lag-and-volume", "rec_dir": "_rec19"},
+    "20": {"id": "20-flange-ring-gasket", "rec_dir": "_rec20"},
+    "21": {"id": "21-ton-mile", "rec_dir": "_rec21"},
+    "22": {"id": "22-drill-pipe-tally", "rec_dir": "_rec22"},
 }
 
 

@@ -7,9 +7,20 @@ export class HttpError extends Error {
   }
 }
 
-/** fetch + JSON parse with a useful error. */
+/**
+ * fetch + JSON parse with a useful error. Forces cache: 'no-store' on every
+ * outgoing subrequest -- every provider's API calls go through this one
+ * function, and several hit the exact same URL repeatedly with only the
+ * Authorization header differing (e.g. YouTube's channels.list with
+ * mine=true never has a varying query string). Confirmed live 2026-10-08: a
+ * YouTube 401 kept recurring on that exact URL even immediately after a
+ * forced token refresh whose new access_token tested valid seconds later via
+ * a plain curl outside the Worker -- consistent with something in the fetch
+ * path serving back a cached error response keyed on the URL rather than
+ * re-checking the (different) Authorization header each time.
+ */
 export async function fetchJson(url, init = {}) {
-  const res = await fetch(url, init);
+  const res = await fetch(url, { cache: 'no-store', ...init });
   const text = await res.text();
   let body;
   try { body = text ? JSON.parse(text) : {}; } catch { body = text; }

@@ -12,16 +12,18 @@ directory = "./public"
 binding = "ASSETS"
 run_worker_first = true
 
-# Refresh all accounts every 4 hours (6 runs/day). The page also refreshes on
-# demand, so this mostly exists to keep tokens alive while you are not looking.
+# Refresh every 30 minutes (48 runs/day). Still alternates half the brands per
+# run to stay under Cloudflare's 50-subrequest cap per invocation, but at this
+# cadence each brand gets a real refresh roughly every hour instead of every 8.
+# The page also refreshes on demand via the Refresh button.
 [triggers]
-crons = ["0 */4 * * *"]
+crons = ["*/30 * * * *"]
 
 # Create with:  npx wrangler kv namespace create HUB_KV
 # then paste the printed id here.
 [[kv_namespaces]]
 binding = "HUB_KV"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+id = "5748cb06a80b404a857c9f88c4715a9c"
 
 # Secrets (set with `npx wrangler secret put NAME`, never commit them):
 #   HUB_SECRET            your own password for the page

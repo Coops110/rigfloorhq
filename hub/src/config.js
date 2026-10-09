@@ -29,6 +29,28 @@ export const BRANDS = [
     tiktok: { username: 'rigfloorhq' },
   },
   {
+    id: 'hotdailydiaries',
+    name: 'Hot Daily Diaries',
+    site: '',
+    facebook: { pageId: '1410342212153814' },
+    instagram: { username: 'hotdailydiaries' },
+    tiktok: { username: 'hotdailydiaries' },
+    youtube: { channelId: 'UCeswO01SXN144ljQlMwANjQ' },
+  },
+  {
+    id: 'calmbrainco',
+    name: 'Calm Brain Co',
+    site: 'https://calmbrainco.shop',
+    gscSite: 'sc-domain:calmbrainco.shop',
+    ga4PropertyId: '556473755',
+    facebook: { pageId: '1414715711714173' },
+    pinterest: { username: 'coops110110' },
+  },
+  // AirProHQ and GarageDoorProHQ sit here, below the fully-connected brands
+  // above, deliberately -- neither has a social account configured yet
+  // (site health/search only), per Chris's 2026-10-08 ask to keep the
+  // live-and-working brands at the top of the hub.
+  {
     id: 'airprohq',
     name: 'AirProHQ',
     site: 'https://airprohq.com',
@@ -45,23 +67,6 @@ export const BRANDS = [
     ga4PropertyId: '549939281',
     facebook: { pageId: '' },
     tiktok: { username: '' },
-  },
-  {
-    id: 'hotdailydiaries',
-    name: 'Hot Daily Diaries',
-    site: '',
-    facebook: { pageId: '1410342212153814' },
-    instagram: { username: 'hotdailydiaries' },
-    tiktok: { username: 'hotdailydiaries' },
-    youtube: { channelId: 'UCeswO01SXN144ljQlMwANjQ' },
-  },
-  {
-    id: 'calmbrainco',
-    name: 'Calm Brain Co',
-    site: 'https://calmbrainco.shop',
-    gscSite: 'sc-domain:calmbrainco.shop',
-    ga4PropertyId: '556473755',
-    facebook: { pageId: '1414715711714173' },
   },
   {
     id: 'hypnoticbar',
@@ -82,7 +87,7 @@ export const QUICK_LINKS = [
   { label: 'Cloudflare', url: 'https://dash.cloudflare.com/login' },
   { label: 'Vercel', url: 'https://vercel.com/login' },
   { label: 'GitHub', url: 'https://github.com/login' },
-  { label: 'Zoho Mail', url: 'https://mail.zoho.com/' },
+  { label: 'Zoho Mail', url: 'https://mail.zoho.com/zm/' },
   { label: 'Google Search Console', url: 'https://search.google.com/search-console' },
   { label: 'Google Analytics', url: 'https://analytics.google.com/' },
   { label: 'Metricool', url: 'https://app.metricool.com/' },

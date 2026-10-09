@@ -186,8 +186,14 @@ export async function scheduledRun(env, scheduledTime) {
     try { maintenance.providers[p.id] = await p.maintain(env); }
     catch (e) { maintenance.providers[p.id] = { errors: [e.message] }; }
   }
-  const slot = Math.floor(new Date(scheduledTime || now()).getUTCHours() / 4) % 2;
-  const ids = BRANDS.filter((_, i) => i % 2 === slot).map((b) => b.id);
+  // Previously alternated halves of BRANDS based on getUTCHours()/4, which
+  // only changes every 4 hours -- so even after the cron trigger itself was
+  // tightened to run every 30 minutes (2026-10-08), one half kept being
+  // refreshed on every single tick while the other half's real cadence barely
+  // moved, because the slot value underneath it was still only flipping
+  // every 4 hours. At 5 brands this split was never needed for request-count
+  // headroom; just refresh everyone every tick.
+  const ids = BRANDS.map((b) => b.id);
   const snapshot = await refreshBrands(env, ids);
   snapshot.maintenance = maintenance;
   await kvPut(env, SNAPSHOT_KEY, snapshot);

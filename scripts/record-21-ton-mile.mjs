@@ -1,11 +1,14 @@
-// Records the bullheading calculator screen-recording segment for video 16,
+// Records the ton-mile calculator screen-recording segment for video 21,
 // timed to land on the same beats as the pre-generated body narration
-// (social/tiktok/16-bullheading-cues.json). Copy-adapted from
-// record-15-riser-margin.mjs -- hook line plays as its own audio clip under
-// the static frame1 bookend, so this recording's narration timeline starts
-// at t=0 with the body script only.
+// (social/tiktok/21-ton-mile-cues.json). The page's own default inputs
+// already produce the hook's real number (45.4 drilling ton-miles over the
+// 8,000-8,500 ft interval), so this retypes the two depth fields that drive
+// it plus the casing depth, and holds on the drilling/coring/short-trip and
+// setting-casing outputs as each gets named. Hook line plays as its own
+// audio clip under the static frame1 bookend, so this recording's
+// narration timeline starts at t=0 with the body script only.
 //
-// Run: node scripts/record-16-bullheading.mjs
+// Run: node scripts/record-21-ton-mile.mjs
 
 import { readFileSync } from 'node:fs';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -17,8 +20,8 @@ const { chromium } = await import(pathToFileURL(PLAYWRIGHT_PKG).href);
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const REPO = path.resolve(HERE, '..');
-const OUT_DIR = path.join(REPO, 'social', 'tiktok', '_rec16');
-const CUES_PATH = path.join(REPO, 'social', 'tiktok', '16-bullheading-cues.json');
+const OUT_DIR = path.join(REPO, 'social', 'tiktok', '_rec21');
+const CUES_PATH = path.join(REPO, 'social', 'tiktok', '21-ton-mile-cues.json');
 const BASE_URL = 'http://localhost:4321';
 
 const cues = JSON.parse(readFileSync(CUES_PATH, 'utf8'));
@@ -30,10 +33,9 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 // Types character-by-character for the visual effect, then verifies the
 // field actually holds the intended value and self-heals with a direct
 // .fill() if not -- hard-fails rather than silently shipping a video with a
-// wrong input. Found 2026-10-09: this exact field (TVD) landed as "90"
-// instead of "9000" in the prior build, which fed through every downstream
-// formula and produced nonsense (negative surface pressures) that nobody
-// caught until a frame-decode check was run against the finished mp4.
+// wrong input. Added 2026-10-09 after the exact same keystroke-drop bug hit
+// two of the prior batch's recording scripts and wasn't caught until a
+// frame-decode check was run against the finished mp4.
 async function typeField(page, selector, value, { delay = 90 } = {}) {
   const loc = page.locator(selector);
   await loc.fill('');
@@ -64,7 +66,7 @@ async function main() {
     if (remain > 0) await sleep(remain);
   };
 
-  await page.goto(`${BASE_URL}/calculators/bullheading`, { waitUntil: 'load' });
+  await page.goto(`${BASE_URL}/calculators/ton-mile`, { waitUntil: 'load' });
   await sleep(600);
 
   try {
@@ -78,39 +80,34 @@ async function main() {
   await waitUntil(LEAD_IN);
   console.log('start @', elapsed().toFixed(2));
 
-  // ---- line 1: "bullheading pumps kill fluid straight down the tubing...
-  // forcing the well's contents back into the formation" -- re-type the
-  // well inputs that set up the job. ----
+  // ---- line 1: "a ton-mile is one ton of load, moved one mile" -- retype
+  // the two round-trip depths that drive the hook number. ----
   await waitUntil(line1End - 6);
-  await typeField(page, '#fp', '5500', { delay: 90 });
-  console.log('typed formation pressure @', elapsed().toFixed(2));
+  await typeField(page, '#deptha', '8000', { delay: 90 });
+  console.log('typed depth A @', elapsed().toFixed(2));
 
-  await waitUntil(line1End - 3.5);
-  await typeField(page, '#sitp', '800', { delay: 100 });
-  console.log('typed SITP @', elapsed().toFixed(2));
+  await waitUntil(line1End - 3);
+  await typeField(page, '#depthb', '8500', { delay: 90 });
+  console.log('typed depth B @', elapsed().toFixed(2));
 
-  await waitUntil(line1End - 1);
-  await typeField(page, '#tvd', '9000', { delay: 90 });
-  console.log('typed TVD @', elapsed().toFixed(2));
-
-  // ---- line 2: "enter formation pressure, shut-in pressure, TVD, and
-  // fluid weight, and it checks two surface-pressure ceilings" -- finish
-  // the remaining well inputs named in this line. ----
+  // ---- line 2: "API RP 9B tracks cumulative ton-miles against the line's
+  // rated service life" -- hold on the round-trip ton-mile outputs. ----
   await waitUntil(line1End + 0.4);
-  await typeField(page, '#omw', '9.0', { delay: 100 });
-  console.log('typed original fluid weight @', elapsed().toFixed(2));
+  await page.locator('#out-rttmb').scrollIntoViewIfNeeded();
+  console.log('holding on round-trip TM @', elapsed().toFixed(2));
 
-  await waitUntil(line2End - 2);
-  await page.locator('#fg').scrollIntoViewIfNeeded();
-  await typeField(page, '#fg', '0.75', { delay: 100 });
-  console.log('typed fracture gradient @', elapsed().toFixed(2));
-
-  // ---- line 3: "the final ceiling is the tighter one... cross it, and
-  // you fracture the formation at surface" -- hold on the two headline
-  // surface-pressure ceiling outputs as the payoff line lands. ----
+  // ---- line 3: "a drilling trip costs three times... coring costs two
+  // times... setting casing isn't a round trip at all" -- show drilling/
+  // coring/short-trip, then scroll to the separate casing section. ----
   await waitUntil(line2End + 0.4);
-  await page.locator('#out-mfsp').scrollIntoViewIfNeeded();
-  console.log('holding on surface pressure ceilings @', elapsed().toFixed(2));
+  await page.locator('#out-drilling').scrollIntoViewIfNeeded();
+  console.log('holding on drilling/coring/short-trip @', elapsed().toFixed(2));
+
+  await waitUntil(line3End - 3);
+  await page.locator('#csgdepth').scrollIntoViewIfNeeded();
+  await page.locator('#csgdepth').fill('');
+  await page.locator('#csgdepth').pressSequentially('8500', { delay: 80 });
+  console.log('typed casing depth, holding on casing TM @', elapsed().toFixed(2));
 
   await waitUntil(line3End + 2.0);
   console.log('stop @', elapsed().toFixed(2));

@@ -108,7 +108,13 @@ export const tiktok = {
     return {
       handle: `@${username}`,
       link: `https://www.tiktok.com/@${username}`,
-      profile: { followers: u.follower_count ?? null, likes: u.likes_count ?? null, posts: u.video_count ?? null, avatar: u.avatar_url || null },
+      profile: {
+        followers: u.follower_count ?? null, likes: u.likes_count ?? null, posts: u.video_count ?? null, avatar: u.avatar_url || null,
+        extra: [
+          ...(u.likes_count != null ? [{ label: 'Lifetime likes', value: u.likes_count }] : []),
+          ...(u.video_count != null ? [{ label: 'Total videos', value: u.video_count }] : []),
+        ],
+      },
       notes: [],
       posts: videos.map((v) => ({
         id: v.id,

@@ -181,6 +181,45 @@ SCRIPTS = {
         "-- bottoms-up travels the much bigger annular volume, not the "
         "string.",
     ],
+    "20-flange-ring-gasket": [
+        "It can look seated. And still not hold at test pressure.",
+        "Every flange bore and pressure rating has exactly one correct ring "
+        "gasket number, stamped right on the data plate.",
+        "R gaskets seal on bolt-up force alone, used two M through five M. "
+        "B X gaskets are pressure-energized -- wellbore pressure itself "
+        "helps hold them sealed -- used ten M and above, and on almost "
+        "every B O P stack connection.",
+        "Get the number close but wrong, and it can sit there looking fine "
+        "on a visual check and still fail the second real pressure hits "
+        "it -- that's exactly why the pressure test exists as its own "
+        "separate step.",
+    ],
+    "21-ton-mile": [
+        "One short trip. Forty-five ton-miles of wear.",
+        "A ton-mile is one ton of load, moved one mile -- weight and "
+        "distance together, because that's what actually fatigues "
+        "drilling line.",
+        "A P I R P nine B tracks cumulative ton-miles against the "
+        "line's rated service life, so it gets cut and slipped before it "
+        "fails, not after.",
+        "A drilling trip costs three times the plain round-trip "
+        "difference, a full round trip to change the bit and back. "
+        "Coring only costs two times. Setting casing isn't a round trip "
+        "at all -- it's calculated on its own, one way.",
+    ],
+    "22-drill-pipe-tally": [
+        "Your depth counter can drift. The tally can't.",
+        "A tally is a physical measurement, joint by joint, as pipe "
+        "actually goes in the hole.",
+        "Twenty joints at thirty-one point two feet average comes out to "
+        "six hundred twenty-four feet of string -- not whatever the "
+        "counter happens to read.",
+        "That same pipe gives you two numbers: capacity, the volume "
+        "inside it, and displacement, the steel itself. Compare "
+        "displacement against what the trip tank actually shows, and "
+        "that mismatch is how a kick or a losses event gets caught while "
+        "tripping.",
+    ],
 }
 
 

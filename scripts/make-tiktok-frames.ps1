@@ -209,6 +209,23 @@ $topics = @(
     @{ e = 'FREE, NO SIGNUP'; h = 'Free lag and volume calculator. No login.'; b = $null; f = 'rigfloorhq.com'; a = $white }
   ) },
 
+  # ── BATCH 20-22: flange & ring gasket, ton-mile, drill pipe tally ──
+  @{ id = '20-flange-ring-gasket'; frames = @(
+    @{ e = 'WRONG RING GASKET'; h = 'LOOKS SEATED. FAILS AT TEST PRESSURE.'; b = $null; f = $null; a = $ember },
+    @{ e = 'BEFORE YOU USE IT'; h = 'Learning tool only.'; b = "Reference only. Confirm bore size and pressure rating against the flange's own data plate before ordering studs or gaskets."; f = $null; a = $danger; w = $true },
+    @{ e = 'FREE, NO SIGNUP'; h = 'Free flange and ring gasket lookup. No login.'; b = $null; f = 'rigfloorhq.com'; a = $white }
+  ) },
+  @{ id = '21-ton-mile'; frames = @(
+    @{ e = 'ONE 500-FT TRIP'; h = '45.4 TON-MILES'; b = $null; f = $null; a = $ember },
+    @{ e = 'BEFORE YOU USE IT'; h = 'Learning tool only.'; b = "Reference only. Track cumulative ton-miles against your drilling line's actual service-life rating and cut-and-slip programme."; f = $null; a = $danger; w = $true },
+    @{ e = 'FREE, NO SIGNUP'; h = 'Free ton-mile calculator. No login.'; b = $null; f = 'rigfloorhq.com'; a = $white }
+  ) },
+  @{ id = '22-drill-pipe-tally'; frames = @(
+    @{ e = 'THE REAL DEPTH'; h = '20 JOINTS -> 624 FT'; b = $null; f = $null; a = $ember },
+    @{ e = 'BEFORE YOU USE IT'; h = 'Learning tool only.'; b = 'Reference only. A real tally is measured and logged joint by joint -- use this to plan and sanity-check, not replace the physical tally.'; f = $null; a = $danger; w = $true },
+    @{ e = 'FREE, NO SIGNUP'; h = 'Free drill pipe tally calculator. No login.'; b = $null; f = 'rigfloorhq.com'; a = $white }
+  ) },
+
   # ── ANIMATED DIAGRAM VIDEOS ──────────────────────────────────
   # Same hook/insight/close bookend shape as the informational 01-05
   # videos (no "before you use it" warning -- these aren't interactive

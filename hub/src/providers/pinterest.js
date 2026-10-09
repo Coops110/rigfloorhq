@@ -132,7 +132,10 @@ export const pinterest = {
     return {
       handle: `@${u.username}`,
       link: `https://www.pinterest.com/${u.username}/`,
-      profile: { followers: num(u.follower_count), views: num(u.monthly_views), avatar: u.profile_image || null },
+      profile: {
+        followers: num(u.follower_count), views: num(u.monthly_views), avatar: u.profile_image || null,
+        extra: u.monthly_views == null ? [] : [{ label: 'Monthly views', value: num(u.monthly_views) }],
+      },
       notes,
       posts,
     };

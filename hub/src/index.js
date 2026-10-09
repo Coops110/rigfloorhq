@@ -7,6 +7,21 @@ import { SNAPSHOT_KEY, emptySnapshot, refreshBrands, scheduledRun } from './snap
 
 const PUBLIC_PATHS = new Set(['/manifest.webmanifest', '/favicon.ico']);
 
+function privacyPage() {
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Social Hub - Privacy</title>
+<style>:root{color-scheme:dark}body{margin:0;padding:24px;font:16px/1.6 system-ui,sans-serif;background:#111318;color:#e8eaf0}
+.box{max-width:640px;margin:0 auto}h1{font-size:22px}p{color:#c7cbd4}</style></head>
+<body><div class="box">
+<h1>Privacy Policy</h1>
+<p>Social Hub is a single-user, private dashboard built and operated by Chris Cooper for his own personal use. It is not a public product and has no other users.</p>
+<p>It connects to each platform's official API (Meta, TikTok, YouTube, Pinterest) using Chris's own authorization, and reads only his own connected accounts' publicly-visible statistics (followers, views, likes, comments, shares, recent posts). It never posts, modifies, or deletes anything on any connected account.</p>
+<p>Data retrieved is cached in Cloudflare KV storage for up to 60 days, solely to compute week-over-week change figures, and is never shared, sold, or transmitted to any third party. Access to the dashboard itself is gated behind a private key known only to Chris.</p>
+<p>Disconnecting an account from the dashboard removes its stored tokens. Questions: contact via the account that registered this application.</p>
+</div></body></html>`;
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -14,6 +29,7 @@ export default {
 
     // Manifest and icons must load without the cookie or "Add to Home Screen" breaks.
     if (PUBLIC_PATHS.has(path) || path.startsWith('/icons/')) return env.ASSETS.fetch(request);
+    if (path === '/privacy') return html(privacyPage());
 
     const login = await handleKeyLogin(request, env);
     if (login) return login;
