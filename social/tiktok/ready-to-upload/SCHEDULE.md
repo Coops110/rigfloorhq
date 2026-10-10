@@ -54,3 +54,5 @@
 - [ ] 01 — **held**, pending rig-experience review
 - [ ] 02 — **held**, pending rig-experience review
 - [ ] 05 — **held**, pending rig-experience review (its original 2026-08-23 TikTok-native schedule also silently failed — never actually posted, so this is still its true first attempt whenever it's cleared)
+
+**This table stopped being the real source of truth after video 11 (2026-10-09) — posting moved to Metricool's own schedule for 12 onward, both platforms, and this file was never kept in lockstep.** Real status for 12-22 lives in [[RigFloorHQ Social Posting]]'s posting-order tables instead. Not hand-maintaining this file's table further; leaving 01-11 above as historical record.

@@ -139,9 +139,11 @@ def verify_bookend_video(vid_id: str) -> list[str]:
         failures.append(f"{v['id']}: missing source wav/recording, cannot verify expected duration")
         return failures
 
+    hook_wav = mtr.OUT / f"{v['id']}-hook.wav"
+    hook_dur = mtr.probe_duration(hook_wav) if hook_wav.exists() else mtr.HOOK_S
     narr_dur = mtr.probe_duration(wav)
     rec_dur = mtr.probe_duration(recs[-1])
-    expected_total = mtr.HOOK_S + min(rec_dur, narr_dur) + mtr.WARNING_S + mtr.CLOSE_S
+    expected_total = hook_dur + min(rec_dur, narr_dur) + mtr.WARNING_S + mtr.CLOSE_S
     actual_total = mtr.probe_duration(mp4)
     if abs(actual_total - expected_total) > TOLERANCE_S:
         failures.append(f"{v['id']}: expected total duration {expected_total:.1f}s, actual {actual_total:.1f}s")
