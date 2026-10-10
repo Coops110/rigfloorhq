@@ -88,8 +88,12 @@ export const QUICK_LINKS = [
   { label: 'Vercel', url: 'https://vercel.com/login' },
   { label: 'GitHub', url: 'https://github.com/login' },
   { label: 'Zoho Mail', url: 'https://mail.zoho.com/zm/' },
-  { label: 'RigFloorHQ Zoho — contact@rigfloorhq.com', url: 'https://mail.zoho.com/zm/#mail/folder/inbox' },
-  { label: 'AirProHQ Zoho — contact@airprohq.com', url: 'https://mail.zoho.com/zm/#mail/folder/inbox' },
+  // Zoho only keeps one business account signed in per browser at a time (no true
+  // multi-account like Gmail), so a bare mail.zoho.com link silently reuses whichever
+  // account happens to be active. These force a logout + re-signin pre-filled with the
+  // right email every time, so each link always lands on the correct mailbox.
+  { label: 'RigFloorHQ Zoho — contact@rigfloorhq.com', url: 'https://accounts.zoho.com/logout?servicename=ZohoMail&serviceurl=https%3A%2F%2Faccounts.zoho.com%2Fsignin%3Fservicename%3DVirtualOffice%26serviceurl%3Dhttps%253A%252F%252Fmail.zoho.com%252Fzm%252F%2523mail%252Ffolder%252Finbox%26Email%3Dcontact%40rigfloorhq.com' },
+  { label: 'AirProHQ Zoho — contact@airprohq.com', url: 'https://accounts.zoho.com/logout?servicename=ZohoMail&serviceurl=https%3A%2F%2Faccounts.zoho.com%2Fsignin%3Fservicename%3DVirtualOffice%26serviceurl%3Dhttps%253A%252F%252Fmail.zoho.com%252Fzm%252F%2523mail%252Ffolder%252Finbox%26Email%3Dcontact%40airprohq.com' },
   { label: 'Google Search Console', url: 'https://search.google.com/search-console' },
   { label: 'Google Analytics', url: 'https://analytics.google.com/' },
   { label: 'Metricool', url: 'https://app.metricool.com/' },
