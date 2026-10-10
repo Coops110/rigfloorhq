@@ -89,6 +89,7 @@ export const QUICK_LINKS = [
   { label: 'GitHub', url: 'https://github.com/login' },
   { label: 'Zoho Mail', url: 'https://mail.zoho.com/zm/' },
   { label: 'RigFloorHQ Zoho — contact@rigfloorhq.com', url: 'https://mail.zoho.com/zm/#mail/folder/inbox' },
+  { label: 'AirProHQ Zoho — contact@airprohq.com', url: 'https://mail.zoho.com/zm/#mail/folder/inbox' },
   { label: 'Google Search Console', url: 'https://search.google.com/search-console' },
   { label: 'Google Analytics', url: 'https://analytics.google.com/' },
   { label: 'Metricool', url: 'https://app.metricool.com/' },
