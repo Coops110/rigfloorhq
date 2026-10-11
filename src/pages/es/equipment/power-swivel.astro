@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import ToolGallery from '../../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: '¿Qué es un power swivel?',
+    a: 'Un power swivel es una unidad rotativa autónoma, generalmente accionada hidráulicamente, montada en el mástil de un taladro de workover o servicio de pozos. Proporciona rotación y permite la circulación de fluido a través de la sarta debajo de ella, haciendo el trabajo que haría un sistema de kelly y mesa rotaria, o el top drive de un taladro de perforación, pero dimensionado y construido para taladros de servicio más pequeños que normalmente no tienen ninguno de los dos.',
+  },
+  {
+    q: '¿Para qué se usa un power swivel?',
+    a: 'Cubre cualquier trabajo en un taladro de workover que necesite rotar la sarta: operaciones de pesca, moler o perforar tapones de cemento y bridge plugs, molienda de revestimiento, desviaciones, perforación en agujero abierto, y coreo. Rotar mientras se lava sobre o se trabaja un pescado es uno de sus usos más comunes, ya que muchos taladros de servicio no tienen otra forma de girar la sarta.',
+  },
+  {
+    q: '¿En qué se diferencia un power swivel del top drive de un taladro de perforación?',
+    a: 'Funcionan bajo el mismo principio básico — una unidad motriz hidráulica o eléctrica que rota la sarta mientras cuelga en el derrick o mástil — pero un power swivel es la versión más ligera y simple construida para el mástil más pequeño y el ciclo de trabajo menor de un taladro de workover. El top drive de un taladro de perforación suele ser más grande, con manejo integrado de tubería y conexión automática que un power swivel normalmente no tiene.',
+  },
+  {
+    q: '¿Un power swivel reemplaza el gancho y el bloque viajero del taladro?',
+    a: 'No. Cuelga del gancho y bloque viajero existentes de la misma forma que lo haría un kelly o un top drive, añadiendo rotación y una vía de fluido a través de su propia conexión de cuello de ganso. El sistema de izaje del taladro sigue haciendo el levantamiento y bajada; el power swivel solo añade la capacidad de girar la sarta mientras eso sucede.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Power Swivel: Rotación en un Taladro de Workover Sin Top Drive"
+  description="Qué es un power swivel, los trabajos para los que se usa en un taladro de workover o servicio de pozos, y cómo se compara con el top drive de un taladro de perforación."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Power Swivel', href: '/es/equipment/power-swivel' }]}
+  lang="es"
+  alternateHref="/equipment/power-swivel"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/power-swivel" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Workover y Servicio de Pozos</div>
+    <h1>Power <span>Swivel</span></h1>
+    <p class="page-hero-sub">Una unidad rotativa accionada hidráulicamente que le da a un taladro de workover la capacidad de girar la sarta, sin necesitar kelly, mesa rotaria, o un top drive completo de taladro de perforación.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/power-swivel-1.jpg" image2="/images/equipment/power-swivel-2.jpg" alt="un power swivel genérico montado en el mástil de un taladro de workover" />
+      <div class="prose">
+        <h2 id="what-it-is">Qué Es un Power Swivel</h2>
+        <p>Un power swivel es una unidad rotativa autónoma, generalmente accionada por motor hidráulico, que cuelga en el mástil de un taladro de workover o servicio de pozos desde el gancho y bloque viajero existentes. Proporciona las dos cosas que la rotación necesita en un solo paquete: torque para girar la sarta debajo de ella, y una vía de fluido — a través de una conexión interna de cuello de ganso — para que la circulación siga fluyendo a través de la sarta rotativa de la misma forma que lo haría a través del kelly o top drive de un taladro de perforación.</p>
+        <p>Muchos taladros de workover y servicio están construidos sin mesa rotaria ni un top drive a escala de taladro de perforación, ya que la mayoría de su trabajo (sacar y correr tubería, completaciones básicas) no necesita rotación. Un power swivel es lo que se atornilla o arma para los trabajos en ese mismo taladro que sí la necesitan.</p>
+
+        <h2 id="when-used">Para Qué Se Usa</h2>
+        <ul>
+          <li><strong>Operaciones de pesca</strong> — rotar una herramienta liberadora enganchada en un pescado, o rotar mientras se lava sobre tubería atascada para liberarla.</li>
+          <li><strong>Molienda y perforación de tapones</strong> — perforar tapones de cemento y bridge plugs, molienda de revestimiento, y trabajo de molienda por secciones hecho con una sarta de workover en lugar de una sarta de perforación.</li>
+          <li><strong>Desviaciones y perforación en agujero abierto</strong> — en trabajos lo suficientemente ligeros para que un taladro de servicio los maneje sin traer un taladro de perforación completo.</li>
+          <li><strong>Coreo</strong> — donde se necesita rotación controlada y constante a través de una sarta de workover.</li>
+        </ul>
+
+        <h2 id="vs-top-drive">Power Swivel vs. el Top Drive de un Taladro de Perforación</h2>
+        <p>Un power swivel y el <a href="/es/equipment/rotating-system">top drive de un taladro de perforación</a> resuelven el mismo problema básico de la misma forma básica — una unidad motriz que cuelga en el derrick o mástil, rotando la sarta mientras se levanta y baja. La diferencia real está en la escala y el propósito. Un top drive en un taladro de perforación está construido para rotación continua y de alta resistencia a través de todo un pozo, generalmente con manejo integrado de tubería y conexión automática incluidos. Un power swivel es la contraparte más ligera dimensionada para el mástil más pequeño de un taladro de workover, su menor ciclo de trabajo, y trabajos de rotación más cortos y menos continuos — no está pensado para reemplazar un top drive en un taladro de perforación real, existe porque la mayoría de los taladros de workover nunca tuvieron uno para empezar.</p>
+
+        <h2 id="how-it-mounts">Cómo Se Monta y Opera</h2>
+        <p>El power swivel cuelga del gancho existente del taladro, el mismo punto donde se conectaría un kelly o los elevadores, así que el sistema de izaje sigue haciendo todo el levantamiento y bajada. Motores hidráulicos o eléctricos integrados en la unidad giran un eje interno conectado a la sarta debajo, mientras el fluido de perforación o workover se bombea a través del propio cuello de ganso de la unidad y baja por la sarta rotativa exactamente como lo haría a través de un top drive. Una vez terminado el trabajo que necesitaba rotación, el power swivel se desarma y el taladro vuelve a correr tubería de forma convencional.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#what-it-is">Qué Es</a>
+          <a href="#when-used">Para Qué Se Usa</a>
+          <a href="#vs-top-drive">vs. Top Drive</a>
+          <a href="#how-it-mounts">Cómo Se Monta</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Solo referencia.</strong> El torque, la velocidad, y las clasificaciones de presión varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la unidad antes de confiar en cualquier cifra de aquí para un trabajo real.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/equipment/rotating-system" class="card-link">→ Sistema Rotativo (Top Drive)</a><br><br>
+          <a href="/es/equipment/hoisting-system" class="card-link">→ Sistema de Izaje</a><br><br>
+          <a href="/es/equipment/bumper-sub" class="card-link">→ Sub de Golpe</a><br><br>
+          <a href="/es/equipment/hydraulic-jar" class="card-link">→ Martillo Hidráulico</a><br><br>
+          <a href="/pillars/stuck-pipe-and-fishing-operations" class="card-link">→ Pesca y Tubería Pegada (inglés)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is a power swivel?',
+    a: 'A power swivel is a self-contained, hydraulically driven rotating unit mounted in the mast of a workover or well-servicing rig. It provides rotation and allows fluid circulation through the string below it, doing the job a kelly-and-rotary-table setup or a drilling rig\'s top drive does, but sized and built for smaller service rigs that usually have neither.',
+  },
+  {
+    q: 'What is a power swivel used for?',
+    a: 'It covers any workover-rig job that needs the string rotated: fishing operations, milling or drilling out cement plugs and bridge plugs, casing milling, sidetracking, drilling open hole, and coring. Rotating while washing over or working a fish is one of its most common uses, since many service rigs have no other way to turn the string at all.',
+  },
+  {
+    q: 'How is a power swivel different from a drilling rig\'s top drive?',
+    a: 'They work on the same basic principle — a hydraulic or electric motor unit that rotates the string while hanging in the derrick or mast — but a power swivel is the lighter, simpler version built for a workover rig\'s smaller mast and lower duty cycle. A drilling rig\'s top drive is typically larger, with integrated pipe-handling and automated connection make-up that a power swivel usually does not carry.',
+  },
+  {
+    q: 'Does a power swivel replace the rig\'s regular hook and block?',
+    a: 'No. It hangs from the existing hook and traveling block the same way a kelly or top drive would, adding rotation and a fluid path through its own gooseneck connection. The rig\'s hoisting system still does the raising and lowering; the power swivel only adds the ability to turn the string while that\'s happening.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Power Swivel: Rotation on a Workover Rig Without a Top Drive"
+  description="What a power swivel is, the jobs it's used for on a workover or well-servicing rig, and how it compares to a drilling rig's top drive."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Power Swivel', href: '/equipment/power-swivel' }]}
+  lang="en"
+  alternateHref="/es/equipment/power-swivel"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/equipment/power-swivel" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Workover &amp; Well Servicing</div>
+    <h1>Power <span>Swivel</span></h1>
+    <p class="page-hero-sub">A hydraulically driven rotating unit that gives a workover rig the ability to turn the string, without needing a kelly, rotary table, or full drilling-rig top drive.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/power-swivel-1.jpg" image2="/images/equipment/power-swivel-2.jpg" alt="a generic power swivel mounted in a workover rig mast" />
+      <div class="prose">
+        <h2 id="what-it-is">What a Power Swivel Is</h2>
+        <p>A power swivel is a self-contained rotating unit, usually hydraulic-motor-driven, that hangs in the mast of a workover or well-servicing rig from the existing hook and traveling block. It provides the two things rotation needs in one package: torque to turn the string below it, and a fluid path — through an internal gooseneck connection — so circulation keeps flowing through the rotating string the same way it would through a drilling rig's kelly or top drive.</p>
+        <p>Many workover and service rigs are built without a rotary table or a drilling-rig-scale top drive at all, since most of their work (pulling and running tubing, basic completions) doesn't need rotation. A power swivel is what gets bolted on, or rigged up, for the jobs on that same rig that do.</p>
+
+        <h2 id="when-used">What It's Used For</h2>
+        <ul>
+          <li><strong>Fishing operations</strong> — rotating a releasing tool engaged on a fish, or rotating while washing over to free stuck pipe.</li>
+          <li><strong>Milling and drillout</strong> — drilling out cement plugs and bridge plugs, casing milling, and section-milling work done with a workover string instead of a drilling string.</li>
+          <li><strong>Sidetracking and drilling open hole</strong> — on jobs light enough for a service rig to handle without bringing in a full drilling rig.</li>
+          <li><strong>Coring</strong> — where controlled, steady rotation is needed through a workover string.</li>
+        </ul>
+
+        <h2 id="vs-top-drive">Power Swivel vs. a Drilling Rig's Top Drive</h2>
+        <p>A power swivel and a <a href="/equipment/rotating-system">drilling rig's top drive</a> solve the same basic problem the same basic way — a motor unit riding in the derrick or mast, rotating the string as it's raised and lowered. The real difference is scale and purpose. A top drive on a drilling rig is built for continuous, heavy-duty rotation across an entire well, usually with integrated pipe-handling and automated connection make-up built in. A power swivel is the lighter counterpart sized for a workover rig's smaller mast, lower duty cycle, and shorter, less continuous rotating jobs — it isn't meant to replace a top drive on an actual drilling rig, it exists because most workover rigs never had one to begin with.</p>
+
+        <h2 id="how-it-mounts">How It Mounts and Operates</h2>
+        <p>The power swivel hangs from the rig's existing hook, the same point a kelly or elevator links would attach to, so the hoisting system still does all the raising and lowering. Hydraulic or electric motors built into the unit turn an internal spindle connected to the string below, while drilling or workover fluid is pumped in through the unit's own gooseneck and down through the rotating string exactly as it would through a top drive. Once the job needing rotation is done, the power swivel is rigged down and the rig goes back to running pipe conventionally.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#when-used">What It's Used For</a>
+          <a href="#vs-top-drive">vs. a Top Drive</a>
+          <a href="#how-it-mounts">How It Mounts</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Torque, speed, and pressure ratings vary by manufacturer and model — always confirm against the actual unit's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/rotating-system" class="card-link">→ Rotating System (Top Drive)</a><br><br>
+          <a href="/equipment/hoisting-system" class="card-link">→ Hoisting System</a><br><br>
+          <a href="/equipment/bumper-sub" class="card-link">→ Bumper Sub</a><br><br>
+          <a href="/equipment/hydraulic-jar" class="card-link">→ Hydraulic Jar</a><br><br>
+          <a href="/pillars/stuck-pipe-and-fishing-operations" class="card-link">→ Stuck Pipe &amp; Fishing Operations</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

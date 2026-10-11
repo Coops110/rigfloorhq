@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import ToolGallery from '../../components/ToolGallery.astro';
+
+const faq = [
+  {
+    q: 'What is a hydraulic-set retainer packer?',
+    a: 'It is a permanent production packer, run to depth and set by applying hydraulic pressure down the tubing rather than by mechanical weight, rotation, or a wireline setting tool. "Retainer" describes how it\'s completed afterward — production tubing doesn\'t thread directly into the packer body itself, it connects through a separate seal assembly that stabs into the packer\'s polished bore, the same two-piece design covered on the main packer page.',
+  },
+  {
+    q: 'What does the high-spec, sour-gas-rated variant add over a standard one?',
+    a: 'Two things, mainly: the largest bore the packer design allows for a given casing size, and metallurgy and a packing-element system rated for sour (H2S) service — standardized alloys that resist the corrosion and embrittlement sour gas causes in ordinary completion steels, plus a packing element built to resist swabbing off its seal when well fluids move past it. A standard-spec retainer packer is built for typical, non-sour service where those extra ratings aren\'t needed.',
+  },
+  {
+    q: 'How is this different from a cement retainer?',
+    a: 'Despite the similar name, they are unrelated tools. A cement retainer is a temporary, pump-through tool used to isolate a zone during a squeeze cementing job — see the dedicated cement retainer page. A hydraulic-set retainer packer is a permanent production packer, set once and left in place for the life of the completion, with no cementing function at all.',
+  },
+  {
+    q: 'Why hydraulic setting instead of mechanical or wireline?',
+    a: 'Setting by applied tubing pressure avoids needing rotation or straight-pull weight to actuate the packer, which matters in wells where the tubing string can\'t reliably transmit that mechanical setting force to depth, or where a clean, repeatable setting pressure is preferred over a mechanical trigger. It also keeps the setting process independent of wireline access, which may not be practical on every completion.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Hydraulic-Set Retainer Packer: Standard vs. Sour-Gas High-Spec"
+  description="What a hydraulic-set retainer production packer is, how it's set, the standard vs. larger-bore sour-gas-rated configuration, and how it differs from a cement retainer."
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Hydraulic-Set Retainer Packer', href: '/equipment/hydraulic-set-retainer-packer' }]}
+  lang="en"
+  alternateHref="/es/equipment/hydraulic-set-retainer-packer"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/equipment/hydraulic-set-retainer-packer" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipment — Downhole Tools</div>
+    <h1>Hydraulic-Set <span>Retainer Packer</span></h1>
+    <p class="page-hero-sub">A permanent production packer set by applied tubing pressure, completed through a separate stab-in seal assembly — with a larger-bore, sour-gas-rated configuration for harsher wells.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <ToolGallery image1="/images/equipment/hydraulic-set-retainer-packer-1.jpg" image2="/images/equipment/hydraulic-set-retainer-packer-2.jpg" alt="a generic hydraulic-set retainer production packer" />
+      <div class="prose">
+        <h2 id="what-it-is">What a Hydraulic-Set Retainer Packer Is</h2>
+        <p>A hydraulic-set retainer packer is a permanent production <a href="/equipment/packer">packer</a> run to depth on tubing and set by applying hydraulic pressure from surface, rather than by mechanical rotation, straight pull, or a separate wireline setting run. Once set, it stays in the well for the life of the completion — the "retainer" half of the name describes how production tubing connects to it afterward: not threaded directly into the packer body, but through a separate seal assembly stabbed into the packer's own polished bore, the same two-piece packer-and-seal-assembly design described on the main packer page.</p>
+
+        <h2 id="standard-vs-high-spec">Standard vs. Sour-Gas High-Spec Configuration</h2>
+        <p>This class of packer typically comes in two tiers:</p>
+        <ul>
+          <li><strong>Standard configuration</strong> — a reliable, permanent hydraulic-set retainer packer built for typical downhole isolation under high-pressure conditions, using standard completion metallurgy.</li>
+          <li><strong>High-spec, sour-gas-rated configuration</strong> — the largest practical bore the packer design allows for a given casing size, paired with metallurgy standardized for highly corrosive sour gas (H₂S) service and a packing-element system built to resist swabbing off its seal as well fluids move past it. This tier exists for wells where sour service or a larger flow path through the packer specifically matters enough to justify the extra cost over the standard version.</li>
+        </ul>
+
+        <h2 id="setting-method">Setting Method</h2>
+        <p>The packer is run to depth on the tubing string, connected to an anchor seal nipple, and set by applying pressure down the tubing rather than through mechanical actuation. Setting hydraulically means the tool doesn't depend on the tubing string reliably transmitting rotation or straight-pull weight all the way to depth, and doesn't require a separate wireline setting trip — useful on completions where either of those would be impractical.</p>
+
+        <h2 id="vs-cement-retainer">Not to Be Confused With a Cement Retainer</h2>
+        <p>The name overlaps, but a <a href="/equipment/cement-retainer">cement retainer</a> is a different tool doing a different job — a temporary, pump-through device used to isolate a zone during a squeeze cementing job, removed or drilled out once the squeeze is complete. A hydraulic-set retainer packer has nothing to do with cementing; it's a permanent production packer left in place as part of the completion itself. The shared "retainer" wording describes two unrelated mechanical concepts in each tool, not a family relationship between them.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-it-is">What It Is</a>
+          <a href="#standard-vs-high-spec">Standard vs. High-Spec</a>
+          <a href="#setting-method">Setting Method</a>
+          <a href="#vs-cement-retainer">vs. Cement Retainer</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="note-box mt-24">
+          <strong>Reference only.</strong> Bore size, pressure rating, and metallurgy options vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.
+        </div>
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/equipment/packer" class="card-link">→ Packer (Permanent vs. Retrievable)</a><br><br>
+          <a href="/equipment/cement-retainer" class="card-link">→ Cement Retainer</a><br><br>
+          <a href="/equipment/liner-hanger" class="card-link">→ Liner Hanger</a><br><br>
+          <a href="/equipment/on-off-tool" class="card-link">→ On-Off Tool</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

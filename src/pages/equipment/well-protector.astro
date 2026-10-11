@@ -21,6 +21,10 @@ const faq = [
     q: 'What happens if a well protector is skipped?',
     a: 'Skipping it doesn\'t guarantee damage, but it removes the margin of safety specifically meant to catch the routine mishaps — a dropped slip, a dragged tool — that happen often enough on an active rig floor to justify protecting the one surface that absolutely has to seal correctly once work is done.',
   },
+  {
+    q: 'Does a well protector do anything besides shield a surface?',
+    a: 'On BOP and wellhead cleaning jobs specifically, yes — it doubles as a debris-collection tool. Run below the wellhead and inside the casing during BOP and wellhead jetting, or after function-testing BOP rams, it acts as a backup catch for debris that circulation didn\'t carry out or that fell back down into the well, and gives a way to confirm the wellbore is actually clear of debris before the job is called done.',
+  },
 ];
 
 const jsonLd = {
@@ -39,8 +43,9 @@ const jsonLd = {
   jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Well Protector', href: '/equipment/well-protector' }]}
   lang="en"
+  alternateHref="/es/equipment/well-protector"
 >
-  <Nav slot="nav" lang="en" />
+  <Nav slot="nav" lang="en" alternateHref="/es/equipment/well-protector" />
   <Footer slot="footer" lang="en" />
 
   <div class="page-hero">
@@ -58,6 +63,9 @@ const jsonLd = {
 
         <h2 id="why-it-matters">What Kind of Damage It Prevents</h2>
         <p>An active rig floor during a workover or intervention sees a steady stream of tools, slips, wireline hardware, and general equipment traffic moving past the wellhead. Any of it can nick, scratch, or deform a precision metal-to-metal sealing surface or a thread profile that looks minor at the time but later prevents a proper seal from forming — a tubing hanger that won't seat correctly, or a connection that leaks because of damage no one noticed during the job. A well protector covers that vulnerable surface for the duration of the work, removing it from the list of things that can get hit by accident.</p>
+
+        <h2 id="debris-collection">Debris Collection During BOP and Wellhead Cleaning</h2>
+        <p>On BOP and wellhead cleaning jobs specifically, a well protector does more than shield a surface — it doubles as a debris-collection tool. Run below the wellhead and inside the casing during BOP and wellhead jetting, and again after function-testing BOP rams, it acts as a backup catch for anything circulation didn't carry fully out of the system, or that fell back down into the well rather than being flushed clear. It can also be positioned in the casing during riser-cleaning operations, or when retrieving wear bushings and bore protectors. Pulling it afterward and checking what it collected is a direct way to confirm the wellbore is genuinely clear of debris before the job is signed off, rather than just assuming circulation got everything.</p>
 
         <h2 id="when-used">When It's Installed and Removed</h2>
         <ul>
@@ -83,6 +91,7 @@ const jsonLd = {
           <div class="toc-title">On This Page</div>
           <a href="#what-it-is">What It Is</a>
           <a href="#why-it-matters">Why It Matters</a>
+          <a href="#debris-collection">Debris Collection</a>
           <a href="#when-used">When It's Used</a>
           <a href="#consequence-of-skipping">If It's Skipped</a>
           <a href="#faq">FAQ</a>
