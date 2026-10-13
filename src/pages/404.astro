@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout
+  title="Page Not Found | RigFloorHQ"
+  description="The page you're looking for doesn't exist. Find equipment guides, calculators, career paths, and well control reference on RigFloorHQ."
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">404</div>
+    <h1>Page Not <span>Found</span></h1>
+    <p class="page-hero-sub">That page doesn't exist, or it's moved. Here's where to find what you were after.</p>
+  </div>
+
+  <section class="block">
+    <div class="card-grid">
+      <a class="card" href="/equipment">
+        <span class="card-icon">🔧</span>
+        <h3>Equipment</h3>
+        <p>Drilling, well control, and casing tool guides — what each tool does, when it's run, and common failure modes.</p>
+        <span class="card-link">Browse Equipment →</span>
+      </a>
+      <a class="card" href="/calculators">
+        <span class="card-icon">🧮</span>
+        <h3>Calculators</h3>
+        <p>Hydrostatic pressure, kill sheet, mud weight window, and the full set of drilling and well control engineering calculators.</p>
+        <span class="card-link">Open Calculators →</span>
+      </a>
+      <a class="card" href="/careers">
+        <span class="card-icon">👷</span>
+        <h3>Careers</h3>
+        <p>Real pay data and career paths from roustabout to toolpusher — what each role does and what it takes to get there.</p>
+        <span class="card-link">See Career Paths →</span>
+      </a>
+      <a class="card" href="/glossary">
+        <span class="card-icon">📖</span>
+        <h3>Glossary</h3>
+        <p>Over 40 field terms explained in plain language, from BHA to WOB.</p>
+        <span class="card-link">Read Glossary →</span>
+      </a>
+    </div>
+
+    <p style="margin-top:32px;"><a href="/">&larr; Back to the homepage</a></p>
+  </section>
+</BaseLayout>

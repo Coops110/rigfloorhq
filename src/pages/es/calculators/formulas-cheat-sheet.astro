@@ -34,6 +34,23 @@ const jsonLd = {
     }
   ]
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/formulas-cheat-sheet#app",
+  "name": "Hoja de Referencia de Fórmulas de Perforación",
+  "url": "https://rigfloorhq.com/es/calculators/formulas-cheat-sheet",
+  "description": "Las fórmulas de perforación que el equipo de piso de perforación realmente necesita: presión hidrostática, peso de lodo de control, MAASP, tolerancia de surgencia, ECD, margen de viaje, factor de flotación y capacidad/desplazamiento. Gratis, sin registro para leer.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Hoja de Referencia de Fórmulas de Perforación"
@@ -42,6 +59,7 @@ const jsonLd = {
   lang="es"
   alternateHref="/calculators/formulas-cheat-sheet"
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
 >
   <Nav slot="nav" lang="es" alternateHref="/calculators/formulas-cheat-sheet" />
   <Footer slot="footer" lang="es" />

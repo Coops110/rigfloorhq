@@ -27,11 +27,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/riser-margin#app",
+  "name": "Riser Margin Calculator: Subsea Mud vs. Seawater",
+  "url": "https://rigfloorhq.com/calculators/riser-margin",
+  "description": "Riser margin calculator for subsea wells: the extra mud weight margin if the riser column were lost and replaced by seawater, from mud weight, seawater gradient, water depth, and air gap.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Riser Margin Calculator: Subsea Mud vs. Seawater"
   description="Riser margin calculator for subsea wells: the extra mud weight margin if the riser column were lost and replaced by seawater, from mud weight, seawater gradient, water depth, and air gap."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Riser Margin', href: '/calculators/riser-margin' }]}
   lang="en"
   alternateHref="/es/calculators/riser-margin"

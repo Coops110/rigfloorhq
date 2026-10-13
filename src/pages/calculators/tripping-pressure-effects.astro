@@ -23,11 +23,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/tripping-pressure-effects#app",
+  "name": "Tripping Pressure Effects Calculator: Dry Pipe, Wet Pipe, Mud Level Drop",
+  "url": "https://rigfloorhq.com/calculators/tripping-pressure-effects",
+  "description": "Free calculator for pressure drop per foot pulling dry or wet pipe, and how far the mud level drops pulling out of hole without topping up.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Tripping Pressure Effects Calculator: Dry Pipe, Wet Pipe, Mud Level Drop"
   description="Free calculator for pressure drop per foot pulling dry or wet pipe, and how far the mud level drops pulling out of hole without topping up."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Tripping Pressure Effects', href: '/calculators/tripping-pressure-effects' }]}
   lang="en"
   alternateHref="/es/calculators/tripping-pressure-effects"

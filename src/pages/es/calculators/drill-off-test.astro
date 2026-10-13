@@ -55,11 +55,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/drill-off-test#app",
+  "name": "Hoja de Trabajo de Prueba Drill-Off: Optimización de WOB y RPM",
+  "url": "https://rigfloorhq.com/es/calculators/drill-off-test",
+  "description": "Calculadora gratuita de prueba drill-off: registra lecturas de peso sobre la barrena y de rotación, y obtén la tasa de penetración (ROP) para cada paso, en vivo — el método de campo para hallar el WOB y RPM óptimos.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Hoja de Trabajo de Prueba Drill-Off: Optimización de WOB y RPM"
   description="Calculadora gratuita de prueba drill-off: registra lecturas de peso sobre la barrena y de rotación, y obtén la tasa de penetración (ROP) para cada paso, en vivo — el método de campo para hallar el WOB y RPM óptimos."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Prueba Drill-Off', href: '/es/calculators/drill-off-test' }]}
   lang="es"
   alternateHref="/calculators/drill-off-test"

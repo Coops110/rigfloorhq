@@ -50,11 +50,25 @@ const topics = topicOrder.map((topic) => ({
   icon: topicIcons[topic] ?? '❓',
   questions: questions.filter((q) => q.topic === topic),
 }));
+
+const quizLd = {
+  "@context": "https://schema.org",
+  "@type": ["WebPage", "LearningResource"],
+  "name": "Cuestionario de Control de Pozos: 200 Preguntas de Práctica",
+  "url": "https://rigfloorhq.com/es/well-control-quiz",
+  "learningResourceType": "Practice quiz",
+  "educationalUse": "assessment",
+  "teaches": "Principios de control de pozos para cuadrillas de perforación",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+};
 ---
 <BaseLayout
   title="Cuestionario de Control de Pozos: 200 Preguntas de Práctica"
   description="200 preguntas de práctica de control de pozos en 8 temas: presión, señales de advertencia de surgencia, cierre, MAASP, métodos de matanza, submarino y más. Realiza cada tema en vivo y ve tu puntaje."
   breadcrumbs={[{ label: 'Cuestionario de Control de Pozos', href: '/es/well-control-quiz' }]}
+  jsonLd={quizLd}
   lang="es"
   alternateHref="/well-control-quiz"
 >

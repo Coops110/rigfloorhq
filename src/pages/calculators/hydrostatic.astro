@@ -3,12 +3,30 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import NewsletterSignup from '../../components/NewsletterSignup.astro';
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/hydrostatic#app",
+  "name": "Hydrostatic Pressure Calculator for Drilling",
+  "url": "https://rigfloorhq.com/calculators/hydrostatic",
+  "description": "Free hydrostatic pressure calculator. Enter mud weight and TVD for instant psi, with pore and fracture gradients for a safe or unsafe status.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Hydrostatic Pressure Calculator for Drilling"
   description="Free hydrostatic pressure calculator. Enter mud weight and TVD for instant psi, with pore and fracture gradients for a safe or unsafe status."
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Hydrostatic Pressure', href: '/calculators/hydrostatic' }]}
   lang="en"
+  extraJsonLd={[webAppLd]}
   alternateHref="/es/calculators/hydrostatic"
 >
   <Nav slot="nav" lang="en" alternateHref="/es/calculators/hydrostatic" />

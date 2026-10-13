@@ -27,11 +27,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/buoyancy#app",
+  "name": "Buoyancy & Tubular Weight Calculator",
+  "url": "https://rigfloorhq.com/calculators/buoyancy",
+  "description": "Buoyancy factor and buoyed pipe weight for open-ended pipe, closed-ended pipe, and pipe with different fluid inside versus in the annulus.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Buoyancy & Tubular Weight Calculator"
   description="Buoyancy factor and buoyed pipe weight for open-ended pipe, closed-ended pipe, and pipe with different fluid inside versus in the annulus."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Buoyancy', href: '/calculators/buoyancy' }]}
   lang="en"
   alternateHref="/es/calculators/buoyancy"

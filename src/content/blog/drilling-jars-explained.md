@@ -49,7 +49,7 @@ An impact is a different quantity. The same stored energy released over a few mi
 
 ## Cocking and Firing
 
-![Three stages of jar operation. First, steady overpull alone: tension rises smoothly to a plateau below the sticking force and nothing moves. Second, cocking: overpull stretches the drill pipe above the jar like a loaded spring while a detent holds the jar closed. Third, firing: the detent releases, the stored stretch snaps a hammer section up into an anvil, and a short high force shock travels down to the stuck point.](/images/blog/drilling-jar-cycle.svg)
+<img src="/images/blog/drilling-jar-cycle.svg" width="940" height="400" loading="lazy" decoding="async" alt="Three stages of jar operation. First, steady overpull alone: tension rises smoothly to a plateau below the sticking force and nothing moves. Second, cocking: overpull stretches the drill pipe above the jar like a loaded spring while a detent holds the jar closed. Third, firing: the detent releases, the stored stretch snaps a hammer section up into an anvil, and a short high force shock travels down to the stuck point." />
 
 **Cocking.** The driller pulls overpull above the string's own weight. The jar stays closed because a detent — mechanical, hydraulic or a combination — holds it. Meanwhile the pipe above the jar stretches. Thousands of feet of steel under tension is a long spring, and it is storing real energy.
 

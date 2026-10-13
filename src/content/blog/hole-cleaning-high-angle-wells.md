@@ -41,7 +41,7 @@ Hole cleaning is one of those subjects that sounds like housekeeping and turns o
 
 ## Why Angle Changes the Problem
 
-![Three wellbore sections compared. Vertical: cuttings that are not lifted fall back into the flow and get another chance, so cleaning is self-correcting. Between 45 and 60 degrees: cuttings settle onto the low side and form a bed which can then avalanche down the hole as a slug of solids. Near horizontal: beds form readily but tend to sit still, because there is little downhole slope for them to slide along.](/images/blog/cuttings-beds-by-angle.svg)
+<img src="/images/blog/cuttings-beds-by-angle.svg" width="920" height="430" loading="lazy" decoding="async" alt="Three wellbore sections compared. Vertical: cuttings that are not lifted fall back into the flow and get another chance, so cleaning is self-correcting. Between 45 and 60 degrees: cuttings settle onto the low side and form a bed which can then avalanche down the hole as a slug of solids. Near horizontal: beds form readily but tend to sit still, because there is little downhole slope for them to slide along." />
 
 In a vertical well, a cutting has to be lifted against gravity. If the [annular velocity](/calculators/annular-velocity) beats the particle's slip velocity, it comes out. If it does not, it falls back into the flow and gets another chance. The failure mode is gradual and self-correcting.
 

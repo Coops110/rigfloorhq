@@ -57,11 +57,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/drill-off-test#app",
+  "name": "Drill-Off Test Worksheet: WOB & RPM Optimization",
+  "url": "https://rigfloorhq.com/calculators/drill-off-test",
+  "description": "Free drill-off test calculator: log weight-on-bit and rotary test readings and get rate of penetration (ROP) for every step, live — the field method for finding optimum WOB and RPM.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Drill-Off Test Worksheet: WOB & RPM Optimization"
   description="Free drill-off test calculator: log weight-on-bit and rotary test readings and get rate of penetration (ROP) for every step, live — the field method for finding optimum WOB and RPM."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Drill-Off Test', href: '/calculators/drill-off-test' }]}
   lang="en"
   alternateHref="/es/calculators/drill-off-test"

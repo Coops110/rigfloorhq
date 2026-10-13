@@ -6,14 +6,12 @@ import Footer from '../components/Footer.astro';
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": "https://rigfloorhq.com/#website",
   "name": "RigFloorHQ",
   "url": "https://rigfloorhq.com",
   "description": "The complete rig floor reference for oil and gas field operations — drilling, welding, well control, and careers.",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://rigfloorhq.com/glossary?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
+  "inLanguage": ["en", "es"],
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
 ---
 <BaseLayout
@@ -37,7 +35,7 @@ const jsonLd = {
     </a>
 
     <div class="hero-eyebrow">⚙ Field Reference — Drilling · Welding · Well Control · Careers</div>
-    <h1>Everything<br>on the <span>Rig Floor.</span></h1>
+    <h1>Everything <br>on the <span>Rig Floor.</span></h1>
     <p class="hero-sub">From your first day as a roustabout to running your own kill sheet — the complete technical and career reference for oil and gas field operations.</p>
 
     <div class="hero-stats">

@@ -1,6 +1,6 @@
 # RigFloorHQ
 
-> RigFloorHQ is a free technical and career reference for the oil and gas drilling industry, covering rig operations, well control, drilling equipment, career progression, welding, and safety. Content is written for rig floor crews, engineers, and supervisors, and includes 17 interactive drilling calculators (well control and pressure, torque and drag, volumetrics, tubular design, and unit conversions) using formulas taught in IWCF/IADC well control certification. The site is available in English and Spanish (/es).
+> RigFloorHQ is a free technical and career reference for the oil and gas drilling industry, covering rig operations, well control, drilling equipment, career progression, welding, and safety. Content is written for rig floor crews, engineers, and supervisors, and includes 34 interactive drilling calculators (well control and pressure, torque and drag, volumetrics, tubular design, and unit conversions) using formulas taught in IWCF/IADC well control certification. The site is available in English and Spanish (/es).
 
 ## Core Reference
 
@@ -8,7 +8,7 @@
 - [Careers](https://rigfloorhq.com/careers): Rig job roles and hierarchy, from roustabout to company man.
 - [Equipment](https://rigfloorhq.com/equipment): Rig types, drill string components, and blowout preventers.
 - [Drilling Operations](https://rigfloorhq.com/drilling): How a well is drilled, well control, mud weight, casing design, directional drilling.
-- [Calculators](https://rigfloorhq.com/calculators): 17 interactive drilling calculators — hydrostatic pressure, kill sheet (vertical and horizontal), mud weight window, mud weight converter, ECD, gas migration, bullheading, buoyancy, riser margin, pipe pull margin, bit torque, flange ring gasket, lag and volume, ton-mile, drill pipe tally, and OD/depth correction.
+- [Calculators](https://rigfloorhq.com/calculators): 34 interactive drilling calculators — hydrostatic pressure, kill sheet (vertical and horizontal), mud weight window, mud weight converter, ECD, gas migration, bullheading, buoyancy, riser margin, pipe pull margin, bit torque, flange ring gasket, lag and volume, ton-mile, drill pipe tally, OD/depth correction, and a formulas cheat sheet covering the full set.
 - [Welding](https://rigfloorhq.com/welding): Rig welding processes, certifications, and underwater welding.
 - [Safety](https://rigfloorhq.com/safety): Rig floor hazards, PPE requirements, and H2S safety.
 - [Glossary](https://rigfloorhq.com/glossary): 44-term A-Z reference of oilfield terminology.
@@ -17,8 +17,12 @@
 ## Well Control & Pressure (Advanced)
 
 - [Advanced Well Control & Hydrostatics](https://rigfloorhq.com/pillars/advanced-well-control-and-hydrostatics): Pressure management reference for supervisors and engineers — TVD vs MD, ECD, kill methods, regional considerations.
+- [Hydrostatic Pressure](https://rigfloorhq.com/pillars/hydrostatic-pressure): The complete reference on hydrostatic pressure, the 0.052 constant, and the mud weight window.
+- [Rig Floor Leadership](https://rigfloorhq.com/pillars/rig-floor-leadership): The driller-to-toolpusher-to-OIM supervisory career ladder and what changes at each level.
+- [Stuck Pipe & Fishing Operations](https://rigfloorhq.com/pillars/stuck-pipe-and-fishing-operations): Differential sticking, mechanical sticking, jarring, and fishing operations.
 - [Well Control & Kicks](https://rigfloorhq.com/drilling/well-control): Kick recognition, shut-in procedure, driller's method vs wait-and-weight.
 - [Mud Weight & Pressure](https://rigfloorhq.com/drilling/mud-weight): Hydrostatic pressure, pore pressure, fracture gradient formulas.
+- [Formulas Cheat Sheet](https://rigfloorhq.com/calculators/formulas-cheat-sheet): Every drilling and well control formula on the site in one reference.
 - [Kill Sheet Calculator](https://rigfloorhq.com/calculators/kill-sheet): Interactive kill mud weight and circulating pressure calculator.
 
 ## Careers

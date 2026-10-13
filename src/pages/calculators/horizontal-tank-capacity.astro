@@ -54,11 +54,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/horizontal-tank-capacity#app",
+  "name": "Horizontal Tank Capacity Calculator: Fill Height to Volume",
+  "url": "https://rigfloorhq.com/calculators/horizontal-tank-capacity",
+  "description": "Free horizontal cylindrical tank capacity calculator: enter diameter and length in gallons/inches or litres/centimetres and get a fill-height-to-volume table plus an instant lookup.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Horizontal Tank Capacity Calculator: Fill Height to Volume"
   description="Free horizontal cylindrical tank capacity calculator: enter diameter and length in gallons/inches or litres/centimetres and get a fill-height-to-volume table plus an instant lookup."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Horizontal Tank Capacity', href: '/calculators/horizontal-tank-capacity' }]}
   lang="en"
   alternateHref="/es/calculators/horizontal-tank-capacity"

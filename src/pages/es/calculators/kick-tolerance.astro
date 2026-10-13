@@ -32,11 +32,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/kick-tolerance#app",
+  "name": "Calculadora de Tolerancia a la Surgencia (ppg)",
+  "url": "https://rigfloorhq.com/es/calculators/kick-tolerance",
+  "description": "Calculadora de tolerancia a la surgencia gratis: la surgencia equivalente en ppg que tu MAASP actual puede absorber en la zapata, usando el supuesto conservador estándar de gradiente cero.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Calculadora de Tolerancia a la Surgencia (ppg)"
   description="Calculadora de tolerancia a la surgencia gratis: la surgencia equivalente en ppg que tu MAASP actual puede absorber en la zapata, usando el supuesto conservador estándar de gradiente cero."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Tolerancia a la Surgencia', href: '/es/calculators/kick-tolerance' }]}
   lang="es"
   alternateHref="/calculators/kick-tolerance"

@@ -23,11 +23,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/slug-calculation#app",
+  "name": "Slug Volume & Pit Gain Calculator",
+  "url": "https://rigfloorhq.com/calculators/slug-calculation",
+  "description": "Free calculator for the slug volume needed for a desired dry pipe length, and the expected pit gain from pumping that slug.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Slug Volume & Pit Gain Calculator"
   description="Free calculator for the slug volume needed for a desired dry pipe length, and the expected pit gain from pumping that slug."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Slug Calculation', href: '/calculators/slug-calculation' }]}
   lang="en"
   alternateHref="/es/calculators/slug-calculation"

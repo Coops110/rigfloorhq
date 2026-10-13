@@ -39,11 +39,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/bullheading#app",
+  "name": "Calculadora de Bombeo a Matar: Límites de Presión y Fluido de Matar",
+  "url": "https://rigfloorhq.com/es/calculators/bullheading",
+  "description": "Calculadora de bombeo a matar (bullheading): peso de fluido de matar, presión de fractura de formación, presión máxima inicial y final de superficie, volumen a bombear, y ritmo de bomba para superar la migración de gas.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Calculadora de Bombeo a Matar: Límites de Presión y Fluido de Matar"
   description="Calculadora de bombeo a matar (bullheading): peso de fluido de matar, presión de fractura de formación, presión máxima inicial y final de superficie, volumen a bombear, y ritmo de bomba para superar la migración de gas."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Bombeo a Matar', href: '/es/calculators/bullheading' }]}
   lang="es"
   alternateHref="/calculators/bullheading"

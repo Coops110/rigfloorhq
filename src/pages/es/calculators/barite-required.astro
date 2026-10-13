@@ -23,11 +23,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/barite-required#app",
+  "name": "Calculadora de Barita Requerida: Cargando el Lodo de Perforación",
+  "url": "https://rigfloorhq.com/es/calculators/barite-required",
+  "description": "Calculadora gratuita de cuánta barita, en libras por barril, se necesita para subir el lodo de perforación de un peso a un peso objetivo más pesado.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Calculadora de Barita Requerida: Cargando el Lodo de Perforación"
   description="Calculadora gratuita de cuánta barita, en libras por barril, se necesita para subir el lodo de perforación de un peso a un peso objetivo más pesado."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Barita Requerida', href: '/es/calculators/barite-required' }]}
   lang="es"
   alternateHref="/calculators/barite-required"

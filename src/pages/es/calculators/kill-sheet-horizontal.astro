@@ -27,11 +27,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/kill-sheet-horizontal#app",
+  "name": "Adiciones a la Hoja de Control de Pozo Horizontal y Extendido",
+  "url": "https://rigfloorhq.com/es/calculators/kill-sheet-horizontal",
+  "description": "Puntos extra de presión de tubería para el control de un pozo direccional u horizontal: volumen de sarta y emboladas al punto de inicio de curvatura (KOP) y fin de construcción (EOB), leídos contra el programa estándar ICP-a-FCP.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Adiciones a la Hoja de Control de Pozo Horizontal y Extendido"
   description="Puntos extra de presión de tubería para el control de un pozo direccional u horizontal: volumen de sarta y emboladas al punto de inicio de curvatura (KOP) y fin de construcción (EOB), leídos contra el programa estándar ICP-a-FCP."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Hoja de Control Horizontal', href: '/es/calculators/kill-sheet-horizontal' }]}
   lang="es"
   alternateHref="/calculators/kill-sheet-horizontal"

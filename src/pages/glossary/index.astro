@@ -49,11 +49,31 @@ const terms = [
   { term: "Trip Gas", def: "Gas entering the wellbore when pulling the string out of hole due to the swab effect. Monitored by the mud logger." },
   { term: "WOB", def: "Weight on Bit. The portion of drill collar weight applied to the bit to create cutting force." },
 ];
+
+const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+const glossaryLd = {
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "@id": "https://rigfloorhq.com/glossary#set",
+  "name": "RigFloorHQ Oil & Gas Glossary",
+  "url": "https://rigfloorhq.com/glossary",
+  "inLanguage": "en",
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+  "hasDefinedTerm": terms.map((t) => ({
+    "@type": "DefinedTerm",
+    "name": t.term,
+    "description": t.def,
+    "url": `https://rigfloorhq.com/glossary#${slugify(t.term)}`,
+    "inDefinedTermSet": "https://rigfloorhq.com/glossary#set",
+  })),
+};
 ---
 <BaseLayout
   title="Oil Rig Glossary — Full A-Z Field Terminology Reference"
   description="Complete glossary of oil rig and drilling terminology, from BHA to WOB. Every term explained in plain language for new hands and experienced crew alike."
   breadcrumbs={[{ label: 'Glossary', href: '/glossary' }]}
+  jsonLd={glossaryLd}
   lang="en"
 >
   {/* No alternateHref on the layout: the glossary has no Spanish version, and
@@ -79,7 +99,7 @@ const terms = [
   <section class="block">
     <div class="glossary-grid">
       {terms.map(t => (
-        <div class="gloss-item">
+        <div class="gloss-item" id={slugify(t.term)}>
           <div class="gloss-term">{t.term}</div>
           <div class="gloss-def">{t.def}</div>
         </div>

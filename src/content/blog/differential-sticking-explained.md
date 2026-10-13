@@ -52,7 +52,7 @@ Remove any one and it cannot happen. That is the practical value of the list —
 
 ## How the Force Arises
 
-![Cross-section comparison. On the left, a centred drill string surrounded by mud, with pressure acting evenly on all sides and no net force. On the right, the string resting against filter cake on a permeable formation, where mud is sealed out of the contact area so full hydrostatic pressure acts on the open side while only formation pressure acts on the contact face, producing a large net force pinning the pipe to the wall.](/images/blog/differential-sticking.svg)
+<img src="/images/blog/differential-sticking.svg" width="900" height="470" loading="lazy" decoding="async" alt="Cross-section comparison. On the left, a centred drill string surrounded by mud, with pressure acting evenly on all sides and no net force. On the right, the string resting against filter cake on a permeable formation, where mud is sealed out of the contact area so full hydrostatic pressure acts on the open side while only formation pressure acts on the contact face, producing a large net force pinning the pipe to the wall." />
 
 When mud can circulate all the way round the pipe, hydrostatic pressure acts on every face and the net side force is effectively zero. The pipe is free because pressure is balanced, not because pressure is low.
 

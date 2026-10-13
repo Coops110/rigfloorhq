@@ -27,11 +27,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/riser-margin#app",
+  "name": "Calculadora de Margen de Riser: Lodo vs. Agua de Mar",
+  "url": "https://rigfloorhq.com/es/calculators/riser-margin",
+  "description": "Calculadora de margen de riser para pozos submarinos: el margen extra de peso de lodo si se perdiera la columna del riser y fuera reemplazada por agua de mar, desde peso de lodo, gradiente de agua de mar, profundidad de agua, y espacio de aire.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Calculadora de Margen de Riser: Lodo vs. Agua de Mar"
   description="Calculadora de margen de riser para pozos submarinos: el margen extra de peso de lodo si se perdiera la columna del riser y fuera reemplazada por agua de mar, desde peso de lodo, gradiente de agua de mar, profundidad de agua, y espacio de aire."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Margen de Riser', href: '/es/calculators/riser-margin' }]}
   lang="es"
   alternateHref="/calculators/riser-margin"

@@ -2,12 +2,30 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/mud-weight-window#app",
+  "name": "Calculadora de Ventana de Peso de Lodo",
+  "url": "https://rigfloorhq.com/es/calculators/mud-weight-window",
+  "description": "Calcula y visualiza tu ventana de peso de lodo entre presión de poro y gradiente de fractura, con análisis de margen en psi y ppg.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Calculadora de Ventana de Peso de Lodo"
   description="Calcula y visualiza tu ventana de peso de lodo entre presión de poro y gradiente de fractura, con análisis de margen en psi y ppg."
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Ventana de Peso de Lodo', href: '/es/calculators/mud-weight-window' }]}
   lang="es"
+  extraJsonLd={[webAppLd]}
   alternateHref="/calculators/mud-weight-window"
 >
   <Nav slot="nav" lang="es" alternateHref="/calculators/mud-weight-window" />

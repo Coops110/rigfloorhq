@@ -23,11 +23,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/bop-closing-ratio#app",
+  "name": "BOP Closing & Opening Ratio Calculator",
+  "url": "https://rigfloorhq.com/calculators/bop-closing-ratio",
+  "description": "Free calculator for the hydraulic operating pressure required to close or open a BOP at a given wellhead pressure and the tool's rated ratio.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="BOP Closing & Opening Ratio Calculator"
   description="Free calculator for the hydraulic operating pressure required to close or open a BOP at a given wellhead pressure and the tool's rated ratio."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'BOP Closing Ratio', href: '/calculators/bop-closing-ratio' }]}
   lang="en"
   alternateHref="/es/calculators/bop-closing-ratio"

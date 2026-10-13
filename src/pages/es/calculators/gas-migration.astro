@@ -31,11 +31,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/gas-migration#app",
+  "name": "Calculadora de Migración de Gas: Ritmo y Volumen de Purga",
+  "url": "https://rigfloorhq.com/es/calculators/gas-migration",
+  "description": "Calculadora de migración de gas: ritmo de migración en ft/hr desde la acumulación de presión de cierre, y el volumen de purga del método volumétrico para mantener estable la presión de fondo.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Calculadora de Migración de Gas: Ritmo y Volumen de Purga"
   description="Calculadora de migración de gas: ritmo de migración en ft/hr desde la acumulación de presión de cierre, y el volumen de purga del método volumétrico para mantener estable la presión de fondo."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Migración de Gas', href: '/es/calculators/gas-migration' }]}
   lang="es"
   alternateHref="/calculators/gas-migration"

@@ -32,11 +32,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/maasp#app",
+  "name": "Calculadora de MAASP: Presión Máxima Permisible en Superficie del Anular",
+  "url": "https://rigfloorhq.com/es/calculators/maasp",
+  "description": "Calculadora de MAASP gratis: presión máxima permisible en superficie del anular en la zapata a partir de tu prueba LOT/FIT, peso de lodo actual, y TVD de zapata.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Calculadora de MAASP: Presión Máxima Permisible en Superficie del Anular"
   description="Calculadora de MAASP gratis: presión máxima permisible en superficie del anular en la zapata a partir de tu prueba LOT/FIT, peso de lodo actual, y TVD de zapata."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'MAASP', href: '/es/calculators/maasp' }]}
   lang="es"
   alternateHref="/calculators/maasp"

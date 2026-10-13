@@ -6,15 +6,15 @@ import Footer from '../../components/Footer.astro';
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Drilling Formulas Cheat Sheet",
-  "description": "The drilling calculations used on the rig floor, with units, constants and worked numbers: hydrostatic pressure, kill sheet, capacities, annular velocity, pump output, buoyancy and survey.",
+  "headline": "Drilling Formula Reference: Constants, Conversions & a Worked Example",
+  "description": "Every drilling constant and conversion explained from first principles, plus one full worked example end to end — pressure, mud weight, capacities, buoyancy, connections and survey.",
   "about": "Drilling engineering"
 };
 ---
 <BaseLayout
-  title="Drilling Formulas Cheat Sheet"
-  description="The drilling formulas used on shift, with units and constants written out: hydrostatic pressure, kill sheet, capacities, annular velocity and buoyancy."
-  breadcrumbs={[{ label: 'Drilling', href: '/drilling' }, { label: 'Formulas', href: '/drilling/formulas' }]}
+  title="Drilling Formula Reference: Constants, Conversions & a Worked Example"
+  description="Where the drilling constants actually come from, unit conversions written out, and one full worked example end to end — pressure, capacities, buoyancy, connections and survey."
+  breadcrumbs={[{ label: 'Drilling', href: '/drilling' }, { label: 'Formula Reference', href: '/drilling/formulas' }]}
   jsonLd={jsonLd}
   lang="en"
 >
@@ -25,8 +25,8 @@ const jsonLd = {
   <Footer slot="footer" lang="en" />
 
   <div class="page-hero">
-    <div class="page-hero-eyebrow">Drilling — Quick Reference</div>
-    <h1>Drilling Formulas <span>Cheat Sheet</span></h1>
+    <div class="page-hero-eyebrow">Drilling — Constants &amp; Worked Example</div>
+    <h1>Drilling Formula <span>Reference</span></h1>
     <p class="page-hero-sub">The calculations that actually get used on tour, with the units written out and every constant explained rather than assumed. Built to be checked against, not read start to finish.</p>
   </div>
 
@@ -280,7 +280,8 @@ const jsonLd = {
           <a href="/calculators/lag-and-volume" class="card-link">→ Lag &amp; Volume Calculator</a><br><br>
           <a href="/calculators/ton-mile" class="card-link">→ Ton-Mile Calculator</a><br><br>
           <a href="/calculators/odf-depth-correction" class="card-link">→ ODF Depth Correction</a><br><br>
-          <a href="/drilling/directional" class="card-link">→ Directional Drilling</a>
+          <a href="/drilling/directional" class="card-link">→ Directional Drilling</a><br><br>
+          <a href="/calculators/formulas-cheat-sheet" class="card-link">→ Compact Formula Quick-Reference (with run-it links)</a>
         </div>
       </div>
     </div>

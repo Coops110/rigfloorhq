@@ -23,11 +23,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/slug-calculation#app",
+  "name": "Calculadora de Volumen de Slug y Ganancia de Presa",
+  "url": "https://rigfloorhq.com/es/calculators/slug-calculation",
+  "description": "Calculadora gratuita para el volumen de slug necesario para una longitud deseada de tubería seca, y la ganancia de presa esperada al bombear ese slug.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Calculadora de Volumen de Slug y Ganancia de Presa"
   description="Calculadora gratuita para el volumen de slug necesario para una longitud deseada de tubería seca, y la ganancia de presa esperada al bombear ese slug."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Cálculo de Slug', href: '/es/calculators/slug-calculation' }]}
   lang="es"
   alternateHref="/calculators/slug-calculation"

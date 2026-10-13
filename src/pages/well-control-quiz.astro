@@ -50,11 +50,25 @@ const topics = topicOrder.map((topic) => ({
   icon: topicIcons[topic] ?? '❓',
   questions: questions.filter((q) => q.topic === topic),
 }));
+
+const quizLd = {
+  "@context": "https://schema.org",
+  "@type": ["WebPage", "LearningResource"],
+  "name": "Well Control Quiz: 200 Practice Questions",
+  "url": "https://rigfloorhq.com/well-control-quiz",
+  "learningResourceType": "Practice quiz",
+  "educationalUse": "assessment",
+  "teaches": "Well control principles for drilling crews",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+};
 ---
 <BaseLayout
   title="Well Control Quiz: 200 Practice Questions"
   description="200 well control practice questions across 8 topics: pressure, kick warning signs, shut-in, MAASP, kill methods, subsea, and more. Take each topic live and see your score."
   breadcrumbs={[{ label: 'Well Control Quiz', href: '/well-control-quiz' }]}
+  jsonLd={quizLd}
   lang="en"
   alternateHref="/es/well-control-quiz"
 >

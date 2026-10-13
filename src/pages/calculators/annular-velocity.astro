@@ -23,11 +23,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/annular-velocity#app",
+  "name": "Annular Velocity Calculator",
+  "url": "https://rigfloorhq.com/calculators/annular-velocity",
+  "description": "Free annular velocity calculator: how fast drilling fluid moves up the annulus at a given pump rate and annular capacity, for hole-cleaning checks.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Annular Velocity Calculator"
   description="Free annular velocity calculator: how fast drilling fluid moves up the annulus at a given pump rate and annular capacity, for hole-cleaning checks."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Annular Velocity', href: '/calculators/annular-velocity' }]}
   lang="en"
   alternateHref="/es/calculators/annular-velocity"

@@ -23,11 +23,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/tripping-pressure-effects#app",
+  "name": "Calculadora de Efectos de Presión al Viajar: Tubería Seca, Mojada, Caída de Nivel de Lodo",
+  "url": "https://rigfloorhq.com/es/calculators/tripping-pressure-effects",
+  "description": "Calculadora gratuita de caída de presión por pie al sacar tubería seca o mojada, y qué tanto baja el nivel de lodo al sacar del pozo sin rellenar.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Calculadora de Efectos de Presión al Viajar: Tubería Seca, Mojada, Caída de Nivel de Lodo"
   description="Calculadora gratuita de caída de presión por pie al sacar tubería seca o mojada, y qué tanto baja el nivel de lodo al sacar del pozo sin rellenar."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Efectos de Presión al Viajar', href: '/es/calculators/tripping-pressure-effects' }]}
   lang="es"
   alternateHref="/calculators/tripping-pressure-effects"

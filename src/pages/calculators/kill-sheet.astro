@@ -32,11 +32,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/kill-sheet#app",
+  "name": "Kill Sheet Calculator: KMW, ICP, FCP & Pressure Schedule",
+  "url": "https://rigfloorhq.com/calculators/kill-sheet",
+  "description": "A kill sheet is the worksheet used to shut in a well safely and calculate kill mud weight, ICP, FCP, strokes to bit, bottoms-up, and the full drillpipe pressure step-down schedule to displace kill mud.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Kill Sheet Calculator: KMW, ICP, FCP & Pressure Schedule"
   description="A kill sheet is the worksheet used to shut in a well safely and calculate kill mud weight, ICP, FCP, strokes to bit, bottoms-up, and the full drillpipe pressure step-down schedule to displace kill mud."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Kill Sheet', href: '/calculators/kill-sheet' }]}
   lang="en"
   alternateHref="/es/calculators/kill-sheet"

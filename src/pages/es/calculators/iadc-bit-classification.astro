@@ -106,11 +106,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/iadc-bit-classification#app",
+  "name": "Tabla de Clasificación IADC: Barrenas de Conos y PDC",
+  "url": "https://rigfloorhq.com/es/calculators/iadc-bit-classification",
+  "description": "Referencia gratuita de clasificación IADC: códigos de serie, sub-serie y rodamiento para barrenas de conos, más códigos de cuerpo, formación, cortador y perfil para barrenas PDC.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Tabla de Clasificación IADC: Barrenas de Conos y PDC"
   description="Referencia gratuita de clasificación IADC: códigos de serie, sub-serie y rodamiento para barrenas de conos, más códigos de cuerpo, formación, cortador y perfil para barrenas PDC."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Clasificación IADC', href: '/es/calculators/iadc-bit-classification' }]}
   lang="es"
   alternateHref="/calculators/iadc-bit-classification"

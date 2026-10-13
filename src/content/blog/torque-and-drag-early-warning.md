@@ -63,7 +63,7 @@ Direction is informative too. Pick up climbing while slack off stays normal poin
 
 ## Modelled Versus Measured
 
-![A chart of torque against depth over successive connections. A dashed modelled line rises steadily, showing expected torque for the planned friction factor. The measured line tracks it closely at first, then begins to separate, and the gap widens with each connection until the string sticks. The point where the two lines first diverge is marked as the real warning, several connections before the absolute value ever looks alarming.](/images/blog/torque-drag-trend.svg)
+<img src="/images/blog/torque-drag-trend.svg" width="920" height="440" loading="lazy" decoding="async" alt="A chart of torque against depth over successive connections. A dashed modelled line rises steadily, showing expected torque for the planned friction factor. The measured line tracks it closely at first, then begins to separate, and the gap widens with each connection until the string sticks. The point where the two lines first diverge is marked as the real warning, several connections before the absolute value ever looks alarming." />
 
 This is the whole discipline in one picture.
 

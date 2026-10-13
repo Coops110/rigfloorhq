@@ -32,11 +32,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/ecd#app",
+  "name": "Calculadora de ECD: Densidad de Circulación Equivalente",
+  "url": "https://rigfloorhq.com/es/calculators/ecd",
+  "description": "Calculadora de ECD gratis: velocidad anular, pérdida de presión anular por fricción, y densidad de circulación equivalente a partir del peso de lodo, caudal y geometría del anular.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Calculadora de ECD: Densidad de Circulación Equivalente"
   description="Calculadora de ECD gratis: velocidad anular, pérdida de presión anular por fricción, y densidad de circulación equivalente a partir del peso de lodo, caudal y geometría del anular."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'ECD', href: '/es/calculators/ecd' }]}
   lang="es"
   alternateHref="/calculators/ecd"

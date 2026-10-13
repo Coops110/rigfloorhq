@@ -108,11 +108,29 @@ const jsonLd = {
 // JS. The filter script only toggles row visibility, it never writes content.
 const bores = [...new Set(FLANGE_DATA.map((r) => r[0]))];
 const pressures = [...new Set(FLANGE_DATA.map((r) => r[1]))].sort((a, b) => parseInt(a) - parseInt(b));
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/flange-ring-gasket#app",
+  "name": "Flange & Ring Gasket Lookup Chart",
+  "url": "https://rigfloorhq.com/calculators/flange-ring-gasket",
+  "description": "API 6A/6BX flange bore and pressure rating to ring gasket number, stud count, stud size and flange OD — Cameron's published dimensions, filterable.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Flange & Ring Gasket Lookup Chart"
   description="API 6A/6BX flange bore and pressure rating to ring gasket number, stud count, stud size and flange OD — Cameron's published dimensions, filterable."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Flange & Ring Gasket', href: '/calculators/flange-ring-gasket' }]}
   lang="en"
   alternateHref="/es/calculators/flange-ring-gasket"

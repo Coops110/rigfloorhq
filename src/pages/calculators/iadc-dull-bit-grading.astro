@@ -123,11 +123,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/iadc-dull-bit-grading#app",
+  "name": "IADC Dull Bit Grading Chart & Code Reference",
+  "url": "https://rigfloorhq.com/calculators/iadc-dull-bit-grading",
+  "description": "Free IADC dull bit grading reference: the 8-position code for grading a dull drill bit — cutting structure wear, dull characteristics, location, bearings/seals, gauge, and reason pulled.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="IADC Dull Bit Grading Chart & Code Reference"
   description="Free IADC dull bit grading reference: the 8-position code for grading a dull drill bit — cutting structure wear, dull characteristics, location, bearings/seals, gauge, and reason pulled."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'IADC Dull Bit Grading', href: '/calculators/iadc-dull-bit-grading' }]}
   lang="en"
   alternateHref="/es/calculators/iadc-dull-bit-grading"

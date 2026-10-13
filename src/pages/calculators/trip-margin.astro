@@ -24,11 +24,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/trip-margin#app",
+  "name": "Trip Margin / Safety Factor Calculator",
+  "url": "https://rigfloorhq.com/calculators/trip-margin",
+  "description": "Free trip margin (safety factor) calculator: the extra mud weight carried above formation balance to protect against swabbing in a kick while tripping.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Trip Margin / Safety Factor Calculator"
   description="Free trip margin (safety factor) calculator: the extra mud weight carried above formation balance to protect against swabbing in a kick while tripping."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Trip Margin', href: '/calculators/trip-margin' }]}
   lang="en"
   alternateHref="/es/calculators/trip-margin"

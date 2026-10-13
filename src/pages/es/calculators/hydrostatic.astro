@@ -3,12 +3,30 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import NewsletterSignup from '../../../components/NewsletterSignup.astro';
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/hydrostatic#app",
+  "name": "Calculadora de Presión Hidrostática",
+  "url": "https://rigfloorhq.com/es/calculators/hydrostatic",
+  "description": "Calculadora gratuita de presión hidrostática. Ingresa peso de lodo y TVD para resultados en psi, con gradientes de poro y fractura.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Calculadora de Presión Hidrostática"
   description="Calculadora gratuita de presión hidrostática. Ingresa peso de lodo y TVD para resultados en psi, con gradientes de poro y fractura."
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Presión Hidrostática', href: '/es/calculators/hydrostatic' }]}
   lang="es"
+  extraJsonLd={[webAppLd]}
   alternateHref="/calculators/hydrostatic"
 >
   <Nav slot="nav" lang="es" alternateHref="/calculators/hydrostatic" />

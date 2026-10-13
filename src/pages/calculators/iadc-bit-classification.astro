@@ -111,11 +111,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/iadc-bit-classification#app",
+  "name": "IADC Rock Bit & PDC Bit Classification Chart",
+  "url": "https://rigfloorhq.com/calculators/iadc-bit-classification",
+  "description": "Free IADC bit classification reference: roller cone (rock bit) series, sub-series and bearing codes, plus PDC body, formation, cutter, and profile codes decoded.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="IADC Rock Bit & PDC Bit Classification Chart"
   description="Free IADC bit classification reference: roller cone (rock bit) series, sub-series and bearing codes, plus PDC body, formation, cutter, and profile codes decoded."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'IADC Bit Classification', href: '/calculators/iadc-bit-classification' }]}
   lang="en"
   alternateHref="/es/calculators/iadc-bit-classification"

@@ -27,11 +27,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/buoyancy#app",
+  "name": "Calculadora de Flotación y Peso de Tubería",
+  "url": "https://rigfloorhq.com/es/calculators/buoyancy",
+  "description": "Factor de flotación y peso flotado de tubería para tubería de extremo abierto, extremo cerrado, y tubería con fluido diferente adentro versus en el anular.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Calculadora de Flotación y Peso de Tubería"
   description="Factor de flotación y peso flotado de tubería para tubería de extremo abierto, extremo cerrado, y tubería con fluido diferente adentro versus en el anular."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Flotación', href: '/es/calculators/buoyancy' }]}
   lang="es"
   alternateHref="/calculators/buoyancy"

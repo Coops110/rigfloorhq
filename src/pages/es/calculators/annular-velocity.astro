@@ -23,11 +23,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/annular-velocity#app",
+  "name": "Calculadora de Velocidad Anular",
+  "url": "https://rigfloorhq.com/es/calculators/annular-velocity",
+  "description": "Calculadora gratuita de velocidad anular: qué tan rápido se mueve el fluido de perforación hacia arriba por el anular a una tasa de bomba y capacidad anular dadas, para revisiones de limpieza del pozo.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Calculadora de Velocidad Anular"
   description="Calculadora gratuita de velocidad anular: qué tan rápido se mueve el fluido de perforación hacia arriba por el anular a una tasa de bomba y capacidad anular dadas, para revisiones de limpieza del pozo."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Velocidad Anular', href: '/es/calculators/annular-velocity' }]}
   lang="es"
   alternateHref="/calculators/annular-velocity"

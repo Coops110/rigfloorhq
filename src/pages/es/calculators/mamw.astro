@@ -23,11 +23,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/mamw#app",
+  "name": "Calculadora MAMW: Peso Máximo Admisible de Lodo y Nuevo MAASP",
+  "url": "https://rigfloorhq.com/es/calculators/mamw",
+  "description": "Calculadora gratuita de MAMW: peso máximo admisible de lodo a partir de tu prueba LOT/FIT y TVD de zapata, más el nuevo MAASP una vez establecido un peso de lodo de control.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Calculadora MAMW: Peso Máximo Admisible de Lodo y Nuevo MAASP"
   description="Calculadora gratuita de MAMW: peso máximo admisible de lodo a partir de tu prueba LOT/FIT y TVD de zapata, más el nuevo MAASP una vez establecido un peso de lodo de control."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'MAMW', href: '/es/calculators/mamw' }]}
   lang="es"
   alternateHref="/calculators/mamw"

@@ -31,11 +31,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/ton-mile#app",
+  "name": "Calculadora de Tonelada-Milla: Vida de Línea de Perforación",
+  "url": "https://rigfloorhq.com/es/calculators/ton-mile",
+  "description": "Calculadora gratuita de tonelada-milla: viaje redondo, perforación, coreo, viaje corto, y tonelada-millas de asentamiento de revestimiento según API RP 9B / Lapeyrouse.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Calculadora de Tonelada-Milla: Vida de Línea de Perforación"
   description="Calculadora gratuita de tonelada-milla: viaje redondo, perforación, coreo, viaje corto, y tonelada-millas de asentamiento de revestimiento según API RP 9B / Lapeyrouse."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Tonelada-Milla', href: '/es/calculators/ton-mile' }]}
   lang="es"
   alternateHref="/calculators/ton-mile"

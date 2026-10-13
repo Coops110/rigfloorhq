@@ -32,11 +32,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/ecd#app",
+  "name": "ECD Calculator: Equivalent Circulating Density While Drilling",
+  "url": "https://rigfloorhq.com/calculators/ecd",
+  "description": "Free ECD calculator: annular velocity, annular friction pressure loss, and equivalent circulating density from mud weight, flow rate and annulus geometry.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="ECD Calculator: Equivalent Circulating Density While Drilling"
   description="Free ECD calculator: annular velocity, annular friction pressure loss, and equivalent circulating density from mud weight, flow rate and annulus geometry."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'ECD', href: '/calculators/ecd' }]}
   lang="en"
   alternateHref="/es/calculators/ecd"

@@ -31,11 +31,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/lag-and-volume#app",
+  "name": "Calculadora de Retraso y Volumen de Tubería",
+  "url": "https://rigfloorhq.com/es/calculators/lag-and-volume",
+  "description": "Calculadora gratuita de retraso y volumen: rendimiento de bomba, volúmenes de sarta y anular, emboladas de retraso, y tiempo de retraso — para bombas triplex o dúplex.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Calculadora de Retraso y Volumen de Tubería"
   description="Calculadora gratuita de retraso y volumen: rendimiento de bomba, volúmenes de sarta y anular, emboladas de retraso, y tiempo de retraso — para bombas triplex o dúplex."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Retraso y Volumen', href: '/es/calculators/lag-and-volume' }]}
   lang="es"
   alternateHref="/calculators/lag-and-volume"

@@ -12,6 +12,9 @@ export interface Props {
   modifiedDate?: string;
   breadcrumbs?: { label: string; href: string }[];
   jsonLd?: Record<string, any>;
+  /** Additional JSON-LD blocks alongside `jsonLd` (e.g. WebApplication next
+      to an existing FAQPage) without disturbing what each page already passes. */
+  extraJsonLd?: Record<string, any>[];
   lang?: 'en' | 'es';
   alternateHref?: string;
   noindex?: boolean;
@@ -27,6 +30,7 @@ const {
   modifiedDate,
   breadcrumbs = [],
   jsonLd,
+  extraJsonLd = [],
   lang = 'en',
   alternateHref,
   noindex = false
@@ -211,7 +215,31 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
           gtag('config', GA_ID);
         }
       </script>
-      <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+      <script is:inline define:vars={{ GA_ID }}>
+        // The gtag.js library itself (~176 KiB) is the single biggest chunk
+        // of page weight and the main driver of mobile TBT/INP risk. The
+        // consent/dataLayer stub above is already set up and queues calls
+        // fine before the real library arrives, so there's no correctness
+        // reason to fetch it eagerly — only a habit. Load it on idle, or on
+        // first real interaction/scroll if the browser is still busy when
+        // idle fires, so it never competes with the actual page render.
+        function loadGtagScript() {
+          if (window.__gtagScriptLoading) return;
+          window.__gtagScriptLoading = true;
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+          document.head.appendChild(s);
+        }
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadGtagScript, { timeout: 4000 });
+        } else {
+          setTimeout(loadGtagScript, 3000);
+        }
+        ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (evt) {
+          window.addEventListener(evt, loadGtagScript, { once: true, passive: true });
+        });
+      </script>
     </>
   )}
 
@@ -219,10 +247,20 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${siteUrl}/#organization`,
     "name": "RigFloorHQ",
     "url": siteUrl,
     "description": "The complete oil and gas field reference for drilling, welding, and well control operations.",
-    "logo": `${siteUrl}/favicon.svg`
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${siteUrl}/logo-512.png`,
+      "width": 512,
+      "height": 512
+    },
+    "sameAs": [
+      "https://www.facebook.com/1215544864984509",
+      "https://www.tiktok.com/@rigfloorhq"
+    ]
   })} />
 
   {breadcrumbJsonLd && (
@@ -232,6 +270,10 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
   {jsonLd && (
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   )}
+
+  {extraJsonLd.map((block) => (
+    <script type="application/ld+json" set:html={JSON.stringify(block)} />
+  ))}
 
   <style is:global>
     @import "../styles/fonts.css";

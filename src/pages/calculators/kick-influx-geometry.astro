@@ -23,11 +23,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/kick-influx-geometry#app",
+  "name": "Kick Influx Geometry Calculator: Length, Height, Gradient, SICP",
+  "url": "https://rigfloorhq.com/calculators/kick-influx-geometry",
+  "description": "Free calculator for influx length along hole, true vertical height, influx gradient, and shut-in casing pressure from a kick's kick volume and inclination.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Kick Influx Geometry Calculator: Length, Height, Gradient, SICP"
   description="Free calculator for influx length along hole, true vertical height, influx gradient, and shut-in casing pressure from a kick's kick volume and inclination."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Kick Influx Geometry', href: '/calculators/kick-influx-geometry' }]}
   lang="en"
   alternateHref="/es/calculators/kick-influx-geometry"

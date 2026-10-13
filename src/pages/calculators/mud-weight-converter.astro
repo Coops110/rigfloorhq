@@ -57,11 +57,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/mud-weight-converter#app",
+  "name": "Mud Weight Converter: ppg, sg and psi/ft",
+  "url": "https://rigfloorhq.com/calculators/mud-weight-converter",
+  "description": "Convert mud weight between ppg, specific gravity, lb/ft³, kg/m³ and psi/ft instantly. Also converts pressure and depth. Every field updates as you type.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Mud Weight Converter: ppg, sg and psi/ft"
   description="Convert mud weight between ppg, specific gravity, lb/ft³, kg/m³ and psi/ft instantly. Also converts pressure and depth. Every field updates as you type."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Mud Weight Converter', href: '/calculators/mud-weight-converter' }]}
   lang="en"
 >

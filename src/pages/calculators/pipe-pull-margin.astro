@@ -27,11 +27,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/pipe-pull-margin#app",
+  "name": "Wet & Dry Pipe Pull Margin Calculator",
+  "url": "https://rigfloorhq.com/calculators/pipe-pull-margin",
+  "description": "Length of wet or dry pipe that can be pulled before a target hydrostatic pressure drop, from mud weight, annulus capacity, drill pipe capacity, and displacement.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Wet & Dry Pipe Pull Margin Calculator"
   description="Length of wet or dry pipe that can be pulled before a target hydrostatic pressure drop, from mud weight, annulus capacity, drill pipe capacity, and displacement."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Pipe Pull Margin', href: '/calculators/pipe-pull-margin' }]}
   lang="en"
   alternateHref="/es/calculators/pipe-pull-margin"

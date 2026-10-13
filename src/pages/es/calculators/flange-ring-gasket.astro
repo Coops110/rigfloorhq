@@ -106,11 +106,29 @@ const jsonLd = {
 
 const bores = [...new Set(FLANGE_DATA.map((r) => r[0]))];
 const pressures = [...new Set(FLANGE_DATA.map((r) => r[1]))].sort((a, b) => parseInt(a) - parseInt(b));
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/flange-ring-gasket#app",
+  "name": "Tabla de Bridas y Empaques Tipo Anillo",
+  "url": "https://rigfloorhq.com/es/calculators/flange-ring-gasket",
+  "description": "Diámetro y clasificación de presión API 6A/6BX a número de empaque, cantidad de espárragos, tamaño de espárrago y DE de brida — dimensiones de Cameron, filtrable.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Tabla de Bridas y Empaques Tipo Anillo"
   description="Diámetro y clasificación de presión API 6A/6BX a número de empaque, cantidad de espárragos, tamaño de espárrago y DE de brida — dimensiones de Cameron, filtrable."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Bridas y Empaques', href: '/es/calculators/flange-ring-gasket' }]}
   lang="es"
   alternateHref="/calculators/flange-ring-gasket"

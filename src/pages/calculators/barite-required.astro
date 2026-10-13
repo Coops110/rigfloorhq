@@ -23,11 +23,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/barite-required#app",
+  "name": "Barite Required Calculator: Weighting Up Drilling Mud",
+  "url": "https://rigfloorhq.com/calculators/barite-required",
+  "description": "Free calculator for how much barite, in pounds per barrel, is needed to raise drilling mud from one weight to a heavier target weight.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Barite Required Calculator: Weighting Up Drilling Mud"
   description="Free calculator for how much barite, in pounds per barrel, is needed to raise drilling mud from one weight to a heavier target weight."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Barite Required', href: '/calculators/barite-required' }]}
   lang="en"
   alternateHref="/es/calculators/barite-required"

@@ -32,11 +32,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/maasp#app",
+  "name": "MAASP Calculator: Maximum Allowable Annular Surface Pressure",
+  "url": "https://rigfloorhq.com/calculators/maasp",
+  "description": "Free MAASP calculator: maximum allowable annular surface pressure at the casing shoe from your LOT/FIT test, current mud weight, and shoe TVD.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="MAASP Calculator: Maximum Allowable Annular Surface Pressure"
   description="Free MAASP calculator: maximum allowable annular surface pressure at the casing shoe from your LOT/FIT test, current mud weight, and shoe TVD."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'MAASP', href: '/calculators/maasp' }]}
   lang="en"
   alternateHref="/es/calculators/maasp"

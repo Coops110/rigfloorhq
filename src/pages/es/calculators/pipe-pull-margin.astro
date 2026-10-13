@@ -27,11 +27,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/pipe-pull-margin#app",
+  "name": "Calculadora de Margen de Suabeo: Tubería Mojada y Seca",
+  "url": "https://rigfloorhq.com/es/calculators/pipe-pull-margin",
+  "description": "Longitud de tubería mojada o seca que puede sacarse antes de una caída de presión hidrostática objetivo, desde peso de lodo, capacidad anular, capacidad de tubería de perforación, y desplazamiento.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Calculadora de Margen de Suabeo: Tubería Mojada y Seca"
   description="Longitud de tubería mojada o seca que puede sacarse antes de una caída de presión hidrostática objetivo, desde peso de lodo, capacidad anular, capacidad de tubería de perforación, y desplazamiento."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Margen de Suabeo', href: '/es/calculators/pipe-pull-margin' }]}
   lang="es"
   alternateHref="/calculators/pipe-pull-margin"

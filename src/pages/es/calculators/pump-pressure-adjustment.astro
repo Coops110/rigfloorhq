@@ -23,11 +23,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/pump-pressure-adjustment#app",
+  "name": "Calculadora de Nueva Presión de Bomba: Cambios de Tasa de Embolada y Peso de Lodo",
+  "url": "https://rigfloorhq.com/es/calculators/pump-pressure-adjustment",
+  "description": "Calculadora gratuita para la nueva presión circulante después de un cambio de tasa de embolada o un cambio de peso de lodo, usando las fórmulas estándar de proporcionalidad IWCF.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Calculadora de Nueva Presión de Bomba: Cambios de Tasa de Embolada y Peso de Lodo"
   description="Calculadora gratuita para la nueva presión circulante después de un cambio de tasa de embolada o un cambio de peso de lodo, usando las fórmulas estándar de proporcionalidad IWCF."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Ajuste de Presión de Bomba', href: '/es/calculators/pump-pressure-adjustment' }]}
   lang="es"
   alternateHref="/calculators/pump-pressure-adjustment"

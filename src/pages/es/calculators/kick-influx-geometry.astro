@@ -23,11 +23,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/kick-influx-geometry#app",
+  "name": "Calculadora de Geometría de Influjo de Amago: Longitud, Altura, Gradiente, SICP",
+  "url": "https://rigfloorhq.com/es/calculators/kick-influx-geometry",
+  "description": "Calculadora gratuita de longitud de influjo a lo largo del pozo, altura vertical verdadera, gradiente de influjo, y presión de revestimiento con pozo cerrado a partir del volumen e inclinación de un amago.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Calculadora de Geometría de Influjo de Amago: Longitud, Altura, Gradiente, SICP"
   description="Calculadora gratuita de longitud de influjo a lo largo del pozo, altura vertical verdadera, gradiente de influjo, y presión de revestimiento con pozo cerrado a partir del volumen e inclinación de un amago."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Geometría de Influjo de Amago', href: '/es/calculators/kick-influx-geometry' }]}
   lang="es"
   alternateHref="/calculators/kick-influx-geometry"

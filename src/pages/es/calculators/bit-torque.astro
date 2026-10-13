@@ -75,11 +75,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/bit-torque#app",
+  "name": "Tabla de Rosca y Torque de Apriete de Barrena",
+  "url": "https://rigfloorhq.com/es/calculators/bit-torque",
+  "description": "Tamaño de barrena a conexión roscada, más torque de apriete para barrenas PDC y de conos — cifras Mínimo, Máximo y Máximo Severo de Reed Hycalog.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Tabla de Rosca y Torque de Apriete de Barrena"
   description="Tamaño de barrena a conexión roscada, más torque de apriete para barrenas PDC y de conos — cifras Mínimo, Máximo y Máximo Severo de Reed Hycalog."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Rosca y Torque de Barrena', href: '/es/calculators/bit-torque' }]}
   lang="es"
   alternateHref="/calculators/bit-torque"

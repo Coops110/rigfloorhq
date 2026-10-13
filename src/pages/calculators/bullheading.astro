@@ -41,11 +41,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/bullheading#app",
+  "name": "Bullheading Calculator: Surface Pressure Limits & Kill Fluid",
+  "url": "https://rigfloorhq.com/calculators/bullheading",
+  "description": "Bullheading calculator: kill fluid weight, formation fracture pressure, initial and final max surface pressure, volume to bullhead, and pump rate to exceed gas migration.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Bullheading Calculator: Surface Pressure Limits & Kill Fluid"
   description="Bullheading calculator: kill fluid weight, formation fracture pressure, initial and final max surface pressure, volume to bullhead, and pump rate to exceed gas migration."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Bullheading', href: '/calculators/bullheading' }]}
   lang="en"
   alternateHref="/es/calculators/bullheading"

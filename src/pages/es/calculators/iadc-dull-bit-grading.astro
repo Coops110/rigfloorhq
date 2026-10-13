@@ -118,11 +118,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/iadc-dull-bit-grading#app",
+  "name": "Tabla de Calificación de Desgaste IADC (Dull Grading)",
+  "url": "https://rigfloorhq.com/es/calculators/iadc-dull-bit-grading",
+  "description": "Referencia gratuita de calificación de desgaste IADC: el código de 8 posiciones para calificar una barrena desgastada — estructura de corte, características de desgaste, ubicación, rodamientos/sellos, calibre y razón de salida.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Tabla de Calificación de Desgaste IADC (Dull Grading)"
   description="Referencia gratuita de calificación de desgaste IADC: el código de 8 posiciones para calificar una barrena desgastada — estructura de corte, características de desgaste, ubicación, rodamientos/sellos, calibre y razón de salida."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Calificación de Desgaste IADC', href: '/es/calculators/iadc-dull-bit-grading' }]}
   lang="es"
   alternateHref="/calculators/iadc-dull-bit-grading"

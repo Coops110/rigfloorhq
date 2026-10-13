@@ -23,11 +23,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/pump-pressure-adjustment#app",
+  "name": "New Pump Pressure Calculator: Stroke Rate & Mud Weight Changes",
+  "url": "https://rigfloorhq.com/calculators/pump-pressure-adjustment",
+  "description": "Free calculator for new circulating pressure after a stroke-rate change or a mud weight change, using the standard IWCF proportionality formulas.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="New Pump Pressure Calculator: Stroke Rate & Mud Weight Changes"
   description="Free calculator for new circulating pressure after a stroke-rate change or a mud weight change, using the standard IWCF proportionality formulas."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Pump Pressure Adjustment', href: '/calculators/pump-pressure-adjustment' }]}
   lang="en"
   alternateHref="/es/calculators/pump-pressure-adjustment"

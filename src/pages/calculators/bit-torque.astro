@@ -74,11 +74,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/bit-torque#app",
+  "name": "Bit Thread & Make-Up Torque Chart",
+  "url": "https://rigfloorhq.com/calculators/bit-torque",
+  "description": "Bit size to thread connection, plus make-up torque for PDC and roller cone bits — Reed Hycalog's published Minimum, Maximum and Maximum Severe figures.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Bit Thread & Make-Up Torque Chart"
   description="Bit size to thread connection, plus make-up torque for PDC and roller cone bits — Reed Hycalog's published Minimum, Maximum and Maximum Severe figures."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Bit Thread & Torque', href: '/calculators/bit-torque' }]}
   lang="en"
   alternateHref="/es/calculators/bit-torque"

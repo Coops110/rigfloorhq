@@ -34,6 +34,23 @@ const jsonLd = {
     }
   ]
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/formulas-cheat-sheet#app",
+  "name": "Drilling Formulas Cheat Sheet — Quick Reference",
+  "url": "https://rigfloorhq.com/calculators/formulas-cheat-sheet",
+  "description": "The core drilling formulas rig floor crew actually need: hydrostatic pressure, kill mud weight, MAASP, kick tolerance, ECD, trip margin, buoyancy factor, and capacity/displacement. Free, no signup required to read.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Drilling Formulas Cheat Sheet — Quick Reference"
@@ -42,6 +59,7 @@ const jsonLd = {
   lang="en"
   alternateHref="/es/calculators/formulas-cheat-sheet"
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
 >
   <Nav slot="nav" lang="en" alternateHref="/es/calculators/formulas-cheat-sheet" />
   <Footer slot="footer" lang="en" />
@@ -106,7 +124,7 @@ const jsonLd = {
     </div>
 
     <div class="prose mt-24">
-      <p>For the full concept behind these — how pore pressure, fracture pressure, and mud weight window all tie together — see the <a href="/pillars/hydrostatic-pressure">hydrostatic pressure reference page</a>. For the complete list of tools, back to <a href="/calculators">all drilling calculators</a>.</p>
+      <p>For the full concept behind these — how pore pressure, fracture pressure, and mud weight window all tie together — see the <a href="/pillars/hydrostatic-pressure">hydrostatic pressure reference page</a>. For the complete list of tools, back to <a href="/calculators">all drilling calculators</a>. For constants, conversions, connections and survey formulas not covered here, plus a full worked example end to end, see the <a href="/drilling/formulas">drilling formula reference</a>.</p>
     </div>
   </section>
 

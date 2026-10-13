@@ -29,6 +29,16 @@ const postUrl = `${siteUrl}/blog/${post.id}`;
 const isRaster = (p: string) => /\.(png|jpe?g|webp)$/i.test(p);
 const shareImage = post.data.image && isRaster(post.data.image) ? post.data.image : '/og-default.png';
 
+const isJabin = post.data.author === 'Jabin Travis';
+const authorEntity = isJabin
+  ? {
+      "@type": "Person",
+      "name": "Jabin Travis",
+      "@id": `${siteUrl}/about#reviewed-by-a-working-driller`,
+      "jobTitle": "Drilling Operations Supervisor",
+    }
+  : { "@type": "Organization", "name": post.data.author };
+
 const blogPosting = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
@@ -36,12 +46,8 @@ const blogPosting = {
   "description": post.data.description,
   "datePublished": post.data.publishDate,
   "dateModified": post.data.modifiedDate || post.data.publishDate,
-  "author": { "@type": "Organization", "name": post.data.author },
-  "publisher": {
-    "@type": "Organization",
-    "name": "RigFloorHQ",
-    "logo": { "@type": "ImageObject", "url": `${siteUrl}/logo.svg` },
-  },
+  "author": authorEntity,
+  "publisher": { "@id": `${siteUrl}/#organization` },
   "image": `${siteUrl}${shareImage}`,
   "inLanguage": "en",
   // Tells search engines which URL this markup describes, so the article is

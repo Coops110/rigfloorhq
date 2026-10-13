@@ -23,11 +23,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/mamw#app",
+  "name": "MAMW Calculator: Maximum Allowable Mud Weight & New MAASP",
+  "url": "https://rigfloorhq.com/calculators/mamw",
+  "description": "Free MAMW calculator: maximum allowable mud weight from your LOT/FIT test and shoe TVD, plus new MAASP once a kill mud weight is set.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="MAMW Calculator: Maximum Allowable Mud Weight & New MAASP"
   description="Free MAMW calculator: maximum allowable mud weight from your LOT/FIT test and shoe TVD, plus new MAASP once a kill mud weight is set."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'MAMW', href: '/calculators/mamw' }]}
   lang="en"
   alternateHref="/es/calculators/mamw"

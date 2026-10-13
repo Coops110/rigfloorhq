@@ -31,11 +31,29 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/bit-hydraulics#app",
+  "name": "Calculadora de Hidráulica de Barrena: TFA, Velocidad de Chorro, HHP, HSI",
+  "url": "https://rigfloorhq.com/es/calculators/bit-hydraulics",
+  "description": "Calculadora gratuita de hidráulica de barrena: área de flujo total a partir de tamaños de boquilla, velocidad de chorro, caballaje hidráulico de barrena, y caballaje hidráulico por pulgada cuadrada (HSI).",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
 ---
 <BaseLayout
   title="Calculadora de Hidráulica de Barrena: TFA, Velocidad de Chorro, HHP, HSI"
   description="Calculadora gratuita de hidráulica de barrena: área de flujo total a partir de tamaños de boquilla, velocidad de chorro, caballaje hidráulico de barrena, y caballaje hidráulico por pulgada cuadrada (HSI)."
   jsonLd={jsonLd}
+  extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Hidráulica de Barrena', href: '/es/calculators/bit-hydraulics' }]}
   lang="es"
   alternateHref="/calculators/bit-hydraulics"

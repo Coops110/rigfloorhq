@@ -84,7 +84,10 @@ const jsonLd = {
         <p>Sealing is only half the job, and the half people remember. A closed BOP holds the well while pressure is read at surface, and those two readings — shut-in drillpipe pressure and shut-in casing pressure — are what the <a href="/calculators/kill-sheet">kill sheet</a> is built from. The choke and kill lines then let the crew circulate the influx out and pump heavier mud in without ever reopening the well. A BOP that seals but cannot circulate has only postponed the problem.</p>
         <p>Every stack is several sealing elements mounted on top of each other, each for a different scenario — sealing around pipe, sealing an open hole, or cutting through pipe entirely when nothing else will work.</p>
 
-        <img src="/images/blog/bop-stack-diagram.png" alt={stackAlt} width="1800" height="1120" style="max-width:100%;height:auto;margin:22px 0;border:1px solid var(--iron);border-radius:6px;" />
+        <picture>
+          <source srcset="/images/blog/bop-stack-diagram.webp" type="image/webp" />
+          <img src="/images/blog/bop-stack-diagram.png" alt={stackAlt} width="1800" height="1120" loading="lazy" decoding="async" style="max-width:100%;height:auto;margin:22px 0;border:1px solid var(--iron);border-radius:6px;" />
+        </picture>
 
         <h2 id="the-two-families">The Two Families of Preventer</h2>
         <p>Everything in a stack is either an annular or a ram. The difference is not just shape — it decides what each one can seal on, and it is why a stack carries both rather than several of the better one.</p>
