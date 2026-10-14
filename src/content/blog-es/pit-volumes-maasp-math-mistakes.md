@@ -1,6 +1,6 @@
 ---
-title: "Volúmenes de Pileta y MAASP: Dónde se Malinterpretan las Matemáticas"
-description: "Razonamiento sobre tolerancia a la surgencia, MAASP, ballooning, y volúmenes de pileta que suena correcto pero no lo es — y la lógica correcta detrás de cada respuesta."
+title: "Volúmenes de Pileta y MAASP: Dónde se"
+description: "Razonamiento sobre tolerancia a la surgencia, MAASP, ballooning, y volúmenes de pileta que suena correcto pero no lo es — y la lógica correcta detrás"
 publishDate: "2026-09-21"
 author: "RigFloorHQ Team"
 category: "Control de Pozos"
@@ -54,4 +54,4 @@ Usar la técnica de stripping barril-adentro/barril-afuera mientras un influjo e
 
 ---
 
-Para las matemáticas de volumen y MAASP mismas, la [calculadora de hoja de control de pozo](/es/calculators/kill-sheet) y la [calculadora de migración de gas](/es/calculators/gas-migration) ejecutan esto en vivo, y la [página de referencia de control de pozos](/es/drilling/well-control) cubre la teoría subyacente. Los cálculos de presión hidrostática detrás de la tolerancia a la surgencia se cubren con más profundidad en [conceptos de presión que se malinterpretan](/es/blog/well-control-pressure-concepts-misread).
+Para las matemáticas de volumen y MAASP mismas, la [calculadora de hoja de control de pozo](/es/calculators/kill-sheet) y la [calculadora de migración de gas](/es/calculators/gas-migration) ejecutan esto en vivo, y la [página de referencia de control de pozos](/es/drilling/well-control) cubre la teoría subyacente. Los cálculos de presión hidrostática detrás de la tolerancia a la surgencia se cubren con más profundidad en [comportamiento de la presión de cierre y los conceptos que se malinterpretan](/es/blog/shut-in-pressure-behavior-explained), y la teoría completa está en la [guía de presión hidrostática (inglés)](/pillars/hydrostatic-pressure).

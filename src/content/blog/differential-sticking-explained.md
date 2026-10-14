@@ -1,6 +1,6 @@
 ---
-title: "Differential Sticking: The Three Conditions, and How to Remove One"
-description: "Differential sticking needs overbalance, a permeable formation and a stationary string. Remove any one and it cannot happen. Why the force grows with time, and why freeing the pipe means lowering pressure rather than pulling harder."
+title: "Differential Sticking: The Three Conditions"
+description: "Differential sticking needs overbalance, a permeable formation and a stationary string. Remove any one and it cannot happen. Why the force grows"
 publishDate: "2026-08-03"
 author: "RigFloorHQ Team"
 category: "Drilling"

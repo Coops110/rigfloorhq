@@ -1,6 +1,6 @@
 ---
-title: "Well Control Curveballs: Trickier Scenarios Worth a Second Look"
-description: "Worked pressure problems and edge-case well control scenarios that don't fit neatly into a single category — mud gas separators, PWD readings, BOP testing, and the reasoning behind each answer."
+title: "Well Control Curveballs: Trickier Scenarios Worth"
+description: "Worked pressure problems and edge-case well control scenarios — mud gas separators, PWD readings, BOP testing, subsea panel behavior — and the reasoning"
 publishDate: "2026-09-21"
 author: "RigFloorHQ Team"
 category: "Well Control"
@@ -42,4 +42,18 @@ The Driller's Method's first circulation is done, pumps shut down, and SICP read
 
 ---
 
-For the underlying math, the [kill sheet calculator](/calculators/kill-sheet) and [hydrostatic pressure calculator](/calculators/hydrostatic) run these formulas live. The PWD/ECD concept in #4 above is covered from a different angle in [well control basics](/blog/well-control-basics-common-mistakes).
+## Two Subsea-Specific Scenarios
+
+*(Subsea questions tend to be shorter but denser — one wrong gauge, one wrong rating assumption, and the whole answer flips.)*
+
+### Which gauges drop while the annular preventer is closing
+
+On the remote BOP panel, while the annular preventer is closing, the pressure drop shows up on the **accumulator pressure and annular pressure** gauges — not manifold pressure and accumulator pressure. Manifold pressure stays fed from the accumulator bank; it's the annular's own closing pressure and the accumulator supplying it that dip during the close cycle.
+
+### What fixed bore ram BOPs are actually rated for
+
+Fixed bore ram type BOPs are designed to contain Rated Working Pressure **only from below the closed ram** — not "cannot be used to hang off the drill string," which is a separate (and incorrect) claim about a different capability. The rating limitation is about pressure direction, not about whether the ram can be used for hang-off duty.
+
+---
+
+For the underlying math, the [kill sheet calculator](/calculators/kill-sheet) and [hydrostatic pressure calculator](/calculators/hydrostatic) run these formulas live. For subsea-specific pressure math, the [riser margin calculator](/calculators/riser-margin) runs the riser-margin formula. The PWD/ECD concept in #4 above is covered from a different angle in [well control basics](/blog/well-control-basics), and the shut-in procedure these scenarios assume is on the [well control reference page](/drilling/well-control).

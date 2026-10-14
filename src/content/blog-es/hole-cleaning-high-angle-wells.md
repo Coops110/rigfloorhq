@@ -1,6 +1,6 @@
 ---
-title: "Limpieza del Pozo en Pozos de Alto Ángulo: Por Qué se Forman las Camas de Recortes"
-description: "Por encima de unos 50 grados, los recortes dejan de ser transportados y comienzan a asentarse en camas. Por qué cambia el problema, qué mueve realmente una cama, y cómo leer las señales antes de que la sarta se empaquete."
+title: "Limpieza del Pozo en Pozos de Alto Ángulo"
+description: "Por encima de unos 50 grados, los recortes dejan de ser transportados y comienzan a asentarse en camas. Por qué cambia el problema, qué mueve realmente"
 publishDate: "2026-08-03"
 author: "RigFloorHQ Team"
 category: "Perforación"

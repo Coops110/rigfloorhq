@@ -1,6 +1,6 @@
 ---
-title: "Curvas de Control de Pozos: Escenarios Más Difíciles que Vale la Pena Revisar"
-description: "Problemas de presión trabajados y escenarios límite de control de pozos que no encajan claramente en una sola categoría — separadores de gas de lodo, lecturas de PWD, pruebas de BOP, y el razonamiento detrás de cada respuesta."
+title: "Curvas de Control de Pozos: Escenarios Más"
+description: "Problemas de presión trabajados y escenarios límite de control de pozos — separadores de gas de lodo, lecturas de PWD, pruebas de BOP, comportamiento"
 publishDate: "2026-09-21"
 author: "RigFloorHQ Team"
 category: "Control de Pozos"
@@ -42,4 +42,18 @@ Se completa la primera circulación del Método del Perforador, bombas detenidas
 
 ---
 
-Para las matemáticas subyacentes, la [calculadora de hoja de control de pozo](/es/calculators/kill-sheet) y la [calculadora de presión hidrostática](/es/calculators/hydrostatic) ejecutan estas fórmulas en vivo. El concepto de PWD/ECD en la #4 de arriba se cubre desde un ángulo diferente en [fundamentos de control de pozos](/es/blog/well-control-basics-common-mistakes).
+## Dos Escenarios Específicos de Operaciones Submarinas
+
+*(Las preguntas submarinas tienden a ser más cortas pero más densas — un manómetro equivocado, y toda la respuesta se invierte.)*
+
+### Qué manómetros caen mientras el preventor anular está cerrando
+
+En el panel remoto de BOP, la caída de presión aparece en los manómetros de **presión de acumulador y presión anular** — no presión de manifold y presión de acumulador.
+
+### Para qué están calificados realmente los BOP de arietes de diámetro fijo
+
+Están diseñados para contener la Presión de Trabajo Nominal **solo desde abajo del ariete cerrado** — no "no se pueden usar para colgar la sarta de perforación", una afirmación separada e incorrecta.
+
+---
+
+Para las matemáticas subyacentes, la [calculadora de hoja de control de pozo](/es/calculators/kill-sheet) y la [calculadora de presión hidrostática](/es/calculators/hydrostatic) ejecutan estas fórmulas en vivo. Para las matemáticas específicas submarinas, la [calculadora de margen de riser](/es/calculators/riser-margin) ejecuta la fórmula de margen de riser. El concepto de PWD/ECD en la #4 de arriba se cubre desde un ángulo diferente en [fundamentos de control de pozos](/es/blog/well-control-basics), y el procedimiento de cierre que estos escenarios asumen está en la [página de referencia de control de pozos](/es/drilling/well-control).

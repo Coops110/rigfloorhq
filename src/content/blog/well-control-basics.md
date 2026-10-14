@@ -1,6 +1,6 @@
 ---
-title: "What Is a Kick? Well Control Explained for New Rig Crews"
-description: "What a kick actually is, why hydrostatic pressure fails, how a flow check confirms an influx, and why hard and soft shut-in exist — the reasoning behind the procedures, for people learning them."
+title: "What Is a Kick? Well Control Explained for New"
+description: "What a kick actually is, why hydrostatic pressure fails, how a flow check confirms an influx, and why hard and soft shut-in exist — the reasoning behind"
 publishDate: "2026-07-09"
 author: "RigFloorHQ Team"
 category: "Well Control"
@@ -126,6 +126,78 @@ If you're building or advancing a career on the rig floor, understanding where w
 Well control also doesn't exist in isolation from the rest of rig operations. Drill string integrity, covered on the [drill string components page](/equipment/drill-string), affects everything from shear ram function to pressure transmission during a kill. Structural repairs on rig floor equipment, including BOP stack components and choke manifolds, often require welding work performed to strict pressure-vessel standards — covered in the [welding fundamentals section](/welding).
 
 For a broader look at how well control fits into the full drilling sequence, from spud to total depth, the [drilling operations overview](/drilling) and [rig equipment overview](/equipment) provide the surrounding context. And if you're comparing tools before your next well, the full [drilling calculators suite](/calculators) covers hydrostatic pressure, kill sheets, and mud weight windows in one place.
+
+## Common Misconceptions
+
+*(These are the pairings that trip people up most often in training — standard IWCF/IADC well control theory, not official exam material.)*
+
+### What happens to pit level circulating a gas kick out
+
+Circulating a gas kick out with the Driller's Method, active pit level increases as gas expands on its way up, then **decreases as that gas exits the choke** — not stays constant. Gas expanding in the annulus pushes pit level up, but once that same gas volume actually leaves the system through the choke, the level has to come back down to reflect what's gone.
+
+### Leading indicator vs. lagging indicator of formation pressure
+
+Change in ROP is a *leading* indicator of rising formation pressure — a drilling break shows up immediately as the bit cuts into a higher-pressure zone. **Change in background gas is the lagging one**: gas cut into the mud downhole doesn't show up at surface until it's actually circulated up, which takes real time.
+
+### Shale cutting density in a transition zone
+
+Drilling into an abnormally pressured formation through a transition zone, shale cuttings come off the shakers **less dense, not more**. As pore pressure rises and the differential between mud weight and formation pressure narrows, cuttings arrive less compacted.
+
+### Defining kick tolerance correctly
+
+Kick tolerance is **the maximum gas kick volume**, at a given kick intensity and depth, that can be shut in and circulated out without exceeding the well's weak-point fracture pressure — not the minimum kick intensity for a given volume.
+
+### The "closing ratio" of a ram preventer
+
+Closing ratio is a **mechanical ratio — packer area against piston rod area** — not a pressure figure. It's easy to reach for "the operating pressure needed to close against wellbore pressure" instead, but that's a different spec entirely.
+
+### What actually causes an influx from a shallow hazard
+
+Not filling the hole properly while tripping out is the real risk — **not pumping out of the hole**, which is itself a hazard-mitigation practice on some rigs, not a cause. Shallow hazards get triggered by the well going underbalanced.
+
+### Operating practice in a gas-bearing top-hole section
+
+In a top-hole section with a risk of gas-bearing formations, the right practice is to **control the rate of penetration**, not maintain a high one. Drilling fast into a shallow gas zone before you can read the warning signs is exactly the scenario that practice exists to prevent.
+
+### What actually governs gas blow-through at the shaker
+
+The dimension that affects the pressure at which gas can blow through to the shaker area is the **height of the liquid seal**, not the body height or ID. The liquid seal is what's actually holding gas pressure back at that point in the system.
+
+### The most common cause of abnormally high formation pressure
+
+Worldwide, the most common cause of abnormal pressure is **trapped fluid in shale** — not limestone fractures, which is a more dramatic-sounding but far less frequent cause.
+
+### How abnormal pressure affects primary well control
+
+Drilling into an abnormally pressured formation **reduces** the hydrostatic overbalance your mud weight was providing — it doesn't increase it. The formation pressure has risen closer to (or past) your mud's hydrostatic pressure.
+
+### A steady pit level isn't automatically good news
+
+Drilling ahead with no change in pit level for an extended period doesn't mean nothing is happening — it can mean you're **gaining formation fluid** at a rate that hasn't shown up yet.
+
+### Maximum Anticipated Surface Pressure vs. MAASP
+
+The highest pressure you could see at surface if the well were completely full of formation fluid has its own specific term: **Maximum Anticipated Surface Pressure (MASP)** — not Maximum Allowable Annular Surface Pressure (MAASP), a different concept entirely. The two get swapped constantly because they share half their letters.
+
+### Monitoring for BOP leaks
+
+The safest, most reliable way to monitor for leaks through a closed BOP is lining up the **trip tank** to watch for flow above it — not just watching the flow rate indicator, which is a coarser, less sensitive check.
+
+### Accumulator pressure that won't recover after closing an annular
+
+If accumulator pressure drops when closing an annular preventer, the BOP closes fine, and there are no visible leaks, the likely cause is that the **accumulator charge pump hasn't started up** to bring pressure back — not a stuck 3-position valve.
+
+### Barrier independence
+
+An annular and a ram on the same BOP stack are **not independent barriers** of each other — they share the same stack and often the same hydraulic system. Kill weight mud in the well and the BOP, by contrast, genuinely are independent of one another.
+
+### A big ROP jump on a repeat bit run is a flow-check moment
+
+Coming back to bottom with the same bit and same weight-on-bit, but seeing ROP triple compared to the earlier run, is worth stopping for. The right move is a **flow check, with circulating bottoms-up as a follow-on consideration** — not jumping straight to shutting in.
+
+### Tour change handovers during a well kill
+
+Mid-kill, a tour change isn't the moment to move fast. Best practice is for **outgoing and incoming crew to overlap long enough for a full handover** — not for the new crew to take over immediately.
 
 ## Conclusion
 

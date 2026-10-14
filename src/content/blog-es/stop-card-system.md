@@ -1,6 +1,6 @@
 ---
-title: "Sistema de Tarjetas STOP: Cómo Funcionan las Tarjetas de Observación de Seguridad en los Taladros"
-description: "Cómo funcionan realmente las tarjetas STOP en un taladro de perforación: qué observar, cómo escribir una tarjeta que valga la pena revisar, y por qué el ciclo de revisión — no la cantidad de tarjetas — decide si el programa es real."
+title: "Sistema de Tarjetas STOP: Cómo Funcionan"
+description: "Cómo funcionan realmente las tarjetas STOP en un taladro de perforación: qué observar, cómo escribir una tarjeta que valga la pena revisar, y por qué"
 publishDate: "2026-07-23"
 author: "RigFloorHQ Team"
 category: "Seguridad"

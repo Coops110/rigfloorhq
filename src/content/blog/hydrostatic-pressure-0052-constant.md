@@ -1,6 +1,6 @@
 ---
-title: "Hydrostatic Pressure Math: Why the 0.052 Constant Never Changes"
-description: "Where the 0.052 in P = 0.052 × MW × TVD actually comes from, why it's a fixed unit conversion and not a property of mud, and what people usually get wrong about it."
+title: "Hydrostatic Pressure Math: Why the 0.052 Constant"
+description: "Where the 0.052 in P = 0.052 × MW × TVD actually comes from, why it's a fixed unit conversion and not a property of mud, and what people usually get wrong"
 publishDate: "2026-10-01"
 author: "RigFloorHQ Team"
 category: "Well Control"
@@ -49,7 +49,7 @@ This is the part that trips people up. Two muds with the same ppg but completely
 If 0.052 is fixed, what moves the needle on real hydrostatic pressure in the field? Two things, and neither one is the constant:
 
 - **Mud weight (MW).** Heavier mud means more pressure at the same depth — this is the whole reason mud weight gets adjusted during drilling, and it's covered in full on the [mud weight guide](/drilling/mud-weight).
-- **True vertical depth (TVD), not measured depth.** In a deviated or horizontal well, the pipe can run thousands of feet further than the vertical distance to the same point — see the TVD vs. MD distinction on the [Advanced Well Control & Hydrostatics reference](/pillars/advanced-well-control-and-hydrostatics). Feed measured depth into this formula on anything but a truly vertical well, and the answer is wrong, not because the constant failed, but because the wrong depth went in.
+- **True vertical depth (TVD), not measured depth.** In a deviated or horizontal well, the pipe can run thousands of feet further than the vertical distance to the same point — see the TVD vs. MD distinction on the [Advanced Well Control reference](/pillars/advanced-well-control-and-hydrostatics). Feed measured depth into this formula on anything but a truly vertical well, and the answer is wrong, not because the constant failed, but because the wrong depth went in.
 
 ## The metric version uses a different constant — same idea, different units
 
@@ -61,4 +61,4 @@ Understanding the derivation doesn't change how you use the formula day to day �
 
 ---
 
-For the worked math behind kill mud weight, MAASP, and the rest of the formulas that build on this constant, the [hydrostatic pressure calculator](/calculators/hydrostatic) and the broader [calculator suite](/calculators) run every one of them live. The full theory — TVD vs. MD, pressure gradients, ECD — is on the [Advanced Well Control & Hydrostatics](/pillars/advanced-well-control-and-hydrostatics) reference page, and the common ways this exact pressure math gets misread on exams is covered in [well control pressure concepts that get misread](/blog/well-control-pressure-concepts-misread).
+For the worked math behind kill mud weight, MAASP, and the rest of the formulas that build on this constant, the [hydrostatic pressure calculator](/calculators/hydrostatic) and the broader [calculator suite](/calculators) run every one of them live. The complete reference on hydrostatic pressure — pore pressure, fracture pressure, and the mud weight window — is the [hydrostatic pressure pillar](/pillars/hydrostatic-pressure). For TVD vs. MD, kill methods, and managed pressure drilling at supervisor level, see the [Advanced Well Control](/pillars/advanced-well-control-and-hydrostatics) reference page. The common ways this exact pressure math gets misread on exams is covered in [shut-in pressure behavior and the concepts that get misread](/blog/shut-in-pressure-behavior-explained). For the shut-in procedure this math feeds into, see the [well control reference page](/drilling/well-control).

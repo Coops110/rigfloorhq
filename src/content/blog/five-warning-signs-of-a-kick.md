@@ -1,5 +1,5 @@
 ---
-title: "Five Warning Signs of a Kick Every New Hand Should Know Cold"
+title: "Five Warning Signs of a Kick Every New Hand"
 description: "The early indicators of a well kick, why they matter more than the dramatic ones you see in movies, and what to actually do the moment you notice them."
 publishDate: "2026-07-08"
 author: "RigFloorHQ Team"
@@ -36,3 +36,75 @@ This is the definitive sign. If you stop the pumps entirely and the well is stil
 The entire point of well control training — IWCF, IADC WellSharp, all of it — is built around catching a kick at stage one or two, not stage five. A kick caught at the pit-volume stage is a controlled, almost routine event: you shut in, read your pressures, calculate kill mud weight, and circulate it out. A kick that isn't caught until it's visibly flowing at surface has already had time to grow, and the options for handling it safely narrow considerably.
 
 If you want to see the actual math behind this — how kill mud weight, initial circulating pressure, and final circulating pressure are calculated once a well is shut in — the [kill sheet calculator](/calculators/kill-sheet) walks through the exact formulas, and the [well control reference page](/drilling/well-control) covers the full shut-in procedure step by step.
+
+## Common Mistakes on Warning Signs and Shut-In
+
+*(Standard IWCF/IADC well control theory, not official exam material — the pairings that get missed most often once the five signs above are second nature.)*
+
+### What actually causes ballooning
+
+Ballooning happens when bottom-hole pressure runs slightly above fracture pressure. The cause is **annular friction while circulating (ECD)** — not abnormal formation pressure. Stop the pumps and the friction disappears, BHP drops back below fracture pressure, and the well gives fluid back — that on/off pattern tied to pump status is the real signature.
+
+### The warning sign that doesn't belong on the list
+
+Asked which of several options is *not* a warning sign of increasing formation pressure, the answer is often **increasing shale density** — real warning signs point the other way (decreasing density). A gradual ROP decrease, by contrast, genuinely can be a warning sign in some contexts.
+
+### Why early kick detection matters (SICP, not just influx size)
+
+Detecting a kick early matters because minimizing the influx size results in a **lower SICP** — not higher. A smaller kick means less gas volume to expand and less pressure buildup as it's circulated out.
+
+### A failed plug on an open well
+
+If a plug fails and the well is open, the well **will flow** — it won't remain static. The plug was the barrier; take it away with nothing else in place and there's nothing left to prevent flow.
+
+### Suspecting a low SICP reading
+
+If the Driller suspects the SICP reading on the remote choke panel is too low, the right move is to **compare it against the SICP gauge on the choke manifold** and report to the supervisor — not the standpipe manifold, which reads drill pipe-side pressure, not casing-side.
+
+### What a blown pop-off valve looks like
+
+If the pump's pop-off valve blows while circulating out a kick, you'll see a **rapid drop in drill pipe pressure and a drop in casing pressure** — not a drop in drill pipe pressure with casing pressure unaffected. The two are connected through the same circulating system.
+
+### What makes kick detection harder
+
+Kick detection gets harder **drilling low-permeability formations with oil-based mud** — not high-permeability. Low permeability slows the influx itself, and oil-based mud further masks gas cutting since gas stays in solution longer.
+
+### What counts as a "procedural" barrier
+
+A procedural barrier is something like **monitoring the well for gains or losses** — a practice, not a physical thing. Drilling fluid is a *physical* barrier; a monitoring practice is procedural.
+
+### Reading SIDPP with a non-return valve in the string
+
+If the well kicks while tripping and a non-return (float) valve is stabbed into the string, that valve **has to be pumped open before you can read Shut In Drill Pipe Pressure** — it's not simply forbidden to run in closed position.
+
+### What a PWD tool shows during an influx
+
+A Pressure While Drilling tool signals an influx through a **reduction in ECD**, not an increase. An influx entering the annulus is generally lighter than the mud it's displacing, which lowers the equivalent circulating density.
+
+### Casing not kept full with a non-return float
+
+If casing isn't kept full while running in with a non-return float assembly, the real risk is the **float failing and mud u-tubing up inside the casing** — not a sudden hook load decrease.
+
+### What makes a kick bigger during shut-in
+
+Calling the Toolpusher to the floor **before** shutting in — delaying the shut-in itself to get someone else present — is the practice that leads to a bigger influx. Regular pit drills, by contrast, are what's supposed to make shut-in faster.
+
+### Physical barrier vs. procedure, restated
+
+A cement plug is a **physical barrier** — a real thing sitting in the well doing hydrostatic or mechanical work. A proper BOP shut-in procedure is a *procedure*, necessary but not itself a physical thing in the well.
+
+### What actually causes a kick while running casing
+
+Running casing, a kick is more likely caused by **surging-induced losses dropping the mud level** — not by keeping the casing full, which is actually the preventive measure, not the cause.
+
+### Why you monitor pits after drilling out a float shoe
+
+Circulating the hole clean after a casing and cement job, before drilling out the shoe, you watch pit and flow levels mainly to **check the float shoe isn't leaking** — not to track cement volume being cleaned out.
+
+### Responding to total losses in water-based mud
+
+If total losses occur while drilling water-based mud, the right response is to **stop drilling, top-fill the hole with water, and record the volume** — not immediately pump lost circulation material, which is a later step once the situation is actually assessed.
+
+### When a flow check isn't required
+
+Of the routine flow-check trigger points, the one that does **not** require a flow check is after the **Driller increases weight on bit** — a normal drilling adjustment. Tripping back to bottom, by contrast, is a classic flow-check trigger.

@@ -1,6 +1,6 @@
 ---
 title: "Driller's Method and Wait and Weight: Common Mix-Ups"
-description: "Where the Driller's Method, Wait and Weight, and Volumetric Method get confused with each other — which pressure to hold constant, what a balanced well actually looks like, and the reasoning behind each answer."
+description: "Where the Driller's Method, Wait and Weight, and Volumetric Method get confused with each other — which pressure to hold constant, what a balanced well"
 publishDate: "2026-09-21"
 author: "RigFloorHQ Team"
 category: "Well Control"

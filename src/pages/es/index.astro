@@ -6,14 +6,17 @@ import Footer from '../../components/Footer.astro';
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": "https://rigfloorhq.com/es#website",
   "name": "RigFloorHQ",
   "url": "https://rigfloorhq.com/es",
   "description": "La referencia completa del campo petrolero y de gas para perforación, soldadura, control de pozos y carreras profesionales.",
+  "inLanguage": "es",
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
 ---
 <BaseLayout
   title="RigFloorHQ — La Referencia Completa del Campo Petrolero y de Gas"
-  description="Todo sobre trabajar en un taladro petrolero: trayectorias profesionales desde obrero de piso hasta toolpusher, calculadoras de presión de perforación, procedimientos de control de pozos, certificaciones de soldadura y un glosario completo de campo."
+  description="Todo sobre trabajar en un taladro petrolero: trayectorias profesionales desde obrero de piso hasta toolpusher, calculadoras de presión de perforación"
   jsonLd={jsonLd}
   lang="es"
   alternateHref="/"

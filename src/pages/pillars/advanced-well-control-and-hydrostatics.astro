@@ -6,7 +6,7 @@ import Footer from '../../components/Footer.astro';
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Advanced Well Control & Hydrostatics",
+  "headline": "Advanced Well Control",
   "description": "Pressure management reference for supervisors and engineers: TVD vs MD, pressure gradients, ECD, kill methods, and regional well control considerations.",
   "about": "Well control engineering",
   "url": "https://rigfloorhq.com/pillars/advanced-well-control-and-hydrostatics",
@@ -20,9 +20,9 @@ const jsonLd = {
 };
 ---
 <BaseLayout
-  title="Advanced Well Control & Hydrostatics — Supervisor & Engineer Reference"
+  title="Advanced Well Control — Supervisor Reference"
   description="Mastering pressure management for supervisors and engineers: TVD vs MD, pressure gradients, ECD, Driller's Method vs Wait and Weight, volumetric method, and MPD."
-  breadcrumbs={[{ label: 'Advanced Well Control & Hydrostatics', href: '/pillars/advanced-well-control-and-hydrostatics' }]}
+  breadcrumbs={[{ label: 'Pillars', href: '/pillars' }, { label: 'Advanced Well Control', href: '/pillars/advanced-well-control-and-hydrostatics' }]}
   jsonLd={jsonLd}
   lang="en"
 >
@@ -36,7 +36,7 @@ const jsonLd = {
 
   <div class="page-hero">
     <div class="page-hero-eyebrow">Advanced Technical Series</div>
-    <h1>Advanced <span>Well Control</span> &amp; Hydrostatics</h1>
+    <h1>Advanced <span>Well Control</span></h1>
     <p class="page-hero-sub">Mastering pressure management for supervisors and engineers across the Permian Basin, Gulf Coast, and global offshore operations.</p>
     <div class="page-meta">
       <a href="/calculators/kill-sheet" class="btn btn-primary" style="margin-top:8px;">Access Digital Kill Sheets</a>

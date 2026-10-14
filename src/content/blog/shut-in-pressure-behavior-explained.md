@@ -1,6 +1,6 @@
 ---
 title: "Shut-In Pressure Behavior: What Actually Happens"
-description: "How SIDPP, SICP, and bottom hole pressure actually behave during shut-in, migration, and stripping operations — and where the assumptions people bring to it go wrong."
+description: "How SIDPP, SICP, and bottom hole pressure behave during shut-in and migration, plus the pressure definitions (ECD, porosity, abnormal pressure) that get"
 publishDate: "2026-09-21"
 author: "RigFloorHQ Team"
 category: "Well Control"
@@ -94,4 +94,86 @@ If the swabbed-in influx sits below the bit, SIDPP will read **the same as SICP*
 
 ---
 
-For the math behind ICP, FCP, and pressure schedules, the [kill sheet calculator](/calculators/kill-sheet) and [horizontal kill sheet calculator](/calculators/kill-sheet-horizontal) run these live. Background theory is on the [well control reference page](/drilling/well-control). Once a kill is actually underway, holding the right pressure constant is where [Driller's Method and Wait and Weight mistakes](/blog/drillers-method-wait-and-weight-mixups) most often happen.
+## Pressure and Definition Concepts That Get Misread
+
+*(Standard IWCF/IADC well control theory, not official exam material — the definitions and scenarios that read one way but mean another.)*
+
+### A self-fill float that fails to convert
+
+If a self-fill (autofill-tube type) float assembly fails to convert to a check valve, the real consequence is that **fluids from the annulus or formation can enter the casing** — not that pressure needs to be held on the annulus to prevent u-tubing.
+
+### Blind Rams vs. Blind/Shear Rams
+
+**Blind Rams seal off open hole** — no pipe in the way, just a clean seal. **Blind/Shear Rams cut the drillstring and then seal off the hole**, for when there's pipe in the way and no other option. Assuming "blind" always implies cutting is the mix-up.
+
+### First step after shut-in pressures stabilize
+
+Once a well is shut in and pressures have stabilized, the first move is to **check the well is secure — no leaks** — not to start reading drillpipe pressure to back into formation pressure.
+
+### Defining Equivalent Circulating Density
+
+ECD is **mud hydrostatic pressure plus annular friction loss**, expressed as an equivalent mud weight — not hydrostatic alone. Leaving out the friction component is the whole reason ECD exists as a separate concept from static mud weight.
+
+### Defining porosity
+
+Porosity is **the amount of void space in the rock, expressed as a percentage** — not the pressure of fluid sitting in that pore space, which is pore pressure, a related but separate idea.
+
+### The point of the surface-stack start-up procedure
+
+The recommended pump start-up procedure on a surface stack rig exists to **maintain correct bottom hole pressure** — not to hold drill pipe pressure constant for its own sake. Drill pipe pressure is the tool you're adjusting; bottom hole pressure is what you're actually protecting.
+
+### Measuring ECD loss while drilling
+
+A loss of ECD that might mean the well's gone underbalanced is best caught with a **Pressure While Drilling (PWD) tool** — not a rotary steerable tool, which serves directional control, not pressure measurement.
+
+### Which way fluid moves if a cement plug fails
+
+A well full of 12.2 ppg mud has a 500-ft cement plug set and tested, with the mud above it replaced by lighter 10.2 ppg brine. If that plug failed, fluid would move **upward, driven by the higher-pressure mud below** — not downward from above.
+
+### What actually drives influx speed
+
+Between formation permeability and the differential pressure between mud hydrostatic and formation pressure, the largest influx over a given time comes from **high permeability paired with a high differential pressure** — both factors compounding, not one offsetting the other.
+
+### What a choke drill is actually for
+
+A choke drill exists to help the crew **understand how choke and well pressures react during a kill** — not specifically to rehearse a reverse-circulation kill, a narrower, less common scenario.
+
+### The full objective of the lube and bleed method
+
+Lube and bleed reduces surface pressure by **increasing hydrostatic pressure and removing gas** — both halves matter. Naming only the hydrostatic increase misses half of what the method is doing.
+
+### Pump pressure at a different SPM (worked number)
+
+Pump pressure of 355 psi at 42 SPM, what's the new pressure at 35 SPM? Pressure scales with the **square** of the speed ratio, not linearly: 355 × (35/42)² ≈ **247 psi**, not 296 psi.
+
+### What a pit drill actually trains
+
+The main reason for a pit drill is to make sure the crew can **recognize and react to a kick** — not to train them to actually kill the well, which is a separate, later skill.
+
+### The full objective of the Volumetric Method
+
+The Volumetric Method exists to **let gas expand as it migrates toward the BOP while casing pressure is allowed to rise to compensate for bled mud** — not to remove a saltwater influx when circulation isn't possible.
+
+### Porosity vs. permeability, restated
+
+Asked directly which term describes the percentage of void space in a formation, the answer is **porosity**, not permeability — permeability describes how well those void spaces connect and let fluid flow.
+
+### What "abnormal pressure" actually means
+
+Abnormal pressure means **formation pressure exceeds the normal hydrostatic pressure of formation water at that depth** — it isn't about excess pressure generated by circulating mud fast, a surface/dynamic effect entirely separate from the geological cause.
+
+### The purpose of a ram BOP's weep hole
+
+The weep hole on a ram-type BOP is there to **indicate a leak from the primary mud seal on the piston rod** — an early warning sign — not to prevent damage to the closing chamber.
+
+### Hydrostatic pressure of setting cement
+
+As a column of cement sets, its hydrostatic pressure **decreases** — it doesn't stay the same. Cement transitions from a fluid state to a solid one, and as it gels, it stops transmitting full hydrostatic pressure the way a liquid does.
+
+### Defining Shut In Drill Pipe Pressure precisely
+
+SIDPP is defined as the difference between **fluid hydrostatic pressure in the drill string and formation pressure** — not the annulus. It's easy to swap "drill string" for "annulus" since SICP is defined the same way but on the other side of the well.
+
+---
+
+For the math behind ICP, FCP, and pressure schedules, the [kill sheet calculator](/calculators/kill-sheet) and [horizontal kill sheet calculator](/calculators/kill-sheet-horizontal) run these live. The [hydrostatic pressure calculator](/calculators/hydrostatic) and [mud weight converter](/calculators/mud-weight-converter) run the definitional math above. Background theory is on the [well control reference page](/drilling/well-control) and the [hydrostatic pressure pillar](/pillars/hydrostatic-pressure). Once a kill is actually underway, holding the right pressure constant is where [Driller's Method and Wait and Weight mistakes](/blog/drillers-method-wait-and-weight-mixups) most often happen, and the same hydrostatic math shows up again as worked numeric problems in [pit volumes and MAASP mistakes](/blog/pit-volumes-maasp-math-mistakes). If the 0.052 in that math has ever seemed like something that should vary by mud type, [the actual derivation](/blog/hydrostatic-pressure-0052-constant) explains why it doesn't.

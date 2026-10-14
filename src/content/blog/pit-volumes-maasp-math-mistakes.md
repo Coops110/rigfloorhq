@@ -54,4 +54,4 @@ Using the barrel-in/barrel-out stripping technique while an influx is actively m
 
 ---
 
-For the volume and MAASP math itself, the [kill sheet calculator](/calculators/kill-sheet) and [gas migration calculator](/calculators/gas-migration) run these live, and the [well control reference page](/drilling/well-control) covers the underlying theory. The hydrostatic pressure calculations behind kick tolerance are covered in more depth in [pressure concepts that get misread](/blog/well-control-pressure-concepts-misread).
+For the volume and MAASP math itself, the [kill sheet calculator](/calculators/kill-sheet) and [gas migration calculator](/calculators/gas-migration) run these live, and the [well control reference page](/drilling/well-control) covers the underlying theory. The hydrostatic pressure calculations behind kick tolerance are covered in more depth in [shut-in pressure behavior and the concepts that get misread](/blog/shut-in-pressure-behavior-explained), and the full theory is on the [hydrostatic pressure pillar](/pillars/hydrostatic-pressure).

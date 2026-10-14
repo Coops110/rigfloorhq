@@ -1,10 +1,60 @@
 {
   "trailingSlash": false,
   "cleanUrls": true,
+  "build": {
+    "env": {
+      "VERCEL_DEEP_CLONE": "true"
+    }
+  },
   "redirects": [
     {
       "source": "/blog/rig-floor-ppe-guide-personal-protective-equipment-for-drilling-operations.html",
       "destination": "/blog/rig-floor-ppe-guide",
+      "permanent": true
+    },
+    {
+      "source": "/drilling/formulas",
+      "destination": "/calculators/formulas-cheat-sheet",
+      "permanent": true
+    },
+    {
+      "source": "/blog/kick-warning-signs-shut-in-mistakes",
+      "destination": "/blog/five-warning-signs-of-a-kick",
+      "permanent": true
+    },
+    {
+      "source": "/es/blog/kick-warning-signs-shut-in-mistakes",
+      "destination": "/es/blog/five-warning-signs-of-a-kick",
+      "permanent": true
+    },
+    {
+      "source": "/blog/well-control-basics-common-mistakes",
+      "destination": "/blog/well-control-basics",
+      "permanent": true
+    },
+    {
+      "source": "/es/blog/well-control-basics-common-mistakes",
+      "destination": "/es/blog/well-control-basics",
+      "permanent": true
+    },
+    {
+      "source": "/blog/well-control-pressure-concepts-misread",
+      "destination": "/blog/shut-in-pressure-behavior-explained",
+      "permanent": true
+    },
+    {
+      "source": "/es/blog/well-control-pressure-concepts-misread",
+      "destination": "/es/blog/shut-in-pressure-behavior-explained",
+      "permanent": true
+    },
+    {
+      "source": "/blog/subsea-well-control-concepts",
+      "destination": "/blog/well-control-curveball-scenarios",
+      "permanent": true
+    },
+    {
+      "source": "/es/blog/subsea-well-control-concepts",
+      "destination": "/es/blog/well-control-curveball-scenarios",
       "permanent": true
     }
   ],
@@ -37,8 +87,16 @@
           "value": "object-src 'none'; base-uri 'none'; frame-ancestors 'self'"
         },
         {
+          "key": "Content-Security-Policy-Report-Only",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; object-src 'none'; base-uri 'none'; frame-ancestors 'self'"
+        },
+        {
           "key": "Permissions-Policy",
           "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://rigfloorhq.com"
         }
       ]
     },
@@ -48,6 +106,10 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
         }
       ]
     },
@@ -57,6 +119,10 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
         }
       ]
     },

@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const pillars = [
+  {
+    href: '/pillars/advanced-well-control-and-hydrostatics',
+    icon: '🧮',
+    title: 'Advanced Well Control',
+    desc: 'Pressure management reference for supervisors and engineers — TVD vs MD, pressure gradients, ECD, kill methods, and regional well control considerations.',
+  },
+  {
+    href: '/pillars/hydrostatic-pressure',
+    icon: '💧',
+    title: 'Hydrostatic Pressure',
+    desc: 'The complete reference on hydrostatic pressure, the 0.052 constant, and how pore pressure, fracture pressure, and the mud weight window fit together.',
+  },
+  {
+    href: '/pillars/rig-floor-leadership',
+    icon: '🪜',
+    title: 'Rig Floor Leadership',
+    desc: 'The driller-to-toolpusher-to-OIM supervisory career ladder — what distinguishes each tier, and the certification that gates the step up.',
+  },
+  {
+    href: '/pillars/stuck-pipe-and-fishing-operations',
+    icon: '🎣',
+    title: 'Stuck Pipe & Fishing Operations',
+    desc: 'Differential sticking, mechanical sticking, jarring, free point and back-off, fishing tools, and when a sidetrack is the cheaper answer.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "RigFloorHQ Pillar Guides",
+  "description": "In-depth supervisor- and engineer-level reference guides on well control, hydrostatic pressure, rig floor leadership, and stuck pipe operations.",
+  "url": "https://rigfloorhq.com/pillars",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": pillars.map((p, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "url": `https://rigfloorhq.com${p.href}`,
+      "name": p.title,
+    })),
+  },
+  "author": { "@id": "https://rigfloorhq.com/#organization" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+};
+---
+<BaseLayout
+  title="Pillar Guides — In-Depth Technical References"
+  description="Supervisor and engineer-level reference guides: advanced well control, hydrostatic pressure, rig floor leadership, and stuck pipe & fishing operations."
+  breadcrumbs={[{ label: 'Pillars', href: '/pillars' }]}
+  jsonLd={jsonLd}
+  lang="en"
+>
+  <Nav slot="nav" lang="en" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">In-Depth References</div>
+    <h1>Pillar <span>Guides</span></h1>
+    <p class="page-hero-sub">The four deep-dive references on this site — each one goes well past the hub pages into supervisor- and engineer-level detail on a single subject.</p>
+  </div>
+
+  <section class="block">
+    <h2 class="sr-only">Pillar Guides</h2>
+    <div class="card-grid">
+      {pillars.map((p) => (
+        <a class="card" href={p.href}>
+          <span class="card-icon">{p.icon}</span>
+          <h3>{p.title}</h3>
+          <p>{p.desc}</p>
+          <span class="card-link">Read the Guide →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

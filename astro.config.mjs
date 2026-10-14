@@ -3,6 +3,7 @@ import sitemap from '@astrojs/sitemap';
 import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { buildGitLastmodMap, sourceCandidates } from './scripts/git-lastmod.mjs';
+import { generateLlmsTxt } from './scripts/generate-llms-txt.mjs';
 
 // Blog slugs carrying `noindex: true` in their frontmatter. Must be kept in
 // sync by hand — see the filter comment below for why.
@@ -80,6 +81,21 @@ export default defineConfig({
           const line = `${dated}/${urls} sitemap URLs have lastmod (${pct}%)`;
           if (dated === urls) logger.info(line);
           else logger.warn(`${line} — URLs without one had no resolvable source file`);
+        },
+      },
+    },
+
+    // llms.txt, generated from the real build output rather than hand-kept.
+    // Runs after every page HTML file exists, so it reads real titles,
+    // descriptions, canonicals and robots meta rather than guessing. See
+    // scripts/generate-llms-txt.mjs for why: the hand-written version this
+    // replaced listed 25 of 279 URLs and was wrong the moment a page moved.
+    {
+      name: 'llms-txt-generator',
+      hooks: {
+        'astro:build:done': ({ dir, logger }) => {
+          const outDir = fileURLToPath(dir);
+          generateLlmsTxt(outDir, logger);
         },
       },
     },

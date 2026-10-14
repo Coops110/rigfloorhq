@@ -1,6 +1,6 @@
 ---
-title: "Martillos de Perforación: Por Qué un Impacto Libera lo que Tirar No Puede"
-description: "Un martillo convierte la sobretensión constante en un golpe breve y violento almacenando el estiramiento de la tubería y liberándolo de golpe. Cómo funcionan el armado y el disparo, martillos ascendentes y descendentes, y por qué el martilleo es una operación diseñada y no fuerza bruta."
+title: "Martillos de Perforación: Por Qué un Impacto"
+description: "Un martillo convierte la sobretensión constante en un golpe breve y violento almacenando el estiramiento de la tubería y liberándolo de golpe. Cómo"
 publishDate: "2026-08-03"
 author: "RigFloorHQ Team"
 category: "Perforación"

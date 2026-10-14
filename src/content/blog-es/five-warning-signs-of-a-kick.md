@@ -1,6 +1,6 @@
 ---
-title: "Cinco Señales de Advertencia de una Surgencia que Todo Nuevo Trabajador Debe Conocer de Memoria"
-description: "Los indicadores tempranos de una surgencia de pozo, por qué importan más que los dramáticos que ves en películas, y qué hacer realmente en el momento que los notas."
+title: "Cinco Señales de Advertencia de una Surgencia"
+description: "Los indicadores tempranos de una surgencia de pozo, por qué importan más que los dramáticos que ves en películas, y qué hacer realmente en el momento"
 publishDate: "2026-07-08"
 author: "RigFloorHQ Team"
 category: "Control de Pozos"
@@ -36,3 +36,75 @@ Esta es la señal definitiva. Si detienes las bombas completamente y el pozo sig
 Todo el propósito del entrenamiento de control de pozos — IWCF, IADC WellSharp, todo — está construido alrededor de detectar una surgencia en la etapa uno o dos, no en la etapa cinco. Una surgencia detectada en la etapa de volumen de pileta es un evento controlado, casi rutinario: cierras el pozo, lees tus presiones, calculas el peso de lodo de matanza, y lo circulas hacia afuera. Una surgencia que no se detecta hasta que está visiblemente fluyendo en superficie ya ha tenido tiempo de crecer, y las opciones para manejarla de forma segura se reducen considerablemente.
 
 Si quieres ver la matemática real detrás de esto — cómo se calculan el peso de lodo de matanza, la presión de circulación inicial, y la presión de circulación final una vez que un pozo está cerrado — la [calculadora de hoja de control de pozo](/es/calculators/kill-sheet) recorre las fórmulas exactas, y la [página de referencia de control de pozos](/es/drilling/well-control) cubre el procedimiento completo de cierre paso a paso.
+
+## Errores Comunes en Señales de Advertencia y Cierre
+
+*(Teoría estándar IWCF/IADC, no material oficial de examen — los emparejamientos que más se fallan una vez que las cinco señales de arriba ya son automáticas.)*
+
+### Qué causa realmente el ballooning
+
+El ballooning ocurre cuando la presión de fondo corre ligeramente por encima de la presión de fractura. La causa es la **fricción anular mientras se circula (ECD)** — no presión de formación anormal.
+
+### La señal de advertencia que no pertenece a la lista
+
+La respuesta suele ser **aumento de densidad de lutita** — las señales de advertencia reales apuntan en la otra dirección (densidad decreciente).
+
+### Por qué importa la detección temprana de surgencia (SICP, no solo el tamaño del influjo)
+
+Detectar una surgencia temprano importa porque minimizar el tamaño del influjo resulta en una **SICP más baja** — no más alta.
+
+### Un tapón fallido en un pozo abierto
+
+Si un tapón falla y el pozo está abierto, el pozo **fluirá** — no permanecerá estático.
+
+### Sospechando una lectura baja de SICP
+
+El movimiento correcto es **compararla contra el manómetro de SICP en el múltiple de estranguladores** — no el múltiple de standpipe, que lee presión del lado de la tubería.
+
+### Cómo se ve una válvula de alivio reventada
+
+Se verá una **caída rápida en la presión de tubería y una caída en la presión de revestimiento** — no una caída en la presión de tubería con la presión de revestimiento sin afectar.
+
+### Qué hace más difícil la detección de surgencia
+
+La detección se hace más difícil **perforando formaciones de baja permeabilidad con lodo base aceite** — no de alta permeabilidad.
+
+### Qué cuenta como barrera "procedimental"
+
+Una barrera procedimental es algo como **monitorear el pozo por ganancias o pérdidas** — una práctica, no algo físico.
+
+### Leyendo SIDPP con una válvula de no retorno en la sarta
+
+Esa válvula **tiene que ser bombeada abierta antes de poder leer la Presión de Tubería con Pozo Cerrado** — no está simplemente prohibido correrla en posición cerrada.
+
+### Qué muestra una herramienta PWD durante un influjo
+
+Una herramienta de Presión Mientras se Perfora señala un influjo mediante una **reducción en la ECD**, no un aumento.
+
+### Revestimiento sin mantenerse lleno con un flotador de no retorno
+
+El riesgo real es el **flotador fallando y el lodo haciendo efecto U hacia arriba dentro del revestimiento** — no una disminución súbita de la carga del gancho.
+
+### Qué hace más grande una surgencia durante el cierre
+
+Llamar al Toolpusher al piso **antes** de cerrar es la práctica que lleva a un influjo más grande. Los simulacros regulares de pileta, en cambio, son lo que hace el cierre más rápido.
+
+### Barrera física vs. procedimiento, revisitado
+
+Un tapón de cemento es una **barrera física**. Un procedimiento adecuado de cierre de BOP es un *procedimiento*, necesario pero no algo físico en el pozo por sí mismo.
+
+### Qué causa realmente una surgencia al correr revestimiento
+
+Una surgencia es más probablemente causada por **pérdidas inducidas por surgencia (surging) que bajan el nivel de lodo** — no por mantener el revestimiento lleno, que en realidad es la medida preventiva.
+
+### Por qué se monitorean las piletas después de perforar hacia afuera una zapata flotadora
+
+Se vigilan los niveles de pileta y flujo principalmente para **verificar que la zapata flotadora no esté goteando**.
+
+### Respondiendo a pérdidas totales en lodo base agua
+
+La respuesta correcta es **detener la perforación, llenar el pozo desde arriba con agua, y registrar el volumen** — no bombear inmediatamente material de control de pérdidas.
+
+### Cuándo no se requiere un chequeo de flujo
+
+El que **no** requiere uno es después de que el **Perforador aumenta el peso sobre la barrena** — un ajuste normal de perforación, no un evento asociado con riesgo de control de pozos.

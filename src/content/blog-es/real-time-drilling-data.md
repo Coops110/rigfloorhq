@@ -1,6 +1,6 @@
 ---
-title: "Datos de Rendimiento de Perforación en Tiempo Real: Plataformas y Prácticas"
-description: "Cómo se usan realmente los datos de perforación en tiempo real en taladros modernos — los sistemas detrás de ello, qué habilitan los flujos de datos MWD/LWD, y por qué la práctica importa más que cualquier plataforma individual."
+title: "Datos de Rendimiento de Perforación en Tiempo Real"
+description: "Cómo se usan realmente los datos de perforación en tiempo real en taladros modernos — los sistemas detrás de ello, qué habilitan los flujos de datos"
 publishDate: "2026-07-09"
 author: "RigFloorHQ Team"
 category: "Operaciones de Perforación"

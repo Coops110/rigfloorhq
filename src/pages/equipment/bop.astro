@@ -85,8 +85,16 @@ const jsonLd = {
         <p>Every stack is several sealing elements mounted on top of each other, each for a different scenario — sealing around pipe, sealing an open hole, or cutting through pipe entirely when nothing else will work.</p>
 
         <picture>
-          <source srcset="/images/blog/bop-stack-diagram.webp" type="image/webp" />
-          <img src="/images/blog/bop-stack-diagram.png" alt={stackAlt} width="1800" height="1120" loading="lazy" decoding="async" style="max-width:100%;height:auto;margin:22px 0;border:1px solid var(--iron);border-radius:6px;" />
+          <source
+            type="image/webp"
+            srcset="/images/blog/bop-stack-diagram-660w.webp 660w, /images/blog/bop-stack-diagram-1320w.webp 1320w, /images/blog/bop-stack-diagram.webp 1800w"
+            sizes="(max-width: 700px) 100vw, 660px"
+          />
+          <img
+            src="/images/blog/bop-stack-diagram.png"
+            srcset="/images/blog/bop-stack-diagram-660w.png 660w, /images/blog/bop-stack-diagram-1320w.png 1320w, /images/blog/bop-stack-diagram.png 1800w"
+            sizes="(max-width: 700px) 100vw, 660px"
+            alt={stackAlt} width="1800" height="1120" loading="lazy" decoding="async" style="max-width:100%;height:auto;margin:22px 0;border:1px solid var(--iron);border-radius:6px;" />
         </picture>
 
         <h2 id="the-two-families">The Two Families of Preventer</h2>

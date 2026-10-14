@@ -51,7 +51,7 @@ const webAppLd = {
 };
 ---
 <BaseLayout
-  title="ECD Calculator: Equivalent Circulating Density While Drilling"
+  title="ECD Calculator: Equivalent Circulating Density"
   description="Free ECD calculator: annular velocity, annular friction pressure loss, and equivalent circulating density from mud weight, flow rate and annulus geometry."
   jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
@@ -137,7 +137,7 @@ const webAppLd = {
         </div>
 
         <h3>Where This Fits</h3>
-        <p>Static mud weight, the number the <a href="/calculators/hydrostatic">hydrostatic pressure calculator</a> works from, is only the starting point. ECD is the number to check against fracture gradient once pumps are on — the same comparison the <a href="/calculators/mud-weight-window">mud weight window calculator</a> runs between pore and fracture pressure, just against the higher, circulating figure instead of the static one. If a kick has already occurred, the <a href="/calculators/kill-sheet">kill sheet calculator</a> is the next stop, not this one. On a directional or horizontal well, remember measured depth drives velocity and friction along the whole annulus length, but TVD alone still converts that friction back into an equivalent mud weight — the two depths do different jobs in this formula, same as everywhere else on this site.</p>
+        <p>Static mud weight, the number the <a href="/calculators/hydrostatic">hydrostatic pressure calculator</a> works from, is only the starting point. ECD is the number to check against fracture gradient once pumps are on — the same comparison the <a href="/calculators/mud-weight-window">mud weight window calculator</a> runs between pore and fracture pressure, just against the higher, circulating figure instead of the static one. If a kick has already occurred, the <a href="/calculators/kill-sheet">kill sheet calculator</a> is the next stop, not this one. For the full theory behind the pore pressure/fracture pressure window ECD has to stay inside, see the <a href="/pillars/hydrostatic-pressure">hydrostatic pressure pillar</a>. On a directional or horizontal well, remember measured depth drives velocity and friction along the whole annulus length, but TVD alone still converts that friction back into an equivalent mud weight — the two depths do different jobs in this formula, same as everywhere else on this site.</p>
 
         <p>This is a single-section estimate treating the annulus as one uniform gap. A real string with drill pipe, heavy weight, and collars in different hole and casing sizes has a different velocity and friction loss in each section, which is why a full hydraulics program run by a mud engineer will not match this number exactly — use this to understand the shape of the problem, not to replace that program.</p>
 

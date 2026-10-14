@@ -21,7 +21,7 @@ const jsonLd = {
     {
       "@type": "TechArticle",
       "headline": "Drilling Formulas Quick-Reference Cheat Sheet",
-      "description": "The core drilling formulas used on the rig floor — hydrostatic pressure, kill mud weight, MAASP, kick tolerance, ECD, trip margin, buoyancy factor, and capacity/displacement — with links to run each one on real numbers.",
+      "description": "Core drilling formulas, conversions, and a worked example for the rig floor: hydrostatic pressure, kill mud weight, MAASP, ECD, buoyancy, capacity.",
       "about": "Drilling and well control formulas"
     },
     {
@@ -41,7 +41,7 @@ const webAppLd = {
   "@id": "https://rigfloorhq.com/calculators/formulas-cheat-sheet#app",
   "name": "Drilling Formulas Cheat Sheet — Quick Reference",
   "url": "https://rigfloorhq.com/calculators/formulas-cheat-sheet",
-  "description": "The core drilling formulas rig floor crew actually need: hydrostatic pressure, kill mud weight, MAASP, kick tolerance, ECD, trip margin, buoyancy factor, and capacity/displacement. Free, no signup required to read.",
+  "description": "Core drilling formulas, conversions, and a worked example for the rig floor: hydrostatic pressure, kill mud weight, MAASP, ECD, buoyancy, capacity.",
   "applicationCategory": "UtilitiesApplication",
   "applicationSubCategory": "Drilling engineering calculator",
   "operatingSystem": "Any (web browser)",
@@ -54,7 +54,7 @@ const webAppLd = {
 ---
 <BaseLayout
   title="Drilling Formulas Cheat Sheet — Quick Reference"
-  description="The core drilling formulas rig floor crew actually need: hydrostatic pressure, kill mud weight, MAASP, kick tolerance, ECD, trip margin, buoyancy factor, and capacity/displacement. Free, no signup required to read."
+  description="Core drilling formulas, conversions, and a worked example for the rig floor: hydrostatic pressure, kill mud weight, MAASP, ECD, buoyancy, capacity."
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Formulas Cheat Sheet', href: '/calculators/formulas-cheat-sheet' }]}
   lang="en"
   alternateHref="/es/calculators/formulas-cheat-sheet"
@@ -67,7 +67,7 @@ const webAppLd = {
   <div class="page-hero">
     <div class="page-hero-eyebrow">Quick Reference</div>
     <h1>Drilling Formulas <span>Cheat Sheet</span></h1>
-    <p class="page-hero-sub">The eight formulas that come up most on the rig floor — well control and basic string math — in one place. This is a reference for which formula applies and what it needs — for the actual number, use the linked calculator with your real figures.</p>
+    <p class="page-hero-sub">The eight formulas that come up most on the rig floor — well control and basic string math — in one place, plus the unit conversions, the constants they're built from, and a full worked example end to end. This is a reference for which formula applies and what it needs — for the actual number, use the linked calculator with your real figures.</p>
   </div>
 
   <section class="block">
@@ -111,10 +111,22 @@ const webAppLd = {
       <div class="formula-note">Extra mud weight carried to cover swab pressure while tripping. Run it: <a href="/calculators/trip-margin">Trip Margin Calculator</a>.</div>
     </div>
 
+    <h2 id="buoyancy" class="mt-24">Buoyancy &amp; String Weight</h2>
+
     <div class="formula-block">
       <div class="formula-label">Buoyancy Factor</div>
       <div class="formula-eq">BF = 1 − (Fluid Weight (ppg) ÷ 65.5)</div>
       <div class="formula-note">The fraction of a string's air weight it actually hangs as once submerged in fluid. Run it: <a href="/calculators/buoyancy">Buoyancy &amp; Tubular Weight Calculator</a>.</div>
+    </div>
+
+    <div class="prose">
+      <p>A note on 65.5: steel at 489.5 lb/ft³ works out at <strong>65.44 ppg</strong>, not 65.5. The rounded figure is the field convention and the difference is under a tenth of a percent, but if a number will not reconcile against a supplier's tally book, this is one of the places the discrepancy hides.</p>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-label">Neutral Point</div>
+      <div class="formula-eq">Max WOB (lb) = Collar weight (lb/ft) × Length (ft) × BF</div>
+      <div class="formula-note">Keep the neutral point in the collars. Putting drill pipe in compression is how you buy a fatigue failure. More on pipe grades and inspection class: <a href="/equipment/drill-string">drill string page</a>.</div>
     </div>
 
     <div class="formula-block">
@@ -123,8 +135,101 @@ const webAppLd = {
       <div class="formula-note">Volume per foot inside the pipe, and volume per foot the pipe itself displaces. Run it: <a href="/calculators/drill-pipe-tally">Drill Pipe Tally Calculator</a>.</div>
     </div>
 
+    <h2 id="conversions" class="mt-24">Mud Weight Conversions</h2>
+    <div class="prose">
+      <p>The same fluid gets reported four different ways depending on who is writing the report. These are exact, not rounded.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>From ppg, multiply by</th><th>To get</th><th>12.0 ppg becomes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>÷ 8.3454</td><td>Specific gravity</td><td>1.438</td></tr>
+          <tr><td>÷ 19.25</td><td>psi/ft</td><td>0.6234</td></tr>
+          <tr><td>× 7.4805</td><td>lb/ft³</td><td>89.77</td></tr>
+          <tr><td>× 119.826</td><td>kg/m³</td><td>1,437.9</td></tr>
+          <tr><td>÷ 8.5099</td><td>bar/10 m</td><td>1.410</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p>Note that <strong>19.25 is the exact reciprocal of the 0.052 constant</strong> — they are the same conversion written two ways, which is worth knowing when a figure looks off by a factor you cannot place. The <a href="/calculators/mud-weight-converter">mud weight converter</a> does all five live.</p>
+    </div>
+
+    <h2 id="connections" class="mt-24">Connections: Flange Ratings &amp; Make-Up Torque</h2>
+    <div class="prose">
+      <p>Not every number on the rig floor is a formula — some are lookups, and getting them wrong matters just as much. A BOP stack's flanged connections carry an API 6A/6BX rating tied to the stack's own pressure class; the <a href="/calculators/flange-ring-gasket">flange and ring gasket lookup</a> goes from bore size and pressure rating to the correct ring gasket, stud count, and stud size.</p>
+      <p>A bit's connection to the string is a different system entirely — a tapered thread made up to a specific torque rather than a gasketed bolt-up. The <a href="/calculators/bit-torque">bit thread and make-up torque lookup</a> goes from bit size to thread connection, then to the Minimum, Maximum, and Maximum Severe torque for PDC and roller cone bits.</p>
+    </div>
+
+    <h2 id="survey" class="mt-24">Directional &amp; Survey</h2>
+    <div class="prose">
+      <p>Every depth on this page assumes the drill pipe tally and the rig floor reference it is measured from have not moved. When a rig floor elevation actually changes — a different substructure, a workover rig on a re-entry — reconcile it with the <a href="/calculators/odf-depth-correction">rig floor (ODF) depth correction calculator</a> before trusting a tally against it.</p>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-label">TVD over a Constant-Inclination Section</div>
+      <div class="formula-eq">ΔTVD (ft) = ΔMD (ft) × cos I</div>
+      <div class="formula-note">I = inclination from vertical. In a build section use minimum curvature rather than this.</div>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-label">Build Rate</div>
+      <div class="formula-eq">Build rate (°/100 ft) = (I₂ − I₁) × 100 ÷ Course length (ft)</div>
+      <div class="formula-note">Inclination change only. It is not the same as dogleg severity unless azimuth is constant.</div>
+    </div>
+
+    <div class="formula-block">
+      <div class="formula-label">Dogleg Severity</div>
+      <div class="formula-eq">cos β = cos(I₂ − I₁) − sin I₁ × sin I₂ × (1 − cos(A₂ − A₁))<br />DLS (°/100 ft) = β × 100 ÷ Course length (ft)</div>
+      <div class="formula-note">The minimum curvature dogleg angle β, accounting for both inclination and azimuth change. When azimuth is unchanged it collapses to the build rate above.</div>
+    </div>
+    <div class="prose">
+      <p>Well profiles, build sections and why dogleg severity limits matter are on the <a href="/drilling/directional">directional drilling page</a>.</p>
+    </div>
+
+    <h2 id="constants" class="mt-24">The Constants, and Where They Come From</h2>
+    <div class="prose">
+      <p>Every rounded constant on this page is a unit conversion, not a fudge factor. Knowing the derivation is what lets you rebuild one when a figure looks wrong.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Constant</th><th>Exact value</th><th>What it is</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>0.052</td><td>0.0519481</td><td>12 ÷ 231 — cubic inches per foot of a 1 in² column, over cubic inches per gallon</td></tr>
+          <tr><td>19.25</td><td>19.25</td><td>Exactly 1 ÷ 0.0519481. The same conversion inverted</td></tr>
+          <tr><td>1029.4</td><td>1029.4142</td><td>Barrel volume ÷ area constant, giving bbl per foot from inches squared</td></tr>
+          <tr><td>24.5</td><td>24.5099</td><td>gpm to ft/min through an annulus measured in inches</td></tr>
+          <tr><td>0.000243</td><td>0.00024286</td><td>Three cylinders, per stroke, expressed in barrels</td></tr>
+          <tr><td>8.3454</td><td>8.345404</td><td>Pounds per gallon of fresh water — the specific gravity anchor</td></tr>
+          <tr><td>1 bbl</td><td>42 gal = 5.6146 ft³</td><td>9,702 cubic inches</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="worked" class="mt-24">One Worked Example, End to End</h2>
+    <div class="prose">
+      <p>A 12.0 ppg mud at 10,000 ft TVD. The well kicks and is shut in on 400 psi drillpipe, 550 psi casing, with a 12 bbl pit gain in a 8½ in hole around 5 in pipe.</p>
+      <ul>
+        <li><strong>Hydrostatic:</strong> 0.052 × 12.0 × 10,000 = <strong>6,240 psi</strong></li>
+        <li><strong>Formation pressure:</strong> 6,240 + 400 = <strong>6,640 psi</strong></li>
+        <li><strong>Kill mud weight:</strong> 12.0 + 400 ÷ (0.052 × 10,000) = 12.0 + 0.77 = <strong>12.77 ppg</strong>, call it 12.8</li>
+        <li><strong>Annular capacity:</strong> (8.5² − 5²) ÷ 1029.4 = (72.25 − 25) ÷ 1029.4 = <strong>0.0459 bbl/ft</strong></li>
+        <li><strong>Influx height:</strong> 12 ÷ 0.0459 = <strong>261 ft</strong></li>
+        <li><strong>Influx density:</strong> 12.0 − (550 − 400) ÷ (0.052 × 261) = 12.0 − 11.05 = <strong>0.95 ppg</strong> — gas</li>
+      </ul>
+      <p>That last line is the one that changes the shift. A 0.95 ppg influx is gas, gas migrates, and a gas kick shut in on a well that is not being circulated will carry its pressure to surface whether or not anyone is watching the gauges. The arithmetic took a minute; the conclusion decides what happens for the next twelve hours.</p>
+    </div>
+
+    <div class="note-box">
+      <strong>These are the standard field equations, not a substitute for your well programme.</strong> Rig-specific procedures, your operator's well control policy and the standard governing your jurisdiction take precedence over anything on this page. Check pump output by measurement, check slow circulating rates on tour, and verify fracture gradient against the actual leak-off test rather than a gradient assumption.
+    </div>
+
     <div class="prose mt-24">
-      <p>For the full concept behind these — how pore pressure, fracture pressure, and mud weight window all tie together — see the <a href="/pillars/hydrostatic-pressure">hydrostatic pressure reference page</a>. For the complete list of tools, back to <a href="/calculators">all drilling calculators</a>. For constants, conversions, connections and survey formulas not covered here, plus a full worked example end to end, see the <a href="/drilling/formulas">drilling formula reference</a>.</p>
+      <p>For the full concept behind these — how pore pressure, fracture pressure, and mud weight window all tie together — see the <a href="/pillars/hydrostatic-pressure">hydrostatic pressure reference page</a>. For the complete list of tools, back to <a href="/calculators">all drilling calculators</a>.</p>
     </div>
   </section>
 

@@ -4,7 +4,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 ---
 <BaseLayout
-  title="How Drilling Works — Oil Well Drilling Process Explained"
+  title="How Drilling Works — Oil Well Drilling Process"
   description="The complete oil well drilling process from spud to completion: casing programs, mud circulation, pressure control, and every phase explained."
   breadcrumbs={[{ label: 'Drilling', href: '/drilling' }]}
   lang="en"
@@ -50,13 +50,11 @@ import Footer from '../../components/Footer.astro';
         <span class="card-icon">📐</span>
         <h3>Formula Reference</h3>
         <p>Every calculation a shift actually uses — pressure, kill sheet, capacities, buoyancy, connections and survey — with units and constants written out, plus one worked example end to end.</p>
-        {/* Named anchor rather than "Read More": generic anchor text tells
-            Google nothing about what the target page is for. Points at the
-            narrative reference (constants explained, worked example); the
-            compact per-formula quick-reference with run-it links lives at
-            /calculators/formulas-cheat-sheet and is linked from the
-            calculators hub instead — the two serve different jobs. */}
-        <a href="/drilling/formulas" class="card-link">Drilling Formula Reference →</a>
+        {/* /drilling/formulas was merged into the cheat sheet and 301'd
+            (2026-10-14): one reviewed formula reference instead of two
+            competing pages. Named anchor rather than "Read More" — generic
+            anchor text tells Google nothing about what the target is for. */}
+        <a href="/calculators/formulas-cheat-sheet" class="card-link">Drilling Formula Reference →</a>
       </div>
       <div class="card">
         <span class="card-icon">🚚</span>
@@ -114,7 +112,7 @@ import Footer from '../../components/Footer.astro';
       </a>
       <a href="/pillars/advanced-well-control-and-hydrostatics" class="related-link">
         <div class="rl-label">Supervisor Level</div>
-        <div class="rl-title">Advanced Well Control &amp; Hydrostatics</div>
+        <div class="rl-title">Advanced Well Control</div>
       </a>
       <a href="/pillars/stuck-pipe-and-fishing-operations" class="related-link">
         <div class="rl-label">When It Goes Wrong</div>

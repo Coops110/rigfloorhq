@@ -1,6 +1,6 @@
 ---
-title: "¿Qué es una Surgencia? Control de Pozos Explicado para Cuadrillas Nuevas"
-description: "Qué es realmente una surgencia, por qué falla la presión hidrostática, cómo un chequeo de flujo confirma un influjo, y por qué existen el cierre duro y el suave — el razonamiento detrás de los procedimientos, para quienes los están aprendiendo."
+title: "¿Qué es una Surgencia? Control de Pozos Explicado"
+description: "Qué es realmente una surgencia, por qué falla la presión hidrostática, cómo un chequeo de flujo confirma un influjo, y por qué existen el cierre duro"
 publishDate: "2026-07-09"
 author: "RigFloorHQ Team"
 category: "Control de Pozos"
@@ -136,6 +136,78 @@ Si estás construyendo o avanzando una carrera en el piso de perforación, enten
 El control de pozos tampoco existe aislado del resto de las operaciones del taladro. La integridad de la sarta de perforación, cubierta en la [página de componentes de la sarta de perforación](/es/equipment/drill-string), afecta todo desde la función de los arietes de corte hasta la transmisión de presión durante una matanza. Las reparaciones estructurales en el equipo del piso de perforación, incluyendo componentes del stack de BOP y manifolds de choke, a menudo requieren trabajo de soldadura realizado según estándares estrictos de recipientes a presión — cubierto en la [sección de fundamentos de soldadura](/es/welding).
 
 Para una mirada más amplia de cómo el control de pozos encaja en la secuencia completa de perforación, desde el spud hasta la profundidad total, el [resumen de operaciones de perforación](/es/drilling) y el [resumen de equipo del taladro](/es/equipment) proporcionan el contexto circundante. Y si estás comparando herramientas antes de tu próximo pozo, la [suite completa de calculadoras de perforación](/es/calculators) cubre presión hidrostática, hojas de control de pozo, y ventanas de peso de lodo en un solo lugar.
+
+## Conceptos Erróneos Comunes
+
+*(Teoría estándar IWCF/IADC de control de pozos, no material oficial de examen.)*
+
+### Qué le sucede al nivel de pileta al circular una surgencia de gas hacia afuera
+
+Al circular una surgencia de gas hacia afuera con el Método del Perforador, el nivel de pileta activa aumenta mientras el gas se expande en su camino hacia arriba, luego **disminuye a medida que ese gas sale por el estrangulador** — no se mantiene constante.
+
+### Indicador adelantado vs. indicador retrasado de la presión de formación
+
+El cambio en el ROP es un indicador *adelantado* del aumento de la presión de formación. **El cambio en el gas de fondo es el retrasado**: no aparece en superficie hasta que realmente se circula hacia arriba.
+
+### Densidad de los recortes de lutita en una zona de transición
+
+Al perforar hacia una formación con presión anormal a través de una zona de transición, los recortes de lutita llegan **menos densos, no más densos**.
+
+### Definiendo correctamente la tolerancia a la surgencia
+
+La tolerancia a la surgencia es **el volumen máximo de surgencia de gas**, a una intensidad y profundidad dadas, que se puede cerrar y circular sin exceder la presión de fractura — no la intensidad mínima de surgencia para un volumen dado.
+
+### La "relación de cierre" de un preventor de arietes
+
+La relación de cierre es una **relación mecánica — área del empaque contra área del vástago del pistón** — no una cifra de presión.
+
+### Qué causa realmente un influjo por un peligro somero
+
+No llenar el pozo correctamente mientras se saca la tubería es el riesgo real — **no bombear al sacar la tubería**, que es en sí mismo una práctica de mitigación de riesgo.
+
+### Práctica operativa en una sección superior con presencia de gas
+
+En una sección superior del pozo con riesgo de gas, la práctica correcta es **controlar la tasa de penetración**, no mantener una alta.
+
+### Qué gobierna realmente el soplado de gas hacia las zarandas
+
+La dimensión que afecta la presión a la que el gas puede soplar hacia las zarandas es la **altura del sello líquido**, no la altura del cuerpo ni el diámetro interior.
+
+### La causa más común de presión de formación anormalmente alta
+
+A nivel mundial, la causa más común de presión anormal es **fluido atrapado en la lutita** — no fracturas de caliza, mucho menos frecuentes.
+
+### Cómo afecta la presión anormal al control primario de pozo
+
+Perforar hacia una formación con presión anormal **reduce** el sobrebalance hidrostático que proporcionaba el peso de lodo — no lo aumenta.
+
+### Un nivel de pileta estable no es automáticamente buena noticia
+
+Un período sin cambio en el nivel de pileta puede significar que se está **ganando fluido de formación** a un ritmo que aún no se ha manifestado.
+
+### Presión Superficial Máxima Anticipada vs. MAASP
+
+La presión más alta posible en superficie con el pozo lleno de fluido de formación es la **Presión Superficial Máxima Anticipada (MASP)** — no la Presión Superficial Anular Máxima Permisible (MAASP), un concepto distinto. Se confunden porque comparten la mitad de sus letras.
+
+### Monitoreando fugas en el BOP
+
+La forma más confiable de monitorear fugas a través de un BOP cerrado es alinear el **trip tank** — no solo observar el indicador de caudal, una verificación más gruesa.
+
+### Presión de acumulador que no se recupera después de cerrar un anular
+
+Si la presión del acumulador cae al cerrar un preventor anular sin fugas visibles, la causa probable es que la **bomba de carga del acumulador no ha arrancado** — no una válvula de 3 posiciones atascada.
+
+### Independencia de barreras
+
+Un anular y un ariete en el mismo stack de BOP **no son barreras independientes** entre sí — comparten el mismo stack y a menudo el mismo sistema hidráulico.
+
+### Un gran salto de ROP en una corrida repetida de barrena es un momento de chequeo de flujo
+
+Si el ROP se triplica comparado con la corrida anterior, el movimiento correcto es un **chequeo de flujo**, con bottoms-up como consideración de seguimiento — no cerrar el pozo directamente.
+
+### Cambios de turno durante una matanza de pozo
+
+A mitad de una matanza, la mejor práctica es que la **cuadrilla saliente y la entrante se traslapen para una entrega completa** — no que la cuadrilla nueva tome el control de inmediato.
 
 ## Conclusión
 

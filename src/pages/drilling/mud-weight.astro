@@ -6,15 +6,15 @@ import Footer from '../../components/Footer.astro';
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Mud Weight, Hydrostatic Pressure & the Mud Weight Window",
-  "description": "How to calculate hydrostatic pressure, pore pressure, fracture pressure, and safely manage the mud weight window while drilling.",
+  "headline": "Mud Weight: What Makes Drilling Fluid Heavy",
+  "description": "What mud weight is, how it's measured in ppg and SG, what makes drilling fluid heavy, and the mud weight window between pore and fracture pressure.",
   "about": "Drilling engineering"
 };
 ---
 <BaseLayout
-  title="Mud Weight & Hydrostatic Pressure Calculation — Full Formula Guide"
-  description="Complete guide to hydrostatic pressure, pore pressure, fracture gradient, and the mud weight window. Includes the exact formulas drilling engineers use: P = 0.052 × MW × TVD."
-  breadcrumbs={[{ label: 'Drilling', href: '/drilling' }, { label: 'Mud Weight & Pressure', href: '/drilling/mud-weight' }]}
+  title="Mud Weight: What Makes Drilling Fluid Heavy"
+  description="What mud weight is, how it's measured in ppg and SG, what makes drilling fluid heavy, and the mud weight window between pore and fracture pressure."
+  breadcrumbs={[{ label: 'Drilling', href: '/drilling' }, { label: 'Mud Weight', href: '/drilling/mud-weight' }]}
   jsonLd={jsonLd}
   lang="en"
   alternateHref="/es/drilling/mud-weight"
@@ -23,14 +23,18 @@ const jsonLd = {
   <Footer slot="footer" lang="en" />
 
   <div class="page-hero">
-    <div class="page-hero-eyebrow">Drilling — Pressure Engineering</div>
-    <h1>Mud Weight & <span>Hydrostatic Pressure</span></h1>
-    <p class="page-hero-sub">Understanding and controlling wellbore pressure is the foundation of safe drilling. Every decision — mud weight, casing program, drilling speed — comes back to pressure management.</p>
+    <div class="page-hero-eyebrow">Drilling — Mud Engineering</div>
+    <h1>Mud <span>Weight</span></h1>
+    <p class="page-hero-sub">What makes drilling fluid heavy, how it's measured, and why the window it has to stay inside is the foundation of safe drilling.</p>
   </div>
 
   <section class="block">
     <div class="two-col">
       <div class="prose">
+        <h2 id="what-is-mud-weight">What Mud Weight Actually Is</h2>
+        <p>Mud weight is the density of the drilling fluid circulating down the drill string and back up the annulus. On the rig floor it's read straight off a <strong>mud balance</strong> — a calibrated arm-and-cup scale — and reported in <strong>pounds per gallon (ppg)</strong> in the US oilfield, or <strong>specific gravity (SG)</strong> almost everywhere else. A 12.0 ppg mud is 1.44 SG; the <a href="/calculators/mud-weight-converter">mud weight converter</a> moves between ppg, SG, psi/ft and kg/m³ instantly.</p>
+        <p>It matters because that density, multiplied by depth, is what holds back formation fluid. Too light and the well can kick; too heavy and it can lose circulation into the formation. Everything else on this page — the four pressures, the formulas, the window — follows from that one relationship. For the full hydrostatic-pressure theory behind the number, see the <a href="/pillars/hydrostatic-pressure">hydrostatic pressure pillar</a>.</p>
+
         <h2 id="the-four-key-pressures">The Four Key Pressures</h2>
         <p>Every drilling decision balances four distinct pressures acting on the wellbore. Understanding how they interact is the single most important concept in well engineering.</p>
 
@@ -107,6 +111,7 @@ const jsonLd = {
       <div>
         <div class="toc">
           <div class="toc-title">On This Page</div>
+          <a href="#what-is-mud-weight">What Mud Weight Is</a>
           <a href="#the-four-key-pressures">The Four Key Pressures</a>
           <a href="#the-core-formulas">Core Formulas</a>
           <a href="#worked-example">Worked Example</a>
@@ -123,6 +128,7 @@ const jsonLd = {
 
         <div class="card" style="margin-top:1px;border:1px solid var(--iron);border-radius:0 0 4px 4px;">
           <h3>Related Reading</h3>
+          <a href="/pillars/hydrostatic-pressure" class="card-link">→ Hydrostatic Pressure Pillar</a><br><br>
           <a href="/drilling/well-control" class="card-link">→ Well Control & Kicks</a><br><br>
           <a href="/pillars/stuck-pipe-and-fishing-operations" class="card-link">→ Stuck Pipe & Fishing Operations</a><br><br>
           <a href="/blog/hole-cleaning-high-angle-wells" class="card-link">→ Hole Cleaning in High-Angle Wells</a><br><br>

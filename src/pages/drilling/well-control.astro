@@ -4,7 +4,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 ---
 <BaseLayout
-  title="Well Control & Kicks — Recognition, Shut-In, Kill Procedures"
+  title="Well Control & Kicks — Recognition, Shut-In, Kill"
   description="Complete well control reference: kick recognition signs, shut-in procedures, the driller's method vs wait-and-weight, and kill sheet calculations."
   breadcrumbs={[{ label: 'Drilling', href: '/drilling' }, { label: 'Well Control', href: '/drilling/well-control' }]}
   lang="en"
@@ -109,7 +109,7 @@ import Footer from '../../components/Footer.astro';
       <strong>BOP Pressure Checks (Daily):</strong> Accumulator pressure: <span class="highlight">3,000 psi</span> · Manifold pressure: <span class="highlight">1,500 psi</span> · Annular operating: <span class="highlight">700–1,500 psi</span> · Air supply to pumps: <span class="highlight">125 psi</span>. Full detail on the <a href="/equipment/bop" style="color:var(--amber);">BOP equipment page</a>.
     </div>
 
-    <p style="color:var(--fog);font-size:14px;margin-top:24px;max-width:700px;">Ready to go deeper? The <a href="/pillars/advanced-well-control-and-hydrostatics" style="color:var(--amber);">Advanced Well Control &amp; Hydrostatics guide</a> covers TVD vs MD, ECD, the volumetric method, managed pressure drilling, and regional considerations for supervisor and engineer-level certification.</p>
+    <p style="color:var(--fog);font-size:14px;margin-top:24px;max-width:700px;">Ready to go deeper? The <a href="/pillars/advanced-well-control-and-hydrostatics" style="color:var(--amber);">Advanced Well Control guide</a> covers TVD vs MD, ECD, the volumetric method, managed pressure drilling, and regional considerations for supervisor and engineer-level certification.</p>
   </section>
 
   <section class="block">
@@ -125,9 +125,33 @@ import Footer from '../../components/Footer.astro';
         <div class="rl-label">For New Hands</div>
         <div class="rl-title">Five Warning Signs of a Kick</div>
       </a>
+      <a href="/blog/drillers-method-wait-and-weight-mixups" class="related-link">
+        <div class="rl-label">Kill Methods</div>
+        <div class="rl-title">Driller's Method &amp; Wait and Weight: Common Mix-Ups</div>
+      </a>
+      <a href="/blog/shut-in-pressure-behavior-explained" class="related-link">
+        <div class="rl-label">Pressure Behavior</div>
+        <div class="rl-title">Shut-In Pressure: What Actually Happens</div>
+      </a>
+      <a href="/blog/pit-volumes-maasp-math-mistakes" class="related-link">
+        <div class="rl-label">Worked Math</div>
+        <div class="rl-title">Pit Volumes &amp; MAASP Math Mistakes</div>
+      </a>
+      <a href="/blog/well-control-curveball-scenarios" class="related-link">
+        <div class="rl-label">Edge Cases</div>
+        <div class="rl-title">Well Control Curveballs</div>
+      </a>
+      <a href="/blog/hydrostatic-pressure-0052-constant" class="related-link">
+        <div class="rl-label">Formula Theory</div>
+        <div class="rl-title">Why the 0.052 Constant Never Changes</div>
+      </a>
+      <a href="/blog/volumetric-kill-real-story" class="related-link">
+        <div class="rl-label">Real Account</div>
+        <div class="rl-title">A Real 48-Hour Volumetric Kill</div>
+      </a>
       <a href="/pillars/advanced-well-control-and-hydrostatics" class="related-link">
         <div class="rl-label">Supervisor Level</div>
-        <div class="rl-title">Advanced Well Control &amp; Hydrostatics</div>
+        <div class="rl-title">Advanced Well Control</div>
       </a>
       <a href="/calculators/kill-sheet" class="related-link">
         <div class="rl-label">Calculator</div>
@@ -136,10 +160,6 @@ import Footer from '../../components/Footer.astro';
       <a href="/well-control-quiz" class="related-link">
         <div class="rl-label">Practice</div>
         <div class="rl-title">Well Control Quiz — 200 Questions</div>
-      </a>
-      <a href="/blog/well-control-basics-common-mistakes" class="related-link">
-        <div class="rl-label">Common Mistakes</div>
-        <div class="rl-title">Well Control Basics: Common Misconceptions</div>
       </a>
     </div>
   </section>

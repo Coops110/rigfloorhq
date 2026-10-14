@@ -1,6 +1,6 @@
 ---
-title: "Comportamiento de la Presión de Cierre: Qué Sucede Realmente"
-description: "Cómo se comportan realmente la SIDPP, SICP, y la presión de fondo durante operaciones de cierre, migración, y stripping — y dónde se equivocan las suposiciones que la gente trae consigo."
+title: "Comportamiento de la Presión de Cierre: Qué"
+description: "Cómo se comportan la SIDPP, SICP y la presión de fondo durante el cierre y la migración, más las definiciones de presión (ECD, porosidad, presión anormal)"
 publishDate: "2026-09-21"
 author: "RigFloorHQ Team"
 category: "Control de Pozos"
@@ -95,3 +95,87 @@ Si el influjo tomado por swabbing está debajo de la barrena, la SIDPP leerá **
 ---
 
 Para las matemáticas detrás de la ICP, la FCP, y los programas de presión, la [calculadora de hoja de control de pozo](/es/calculators/kill-sheet) y la [calculadora de hoja de control horizontal](/es/calculators/kill-sheet-horizontal) ejecutan esto en vivo. La teoría de fondo está en la [página de referencia de control de pozos](/es/drilling/well-control). Una vez que una matanza realmente está en curso, mantener constante la presión correcta es donde más ocurren los [errores del Método del Perforador y Wait and Weight](/es/blog/drillers-method-wait-and-weight-mixups).
+
+## Conceptos de Presión y Definiciones que se Malinterpretan
+
+*(Teoría estándar IWCF/IADC, no material oficial de examen — las definiciones y escenarios que se leen de una forma pero significan otra.)*
+
+### Un flotador autollenante que no logra convertir
+
+Si un conjunto flotador autollenante no logra convertirse en válvula de retención, la consecuencia real es que **fluidos del anular o de la formación pueden entrar al revestimiento** — no que se necesite mantener presión en el anular para prevenir el efecto U.
+
+### Arietes Ciegos vs. Arietes Ciegos/de Corte
+
+**Los Arietes Ciegos sellan hoyo abierto** — sin tubería en el camino. **Los Arietes Ciegos/de Corte cortan la sarta de perforación y luego sellan el pozo**, para cuando hay tubería en el camino.
+
+### Primer paso después de que las presiones de cierre se estabilizan
+
+El primer movimiento es **verificar que el pozo esté seguro — sin fugas** — no comenzar a leer la presión de tubería para deducir la presión de formación.
+
+### Definiendo la Densidad Equivalente de Circulación
+
+La ECD es la **presión hidrostática del lodo más la pérdida de presión por fricción anular** — no la hidrostática sola.
+
+### Definiendo porosidad
+
+La porosidad es **la cantidad de espacio vacío en la roca, expresada como porcentaje** — no la presión del fluido en ese espacio poroso, que es la presión de poro.
+
+### El propósito del procedimiento de arranque de bomba en un conjunto de superficie
+
+El procedimiento existe para **mantener correcta la presión de fondo** — no para mantener constante la presión de tubería por sí misma.
+
+### Midiendo la pérdida de ECD mientras se perfora
+
+Se detecta mejor con una herramienta de **Presión Mientras se Perfora (PWD)** — no una herramienta rotativa direccionable.
+
+### Hacia dónde se mueve el fluido si falla un tapón de cemento
+
+El fluido se movería **hacia arriba, impulsado por el lodo de mayor presión debajo** — no hacia abajo desde arriba.
+
+### Qué impulsa realmente la velocidad del influjo
+
+El mayor influjo proviene de **alta permeabilidad combinada con alta presión diferencial** — ambos factores multiplicándose, no uno compensando al otro.
+
+### Para qué sirve realmente un simulacro de estrangulador
+
+Existe para ayudar a la cuadrilla a **entender cómo reaccionan las presiones del estrangulador y del pozo durante una matanza** — no específicamente para una matanza por circulación inversa.
+
+### El objetivo completo del método de purgar y sangrar
+
+Reduce la presión de superficie mediante **aumentar la presión hidrostática y remover gas** — ambas mitades importan.
+
+### Presión de bomba a un SPM diferente (cifra trabajada)
+
+Presión de 355 psi a 42 SPM, ¿cuál es la nueva presión a 35 SPM? Escala con el **cuadrado** de la relación de velocidad: 355 × (35/42)² ≈ **247 psi**, no 296 psi.
+
+### Para qué entrena realmente un simulacro de pileta
+
+Asegura que la cuadrilla pueda **reconocer y reaccionar a una surgencia** — no entrenarlos para realmente matar el pozo.
+
+### El objetivo completo del Método Volumétrico
+
+Permite que el **gas se expanda mientras migra hacia el BOP mientras la presión de revestimiento sube para compensar el lodo purgado** — no remover un influjo de agua salada.
+
+### Porosidad vs. permeabilidad, revisitado
+
+La respuesta es **porosidad**, no permeabilidad — la permeabilidad describe qué tan bien esos espacios se conectan y permiten que el fluido fluya.
+
+### Qué significa realmente "presión anormal"
+
+Significa que **la presión de formación excede la presión hidrostática normal del agua de formación a esa profundidad** — no presión generada por circular lodo rápido.
+
+### El propósito del orificio de goteo de un BOP de arietes
+
+Está ahí para **indicar una fuga en el sello primario de lodo sobre el vástago del pistón** — no para prevenir daño a la cámara de cierre.
+
+### Presión hidrostática del cemento fraguando
+
+A medida que fragua, su presión hidrostática **disminuye** — no se mantiene igual.
+
+### Definiendo con precisión la Presión de Tubería con Pozo Cerrado
+
+La SIDPP es la diferencia entre la **presión hidrostática del fluido en la sarta de perforación y la presión de formación** — no el anular.
+
+---
+
+Para las fórmulas detrás de estos conceptos, la [calculadora de presión hidrostática](/es/calculators/hydrostatic) y la [calculadora de conversión de peso de lodo (en inglés)](/calculators/mud-weight-converter) ejecutan estas matemáticas en vivo. Las mismas matemáticas hidrostáticas aparecen trabajadas como problemas numéricos completos en [errores de volúmenes de pileta y MAASP](/es/blog/pit-volumes-maasp-math-mistakes).
