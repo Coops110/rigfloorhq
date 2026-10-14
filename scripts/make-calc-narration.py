@@ -220,6 +220,19 @@ SCRIPTS = {
         "that mismatch is how a kick or a losses event gets caught while "
         "tripping.",
     ],
+    "23-maasp": [
+        "Mud weight goes up. Your pressure margin drops in half.",
+        "This is MAASP: how much surface pressure the casing shoe can "
+        "take before it starts taking losses, found straight from your "
+        "LOT or FIT test.",
+        "Enter the test pressure, the test's own mud weight, today's "
+        "mud weight, and shoe TVD, and it solves the live margin in "
+        "both directions.",
+        "At nine point one P P G, this well has eight hundred sixty psi "
+        "of margin. Weight the mud up to the test's ten point five, and "
+        "that margin disappears -- MAASP drops straight to four "
+        "fifteen.",
+    ],
 }
 
 

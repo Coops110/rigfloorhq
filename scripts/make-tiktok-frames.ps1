@@ -226,6 +226,13 @@ $topics = @(
     @{ e = 'FREE, NO SIGNUP'; h = 'Free drill pipe tally calculator. No login.'; b = $null; f = 'rigfloorhq.com'; a = $white }
   ) },
 
+  # ── BATCH 23: MAASP, filling the 2026-10-14 queue gap ──
+  @{ id = '23-maasp'; frames = @(
+    @{ e = 'ONE MUD WEIGHT CHANGE'; h = '860 -> 415 PSI'; b = $null; f = $null; a = $ember },
+    @{ e = 'BEFORE YOU USE IT'; h = 'Learning tool only.'; b = "Reference tool, not an operational authority. Real MAASP limits belong to your certified well control supervisor, working from the actual LOT/FIT recorded on this well."; f = $null; a = $danger; w = $true },
+    @{ e = 'FREE, NO SIGNUP'; h = 'Free MAASP calculator. No login.'; b = $null; f = 'rigfloorhq.com'; a = $white }
+  ) },
+
   # ── ANIMATED DIAGRAM VIDEOS ──────────────────────────────────
   # Same hook/insight/close bookend shape as the informational 01-05
   # videos (no "before you use it" warning -- these aren't interactive

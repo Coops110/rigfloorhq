@@ -66,6 +66,7 @@ VIDEOS = {
     "20": {"id": "20-flange-ring-gasket", "rec_dir": "_rec20"},
     "21": {"id": "21-ton-mile", "rec_dir": "_rec21"},
     "22": {"id": "22-drill-pipe-tally", "rec_dir": "_rec22"},
+    "23": {"id": "23-maasp", "rec_dir": "_rec23"},
 }
 
 
