@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+// Article es el tipo de entidad principal correcto aquí, siguiendo el mismo
+// patrón ya establecido en la página de roughneck (Google retiró los
+// resultados enriquecidos de HowTo en 2023, y esto es prosa, no un
+// HowToStep literal).
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cómo Convertirte en Roustabout (Sin Experiencia Requerida)",
+  "description": "Guía paso a paso para comenzar una carrera como roustabout en un taladro petrolero sin experiencia previa — el verdadero punto de entrada a la industria.",
+};
+---
+<BaseLayout
+  title="Cómo Convertirte en Roustabout (Sin Experiencia Requerida)"
+  description="Guía paso a paso para convertirte en roustabout de taladro petrolero con cero experiencia: requisitos, salario, y cómo conseguir que te contraten."
+  breadcrumbs={[{ label: 'Carreras', href: '/es/careers' }, { label: 'Roustabout', href: '/es/careers/roustabout' }]}
+  jsonLd={jsonLd}
+  lang="es"
+  alternateHref="/careers/roustabout"
+>
+  <Nav slot="nav" lang="es" alternateHref="/careers/roustabout" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Carreras — Nivel Inicial</div>
+    <h1>Cómo Convertirte en <span>Roustabout</span></h1>
+    <p class="page-hero-sub">No se requiere experiencia, no se requieren certificaciones en tierra. Este es el verdadero punto de entrada a la industria petrolera y de gas — aquí está exactamente cómo entrar, cuánto paga, y qué implica realmente el trabajo.</p>
+    <div class="page-meta">
+      <span class="page-meta-item">Pago Inicial: <strong>$38K–$60K/año</strong></span>
+      <span class="page-meta-item">Tiempo para Contratación: <strong>2–4 semanas</strong></span>
+      <span class="page-meta-item">Educación: <strong>Bachillerato / Equivalente</strong></span>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="que-hace-realmente-un-roustabout">Qué Hace Realmente un Roustabout</h2>
+        <p>Un roustabout (obrero de piso) maneja el trabajo general que mantiene funcionando un taladro: pintar y dar mantenimiento al equipo, limpiar la locación, cargar y descargar suministros, armar y desarmar equipo entre trabajos, y asistir en operaciones de grúa e izaje. No es trabajo glamoroso, pero es el trabajo que te enseña cómo funciona todo un taladro antes de que alguien te confíe tubería bajo tensión.</p>
+        <p>Toda mano experimentada en el piso de perforación — todo <a href="/es/careers/roughneck">roughneck</a>, encuellador, y perforador — comenzó exactamente aquí. El rol de roustabout existe precisamente porque no tiene barrera de entrada: sin certificaciones, sin experiencia previa, sin habilidad especializada. Lo que exige en su lugar es una ética de trabajo sólida, confiabilidad, y la disposición a aprender observando todo lo que sucede alrededor.</p>
+
+        <h2 id="roustabout-vs-roughneck-cual-es-la-diferencia">Roustabout vs. Roughneck — ¿Cuál es la Diferencia?</h2>
+        <p>Estos dos títulos se confunden constantemente, usualmente en la dirección incorrecta. Un <strong>roustabout</strong> es la posición verdaderamente de nivel inicial: trabajo general, limpieza, pintura, movimiento de suministros, y ayuda a otros oficios — no maneja tubería de perforación directamente. Un <a href="/es/careers/roughneck"><strong>roughneck</strong></a> (también llamado floorhand) trabaja específicamente en el piso de perforación, operando las llaves de fuerza (tongs) y el iron roughneck para hacer y deshacer conexiones de tubería. La mayoría de las personas comienzan como roustabout y son promovidas a un rol de roughneck dentro de 1 a 2 años, una vez que han demostrado ser confiables y conocer el taladro.</p>
+
+        <h2 id="paso-a-paso-como-conseguir-el-trabajo">Paso a Paso: Cómo Conseguir el Trabajo</h2>
+        <h3>1. Cumple los Requisitos Básicos</h3>
+        <p>Necesitarás un diploma de bachillerato o su equivalente, tener al menos 18 años, pasar una evaluación de aptitud física, y superar una verificación de antecedentes y prueba de drogas. No se requiere título universitario ni experiencia previa en el campo petrolero — este es el único rol del piso de perforación genuinamente abierto a cualquiera dispuesto a hacer el trabajo.</p>
+
+        <h3>2. Certificaciones — Casi No Hay Nada que Obtener Todavía</h3>
+        <p>Los roles de roustabout en tierra típicamente necesitan muy poco más allá del derecho a trabajar y una licencia de conducir; la orientación básica de seguridad usualmente la proporciona el empleador una vez contratado. Las posiciones de roustabout costa afuera requieren <a href="/es/careers/certifications">BOSIET (Entrenamiento Básico de Inducción de Seguridad y Emergencia Costa Afuera)</a> antes del despliegue, igual que todos los demás roles costa afuera. No compres ninguna certificación más allá de lo requerido para el trabajo específico al que estás aplicando — todavía no sabes a qué contratista, cuenca o disciplina vas a entrar, y eso determina qué vale la pena pagar después. Ver la <a href="/es/careers/certifications">guía completa de certificaciones</a> para la secuencia que desperdicia menos dinero.</p>
+
+        <h3>3. Aplica Directamente o a Través de una Agencia de Personal</h3>
+        <p>Los contratistas de perforación (Nabors, Helmerich & Payne, Transocean, Noble, Patterson-UTI) contratan directamente para cuadrillas terrestres y costa afuera. Las agencias de personal energético (Airswift, Brunel, NES Fircroft) también colocan trabajadores de nivel inicial y pueden ayudar a acelerar tu primera colocación, especialmente costa afuera. Para un rol de roustabout específicamente, la disposición a comenzar de inmediato y trabajar cualquier patrón de turno ofrecido suele ser el factor decisivo entre dos candidatos igualmente calificados.</p>
+
+        <h3>4. Preséntate, Presta Atención, Pide Aprender</h3>
+        <p>Los roustabouts promovidos más rápido no son los que esperan que les digan qué hacer — son los que preguntan por qué un trabajo se hace de cierta manera y se ofrecen para la tarea que nadie más quiere. Los supervisores notan quién realmente está observando a los roughnecks trabajar el piso versus quién solo está pasando el turno.</p>
+
+        <div class="note-box">
+          <strong>Camino más rápido:</strong> Los roles de roustabout en taladros terrestres en cuencas activas (Permian, Eagle Ford, Bakken) típicamente tienen el tiempo de contratación más corto — a menudo 2–4 semanas desde la solicitud. Los roles de roustabout costa afuera toman más tiempo debido a la programación de BOSIET y requisitos médicos, pero pagan significativamente más una vez que estás dentro.
+        </div>
+
+        <h2 id="cuanto-te-pagaran-realmente">Cuánto Te Pagarán Realmente</h2>
+        <p>Los roustabouts de nivel inicial ganan aproximadamente <span class="highlight">$38,000–$60,000/año</span> en tierra, con la mayoría de las posiciones alrededor de $50,000. La propia encuesta salarial de la Oficina de Estadísticas Laborales de EE. UU. (BLS) reporta un salario medio anual nacional de <strong>$49,040</strong> para roustabouts — una cifra independiente del gobierno que coincide de cerca con el rango compilado de la industria. Los roles costa afuera pagan 20–40% más que los equivalentes en tierra debido a primas de aislamiento y horarios rotacionales (comúnmente 14/14 o 28/28 — dos o cuatro semanas trabajando, igualado por tiempo libre). Ver la <a href="/es/careers/salary">guía salarial completa</a> para ver cómo se compara el pago de roustabout con cada otro rol en el taladro.</p>
+
+        <h2 id="la-realidad-fisica">La Realidad Física</h2>
+        <p>Este trabajo es labor manual al aire libre, a menudo en condiciones extremas — calor desértico en el Permian, frío glacial en Dakota del Norte, humedad costa afuera en el Golfo. Estarás de pie en turnos de 12 horas, levantando y cargando suministros, y trabajando cerca de equipo en movimiento y aparejos que pueden lastimarte si no prestas atención. La cultura de seguridad en un taladro aplica a los roustabouts tanto como a la cuadrilla del piso de perforación — si estás asistiendo un izaje con grúa, se espera que sepas dónde puedes y no puedes pararte antes de que se te pida ayudar con uno.</p>
+
+        <h2 id="que-se-equivocan-los-nuevos-roustabouts">Qué Se Equivocan los Nuevos Roustabouts Primero</h2>
+        <ul>
+          <li>
+            <strong>Tratarlo como trabajo no calificado sin importancia.</strong> Las tareas de roustabout parecen simples desde afuera, pero el orden y limpieza, el aparejamiento correcto, y el manejo de materiales en un piso de perforación activo son exactamente donde ocurren muchas lesiones evitables. Los supervisores están observando qué tan cuidadosamente haces los trabajos "pequeños" como una señal directa de cómo manejarás mayor responsabilidad después.
+          </li>
+          <li>
+            <strong>No preguntar antes de asistir un izaje.</strong> Si estás ayudando en una operación de grúa, necesitas saber la capacidad nominal del aparejo que se está usando y exactamente dónde pararte antes de que la carga se mueva — no averiguarlo sobre la marcha. Pregunta al líder de cuadrilla, cada vez, hasta que sea automático.
+          </li>
+        </ul>
+
+        <h2 id="que-sigue-despues">Qué Sigue Después</h2>
+        <p>Después de aproximadamente 1 a 2 años como roustabout, el siguiente paso es <a href="/es/careers/roughneck"><strong>roughneck</strong></a> — pasando al piso de perforación mismo para manejar conexiones de tubería directamente. De ahí, la trayectoria continúa a través de encuellador, asistente de perforador, y eventualmente perforador. Ver la <a href="/es/careers/roughneck">trayectoria completa hacia convertirte en roughneck</a> para lo que realmente implica esa promoción.</p>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#que-hace-realmente-un-roustabout">Qué Hace un Roustabout</a>
+          <a href="#roustabout-vs-roughneck-cual-es-la-diferencia">Roustabout vs. Roughneck</a>
+          <a href="#paso-a-paso-como-conseguir-el-trabajo">Guía Paso a Paso</a>
+          <a href="#cuanto-te-pagaran-realmente">Salario Esperado</a>
+          <a href="#la-realidad-fisica">Requisitos Físicos</a>
+          <a href="#que-se-equivocan-los-nuevos-roustabouts">Errores Comunes de Nuevos Roustabouts</a>
+          <a href="#que-sigue-despues">Qué Sigue Después</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Certificaciones Requeridas</h3>
+          <p style="margin-bottom:12px;">✅ Diploma de Bachillerato / Equivalente<br>✅ BOSIET (solo costa afuera)<br>✅ Orientación básica de seguridad (proporcionada por el empleador)<br>⬜ Control de Pozos IWCF (no requerido a nivel inicial)</p>
+          <a href="/es/careers/certifications" class="card-link">Guía Completa de Certificación →</a>
+        </div>
+
+        <div class="card" style="margin-top:1px;border:1px solid var(--iron);border-radius:0 0 4px 4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/careers/roughneck" class="card-link">→ Cómo Convertirte en Roughneck</a><br><br>
+          <a href="/es/blog/roustabout-to-driller-timeline" class="card-link">→ De Roustabout a Perforador: Tiempos Reales</a><br><br>
+          <a href="/es/careers/salary" class="card-link">→ Guía Salarial Completa</a><br><br>
+          <a href="/es/careers/certifications" class="card-link">→ Todas las Certificaciones Explicadas</a><br><br>
+          <a href="/es/blog/rig-floor-ppe-guide" class="card-link">→ Guía de EPP del Piso de Perforación</a><br><br>
+          <a href="/es/safety" class="card-link">→ Resumen de Seguridad del Taladro</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -14,6 +14,15 @@ const jsonLd = {
   "@type": "Article",
   "headline": "How to Become a Roughneck",
   "description": "Step-by-step guide to starting a career as an oil rig roughneck with no prior experience.",
+};
+
+// reviewedBy belongs on WebPage per schema.org, not Article — see
+// src/lib/person.js. A separate WebPage node carries it instead of Article.
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/careers/roughneck#webpage",
+  "url": "https://rigfloorhq.com/careers/roughneck",
   "reviewedBy": reviewedByJabin(),
 };
 ---
@@ -22,6 +31,7 @@ const jsonLd = {
   description="Step-by-step guide to becoming an oil rig roughneck with zero experience: requirements, certifications, physical demands, pay, and how to actually get hired."
   breadcrumbs={[{ label: 'Careers', href: '/careers' }, { label: 'Roughneck', href: '/careers/roughneck' }]}
   jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
   lang="en"
   alternateHref="/es/careers/roughneck"
 >
@@ -47,7 +57,7 @@ const jsonLd = {
         <p>It's physically demanding work — expect to lift, pull, and carry heavy equipment in 12-hour tours, often in extreme heat, cold, or offshore conditions. But it's also the foundation of every drilling career. Nearly every <a href="/careers/toolpusher">toolpusher</a>, driller, and rig manager started exactly here.</p>
 
         <h2 id="roughneck-vs-roustabout-whats-the-difference">Roughneck vs Roustabout — What's the Difference?</h2>
-        <p>These two titles get confused constantly. A <strong>roustabout</strong> is the true entry-level position: general labor, cleaning, painting, moving supplies, and helping other trades. A <strong>roughneck</strong> (also called a floorhand) works specifically on the drill floor handling pipe and drilling equipment. Most people start as a roustabout and get promoted into a roughneck role within 1–2 years.</p>
+        <p>These two titles get confused constantly. A <a href="/careers/roustabout"><strong>roustabout</strong></a> is the true entry-level position: general labor, cleaning, painting, moving supplies, and helping other trades. A <strong>roughneck</strong> (also called a floorhand) works specifically on the drill floor handling pipe and drilling equipment. Most people start as a <a href="/careers/roustabout">roustabout</a> and get promoted into a roughneck role within 1–2 years.</p>
 
         <h2 id="step-by-step-how-to-get-hired">Step-by-Step: How to Get Hired</h2>
         <h3>1. Meet the Baseline Requirements</h3>
@@ -60,7 +70,7 @@ const jsonLd = {
         <p>Drilling contractors (Nabors, Helmerich & Payne, Transocean, Noble, Patterson-UTI) hire directly for land and offshore crews. Energy staffing agencies (Airswift, Brunel, NES Fircroft) also place entry-level workers and can help fast-track your first placement, especially offshore.</p>
 
         <h3>4. Start as a Roustabout</h3>
-        <p>Most people don't walk straight into a roughneck role. You'll typically spend 1–2 years as a roustabout first — general labor that teaches you how the rig works before you're trusted on the floor with pipe under tension.</p>
+        <p>Most people don't walk straight into a roughneck role. You'll typically spend 1–2 years as a <a href="/careers/roustabout">roustabout</a> first — general labor that teaches you how the rig works before you're trusted on the floor with pipe under tension. See the <a href="/careers/roustabout">full roustabout guide</a> for exactly what that stage involves and how to get hired into it.</p>
 
         <h3>5. Earn the Promotion to Roughneck</h3>
         <p>Show up reliably, follow safety procedures without shortcuts, and demonstrate mechanical aptitude. Promotions on a rig are almost entirely merit-based — <a href="/careers/toolpusher">toolpushers</a> notice who's paying attention and who isn't.</p>
@@ -110,6 +120,7 @@ const jsonLd = {
 
         <div class="card" style="margin-top:1px;border:1px solid var(--iron);border-radius:0 0 4px 4px;">
           <h3>Related Reading</h3>
+          <a href="/careers/roustabout" class="card-link">→ How to Become a Roustabout</a><br><br>
           <a href="/blog/roustabout-to-driller-timeline" class="card-link">→ Roustabout to Driller: Realistic Timeline</a><br><br>
           <a href="/careers/salary" class="card-link">→ Full Salary Guide</a><br><br>
           <a href="/careers/driller" class="card-link">→ How to Become a Driller</a><br><br>

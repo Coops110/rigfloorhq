@@ -125,6 +125,30 @@ Replace your boots straight away if:
 
 Boots on rig work rarely last more than a year of regular tours, and often less. Budget for them as a regular expense, not a once-in-a-while purchase.
 
+## Boots Rig Hands Actually Wear
+
+Brand doesn't change the certification a boot carries — an F2413 or S3 rating has to be earned by the actual boot, not the name on the box — but a handful of brands show up on rig floors over and over because they build specifically for this kind of abuse. None of this is a ranking; it's an honest look at what real crews reach for, so you have a starting point instead of a wall of unfamiliar SKUs at the store.
+
+- **Rocky** — A long history in oilfield and outdoor work boots, with steel and composite-toe lines built around waterproofing and insulation for cold-weather hitches.
+- **Georgia Boot** — Known for rugged pull-on and lace-up work boots at an accessible price point, with steel-toe and waterproof lines aimed squarely at oilfield and construction use.
+- **Red Wing** — A premium, often-resoleable line with steel and composite-toe safety boots; the resole program matters here, since rig boots rarely survive a full year and a boot you can rebuild instead of replace changes the math.
+- **Wolverine** — Wide range of steel and composite-toe work boots, including waterproof and insulated options built for oil and gas, construction, and heavy industry.
+- **Thorogood** — U.S.-made construction, with both steel-toe and composite-toe safety lines and a reputation for durable welt construction that holds up to repeated resoling.
+- **Carolina** — Another long-running American work boot brand with steel and composite-toe safety lines, including waterproof and insulated options for cold or wet locations.
+
+RigFloorHQ has applied for an affiliate relationship with **Maven Safety Shoes** (mavensafetyshoes.com), which sells steel-toe and composite-toe work boots — that application is pending approval, not an active partnership yet, so treat the mention as "worth a look," not an endorsement backed by a commission relationship. We'll update this page if and when that changes.
+
+| Brand | Known For | Toe Options | Typical Fit For |
+|---|---|---|---|
+| Rocky | Waterproofing, insulation | Steel, composite | Cold-weather hitches |
+| Georgia Boot | Rugged, budget-friendly | Steel, composite | General oilfield/construction |
+| Red Wing | Premium, resoleable | Steel, composite | Hands who want one pair rebuilt, not replaced |
+| Wolverine | Broad range, waterproof options | Steel, composite | General rig floor use |
+| Thorogood | Durable welt construction | Steel, composite | Hands who resole rather than replace |
+| Carolina | Waterproof/insulated options | Steel, composite | Cold or wet locations |
+
+As always, check the specific model's label for its actual ASTM F2413 or EN ISO 20345 rating before buying — a brand's reputation isn't a substitute for reading the certification on the boot you're actually about to purchase.
+
 ## Check Your Company's PPE Policy First
 
 Everything above is general guidance. The operator's or drilling contractor's PPE policy decides what is actually required on your location — including the standard, whether metatarsal guards or EH soles are mandatory, and sometimes whether pull-ons are allowed at all. Check it before you buy, especially before your first hitch on a new rig. If you are starting out, the [roughneck career guide](/careers/roughneck) covers what else to expect.

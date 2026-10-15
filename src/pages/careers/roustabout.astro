@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { reviewedByJabin } from '../../lib/person.js';
+
+// Article is the correct primary-entity type here, matching the pattern
+// already established on the roughneck page — see the comment there for
+// why (Google retired HowTo rich results in 2023, and this is prose, not
+// a literal HowToStep procedure). reviewedBy lives on a sibling WebPage
+// node, not on Article, per schema.org and src/lib/person.js.
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Become a Roustabout",
+  "description": "Step-by-step guide to starting a career as an oil rig roustabout with no prior experience — the true entry point into the industry.",
+};
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/careers/roustabout#webpage",
+  "url": "https://rigfloorhq.com/careers/roustabout",
+  "reviewedBy": reviewedByJabin(),
+};
+---
+<BaseLayout
+  title="How to Become a Roustabout (No Experience Required) — 2026"
+  description="Step-by-step guide to becoming an oil rig roustabout with zero experience: requirements, pay, what the job actually involves, and how to get hired."
+  breadcrumbs={[{ label: 'Careers', href: '/careers' }, { label: 'Roustabout', href: '/careers/roustabout' }]}
+  jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
+  lang="en"
+  alternateHref="/es/careers/roustabout"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/careers/roustabout" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Careers — Entry Level</div>
+    <h1>How to Become a <span>Roustabout</span></h1>
+    <p class="page-hero-sub">No experience required, no certifications required onshore. This is the real entry point into the oil and gas industry — here's exactly how to get in, what it pays, and what the job actually involves.</p>
+    <div class="page-meta">
+      <span class="page-meta-item">Entry Pay: <strong>$38K–$60K/yr</strong></span>
+      <span class="page-meta-item">Time to Hire: <strong>2–4 weeks</strong></span>
+      <span class="page-meta-item">Education: <strong>HS Diploma / GED</strong></span>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="what-a-roustabout-actually-does">What a Roustabout Actually Does</h2>
+        <p>A roustabout handles the general labor that keeps a rig running: painting and maintaining equipment, cleaning the location, loading and unloading supplies, rigging up and tearing down equipment between jobs, and assisting with crane and hoisting operations. It's not glamorous work, but it's the job that teaches you how an entire rig fits together before anyone trusts you with pipe under tension.</p>
+        <p>Every experienced hand on the rig floor — every <a href="/careers/roughneck">roughneck</a>, derrickman, and driller — started exactly here. The roustabout role exists precisely because it has no entry barrier: no certifications, no prior experience, no specialized skill. What it demands instead is a strong work ethic, reliability, and the willingness to learn by watching everything happening around you.</p>
+
+        <h2 id="roustabout-vs-roughneck-whats-the-difference">Roustabout vs Roughneck — What's the Difference?</h2>
+        <p>These two titles get confused constantly, usually in the wrong direction. A <strong>roustabout</strong> is the true entry-level position: general labor, cleaning, painting, moving supplies, and helping other trades — not handling drill pipe directly. A <a href="/careers/roughneck"><strong>roughneck</strong></a> (also called a floorhand) works specifically on the drill floor, operating tongs and the iron roughneck to make up and break out pipe connections. Most people start as a roustabout and get promoted into a roughneck role within 1–2 years, once they've proven they're reliable and know the rig.</p>
+
+        <h2 id="step-by-step-how-to-get-hired">Step-by-Step: How to Get Hired</h2>
+        <h3>1. Meet the Baseline Requirements</h3>
+        <p>You'll need a high school diploma or GED, to be at least 18, pass a physical fitness assessment, and clear a background check and drug screening. No college degree and no prior oilfield experience is required — this is the one rig floor role genuinely open to anyone willing to do the work.</p>
+
+        <h3>2. Certifications — There's Almost Nothing to Get Yet</h3>
+        <p>Onshore roustabout roles typically need very little beyond the right to work and a driving licence; basic safety orientation is usually provided by the employer once you're hired. Offshore roustabout positions require <a href="/careers/certifications">BOSIET (Basic Offshore Safety Induction and Emergency Training)</a> before deployment, same as every other offshore role. Don't buy any certification beyond what's required for the specific job you're applying to — you don't yet know which contractor, basin, or discipline you're headed into, and that determines what's actually worth paying for next. See the <a href="/careers/certifications">full certifications guide</a> for the sequence that wastes the least money.</p>
+
+        <h3>3. Apply Directly or Through a Staffing Agency</h3>
+        <p>Drilling contractors (Nabors, Helmerich & Payne, Transocean, Noble, Patterson-UTI) hire directly for land and offshore crews. Energy staffing agencies (Airswift, Brunel, NES Fircroft) also place entry-level workers and can help fast-track your first placement, especially offshore. For a roustabout role specifically, a willingness to start immediately and work any shift pattern offered is often the deciding factor between two otherwise-equal candidates.</p>
+
+        <h3>4. Show Up, Pay Attention, Ask to Learn</h3>
+        <p>The fastest-promoted roustabouts aren't the ones who wait to be told what to do — they're the ones who ask questions about why a job is done a certain way and volunteer for the task nobody else wants. Supervisors notice who's actually watching the roughnecks work the floor versus who's just getting through the shift.</p>
+
+        <div class="note-box">
+          <strong>Fastest path:</strong> Land rig roustabout roles in active basins (Permian, Eagle Ford, Bakken) typically have the shortest time-to-hire — often 2–4 weeks from application. Offshore roustabout roles take longer due to BOSIET scheduling and medical requirements, but pay meaningfully more once you're in.
+        </div>
+
+        <h2 id="what-youll-actually-be-paid">What You'll Actually Be Paid</h2>
+        <p>Entry-level roustabouts earn roughly <span class="highlight">$38,000–$60,000/year</span> onshore, with most positions landing around $50,000. The U.S. Bureau of Labor Statistics' own wage survey puts the national mean annual wage for roustabouts at <strong>$49,040</strong> — an independent government figure that lines up closely with the industry-compiled range. Offshore roles pay 20–40% more than onshore equivalents due to isolation premiums and rotational schedules (commonly 14/14 or 28/28 — two or four weeks on, matched by time off). See the <a href="/careers/salary">full salary guide</a> for how roustabout pay compares to every other role on the rig.</p>
+
+        <h2 id="the-physical-reality">The Physical Reality</h2>
+        <p>This job is outdoor manual labor, often in extreme conditions — desert heat in the Permian, freezing cold in North Dakota, humidity offshore in the Gulf. You'll be on your feet for 12-hour shifts, lifting and carrying supplies, and working around moving equipment and rigging that can hurt you if you're not paying attention. Safety culture on a rig applies to roustabouts just as much as it does to the crew on the drill floor — if you're assisting a crane lift, you're expected to know where you can and can't stand before you're ever asked to help with one.</p>
+
+        <h2 id="what-new-roustabouts-get-wrong">What New Roustabouts Get Wrong First</h2>
+        <ul>
+          <li>
+            <strong>Treating it as unskilled busywork.</strong> Roustabout tasks look simple from the outside, but housekeeping, correct rigging, and material handling on an active rig floor are exactly where a lot of avoidable injuries happen. Supervisors are watching how carefully you do the "small" jobs as a direct signal of how you'll handle bigger responsibility later.
+          </li>
+          <li>
+            <strong>Not asking before assisting a lift.</strong> If you're helping a crane operation, you need to know the rated capacity of the rigging being used and exactly where to stand before the load moves — not figure it out as you go. Ask the crew lead, every time, until it's automatic.
+          </li>
+        </ul>
+
+        <h2 id="what-comes-next">What Comes Next</h2>
+        <p>After roughly 1–2 years as a roustabout, the next step up is <a href="/careers/roughneck"><strong>roughneck</strong></a> — moving onto the drill floor itself to handle pipe connections directly. From there, the path continues through derrickman, assistant driller, and eventually driller. See the full <a href="/careers/roughneck">path to becoming a roughneck</a> for what that promotion actually involves.</p>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-a-roustabout-actually-does">What a Roustabout Does</a>
+          <a href="#roustabout-vs-roughneck-whats-the-difference">Roustabout vs Roughneck</a>
+          <a href="#step-by-step-how-to-get-hired">Step-by-Step Hiring Guide</a>
+          <a href="#what-youll-actually-be-paid">Expected Pay</a>
+          <a href="#the-physical-reality">Physical Requirements</a>
+          <a href="#what-new-roustabouts-get-wrong">What New Roustabouts Get Wrong</a>
+          <a href="#what-comes-next">What Comes Next</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Required Certifications</h3>
+          <p style="margin-bottom:12px;">✅ High School Diploma / GED<br>✅ BOSIET (offshore only)<br>✅ Basic safety orientation (provided by employer)<br>⬜ IWCF Well Control (not required at entry)</p>
+          <a href="/careers/certifications" class="card-link">Full Certification Guide →</a>
+        </div>
+
+        <div class="card" style="margin-top:1px;border:1px solid var(--iron);border-radius:0 0 4px 4px;">
+          <h3>Related Reading</h3>
+          <a href="/careers/roughneck" class="card-link">→ How to Become a Roughneck</a><br><br>
+          <a href="/blog/roustabout-to-driller-timeline" class="card-link">→ Roustabout to Driller: Realistic Timeline</a><br><br>
+          <a href="/careers/salary" class="card-link">→ Full Salary Guide</a><br><br>
+          <a href="/careers/certifications" class="card-link">→ All Certifications Explained</a><br><br>
+          <a href="/blog/rig-floor-ppe-guide" class="card-link">→ Rig Floor PPE Guide</a><br><br>
+          <a href="/safety" class="card-link">→ Rig Safety Overview</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
