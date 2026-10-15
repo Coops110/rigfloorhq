@@ -51,7 +51,7 @@ const techArticleJsonLd = techArticleSchema({
             <div><strong style="color:var(--white);font-size:14px;">Lastrabarrenas (Drill Collars)</strong><br><span style="font-size:12px;color:var(--fog);">Tubería pesada de pared gruesa que proporciona peso sobre la barrena (WOB) — la fuerza descendente necesaria para que la barrena corte la roca.</span></div>
           </div>
           <div style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
-            <div><strong style="color:var(--white);font-size:14px;">Herramientas MWD/LWD</strong><br><span style="font-size:12px;color:var(--fog);">Herramientas de medición y registro que transmiten datos direccionales y de formación a superficie en tiempo real. Ver <a href="/es/drilling/directional" style="color:var(--amber);">perforación direccional</a>.</span></div>
+            <div><strong style="color:var(--white);font-size:14px;">Herramientas MWD/LWD</strong><br><span style="font-size:12px;color:var(--fog);">Herramientas de medición y registro que transmiten datos direccionales y de formación a superficie en tiempo real. Ver <a href="/es/equipment/mwd-tool" style="color:var(--amber);">cómo funciona el MWD</a> y <a href="/es/drilling/directional" style="color:var(--amber);">perforación direccional</a>.</span></div>
           </div>
           <div style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
             <div><strong style="color:var(--white);font-size:14px;">Estabilizadores</strong><br><span style="font-size:12px;color:var(--fog);">Mantienen el BHA centrado en el hoyo para controlar la trayectoria y reducir la vibración. Ver <a href="/es/equipment/stabilizer" style="color:var(--amber);">tipos de sarta, cerca de la barrena y rodillo-escariador</a> y el <a href="/es/equipment/under-reamer" style="color:var(--amber);">escariador bajo restricción</a> relacionado, que ensancha el hoyo en lugar de solo centrar la sarta.</span></div>
@@ -61,6 +61,8 @@ const techArticleJsonLd = techArticleSchema({
             <div><strong style="color:var(--white);font-size:14px;">Barrena</strong><br><span style="font-size:12px;color:var(--fog);">Corta la roca. El tipo se elige según la dureza de la formación — ver comparación abajo.</span></div>
           </div>
         </div>
+
+        <p>Los componentes de diferentes diámetros o tipos de rosca a lo largo de la sarta (lastrabarrenas que se reducen a tubería pesada, o herramientas de distintos fabricantes) se unen con un <a href="/es/equipment/crossover-sub">crossover sub</a>, y a menudo se coloca un <a href="/es/equipment/float-sub">float sub</a> en la sarta para alojar una válvula check que detiene el reflujo de fluido hacia arriba por la tubería una vez que se apagan las bombas.</p>
 
         <h2 id="tipos-de-barrena">Tipos de Barrena</h2>
         <div class="table-wrap">
@@ -78,6 +80,29 @@ const techArticleJsonLd = techArticleSchema({
 
         <h2 id="parametros-de-perforacion-monitoreados-a-traves-de-la-sarta">Parámetros de Perforación Monitoreados a Través de la Sarta</h2>
         <p>El perforador vigila varios parámetros continuamente, todos ligados a cómo se está desempeñando la sarta en el fondo: <strong>WOB</strong> (peso sobre la barrena), <strong>RPM</strong> (velocidad de rotación), <strong>ROP</strong> (tasa de penetración), <strong>torque</strong> (resistencia a la rotación), y <strong>presión de standpipe</strong> (presión de bombeo en superficie). Un cambio súbito en cualquiera de estos — particularmente un aumento agudo de torque o un pico de ROP — a menudo es la primera señal de un problema en el fondo, desde un cambio de formación hasta los primeros signos de una tubería atascada o una surgencia. Probar deliberadamente el WOB y el RPM contra el ROP, en vez de solo observarlos a la deriva, es para lo que sirve una <a href="/es/calculators/drill-off-test">prueba drill-off</a> — encontrar el punto donde más peso o más rotación deja de ayudar en esta barrena y formación específicas.</p>
+
+        <h2 id="el-punto-neutro">El Punto Neutro: Por Qué los Lastrabarrenas Empujan y la Tubería Jala</h2>
+        <p>Esta es la idea única que explica la disposición de la sarta, y es la que más se omite. La tubería de perforación está diseñada para estar en <strong>tensión</strong>. Los lastrabarrenas están diseñados para estar en <strong>compresión</strong>. El límite entre ambos es el punto neutro.</p>
+        <p>El peso sobre la barrena no viene de empujar hacia abajo desde superficie. Viene de dejar que parte del propio peso de la sarta descanse sobre la barrena, mientras el resto cuelga en tensión desde el gancho. El punto neutro es la profundidad donde esos dos se cancelan: arriba de él la sarta se está estirando, debajo de él la sarta se está comprimiendo.</p>
+        <p>La regla que se deriva es simple y no negociable: <strong>el punto neutro debe permanecer dentro de los lastrabarrenas.</strong> Los lastrabarrenas tienen pared gruesa y están construidos para soportar compresión. La tubería de perforación tiene pared comparativamente delgada y no lo está. Pon tubería de perforación en compresión y se pandea: se arquea contra las paredes del pozo, lo cual provoca fatiga en las juntas de herramienta, desgasta un lado de la tubería, causa un pozo torcido, y eventualmente parte la sarta.</p>
+        <p>En la práctica eso significa correr suficiente peso de lastrabarrenas para el WOB que piensas usar, con margen. Una cifra de trabajo común es dimensionar el peso de los lastrabarrenas de modo que nunca se aplique a la barrena más de aproximadamente el 80–85% de su peso flotado, manteniendo el punto neutro cómodamente por debajo de la parte superior de la sección de lastrabarrenas en lugar de en su límite.</p>
+        <p>La flotación también importa aquí. Una sarta colgando en lodo pesa menos que en aire, y un lodo más pesado significa más flotación y menos peso efectivo de lastrabarrenas, que es una de las formas menos obvias en que el <a href="/es/drilling/mud-weight">peso de lodo</a> se conecta con la mecánica de perforación.</p>
+
+        <h2 id="grados-de-tuberia-y-clases-de-inspeccion">Grados de Tubería y Clases de Inspección</h2>
+        <p>La tubería de perforación no es un solo producto. El grado indica la resistencia mínima de cedencia del cuerpo del tubo, y determina qué se le puede exigir cargar a la sarta:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Grado</th><th>Cedencia Mínima</th><th>Uso Típico</th></tr></thead>
+            <tbody>
+              <tr><td>E75</td><td>75,000 psi</td><td>Pozos someros y de profundidad moderada; el grado base</td></tr>
+              <tr><td>X95</td><td>95,000 psi</td><td>Pozos más profundos donde la capacidad de tensión del E75 se queda corta</td></tr>
+              <tr><td>G105</td><td>105,000 psi</td><td>Trabajo profundo y de alcance extendido con cargas de gancho altas</td></tr>
+              <tr><td>S135</td><td>135,000 psi</td><td>Pozos profundos, de alto torque y de alcance extendido; el grado premium común</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Un grado más alto no es automáticamente mejor. Los aceros de mayor resistencia generalmente toleran menos el servicio amargo, donde el sulfuro de hidrógeno puede provocar agrietamiento por esfuerzo de sulfuros, así que una sarta elegida puramente por capacidad de tensión puede ser la sarta equivocada para un pozo amargo. Donde se espera H&#8322;S, la selección de material es una decisión metalúrgica, no un cálculo de carga. Ver <a href="/es/safety/h2s">seguridad de H&#8322;S</a> para el lado de exposición del mismo problema.</p>
+        <p>Separado del grado, la tubería usada lleva una <strong>clase de inspección</strong> (comúnmente Premium, Clase 2, y así sucesivamente) que refleja el espesor de pared medido que queda después del desgaste. Una junta de S135 desgastada a Clase 2 tiene menos capacidad de la que sugiere su grado, por eso los cálculos de carga se hacen contra la clase inspeccionada de la tubería que realmente está en el rack, no contra el grado marcado con plantilla en ella.</p>
       </div>
 
       <div>
@@ -87,11 +112,17 @@ const techArticleJsonLd = techArticleSchema({
           <a href="#componentes-de-arriba-a-abajo">Componentes de Arriba a Abajo</a>
           <a href="#tipos-de-barrena">Tipos de Barrena</a>
           <a href="#parametros-de-perforacion-monitoreados-a-traves-de-la-sarta">Parámetros Monitoreados</a>
+          <a href="#el-punto-neutro">El Punto Neutro</a>
+          <a href="#grados-de-tuberia-y-clases-de-inspeccion">Grados de Tubería e Inspección</a>
         </div>
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
           <h3>Lectura Relacionada</h3>
           <a href="/es/drilling" class="card-link">→ Cómo Funciona la Perforación</a><br><br>
           <a href="/es/drilling/directional" class="card-link">→ Perforación Direccional</a><br><br>
+          <a href="/pillars/stuck-pipe-and-fishing-operations" class="card-link">→ Pesca y Tubería Pegada (inglés)</a><br><br>
+          <a href="/es/blog/differential-sticking-explained" class="card-link">→ Pega Diferencial Explicada</a><br><br>
+          <a href="/es/blog/drilling-jars-explained" class="card-link">→ Martillos de Perforación Explicados</a><br><br>
+          <a href="/es/blog/torque-and-drag-early-warning" class="card-link">→ Torque y Arrastre Como Alerta Temprana</a><br><br>
           <a href="/es/equipment/bop" class="card-link">→ Preventores de Reventones</a>
         </div>
       </div>

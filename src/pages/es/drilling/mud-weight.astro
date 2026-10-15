@@ -31,6 +31,10 @@ const jsonLd = {
   <section class="block">
     <div class="two-col">
       <div class="prose">
+        <h2 id="que-es-el-peso-de-lodo">Qué Es Realmente el Peso de Lodo</h2>
+        <p>El peso de lodo es la densidad del fluido de perforación que circula hacia abajo por la sarta y de vuelta hacia arriba por el espacio anular. En el piso del taladro se lee directamente de una balanza de lodo (una báscula calibrada de brazo y taza), y se reporta en libras por galón (ppg) en el campo petrolero de EE. UU., o en gravedad específica (SG) en casi todo el resto del mundo. Un lodo de 12.0 ppg es 1.44 SG; el <a href="/calculators/mud-weight-converter">convertidor de peso de lodo (inglés)</a> pasa entre ppg, SG, psi/pie y kg/m³ al instante.</p>
+        <p>Importa porque esa densidad, multiplicada por la profundidad, es lo que contiene el fluido de formación. Demasiado ligero y el pozo puede presentar una surgencia; demasiado pesado y puede perder circulación hacia la formación. Todo lo demás en esta página (las cuatro presiones, las fórmulas, la ventana) se deriva de esa única relación. Para la teoría completa de presión hidrostática detrás del número, consulta el <a href="/pillars/hydrostatic-pressure">pilar de presión hidrostática (inglés)</a>.</p>
+
         <h2 id="las-cuatro-presiones-clave">Las Cuatro Presiones Clave</h2>
         <p>Cada decisión de perforación equilibra cuatro presiones distintas que actúan sobre el pozo. Entender cómo interactúan es el concepto más importante en ingeniería de pozos.</p>
 
@@ -54,6 +58,7 @@ const jsonLd = {
         </div>
 
         <h2 id="las-formulas-centrales">Las Fórmulas Centrales</h2>
+        <p>Estas cuatro son las que vale la pena memorizar. Más de la aritmética que realmente necesita un turno (tolerancia a la surgencia, ECD, margen de viaje, flotación, y capacidad/desplazamiento) está reunida en la <a href="/es/calculators/formulas-cheat-sheet">hoja de fórmulas de perforación</a>, con cada constante mostrada abiertamente en lugar de escondida dentro de una calculadora.</p>
 
         <div class="formula-block">
           <div class="formula-label">Presión Hidrostática</div>
@@ -66,6 +71,7 @@ const jsonLd = {
           <div class="formula-eq">Gradiente (psi/ft) = MW (ppg) × 0.052</div>
           <div class="formula-note">Agua dulce = 0.433 psi/pie (8.33 ppg) · Agua de mar ≈ 0.445 psi/pie (8.55 ppg) · Lodo pesado típico: 0.52–0.78 psi/pie</div>
         </div>
+        <p style="color:var(--mist);line-height:1.8;font-size:15px;margin-bottom:18px;">Los reportes de lodo, los resultados de laboratorio y las operaciones en métrico expresan esto de forma distinta: el mismo fluido es 12 ppg, sg 1.44, 0.624 psi/pie y 1,438 kg/m³. El <a href="/calculators/mud-weight-converter" style="color:var(--amber);">convertidor de peso de lodo (inglés)</a> pasa entre todos ellos.</p>
 
         <div class="formula-block">
           <div class="formula-label">Densidad Equivalente de Circulación (ECD)</div>
@@ -86,16 +92,32 @@ const jsonLd = {
         <h2 id="la-ventana-de-peso-de-lodo">La Ventana de Peso de Lodo</h2>
         <p>La "ventana de peso de lodo" es el rango de pesos de lodo que mantendrá la presión hidrostática por encima de la presión de poro (previniendo una surgencia) mientras se mantiene por debajo de la presión de fractura (previniendo pérdida de circulación). En formaciones de presión normal esta ventana es cómodamente amplia. En campos sobrepresurizados o agotados, puede estrecharse a menos de 0.5 ppg — requiriendo técnicas de perforación de presión controlada (MPD) para mantener el control.</p>
 
+        <h2 id="swab-y-surge">Swab y Surge: Presión que Creas al Mover la Tubería</h2>
+        <p>Cada fórmula de arriba asume que la sarta está quieta. Múevela, y la presión hidrostática que percibe la formación cambia, sin que el peso de lodo cambie en absoluto.</p>
+        <p><strong>El swab</strong> ocurre al sacar la sarta del pozo. La sarta arrastra lodo hacia arriba con ella y la barrena actúa de forma parecida a un pistón, <em>reduciendo</em> momentáneamente la presión de fondo. Si esa reducción te lleva por debajo de la presión de poro, has provocado una surgencia por swab, y el caso clásico es un pozo que era perfectamente estable durante la perforación y empieza a fluir durante un viaje.</p>
+        <p><strong>El surge</strong> es lo contrario, al meter la sarta en el pozo: la presión se empuja por delante de la sarta, <em>aumentando</em> momentáneamente la presión de fondo. Si el surge sobrepasa la presión de fractura, rompes la formación y pierdes circulación, por eso el revestimiento se corre despacio.</p>
+        <p>Ambos escalan con la velocidad de viaje, con qué tan ajustada queda la sarta en el pozo, y con la reología del lodo: un lodo espeso en un espacio anular estrecho produce el swab y el surge más fuertes. Los controles prácticos son simples: sal despacio del zapato, mantén el pozo lleno, y vigila el tanque de viaje. Un pozo que no acepta el volumen de llenado correcto te está diciendo que algo entró al pozo mientras sacabas la sarta.</p>
+        <p>Por eso la <a href="/es/drilling/well-control">detección de surgencias</a> durante los viajes depende de los volúmenes del tanque de viaje en lugar de los niveles de las piletas, y por eso existen las hojas de viaje.</p>
+
+        <h2 id="que-hace-pesado-al-lodo">Qué Es lo que Realmente Hace Pesado al Lodo</h2>
+        <p>El peso de lodo es un número en las fórmulas, pero en el taladro es un material que hay que mezclar, mantener y desechar.</p>
+        <p>La densidad viene principalmente de la <strong>barita</strong>, un agente densificante de alta gravedad específica suspendido en el fluido base. El fluido base en sí es a base de agua, a base de aceite o sintético, y esa elección afecta mucho más que la densidad: la estabilidad de la lutita, la lubricidad en pozos de alto ángulo, la tolerancia a la temperatura, el manejo ambiental y el costo se mueven junto con ella.</p>
+        <p>Dos consecuencias importan para el control de presión. Primero, densificar el lodo toma tiempo y capacidad de pileta, que es exactamente la restricción detrás de elegir el Método del Perforador sobre el de Esperar y Densificar durante una matanza. Segundo, los sólidos tienen que removerse continuamente con las zarandas y las centrífugas, porque los sólidos de perforación elevan la densidad de forma incontrolada mientras degradan las demás propiedades del lodo. Un peso de lodo que sube por sí solo no es buena noticia; es un problema de control de sólidos.</p>
+        <p>El lodo densificado también aumenta la flotación sobre la sarta, reduciendo el peso efectivo de los lastrabarrenas disponible como peso sobre la barrena, un tema que se cubre en la <a href="/es/equipment/drill-string">página de la sarta de perforación</a>.</p>
+
         <p>¿Quieres ejecutar estos cálculos con los datos de tu propio pozo? Usa la <a href="/es/calculators/hydrostatic">calculadora interactiva de presión hidrostática</a>.</p>
       </div>
 
       <div>
         <div class="toc">
           <div class="toc-title">En Esta Página</div>
+          <a href="#que-es-el-peso-de-lodo">Qué Es el Peso de Lodo</a>
           <a href="#las-cuatro-presiones-clave">Las Cuatro Presiones Clave</a>
           <a href="#las-formulas-centrales">Fórmulas Centrales</a>
           <a href="#ejemplo-resuelto">Ejemplo Resuelto</a>
           <a href="#la-ventana-de-peso-de-lodo">La Ventana de Peso de Lodo</a>
+          <a href="#swab-y-surge">Swab &amp; Surge</a>
+          <a href="#que-hace-pesado-al-lodo">Qué Hace Pesado al Lodo</a>
         </div>
 
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
@@ -106,7 +128,9 @@ const jsonLd = {
 
         <div class="card" style="margin-top:1px;border:1px solid var(--iron);border-radius:0 0 4px 4px;">
           <h3>Lectura Relacionada</h3>
+          <a href="/pillars/hydrostatic-pressure" class="card-link">→ Pilar de Presión Hidrostática (inglés)</a><br><br>
           <a href="/es/drilling/well-control" class="card-link">→ Control de Pozos y Surgencias</a><br><br>
+          <a href="/pillars/stuck-pipe-and-fishing-operations" class="card-link">→ Pesca y Tubería Pegada (inglés)</a><br><br>
           <a href="/es/calculators/mud-weight-window" class="card-link">→ Ventana de Peso de Lodo</a><br><br>
           <a href="/es/blog/hole-cleaning-high-angle-wells" class="card-link">→ Limpieza del Pozo en Alto Ángulo</a><br><br>
           <a href="/es/blog/differential-sticking-explained" class="card-link">→ Pega Diferencial Explicada</a><br><br>

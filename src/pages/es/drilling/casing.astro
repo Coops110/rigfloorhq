@@ -45,8 +45,18 @@ import Footer from '../../../components/Footer.astro';
         <p>La profundidad a la cual se fija cada sarta de revestimiento — el "punto de revestimiento" — se elige según dónde las curvas de presión de poro y gradiente de fractura hacen inseguro continuar con el peso de lodo actual. Esto se determina usando datos de pozos vecinos, una Prueba de Fuga (LOT) en el zapato anterior, y predicción de presión en tiempo real durante la perforación (usando herramientas como el método del exponente-d).</p>
         <p>Fijar el revestimiento demasiado somero significa más sartas y mayor costo. Fijarlo demasiado profundo arriesga perforar hacia un régimen de presión que el peso de lodo actual no puede manejar de forma segura — causando una surgencia o fracturando la formación. Esta compensación está en el corazón de la planificación del pozo, estrechamente ligada a los conceptos en la <a href="/es/drilling/mud-weight">página de peso de lodo y presión</a>.</p>
 
+        <h2 id="revestimiento-vs-liner">Revestimiento o Liner: y Por Qué Importa</h2>
+        <p>No toda sarta llega de vuelta a superficie. Un <strong>liner</strong> es una sarta colgada del fondo del revestimiento anterior en lugar de extenderse hasta el cabezal, típicamente sobrelapando el zapato de arriba por unos cientos de pies.</p>
+        <p>La razón suele ser costo y carga. Un liner usa mucho menos acero que una sarta completa, y le quita peso al cabezal y al mástil: en un pozo profundo, colgar cada sarta desde superficie eventualmente supera lo que el taladro puede levantar. La contrapartida es complejidad: un liner necesita un colgador de liner y un empaque, y el traslape tiene que cementarse y probarse a presión, porque ese traslape ahora es una barrera por derecho propio.</p>
+        <p>Un liner puede amarrarse de vuelta a superficie más tarde con una sarta de tieback si el pozo se completa para producción y se quiere revestimiento de longitud completa. La decisión se toma en el diseño del pozo, no sobre la marcha.</p>
+
+        <h2 id="integridad-del-zapato">Integridad del Zapato: LOT y FIT</h2>
+        <p>Después de cementar una sarta y perforar a través del zapato, se prueba la formación justo debajo de él. Esto no es una formalidad; fija el techo de presión para todo lo que se perfore debajo de ese punto.</p>
+        <p>Una <strong>Prueba de Fuga (LOT)</strong> presuriza la formación hasta que empieza a admitir fluido, dando la presión de fractura real en el zapato. Una <strong>Prueba de Integridad de Formación (FIT)</strong> se detiene en un valor predeterminado, confirmando que la formación resistirá al menos eso sin fracturarla deliberadamente. Los LOT dan más información; los FIT evitan dañar la formación para obtenerla.</p>
+        <p>De cualquier forma el resultado define el límite superior de la <a href="/es/drilling/mud-weight">ventana de peso de lodo</a> para la siguiente sección del hoyo, y es de donde se calcula una Presión Superficial Anular Máxima Permisible, la cifra que limita cuánta presión de revestimiento se puede sostener durante una matanza sin romper el zapato. La resistencia del zapato es la restricción que convierte el <a href="/es/drilling/well-control">control de pozos</a> de aritmética en un límite real.</p>
+
         <h2 id="cementacion">Cementación</h2>
-        <p>Una vez corrida, cada sarta de revestimiento se cementa en su lugar — el cemento se bombea por dentro del revestimiento y regresa por el espacio anular entre el revestimiento y la pared del pozo. Esto logra tres cosas: une el revestimiento estructuralmente a la formación, aísla diferentes zonas de presión entre sí, y previene que los fluidos migren hacia arriba o abajo por el espacio anular fuera de la tubería. Los trabajos de cementación deficientes son una causa raíz principal de fallas de integridad del pozo.</p>
+        <p>Una vez corrida, cada sarta de revestimiento se cementa en su lugar — el cemento se bombea por dentro del revestimiento y regresa por el espacio anular entre el revestimiento y la pared del pozo. Esto logra tres cosas: une el revestimiento estructuralmente a la formación, aísla diferentes zonas de presión entre sí, y previene que los fluidos migren hacia arriba o abajo por el espacio anular fuera de la tubería. Los trabajos de cementación deficientes son una causa raíz principal de fallas de integridad del pozo. El cemento no es la única forma de aislar una zona después de perforar el pozo: un <a href="/es/equipment/bridge-plug">bridge plug</a> hace el mismo trabajo mecánicamente, fijado a una profundidad específica en lugar de bombeado, y es la opción más común para aislar una zona temporalmente o durante un workover posterior. Cuando el revestimiento mismo necesita salir en lugar de quedarse en el pozo (para un taponamiento y abandono o un workover), un <a href="/es/equipment/casing-cutter">casing cutter</a> lo corta limpiamente para su recuperación, o un <a href="/es/equipment/section-mill">section mill</a> remueve un intervalo completo para exponer la formación para un tapón de cemento transversal a la formación.</p>
 
         <div class="note-box">
           <strong>Escala del mundo real:</strong> Un pozo de aguas profundas podría tener cuatro o cinco sartas de revestimiento separadas para cuando alcanza la profundidad total, con el diámetro del hoyo reduciéndose de 36 pulgadas en la parte superior hasta tan pequeño como 6 pulgadas en la profundidad total.
@@ -59,13 +69,17 @@ import Footer from '../../../components/Footer.astro';
           <a href="#por-que-los-pozos-se-perforan-en-etapas">Por Qué los Pozos se Perforan en Etapas</a>
           <a href="#las-cuatro-sartas-de-revestimiento-principales">Las Cuatro Sartas de Revestimiento</a>
           <a href="#como-se-eligen-los-puntos-de-revestimiento">Elección de Puntos de Revestimiento</a>
+          <a href="#revestimiento-vs-liner">Revestimiento o Liner</a>
+          <a href="#integridad-del-zapato">Integridad del Zapato: LOT y FIT</a>
           <a href="#cementacion">Cementación</a>
         </div>
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
           <h3>Lectura Relacionada</h3>
           <a href="/es/drilling/mud-weight" class="card-link">→ Peso de Lodo y Presión</a><br><br>
           <a href="/es/drilling" class="card-link">→ Cómo Funciona la Perforación</a><br><br>
-          <a href="/es/equipment/bop" class="card-link">→ Preventores de Reventones</a>
+          <a href="/es/equipment/bop" class="card-link">→ Preventores de Reventones</a><br><br>
+          <a href="/es/equipment/casing-cutter" class="card-link">→ Casing Cutter</a><br><br>
+          <a href="/es/equipment/section-mill" class="card-link">→ Section Mill</a>
         </div>
       </div>
     </div>

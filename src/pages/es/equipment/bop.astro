@@ -2,20 +2,58 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import DiagramEmbed from '../../../components/DiagramEmbed.astro';
 import { techArticleSchema } from '../../../lib/techarticle.js';
+
+const stackAlt = "Stack de BOP de arriba hacia abajo: preventor anular, arietes de tubería, arietes ciegos, y arietes de corte, con líneas de choke y matanza que corren hacia el cabezal del pozo. El anular va más arriba porque sella sobre cualquier diámetro de tubería o sobre hoyo abierto; los arietes debajo sellan con más fuerza pero cada uno solo en lo que está cortado para sellar, y los arietes de corte en la parte inferior cortan la tubería misma como último recurso.";
+
+// INTERVALOS DE PRUEBA — la versión anterior de esta página decía "cada 21
+// días", que es la guía API RP 53 ya superada. API STD 53 la sustituyó, y el
+// trabajo en la plataforma continental exterior de EE. UU. bajo BSEE 30 CFR
+// 250.737 es una prueba de presión cada 14 días y una prueba funcional cada 7
+// días. Ver la nota equivalente en la versión en inglés.
+//
+// Los pares de FAQ se renderizan como contenido visible más abajo. No se
+// agrega esquema FAQPage: fue retirado de todo el sitio como peso muerto.
+const faq = [
+  {
+    q: '¿Qué es un preventor de reventones?',
+    a: 'Un preventor de reventones es un stack de elementos de sellado de alta presión instalado en el cabezal del pozo que puede cerrar el pozo en segundos si el fluido de formación empieza a fluir a superficie sin control. Es el hardware que hace posible cerrar una surgencia: sin un BOP funcional no hay forma de sostener presión mientras se mata el pozo.',
+  },
+  {
+    q: '¿Qué hace realmente un preventor de reventones?',
+    a: 'Sella el espacio anular (el espacio alrededor de la tubería de perforación) o el hoyo abierto, de modo que la presión pueda contenerse y leerse en superficie. Sellar es solo el primer paso. Una vez cerrado, las líneas de choke y matanza permiten que el equipo circule la surgencia hacia afuera y bombee lodo más pesado hacia adentro mientras el pozo permanece cerrado.',
+  },
+  {
+    q: '¿Cuáles son los tipos de preventor de reventones?',
+    a: 'Dos familias. Los preventores anulares usan un elemento de goma que se cierra apretando alrededor de casi cualquier diámetro de tubería o sobre hoyo abierto. Los preventores de ariete usan bloques de acero opuestos y vienen en cuatro tipos: arietes de tubería para un diámetro específico, arietes de diámetro variable para un rango de tamaños, arietes ciegos para hoyo abierto, y arietes de corte que cortan la tubería. Un stack normalmente lleva ambas familias.',
+  },
+  {
+    q: '¿Qué hay en un stack de BOP?',
+    a: 'De arriba hacia abajo, un stack típico lleva el preventor anular, luego varios preventores de ariete, con salidas de choke y matanza entre ellos, asentándose sobre el conector del cabezal. El anular va más arriba porque es el más tolerante y el de menor clasificación; los arietes debajo sostienen más presión pero cada uno solo sella sobre lo que fue cortado para sellar. Los stacks submarinos agregan un paquete inferior del riser marino (LMRP) arriba de todo.',
+  },
+  {
+    q: '¿Cómo funciona el sistema de control de un BOP?',
+    a: 'La presión hidráulica almacenada en botellas acumuladoras cargadas con nitrógeno cierra los preventores, de modo que el stack puede operarse con el taladro sin energía. Los stacks superficiales se conectan directamente a la unidad acumuladora. Los stacks submarinos se operan a través de dos pods de control redundantes, convencionalmente azul y amarillo, y llevan respaldos de emergencia que cierran los arietes de corte sin ninguna señal del taladro.',
+  },
+  {
+    q: '¿Con qué frecuencia se prueba un BOP?',
+    a: 'Las pruebas funcionales ciclan cada elemento abriendo y cerrando sin presión; las pruebas de presión lo sellan contra una presión de prueba real. Bajo API STD 53 y, para trabajo en la plataforma continental exterior de EE. UU., BSEE 30 CFR 250.737, en términos generales eso es una prueba funcional cada 7 días y una prueba de presión cada 14 días para stacks submarinos. Los intervalos difieren según la jurisdicción y se ajustan después de cualquier evento de control de pozos o cambio de equipo, así que trabaja según el estándar que rige tu taladro.',
+  },
+];
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/bop.astro',
   path: '/es/equipment/bop',
   headline: "Preventor de Reventones (BOP) Explicado — Tipos, Función",
-  description: "Cómo funciona un preventor de reventones: preventores anulares, tipos de arietes, configuración del stack, clasificaciones de presión.",
+  description: "Cómo funciona un preventor de reventones: preventores anulares, tipos de arietes, configuración del stack, el acumulador, y los intervalos de prueba.",
   lang: 'es',
 });
 ---
 <BaseLayout
   extraJsonLd={[techArticleJsonLd]}
   title="Preventor de Reventones (BOP) Explicado — Tipos, Función"
-  description="Cómo funciona un preventor de reventones: preventores anulares, tipos de arietes, configuración del stack, clasificaciones de presión."
+  description="Cómo funciona un preventor de reventones: preventores anulares, tipos de arietes, configuración del stack, el acumulador, y los intervalos de prueba."
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'BOP', href: '/es/equipment/bop' }]}
   lang="es"
   alternateHref="/equipment/bop"
@@ -33,56 +71,155 @@ const techArticleJsonLd = techArticleSchema({
     <div class="two-col">
       <div class="prose">
         <h2 id="que-hace-un-bop">Qué Hace un BOP</h2>
-        <p>Un preventor de reventones es un sistema de válvulas de alta presión instalado encima del cabezal del pozo, capaz de sellar el pozo en segundos si los fluidos de formación amenazan con fluir a superficie de forma incontrolada. Es el hardware físico que hace posibles los <a href="/es/drilling/well-control">procedimientos de control de pozos</a> — sin un BOP funcional, no hay forma de cerrar una surgencia.</p>
-        <p>Todo stack de BOP es una combinación de varios elementos de sellado apilados uno sobre otro, cada uno diseñado para un escenario diferente — sellar alrededor de tubería, sellar un hoyo abierto, o cortar completamente la tubería en una emergencia.</p>
+        <p>Un preventor de reventones es un sistema de válvulas de alta presión instalado encima del cabezal del pozo, capaz de sellar el pozo en segundos si los fluidos de formación amenazan con fluir a superficie de forma incontrolada. Es el hardware físico que hace posibles los <a href="/es/drilling/well-control">procedimientos de control de pozos</a>: sin un BOP funcional, no hay forma de cerrar una surgencia.</p>
+        <p>Sellar es solo la mitad del trabajo, y es la mitad que la gente recuerda. Un BOP cerrado sostiene el pozo mientras se lee la presión en superficie, y esas dos lecturas (presión de tubería de perforación cerrada y presión de revestimiento cerrada) son con las que se construye la <a href="/es/calculators/kill-sheet">hoja de control de pozo</a>. Las líneas de choke y matanza permiten entonces que el equipo circule la surgencia hacia afuera y bombee lodo más pesado hacia adentro sin volver a abrir el pozo en ningún momento. Un BOP que sella pero no puede circular solo ha postergado el problema.</p>
+        <p>Todo stack de BOP es una combinación de varios elementos de sellado apilados uno sobre otro, cada uno diseñado para un escenario diferente: sellar alrededor de tubería, sellar un hoyo abierto, o cortar completamente la tubería cuando no queda otra opción.</p>
 
-        <h2 id="los-componentes-principales">Los Componentes Principales</h2>
+        <picture>
+          <source
+            type="image/webp"
+            srcset="/images/blog/bop-stack-diagram-660w.webp 660w, /images/blog/bop-stack-diagram-1320w.webp 1320w, /images/blog/bop-stack-diagram.webp 1800w"
+            sizes="(max-width: 700px) 100vw, 660px"
+          />
+          <img
+            src="/images/blog/bop-stack-diagram.png"
+            srcset="/images/blog/bop-stack-diagram-660w.png 660w, /images/blog/bop-stack-diagram-1320w.png 1320w, /images/blog/bop-stack-diagram.png 1800w"
+            sizes="(max-width: 700px) 100vw, 660px"
+            alt={stackAlt} width="1800" height="1120" loading="lazy" decoding="async" style="max-width:100%;height:auto;margin:22px 0;border:1px solid var(--iron);border-radius:6px;" />
+        </picture>
+
+        <h2 id="las-dos-familias">Las Dos Familias de Preventores</h2>
+        <p>Todo en un stack es un anular o un ariete. La diferencia no es solo de forma: decide sobre qué puede sellar cada uno, y por eso un stack lleva ambos en lugar de varios del que parezca mejor.</p>
+
+        <h3>Preventores anulares</h3>
+        <p>Un anular usa una dona de elastómero reforzado que se comprime hidráulicamente hacia adentro hasta sellar alrededor de lo que haya en el hoyo. Ese único elemento sella sobre tubería de perforación, sobre juntas de herramienta (tool joints), sobre la kelly, sobre cable (wireline), y, con suficiente presión de cierre, sobre hoyo abierto sin nada adentro.</p>
+        <p>Esa flexibilidad es la razón por la que va en la parte superior del stack, y tiene un costo: los anulares tienen una clasificación de presión menor que los arietes debajo de ellos, y el elemento es una pieza de desgaste. También son el único elemento a través del cual se puede hacer stripping (mover tubería mientras el preventor permanece cerrado), lo que los convierte en la primera opción para un cierre suave (soft shut-in).</p>
+
+        <h3>Preventores de ariete</h3>
+        <p>Los arietes son bloques de acero opuestos que se accionan uno contra otro a través del pozo mediante pistones hidráulicos. Cada par lleva una cara de goma cortada para un trabajo específico, y fuera de ese trabajo es inútil: un ariete de tubería dimensionado para tubería de 5 pulgadas no sellará sobre tubería de 3½ pulgadas. A cambio sostienen más presión que un anular, y la sostienen durante mucho más tiempo.</p>
+
+        <h2 id="tipos-de-ariete">Los Cuatro Tipos de Ariete</h2>
         <div style="display:flex;flex-direction:column;gap:8px;margin:24px 0;">
           <div style="padding:16px 18px;background:var(--steel);border-radius:3px;">
-            <strong style="color:var(--white);font-size:14px;">Preventor Anular</strong>
-            <p style="font-size:12px;color:var(--fog);margin-top:4px;">Se ubica en la parte superior del stack. Usa un elemento de goma en forma de dona que puede sellar alrededor de tubería de casi cualquier tamaño y forma, o cerrar sobre hoyo abierto. El elemento más flexible pero de menor clasificación de presión.</p>
+            <strong style="color:var(--white);font-size:14px;">Arietes de Tubería (Pipe Rams)</strong>
+            <p style="font-size:12px;color:var(--fog);margin-top:4px;">Sellan alrededor de un diámetro de tubería específico, cerrando el espacio anular mientras la sarta permanece en el hoyo. El caballo de batalla de un cierre duro, y la razón por la que los tamaños de ariete del stack tienen que coincidir con la sarta que realmente se está corriendo.</p>
           </div>
           <div style="padding:16px 18px;background:var(--steel);border-radius:3px;">
-            <strong style="color:var(--white);font-size:14px;">Arietes de Tubería (Pipe Rams)</strong>
-            <p style="font-size:12px;color:var(--fog);margin-top:4px;">Arietes de acero que cierran alrededor de un diámetro de tubería específico, sellando el espacio anular mientras permiten que la tubería permanezca en el hoyo. Un componente de "cierre duro".</p>
+            <strong style="color:var(--white);font-size:14px;">Arietes de Diámetro Variable (VBR)</strong>
+            <p style="font-size:12px;color:var(--fog);margin-top:4px;">Sellan sobre un rango de diámetros en lugar de uno solo, de modo que una sola cavidad cubre tubería de perforación y tubería de producción sin cambiar de ariete. Son convenientes y cada vez más estándar, pero se desgastan más rápido que un ariete de diámetro fijo haciendo el mismo trabajo.</p>
           </div>
           <div style="padding:16px 18px;background:var(--steel);border-radius:3px;">
             <strong style="color:var(--white);font-size:14px;">Arietes Ciegos (Blind Rams)</strong>
-            <p style="font-size:12px;color:var(--fog);margin-top:4px;">Sellan un hoyo completamente abierto cuando no hay tubería presente — caras de acero planas se cierran completamente a través del pozo.</p>
+            <p style="font-size:12px;color:var(--fog);margin-top:4px;">Caras planas que cierran a través de un pozo vacío. Sellan hoyo abierto y nada más: si se cierran con tubería de por medio no la cortarán ni sellarán alrededor de ella.</p>
           </div>
           <div style="padding:16px 18px;background:var(--steel);border-radius:3px;">
-            <strong style="color:var(--white);font-size:14px;">Arietes de Corte (Blind Shear Rams)</strong>
-            <p style="font-size:12px;color:var(--fog);margin-top:4px;">La opción de emergencia — literalmente corta la tubería de perforación y sella el pozo simultáneamente. Se usa solo cuando la tubería no puede despejarse del BOP a tiempo.</p>
-          </div>
-          <div style="padding:16px 18px;background:var(--steel);border-radius:3px;">
-            <strong style="color:var(--white);font-size:14px;">Líneas de Choke y Matanza</strong>
-            <p style="font-size:12px;color:var(--fog);margin-top:4px;">Tubería que permite circular fluido fuera del pozo, o bombear lodo de matanza hacia el pozo, mientras el BOP permanece cerrado — esencial para ejecutar una hoja de control de pozo.</p>
+            <strong style="color:var(--white);font-size:14px;">Arietes de Corte Ciego (Blind Shear Rams)</strong>
+            <p style="font-size:12px;color:var(--fog);margin-top:4px;">Cortan la tubería de perforación y sellan el pozo abierto en un solo movimiento. El último recurso, usado cuando la sarta no puede despejarse del stack a tiempo. La capacidad de corte depende de qué haya atravesado los arietes: las juntas de herramienta y la tubería de pared gruesa son mucho más difíciles de cortar que el cuerpo liso de la tubería de perforación.</p>
           </div>
         </div>
+        <p>Un quinto tipo aparece en muchos stacks submarinos y vale la pena distinguirlo, porque asumir lo contrario es peligroso: los <strong>arietes de corte de revestimiento</strong> (casing shear rams) cortan tubulares pesados que un ariete de corte ciego no puede cortar, pero <strong>no sellan</strong>. Se instalan para cortar, con un ariete de corte ciego arriba de ellos para cerrar el pozo después.</p>
+
+        <h2 id="organizacion-del-stack">Cómo Se Organiza un Stack</h2>
+        <p>El orden no es arbitrario. Leyendo un stack superficial desde el cabezal del pozo hacia arriba, primero van los arietes, con un carrete de perforación que lleva las salidas de choke y matanza colocado entre ellos, y el anular arriba de todo. Dos principios rigen ese orden.</p>
+        <p>El anular va más arriba porque es el elemento más tolerante y el que menos presión puede sostener: es el primero al que se recurre y el que menos se quiere que sostenga el pozo solo. Las salidas de choke y matanza van por debajo de al menos un elemento de sellado, porque una salida por encima de todo lo que está cerrado no está conectada a nada.</p>
+        <p>Los stacks submarinos siguen la misma lógica con más de todo. Los cuerpos de los arietes se asientan sobre el conector del cabezal en el lecho marino, y un paquete inferior del riser marino (LMRP), que lleva los anulares y la junta flexible, se posa encima de ellos, de modo que el LMRP puede liberarse y recuperarse mientras los arietes permanecen enganchados al pozo.</p>
+
+        <h2 id="space-out">Space-Out del BOP: Cómo Se Miden las Elevaciones del Stack</h2>
+        <p>El space-out es el proceso de confirmar exactamente dónde se ubica cada componente de un stack armado, en elevación, respecto a una referencia fija, usualmente el piso del taladro (parte superior de la mesa rotaria) o el nivel del terreno. Importa porque el stack debe satisfacer varias restricciones a la vez: las salidas de choke y matanza tienen que quedar a una altura desde la que el equipo realmente pueda trabajar, el anular tiene que despejar el piso del taladro para operaciones de stripping, y todo el conjunto tiene que encajar entre el conector del cabezal y la subestructura sin que el perforador lo descubra de la peor manera.</p>
+        <p>El cálculo en sí es simple en principio: la elevación de cualquier componente por encima del conector del cabezal es la suma acumulada de la altura cara a cara (de conector a conector) de cada carrete y preventor apilado debajo de él, según lo certificado en el plano dimensional del fabricante para esa marca y clase de presión específicas. Trabajando en la otra dirección, la elevación de cualquier componente respecto al piso del taladro es esa misma suma restada de (o sumada a) la distancia conocida del piso del taladro al cabezal, para esa subestructura y profundidad de cellar en particular.</p>
+        <p>Un registro de space-out completo captura, de arriba a abajo: el preventor anular, las cavidades de ariete superior e inferior (y cualquier ariete intermedio, en un stack triple o cuádruple), el carrete de perforación o cruz de lodo que lleva las salidas de choke y matanza, el nivel del terreno respecto al piso del taladro, la profundidad del cellar por debajo del nivel del terreno, y la parte superior del cabezal o de la brida del casing head sobre la que se asienta el stack. Debido a que esa suma depende de qué preventores, carretes y bridas adaptadoras específicas se arman realmente, no solo de la clase de presión, se recalcula y se reverifica cada vez que cambia la composición del stack, y se guarda con el expediente del pozo en lugar de tratarse como un número fijo para una clase determinada.</p>
+
+        <h2 id="stack-tipico">Un Stack Típico de 13-5/8" 5M, Componente por Componente</h2>
+        <p>Combinaciones de tamaño nominal estándar API 16A para una de las configuraciones más comunes de la industria. No es una instalación específica, solo cómo se alinean los tamaños y clases.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Posición (arriba → abajo)</th><th>Componente</th><th>Tamaño Nominal</th><th>Clase de Presión</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Preventor anular</td><td>diámetro 13-5/8"</td><td>5,000 psi (5M)</td></tr>
+              <tr><td>2</td><td>Preventor de ariete superior (cavidad doble)</td><td>diámetro 13-5/8", salidas laterales de 4-1/16"</td><td>5,000 psi (5M)</td></tr>
+              <tr><td>3</td><td>Carrete de perforación / cruz de lodo</td><td>diámetro 13-5/8", salida de choke de 3-1/8", salida de matanza de 2-1/16"</td><td>5,000 psi (5M)</td></tr>
+              <tr><td>4</td><td>Preventor de ariete inferior (cavidad sencilla)</td><td>diámetro 13-5/8"</td><td>5,000 psi (5M)</td></tr>
+              <tr><td>—</td><td>Elemento empacador de ariete de diámetro variable (VBR)</td><td>Típicamente cubre un rango medio de diámetro externo de tubería, por ejemplo, de 3-1/2" a 5-7/8" en un solo elemento</td><td>5,000 psi (5M)</td></tr>
+              <tr><td>—</td><td>Conjunto empacador de ariete de corte ciego</td><td>Corte y sello a pozo completo</td><td>5,000 psi (5M)</td></tr>
+              <tr><td>—</td><td>Conector de cabezal / casing head</td><td>13-5/8"</td><td>5,000 psi (5M)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>La línea de choke corre con accesorios de 3-1/8", 5M (válvulas de compuerta manuales y HCR, válvula check, bloques en T, bridas target, carretes espaciadores); la línea de matanza corre los mismos tipos de accesorios en 2-1/16", 5M. Ambas se dimensionan y clasifican para igualar la clase de presión propia del stack, no se eligen de forma independiente: un stack de 10M o 15M lleva los accesorios equivalentes clasificados a esa clase más alta. Para las conexiones embridadas con espárragos que unen todo lo anterior, consulta la <a href="/es/calculators/flange-ring-gasket">tabla de bridas y empaques tipo anillo</a>.</p>
+
+        <h2 id="choke-y-matanza">Líneas de Choke y Matanza</h2>
+        <p>Dos líneas corren desde salidas en el stack de vuelta a superficie. La línea de matanza bombea hacia el pozo; la línea de choke saca los retornos a través de un choke ajustable que mantiene contrapresión. Juntas son lo que convierte un pozo cerrado en un pozo matado.</p>
+        <p>En un stack submarino estas son líneas de longitud completa que recorren toda la profundidad del agua junto al riser, y su fricción no es un error de redondeo: circular hacia arriba por una línea de choke de miles de pies de largo agrega presión que el perforador tiene que tomar en cuenta, por lo que la pérdida por fricción de la línea de choke se mide en lugar de asumirse.</p>
+
+        <h2 id="sistema-de-control">El Sistema de Control</h2>
+        <p>Un BOP es tan bueno como su capacidad de cerrar cuando todo lo demás ha fallado, y eso es una cuestión del sistema de control, no del stack.</p>
+
+        <h3>Acumuladores</h3>
+        <p>La presión de cierre viene de botellas acumuladoras: recipientes de acero precargados con nitrógeno y luego llenados con fluido hidráulico contra ese cojín de gas. La energía almacenada significa que el stack puede cerrarse con el taladro sin energía y las bombas paradas, que es exactamente la condición en la que se necesita que funcione. API STD 53 establece cuánto volumen utilizable debe estar disponible, dimensionado para que las funciones críticas puedan operarse sin recargar.</p>
+        <p>Esto es lo que verifican las lecturas de presión diarias de abajo. Un acumulador que se ha descargado, o que perdió su precarga de nitrógeno, puede verse bien en un manómetro y aun así no tener el volumen para cerrar un ariete.</p>
+
+        <h3>Pods de control submarinos</h3>
+        <p>Un stack submarino no se puede conectar directamente al piso del taladro, así que el control pasa por dos pods redundantes (convencionalmente azul y amarillo) montados en el LMRP. Cualquiera de los dos pods puede operar todo el stack. Los sistemas más antiguos pilotan hidráulicamente a través del umbilical; los stacks modernos de aguas profundas son electrohidráulicos multiplexados (MUX), que envían una señal eléctrica que abre válvulas en el lecho marino, porque una señal piloto hidráulica a través de varios miles de pies de manguera es lenta.</p>
+
+        <h3>Sistemas de emergencia</h3>
+        <p>Los stacks submarinos llevan respaldos que cierran los arietes de corte sin ninguna instrucción del taladro. El <strong>deadman</strong> se activa cuando se pierden juntos la energía hidráulica, la energía eléctrica y las comunicaciones: el stack concluye que el taladro ya no está. El <strong>autoshear</strong> se activa ante una desconexión no planeada del LMRP. La <strong>secuencia de desconexión de emergencia (EDS)</strong> es la versión deliberada, cortando y liberando en un orden controlado cuando un taladro tiene que salir del pozo. Un <strong>panel de intervención ROV</strong> le da a un vehículo operado remotamente puertos hot-stab para operar las funciones directamente, la última opción disponible cuando todo lo demás deja de estarlo.</p>
+
+        <h2 id="elementos-de-sellado">Elementos de Sellado y Cómo Fallan</h2>
+        <p>Casi todo sello en un BOP es un elastómero, y los elastómeros tienen un rango de servicio. El calor, el H<sub>2</sub>S, el CO<sub>2</sub> y los aromáticos del lodo los atacan, y el compuesto se elige según el pozo: nitrilo para servicio general, nitrilo hidrogenado donde la temperatura o la exposición a gas amargo es mayor, y compuestos especializados más allá de eso.</p>
+        <p>Dos modos de falla importan en el piso. Los elementos anulares se desgastan por el stripping y por cierres repetidos: la goma se extruye y deja de sellar limpiamente. Los empaques de ariete y los sellos superiores toman una deformación permanente después de largos periodos cerrados o largos periodos almacenados, y un ariete que no se ha ciclado en meses no está probado hasta que se cicla. Este es el argumento real para hacer la prueba funcional según el calendario y no según la conveniencia: la prueba no es papeleo, es lo único que te dice que la goma todavía se mueve.</p>
 
         <h2 id="stacks-de-bop-superficiales-vs-submarinos">Stacks de BOP Superficiales vs. Submarinos</h2>
-        <p>En taladros terrestres y plataformas, el BOP se ubica directamente sobre el cabezal del pozo en superficie. En taladros flotantes costa afuera (semisumergibles, buques de perforación), el stack de BOP se ubica en el lecho marino, conectado al taladro por un riser marino — lo que significa que el stack mismo puede estar operando bajo miles de pies de agua, con líneas de control hidráulico que recorren toda la profundidad del agua de vuelta al taladro.</p>
+        <p>En taladros terrestres y plataformas, el BOP se ubica directamente sobre el cabezal del pozo en superficie. Es accesible, inspeccionable, y se puede probar en horas.</p>
+        <p>En taladros flotantes costa afuera (semisumergibles y buques de perforación), el stack se ubica en el lecho marino, conectado al taladro por un riser marino, potencialmente bajo miles de pies de agua. Todo se vuelve más difícil: las señales de control viajan más lejos, la fricción de la línea de choke se vuelve significativa, la carga hidrostática de la columna del riser tiene que tomarse en cuenta en cada cálculo de presión, y cualquier reparación significa sacar el stack. Ese último punto es la razón por la que los stacks submarinos llevan tanta redundancia. La recuperación se mide en días, así que el equipo está construido para no necesitarla.</p>
 
         <h2 id="clasificaciones-de-presion-y-clases">Clasificaciones de Presión y Clases</h2>
-        <p>Los stacks de BOP se clasifican por clase de presión de trabajo: 3,000, 5,000, 10,000, y 15,000 psi son las clases comunes, elegidas según la presión máxima anticipada en superficie (MASP) para el pozo que se está perforando. Un pozo que se espera produzca presiones de formación altas requiere un stack de clasificación correspondientemente más alta.</p>
-        <p>Las conexiones embridadas que unen estos componentes llevan su propia clasificación API 6A/6BX correspondiente — ver la <a href="/es/calculators/flange-ring-gasket">tabla de bridas y empaques tipo anillo</a> para pasar del diámetro y clase de presión del stack al empaque, cantidad y tamaño de espárragos correctos para esa conexión.</p>
+        <p>Los stacks de BOP se clasifican por clase de presión de trabajo bajo API 16A: 2,000, 3,000, 5,000, 10,000, 15,000, y 20,000 psi son las clases reconocidas, y de 5,000 a 15,000 cubre la mayoría de la perforación. La clase se elige según la presión máxima anticipada en superficie (MASP) para el pozo, y el stack nunca es más fuerte que su componente de menor clasificación: un anular clasificado por debajo de los arietes que tiene debajo fija el techo para cualquier cosa que sostenga solo.</p>
+        <p>Las conexiones embridadas que unen estos componentes llevan su propia clasificación API 6A/6BX correspondiente. Ver la <a href="/es/calculators/flange-ring-gasket">tabla de bridas y empaques tipo anillo</a> para pasar del diámetro y clase de presión del stack al empaque, cantidad y tamaño de espárragos correctos para esa conexión.</p>
 
         <div class="note-box">
           <strong>Verificaciones Diarias de Presión del BOP:</strong> Presión del acumulador: <span class="highlight">3,000 psi</span> · Presión del manifold: <span class="highlight">1,500 psi</span> · Presión de operación anular: <span class="highlight">700–1,500 psi</span> · Suministro de aire a las bombas: <span class="highlight">125 psi</span>. Estas verificaciones se registran cada turno sin excepción en un taladro conforme.
         </div>
 
         <h2 id="requisitos-de-prueba">Requisitos de Prueba</h2>
-        <p>Los BOP se prueban funcionalmente (ciclados a través de apertura/cierre sin presión) al menos una vez por semana, y se prueban a presión (sellados contra presión de prueba real) como mínimo cada 21 días o según la jurisdicción regulatoria específica — con mayor frecuencia después de cualquier evento de control de pozos o cambio de equipo. Una secuencia de prueba completa verifica cada ariete y el anular individualmente antes de que pueda continuar la perforación.</p>
+        <p>Dos pruebas distintas responden dos preguntas distintas. Una <strong>prueba funcional</strong> cicla cada elemento abriendo y cerrando sin presión, demostrando que todavía se mueve. Una <strong>prueba de presión</strong> lo sella contra una presión de prueba real, demostrando que todavía sostiene. Pasar una no dice nada sobre la otra.</p>
+        <p>Los intervalos los fija el estándar que rige el taladro y no una sola regla global. API STD 53 es la referencia de la industria, habiendo sustituido a API RP 53; para trabajo en la plataforma continental exterior de EE. UU., BSEE 30 CFR 250.737 es la versión vinculante, y en términos generales es una prueba funcional cada 7 días y una prueba de presión cada 14 días en un stack submarino. Los intervalos en tierra y fuera de EE. UU. difieren, y cada jurisdicción ajusta el calendario después de cualquier evento de control de pozos o cualquier cambio al equipo. Una secuencia completa prueba cada ariete y el anular individualmente antes de que se reanude la perforación.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+
+        <h2 id="reuse">Reutiliza el diagrama</h2>
+        <DiagramEmbed
+          src="/images/blog/bop-stack-diagram.png"
+          alt={stackAlt}
+          title="Organización del stack de BOP"
+          pagePath="/es/equipment/bop"
+          lang="es"
+        />
       </div>
 
       <div>
         <div class="toc">
           <div class="toc-title">En Esta Página</div>
           <a href="#que-hace-un-bop">Qué Hace un BOP</a>
-          <a href="#los-componentes-principales">Componentes Principales</a>
+          <a href="#las-dos-familias">Las Dos Familias</a>
+          <a href="#tipos-de-ariete">Los Cuatro Tipos de Ariete</a>
+          <a href="#organizacion-del-stack">Organización del Stack</a>
+          <a href="#space-out">Space-Out del Stack</a>
+          <a href="#stack-tipico">Stack Típico 5M</a>
+          <a href="#choke-y-matanza">Líneas de Choke y Matanza</a>
+          <a href="#sistema-de-control">El Sistema de Control</a>
+          <a href="#elementos-de-sellado">Elementos de Sellado</a>
           <a href="#stacks-de-bop-superficiales-vs-submarinos">Superficial vs. Submarino</a>
           <a href="#clasificaciones-de-presion-y-clases">Clasificaciones de Presión</a>
           <a href="#requisitos-de-prueba">Requisitos de Prueba</a>
+          <a href="#faq">FAQ</a>
         </div>
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
           <h3>Lectura Relacionada</h3>
@@ -90,6 +227,7 @@ const techArticleJsonLd = techArticleSchema({
           <a href="/es/calculators/kill-sheet" class="card-link">→ Calculadora de Hoja de Control de Pozo</a><br><br>
           <a href="/es/equipment/accumulator" class="card-link">→ Prueba Funcional y Simulacro del Acumulador</a><br><br>
           <a href="/es/equipment/well-protector" class="card-link">→ Protector de Pozo</a><br><br>
+          <a href="/es/calculators/bop-closing-ratio" class="card-link">→ Calculadora de Relación de Cierre y Apertura del BOP</a><br><br>
           <a href="/es/equipment/drill-string" class="card-link">→ La Sarta de Perforación</a>
         </div>
       </div>

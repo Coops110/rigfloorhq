@@ -44,6 +44,27 @@ import Footer from '../../../components/Footer.astro';
           <div class="formula-note">Mide qué tan pronunciadamente se curva el pozo. Un DLS excesivo aumenta el torque/arrastre y arriesga fatiga de tubería en las conexiones.</div>
         </div>
 
+        <h2 id="perfiles-de-pozo">Perfiles de Pozo y Tasa de Construcción</h2>
+        <p>Los pozos direccionales no se perforan a mano libre. La trayectoria se planea como un perfil, y la forma se elige para mantener manejables el torque, el arrastre y el desgaste del revestimiento, en lugar de tomar la ruta más corta.</p>
+        <p><strong>La tasa de construcción</strong>, expresada en grados por 100 pies, es el número rector. Un pozo convencional puede construir a 2–3°/100&nbsp;pies. Los pozos de radio medio y corto construyen mucho más fuerte, y cada grado de construcción agrega contacto entre la sarta y el pozo, lo cual se convierte en arrastre al bajar y torque al rotar.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Perfil</th><th>Forma</th><th>Uso Típico</th></tr></thead>
+            <tbody>
+              <tr><td>Construir y Mantener</td><td>Arranca, construye a ángulo, mantiene hasta el objetivo</td><td>El pozo inclinado estándar; el más simple de perforar y entubar</td></tr>
+              <tr><td>Curva S</td><td>Construye, mantiene, y luego regresa hacia vertical</td><td>Donde el objetivo debe entrarse casi vertical, o para evitar un riesgo somero</td></tr>
+              <tr><td>Horizontal</td><td>Construye hasta aproximadamente 90° y permanece en el yacimiento</td><td>Desarrollo no convencional y de yacimientos delgados; maximiza el contacto con el yacimiento</td></tr>
+              <tr><td>Alcance Extendido</td><td>Ángulo alto mantenido sobre un desplazamiento muy largo</td><td>Alcanzando objetivos lejos de la ubicación de superficie, a menudo desde una plataforma costa afuera</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Dos límites aparecen en la práctica. <strong>El torque y el arrastre</strong> aumentan con el ángulo y el desplazamiento hasta que la sarta ya no puede rotarse o deslizarse de forma confiable. <strong>La limpieza del hoyo</strong> se vuelve más difícil por encima de unos 50–60°, porque los recortes se asientan fuera del flujo hacia el lado bajo del hoyo y forman camas en lugar de ser transportados hacia afuera, lo cual es un problema de propiedades del lodo y de caudal tanto como de geometría, y se conecta de vuelta con el <a href="/es/drilling/mud-weight">peso de lodo y la hidráulica</a>.</p>
+
+        <h2 id="severidad-de-dogleg">Severidad de Dogleg</h2>
+        <p>La severidad de dogleg es el cambio real medido en la dirección del hoyo por cada 100 pies, combinando construcción y giro. La tasa de construcción planeada es la intención; la severidad de dogleg es lo que el hoyo realmente hizo.</p>
+        <p>Importa porque los doglegs son donde las cosas se desgastan y se rompen. Un dogleg pronunciado concentra esfuerzo de flexión sobre la tubería de perforación en cada rotación, lo cual es un mecanismo de fatiga y no de sobrecarga: la sarta puede estar bien dentro de su clasificación de tensión y aun así fallar ahí con el tiempo. La misma curva provoca desgaste del revestimiento mientras la tubería rota contra él, y puede hacer que el revestimiento sea difícil de correr en absoluto.</p>
+        <p>Este es uno de los casos más claros donde la <a href="/es/equipment/drill-string">sarta de perforación</a> y la trayectoria del pozo son el mismo problema: el perfil decide las cargas con las que la sarta tendrá que vivir por el resto del pozo.</p>
+
         <h2 id="el-rol-del-perforador-direccional">El Rol del Perforador Direccional</h2>
         <p>Los perforadores direccionales son especialistas, usualmente empleados por una compañía de servicio en lugar del contratista de perforación. Monitorean el flujo de datos MWD continuamente — a menudo desde una cabina de control — haciendo ajustes de dirección para mantener el pozo en su trayectoria planeada. Es una de las trayectorias especializadas mejor pagadas en perforación; ver la <a href="/es/careers/salary">guía salarial</a> para cifras actuales.</p>
       </div>
@@ -54,10 +75,16 @@ import Footer from '../../../components/Footer.astro';
           <a href="#por-que-perforar-direccionalmente">Por Qué Perforar Direccionalmente</a>
           <a href="#como-se-dirige-la-barrena">Cómo se Dirige la Barrena</a>
           <a href="#mwd-y-lwd-viendo-bajo-tierra">MWD y LWD</a>
+          <a href="#perfiles-de-pozo">Perfiles de Pozo</a>
+          <a href="#severidad-de-dogleg">Severidad de Dogleg</a>
           <a href="#el-rol-del-perforador-direccional">El Rol del Perforador Direccional</a>
         </div>
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
           <h3>Lectura Relacionada</h3>
+          <a href="/es/blog/hole-cleaning-high-angle-wells" class="card-link">→ Limpieza del Pozo en Alto Ángulo</a><br><br>
+          <a href="/es/blog/torque-and-drag-early-warning" class="card-link">→ Torque y Arrastre Como Alerta Temprana</a><br><br>
+          <a href="/es/blog/real-time-drilling-data" class="card-link">→ Datos de Perforación en Tiempo Real (MWD/LWD)</a><br><br>
+          <a href="/pillars/stuck-pipe-and-fishing-operations" class="card-link">→ Pesca y Tubería Pegada (inglés)</a><br><br>
           <a href="/es/equipment/drill-string" class="card-link">→ La Sarta de Perforación</a><br><br>
           <a href="/es/drilling/casing" class="card-link">→ Diseño de Revestimiento</a><br><br>
           <a href="/es/careers/salary" class="card-link">→ Guía Salarial</a>
