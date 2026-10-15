@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/under-reamer.astro',
   path: '/equipment/under-reamer',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Under-Reamer / Hole Opener: Below-Restriction Enlargement"
   description="What an under-reamer is, how its arms fold and extend past a restriction, hydraulic vs. mechanical actuation, common failure modes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Under-Reamer', href: '/equipment/under-reamer' }]}
   lang="en"
   alternateHref="/es/equipment/under-reamer"

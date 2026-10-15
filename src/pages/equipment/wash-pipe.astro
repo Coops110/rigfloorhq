@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/wash-pipe.astro',
   path: '/equipment/wash-pipe',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Wash Pipe: How Washover Fishing Jobs Work"
   description="What wash pipe is, how a washover job frees a stuck fish by removing fill and debris instead of pulling directly, the wash pipe shoe, and common failure modes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Wash Pipe', href: '/equipment/wash-pipe' }]}
   lang="en"
   alternateHref="/es/equipment/wash-pipe"

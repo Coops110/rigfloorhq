@@ -23,16 +23,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/fluid-circulation-system.astro',
   path: '/es/equipment/fluid-circulation-system',
@@ -45,7 +35,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Sistema de Circulación de Fluido: Bombas de Lodo, Standpipe"
   description="Cómo funciona el sistema de circulación de fluido de un taladro: bombas de lodo, el standpipe y la manguera rotaria."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Sistema de Circulación de Fluido', href: '/es/equipment/fluid-circulation-system' }]}
   lang="es"
   alternateHref="/equipment/fluid-circulation-system"

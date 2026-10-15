@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/pup-joint.astro',
   path: '/es/equipment/pup-joint',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Junta Pup: Espaciado Preciso en Sartas de Tubería"
   description="Qué es una junta pup, cómo logra un espaciado preciso de sarta, por qué mantiene la misma rosca y diámetro que el resto de la sarta."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Junta Pup', href: '/es/equipment/pup-joint' }]}
   lang="es"
   alternateHref="/equipment/pup-joint"

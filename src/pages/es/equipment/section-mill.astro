@@ -28,16 +28,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/section-mill.astro',
   path: '/es/equipment/section-mill',
@@ -50,7 +40,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Fresa de Sección: Cómo Funciona el Fresado de Revestimiento"
   description="Qué es una fresa de sección, diseños de un viaje vs. dos viajes, manejo de viruta, clasificaciones genéricas."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Fresa de Sección', href: '/es/equipment/section-mill' }]}
   lang="es"
   alternateHref="/equipment/section-mill"

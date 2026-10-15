@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/centralizer.astro',
   path: '/es/equipment/centralizer',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Centralizador: Resorte de Arco vs. Rígido"
   description="Qué es un centralizador de revestimiento, diseños de resorte de arco vs. rígidos, por qué importa la separación para la cementación."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Centralizador', href: '/es/equipment/centralizer' }]}
   lang="es"
   alternateHref="/equipment/centralizer"

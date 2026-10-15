@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/jetting-tool.astro',
   path: '/equipment/jetting-tool',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Jetting Tool: How Fluid-Jet Cleanout Works Downhole"
   description="What a jetting tool is, how high-velocity fluid jets clear fill and debris without mechanical cutting, its use ahead of setting plugs, and common failure modes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Jetting Tool', href: '/equipment/jetting-tool' }]}
   lang="en"
   alternateHref="/es/equipment/jetting-tool"

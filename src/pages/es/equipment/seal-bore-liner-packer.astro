@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/seal-bore-liner-packer.astro',
   path: '/es/equipment/seal-bore-liner-packer',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Empacador de Liner con Orificio Sellante"
   description="Qué es un empacador de liner con orificio sellante, cómo sella la superposición liner-revestimiento separado del trabajo de peso del colgador."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Empacador de Liner con Orificio Sellante', href: '/es/equipment/seal-bore-liner-packer' }]}
   lang="es"
   alternateHref="/equipment/seal-bore-liner-packer"

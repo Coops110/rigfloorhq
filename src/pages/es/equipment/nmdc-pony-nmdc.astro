@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/nmdc-pony-nmdc.astro',
   path: '/es/equipment/nmdc-pony-nmdc',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="NMDC / Pony NMDC: Protegiendo Herramientas MWD"
   description="Qué son un Lastrabarrena No Magnético (NMDC) y un pony NMDC, por qué las herramientas MWD necesitan espaciado no magnético, y qué pasa cuando está mal."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'NMDC / Pony NMDC', href: '/es/equipment/nmdc-pony-nmdc' }]}
   lang="es"
   alternateHref="/equipment/nmdc-pony-nmdc"

@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/multilateral-junction.astro',
   path: '/equipment/multilateral-junction',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Multilateral Junction: TAML Levels & Wellbore Design"
   description="What a multilateral junction is, how TAML levels classify junction support and isolation, when a simple vs. complex junction is chosen."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Multilateral Junction', href: '/equipment/multilateral-junction' }]}
   lang="en"
   alternateHref="/es/equipment/multilateral-junction"

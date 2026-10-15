@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/orienting-sub.astro',
   path: '/es/equipment/orienting-sub',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Sub Orientador: Cómo Funciona la Orientación de Herramientas"
   description="Qué es un sub orientador, cómo se confirma la orientación de toolface en el fondo con rascadores o registros en tiempo real."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Sub Orientador', href: '/es/equipment/orienting-sub' }]}
   lang="es"
   alternateHref="/equipment/orienting-sub"

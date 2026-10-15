@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/crossover-sub.astro',
   path: '/equipment/crossover-sub',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Crossover Sub: Connecting Different Thread Sizes in a String"
   description="What a crossover sub is, why drill strings need one, how it differs from a bit sub, and common failure points at the tapered shoulder."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Crossover Sub', href: '/equipment/crossover-sub' }]}
   lang="en"
   alternateHref="/es/equipment/crossover-sub"

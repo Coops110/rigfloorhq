@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/power-swivel.astro',
   path: '/es/equipment/power-swivel',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Power Swivel: Taladro de Workover Sin Top Drive"
   description="Qué es un power swivel, los trabajos para los que se usa en un taladro de workover o servicio de pozos, y cómo se compara con el top drive de perforación."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Power Swivel', href: '/es/equipment/power-swivel' }]}
   lang="es"
   alternateHref="/equipment/power-swivel"

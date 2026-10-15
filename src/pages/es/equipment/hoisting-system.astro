@@ -23,16 +23,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/hoisting-system.astro',
   path: '/es/equipment/hoisting-system',
@@ -45,7 +35,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Sistema de Izaje: Torre, Malacate y Línea de Perforación"
   description="Cómo funciona el sistema de izaje de un taladro: torre y corona, bloque viajero, malacate y frenos, enhebrado de la línea de perforación."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Sistema de Izaje', href: '/es/equipment/hoisting-system' }]}
   lang="es"
   alternateHref="/equipment/hoisting-system"

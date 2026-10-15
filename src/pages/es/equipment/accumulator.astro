@@ -37,16 +37,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/accumulator.astro',
   path: '/es/equipment/accumulator',
@@ -59,7 +49,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Prueba Funcional y Simulacro del Acumulador: Presión, Tiempo"
   description="Qué cubre un simulacro de acumulador de BOP: presión inicial objetivo, tiempo de apertura/cierre por componente contra API STD 53, tiempo de recarga."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Simulacro de Acumulador', href: '/es/equipment/accumulator' }]}
   lang="es"
   alternateHref="/equipment/accumulator"

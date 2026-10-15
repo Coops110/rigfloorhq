@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/multilateral-junction.astro',
   path: '/es/equipment/multilateral-junction',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Unión Multilateral: Niveles TAML y Diseño"
   description="Qué es una unión multilateral, cómo los niveles TAML clasifican el soporte y aislamiento de una unión, y cuándo se elige una unión simple vs. compleja."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Unión Multilateral', href: '/es/equipment/multilateral-junction' }]}
   lang="es"
   alternateHref="/equipment/multilateral-junction"

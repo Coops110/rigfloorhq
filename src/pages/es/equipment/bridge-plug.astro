@@ -28,16 +28,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/bridge-plug.astro',
   path: '/es/equipment/bridge-plug',
@@ -50,7 +40,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Tapón Puente: Perforable vs. Recuperable"
   description="Qué es un tapón puente, cuándo se corre, cómo se asientan y recuperan las versiones perforable y recuperable, clasificaciones de presión/temperatura."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Tapón Puente', href: '/es/equipment/bridge-plug' }]}
   lang="es"
   alternateHref="/equipment/bridge-plug"

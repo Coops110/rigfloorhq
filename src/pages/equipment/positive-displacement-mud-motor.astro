@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/positive-displacement-mud-motor.astro',
   path: '/equipment/positive-displacement-mud-motor',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Positive Displacement Mud Motor (PDM) Explained"
   description="What a positive displacement mud motor (PDM) is, how the Moineau principle converts fluid flow into bit rotation, sliding vs. rotating drilling."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Positive Displacement Mud Motor', href: '/equipment/positive-displacement-mud-motor' }]}
   lang="en"
   alternateHref="/es/equipment/positive-displacement-mud-motor"

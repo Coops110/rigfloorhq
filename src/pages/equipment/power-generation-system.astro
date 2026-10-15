@@ -23,16 +23,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/power-generation-system.astro',
   path: '/equipment/power-generation-system',
@@ -45,7 +35,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Power Generation System: Diesel-Electric Rigs, SCR"
   description="How a rig's power generation system works: diesel generators, the diesel-electric (SCR/VFD) model most modern rigs use, and why it replaced direct mechanical drive."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Power Generation System', href: '/equipment/power-generation-system' }]}
   lang="en"
   alternateHref="/es/equipment/power-generation-system"

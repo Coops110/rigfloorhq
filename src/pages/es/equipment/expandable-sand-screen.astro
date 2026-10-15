@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/expandable-sand-screen.astro',
   path: '/es/equipment/expandable-sand-screen',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Malla Expandible de Control de Arena"
   description="Qué es una malla expandible de control de arena, por qué corre pequeña y se expande contra la formación, y cómo se compara con una malla convencional."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Malla Expandible de Control de Arena', href: '/es/equipment/expandable-sand-screen' }]}
   lang="es"
   alternateHref="/equipment/expandable-sand-screen"

@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/expandable-sand-screen.astro',
   path: '/equipment/expandable-sand-screen',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Expandable Sand Screen: How Expansion Improves Sand Control"
   description="What an expandable sand screen is, why it runs small and expands against the formation, how it compares to a conventional screen and gravel pack."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Expandable Sand Screen', href: '/equipment/expandable-sand-screen' }]}
   lang="en"
   alternateHref="/es/equipment/expandable-sand-screen"

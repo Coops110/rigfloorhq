@@ -28,16 +28,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/casing-cutter.astro',
   path: '/equipment/casing-cutter',
@@ -50,7 +40,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Casing Cutter: How Internal Casing Cutting Tools Work"
   description="What a casing cutter is, mechanical vs. chemical cutting methods, how it's run and actuated downhole, generic ratings, common failure modes, and how it differs from a section mill."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Casing Cutter', href: '/equipment/casing-cutter' }]}
   lang="en"
   alternateHref="/es/equipment/casing-cutter"

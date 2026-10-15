@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/pup-joint.astro',
   path: '/equipment/pup-joint',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Pup Joint: Precise Spacing in Tubing and Casing Strings"
   description="What a pup joint is, how it achieves precise string spacing, why it keeps the same thread and diameter as the string."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Pup Joint', href: '/equipment/pup-joint' }]}
   lang="en"
   alternateHref="/es/equipment/pup-joint"

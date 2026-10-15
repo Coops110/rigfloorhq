@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/jetting-tool.astro',
   path: '/es/equipment/jetting-tool',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Herramienta de Chorro: Limpieza de Fluido en el Fondo"
   description="Qué es una herramienta de chorro, cómo los chorros de fluido a alta velocidad limpian relleno y escombros sin corte mecánico."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Herramienta de Chorro', href: '/es/equipment/jetting-tool' }]}
   lang="es"
   alternateHref="/equipment/jetting-tool"

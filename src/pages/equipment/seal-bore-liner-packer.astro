@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/seal-bore-liner-packer.astro',
   path: '/equipment/seal-bore-liner-packer',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Seal Bore Liner Packer: Sealing the Liner-to-Casing Overlap"
   description="What a seal bore liner packer is, how it seals the liner-casing overlap separately from the hanger's weight-bearing job, what stabs into the seal bore, and common failure modes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Seal Bore Liner Packer', href: '/equipment/seal-bore-liner-packer' }]}
   lang="en"
   alternateHref="/es/equipment/seal-bore-liner-packer"

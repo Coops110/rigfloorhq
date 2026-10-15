@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/sabs-dabs.astro',
   path: '/equipment/sabs-dabs',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="SABS vs. DABS: Single- vs. Double-Acting Bumper Subs"
   description="The difference between a Single-Acting Bumper Sub (SABS) and a Double-Acting Bumper Sub (DABS), when each is chosen for a fishing job."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'SABS vs. DABS', href: '/equipment/sabs-dabs' }]}
   lang="en"
   alternateHref="/es/equipment/sabs-dabs"

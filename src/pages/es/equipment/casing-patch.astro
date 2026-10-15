@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/casing-patch.astro',
   path: '/es/equipment/casing-patch',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Parche de Revestimiento: Herramientas Expandibles"
   description="Qué es un parche de revestimiento, cómo se expande contra revestimiento dañado para restaurar la integridad de presión."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Parche de Revestimiento', href: '/es/equipment/casing-patch' }]}
   lang="es"
   alternateHref="/equipment/casing-patch"

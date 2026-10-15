@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/whipstock.astro',
   path: '/equipment/whipstock',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Whipstock: How Sidetrack Deflection Tools Work"
   description="What a whipstock is, how its concave face deflects a window mill into the casing wall, the pilot lug and anchor, and how orientation is set before milling."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Whipstock', href: '/equipment/whipstock' }]}
   lang="en"
   alternateHref="/es/equipment/whipstock"

@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/bull-nose-plug.astro',
   path: '/es/equipment/bull-nose-plug',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Tapón de Nariz de Toro: Herramientas de Nariz Guía Sólida"
   description="Qué es un tapón de nariz de toro, por qué corre ciego sin paso de flujo, en qué se diferencia de una zapata mula y un tapón de tubería, y fallas comunes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Tapón de Nariz de Toro', href: '/es/equipment/bull-nose-plug' }]}
   lang="es"
   alternateHref="/equipment/bull-nose-plug"

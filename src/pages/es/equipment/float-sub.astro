@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/float-sub.astro',
   path: '/es/equipment/float-sub',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Sub Flotador: Válvula de Retención Evita Contraflujo"
   description="Qué es un sub flotador, cómo funciona su válvula de charnela o de bola y asiento, en qué se diferencia de una zapata o collar flotador, y fallas comunes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Sub Flotador', href: '/es/equipment/float-sub' }]}
   lang="es"
   alternateHref="/equipment/float-sub"

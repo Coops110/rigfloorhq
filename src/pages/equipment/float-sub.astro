@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/float-sub.astro',
   path: '/equipment/float-sub',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Float Sub: How Check-Valve Subs Prevent Backflow"
   description="What a float sub is, how its flapper or ball-and-seat check valve works, how it differs from a float shoe or float collar, and common failure modes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Float Sub', href: '/equipment/float-sub' }]}
   lang="en"
   alternateHref="/es/equipment/float-sub"

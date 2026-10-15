@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/bull-nose-plug.astro',
   path: '/equipment/bull-nose-plug',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Bull Nose Plug: Solid Guide Nose Tools Explained"
   description="What a bull nose plug is, why it's run blind with no flow passage, how it differs from a mule shoe and a tubing plug, and common failure modes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Bull Nose Plug', href: '/equipment/bull-nose-plug' }]}
   lang="en"
   alternateHref="/es/equipment/bull-nose-plug"

@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/crossover-sub.astro',
   path: '/es/equipment/crossover-sub',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Sub de Cruce: Conectando Distintos Tamaños de Rosca"
   description="Qué es un sub de cruce, por qué las sartas de perforación necesitan uno, en qué se diferencia de un sub de barrena, y fallas comunes en el hombro cónico."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Sub de Cruce', href: '/es/equipment/crossover-sub' }]}
   lang="es"
   alternateHref="/equipment/crossover-sub"

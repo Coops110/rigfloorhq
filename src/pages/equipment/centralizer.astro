@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/centralizer.astro',
   path: '/equipment/centralizer',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Centralizer: Bow-Spring vs. Rigid Casing Centralizers"
   description="What a casing centralizer is, bow-spring vs. rigid designs, why standoff matters for cementing, placement considerations, and common failure modes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Centralizer', href: '/equipment/centralizer' }]}
   lang="en"
   alternateHref="/es/equipment/centralizer"

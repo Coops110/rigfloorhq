@@ -28,16 +28,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/well-protector.astro',
   path: '/equipment/well-protector',
@@ -50,7 +40,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Well Protector: Shielding Wellhead Surfaces"
   description="What a well protector is, what kind of damage it prevents on wellhead and hanger sealing surfaces, when it's installed and removed, and why skipping it matters."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Well Protector', href: '/equipment/well-protector' }]}
   lang="en"
   alternateHref="/es/equipment/well-protector"

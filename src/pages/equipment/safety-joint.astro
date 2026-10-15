@@ -28,16 +28,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/safety-joint.astro',
   path: '/equipment/safety-joint',
@@ -50,7 +40,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Safety Joint: How Fishing-String Release Points Work"
   description="What a safety joint is, mechanical vs. hydraulic release designs, where it's placed in a fishing or liner string, and common failure modes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Safety Joint', href: '/equipment/safety-joint' }]}
   lang="en"
   alternateHref="/es/equipment/safety-joint"

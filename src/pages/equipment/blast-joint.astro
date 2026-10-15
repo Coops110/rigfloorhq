@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/blast-joint.astro',
   path: '/equipment/blast-joint',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Blast Joint: Erosion-Resistant Tubing at Perforated"
   description="What a blast joint is, why it's placed opposite perforations or gas lift mandrels, how its thick wall resists erosive flow, and common failure modes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Blast Joint', href: '/equipment/blast-joint' }]}
   lang="en"
   alternateHref="/es/equipment/blast-joint"

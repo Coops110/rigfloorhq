@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/nmdc-pony-nmdc.astro',
   path: '/equipment/nmdc-pony-nmdc',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="NMDC / Pony NMDC: Shielding MWD Tools From Magnetic"
   description="What a Non-Magnetic Drill Collar (NMDC) and pony NMDC are, why MWD tools need non-magnetic spacing, how required spacing is calculated, and what happens when it's wrong."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'NMDC / Pony NMDC', href: '/equipment/nmdc-pony-nmdc' }]}
   lang="en"
   alternateHref="/es/equipment/nmdc-pony-nmdc"

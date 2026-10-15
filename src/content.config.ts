@@ -19,9 +19,9 @@ const blogSchema = z.object({
   // Must be a real file in public/ — a broken og:image is worse than none,
   // since some scrapers abandon the preview entirely rather than falling back.
   image: z.string().optional(),
-  // Question and answer pairs, rendered as FAQPage structured data. These must
-  // match questions actually answered in the body — marking up content that is
-  // not on the page is a structured data violation, not a shortcut.
+  // Question and answer pairs, rendered as the visible FAQ section on the
+  // post. No longer emitted as FAQPage structured data — Google retired the
+  // FAQ rich-result feature on 2026-05-07, so that markup was removed site-wide.
   faq: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
   // Diagrams in this post that other sites may republish. Each one renders an
   // embed block with a copy-paste snippet crediting back to the post.

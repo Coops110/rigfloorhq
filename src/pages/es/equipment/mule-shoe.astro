@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/mule-shoe.astro',
   path: '/es/equipment/mule-shoe',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Zapata Mula: Cómo Funcionan las Herramientas de Nariz Guía"
   description="Qué es una zapata mula, cómo su nariz biselada guía la sarta pasando repisas y bordes de ventana filosos."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Zapata Mula', href: '/es/equipment/mule-shoe' }]}
   lang="es"
   alternateHref="/equipment/mule-shoe"

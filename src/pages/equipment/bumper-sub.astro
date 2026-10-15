@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/bumper-sub.astro',
   path: '/equipment/bumper-sub',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Bumper Sub: How Telescoping Fishing Tools Work"
   description="What a bumper sub is, how its splined telescoping mandrel works with a jar, where it sits in a fishing string, single- vs. double-acting designs."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Bumper Sub', href: '/equipment/bumper-sub' }]}
   lang="en"
   alternateHref="/es/equipment/bumper-sub"

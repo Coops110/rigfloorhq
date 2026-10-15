@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/casing-roller-dressing-tool.astro',
   path: '/equipment/casing-roller-dressing-tool',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Casing Roller / Dressing Tool: Restoring Round Casing"
   description="What a casing roller or dressing tool is, how it restores a round profile to dented or deformed casing, how it differs from a burr mill and a casing patch."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Casing Roller / Dressing Tool', href: '/equipment/casing-roller-dressing-tool' }]}
   lang="en"
   alternateHref="/es/equipment/casing-roller-dressing-tool"

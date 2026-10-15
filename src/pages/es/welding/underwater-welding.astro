@@ -42,16 +42,6 @@ const faq = [
     a: 'AWS D3.6M es el Código de Soldadura Submarina. Define cuatro clases: la Clase A busca igualar la calidad de una soldadura en superficie y sirve para aplicaciones estructurales, la Clase B es para trabajo portante menos crítico con más tolerancia a la porosidad, la Clase C no tiene requisito estructural, y la Clase O debe cumplir otro código indicado en el contrato. La clase la decide el trabajo y determina la inspección requerida.',
   },
 ];
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
 ---
 <BaseLayout
   {/* Mirrors the English page. The old title was 72 chars, 85 once BaseLayout
@@ -61,7 +51,6 @@ const jsonLd = {
       truncation fix and parity with the English page, nothing more. */}
   title="Soldadura Hiperbárica y Húmeda Explicada"
   description="Soldadura hiperbárica en seco: los cuatro tipos de cámara, por qué se usa GTAW, las clases AWS D3.6M y la comparación con la soldadura húmeda."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Soldadura', href: '/es/welding' }, { label: 'Soldadura Submarina', href: '/es/welding/underwater-welding' }]}
   lang="es"
   alternateHref="/welding/underwater-welding"

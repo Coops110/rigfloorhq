@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/tubing-plug.astro',
   path: '/equipment/tubing-plug',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Tubing Plug: Wireline-Set Flow Barriers in Landing Nipples"
   description="What a tubing plug is, how it's set and retrieved on wireline in a landing nipple, how it differs from a bridge plug, and common failure modes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Tubing Plug', href: '/equipment/tubing-plug' }]}
   lang="en"
   alternateHref="/es/equipment/tubing-plug"

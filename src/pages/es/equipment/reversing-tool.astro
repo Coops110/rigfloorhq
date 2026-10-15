@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/reversing-tool.astro',
   path: '/es/equipment/reversing-tool',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Herramienta de Reversa: Recupera Chatarra y Escombros"
   description="Qué es una herramienta de reversa, en qué se diferencia la circulación inversa de la normal, accionamiento de puertos, fallas comunes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Herramienta de Reversa', href: '/es/equipment/reversing-tool' }]}
   lang="es"
   alternateHref="/equipment/reversing-tool"

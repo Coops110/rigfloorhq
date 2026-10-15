@@ -28,16 +28,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/casing-cutter.astro',
   path: '/es/equipment/casing-cutter',
@@ -50,7 +40,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Cortador de Revestimiento: Corte Interno"
   description="Qué es un cortador de revestimiento, métodos de corte mecánico vs. químico, cómo se corre y acciona en el fondo, clasificaciones genéricas, fallas comunes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Cortador de Revestimiento', href: '/es/equipment/casing-cutter' }]}
   lang="es"
   alternateHref="/equipment/casing-cutter"

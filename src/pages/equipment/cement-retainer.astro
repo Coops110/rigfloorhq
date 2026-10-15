@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/cement-retainer.astro',
   path: '/equipment/cement-retainer',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Cement Retainer: How Squeeze-Cementing Isolation Tools Work"
   description="What a cement retainer is, how its pump-through valve works during a squeeze job, drillable vs. retrievable versions, and how it differs from a bridge plug."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Cement Retainer', href: '/equipment/cement-retainer' }]}
   lang="en"
   alternateHref="/es/equipment/cement-retainer"

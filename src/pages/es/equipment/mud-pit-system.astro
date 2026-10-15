@@ -23,16 +23,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/mud-pit-system.astro',
   path: '/es/equipment/mud-pit-system',
@@ -45,7 +35,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Sistema de Control de Sólidos: Zarandas, Desarenadores"
   description="Cómo funciona el sistema de control de sólidos de un taladro: zarandas vibratorias, desarenadores y deslimadores, desgasificadores."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Sistema de Control de Sólidos', href: '/es/equipment/mud-pit-system' }]}
   lang="es"
   alternateHref="/equipment/mud-pit-system"

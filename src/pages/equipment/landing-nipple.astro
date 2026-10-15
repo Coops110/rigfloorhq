@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/landing-nipple.astro',
   path: '/equipment/landing-nipple',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Landing Nipple: Fixed Wireline Set Points in a Tubing String"
   description="What a landing nipple is, how its locking profile provides a fixed wireline-retrievable set point for plugs and other tools, and common failure modes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Landing Nipple', href: '/equipment/landing-nipple' }]}
   lang="en"
   alternateHref="/es/equipment/landing-nipple"

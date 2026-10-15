@@ -45,16 +45,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/bop.astro',
   path: '/equipment/bop',
@@ -71,7 +61,6 @@ const techArticleJsonLd = techArticleSchema({
       phrase carries the most demand in the cluster. */}
   title="Blowout Preventer Types and How a BOP Works"
   description="What a blowout preventer does, the annular and ram types, how a stack is arranged, the accumulator and control pods that close it, and test intervals."
-  jsonLd={jsonLd}
   extraJsonLd={[techArticleJsonLd]}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'BOP', href: '/equipment/bop' }]}
   lang="en"

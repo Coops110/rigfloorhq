@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/under-reamer.astro',
   path: '/es/equipment/under-reamer',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Escariador Bajo Restricción: Ensanche de Hoyo"
   description="Qué es un escariador bajo restricción, cómo se pliegan y extienden sus brazos al pasar una restricción, accionamiento hidráulico vs. mecánico."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Escariador', href: '/es/equipment/under-reamer' }]}
   lang="es"
   alternateHref="/equipment/under-reamer"

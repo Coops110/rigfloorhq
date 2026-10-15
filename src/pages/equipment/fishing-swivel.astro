@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/fishing-swivel.astro',
   path: '/equipment/fishing-swivel',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Fishing Swivel: How Torque-Isolating Fishing Tools Work"
   description="What a fishing swivel is, why it isolates rotation from the work string above it, how it works with rotary releasing spears and overshots."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Fishing Swivel', href: '/equipment/fishing-swivel' }]}
   lang="en"
   alternateHref="/es/equipment/fishing-swivel"

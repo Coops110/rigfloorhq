@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/fishing-swivel.astro',
   path: '/es/equipment/fishing-swivel',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Swivel de Pesca: Aísla el Torque de la Sarta"
   description="Qué es un swivel de pesca, por qué aísla la rotación de la sarta de trabajo arriba de él, cómo funciona con lanzas de liberación rotativas y overshots."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Swivel de Pesca', href: '/es/equipment/fishing-swivel' }]}
   lang="es"
   alternateHref="/equipment/fishing-swivel"

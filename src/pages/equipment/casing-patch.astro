@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/casing-patch.astro',
   path: '/equipment/casing-patch',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Casing Patch: How Expandable Casing Repair Tools Work"
   description="What a casing patch is, how it expands against damaged casing to restore pressure integrity, how it differs from a cement squeeze, and common failure modes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Casing Patch', href: '/equipment/casing-patch' }]}
   lang="en"
   alternateHref="/es/equipment/casing-patch"

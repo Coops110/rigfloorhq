@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/lifting-sub.astro',
   path: '/equipment/lifting-sub',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Lifting Sub: Rig Floor Handling for Heavy BHA Components"
   description="What a lifting sub is, why it's a handling accessory rather than a downhole tool, how it differs from a crossover sub, and common handling failure causes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Lifting Sub', href: '/equipment/lifting-sub' }]}
   lang="en"
   alternateHref="/es/equipment/lifting-sub"

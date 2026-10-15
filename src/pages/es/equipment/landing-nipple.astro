@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/landing-nipple.astro',
   path: '/es/equipment/landing-nipple',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Niple de Asiento: Puntos Fijos de Asentamiento en Cable"
   description="Qué es un niple de asiento, cómo su perfil de traba provee un punto de asiento fijo y recuperable en cable para tapones y otras herramientas, y fallas comunes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Niple de Asiento', href: '/es/equipment/landing-nipple' }]}
   lang="es"
   alternateHref="/equipment/landing-nipple"

@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/mule-shoe.astro',
   path: '/equipment/mule-shoe',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Mule Shoe: How Guide Nose Tools Work"
   description="What a mule shoe is, how its beveled nose guides a string past ledges and window edges, when it's run, and how it differs from a bull nose plug."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Mule Shoe', href: '/equipment/mule-shoe' }]}
   lang="en"
   alternateHref="/es/equipment/mule-shoe"

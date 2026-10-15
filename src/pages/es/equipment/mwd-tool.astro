@@ -28,16 +28,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/mwd-tool.astro',
   path: '/es/equipment/mwd-tool',
@@ -50,7 +40,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Herramienta MWD: Medición Durante la Perforación"
   description="Qué es una herramienta MWD, telemetría de pulsos de lodo, MWD vs. LWD, dónde se ubica en el BHA, y fallas comunes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Herramienta MWD', href: '/es/equipment/mwd-tool' }]}
   lang="es"
   alternateHref="/equipment/mwd-tool"

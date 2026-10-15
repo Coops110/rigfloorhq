@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/scssv.astro',
   path: '/es/equipment/scssv',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="SCSSV: Cómo Funcionan las Válvulas de Seguridad Controladas"
   description="Qué es una Válvula de Seguridad Subsuperficial Controlada desde Superficie (SCSSV), por qué es a prueba de fallas por diseño, requisitos regulatorios."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'SCSSV', href: '/es/equipment/scssv' }]}
   lang="es"
   alternateHref="/equipment/scssv"

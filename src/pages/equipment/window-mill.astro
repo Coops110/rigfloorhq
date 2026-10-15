@@ -28,16 +28,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/window-mill.astro',
   path: '/equipment/window-mill',
@@ -50,7 +40,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Window Mill: How Sidetrack Window Milling Works"
   description="What a window mill is, the starting/window/taper mill sequence, whipstock setting and orientation, common failure modes, and how it differs from a section mill."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Window Mill', href: '/equipment/window-mill' }]}
   lang="en"
   alternateHref="/es/equipment/window-mill"

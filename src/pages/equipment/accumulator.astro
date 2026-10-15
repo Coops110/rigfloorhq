@@ -43,16 +43,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/accumulator.astro',
   path: '/equipment/accumulator',
@@ -65,7 +55,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Accumulator Function Test & Drill: Pressure, Timing"
   description="What a BOP accumulator drill covers: initial pressure target, per-component open/close timing against API STD 53, recharge time."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Accumulator Drill', href: '/equipment/accumulator' }]}
   lang="en"
   alternateHref="/es/equipment/accumulator"

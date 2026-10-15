@@ -23,16 +23,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/fluid-circulation-system.astro',
   path: '/equipment/fluid-circulation-system',
@@ -45,7 +35,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Fluid Circulation System: Pumps, Standpipe & Flow"
   description="How a rig's fluid circulation system works: mud pumps, the standpipe and rotary hose, the full flow path from pits to bit and back, and why pump output matters for hole cleaning."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Fluid Circulation System', href: '/equipment/fluid-circulation-system' }]}
   lang="en"
   alternateHref="/es/equipment/fluid-circulation-system"

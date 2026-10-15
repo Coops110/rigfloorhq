@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/gas-lift-mandrel.astro',
   path: '/equipment/gas-lift-mandrel',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Gas Lift Mandrel: How Side-Pocket Artificial Lift Works"
   description="What a gas lift mandrel is, how a side-pocket design allows wireline valve retrieval, mandrel spacing for staged unloading, and common failure modes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Gas Lift Mandrel', href: '/equipment/gas-lift-mandrel' }]}
   lang="en"
   alternateHref="/es/equipment/gas-lift-mandrel"

@@ -12,8 +12,8 @@ export interface Props {
   modifiedDate?: string;
   breadcrumbs?: { label: string; href: string }[];
   jsonLd?: Record<string, any>;
-  /** Additional JSON-LD blocks alongside `jsonLd` (e.g. WebApplication next
-      to an existing FAQPage) without disturbing what each page already passes. */
+  /** Additional JSON-LD blocks alongside `jsonLd` (e.g. TechArticle next
+      to an existing BlogPosting) without disturbing what each page already passes. */
   extraJsonLd?: Record<string, any>[];
   lang?: 'en' | 'es';
   alternateHref?: string;

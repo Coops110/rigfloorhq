@@ -23,16 +23,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/rotating-system.astro',
   path: '/equipment/rotating-system',
@@ -45,7 +35,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Rotating System: Top Drive vs. Rotary Table and Kelly"
   description="How a rig turns the drill string: top drive versus the older rotary table and kelly setup, the swivel, and why the industry largely moved to top drives."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Rotating System', href: '/equipment/rotating-system' }]}
   lang="en"
   alternateHref="/es/equipment/rotating-system"

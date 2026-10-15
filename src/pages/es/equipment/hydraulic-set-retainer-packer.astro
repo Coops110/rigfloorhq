@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/hydraulic-set-retainer-packer.astro',
   path: '/es/equipment/hydraulic-set-retainer-packer',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Empacador de Retención Hidráulico: Estándar vs. Gas Amargo"
   description="Qué es un empacador de producción de retención de asentamiento hidráulico, cómo se asienta, la configuración estándar vs. gas amargo de agujero más grande."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Empacador de Retención Hidráulico', href: '/es/equipment/hydraulic-set-retainer-packer' }]}
   lang="es"
   alternateHref="/equipment/hydraulic-set-retainer-packer"

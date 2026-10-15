@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/packer.astro',
   path: '/es/equipment/packer',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Empacador: Permanentes vs. Recuperables Explicados"
   description="Qué es un empacador de producción, diseños permanentes vs. recuperables, el receptáculo de orificio pulido y el ensamblaje sellante."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Empacador', href: '/es/equipment/packer' }]}
   lang="es"
   alternateHref="/equipment/packer"

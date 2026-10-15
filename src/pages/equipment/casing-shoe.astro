@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/casing-shoe.astro',
   path: '/equipment/casing-shoe',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Casing Shoe: Guide Shoe vs. Float Shoe Explained"
   description="What a casing shoe is, guide shoe vs. float shoe designs, how it differs from a float sub placed higher in the string, and common failure modes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Casing Shoe', href: '/equipment/casing-shoe' }]}
   lang="en"
   alternateHref="/es/equipment/casing-shoe"

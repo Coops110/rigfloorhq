@@ -70,21 +70,10 @@ const faq = [
     a: 'It is a common way rig-move paperwork distinguishes a move within the same lease or field boundary — no new permits, road-use agreements, or jurisdictional sign-offs required beyond what is already in place — from a "legal" move that crosses into new regulatory territory and needs its own approvals before the convoy can roll. Which category a given move falls into changes what has to be cleared before Day 1 even starts.',
   },
 ];
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
 ---
 <BaseLayout
   title="Rig Move Plan vs Actual: Example Tracker & Checklist"
   description="How a rig-move plan-vs-actual tracker works: the premove checklists, day-by-day rig-down and rig-up scope of work, equipment and load counts."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Drilling', href: '/drilling' }, { label: 'Rig Move Plan vs Actual', href: '/drilling/rig-move-plan' }]}
   lang="en"
   alternateHref="/es/drilling/rig-move-plan"

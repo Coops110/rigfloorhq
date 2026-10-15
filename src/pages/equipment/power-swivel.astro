@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/power-swivel.astro',
   path: '/equipment/power-swivel',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Power Swivel: Rotation on a Workover Rig Without a Top Drive"
   description="What a power swivel is, the jobs it's used for on a workover or well-servicing rig, and how it compares to a drilling rig's top drive."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Power Swivel', href: '/equipment/power-swivel' }]}
   lang="en"
   alternateHref="/es/equipment/power-swivel"

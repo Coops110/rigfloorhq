@@ -28,16 +28,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/section-mill.astro',
   path: '/equipment/section-mill',
@@ -50,7 +40,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Section Mill: How Casing Section Milling Works"
   description="What a section mill is, single-trip vs. two-trip designs, swarf handling, generic ratings, common failure modes, and how it differs from a casing cutter."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Section Mill', href: '/equipment/section-mill' }]}
   lang="en"
   alternateHref="/es/equipment/section-mill"

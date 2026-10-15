@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/reversing-tool.astro',
   path: '/equipment/reversing-tool',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Reversing Tool: Recovering Junk by Reverse Circulation"
   description="What a reversing tool is, how reverse circulation differs from normal circulation, port actuation, common failure modes, and how it differs from a float sub."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Reversing Tool', href: '/equipment/reversing-tool' }]}
   lang="en"
   alternateHref="/es/equipment/reversing-tool"

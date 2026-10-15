@@ -23,16 +23,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/rotating-system.astro',
   path: '/es/equipment/rotating-system',
@@ -45,7 +35,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Sistema Rotatorio: Top Drive vs. Mesa Rotaria y Kelly"
   description="Cómo un taladro gira la sarta de perforación: top drive versus la configuración más antigua de mesa rotaria y kelly, la unión giratoria."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Sistema Rotatorio', href: '/es/equipment/rotating-system' }]}
   lang="es"
   alternateHref="/equipment/rotating-system"

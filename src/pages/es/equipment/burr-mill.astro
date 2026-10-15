@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/burr-mill.astro',
   path: '/es/equipment/burr-mill',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Fresa de Rebaba: Cómo las Fresas de Acabado Dresan Bordes"
   description="Qué es una fresa de rebaba, cómo dresa bordes filosos y rebabas dejadas por un corte o fresado previo, en qué se diferencia de una fresa de sección."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Fresa de Rebaba', href: '/es/equipment/burr-mill' }]}
   lang="es"
   alternateHref="/equipment/burr-mill"

@@ -42,16 +42,6 @@ const faq = [
     a: 'AWS D3.6M is the Underwater Welding Code. It defines four weld classes: Class A is intended to match surface weld quality and suits structural applications, Class B is for less critical load bearing work with more tolerance for porosity, Class C carries no structural requirement, and Class O must meet another code named in the contract. The class is chosen by the job and determines the inspection required.',
   },
 ];
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
 ---
 <BaseLayout
   {/* Search Console shows this page carries the most demand on the site —
@@ -69,7 +59,6 @@ const jsonLd = {
       "Underwater" is carried by the h1, the URL and the body copy. */}
   title="Hyperbaric Welding and Wet Welding Explained"
   description="Dry hyperbaric welding explained: the four chamber types, why GTAW, what pressure does to the arc, AWS D3.6M weld classes, and how wet welding compares."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Welding', href: '/welding' }, { label: 'Underwater Welding', href: '/welding/underwater-welding' }]}
   lang="en"
   alternateHref="/es/welding/underwater-welding"

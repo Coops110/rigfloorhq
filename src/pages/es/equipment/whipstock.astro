@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/whipstock.astro',
   path: '/es/equipment/whipstock',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Whipstock: Cómo Funcionan las Herramientas de Desviación"
   description="Qué es un whipstock, cómo su cara cóncava desvía una fresa de ventana hacia la pared del revestimiento, el pilot lug, el ancla."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Whipstock', href: '/es/equipment/whipstock' }]}
   lang="es"
   alternateHref="/equipment/whipstock"

@@ -60,21 +60,10 @@ const faq = [
     a: 'Porque cada fase depende de que la anterior termine limpiamente. El trabajo de premove (evaluación de ruta, preparación del campamento, limpieza de fosas y cellar) tiene que cerrarse antes de la liberación, ya que la mayor parte no se puede deshacer una vez que el taladro baja. El desmontaje retira el taladro en pie en un orden fijo — primero el equipo y líneas del piso, luego el mástil y la subestructura — porque salirse de ese orden implica trabajar bajo una carga que todavía no está asegurada. El montaje reconstruye en el mismo orden pero al revés, y la puesta en marcha (circular para probar el sistema reconstruido, probar funcionalmente el equipo, correr la lista de aceptación) solo empieza cuando el montaje realmente está completo, no solo programado para estarlo.',
   },
 ];
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
 ---
 <BaseLayout
   title="Plan vs Real de Movimiento de Taladro: Rastreador"
   description="Cómo funciona un rastreador de plan versus real para un movimiento de taladro: listas de premove, el trabajo diario de desmontaje y montaje."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Perforación', href: '/es/drilling' }, { label: 'Plan vs Real de Movimiento', href: '/es/drilling/rig-move-plan' }]}
   lang="es"
   alternateHref="/drilling/rig-move-plan"

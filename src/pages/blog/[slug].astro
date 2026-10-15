@@ -55,19 +55,7 @@ const blogPosting = {
   "mainEntityOfPage": { "@type": "WebPage", "@id": postUrl },
 };
 
-// Only emitted when the post actually declares FAQ pairs. Marking up questions
-// that are not answered in the visible body is a structured data violation.
-const faqPage = post.data.faq.length > 0 ? {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": post.data.faq.map((item) => ({
-    "@type": "Question",
-    "name": item.q,
-    "acceptedAnswer": { "@type": "Answer", "text": item.a },
-  })),
-} : null;
-
-const jsonLd = faqPage ? { "@context": "https://schema.org", "@graph": [blogPosting, faqPage] } : blogPosting;
+const jsonLd = blogPosting;
 
 // Only link to a specific Spanish post if a real translation with a matching
 // filename exists. When there is none, the switcher falls back to the Spanish

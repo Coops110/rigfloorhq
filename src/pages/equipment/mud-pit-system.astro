@@ -23,16 +23,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/mud-pit-system.astro',
   path: '/equipment/mud-pit-system',
@@ -45,7 +35,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Mud Pit / Solids Control System: Shakers, Desanders"
   description="How a rig's solids control system works: shale shakers, desanders and desilters, degassers, and why drilling fluid has to be processed before it can be reused."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Mud Pit System', href: '/equipment/mud-pit-system' }]}
   lang="en"
   alternateHref="/es/equipment/mud-pit-system"

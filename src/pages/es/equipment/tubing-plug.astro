@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/tubing-plug.astro',
   path: '/es/equipment/tubing-plug',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Tapón de Tubería: Barreras de Flujo Asentadas en Cable"
   description="Qué es un tapón de tubería, cómo se asienta y recupera en cable en un niple de asiento, en qué se diferencia de un tapón puente, y fallas comunes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Tapón de Tubería', href: '/es/equipment/tubing-plug' }]}
   lang="es"
   alternateHref="/equipment/tubing-plug"

@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/stabilizer.astro',
   path: '/equipment/stabilizer',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Stabilizer: String, Near-Bit & Roller-Reamer Types Explained"
   description="What a drill string stabilizer does, string vs. near-bit vs. roller-reamer placement, straight vs. spiral blade design, failure modes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Stabilizer', href: '/equipment/stabilizer' }]}
   lang="en"
   alternateHref="/es/equipment/stabilizer"

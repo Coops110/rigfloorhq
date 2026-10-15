@@ -23,16 +23,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/power-generation-system.astro',
   path: '/es/equipment/power-generation-system',
@@ -45,7 +35,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Sistema de Generación de Energía: Taladros Diésel-Eléctricos"
   description="Cómo funciona el sistema de generación de energía de un taladro: generadores diésel y el modelo diésel-eléctrico (SCR/VFD) que usa la mayoría de los taladros."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Sistema de Generación de Energía', href: '/es/equipment/power-generation-system' }]}
   lang="es"
   alternateHref="/equipment/power-generation-system"

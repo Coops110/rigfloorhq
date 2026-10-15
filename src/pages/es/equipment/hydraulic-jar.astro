@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/hydraulic-jar.astro',
   path: '/es/equipment/hydraulic-jar',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="Martillo Hidráulico: Libera Tubería Pegada por Impacto"
   description="Qué es un martillo hidráulico, martillo ascendente vs. descendente, cómo un acelerador de martillo almacena energía extra, fallas comunes."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Martillo Hidráulico', href: '/es/equipment/hydraulic-jar' }]}
   lang="es"
   alternateHref="/equipment/hydraulic-jar"

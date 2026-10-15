@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/tcp-gun.astro',
   path: '/equipment/tcp-gun',
@@ -46,7 +36,6 @@ const techArticleJsonLd = techArticleSchema({
   extraJsonLd={[techArticleJsonLd]}
   title="TCP Gun: How Tubing-Conveyed Perforating Works"
   description="What a TCP gun is, why it's run on tubing instead of wireline, how it's fired downhole, and common failure modes for tubing-conveyed perforating jobs."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'TCP Gun', href: '/equipment/tcp-gun' }]}
   lang="en"
   alternateHref="/es/equipment/tcp-gun"

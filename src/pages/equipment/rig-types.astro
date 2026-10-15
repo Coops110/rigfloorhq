@@ -36,16 +36,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/rig-types.astro',
   path: '/equipment/rig-types',
@@ -62,7 +52,6 @@ const techArticleJsonLd = techArticleSchema({
       cut mid-list. This is 44, landing at 57. */}
   title="Types of Drilling Rigs and What Decides Each"
   description="The six drilling rig types compared — land, barge, jack-up, platform, semi-sub and drillship — what separates them and what decides which drills a well."
-  jsonLd={jsonLd}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Rig Types', href: '/equipment/rig-types' }]}
   lang="en"
   alternateHref="/es/equipment/rig-types"
