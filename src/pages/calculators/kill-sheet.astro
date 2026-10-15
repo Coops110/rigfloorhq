@@ -40,7 +40,7 @@ const webAppLd = {
   "@id": "https://rigfloorhq.com/calculators/kill-sheet#app",
   "name": "Kill Sheet Calculator: KMW, ICP, FCP & Pressure Schedule",
   "url": "https://rigfloorhq.com/calculators/kill-sheet",
-  "description": "A kill sheet is the worksheet used to shut in a well safely and calculate kill mud weight, ICP, FCP, strokes to bit, bottoms-up, and the full drillpipe pressure step-down schedule to displace kill mud.",
+  "description": "A kill sheet is the worksheet a rig crew fills out after shutting in on a kick to calculate kill mud weight, ICP, FCP, strokes to bit, bottoms-up, and the full drillpipe pressure step-down schedule to displace kill mud.",
   "applicationCategory": "UtilitiesApplication",
   "applicationSubCategory": "Drilling engineering calculator",
   "operatingSystem": "Any (web browser)",
@@ -53,7 +53,7 @@ const webAppLd = {
 ---
 <BaseLayout
   title="Kill Sheet Calculator: KMW, ICP, FCP & Pressure Schedule"
-  description="A kill sheet is the worksheet used to shut in a well safely and calculate kill mud weight, ICP, FCP, strokes to bit, bottoms-up."
+  description="A kill sheet is the worksheet a rig crew fills out after shutting in on a kick to calculate kill mud weight, ICP, FCP, strokes to bit, and bottoms-up."
   jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Kill Sheet', href: '/calculators/kill-sheet' }]}
@@ -95,6 +95,16 @@ const webAppLd = {
             <div class="input-group">
               <label for="spr">Slow Circ. Pressure @ SPM (psi)</label>
               <input type="number" id="spr" value="450">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="sicp">SICP (psi)</label>
+              <input type="number" id="sicp" value="280">
+            </div>
+            <div class="input-group">
+              <label for="maasp">MAASP (psi)</label>
+              <input type="number" id="maasp" value="1200">
             </div>
           </div>
 
@@ -169,6 +179,10 @@ const webAppLd = {
           </div>
         </div>
 
+        <div class="danger-box mt-24" id="maasp-warning" style="max-width:700px;display:none;">
+          <strong>⚠ SICP exceeds MAASP.</strong> That's a serious well control problem on its own, before a kill has even started — stop and involve your certified well control supervisor immediately rather than proceeding with a standard kill sheet.
+        </div>
+
         <div class="danger-box mt-24" style="max-width:700px;">
           <strong>This is a reference tool, not an operational authority.</strong> Real well control decisions must be made by your certified well control supervisor following your company's approved procedures. Never act on a kill sheet calculation from a website alone during an actual well control event.
         </div>
@@ -179,7 +193,7 @@ const webAppLd = {
         <div class="formula-block">
           <div class="formula-label">Kill Mud Weight</div>
           <div class="formula-eq">KMW = OMW + (SIDPP ÷ (0.052 × TVD))</div>
-          <div class="formula-note">The mud weight required to exactly balance formation pressure at the bit.</div>
+          <div class="formula-note">The mud weight required to exactly balance formation pressure at the bit. Per IADC WellSharp convention, the result is rounded <strong>up</strong> to the nearest 0.1 ppg, and that rounded value — not the raw calculation — is what carries into FCP below.</div>
         </div>
         <div class="formula-block">
           <div class="formula-label">Initial Circulating Pressure</div>
@@ -239,18 +253,26 @@ const webAppLd = {
 
   function calc() {
     const tvd = num('ks-tvd'), omw = num('omw'), sidpp = num('sidpp'), scr = num('spr');
+    const sicp = num('sicp'), maasp = num('maasp');
     const pumpOut = num('pumpout');
     const stringVol = num('dp-len') * num('dp-cap') + num('bha-len') * num('bha-cap');
     const annVol = num('dpann-len') * num('dpann-cap') + num('bhaann-len') * num('bhaann-cap');
 
-    const kmw = tvd > 0 ? sidpp / (0.052 * tvd) + omw : omw;
+    const kmwRaw = tvd > 0 ? sidpp / (0.052 * tvd) + omw : omw;
+    // IADC WellSharp rounding rule: Kill Mud Weight always rounds UP to the
+    // nearest 0.1 ppg, and the rounded value carries into FCP below - never
+    // the raw unrounded figure.
+    const kmw = Math.ceil(kmwRaw * 10) / 10;
     const icp = scr + sidpp;
     const fcp = omw > 0 ? scr * (kmw / omw) : 0;
     const strokesToBit = pumpOut > 0 ? stringVol / pumpOut : 0;
     const strokesUp = pumpOut > 0 ? annVol / pumpOut : 0;
     const totalStrokes = strokesToBit + strokesUp;
 
-    (document.getElementById('out-kmw') as HTMLElement).textContent = fmt(kmw, 2) + ' ppg';
+    const maaspWarning = document.getElementById('maasp-warning');
+    if (maaspWarning) (maaspWarning as HTMLElement).style.display = (maasp > 0 && sicp > maasp) ? 'block' : 'none';
+
+    (document.getElementById('out-kmw') as HTMLElement).textContent = fmt(kmw, 1) + ' ppg';
     (document.getElementById('out-icp') as HTMLElement).textContent = fmt(icp, 0) + ' psi';
     (document.getElementById('out-fcp') as HTMLElement).textContent = fmt(fcp, 0) + ' psi';
     (document.getElementById('out-stringvol') as HTMLElement).textContent = fmt(stringVol, 1) + ' bbls';
@@ -265,7 +287,9 @@ const webAppLd = {
       let rows = '';
       for (let i = 0; i <= 10; i++) {
         const strokes = i === 10 ? Math.round(strokesToBit) : stepStrokes * i;
-        const pressure = icp - ((icp - fcp) / 10) * i;
+        // IADC WellSharp rounding rule: Pressure Reduction Schedule rounds
+        // DOWN to a whole number, not to the nearest psi.
+        const pressure = Math.floor(icp - ((icp - fcp) / 10) * i);
         const label = i === 0 ? 'Start' : i === 10 ? 'At Bit' : i * 10 + '%';
         rows += `<tr><td>${label}</td><td>${fmt(strokes, 0)}</td><td>${fmt(pressure, 0)} psi</td></tr>`;
       }

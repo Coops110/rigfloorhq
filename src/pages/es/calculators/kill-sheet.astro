@@ -96,6 +96,16 @@ const webAppLd = {
               <input type="number" id="spr" value="450">
             </div>
           </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="sicp">SICP (psi)</label>
+              <input type="number" id="sicp" value="280">
+            </div>
+            <div class="input-group">
+              <label for="maasp">MAASP (psi)</label>
+              <input type="number" id="maasp" value="1200">
+            </div>
+          </div>
 
           <div class="calc-title" style="margin-top:24px;">⚙ Datos de Bomba</div>
           <div class="input-row">
@@ -168,6 +178,10 @@ const webAppLd = {
           </div>
         </div>
 
+        <div class="danger-box mt-24" id="maasp-warning" style="max-width:700px;display:none;">
+          <strong>⚠ SICP supera al MAASP.</strong> Eso ya es un problema serio de control de pozo antes incluso de empezar la matanza — detente e involucra a tu supervisor certificado de control de pozos de inmediato en lugar de continuar con una hoja de control estándar.
+        </div>
+
         <div class="danger-box mt-24" style="max-width:700px;">
           <strong>Esta es una herramienta de referencia, no una autoridad operativa.</strong> Las decisiones reales de control de pozos deben ser tomadas por tu supervisor certificado de control de pozos siguiendo los procedimientos aprobados de tu empresa. Nunca actúes basándote únicamente en un cálculo de hoja de control de un sitio web durante un evento real de control de pozos.
         </div>
@@ -178,7 +192,7 @@ const webAppLd = {
         <div class="formula-block">
           <div class="formula-label">Peso de Lodo de Matanza</div>
           <div class="formula-eq">KMW = OMW + (SIDPP ÷ (0.052 × TVD))</div>
-          <div class="formula-note">El peso de lodo requerido para equilibrar exactamente la presión de formación en la barrena.</div>
+          <div class="formula-note">El peso de lodo requerido para equilibrar exactamente la presión de formación en la barrena. Según la convención de IADC WellSharp, el resultado se redondea <strong>hacia arriba</strong> a la décima de ppg más cercana, y ese valor redondeado — no el cálculo sin redondear — es el que se usa para el FCP a continuación.</div>
         </div>
         <div class="formula-block">
           <div class="formula-label">Presión de Circulación Inicial</div>
@@ -238,18 +252,26 @@ const webAppLd = {
 
   function calc() {
     const tvd = num('ks-tvd'), omw = num('omw'), sidpp = num('sidpp'), scr = num('spr');
+    const sicp = num('sicp'), maasp = num('maasp');
     const pumpOut = num('pumpout');
     const stringVol = num('dp-len') * num('dp-cap') + num('bha-len') * num('bha-cap');
     const annVol = num('dpann-len') * num('dpann-cap') + num('bhaann-len') * num('bhaann-cap');
 
-    const kmw = tvd > 0 ? sidpp / (0.052 * tvd) + omw : omw;
+    const kmwRaw = tvd > 0 ? sidpp / (0.052 * tvd) + omw : omw;
+    // Regla de redondeo de IADC WellSharp: el Peso de Lodo de Matanza siempre
+    // se redondea HACIA ARRIBA a la décima de ppg más cercana, y ese valor
+    // redondeado se usa para el FCP a continuación - nunca la cifra sin redondear.
+    const kmw = Math.ceil(kmwRaw * 10) / 10;
     const icp = scr + sidpp;
     const fcp = omw > 0 ? scr * (kmw / omw) : 0;
     const strokesToBit = pumpOut > 0 ? stringVol / pumpOut : 0;
     const strokesUp = pumpOut > 0 ? annVol / pumpOut : 0;
     const totalStrokes = strokesToBit + strokesUp;
 
-    (document.getElementById('out-kmw') as HTMLElement).textContent = fmt(kmw, 2) + ' ppg';
+    const maaspWarning = document.getElementById('maasp-warning');
+    if (maaspWarning) (maaspWarning as HTMLElement).style.display = (maasp > 0 && sicp > maasp) ? 'block' : 'none';
+
+    (document.getElementById('out-kmw') as HTMLElement).textContent = fmt(kmw, 1) + ' ppg';
     (document.getElementById('out-icp') as HTMLElement).textContent = fmt(icp, 0) + ' psi';
     (document.getElementById('out-fcp') as HTMLElement).textContent = fmt(fcp, 0) + ' psi';
     (document.getElementById('out-stringvol') as HTMLElement).textContent = fmt(stringVol, 1) + ' bbls';
@@ -264,7 +286,9 @@ const webAppLd = {
       let rows = '';
       for (let i = 0; i <= 10; i++) {
         const strokes = i === 10 ? Math.round(strokesToBit) : stepStrokes * i;
-        const pressure = icp - ((icp - fcp) / 10) * i;
+        // Regla de IADC WellSharp: el Programa de Reducción de Presión se
+        // redondea HACIA ABAJO a un número entero, no al más cercano.
+        const pressure = Math.floor(icp - ((icp - fcp) / 10) * i);
         const label = i === 0 ? 'Inicio' : i === 10 ? 'En Barrena' : i * 10 + '%';
         rows += `<tr><td>${label}</td><td>${fmt(strokes, 0)}</td><td>${fmt(pressure, 0)} psi</td></tr>`;
       }

@@ -7,8 +7,11 @@
 //  accepts — coarse traffic numbers without a cookie, full data after opt-in.
 //
 //  Legal points baked into the markup:
-//   • "Manage settings" is exactly as prominent as "Accept all". A reject
-//     path buried in a submenu is a standard enforcement finding.
+//   • "Reject all" sits on the first layer, identically sized and weighted
+//     to "Accept all" — a reject path buried in a settings submenu, needing
+//     more clicks than accepting, is a standard enforcement finding.
+//     "Manage settings" is a lighter-weight inline link next to it, since
+//     it isn't itself a consent choice the way accept/reject are.
 //   • The Analytics toggle inside settings defaults OFF. Nothing is
 //     pre-ticked, and scrolling is not treated as consent.
 //   • Consent is withdrawable — the footer link reopens this banner,
@@ -32,6 +35,7 @@ const t = lang === 'es'
       privacyHref: '/es/privacy',
       manageSettings: 'Configuración',
       acceptAll: 'Aceptar todo',
+      rejectAll: 'Rechazar todo',
       settingsTitle: 'Configuración de cookies',
       essentialName: 'Esenciales',
       essentialLock: 'Siempre activas',
@@ -48,6 +52,7 @@ const t = lang === 'es'
       privacyHref: '/privacy',
       manageSettings: 'Manage settings',
       acceptAll: 'Accept all',
+      rejectAll: 'Reject all',
       settingsTitle: 'Cookie settings',
       essentialName: 'Essential',
       essentialLock: 'Always on',
@@ -76,10 +81,13 @@ const t = lang === 'es'
             <p id="consent-body">
               {t.body} <a href={t.privacyHref}>{t.privacy}</a>.
             </p>
+            <button type="button" id="consent-open-settings" class="consent-link" aria-expanded="false" aria-controls="consent-view-settings">
+              {t.manageSettings}
+            </button>
           </div>
           <div class="consent-actions">
-            <button type="button" id="consent-open-settings" class="consent-btn consent-btn-ghost" aria-expanded="false" aria-controls="consent-view-settings">
-              {t.manageSettings}
+            <button type="button" id="consent-reject" class="consent-btn consent-btn-ghost">
+              {t.rejectAll}
             </button>
             <button type="button" id="consent-accept" class="consent-btn consent-btn-solid">
               {t.acceptAll}
@@ -136,6 +144,7 @@ const t = lang === 'es'
         var mainView = document.getElementById('consent-view-main');
         var settingsView = document.getElementById('consent-view-settings');
         var acceptBtn = document.getElementById('consent-accept');
+        var rejectBtn = document.getElementById('consent-reject');
         var openSettingsBtn = document.getElementById('consent-open-settings');
         var backBtn = document.getElementById('consent-back');
         var saveBtn = document.getElementById('consent-save');
@@ -274,6 +283,7 @@ const t = lang === 'es'
         }
 
         if (acceptBtn) acceptBtn.addEventListener('click', function () { choose('accepted'); });
+        if (rejectBtn) rejectBtn.addEventListener('click', function () { choose('declined'); });
         if (saveBtn) saveBtn.addEventListener('click', function () { choose(toggleIsOn() ? 'accepted' : 'declined'); });
 
         // The banner is already visible for these two, so a direct focus()
@@ -359,6 +369,27 @@ const t = lang === 'es'
   }
   .consent-copy a { color: var(--amber); text-decoration: underline; }
 
+  /* Tertiary action, deliberately lighter than the two consent buttons —
+     it opens a panel, it isn't itself an accept/reject choice, so it
+     doesn't need their size or weight to stay compliant. */
+  .consent-link {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 0;
+    background: none;
+    border: none;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--mist);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .consent-link:hover { color: var(--white); }
+  .consent-link:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
   /* The two categories inside the settings panel. Essential shows a fixed
      "always on" label instead of a control — nothing to toggle there. */
   .consent-categories { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
@@ -438,11 +469,12 @@ const t = lang === 'es'
     .consent-view {
       flex-direction: column;
       align-items: stretch;
-      gap: 14px;
+      gap: 10px;
     }
-    .consent-inner { padding: 16px 16px 18px; }
+    .consent-inner { padding: 12px 14px 14px; }
+    .consent-copy p { font-size: 12px; }
     .consent-actions { gap: 8px; }
-    .consent-btn { flex: 1 1 0; min-width: 0; padding: 12px 10px; }
+    .consent-btn { flex: 1 1 0; min-width: 0; padding: 10px 8px; }
   }
 
   @media (prefers-reduced-motion: reduce) {

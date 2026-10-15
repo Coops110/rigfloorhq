@@ -18,6 +18,10 @@ export interface Props {
   lang?: 'en' | 'es';
   alternateHref?: string;
   noindex?: boolean;
+  /** Skips the canonical tag entirely. For pages with no real canonical URL
+      of their own - the 404 page being the only current case, where a
+      self-canonical on an error response is a contradictory signal. */
+  noCanonical?: boolean;
 }
 
 const {
@@ -33,7 +37,8 @@ const {
   extraJsonLd = [],
   lang = 'en',
   alternateHref,
-  noindex = false
+  noindex = false,
+  noCanonical = false
 } = Astro.props;
 
 const siteUrl = 'https://rigfloorhq.com';
@@ -68,7 +73,7 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
-  <link rel="canonical" href={canonicalURL} />
+  {!noCanonical && <link rel="canonical" href={canonicalURL} />}
   {/* All three are gated on alternateURL. A page with no translation should
       emit no hreflang at all — x-default on its own says nothing, since it
       only means "use this when no other listed language matches" and there
