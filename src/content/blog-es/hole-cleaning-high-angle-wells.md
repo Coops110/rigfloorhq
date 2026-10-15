@@ -39,7 +39,7 @@ La limpieza del pozo suena a tarea de mantenimiento y resulta ser la razón por 
 
 ## Por Qué el Ángulo Cambia el Problema
 
-![Tres secciones de pozo comparadas. Vertical: los recortes que no son elevados vuelven a caer al flujo y tienen otra oportunidad, por lo que la limpieza se autocorrige. Entre 45 y 60 grados: los recortes se asientan sobre el lado bajo y forman una cama que luego puede deslizarse pozo abajo como un tapón de sólidos. Cerca de la horizontal: las camas se forman con facilidad pero tienden a quedarse quietas, porque hay poca pendiente por la que deslizarse.](/images/blog/cuttings-beds-by-angle.svg)
+<img src="/images/blog/cuttings-beds-by-angle.svg" width="920" height="430" loading="lazy" decoding="async" alt="Tres secciones de pozo comparadas. Vertical: los recortes que no son elevados vuelven a caer al flujo y tienen otra oportunidad, por lo que la limpieza se autocorrige. Entre 45 y 60 grados: los recortes se asientan sobre el lado bajo y forman una cama que luego puede deslizarse pozo abajo como un tapón de sólidos. Cerca de la horizontal: las camas se forman con facilidad pero tienden a quedarse quietas, porque hay poca pendiente por la que deslizarse." />
 
 En un pozo vertical, un recorte debe ser elevado en contra de la gravedad. Si la velocidad anular supera la velocidad de asentamiento de la partícula, sale. Si no, vuelve a caer al flujo y tiene otra oportunidad. El modo de falla es gradual y se autocorrige.
 

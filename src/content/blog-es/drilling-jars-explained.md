@@ -49,7 +49,7 @@ Un impacto es una magnitud distinta. La misma energía almacenada, liberada en u
 
 ## Armado y Disparo
 
-![Tres etapas del funcionamiento de un martillo. Primero, solo tracción constante: la tensión sube suavemente hasta una meseta por debajo de la fuerza de pega y nada se mueve. Segundo, armado: la sobretensión estira la tubería por encima del martillo como un resorte cargado mientras un retén mantiene el martillo cerrado. Tercero, disparo: el retén se libera, el estiramiento acumulado lanza una sección de martillo contra un yunque y un choque breve y potente viaja hasta el punto de pega.](/images/blog/drilling-jar-cycle.svg)
+<img src="/images/blog/drilling-jar-cycle.svg" width="940" height="400" loading="lazy" decoding="async" alt="Tres etapas del funcionamiento de un martillo. Primero, solo tracción constante: la tensión sube suavemente hasta una meseta por debajo de la fuerza de pega y nada se mueve. Segundo, armado: la sobretensión estira la tubería por encima del martillo como un resorte cargado mientras un retén mantiene el martillo cerrado. Tercero, disparo: el retén se libera, el estiramiento acumulado lanza una sección de martillo contra un yunque y un choque breve y potente viaja hasta el punto de pega." />
 
 **Armado.** El perforador aplica sobretensión por encima del peso propio de la sarta. El martillo permanece cerrado porque un retén — mecánico, hidráulico o combinado — lo sujeta. Mientras tanto la tubería por encima se estira. Miles de pies de acero bajo tensión son un resorte largo, y están almacenando energía real.
 

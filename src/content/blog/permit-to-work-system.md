@@ -37,7 +37,7 @@ Rigs typically run several permit categories concurrently: hot work, cold work, 
 
 Not every task needs the same permit. Matching the right permit type to the actual hazard is where most PTW failures start.
 
-![Grid of the four core rig floor permit types: hot work requiring gas test and fire watch, confined space entry requiring continuous monitoring and a standby attendant, electrical isolation and LOTO requiring one lock per worker with zero-energy check, and SIMOPS requiring a compatibility matrix reviewed every shift](/images/blog/permit-types-grid.png)
+<img src="/images/blog/permit-types-grid.png" width="1640" height="1040" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Grid of the four core rig floor permit types: hot work requiring gas test and fire watch, confined space entry requiring continuous monitoring and a standby attendant, electrical isolation and LOTO requiring one lock per worker with zero-energy check, and SIMOPS requiring a compatibility matrix reviewed every shift" />
 
 ### Hot Work Permits
 
@@ -67,7 +67,7 @@ A SIMOPS permit requires a documented compatibility assessment, sometimes called
 
 Filling out a permit correctly is a sequence, not a form-filling exercise. Skipping steps — even ones that feel redundant — is how gaps get introduced.
 
-![Permit to work sequence in five stages: define the exact scope, isolate and lock out every energy source, gas test before entry or ignition, authorize on site with the issuer walking the location, and close out with locks removed and the permit archived](/images/blog/permit-to-work-flow.png)
+<img src="/images/blog/permit-to-work-flow.png" width="2000" height="560" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Permit to work sequence in five stages: define the exact scope, isolate and lock out every energy source, gas test before entry or ignition, authorize on site with the issuer walking the location, and close out with locks removed and the permit archived" />
 
 1. **Define the task scope precisely.** Vague descriptions like "maintenance work" are not acceptable; state the exact equipment, location, and activity.
 2. **Identify all hazards specific to the task and location.** Cross-reference against equipment documentation, especially for pressure-containing systems like the [BOP stack](/equipment/bop).

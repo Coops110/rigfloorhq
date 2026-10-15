@@ -4,6 +4,8 @@
 // Two photoreal shots per tool, swapped on click/tap. Not a rotator: independent
 // AI-generated angles aren't geometrically consistent frame to frame, so this is
 // a curated 2-shot gallery rather than a drag-to-spin viewer.
+import { readFileSync } from 'node:fs';
+
 interface Props {
   image1: string;
   image2: string;
@@ -11,10 +13,40 @@ interface Props {
 }
 const { image1, image2, alt } = Astro.props;
 const uid = Math.random().toString(36).slice(2, 9);
+
+// The gallery is always rendered at a fixed aspect-ratio:1/1 box via CSS
+// (width/height:100%, object-fit:contain), so these attributes carry zero
+// layout weight — they exist purely so the <img> itself declares its real
+// intrinsic size, which is what image-dimension audits actually check.
+// Minimal JPEG SOF-marker reader, no dependency: every file under
+// public/images/equipment is a plain baseline/progressive JPEG.
+function jpegDims(publicPath: string): { width: number; height: number } | null {
+  try {
+    const buf = readFileSync(`public${publicPath}`);
+    let i = 2;
+    while (i < buf.length) {
+      if (buf[i] !== 0xff) { i++; continue; }
+      const marker = buf[i + 1];
+      if (marker === 0xd8 || marker === 0x01 || (marker >= 0xd0 && marker <= 0xd9)) { i += 2; continue; }
+      const len = buf.readUInt16BE(i + 2);
+      if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) {
+        const height = buf.readUInt16BE(i + 5);
+        const width = buf.readUInt16BE(i + 7);
+        return { width, height };
+      }
+      i += 2 + len;
+    }
+  } catch {
+    return null;
+  }
+  return null;
+}
+const dims1 = jpegDims(image1);
+const dims2 = jpegDims(image2);
 ---
 <div class="tool-gallery" id={`gallery-${uid}`} role="img" aria-label={alt}>
-  <img class="tool-gallery-img active" src={image1} alt={alt} loading="lazy" data-index="0" />
-  <img class="tool-gallery-img" src={image2} alt={alt} loading="lazy" data-index="1" />
+  <img class="tool-gallery-img active" src={image1} alt={alt} loading="lazy" data-index="0" width={dims1?.width} height={dims1?.height} />
+  <img class="tool-gallery-img" src={image2} alt={alt} loading="lazy" data-index="1" width={dims2?.width} height={dims2?.height} />
   <div class="tool-gallery-dots">
     <button type="button" class="tool-gallery-dot active" data-index="0" aria-label="View angle 1"></button>
     <button type="button" class="tool-gallery-dot" data-index="1" aria-label="View angle 2"></button>

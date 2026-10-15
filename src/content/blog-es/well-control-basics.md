@@ -50,7 +50,7 @@ Un chequeo de flujo es la forma más rápida de confirmar o descartar una entrad
 
 Si el pozo continúa fluyendo con las bombas apagadas y sin efecto de sifón mecánico presente, esa es una surgencia confirmada. En ese punto, la cuadrilla pasa directamente al procedimiento de cierre — sin verificación adicional, sin dudar.
 
-![Cinco pasos del control de pozos: detectar señales, chequeo de flujo, cerrar el pozo, registrar y calcular, matar el pozo](/images/blog/well-control-flowchart.png)
+<img src="/images/blog/well-control-flowchart.png" width="2000" height="560" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Cinco pasos del control de pozos: detectar señales, chequeo de flujo, cerrar el pozo, registrar y calcular, matar el pozo" />
 
 > **Vale la pena saber:** el control de pozos se divide en dos componentes — un componente activo (monitoreo continuo de la presión del fluido de perforación) y un componente pasivo (el preventor de reventones mismo, listo por si el monitoreo activo se pierde algo).
 
@@ -70,7 +70,7 @@ Si el H₂S es una posibilidad en la formación que se está perforando, el proc
 
 El preventor de reventones es un sistema de válvulas de alta presión instalado encima del cabezal del pozo, capaz de sellar el pozo en segundos.
 
-![Stack de BOP de arriba a abajo: preventor anular, arietes de tubería, arietes ciegos, y arietes de corte, con líneas de choke y matanza corriendo hacia el cabezal del pozo](/images/blog/bop-stack-diagram.png)
+<img src="/images/blog/bop-stack-diagram.png" width="1800" height="1120" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Stack de BOP de arriba a abajo: preventor anular, arietes de tubería, arietes ciegos, y arietes de corte, con líneas de choke y matanza corriendo hacia el cabezal del pozo" />
 
 Un stack de BOP estándar, de arriba a abajo, típicamente incluye:
 

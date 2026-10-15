@@ -52,7 +52,7 @@ Elimine cualquiera y no puede ocurrir. Ese es el valor práctico de la lista: in
 
 ## Cómo Surge la Fuerza
 
-![Comparación en sección transversal. A la izquierda, una sarta centrada rodeada de lodo, con la presión actuando por igual en todas las caras y sin fuerza neta. A la derecha, la sarta apoyada contra el revoque de una formación permeable, donde el lodo queda sellado fuera del área de contacto, de modo que la presión hidrostática completa actúa sobre el lado abierto mientras que solo la presión de formación actúa sobre la cara de contacto, produciendo una gran fuerza neta que fija la tubería contra la pared.](/images/blog/differential-sticking.svg)
+<img src="/images/blog/differential-sticking.svg" width="900" height="470" loading="lazy" decoding="async" alt="Comparación en sección transversal. A la izquierda, una sarta centrada rodeada de lodo, con la presión actuando por igual en todas las caras y sin fuerza neta. A la derecha, la sarta apoyada contra el revoque de una formación permeable, donde el lodo queda sellado fuera del área de contacto, de modo que la presión hidrostática completa actúa sobre el lado abierto mientras que solo la presión de formación actúa sobre la cara de contacto, produciendo una gran fuerza neta que fija la tubería contra la pared." />
 
 Cuando el lodo puede circular alrededor de toda la tubería, la presión hidrostática actúa sobre cada cara y la fuerza lateral neta es prácticamente cero. La tubería está libre porque la presión está equilibrada, no porque sea baja.
 

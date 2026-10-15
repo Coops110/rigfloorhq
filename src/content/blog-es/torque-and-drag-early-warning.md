@@ -61,7 +61,7 @@ La dirección también informa. Un peso al levantar que sube mientras el de asen
 
 ## Modelado Frente a Medido
 
-![Gráfico de torque frente a profundidad a lo largo de conexiones sucesivas. Una línea modelada discontinua sube de forma constante, mostrando el torque esperado para el factor de fricción planificado. La línea medida la sigue de cerca al principio, luego empieza a separarse, y la diferencia se ensancha con cada conexión hasta que la sarta se pega. El punto donde ambas líneas divergen por primera vez está marcado como el aviso real, varias conexiones antes de que el valor absoluto parezca alarmante.](/images/blog/torque-drag-trend.svg)
+<img src="/images/blog/torque-drag-trend.svg" width="920" height="440" loading="lazy" decoding="async" alt="Gráfico de torque frente a profundidad a lo largo de conexiones sucesivas. Una línea modelada discontinua sube de forma constante, mostrando el torque esperado para el factor de fricción planificado. La línea medida la sigue de cerca al principio, luego empieza a separarse, y la diferencia se ensancha con cada conexión hasta que la sarta se pega. El punto donde ambas líneas divergen por primera vez está marcado como el aviso real, varias conexiones antes de que el valor absoluto parezca alarmante." />
 
 Aquí está toda la disciplina en una imagen.
 

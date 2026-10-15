@@ -49,7 +49,7 @@ A flow check is the fastest way to confirm or rule out an influx, and it should 
 
 If the well continues to flow with pumps shut down and no mechanical siphoning effect present, that's a confirmed kick. At that point, the crew moves directly into the shut-in procedure — no further verification, no second-guessing.
 
-![Five steps of well control: detect signs, flow check, shut in, record and calculate, kill the well](/images/blog/well-control-flowchart.png)
+<img src="/images/blog/well-control-flowchart.png" width="2000" height="560" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Five steps of well control: detect signs, flow check, shut in, record and calculate, kill the well" />
 
 > **Worth knowing:** well control breaks down into two components — an active component (continuous drilling fluid pressure monitoring) and a passive component (the blowout preventer itself, sitting ready if the active monitoring misses something).
 
@@ -69,7 +69,7 @@ If H₂S is a possibility in the formation being drilled, shut-in procedure chan
 
 The blowout preventer is a high-pressure valve system installed on top of the wellhead, capable of sealing the wellbore in seconds.
 
-![BOP stack from top to bottom: annular preventer, pipe rams, blind rams, and shear rams, with choke and kill lines running to the wellhead](/images/blog/bop-stack-diagram.png)
+<img src="/images/blog/bop-stack-diagram.png" width="1800" height="1120" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="BOP stack from top to bottom: annular preventer, pipe rams, blind rams, and shear rams, with choke and kill lines running to the wellhead" />
 
 A standard BOP stack, from top to bottom, typically includes:
 
