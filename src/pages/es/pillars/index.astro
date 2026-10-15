@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const pillars = [
+  {
+    href: '/es/pillars/advanced-well-control-and-hydrostatics',
+    icon: '🧮',
+    title: 'Control de Pozos Avanzado',
+    desc: 'Referencia de gestión de presión para supervisores e ingenieros — TVD vs MD, gradientes de presión, ECD, métodos de control de pozo y consideraciones regionales.',
+  },
+  {
+    href: '/es/pillars/hydrostatic-pressure',
+    icon: '💧',
+    title: 'Presión Hidrostática',
+    desc: 'La referencia completa sobre presión hidrostática, la constante 0.052, y cómo encajan la presión de poro, la presión de fractura y la ventana de peso de lodo.',
+  },
+  {
+    href: '/es/pillars/rig-floor-leadership',
+    icon: '🪜',
+    title: 'Liderazgo en el Piso de Perforación',
+    desc: 'La escalera de supervisión de perforador a toolpusher a OIM — qué distingue cada nivel, y la certificación que condiciona el ascenso.',
+  },
+  {
+    href: '/es/pillars/stuck-pipe-and-fishing-operations',
+    icon: '🎣',
+    title: 'Pesca y Tubería Pegada',
+    desc: 'Pega diferencial, pega mecánica, jareo, punto libre y back-off, herramientas de pesca, y cuándo un sidetrack es la respuesta más barata.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Guías Pilar de RigFloorHQ",
+  "description": "Guías de referencia de nivel supervisor e ingeniero sobre control de pozos, presión hidrostática, liderazgo en el piso de perforación y operaciones de tubería pegada.",
+  "url": "https://rigfloorhq.com/es/pillars",
+  "inLanguage": "es",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": pillars.map((p, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "url": `https://rigfloorhq.com${p.href}`,
+      "name": p.title,
+    })),
+  },
+  "author": { "@id": "https://rigfloorhq.com/#organization" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+};
+---
+<BaseLayout
+  title="Guías Pilar — Referencias Técnicas en Profundidad"
+  description="Guías de referencia de nivel supervisor e ingeniero: control de pozos avanzado, presión hidrostática, liderazgo en el piso de perforación y pesca y tubería pegada."
+  breadcrumbs={[{ label: 'Guías Pilar', href: '/es/pillars' }]}
+  jsonLd={jsonLd}
+  lang="es"
+  alternateHref="/pillars"
+>
+  <Nav slot="nav" lang="es" alternateHref="/pillars" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Referencias en Profundidad</div>
+    <h1>Guías <span>Pilar</span></h1>
+    <p class="page-hero-sub">Las cuatro referencias a fondo de este sitio — cada una va mucho más allá de las páginas centro hacia el detalle de nivel supervisor e ingeniero sobre un solo tema.</p>
+  </div>
+
+  <section class="block">
+    <h2 class="sr-only">Guías Pilar</h2>
+    <div class="card-grid">
+      {pillars.map((p) => (
+        <a class="card" href={p.href}>
+          <span class="card-icon">{p.icon}</span>
+          <h3>{p.title}</h3>
+          <p>{p.desc}</p>
+          <span class="card-link">Leer la Guía →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
