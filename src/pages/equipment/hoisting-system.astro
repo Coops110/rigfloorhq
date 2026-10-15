@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -31,8 +32,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/equipment/hoisting-system.astro',
+  path: '/equipment/hoisting-system',
+  headline: "Hoisting System: Derrick, Drawworks & Drilling Line",
+  description: "How a rig's hoisting system works: derrick and crown block, traveling block, drawworks and brakes, drilling line reeving, and what actually holds the string's weight.",
+  lang: 'en',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Hoisting System: Derrick, Drawworks & Drilling Line"
   description="How a rig's hoisting system works: derrick and crown block, traveling block, drawworks and brakes, drilling line reeving, and what actually holds the string's weight."
   jsonLd={jsonLd}

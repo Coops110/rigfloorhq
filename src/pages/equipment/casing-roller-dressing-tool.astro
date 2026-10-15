@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ToolGallery from '../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/equipment/casing-roller-dressing-tool.astro',
+  path: '/equipment/casing-roller-dressing-tool',
+  headline: "Casing Roller / Dressing Tool: Restoring Round Casing",
+  description: "What a casing roller or dressing tool is, how it restores a round profile to dented or deformed casing, how it differs from a burr mill and a casing patch.",
+  lang: 'en',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Casing Roller / Dressing Tool: Restoring Round Casing"
   description="What a casing roller or dressing tool is, how it restores a round profile to dented or deformed casing, how it differs from a burr mill and a casing patch."
   jsonLd={jsonLd}

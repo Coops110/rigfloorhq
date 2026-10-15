@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ToolGallery from '../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/equipment/lifting-sub.astro',
+  path: '/equipment/lifting-sub',
+  headline: "Lifting Sub: Rig Floor Handling for Heavy BHA Components",
+  description: "What a lifting sub is, why it's a handling accessory rather than a downhole tool, how it differs from a crossover sub, and common handling failure causes.",
+  lang: 'en',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Lifting Sub: Rig Floor Handling for Heavy BHA Components"
   description="What a lifting sub is, why it's a handling accessory rather than a downhole tool, how it differs from a crossover sub, and common handling failure causes."
   jsonLd={jsonLd}

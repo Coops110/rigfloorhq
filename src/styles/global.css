@@ -147,7 +147,7 @@ nav.site-nav a.nav-link.active { color: var(--amber); border-bottom-color: var(-
 /* Language switcher */
 .nav-lang-switch {
   font-family: var(--mono) !important;
-  font-size: 11px !important;
+  font-size: 12px !important;
   font-weight: 700;
   letter-spacing: 0.05em;
   color: var(--amber) !important;
@@ -161,14 +161,20 @@ nav.site-nav a.nav-link.active { color: var(--amber); border-bottom-color: var(-
 .nav-lang-switch:hover { background: rgba(232,160,32,0.1); border-color: var(--amber); }
 .nav-lang-switch-mobile { color: var(--amber) !important; }
 
-/* Hamburger button */
+/* Hamburger button
+   44x44 tap target (was 32x32 — under the 44px minimum for touch targets).
+   The nav bar itself is 48px tall on mobile, so this still fits with 2px of
+   breathing room top and bottom. The icon lines stay a fixed 20px wide
+   rather than width:100% of the button, so the bigger hit area doesn't also
+   draw a bigger hamburger glyph. */
 .nav-hamburger {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 5px;
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   padding: 6px;
   background: none;
   border: none;
@@ -177,7 +183,7 @@ nav.site-nav a.nav-link.active { color: var(--amber); border-bottom-color: var(-
 }
 .nav-hamburger span {
   display: block;
-  width: 100%;
+  width: 20px;
   height: 2px;
   background: var(--amber);
   border-radius: 2px;
@@ -231,16 +237,33 @@ nav.site-nav a.nav-link.active { color: var(--amber); border-bottom-color: var(-
   .nav-mobile-menu { display: none; }
 }
 
-/* ── BREADCRUMB ──────────────────────────────────────── */
+/* ── BREADCRUMB ──────────────────────────────────────────────
+   overflow-x:auto + white-space:nowrap already let a long trail scroll
+   horizontally instead of wrapping or breaking layout on narrow viewports —
+   verified against the live CSS before touching this block, so the only
+   real fixes here are tap-target size and the sub-12px type the audit
+   flagged, not the overflow behavior itself. */
 .breadcrumb {
-  padding: 14px 16px 0;
+  padding: 6px 16px;
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
   color: var(--fog);
   letter-spacing: 0.04em;
   overflow-x: auto;
   white-space: nowrap;
   max-width: 100%;
+}
+/* inline-flex + min-height gives each link a real 44px-tall tap target
+   without inflating the visible text size — the taller line box this
+   creates is also what pushes the separators' effective row height up to
+   match, so the whole bar reads as one consistent strip rather than text
+   floating inside oversized links. */
+.breadcrumb a,
+.breadcrumb span.current {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 2px;
 }
 .breadcrumb a { color: var(--fog); text-decoration: none; }
 .breadcrumb a:hover { color: var(--amber); }
@@ -248,10 +271,10 @@ nav.site-nav a.nav-link.active { color: var(--amber); border-bottom-color: var(-
 .breadcrumb span.current { color: var(--mist); }
 
 @media (min-width: 640px) {
-  .breadcrumb { padding: 16px 24px 0; font-size: 11px; }
+  .breadcrumb { padding: 6px 24px; }
 }
 @media (min-width: 900px) {
-  .breadcrumb { padding: 16px 64px 0; }
+  .breadcrumb { padding: 6px 64px; }
 }
 
 /* ── PAGE HERO (sub-pages) ──────────────────────────── */

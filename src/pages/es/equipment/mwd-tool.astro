@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -36,8 +37,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/equipment/mwd-tool.astro',
+  path: '/es/equipment/mwd-tool',
+  headline: "Herramienta MWD: Medición Durante la Perforación",
+  description: "Qué es una herramienta MWD, telemetría de pulsos de lodo, MWD vs. LWD, dónde se ubica en el BHA, y fallas comunes.",
+  lang: 'es',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Herramienta MWD: Medición Durante la Perforación"
   description="Qué es una herramienta MWD, telemetría de pulsos de lodo, MWD vs. LWD, dónde se ubica en el BHA, y fallas comunes."
   jsonLd={jsonLd}

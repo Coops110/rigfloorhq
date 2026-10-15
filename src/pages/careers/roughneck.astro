@@ -3,18 +3,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 
+// Google retired rich-result support for HowTo in 2023, so this used to be
+// dead weight on the page even when it validated. Article is the correct
+// primary-entity type for a how-to guide written as prose rather than a
+// literal numbered procedure — no step array to fabricate, since the page
+// was never marked up with real HowToStep-shaped content to begin with.
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "HowTo",
-  "name": "How to Become a Roughneck",
+  "@type": "Article",
+  "headline": "How to Become a Roughneck",
   "description": "Step-by-step guide to starting a career as an oil rig roughneck with no prior experience.",
-  "step": [
-    { "@type": "HowToStep", "name": "Meet the basic requirements", "text": "Get a high school diploma or GED, be physically fit, and pass a background check and drug test." },
-    { "@type": "HowToStep", "name": "Get safety certified", "text": "Complete BOSIET/HUET for offshore roles or basic OSHA safety training for onshore roles." },
-    { "@type": "HowToStep", "name": "Apply for entry-level roustabout roles", "text": "Target land rig operators or offshore drilling contractors directly, or work with an energy staffing agency." },
-    { "@type": "HowToStep", "name": "Work as a roustabout first", "text": "Spend 1-2 years doing general labor to learn rig operations before moving to the drill floor." },
-    { "@type": "HowToStep", "name": "Move up to roughneck", "text": "Demonstrate reliability and mechanical aptitude to earn a promotion to the rig floor." }
-  ]
 };
 ---
 <BaseLayout

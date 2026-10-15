@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ToolGallery from '../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/equipment/blast-joint.astro',
+  path: '/equipment/blast-joint',
+  headline: "Blast Joint: Erosion-Resistant Tubing at Perforated",
+  description: "What a blast joint is, why it's placed opposite perforations or gas lift mandrels, how its thick wall resists erosive flow, and common failure modes.",
+  lang: 'en',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Blast Joint: Erosion-Resistant Tubing at Perforated"
   description="What a blast joint is, why it's placed opposite perforations or gas lift mandrels, how its thick wall resists erosive flow, and common failure modes."
   jsonLd={jsonLd}

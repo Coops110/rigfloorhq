@@ -2,8 +2,18 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/equipment/bop.astro',
+  path: '/es/equipment/bop',
+  headline: "Preventor de Reventones (BOP) Explicado — Tipos, Función",
+  description: "Cómo funciona un preventor de reventones: preventores anulares, tipos de arietes, configuración del stack, clasificaciones de presión.",
+  lang: 'es',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Preventor de Reventones (BOP) Explicado — Tipos, Función"
   description="Cómo funciona un preventor de reventones: preventores anulares, tipos de arietes, configuración del stack, clasificaciones de presión."
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'BOP', href: '/es/equipment/bop' }]}

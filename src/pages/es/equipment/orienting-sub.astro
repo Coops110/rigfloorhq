@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/equipment/orienting-sub.astro',
+  path: '/es/equipment/orienting-sub',
+  headline: "Sub Orientador: Cómo Funciona la Orientación de Herramientas",
+  description: "Qué es un sub orientador, cómo se confirma la orientación de toolface en el fondo con rascadores o registros en tiempo real.",
+  lang: 'es',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Sub Orientador: Cómo Funciona la Orientación de Herramientas"
   description="Qué es un sub orientador, cómo se confirma la orientación de toolface en el fondo con rascadores o registros en tiempo real."
   jsonLd={jsonLd}

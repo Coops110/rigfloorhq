@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/equipment/tcp-gun.astro',
+  path: '/es/equipment/tcp-gun',
+  headline: "Cañón TCP: Perforación Conveyada por Tubería",
+  description: "Qué es un cañón TCP, por qué se corre en tubería en lugar de cable, cómo se dispara en el fondo, y fallas comunes en trabajos conveyados por tubería.",
+  lang: 'es',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Cañón TCP: Perforación Conveyada por Tubería"
   description="Qué es un cañón TCP, por qué se corre en tubería en lugar de cable, cómo se dispara en el fondo, y fallas comunes en trabajos conveyados por tubería."
   jsonLd={jsonLd}

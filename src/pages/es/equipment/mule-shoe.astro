@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/equipment/mule-shoe.astro',
+  path: '/es/equipment/mule-shoe',
+  headline: "Zapata Mula: Cómo Funcionan las Herramientas de Nariz Guía",
+  description: "Qué es una zapata mula, cómo su nariz biselada guía la sarta pasando repisas y bordes de ventana filosos.",
+  lang: 'es',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Zapata Mula: Cómo Funcionan las Herramientas de Nariz Guía"
   description="Qué es una zapata mula, cómo su nariz biselada guía la sarta pasando repisas y bordes de ventana filosos."
   jsonLd={jsonLd}

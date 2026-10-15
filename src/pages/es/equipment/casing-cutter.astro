@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -36,8 +37,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/equipment/casing-cutter.astro',
+  path: '/es/equipment/casing-cutter',
+  headline: "Cortador de Revestimiento: Corte Interno",
+  description: "Qué es un cortador de revestimiento, métodos de corte mecánico vs. químico, cómo se corre y acciona en el fondo, clasificaciones genéricas, fallas comunes.",
+  lang: 'es',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Cortador de Revestimiento: Corte Interno"
   description="Qué es un cortador de revestimiento, métodos de corte mecánico vs. químico, cómo se corre y acciona en el fondo, clasificaciones genéricas, fallas comunes."
   jsonLd={jsonLd}

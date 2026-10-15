@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ToolGallery from '../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/equipment/liner-hanger.astro',
+  path: '/equipment/liner-hanger',
+  headline: "Liner Hanger: How a Liner Is Suspended from Casing",
+  description: "What a liner hanger is, why a liner runs instead of a full casing string, how the slips carry the liner's weight, and what a liner top packer adds.",
+  lang: 'en',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Liner Hanger: How a Liner Is Suspended from Casing"
   description="What a liner hanger is, why a liner runs instead of a full casing string, how the slips carry the liner's weight, and what a liner top packer adds."
   jsonLd={jsonLd}

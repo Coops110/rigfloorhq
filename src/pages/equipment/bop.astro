@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import DiagramEmbed from '../../components/DiagramEmbed.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
 
 const stackAlt = "BOP stack from top to bottom: annular preventer, pipe rams, blind rams, and shear rams, with choke and kill lines running to the wellhead. The annular sits highest because it seals on any pipe size or on open hole; the rams below it seal harder but each only on what it is cut for, and the shear rams at the bottom cut the pipe itself as a last resort.";
 
@@ -53,6 +54,14 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/equipment/bop.astro',
+  path: '/equipment/bop',
+  headline: 'Blowout Preventer Types and How a BOP Works',
+  description: "What a blowout preventer does, the annular and ram types, how a stack is arranged, the accumulator and control pods that close it, and test intervals.",
+  lang: 'en',
+});
 ---
 <BaseLayout
   {/* Search Console shows ~1,000 impressions/month across this cluster at
@@ -63,6 +72,7 @@ const jsonLd = {
   title="Blowout Preventer Types and How a BOP Works"
   description="What a blowout preventer does, the annular and ram types, how a stack is arranged, the accumulator and control pods that close it, and test intervals."
   jsonLd={jsonLd}
+  extraJsonLd={[techArticleJsonLd]}
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'BOP', href: '/equipment/bop' }]}
   lang="en"
   alternateHref="/es/equipment/bop"

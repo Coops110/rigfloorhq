@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -31,8 +32,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/equipment/rotating-system.astro',
+  path: '/es/equipment/rotating-system',
+  headline: "Sistema Rotatorio: Top Drive vs. Mesa Rotaria y Kelly",
+  description: "Cómo un taladro gira la sarta de perforación: top drive versus la configuración más antigua de mesa rotaria y kelly, la unión giratoria.",
+  lang: 'es',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Sistema Rotatorio: Top Drive vs. Mesa Rotaria y Kelly"
   description="Cómo un taladro gira la sarta de perforación: top drive versus la configuración más antigua de mesa rotaria y kelly, la unión giratoria."
   jsonLd={jsonLd}

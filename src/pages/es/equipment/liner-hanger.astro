@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/equipment/liner-hanger.astro',
+  path: '/es/equipment/liner-hanger',
+  headline: "Colgador de Liner: Cómo Se Suspende un Liner",
+  description: "Qué es un colgador de liner, por qué se corre un liner en lugar de una sarta de revestimiento completa, cómo los slips cargan el peso del liner.",
+  lang: 'es',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Colgador de Liner: Cómo Se Suspende un Liner"
   description="Qué es un colgador de liner, por qué se corre un liner en lugar de una sarta de revestimiento completa, cómo los slips cargan el peso del liner."
   jsonLd={jsonLd}

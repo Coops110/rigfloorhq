@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import SourcesStandards from '../../components/SourcesStandards.astro';
 ---
 <BaseLayout
   title="H2S Safety on Oil Rigs — Exposure Limits & Escape Procedures"
@@ -82,6 +83,8 @@ import Footer from '../../components/Footer.astro';
       </div>
     </div>
   </section>
+
+  <SourcesStandards lang="en" ids={['oshaH2s', 'nioshH2s']} />
 
   <section class="block">
     <p style="font-size:12px;color:var(--fog);max-width:700px;">This page is educational reference material, not a substitute for certified H₂S safety training. If you are experiencing a mental health crisis or emergency, this content is not intended for medical or emergency guidance — always follow your site's emergency response plan and contact emergency services directly.</p>

@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/equipment/under-reamer.astro',
+  path: '/es/equipment/under-reamer',
+  headline: "Escariador Bajo Restricción: Ensanche de Hoyo",
+  description: "Qué es un escariador bajo restricción, cómo se pliegan y extienden sus brazos al pasar una restricción, accionamiento hidráulico vs. mecánico.",
+  lang: 'es',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Escariador Bajo Restricción: Ensanche de Hoyo"
   description="Qué es un escariador bajo restricción, cómo se pliegan y extienden sus brazos al pasar una restricción, accionamiento hidráulico vs. mecánico."
   jsonLd={jsonLd}

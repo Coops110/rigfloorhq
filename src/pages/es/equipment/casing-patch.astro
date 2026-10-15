@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/equipment/casing-patch.astro',
+  path: '/es/equipment/casing-patch',
+  headline: "Parche de Revestimiento: Herramientas Expandibles",
+  description: "Qué es un parche de revestimiento, cómo se expande contra revestimiento dañado para restaurar la integridad de presión.",
+  lang: 'es',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Parche de Revestimiento: Herramientas Expandibles"
   description="Qué es un parche de revestimiento, cómo se expande contra revestimiento dañado para restaurar la integridad de presión."
   jsonLd={jsonLd}

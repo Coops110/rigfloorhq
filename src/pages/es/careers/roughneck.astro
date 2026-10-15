@@ -3,18 +3,16 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 
+// Google retired rich-result support for HowTo in 2023, so this used to be
+// dead weight on the page even when it validated. Article is the correct
+// primary-entity type for a how-to guide written as prose rather than a
+// literal numbered procedure — no step array to fabricate, since the page
+// was never marked up with real HowToStep-shaped content to begin with.
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "HowTo",
-  "name": "Cómo Convertirte en Roughneck (Sin Experiencia Requerida)",
+  "@type": "Article",
+  "headline": "Cómo Convertirte en Roughneck (Sin Experiencia Requerida)",
   "description": "Guía paso a paso para comenzar una carrera como roughneck en un taladro petrolero sin experiencia previa.",
-  "step": [
-    { "@type": "HowToStep", "name": "Cumple los requisitos básicos", "text": "Obtén un diploma de bachillerato o su equivalente, mantente en buena condición física, y pasa una verificación de antecedentes y prueba de drogas." },
-    { "@type": "HowToStep", "name": "Obtén certificación de seguridad", "text": "Completa BOSIET/HUET para roles costa afuera o entrenamiento básico de seguridad OSHA para roles en tierra." },
-    { "@type": "HowToStep", "name": "Aplica a roles de obrero de piso de nivel inicial", "text": "Apunta directamente a operadores de taladros terrestres o contratistas de perforación costa afuera, o trabaja con una agencia de personal energético." },
-    { "@type": "HowToStep", "name": "Trabaja primero como obrero de piso (roustabout)", "text": "Pasa de 1 a 2 años haciendo trabajo general para aprender las operaciones del taladro antes de pasar al piso de perforación." },
-    { "@type": "HowToStep", "name": "Asciende a roughneck", "text": "Demuestra confiabilidad y aptitud mecánica para ganarte una promoción al piso de perforación." }
-  ]
 };
 ---
 <BaseLayout

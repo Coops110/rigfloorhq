@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
 
 const timingRows = [
   { unit: 'Anular', close: '≤ 30 seg (diámetro < 18¾") / ≤ 45 seg (diámetro ≥ 18¾")', note: 'Sella sobre tubería, tool joints, o hoyo abierto — el elemento que más se prueba primero en un simulacro.' },
@@ -45,8 +46,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/equipment/accumulator.astro',
+  path: '/es/equipment/accumulator',
+  headline: "Prueba Funcional y Simulacro del Acumulador: Presión, Tiempo",
+  description: "Qué cubre un simulacro de acumulador de BOP: presión inicial objetivo, tiempo de apertura/cierre por componente contra API STD 53, tiempo de recarga.",
+  lang: 'es',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Prueba Funcional y Simulacro del Acumulador: Presión, Tiempo"
   description="Qué cubre un simulacro de acumulador de BOP: presión inicial objetivo, tiempo de apertura/cierre por componente contra API STD 53, tiempo de recarga."
   jsonLd={jsonLd}

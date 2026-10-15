@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ToolGallery from '../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/equipment/scssv.astro',
+  path: '/equipment/scssv',
+  headline: "SCSSV: How Surface-Controlled Subsurface Safety Valves Work",
+  description: "What a Surface-Controlled Subsurface Safety Valve (SCSSV) is, why it's fail-safe by design, regulatory requirements, and common failure modes.",
+  lang: 'en',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="SCSSV: How Surface-Controlled Subsurface Safety Valves Work"
   description="What a Surface-Controlled Subsurface Safety Valve (SCSSV) is, why it's fail-safe by design, regulatory requirements, and common failure modes."
   jsonLd={jsonLd}

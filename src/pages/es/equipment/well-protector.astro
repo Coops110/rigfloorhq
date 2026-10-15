@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -36,8 +37,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/equipment/well-protector.astro',
+  path: '/es/equipment/well-protector',
+  headline: "Protector de Pozo: Protegiendo Superficies del Cabezal",
+  description: "Qué es un protector de pozo, qué tipo de daño previene en las superficies sellantes del cabezal y el colgador, cuándo se instala y remueve.",
+  lang: 'es',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Protector de Pozo: Protegiendo Superficies del Cabezal"
   description="Qué es un protector de pozo, qué tipo de daño previene en las superficies sellantes del cabezal y el colgador, cuándo se instala y remueve."
   jsonLd={jsonLd}

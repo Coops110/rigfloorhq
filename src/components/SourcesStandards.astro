@@ -1,0 +1,35 @@
+---
+// Visible "Sources & Standards" block — real on-page content, not just
+// schema. Added 2026-10-15 to the well-control, H2S, pillar and
+// pressure-calculator pages per the SEO audit's citation gap finding.
+//
+// `ids` picks which entries from src/lib/citations.js this page cites, so
+// each page only lists the standards it actually discusses rather than a
+// copy-pasted identical box on every page.
+import { CITATIONS } from '../lib/citations.js';
+
+export interface Props {
+  ids: (keyof typeof CITATIONS)[];
+  lang?: 'en' | 'es';
+}
+
+const { ids, lang = 'en' } = Astro.props;
+const entries = ids.map((id) => CITATIONS[id][lang]);
+
+const heading = lang === 'es' ? 'Fuentes y Normas' : 'Sources & Standards';
+const intro = lang === 'es'
+  ? 'Esta página resume la práctica estándar de la industria. Para el texto normativo y las normas en sí, consulte las fuentes primarias:'
+  : "This page summarizes standard industry practice. For the regulatory text and standards themselves, see the primary sources:";
+---
+<section class="block" id="sources-standards">
+  <h2 class="section-title" style="font-size:22px;">{heading}</h2>
+  <p style="color:var(--fog);font-size:14px;max-width:760px;margin-bottom:14px;">{intro}</p>
+  <ul style="color:var(--fog);font-size:13px;max-width:760px;line-height:1.9;padding-left:20px;margin:0;">
+    {entries.map((entry) => (
+      <li>
+        <a href={entry.href} style="color:var(--amber);" target="_blank" rel="noopener">{entry.label}</a>
+        {' — '}{entry.note}
+      </li>
+    ))}
+  </ul>
+</section>

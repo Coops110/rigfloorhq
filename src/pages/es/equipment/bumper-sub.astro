@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/equipment/bumper-sub.astro',
+  path: '/es/equipment/bumper-sub',
+  headline: "Sub de Golpe: Cómo Funcionan las Herramientas Telescópicas",
+  description: "Qué es un sub de golpe, cómo funciona su mandril telescópico estriado con un martillo, dónde se ubica en una sarta de pesca.",
+  lang: 'es',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Sub de Golpe: Cómo Funcionan las Herramientas Telescópicas"
   description="Qué es un sub de golpe, cómo funciona su mandril telescópico estriado con un martillo, dónde se ubica en una sarta de pesca."
   jsonLd={jsonLd}

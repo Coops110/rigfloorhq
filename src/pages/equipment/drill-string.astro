@@ -2,8 +2,18 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/equipment/drill-string.astro',
+  path: '/equipment/drill-string',
+  headline: "The Drill String Explained — Drill Pipe, Collars, BHA, Bits",
+  description: "Every component of the drill string from top drive to drill bit: drill pipe, heavy weight drill pipe, drill collars, BHA, and bit types explained.",
+  lang: 'en',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="The Drill String Explained — Drill Pipe, Collars, BHA, Bits"
   description="Every component of the drill string from top drive to drill bit: drill pipe, heavy weight drill pipe, drill collars, BHA, and bit types explained."
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Drill String', href: '/equipment/drill-string' }]}

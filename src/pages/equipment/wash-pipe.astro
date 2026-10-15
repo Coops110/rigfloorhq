@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ToolGallery from '../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/equipment/wash-pipe.astro',
+  path: '/equipment/wash-pipe',
+  headline: "Wash Pipe: How Washover Fishing Jobs Work",
+  description: "What wash pipe is, how a washover job frees a stuck fish by removing fill and debris instead of pulling directly, the wash pipe shoe, and common failure modes.",
+  lang: 'en',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Wash Pipe: How Washover Fishing Jobs Work"
   description="What wash pipe is, how a washover job frees a stuck fish by removing fill and debris instead of pulling directly, the wash pipe shoe, and common failure modes."
   jsonLd={jsonLd}

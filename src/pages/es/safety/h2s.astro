@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import SourcesStandards from '../../../components/SourcesStandards.astro';
 ---
 <BaseLayout
   title="Seguridad de H2S en Taladros Petroleros — Límites"
@@ -82,6 +83,8 @@ import Footer from '../../../components/Footer.astro';
       </div>
     </div>
   </section>
+
+  <SourcesStandards lang="es" ids={['oshaH2s', 'nioshH2s']} />
 
   <section class="block">
     <p style="font-size:12px;color:var(--fog);max-width:700px;">Esta página es material de referencia educativo, no un sustituto del entrenamiento certificado de seguridad de H₂S. Si estás experimentando una crisis de salud mental o una emergencia, este contenido no está destinado a orientación médica o de emergencia — siempre sigue el plan de respuesta a emergencias de tu sitio y contacta a los servicios de emergencia directamente.</p>

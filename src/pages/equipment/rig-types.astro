@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import DiagramEmbed from '../../components/DiagramEmbed.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
 
 const classAlt = "Six rig types arranged left to right by increasing water depth. A land rig stands on the ground with no water at all. Three bottom-supported offshore types transfer their weight to the seabed: a submersible barge rests its flooded hull on the bottom in under 70 feet, a jack-up lowers three legs to the seabed and lifts its hull clear of the waves in up to 400 feet, and a platform rig sits on a fixed steel jacket in up to 1,500 feet. Two floating types never touch the seabed and hold station instead: a semi-submersible floats on submerged pontoons held by moorings or thrusters in up to 12,000 feet, and a drillship is a ship hull held on dynamic positioning in up to 15,000 feet. The dividing line is whether the rig rests on the bottom or floats, and that is what the water depth limit is really measuring.";
 
@@ -44,8 +45,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/equipment/rig-types.astro',
+  path: '/equipment/rig-types',
+  headline: "Types of Drilling Rigs and What Decides Each",
+  description: "The six drilling rig types compared — land, barge, jack-up, platform, semi-sub and drillship — what separates them and what decides which drills a well.",
+  lang: 'en',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   {/* Search Console shows ~261 impressions/month across "types of drilling
       rigs" and its two dozen variants, at position 79-97. The old title ran 63
       characters, becoming 76 once BaseLayout appends " | RigFloorHQ", so it was

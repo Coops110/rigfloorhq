@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ToolGallery from '../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/equipment/tcp-gun.astro',
+  path: '/equipment/tcp-gun',
+  headline: "TCP Gun: How Tubing-Conveyed Perforating Works",
+  description: "What a TCP gun is, why it's run on tubing instead of wireline, how it's fired downhole, and common failure modes for tubing-conveyed perforating jobs.",
+  lang: 'en',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="TCP Gun: How Tubing-Conveyed Perforating Works"
   description="What a TCP gun is, why it's run on tubing instead of wireline, how it's fired downhole, and common failure modes for tubing-conveyed perforating jobs."
   jsonLd={jsonLd}

@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ToolGallery from '../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/equipment/expandable-sand-screen.astro',
+  path: '/equipment/expandable-sand-screen',
+  headline: "Expandable Sand Screen: How Expansion Improves Sand Control",
+  description: "What an expandable sand screen is, why it runs small and expands against the formation, how it compares to a conventional screen and gravel pack.",
+  lang: 'en',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Expandable Sand Screen: How Expansion Improves Sand Control"
   description="What an expandable sand screen is, why it runs small and expands against the formation, how it compares to a conventional screen and gravel pack."
   jsonLd={jsonLd}

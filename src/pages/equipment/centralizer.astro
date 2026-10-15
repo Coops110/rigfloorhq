@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ToolGallery from '../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/equipment/centralizer.astro',
+  path: '/equipment/centralizer',
+  headline: "Centralizer: Bow-Spring vs. Rigid Casing Centralizers",
+  description: "What a casing centralizer is, bow-spring vs. rigid designs, why standoff matters for cementing, placement considerations, and common failure modes.",
+  lang: 'en',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Centralizer: Bow-Spring vs. Rigid Casing Centralizers"
   description="What a casing centralizer is, bow-spring vs. rigid designs, why standoff matters for cementing, placement considerations, and common failure modes."
   jsonLd={jsonLd}

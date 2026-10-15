@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/equipment/reversing-tool.astro',
+  path: '/es/equipment/reversing-tool',
+  headline: "Herramienta de Reversa: Recupera Chatarra y Escombros",
+  description: "Qué es una herramienta de reversa, en qué se diferencia la circulación inversa de la normal, accionamiento de puertos, fallas comunes.",
+  lang: 'es',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Herramienta de Reversa: Recupera Chatarra y Escombros"
   description="Qué es una herramienta de reversa, en qué se diferencia la circulación inversa de la normal, accionamiento de puertos, fallas comunes."
   jsonLd={jsonLd}

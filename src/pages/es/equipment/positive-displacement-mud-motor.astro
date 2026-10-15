@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/equipment/positive-displacement-mud-motor.astro',
+  path: '/es/equipment/positive-displacement-mud-motor',
+  headline: "Motor de Lodo de Desplazamiento Positivo (PDM)",
+  description: "Qué es un motor de lodo de desplazamiento positivo (PDM), cómo el principio Moineau convierte flujo de fluido en rotación de barrena, y deslizar vs. rotar.",
+  lang: 'es',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Motor de Lodo de Desplazamiento Positivo (PDM)"
   description="Qué es un motor de lodo de desplazamiento positivo (PDM), cómo el principio Moineau convierte flujo de fluido en rotación de barrena, y deslizar vs. rotar."
   jsonLd={jsonLd}

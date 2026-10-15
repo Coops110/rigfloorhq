@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ToolGallery from '../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/equipment/burr-mill.astro',
+  path: '/equipment/burr-mill',
+  headline: "Burr Mill: How Finishing Mills Dress Sharp Edges Downhole",
+  description: "What a burr mill is, how it dresses sharp edges and burrs left by a previous cutting or milling pass, how it differs from a section mill.",
+  lang: 'en',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Burr Mill: How Finishing Mills Dress Sharp Edges Downhole"
   description="What a burr mill is, how it dresses sharp edges and burrs left by a previous cutting or milling pass, how it differs from a section mill."
   jsonLd={jsonLd}

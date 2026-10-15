@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/equipment/tubing-plug.astro',
+  path: '/es/equipment/tubing-plug',
+  headline: "Tapón de Tubería: Barreras de Flujo Asentadas en Cable",
+  description: "Qué es un tapón de tubería, cómo se asienta y recupera en cable en un niple de asiento, en qué se diferencia de un tapón puente, y fallas comunes.",
+  lang: 'es',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Tapón de Tubería: Barreras de Flujo Asentadas en Cable"
   description="Qué es un tapón de tubería, cómo se asienta y recupera en cable en un niple de asiento, en qué se diferencia de un tapón puente, y fallas comunes."
   jsonLd={jsonLd}

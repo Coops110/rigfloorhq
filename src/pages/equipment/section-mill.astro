@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ToolGallery from '../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -36,8 +37,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/equipment/section-mill.astro',
+  path: '/equipment/section-mill',
+  headline: "Section Mill: How Casing Section Milling Works",
+  description: "What a section mill is, single-trip vs. two-trip designs, swarf handling, generic ratings, common failure modes, and how it differs from a casing cutter.",
+  lang: 'en',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Section Mill: How Casing Section Milling Works"
   description="What a section mill is, single-trip vs. two-trip designs, swarf handling, generic ratings, common failure modes, and how it differs from a casing cutter."
   jsonLd={jsonLd}

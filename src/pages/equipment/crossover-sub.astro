@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ToolGallery from '../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/equipment/crossover-sub.astro',
+  path: '/equipment/crossover-sub',
+  headline: "Crossover Sub: Connecting Different Thread Sizes in a String",
+  description: "What a crossover sub is, why drill strings need one, how it differs from a bit sub, and common failure points at the tapered shoulder.",
+  lang: 'en',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Crossover Sub: Connecting Different Thread Sizes in a String"
   description="What a crossover sub is, why drill strings need one, how it differs from a bit sub, and common failure points at the tapered shoulder."
   jsonLd={jsonLd}

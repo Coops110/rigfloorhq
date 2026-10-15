@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ToolGallery from '../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/equipment/packer.astro',
+  path: '/equipment/packer',
+  headline: "Packer: Permanent vs. Retrievable Production Packers",
+  description: "What a production packer is, permanent vs. retrievable designs, the polished bore receptacle and seal assembly, and how it differs from a bridge plug.",
+  lang: 'en',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Packer: Permanent vs. Retrievable Production Packers"
   description="What a production packer is, permanent vs. retrievable designs, the polished bore receptacle and seal assembly, and how it differs from a bridge plug."
   jsonLd={jsonLd}

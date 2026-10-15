@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ToolGallery from '../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -36,8 +37,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/equipment/well-protector.astro',
+  path: '/equipment/well-protector',
+  headline: "Well Protector: Shielding Wellhead Surfaces",
+  description: "What a well protector is, what kind of damage it prevents on wellhead and hanger sealing surfaces, when it's installed and removed, and why skipping it matters.",
+  lang: 'en',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Well Protector: Shielding Wellhead Surfaces"
   description="What a well protector is, what kind of damage it prevents on wellhead and hanger sealing surfaces, when it's installed and removed, and why skipping it matters."
   jsonLd={jsonLd}

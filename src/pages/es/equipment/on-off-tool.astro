@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,8 +33,17 @@ const jsonLd = {
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 };
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/equipment/on-off-tool.astro',
+  path: '/es/equipment/on-off-tool',
+  headline: "Herramienta On-Off: Desconectando Tubería de un Empacador",
+  description: "Qué es una herramienta on-off, cómo permite desconectar y reconectar tubería a un empacador para un workover.",
+  lang: 'es',
+});
 ---
 <BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
   title="Herramienta On-Off: Desconectando Tubería de un Empacador"
   description="Qué es una herramienta on-off, cómo permite desconectar y reconectar tubería a un empacador para un workover."
   jsonLd={jsonLd}
