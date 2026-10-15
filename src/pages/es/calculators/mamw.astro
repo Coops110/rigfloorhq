@@ -11,7 +11,7 @@ const faq = [
   },
   {
     q: '¿Por qué el New MAASP necesita el peso de lodo de control, no el peso de lodo actual?',
-    a: 'Una vez que un control está en marcha, el peso de lodo en el pozo está cambiando a propósito, y a la zapata le importa cualquier peso de lodo que realmente esté en el anular una vez que se circule el peso de lodo de control — no el peso de lodo que estaba en el pozo cuando se tomó el amago. Recalcular MAASP contra el peso de lodo de control, no el peso de lodo original, es lo que te dice si el peso de lodo de control planeado mismo es seguro para la zapata.',
+    a: 'Una vez que un control está en marcha, el peso de lodo en el pozo está cambiando a propósito, y a la zapata le importa cualquier peso de lodo que realmente esté en el anular una vez que se circule el peso de lodo de control — no el peso de lodo que estaba en el pozo cuando se tomó la surgencia. Recalcular MAASP contra el peso de lodo de control, no el peso de lodo original, es lo que te dice si el peso de lodo de control planeado mismo es seguro para la zapata.',
   },
 ];
 
@@ -116,7 +116,7 @@ const webAppLd = {
         </div>
 
         <h3>Dónde Encaja Esto</h3>
-        <p>MAMW y <a href="/es/calculators/maasp">MAASP</a> vienen de la misma prueba LOT/FIT y describen el mismo límite idéntico de zapata, solo en unidades diferentes — uno como un peso de lodo equivalente, uno como una presión de superficie en vivo. Una vez que se confirma un amago y se elige un peso de lodo de control en la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a>, la segunda caja aquí responde la pregunta operacional real: ¿es ese peso de lodo de control realmente seguro para esta zapata, y si no, cuánta presión de superficie queda antes de que no lo sea? Un New MAASP negativo o muy pequeño significa que el peso de lodo de control planeado está cerca de o pasado el límite real de la zapata, lo cual requiere la atención del supervisor de control de pozos antes de empezar a bombear, no después.</p>
+        <p>MAMW y <a href="/es/calculators/maasp">MAASP</a> vienen de la misma prueba LOT/FIT y describen el mismo límite idéntico de zapata, solo en unidades diferentes — uno como un peso de lodo equivalente, uno como una presión de superficie en vivo. Una vez que se confirma una surgencia y se elige un peso de lodo de control en la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a>, la segunda caja aquí responde la pregunta operacional real: ¿es ese peso de lodo de control realmente seguro para esta zapata, y si no, cuánta presión de superficie queda antes de que no lo sea? Un New MAASP negativo o muy pequeño significa que el peso de lodo de control planeado está cerca de o pasado el límite real de la zapata, lo cual requiere la atención del supervisor de control de pozos antes de empezar a bombear, no después.</p>
 
         <h2 id="faq">Preguntas Frecuentes</h2>
         {faq.map((item) => (

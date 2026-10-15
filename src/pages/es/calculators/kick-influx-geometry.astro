@@ -7,11 +7,11 @@ import SourcesStandards from '../../../components/SourcesStandards.astro';
 const faq = [
   {
     q: '¿Por qué importa la longitud del influjo a lo largo del pozo por separado de su altura vertical?',
-    a: 'Responden preguntas diferentes. La longitud a lo largo del pozo es una conversión de volumen a espacio — cuánto pozo realmente llena el volumen del amago, a lo largo de la dirección en que se perforó el pozo. La altura vertical convierte esa misma longitud a pies verticales verdaderos, que es lo que realmente importa para la presión, ya que la presión hidrostática depende de la profundidad vertical verdadera, no de la profundidad medida a lo largo de un pozo inclinado u horizontal.',
+    a: 'Responden preguntas diferentes. La longitud a lo largo del pozo es una conversión de volumen a espacio — cuánto pozo realmente llena el volumen de la surgencia, a lo largo de la dirección en que se perforó el pozo. La altura vertical convierte esa misma longitud a pies verticales verdaderos, que es lo que realmente importa para la presión, ya que la presión hidrostática depende de la profundidad vertical verdadera, no de la profundidad medida a lo largo de un pozo inclinado u horizontal.',
   },
   {
     q: '¿Qué pasa con la altura vertical del influjo en un pozo horizontal?',
-    a: 'Se acerca a cero conforme la inclinación se acerca a 90 grados, ya que una longitud puramente horizontal de pozo gana casi ninguna altura vertical verdadera. Esa es exactamente la razón por la que los amagos tomados en una sección horizontal o de alto ángulo son tan difíciles de detectar y manejar solo con presión — un volumen de influjo grande puede ocupar una longitud larga de pozo mientras apenas se registra como un cambio de presión en superficie.',
+    a: 'Se acerca a cero conforme la inclinación se acerca a 90 grados, ya que una longitud puramente horizontal de pozo gana casi ninguna altura vertical verdadera. Esa es exactamente la razón por la que las surgencias tomadas en una sección horizontal o de alto ángulo son tan difíciles de detectar y manejar solo con presión — un volumen de influjo grande puede ocupar una longitud larga de pozo mientras apenas se registra como un cambio de presión en superficie.',
   },
 ];
 
@@ -19,9 +19,9 @@ const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "@id": "https://rigfloorhq.com/es/calculators/kick-influx-geometry#app",
-  "name": "Calculadora de Geometría de Influjo de Amago: Longitud, Altura, Gradiente, SICP",
+  "name": "Calculadora de Geometría de Influjo de Surgencia: Longitud, Altura, Gradiente, SICP",
   "url": "https://rigfloorhq.com/es/calculators/kick-influx-geometry",
-  "description": "Calculadora gratuita de longitud de influjo a lo largo del pozo, altura vertical verdadera, gradiente de influjo, y presión de revestimiento con pozo cerrado a partir del volumen e inclinación de un amago.",
+  "description": "Calculadora gratuita de longitud de influjo a lo largo del pozo, altura vertical verdadera, gradiente de influjo, y presión de revestimiento con pozo cerrado a partir del volumen e inclinación de una surgencia.",
   "applicationCategory": "UtilitiesApplication",
   "applicationSubCategory": "Drilling engineering calculator",
   "operatingSystem": "Any (web browser)",
@@ -33,10 +33,10 @@ const webAppLd = {
 };
 ---
 <BaseLayout
-  title="Calculadora de Geometría de Influjo de Amago: Longitud"
+  title="Calculadora de Geometría de Influjo de Surgencia: Longitud"
   description="Calculadora gratuita de longitud de influjo a lo largo del pozo, altura vertical verdadera, gradiente de influjo."
   extraJsonLd={[webAppLd]}
-  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Geometría de Influjo de Amago', href: '/es/calculators/kick-influx-geometry' }]}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Geometría de Influjo de Surgencia', href: '/es/calculators/kick-influx-geometry' }]}
   lang="es"
   alternateHref="/calculators/kick-influx-geometry"
 >
@@ -45,8 +45,8 @@ const webAppLd = {
 
   <div class="page-hero">
     <div class="page-hero-eyebrow">Calculadora</div>
-    <h1>Geometría de <span>Influjo de Amago</span></h1>
-    <p class="page-hero-sub">Convierte un volumen de amago en la longitud del influjo a lo largo del pozo y su altura vertical verdadera, luego usa esa altura para revisar la presión de revestimiento con pozo cerrado.</p>
+    <h1>Geometría de <span>Influjo de Surgencia</span></h1>
+    <p class="page-hero-sub">Convierte un volumen de surgencia en la longitud del influjo a lo largo del pozo y su altura vertical verdadera, luego usa esa altura para revisar la presión de revestimiento con pozo cerrado.</p>
   </div>
 
   <section class="block">
@@ -56,7 +56,7 @@ const webAppLd = {
           <div class="calc-title">🧭 Longitud y Altura Vertical del Influjo</div>
           <div class="input-row">
             <div class="input-group">
-              <label for="kig-kv">Volumen de Amago (bbl)</label>
+              <label for="kig-kv">Volumen de Surgencia (bbl)</label>
               <input type="number" id="kig-kv" value="20" step="1">
             </div>
             <div class="input-group">
@@ -108,7 +108,7 @@ const webAppLd = {
         <h2>Las Fórmulas Usadas</h2>
         <div class="formula-block">
           <div class="formula-label">Longitud de Influjo a lo Largo del Pozo</div>
-          <div class="formula-eq">LoIAH = Volumen de Amago ÷ Capacidad Anular</div>
+          <div class="formula-eq">LoIAH = Volumen de Surgencia ÷ Capacidad Anular</div>
         </div>
         <div class="formula-block mt-24">
           <div class="formula-label">Altura Vertical de Influjo</div>
@@ -126,7 +126,7 @@ const webAppLd = {
         </div>
 
         <h3>Dónde Encaja Esto</h3>
-        <p>Estas tres fórmulas se encadenan en un amago real: el volumen de amago en bbl es una lectura de ganancia de presa, pero ni la acción de <a href="/es/drilling/well-control">control de pozos</a> ni una revisión de presión pueden usar bbl directamente — primero tiene que convertirse en una longitud de pozo, luego en una altura vertical verdadera, antes de que signifique algo en un manómetro. Una vez que se conoce la altura vertical de influjo, pásala a la segunda caja junto con el gradiente de presión propio del influjo (un <a href="/es/calculators/gas-migration">gradiente de gas estimado</a> si es un amago de gas) para revisar la presión de revestimiento con pozo cerrado resultante contra lo que realmente se está leyendo en superficie — un desajuste real ahí vale la pena investigarlo antes de asumir que cualquiera de los números es correcto.</p>
+        <p>Estas tres fórmulas se encadenan en una surgencia real: el volumen de surgencia en bbl es una lectura de ganancia de pileta, pero ni la acción de <a href="/es/drilling/well-control">control de pozos</a> ni una revisión de presión pueden usar bbl directamente — primero tiene que convertirse en una longitud de pozo, luego en una altura vertical verdadera, antes de que signifique algo en un manómetro. Una vez que se conoce la altura vertical de influjo, pásala a la segunda caja junto con el gradiente de presión propio del influjo (un <a href="/es/calculators/gas-migration">gradiente de gas estimado</a> si es una surgencia de gas) para revisar la presión de revestimiento con pozo cerrado resultante contra lo que realmente se está leyendo en superficie — un desajuste real ahí vale la pena investigarlo antes de asumir que cualquiera de los números es correcto.</p>
 
         <h2 id="faq">Preguntas Frecuentes</h2>
         {faq.map((item) => (

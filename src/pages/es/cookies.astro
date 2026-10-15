@@ -13,21 +13,21 @@ const cookies = [
     name: 'rigfloorhq_consent_v1',
     type: 'Estrictamente necesaria',
     purpose:
-      'Recuerda si aceptó o rechazó las cookies de analítica, para no preguntárselo en cada página. Se guarda en el almacenamiento local de su navegador y contiene únicamente su elección y la fecha.',
+      'Recuerda si aceptaste o rechazaste las cookies de analítica, para no preguntártelo en cada página. Se guarda en el almacenamiento local de tu navegador y contiene únicamente tu elección y la fecha.',
     expiry: 'Hasta que borre el almacenamiento del navegador',
   },
   {
     name: '_ga',
     type: 'Analítica',
     purpose:
-      'Google Analytics. Distingue a un visitante de otro para poder contar visitantes únicos en lugar de cargas de página. Solo se instala si usted acepta.',
+      'Google Analytics. Distingue a un visitante de otro para poder contar visitantes únicos en lugar de cargas de página. Solo se instala si aceptas.',
     expiry: '2 años',
   },
   {
     name: `_ga_${GA_ID.replace(/^G-/, '')}`,
     type: 'Analítica',
     purpose:
-      'Google Analytics. Mantiene el estado de la sesión para que una visita no se contabilice como varias. Solo se instala si usted acepta.',
+      'Google Analytics. Mantiene el estado de la sesión para que una visita no se contabilice como varias. Solo se instala si aceptas.',
     expiry: '2 años',
   },
 ];
@@ -35,8 +35,8 @@ const cookies = [
 <BaseLayout
   title="Política de Cookies"
   description={analytics
-    ? 'Qué cookies instala RigFloorHQ, por qué, y cómo cambiar o retirar su elección en cualquier momento.'
-    : 'RigFloorHQ no instala cookies ni almacena nada en su navegador. Esta página explica qué significa eso y cómo comprobarlo usted mismo.'}
+    ? 'Qué cookies instala RigFloorHQ, por qué, y cómo cambiar o retirar tu elección en cualquier momento.'
+    : 'RigFloorHQ no instala cookies ni almacena nada en tu navegador. Esta página explica qué significa eso y cómo comprobarlo tú mismo.'}
   breadcrumbs={[{ label: 'Política de Cookies', href: '/es/cookies' }]}
   lang="es"
   alternateHref="/cookies"
@@ -50,7 +50,7 @@ const cookies = [
     <p class="page-hero-sub">
       {analytics
         ? 'Qué instalamos, por qué, y cómo cambiar de opinión en cualquier momento.'
-        : 'Este sitio no utiliza cookies. Aquí explicamos qué significa y cómo puede comprobarlo.'}
+        : 'Este sitio no utiliza cookies. Aquí explicamos qué significa y cómo puedes comprobarlo.'}
     </p>
     <div class="page-meta">
       <span class="page-meta-item">Última actualización <strong>{LEGAL.lastUpdatedEs}</strong></span>
@@ -63,15 +63,15 @@ const cookies = [
         <>
           <div class="note-box">
             <strong>Versión resumida.</strong> Instalamos un pequeño conjunto de cookies de
-            analítica, y solo si usted acepta. Si las rechaza, no se almacena nada que no sea
-            esencial y el sitio funciona exactamente igual. Puede cambiar de opinión cuando
-            quiera desde <strong>Configuración de cookies</strong>, en el pie de página.
+            analítica, y solo si aceptas. Si las rechazas, no se almacena nada que no sea
+            esencial y el sitio funciona exactamente igual. Puedes cambiar de opinión cuando
+            quieras desde <strong>Configuración de cookies</strong>, en el pie de página.
           </div>
 
           <h2>Qué es una cookie</h2>
           <p>
-            Una cookie es un pequeño archivo que un sitio web pide a su navegador que guarde,
-            para poder reconocerlo en una página posterior o en una visita futura. Otras
+            Una cookie es un pequeño archivo que un sitio web pide a tu navegador que guarde,
+            para poder reconocerte en una página posterior o en una visita futura. Otras
             tecnologías relacionadas — almacenamiento local, de sesión y píxeles — hacen
             prácticamente lo mismo por otros medios.
           </p>
@@ -97,24 +97,24 @@ const cookies = [
           <p>
             No usamos cookies de funcionalidad ni publicitarias, y no formamos parte de
             ninguna red publicitaria. La analítica nos dice qué páginas se leen; no nos dice
-            quién es usted, y no intentamos averiguarlo.
+            quién eres, y no intentamos averiguarlo.
           </p>
 
-          <h2>Su elección</h2>
+          <h2>Tu elección</h2>
           <p>
-            Preguntamos antes de instalar nada opcional. Hasta que usted acepte, Google
+            Preguntamos antes de instalar nada opcional. Hasta que aceptes, Google
             Analytics recibe únicamente una señal anónima y sin cookies de que se ha visto
-            una página, sin almacenar nada en su dispositivo.
+            una página, sin almacenar nada en tu dispositivo.
           </p>
           <p>
-            Si rechaza, no se instala ninguna cookie de analítica y las que existieran se
-            eliminan activamente, no simplemente se ignoran. Si acepta, puede retirar su
+            Si rechazas, no se instala ninguna cookie de analítica y las que existieran se
+            eliminan activamente, no simplemente se ignoran. Si aceptas, puedes retirar tu
             consentimiento más adelante: el enlace <strong>Configuración de cookies</strong>
             del pie de página vuelve a abrir el aviso, y al rechazar se borran las cookies en
             ese momento.
           </p>
           <div class="note-box">
-            <strong>Rechazar no le cuesta nada.</strong> No hay una versión reducida de este
+            <strong>Rechazar no te cuesta nada.</strong> No hay una versión reducida de este
             sitio, no insistimos en visitas posteriores y no hay nada restringido tras el
             consentimiento.
           </div>
@@ -123,18 +123,18 @@ const cookies = [
         <>
           <div class="note-box">
             <strong>{SITE.name} no instala cookies.</strong> Ni necesarias, ni de analítica,
-            ni publicitarias. No se escribe nada en el almacén de cookies de su navegador, ni
-            en el almacenamiento local, ni en el de sesión. Por eso tampoco ha visto nunca
+            ni publicitarias. No se escribe nada en el almacén de cookies de tu navegador, ni
+            en el almacenamiento local, ni en el de sesión. Por eso tampoco has visto nunca
             aquí un banner de cookies.
           </div>
 
           <h2>Qué es una cookie</h2>
           <p>
-            Una cookie es un pequeño archivo que un sitio web pide a su navegador que guarde,
-            para poder reconocerlo en una página posterior o en una visita futura. Otras
+            Una cookie es un pequeño archivo que un sitio web pide a tu navegador que guarde,
+            para poder reconocerte en una página posterior o en una visita futura. Otras
             tecnologías relacionadas — almacenamiento local, almacenamiento de sesión,
             píxeles y huella digital del navegador — hacen prácticamente lo mismo por otros
-            medios. En conjunto, así es como la mayor parte de la web recuerda quién es usted.
+            medios. En conjunto, así es como la mayor parte de la web recuerda quién eres.
           </p>
 
           <h2>Qué utilizamos</h2>
@@ -152,14 +152,14 @@ const cookies = [
 
           <h2>Por qué no hay banner de cookies</h2>
           <p>
-            Conforme a la normativa del Reino Unido y de la UE, un sitio debe obtener su
-            consentimiento antes de almacenar en su dispositivo cualquier cosa que no sea
+            Conforme a la normativa del Reino Unido y de la UE, un sitio debe obtener tu
+            consentimiento antes de almacenar en tu dispositivo cualquier cosa que no sea
             estrictamente necesaria. Nosotros no almacenamos nada, así que no hay nada que
-            preguntarle. Un banner aquí sería puro teatro.
+            preguntarte. Un banner aquí sería puro teatro.
           </p>
           <p>
-            Esto también significa que no hay ninguna preferencia de consentimiento que usted
-            deba gestionar, modificar o retirar: un enlace de «configuración de cookies» no
+            Esto también significa que no hay ninguna preferencia de consentimiento que debas
+            gestionar, modificar o retirar: un enlace de «configuración de cookies» no
             tendría nada que controlar.
           </p>
         </>
@@ -167,8 +167,8 @@ const cookies = [
 
       <h2>Solicitudes a terceros</h2>
       <p>
-        Nuestras páginas cargan tipografías desde Google Fonts. Google recibe su dirección IP
-        y los datos de su navegador para poder servir los archivos de fuente. Google indica
+        Nuestras páginas cargan tipografías desde Google Fonts. Google recibe tu dirección IP
+        y los datos de tu navegador para poder servir los archivos de fuente. Google indica
         que no instala cookies en el servicio de Google Fonts, pero la solicitud en sí
         constituye una transferencia de datos a un tercero y preferimos mencionarla antes que
         omitirla. Lo explicamos con más detalle en nuestra
@@ -180,17 +180,17 @@ const cookies = [
           : 'Aparte de las tipografías, nuestras páginas no realizan ninguna otra solicitud a terceros: sin balizas de analítica, sin llamadas publicitarias, sin vídeo incrustado, sin widgets de redes sociales y sin mapas.'}
       </p>
 
-      <h2>Compruébelo usted mismo</h2>
+      <h2>Compruébalo tú mismo</h2>
       <p>
-        No tiene por qué creernos. En su navegador, pulse
-        <span class="highlight">F12</span> para abrir las herramientas de desarrollo y vaya a
+        No tienes por qué creernos. En tu navegador, pulsa
+        <span class="highlight">F12</span> para abrir las herramientas de desarrollo y ve a
         la pestaña <strong>Aplicación</strong> (Chrome y Edge) o <strong>Almacenamiento</strong>
-        (Firefox). La pestaña <strong>Red</strong> le mostrará todas las solicitudes que hace
+        (Firefox). La pestaña <strong>Red</strong> te mostrará todas las solicitudes que hace
         la página.
       </p>
       <div class="note-box">
         {analytics ? (
-          <><strong>Conviene saberlo.</strong> Si rechaza y aun así encuentra una cookie <span class="highlight">_ga</span> instalada por este dominio, se trata de un error: díganoslo en <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a>.</>
+          <><strong>Conviene saberlo.</strong> Si rechazas y aun así encuentras una cookie <span class="highlight">_ga</span> instalada por este dominio, se trata de un error: dínoslo en <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a>.</>
         ) : (
           <><strong>Conviene saberlo.</strong> Si alguna vez encuentra una cookie instalada por este dominio, se tratará de un error o de un cambio que no hemos documentado; en cualquier caso, queremos saberlo en <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a>.</>
         )}
@@ -199,7 +199,7 @@ const cookies = [
       <h2>Si esto cambia</h2>
       <p>
         {analytics
-          ? 'Si incorporamos cualquier otra tecnología de seguimiento, actualizaremos esta tabla, actualizaremos la Política de Privacidad y volveremos a solicitar su consentimiento antes de almacenar nada nuevo. Nada se activará de forma silenciosa.'
+          ? 'Si incorporamos cualquier otra tecnología de seguimiento, actualizaremos esta tabla, actualizaremos la Política de Privacidad y volveremos a solicitar tu consentimiento antes de almacenar nada nuevo. Nada se activará de forma silenciosa.'
           : 'Si algún día incorporamos analítica o publicidad, actualizaremos esta página con una tabla completa de lo que se instala y por qué, actualizaremos la Política de Privacidad y pondremos un banner de consentimiento en condiciones antes de almacenar nada que no sea esencial. Nada se activará de forma silenciosa.'}
       </p>
 
@@ -210,7 +210,7 @@ const cookies = [
       </div>
 
       <p style="font-size:13px;">
-        Consulte también nuestra <a href="/es/privacy">Política de Privacidad</a>,
+        Consulta también nuestra <a href="/es/privacy">Política de Privacidad</a>,
         los <a href="/es/terms">Términos del Servicio</a> y la página
         <a href="/es/about">Acerca de</a>.
       </p>

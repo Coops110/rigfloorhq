@@ -9,14 +9,14 @@ const analytics = Boolean(GA_ID);
 const processors = analytics
   ? PROCESSORS_ES.map((p) =>
       p[0] === 'Google LLC'
-        ? [p[0], 'Google Analytics y las tipografías web utilizadas en el sitio. Recibe su dirección IP en ambos casos.', p[2]]
+        ? [p[0], 'Google Analytics y las tipografías web utilizadas en el sitio. Recibe tu dirección IP en ambos casos.', p[2]]
         : p
     )
   : PROCESSORS_ES;
 ---
 <BaseLayout
   title="Política de Privacidad"
-  description="Qué recopila RigFloorHQ, qué no recopila y cuáles son sus derechos. Este sitio no usa cookies ni herramientas de analítica."
+  description="Qué recopila RigFloorHQ, qué no recopila y cuáles son tus derechos. Este sitio no usa cookies ni herramientas de analítica."
   breadcrumbs={[{ label: 'Política de Privacidad', href: '/es/privacy' }]}
   lang="es"
   alternateHref="/privacy"
@@ -27,7 +27,7 @@ const processors = analytics
   <div class="page-hero">
     <div class="page-hero-eyebrow">Legal</div>
     <h1>Política de <span>Privacidad</span></h1>
-    <p class="page-hero-sub">Qué recopilamos, qué no, y qué puede pedirnos al respecto.</p>
+    <p class="page-hero-sub">Qué recopilamos, qué no, y qué puedes pedirnos al respecto.</p>
     <div class="page-meta">
       <span class="page-meta-item">Última actualización <strong>{LEGAL.lastUpdatedEs}</strong></span>
     </div>
@@ -39,17 +39,17 @@ const processors = analytics
         <div class="note-box">
           <strong>Versión resumida.</strong> {SITE.name} es un sitio estático de referencia,
           sin cuentas, sin formularios y sin publicidad. Lo único opcional que hacemos es
-          medir qué páginas se leen, y lo preguntamos antes: si lo rechaza, no se almacena
-          nada en su dispositivo. En ningún caso podemos identificarle, y nunca vendemos
+          medir qué páginas se leen, y lo preguntamos antes: si lo rechazas, no se almacena
+          nada en tu dispositivo. En ningún caso podemos identificarte, y nunca vendemos
           datos.
         </div>
       ) : (
         <div class="note-box">
           <strong>Versión resumida.</strong> {SITE.name} es un sitio estático de referencia.
           No usa cookies, no ejecuta herramientas de analítica y no tiene cuentas,
-          formularios ni publicidad. No podemos identificarle y no hay nada que usted deba
+          formularios ni publicidad. No podemos identificarte y no hay nada que debas
           rechazar. A continuación explicamos los pocos datos que se procesan de forma
-          inevitable para poder mostrarle una página web.
+          inevitable para poder mostrarte una página web.
         </div>
       )}
 
@@ -59,8 +59,8 @@ const processors = analytics
         de pozos, equipo de perforación, soldadura y carreras en el sector petrolero.
       </p>
       <p>
-        El responsable del tratamiento de sus datos personales es
-        <strong>{LEGAL.legalName}</strong>{LEGAL.address ? `, ${LEGAL.address}` : ''}. Puede
+        El responsable del tratamiento de tus datos personales es
+        <strong>{LEGAL.legalName}</strong>{LEGAL.address ? `, ${LEGAL.address}` : ''}. Puedes
         contactarnos sobre cualquier punto de esta política en
         <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a>.
       </p>
@@ -68,39 +68,39 @@ const processors = analytics
       <h2>Qué recopilamos</h2>
       <p>
         {analytics
-          ? 'Muy poco, y nada de ello le identifica por su nombre:'
+          ? 'Muy poco, y nada de ello te identifica por tu nombre:'
           : 'Solamente dos cosas, y ninguna se recopila de forma deliberada:'}
       </p>
       <ul>
         {analytics && (
           <li>
-            <strong>Datos de analítica, solo si usted acepta.</strong> Qué páginas se ven,
-            cuánto tiempo permanece, en qué zona del mundo se encuentra aproximadamente y qué
-            dispositivo y navegador ha utilizado. Los recopila Google Analytics y se asocian
-            a un identificador generado aleatoriamente, no a usted. Si lo rechaza, no se
-            almacena nada en su dispositivo y Google recibe únicamente una señal anónima de
+            <strong>Datos de analítica, solo si aceptas.</strong> Qué páginas se ven,
+            cuánto tiempo permaneces, en qué zona del mundo te encuentras aproximadamente y qué
+            dispositivo y navegador has utilizado. Los recopila Google Analytics y se asocian
+            a un identificador generado aleatoriamente, no a ti. Si lo rechazas, no se
+            almacena nada en tu dispositivo y Google recibe únicamente una señal anónima de
             que se ha visto una página.
           </li>
         )}
         <li>
           <strong>Registros del servidor.</strong> Nuestro proveedor de alojamiento registra
-          información técnica estándar al entregar una página: su dirección IP, el navegador
+          información técnica estándar al entregar una página: tu dirección IP, el navegador
           y sistema operativo, la página solicitada, la hora y la página de procedencia. Así
           funciona cualquier servidor web; sirve para entregar las páginas y para proteger
           el sitio frente a abusos y ataques.
         </li>
         <li>
-          <strong>Correspondencia.</strong> Si nos escribe, conservamos su dirección de
-          correo y lo que nos haya escrito durante el tiempo necesario para atenderlo.
+          <strong>Correspondencia.</strong> Si nos escribes, conservamos tu dirección de
+          correo y lo que nos hayas escrito durante el tiempo necesario para atenderte.
         </li>
         <li>
-          <strong>Suscripción al boletín, solo si decide suscribirse.</strong> Si se suscribe,
-          recopilamos la dirección de correo que nos proporciona. La procesa nuestro proveedor
+          <strong>Suscripción al boletín, solo si decides suscribirte.</strong> Si te suscribes,
+          recopilamos la dirección de correo que nos proporcionas. La procesa nuestro proveedor
           de correo, Buttondown (buttondown.com), conforme a su propia política de privacidad,
-          y se usa únicamente para enviarle el boletín al que se suscribió — nunca se comparte,
-          vende ni se usa para ningún otro fin. La base jurídica es su consentimiento, dado al
-          enviar el formulario. Conservamos y usamos su dirección mientras siga suscrito; si se
-          da de baja mediante el enlace incluido en cada correo, se elimina de los sistemas de
+          y se usa únicamente para enviarte el boletín al que te suscribiste — nunca se comparte,
+          vende ni se usa para ningún otro fin. La base jurídica es tu consentimiento, dado al
+          enviar el formulario. Conservamos y usamos tu dirección mientras sigas suscrito; si te
+          das de baja mediante el enlace incluido en cada correo, se elimina de los sistemas de
           Buttondown.
         </li>
       </ul>
@@ -114,12 +114,12 @@ const processors = analytics
       <ul>
         {analytics ? (
           <>
-            <li>instala cookies sin preguntarle antes — consulte nuestra <a href="/es/cookies">Política de Cookies</a>;</li>
+            <li>instala cookies sin preguntarte antes — consulta nuestra <a href="/es/cookies">Política de Cookies</a>;</li>
             <li>utiliza seguimiento más allá de la analítica de páginas descrita arriba;</li>
           </>
         ) : (
           <>
-            <li>instala cookies ni almacena nada en su navegador — consulte nuestra <a href="/es/cookies">Política de Cookies</a>;</li>
+            <li>instala cookies ni almacena nada en tu navegador — consulta nuestra <a href="/es/cookies">Política de Cookies</a>;</li>
             <li>utiliza Google Analytics ni ninguna otra herramienta de analítica o seguimiento;</li>
           </>
         )}
@@ -131,29 +131,29 @@ const processors = analytics
         <li>muestra publicidad ni colabora con redes publicitarias o intermediarios de datos;</li>
         <li>emplea píxeles de seguimiento, huella digital del navegador, grabación de sesiones ni mapas de calor;</li>
         <li>recopila datos de pago — en este sitio no se vende nada;</li>
-        <li>elabora perfiles ni toma decisiones automatizadas sobre usted;</li>
+        <li>elabora perfiles ni toma decisiones automatizadas sobre ti;</li>
         <li>vende, alquila ni comparte datos personales para la mercadotecnia de terceros.</li>
       </ul>
       <p>
         Las calculadoras de este sitio — hoja de matar el pozo, presión hidrostática y
-        ventana de peso de lodo — funcionan íntegramente en su navegador. Las cifras que
-        introduzca nunca se transmiten a nosotros ni a nadie más, y no se guarda nada al
+        ventana de peso de lodo — funcionan íntegramente en tu navegador. Las cifras que
+        introduzcas nunca se transmiten a nosotros ni a nadie más, y no se guarda nada al
         abandonar la página.
       </p>
 
       <h2>Tipografías web</h2>
       <p>
         Nuestras páginas cargan tipografías alojadas por Google Fonts. Al cargarse una
-        fuente, Google recibe su dirección IP y los datos de su navegador. Google indica que
+        fuente, Google recibe tu dirección IP y los datos de tu navegador. Google indica que
         no instala cookies en el servicio de Google Fonts ni utiliza estas solicitudes con
-        fines publicitarios, pero la solicitud sale de su navegador y no podemos controlar
+        fines publicitarios, pero la solicitud sale de tu navegador y no podemos controlar
         qué hace Google con ella. Su tratamiento se rige por la
         <a href="https://policies.google.com/privacy" rel="noopener noreferrer" target="_blank">política de privacidad de Google</a>.
       </p>
       <p>
-        Esta es la única solicitud a terceros que realizan nuestras páginas. Si prefiere
+        Esta es la única solicitud a terceros que realizan nuestras páginas. Si prefieres
         evitarla, un bloqueador de contenido la detendrá y el sitio seguirá funcionando:
-        simplemente verá las tipografías predeterminadas de su sistema.
+        simplemente verás las tipografías predeterminadas de tu sistema.
       </p>
 
       <h2>Base jurídica</h2>
@@ -162,31 +162,31 @@ const processors = analytics
           <li>
             <strong>Analítica — consentimiento.</strong> Usamos Google Analytics para ver qué
             páginas resultan útiles y cómo nos encuentran. El almacenamiento de analítica solo
-            se utiliza cuando usted ha dado su consentimiento, y puede retirarlo en cualquier
+            se utiliza cuando has dado tu consentimiento, y puedes retirarlo en cualquier
             momento desde <strong>Configuración de cookies</strong>, en el pie de página.
           </li>
         )}
         <li>
           <strong>Registros del servidor y tipografías — interés legítimo.</strong> Tenemos
           un interés legítimo en entregar el sitio de forma fiable, mantenerlo seguro y que
-          se muestre como fue diseñado. El impacto sobre usted es mínimo y no se elabora
+          se muestre como fue diseñado. El impacto sobre ti es mínimo y no se elabora
           ningún perfil.
         </li>
         <li>
-          <strong>Correspondencia — interés legítimo.</strong> Si nos escribe, usamos sus
-          datos para responderle.
+          <strong>Correspondencia — interés legítimo.</strong> Si nos escribes, usamos tus
+          datos para responderte.
         </li>
       </ul>
       {analytics ? (
         <p>
           La analítica es el único tratamiento aquí que requiere consentimiento, y por eso
           existe el aviso y por eso rechazar es exactamente igual de fácil que aceptar. Todo
-          lo demás es lo que cualquier servidor web debe hacer para enviarle una página.
+          lo demás es lo que cualquier servidor web debe hacer para enviarte una página.
         </p>
       ) : (
         <p>
           Dado que no instalamos cookies ni usamos analítica, no existe ningún tratamiento que
-          requiera su consentimiento y, por tanto, no hay banner de cookies. Es una decisión
+          requiera tu consentimiento y, por tanto, no hay banner de cookies. Es una decisión
           deliberada.
         </p>
       )}
@@ -213,8 +213,8 @@ const processors = analytics
       <h2>Transferencias internacionales</h2>
       <p>
         Operamos desde {LEGAL.governingLawEs} y nuestros proveedores se encuentran
-        principalmente en Estados Unidos, de modo que si usted está en el Reino Unido o en
-        el Espacio Económico Europeo sus datos se transfieren fuera de esa zona. Cuando así
+        principalmente en Estados Unidos, de modo que si estás en el Reino Unido o en
+        el Espacio Económico Europeo tus datos se transfieren fuera de esa zona. Cuando así
         ocurre, aplicamos las garantías adecuadas, incluidas la Adenda de Transferencia
         Internacional de Datos del Reino Unido y las Cláusulas Contractuales Tipo de la
         Comisión Europea. Varios de estos proveedores están además certificados en el Marco
@@ -227,30 +227,30 @@ const processors = analytics
         {analytics && (
           <>
             <li><strong>Datos de analítica</strong> — los conserva Google Analytics durante <strong>{LEGAL.analyticsRetentionEs}</strong>, tras los cuales se eliminan automáticamente.</li>
-            <li><strong>Cookies de analítica</strong> — hasta 2 años, o hasta que las rechace o las borre.</li>
-            <li><strong>Su elección de consentimiento</strong> — se guarda en su navegador hasta que la borre.</li>
+            <li><strong>Cookies de analítica</strong> — hasta 2 años, o hasta que las rechaces o las borres.</li>
+            <li><strong>Tu elección de consentimiento</strong> — se guarda en tu navegador hasta que la borres.</li>
           </>
         )}
-        <li><strong>Correspondencia</strong> — se conserva el tiempo necesario para atender su mensaje y un periodo razonable posterior; después se elimina.</li>
+        <li><strong>Correspondencia</strong> — se conserva el tiempo necesario para atender tu mensaje y un periodo razonable posterior; después se elimina.</li>
       </ul>
 
-      <h2>Sus derechos</h2>
-      <p>Conforme a la normativa de protección de datos del Reino Unido y de la UE, usted tiene derecho a:</p>
+      <h2>Tus derechos</h2>
+      <p>Conforme a la normativa de protección de datos del Reino Unido y de la UE, tienes derecho a:</p>
       <ul>
-        <li>saber qué datos personales tenemos sobre usted y obtener una copia;</li>
+        <li>saber qué datos personales tenemos sobre ti y obtener una copia;</li>
         <li>que se corrijan los datos inexactos;</li>
-        <li>solicitar que eliminemos sus datos;</li>
+        <li>solicitar que eliminemos tus datos;</li>
         <li>oponerse a nuestro tratamiento o solicitar que lo limitemos;</li>
-        <li>recibir en un formato portátil los datos que nos haya facilitado;</li>
-        <li>retirar su consentimiento en cualquier momento, cuando nos basemos en él.</li>
+        <li>recibir en un formato portátil los datos que nos hayas facilitado;</li>
+        <li>retirar tu consentimiento en cualquier momento, cuando nos basemos en él.</li>
       </ul>
       <p>
-        Escriba a <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a> para
+        Escribe a <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a> para
         ejercer cualquiera de ellos. Responderemos en el plazo de un mes y es gratuito.
       </p>
       <p>
-        En la práctica, si solo ha leído el sitio y nunca nos ha escrito, no tenemos nada que
-        pueda identificarle y no hay nada que devolver ni eliminar. Preferimos decirlo
+        En la práctica, si solo has leído el sitio y nunca nos has escrito, no tenemos nada que
+        pueda identificarte y no hay nada que devolver ni eliminar. Preferimos decirlo
         claramente antes que dar a entender que guardamos un expediente que no existe.
       </p>
 
@@ -263,11 +263,11 @@ const processors = analytics
 
       <h2>Reclamaciones</h2>
       <p>
-        Si no está conforme con cómo hemos tratado sus datos, díganoslo primero a nosotros
-        para poder corregirlo. También tiene derecho a reclamar ante la Oficina del
+        Si no estás conforme con cómo hemos tratado tus datos, dínoslo primero a nosotros
+        para poder corregirlo. También tienes derecho a reclamar ante la Oficina del
         Comisionado de Información del Reino Unido en
         <a href="https://ico.org.uk" rel="noopener noreferrer" target="_blank">ico.org.uk</a>,
-        o ante la autoridad de control de su país si se encuentra en el EEE.
+        o ante la autoridad de control de tu país si te encuentras en el EEE.
       </p>
 
       <h2>Seguridad</h2>
@@ -282,7 +282,7 @@ const processors = analytics
         {analytics
           ? 'Podremos actualizar esta política a medida que el sitio evolucione, en particular si alguna vez incorporamos publicidad. Si lo hacemos, cambiaremos la fecha indicada arriba, actualizaremos la '
           : 'Podremos actualizar esta política a medida que el sitio evolucione, en particular si alguna vez incorporamos analítica o publicidad. Si lo hacemos, cambiaremos la fecha indicada arriba, actualizaremos la '}
-        <a href="/es/cookies">Política de Cookies</a> y volveremos a solicitar su
+        <a href="/es/cookies">Política de Cookies</a> y volveremos a solicitar tu
         consentimiento antes de utilizar cualquier nueva tecnología de seguimiento.
       </p>
 
@@ -293,7 +293,7 @@ const processors = analytics
       </div>
 
       <p style="font-size:13px;">
-        Consulte también nuestros <a href="/es/terms">Términos del Servicio</a>,
+        Consulta también nuestros <a href="/es/terms">Términos del Servicio</a>,
         la <a href="/es/cookies">Política de Cookies</a> y la página
         <a href="/es/about">Acerca de</a>.
       </p>

@@ -47,7 +47,7 @@ En un taladro que maneja hidrocarburos, esta es una de las categorías de mayor 
 
 ### Permisos de Entrada a Espacios Confinados
 
-Aplican a tanques, presas de lodo, contrapozos, espacios vacíos y cualquier área con entrada/salida restringida y potencial de deficiencia de oxígeno o acumulación de gas tóxico.
+Aplican a tanques, piletas de lodo, contrapozos, espacios vacíos y cualquier área con entrada/salida restringida y potencial de deficiencia de oxígeno o acumulación de gas tóxico.
 
 Estos permisos requieren monitoreo atmosférico continuo, un vigilante externo y equipo de rescate colocado en el punto de entrada antes de que alguien entre. Donde el H₂S sea posible, aplican además los [protocolos de detección y seguridad de H₂S](/es/safety/h2s).
 
@@ -92,7 +92,7 @@ Los requisitos típicos incluyen:
 
 ## Espacios Confinados: Verificación y Monitoreo
 
-Los permisos de espacio confinado fallan más en la re-verificación. Las condiciones atmosféricas pueden cambiar minutos después de la prueba inicial, particularmente en presas de lodo o tanques con vapores residuales de hidrocarburos.
+Los permisos de espacio confinado fallan más en la re-verificación. Las condiciones atmosféricas pueden cambiar minutos después de la prueba inicial, particularmente en piletas de lodo o tanques con vapores residuales de hidrocarburos.
 
 Un permiso bien completado especifica intervalos de monitoreo continuo o periódico, no una sola prueba a la entrada. También nombra a un vigilante que nunca deja su puesto y tiene comunicación directa con el entrante y con respuesta a emergencias.
 
