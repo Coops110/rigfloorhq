@@ -2,11 +2,24 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { reviewedByJabin } from '../../lib/person.js';
+
+// No page-level JSON-LD existed here before: this page had none at all.
+// Added purely to carry the reviewedBy signal; see the note-box below for
+// the visible credit this backs up.
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Become a Toolpusher",
+  "description": "The path from driller to toolpusher: what the role actually involves, the IADC WellSharp Supervisor certification it requires, realistic timeline, and pay.",
+  "reviewedBy": reviewedByJabin(),
+};
 ---
 <BaseLayout
   title="How to Become a Toolpusher — Career Path & Requirements"
   description="The path from driller to toolpusher: what the role actually involves, the IADC WellSharp Supervisor certification it requires, realistic timeline, and pay."
   breadcrumbs={[{ label: 'Careers', href: '/careers' }, { label: 'Toolpusher', href: '/careers/toolpusher' }]}
+  jsonLd={jsonLd}
   lang="en"
   alternateHref="/es/careers/toolpusher"
 >
@@ -58,7 +71,7 @@ import Footer from '../../components/Footer.astro';
         <p>Every operator requires supervisor-level well control certification before handing over a toolpusher's authority — <strong>IWCF Level 4</strong> or the equivalent <strong>IADC WellSharp Supervisor</strong> tier. It sits one level above the IWCF Level 3 / WellSharp Driller certification a driller needs, and it covers well control from a management and decision-approval perspective rather than hands-on execution. See the full breakdown on the <a href="/careers/certifications">certifications page</a>, or the ladder it sits on at <a href="/pillars/rig-floor-leadership">Rig Floor Leadership</a>.</p>
 
         <div class="note-box">
-          <strong>Reviewed by a working supervisor:</strong> Jabin Travis, who <a href="/about#reviewed-by-a-working-driller">reviews our safety-critical content</a>, holds IADC WellSharp Supervisor certification. His read: the step from driller to toolpusher is less about new technical knowledge and more about trusting your own judgment under pressure across situations you can't fully rehearse — the certification proves competence, but the promotion itself is earned through a track record operators have actually watched.
+          <strong>Reviewed by a working supervisor:</strong> Jabin Travis, who <a href="/about/jabin-travis">reviews our safety-critical content</a>, holds IADC WellSharp Supervisor certification. His read: the step from driller to toolpusher is less about new technical knowledge and more about trusting your own judgment under pressure across situations you can't fully rehearse — the certification proves competence, but the promotion itself is earned through a track record operators have actually watched.
         </div>
 
         <h2 id="what-comes-after-toolpusher">What Comes After Toolpusher</h2>

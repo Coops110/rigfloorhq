@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import NewsletterSignup from '../../../components/NewsletterSignup.astro';
+import { reviewedByJabin } from '../../../lib/person.js';
 
 const faq = [
   {
@@ -22,7 +23,8 @@ const jsonLd = {
       "@type": "TechArticle",
       "headline": "Hoja de Referencia Rápida de Fórmulas de Perforación",
       "description": "Las fórmulas de perforación que el equipo de piso de perforación realmente necesita: presión hidrostática, peso de lodo de control, MAASP, tolerancia de surgencia, ECD, margen de viaje, factor de flotación y capacidad/desplazamiento, con enlaces para ejecutar cada una con datos reales.",
-      "about": "Fórmulas de perforación y control de pozo"
+      "about": "Fórmulas de perforación y control de pozo",
+      "reviewedBy": reviewedByJabin()
     }
   ]
 };
@@ -41,7 +43,8 @@ const webAppLd = {
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+  "reviewedBy": reviewedByJabin()
 };
 ---
 <BaseLayout
@@ -64,7 +67,7 @@ const webAppLd = {
 
   <section class="block">
     <div class="prose">
-      <p>Cada fórmula a continuación fue revisada para precisión por <a href="/es/about#reviewed-by-a-working-driller" style="color:var(--amber);">Jabin Travis</a>, perforador certificado IADC WellSharp, igual que las calculadoras mismas.</p>
+      <p>Cada fórmula a continuación fue revisada para precisión por <a href="/es/about/jabin-travis" style="color:var(--amber);">Jabin Travis</a>, perforador certificado IADC WellSharp, igual que las calculadoras mismas.</p>
     </div>
 
     <div class="formula-block">

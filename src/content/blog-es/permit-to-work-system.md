@@ -37,7 +37,11 @@ Los taladros normalmente ejecutan varias categorías de permiso a la vez: trabaj
 
 No toda tarea necesita el mismo permiso. Emparejar el tipo de permiso con el peligro real es donde empiezan la mayoría de las fallas de PTW.
 
-<img src="/images/blog/permit-types-grid.png" width="1640" height="1040" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Cuadrícula de los cuatro tipos de permiso principales del piso de perforación: trabajo en caliente con prueba de gas y vigía de fuego, entrada a espacio confinado con monitoreo continuo y vigilante, aislamiento eléctrico y LOTO con un candado por trabajador y verificación de energía cero, y SIMOPS con matriz de compatibilidad revisada cada turno" />
+<picture>
+  <source type="image/avif" srcset="/images/blog/permit-types-grid.avif" />
+  <source type="image/webp" srcset="/images/blog/permit-types-grid.webp" />
+  <img src="/images/blog/permit-types-grid.png" width="1640" height="1040" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Cuadrícula de los cuatro tipos de permiso principales del piso de perforación: trabajo en caliente con prueba de gas y vigía de fuego, entrada a espacio confinado con monitoreo continuo y vigilante, aislamiento eléctrico y LOTO con un candado por trabajador y verificación de energía cero, y SIMOPS con matriz de compatibilidad revisada cada turno" />
+</picture>
 
 ### Permisos de Trabajo en Caliente
 
@@ -67,7 +71,11 @@ Un permiso SIMOPS requiere una evaluación de compatibilidad documentada, a vece
 
 Llenar un permiso correctamente es una secuencia, no un ejercicio de formato. Saltarse pasos — incluso los que parecen redundantes — es como se introducen las brechas.
 
-<img src="/images/blog/permit-to-work-flow.png" width="2000" height="560" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Secuencia del permiso de trabajo en cinco etapas: definir el alcance exacto, aislar y bloquear cada fuente de energía, prueba de gas antes de entrada o ignición, autorizar en sitio con el emisor recorriendo la ubicación, y cierre con candados retirados y permiso archivado" />
+<picture>
+  <source type="image/avif" srcset="/images/blog/permit-to-work-flow.avif" />
+  <source type="image/webp" srcset="/images/blog/permit-to-work-flow.webp" />
+  <img src="/images/blog/permit-to-work-flow.png" width="2000" height="560" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Secuencia del permiso de trabajo en cinco etapas: definir el alcance exacto, aislar y bloquear cada fuente de energía, prueba de gas antes de entrada o ignición, autorizar en sitio con el emisor recorriendo la ubicación, y cierre con candados retirados y permiso archivado" />
+</picture>
 
 1. **Define el alcance de la tarea con precisión.** Descripciones vagas como "trabajo de mantenimiento" no son aceptables; indica el equipo, ubicación y actividad exactos.
 2. **Identifica todos los peligros específicos de la tarea y el lugar.** Cruza contra la documentación del equipo, especialmente sistemas que contienen presión como el [conjunto BOP](/es/equipment/bop).

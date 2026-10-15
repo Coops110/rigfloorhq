@@ -4,6 +4,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import DiagramEmbed from '../../../components/DiagramEmbed.astro';
+import { JABIN_PERSON_ID, reviewedByJabin } from '../../../lib/person.js';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blogEs', ({ data }) => !data.draft);
@@ -26,12 +27,15 @@ const postUrl = `${siteUrl}/es/blog/${post.id}`;
 const isRaster = (p: string) => /\.(png|jpe?g|webp)$/i.test(p);
 const shareImage = post.data.image && isRaster(post.data.image) ? post.data.image : '/og-default.png';
 
+// Same pattern as the English template (src/pages/blog/[slug].astro). See
+// its comment for the isJabin vs reviewedByJabin distinction. Same stable
+// Person @id regardless of language, per src/lib/person.js.
 const isJabin = post.data.author === 'Jabin Travis';
 const authorEntity = isJabin
   ? {
       "@type": "Person",
+      "@id": JABIN_PERSON_ID,
       "name": "Jabin Travis",
-      "@id": `${siteUrl}/about#reviewed-by-a-working-driller`,
       "jobTitle": "Drilling Operations Supervisor",
     }
   : { "@type": "Organization", "name": post.data.author };
@@ -45,6 +49,7 @@ const blogPosting = {
   "dateModified": post.data.modifiedDate || post.data.publishDate,
   "author": authorEntity,
   "publisher": { "@id": `${siteUrl}/#organization` },
+  ...(post.data.reviewedByJabin ? { "reviewedBy": reviewedByJabin() } : {}),
   "image": `${siteUrl}${shareImage}`,
   "inLanguage": "es",
   "mainEntityOfPage": { "@type": "WebPage", "@id": postUrl },

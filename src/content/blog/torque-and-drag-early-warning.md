@@ -3,6 +3,7 @@ title: "Torque and Drag as Early Warning: Read the Trend"
 description: "A torque figure means nothing on its own. What matters is the gap between what the model predicted and what the string actually did."
 publishDate: "2026-08-03"
 author: "RigFloorHQ Team"
+reviewedByJabin: true
 category: "Drilling"
 tags: ["torque and drag", "friction factor", "stuck pipe", "hole cleaning", "hookload", "drilling data"]
 diagrams:
@@ -24,7 +25,7 @@ faq:
     a: "Divergence from the modelled line typically appears several connections before the absolute value looks unusual. That gap is the useful warning window, which is why the comparison against a calibrated model matters more than watching a raw number against a mental threshold."
 ---
 
-*Reviewed for accuracy by [Jabin Travis](/about#reviewed-by-a-working-driller), IADC WellSharp-certified driller.*
+*Reviewed for accuracy by [Jabin Travis](/about/jabin-travis), IADC WellSharp-certified driller.*
 
 Torque and drag are the most consistently available early warning on a rig, and among the most consistently misread. The mistake is nearly always the same: watching the number instead of the gap.
 

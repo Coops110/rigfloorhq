@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
+import { reviewedByJabin } from '../../lib/person.js';
 
 const faq = [
   {
@@ -38,9 +39,9 @@ const jsonLd = {
       "inLanguage": "en",
       "image": "https://rigfloorhq.com/og-default.png",
       "author": { "@id": "https://rigfloorhq.com/#organization" },
-      "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+      "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+      "reviewedBy": reviewedByJabin()
     },
-    
   ],
 };
 ---
@@ -99,7 +100,7 @@ const jsonLd = {
       </div>
       <div class="card" style="border:1px solid var(--iron);border-radius:4px;">
         <h3>Reviewed by a Working Supervisor</h3>
-        <p>Jabin Travis, who <a href="/about#reviewed-by-a-working-driller">reviews our safety-critical content</a>, holds IADC WellSharp Supervisor certification himself. His input shaped the toolpusher and OIM pages linked above — not generic descriptions, but what the certification and the step up actually involve day to day.</p>
+        <p>Jabin Travis, who <a href="/about/jabin-travis">reviews our safety-critical content</a>, holds IADC WellSharp Supervisor certification himself. His input shaped the toolpusher and OIM pages linked above — not generic descriptions, but what the certification and the step up actually involve day to day.</p>
       </div>
     </div>
   </section>

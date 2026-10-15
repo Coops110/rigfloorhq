@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE } from '../../lib/site.js';
+import { JABIN_PERSON_ID } from '../../lib/person.js';
+
+const siteUrl = 'https://rigfloorhq.com';
+
+// The canonical Person record. Every reviewedBy reference elsewhere on the
+// site points at this @id via src/lib/person.js rather than re-typing any of
+// this. This page is the one place his name, credentials and bio are typed
+// out in full.
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': JABIN_PERSON_ID,
+  name: 'Jabin Travis',
+  url: `${siteUrl}/about/jabin-travis`,
+  jobTitle: 'Drilling Operations Supervisor',
+  description:
+    'Drilling professional with 30 years of experience across conventional and horizontal wells and workover/completions operations in the United States, Azerbaijan, Iraq, Kuwait, Saudi Arabia, Jordan, the UAE and Turkey. Holds IADC WellSharp Well Control and IADC DIT Rig Equipment Inspection and Maintenance accreditations.',
+  knowsAbout: [
+    'Well control',
+    'Drilling operations',
+    'Rig equipment inspection and maintenance',
+    'Horizontal drilling',
+    'Workover and completions operations',
+  ],
+  hasCredential: [
+    {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'IADC WellSharp accreditation',
+      name: 'Well Control (Drilling Operations Supervisor, Surface)',
+    },
+    {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'IADC DIT accreditation',
+      name: 'Rig Equipment Inspection and Maintenance',
+    },
+  ],
+};
+---
+<BaseLayout
+  title="Jabin Travis, Technical Reviewer"
+  description="Jabin Travis is a drilling professional with 30 years of experience who reviews RigFloorHQ's safety-critical content for technical accuracy. His background, credentials, and everything he's reviewed."
+  breadcrumbs={[{ label: 'About', href: '/about' }, { label: 'Jabin Travis', href: '/about/jabin-travis' }]}
+  jsonLd={personLd}
+  lang="en"
+  alternateHref="/es/about/jabin-travis"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/about/jabin-travis" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">About: Technical Reviewer</div>
+    <h1>Jabin <span>Travis</span></h1>
+    <p class="page-hero-sub">A working driller with 30 years in the field, reviewing RigFloorHQ's safety-critical content for real-world accuracy.</p>
+  </div>
+
+  <section class="block">
+    <div class="prose">
+      <h2>Background</h2>
+      <p>
+        Jabin Travis is a drilling professional with 30 years of experience across
+        conventional and horizontal wells and workover/completions work. His career spans
+        the United States, Azerbaijan, Iraq, Kuwait, Saudi Arabia, Jordan, the UAE and
+        Turkey, operating environments with very different regulatory regimes, rig types
+        and crews, which is part of why his review carries weight beyond any single
+        region's practice.
+      </p>
+      <p>
+        He holds IADC WellSharp accreditation in Well Control (Drilling Operations
+        Supervisor, Surface) and IADC DIT accreditation in Rig Equipment Inspection and
+        Maintenance, plus earlier Advanced Well Control training completed in 2013.
+      </p>
+      <p>
+        His role at RigFloorHQ is review, not authorship of site policy. He checks the
+        explainer videos, calculators and career pages tied to well control and rig
+        operations against what actually happens on a working rig, and flags where a
+        plain-language explanation has drifted from field reality. See
+        <a href="/about#reviewed-by-a-working-driller">how this fits into the site's
+        broader approach to safety-critical material</a> on the main About page.
+      </p>
+
+      <h2>Credentials</h2>
+      <ul>
+        <li><strong>IADC WellSharp</strong>: Well Control (Drilling Operations Supervisor, Surface)</li>
+        <li><strong>IADC DIT</strong>: Rig Equipment Inspection and Maintenance</li>
+        <li><strong>Advanced Well Control training</strong>: completed 2013</li>
+      </ul>
+
+      <h2>What He's Reviewed</h2>
+      <p>
+        Everything below has been checked by Jabin for technical accuracy, with one
+        exception noted separately: a piece he wrote firsthand from his own time on the
+        floor rather than reviewed after the fact.
+      </p>
+
+      <h3>Explainer videos</h3>
+      <ul>
+        <li><a href="/blog/hole-cleaning-high-angle-wells">Hole Cleaning in High-Angle Wells</a></li>
+        <li><a href="/blog/torque-and-drag-early-warning">Torque and Drag as Early Warning</a></li>
+      </ul>
+
+      <h3>Calculators</h3>
+      <ul>
+        <li><a href="/calculators/kill-sheet">Kill Sheet Calculator</a></li>
+        <li><a href="/calculators/hydrostatic">Hydrostatic Pressure Calculator</a></li>
+        <li><a href="/calculators/gas-migration">Gas Migration Calculator</a></li>
+        <li><a href="/calculators/mud-weight-window">Mud Weight Window Calculator</a></li>
+        <li><a href="/calculators/formulas-cheat-sheet">Drilling Formulas Cheat Sheet</a></li>
+      </ul>
+
+      <h3>Career guides</h3>
+      <ul>
+        <li><a href="/careers/roughneck">How to Become a Roughneck</a>, including the two mistakes he sees new hands make most often.</li>
+        <li><a href="/careers/toolpusher">How to Become a Toolpusher</a></li>
+      </ul>
+
+      <h3>Reference guides</h3>
+      <ul>
+        <li><a href="/pillars/rig-floor-leadership">Rig Floor Leadership: The Supervisory Career Ladder</a></li>
+      </ul>
+
+      <h3>Told firsthand</h3>
+      <p>
+        <a href="/blog/volumetric-kill-real-story">A 48-Hour Volumetric Kill</a> is Jabin's
+        own account of a real kill he worked, not a review of someone else's writing.
+        He's the author of that post, not its technical reviewer.
+      </p>
+
+      <h2>Corrections</h2>
+      <p>
+        If something attributed to Jabin's review reads wrong, email
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a> with the page and what's off.
+        See the main <a href="/about">About page</a> for the site's full approach to
+        corrections and safety-critical material.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

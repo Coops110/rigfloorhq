@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { reviewedByJabin } from '../../lib/person.js';
 
 // Google retired rich-result support for HowTo in 2023, so this used to be
 // dead weight on the page even when it validated. Article is the correct
@@ -13,6 +14,7 @@ const jsonLd = {
   "@type": "Article",
   "headline": "How to Become a Roughneck",
   "description": "Step-by-step guide to starting a career as an oil rig roughneck with no prior experience.",
+  "reviewedBy": reviewedByJabin(),
 };
 ---
 <BaseLayout
@@ -74,7 +76,7 @@ const jsonLd = {
         <p>This job is not for everyone. You'll work 12-hour shifts, often overnight, in extreme weather — desert heat in the Permian, freezing cold in North Dakota, humidity offshore in the Gulf. You'll lift heavy equipment repeatedly. Falls, pinch points, and dropped objects are real hazards, which is why safety culture on a rig is taken extremely seriously — not as a formality.</p>
 
         <h2 id="what-new-hands-get-wrong">What New Hands Get Wrong First</h2>
-        <p>Jabin Travis, the 30-year driller who <a href="/about#reviewed-by-a-working-driller">reviews our safety-critical content</a>, flags two mistakes he sees constantly on new crews:</p>
+        <p>Jabin Travis, the 30-year driller who <a href="/about/jabin-travis">reviews our safety-critical content</a>, flags two mistakes he sees constantly on new crews:</p>
         <ul>
           <li>
             <strong>Misreading rigging capacity.</strong> A lifting ring or master link stamped with a rating — say, 7 tons — is rated for <em>that number, total</em>, no matter how many sling legs are attached. New hands often assume a 4-leg sling multiplies the rating (7 × 4 = 28 tons); it doesn't. Always read the maximum stamped on the ring itself, not a number you calculate from the leg count.

@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import NewsletterSignup from '../../components/NewsletterSignup.astro';
+import { reviewedByJabin } from '../../lib/person.js';
 
 const faq = [
   {
@@ -22,7 +23,8 @@ const jsonLd = {
       "@type": "TechArticle",
       "headline": "Drilling Formulas Quick-Reference Cheat Sheet",
       "description": "Core drilling formulas, conversions, and a worked example for the rig floor: hydrostatic pressure, kill mud weight, MAASP, ECD, buoyancy, capacity.",
-      "about": "Drilling and well control formulas"
+      "about": "Drilling and well control formulas",
+      "reviewedBy": reviewedByJabin()
     }
   ]
 };
@@ -41,7 +43,8 @@ const webAppLd = {
   "inLanguage": "en",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+  "reviewedBy": reviewedByJabin()
 };
 ---
 <BaseLayout
@@ -64,7 +67,7 @@ const webAppLd = {
 
   <section class="block">
     <div class="prose">
-      <p>Every formula below is reviewed for accuracy by <a href="/about#reviewed-by-a-working-driller" style="color:var(--amber);">Jabin Travis</a>, IADC WellSharp-certified driller, same as the calculators themselves.</p>
+      <p>Every formula below is reviewed for accuracy by <a href="/about/jabin-travis" style="color:var(--amber);">Jabin Travis</a>, IADC WellSharp-certified driller, same as the calculators themselves.</p>
     </div>
 
     <div class="formula-block">

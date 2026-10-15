@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import DiagramEmbed from '../../components/DiagramEmbed.astro';
+import { JABIN_PERSON_ID, reviewedByJabin } from '../../lib/person.js';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -29,12 +30,18 @@ const postUrl = `${siteUrl}/blog/${post.id}`;
 const isRaster = (p: string) => /\.(png|jpe?g|webp)$/i.test(p);
 const shareImage = post.data.image && isRaster(post.data.image) ? post.data.image : '/og-default.png';
 
+// isJabin: he wrote the post himself (e.g. a firsthand account), so he's the
+// author entity. reviewedByJabin: someone else wrote it, but he checked it
+// for technical accuracy: a separate reviewedBy field, not authorship.
+// Both reference the same stable Person @id from src/lib/person.js rather
+// than typing out his name/jobTitle again here, so his full record (bio,
+// credentials) only has to be correct in one place: the profile page itself.
 const isJabin = post.data.author === 'Jabin Travis';
 const authorEntity = isJabin
   ? {
       "@type": "Person",
+      "@id": JABIN_PERSON_ID,
       "name": "Jabin Travis",
-      "@id": `${siteUrl}/about#reviewed-by-a-working-driller`,
       "jobTitle": "Drilling Operations Supervisor",
     }
   : { "@type": "Organization", "name": post.data.author };
@@ -48,6 +55,7 @@ const blogPosting = {
   "dateModified": post.data.modifiedDate || post.data.publishDate,
   "author": authorEntity,
   "publisher": { "@id": `${siteUrl}/#organization` },
+  ...(post.data.reviewedByJabin ? { "reviewedBy": reviewedByJabin() } : {}),
   "image": `${siteUrl}${shareImage}`,
   "inLanguage": "en",
   // Tells search engines which URL this markup describes, so the article is

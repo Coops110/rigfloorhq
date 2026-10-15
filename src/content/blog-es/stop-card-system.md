@@ -35,7 +35,11 @@ Contrasta esto con un Análisis de Seguridad del Trabajo (JSA) o un permiso de t
 
 El flujo tiene cuatro etapas, y saltarse cualquiera de ellas es lo que convierte un buen programa en un ejercicio de papeleo.
 
-<img src="/images/blog/stop-card-cycle.png" width="2000" height="560" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Flujo de la tarjeta STOP en cuatro etapas: observar la tarea completa, intervenir para detener actos inseguros de inmediato, documentar detalles en el sitio en el mismo turno, y revisar tendencias y actuar sobre ellas" />
+<picture>
+  <source type="image/avif" srcset="/images/blog/stop-card-cycle.avif" />
+  <source type="image/webp" srcset="/images/blog/stop-card-cycle.webp" />
+  <img src="/images/blog/stop-card-cycle.png" width="2000" height="560" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Flujo de la tarjeta STOP en cuatro etapas: observar la tarea completa, intervenir para detener actos inseguros de inmediato, documentar detalles en el sitio en el mismo turno, y revisar tendencias y actuar sobre ellas" />
+</picture>
 
 ### 1. Observación
 
@@ -86,7 +90,11 @@ En el piso de perforación, las categorías que generan los datos STOP más úti
 
 La diferencia entre una tarjeta útil y una inútil casi siempre es cuestión de especificidad, no de esfuerzo.
 
-<img src="/images/blog/stop-card-good-vs-poor.png" width="1640" height="800" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Comparación de entradas STOP vagas e inutilizables como &quot;trabajador sin EPP adecuado&quot; contra entradas específicas y accionables que nombran el rol, la ubicación, la hora y el comportamiento exacto observado" />
+<picture>
+  <source type="image/avif" srcset="/images/blog/stop-card-good-vs-poor.avif" />
+  <source type="image/webp" srcset="/images/blog/stop-card-good-vs-poor.webp" />
+  <img src="/images/blog/stop-card-good-vs-poor.png" width="1640" height="800" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Comparación de entradas STOP vagas e inutilizables como &quot;trabajador sin EPP adecuado&quot; contra entradas específicas y accionables que nombran el rol, la ubicación, la hora y el comportamiento exacto observado" />
+</picture>
 
 | Observación pobre | Observación buena |
 |---|---|

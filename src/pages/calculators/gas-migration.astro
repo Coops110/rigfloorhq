@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { reviewedByJabin } from '../../lib/person.js';
 
 const faq = [
   {
@@ -36,7 +37,8 @@ const webAppLd = {
   "inLanguage": "en",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+  "reviewedBy": reviewedByJabin()
 };
 ---
 <BaseLayout
@@ -54,7 +56,7 @@ const webAppLd = {
     <div class="page-hero-eyebrow">Calculator</div>
     <h1>Gas Migration <span>Calculator</span></h1>
     <p class="page-hero-sub">Migration rate from a shut-in pressure buildup, and the volumetric-method bleed volume that holds bottomhole pressure steady while gas migrates.</p>
-    <p style="font-size:13px;color:var(--fog);margin-top:8px;">Reviewed for accuracy by <a href="/about#reviewed-by-a-working-driller" style="color:var(--amber);">Jabin Travis</a>, IADC WellSharp-certified driller.</p>
+    <p style="font-size:13px;color:var(--fog);margin-top:8px;">Reviewed for accuracy by <a href="/about/jabin-travis" style="color:var(--amber);">Jabin Travis</a>, IADC WellSharp-certified driller.</p>
   </div>
 
   <section class="block">

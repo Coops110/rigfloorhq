@@ -7,6 +7,14 @@ const blogSchema = z.object({
   publishDate: z.string(),
   modifiedDate: z.string().optional(),
   author: z.string().default('RigFloorHQ Team'),
+  // True when the post's content (not just its author byline) has been
+  // checked for technical accuracy by Jabin Travis, RigFloorHQ's working-
+  // driller reviewer. Drives the reviewedBy field in this post's JSON-LD,
+  // see src/lib/person.js. Separate from `author` because a post can be
+  // written by "RigFloorHQ Team" and still be reviewed by Jabin, or (as
+  // with his own firsthand posts) authored by him directly, in which case
+  // this flag is unnecessary: he's already the author entity.
+  reviewedByJabin: z.boolean().default(false),
   category: z.string().default('Industry'),
   tags: z.array(z.string()).default([]),
   draft: z.boolean().default(false),

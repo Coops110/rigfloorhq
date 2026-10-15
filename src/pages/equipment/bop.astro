@@ -85,6 +85,11 @@ const techArticleJsonLd = techArticleSchema({
 
         <picture>
           <source
+            type="image/avif"
+            srcset="/images/blog/bop-stack-diagram-660w.avif 660w, /images/blog/bop-stack-diagram-1320w.avif 1320w, /images/blog/bop-stack-diagram.avif 1800w"
+            sizes="(max-width: 700px) 100vw, 660px"
+          />
+          <source
             type="image/webp"
             srcset="/images/blog/bop-stack-diagram-660w.webp 660w, /images/blog/bop-stack-diagram-1320w.webp 1320w, /images/blog/bop-stack-diagram.webp 1800w"
             sizes="(max-width: 700px) 100vw, 660px"

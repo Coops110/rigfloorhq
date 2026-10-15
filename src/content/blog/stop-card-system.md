@@ -35,7 +35,11 @@ Contrast this with a Job Safety Analysis or a permit-to-work document, both of w
 
 The workflow has four stages, and skipping any of them is what turns a good program into a paperwork exercise.
 
-<img src="/images/blog/stop-card-cycle.png" width="2000" height="560" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="STOP card workflow in four stages: observe the full task, intervene to stop unsafe acts immediately, document specifics on-site same shift, then review trends and act on them" />
+<picture>
+  <source type="image/avif" srcset="/images/blog/stop-card-cycle.avif" />
+  <source type="image/webp" srcset="/images/blog/stop-card-cycle.webp" />
+  <img src="/images/blog/stop-card-cycle.png" width="2000" height="560" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="STOP card workflow in four stages: observe the full task, intervene to stop unsafe acts immediately, document specifics on-site same shift, then review trends and act on them" />
+</picture>
 
 ### 1. Observation
 
@@ -86,7 +90,11 @@ On the rig floor, the categories that generate the most useful STOP data include
 
 The gap between a useful STOP card and a useless one usually comes down to specificity, not effort.
 
-<img src="/images/blog/stop-card-good-vs-poor.png" width="1640" height="800" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Comparison of vague, unusable STOP card entries like &quot;worker not wearing proper PPE&quot; against specific, actionable entries that name the role, location, time, and exact behavior observed" />
+<picture>
+  <source type="image/avif" srcset="/images/blog/stop-card-good-vs-poor.avif" />
+  <source type="image/webp" srcset="/images/blog/stop-card-good-vs-poor.webp" />
+  <img src="/images/blog/stop-card-good-vs-poor.png" width="1640" height="800" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Comparison of vague, unusable STOP card entries like &quot;worker not wearing proper PPE&quot; against specific, actionable entries that name the role, location, time, and exact behavior observed" />
+</picture>
 
 | Poor observation | Good observation |
 |---|---|

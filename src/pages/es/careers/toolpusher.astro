@@ -2,11 +2,23 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { reviewedByJabin } from '../../../lib/person.js';
+
+// No page-level JSON-LD existed here before. Mirrors the same addition on
+// the English equivalent, src/pages/careers/toolpusher.astro.
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cómo Convertirte en Toolpusher",
+  "description": "La trayectoria de perforador a toolpusher: qué implica realmente el rol, la certificación IADC WellSharp Supervisor que requiere, cronograma realista, y salario.",
+  "reviewedBy": reviewedByJabin(),
+};
 ---
 <BaseLayout
   title="Cómo Convertirte en Toolpusher — Trayectoria y Requisitos"
   description="La trayectoria de perforador a toolpusher: qué implica realmente el rol, la certificación IADC WellSharp Supervisor que requiere, cronograma realista, y salario."
   breadcrumbs={[{ label: 'Carreras', href: '/es/careers' }, { label: 'Toolpusher', href: '/es/careers/toolpusher' }]}
+  jsonLd={jsonLd}
   lang="es"
   alternateHref="/careers/toolpusher"
 >
@@ -58,7 +70,7 @@ import Footer from '../../../components/Footer.astro';
         <p>Todo operador requiere certificación de control de pozos a nivel supervisor antes de entregar la autoridad de un toolpusher: <strong>IWCF Nivel 4</strong> o el nivel equivalente <strong>IADC WellSharp Supervisor</strong>. Se ubica un nivel por encima de la certificación IWCF Nivel 3 / WellSharp Driller que necesita un perforador, y cubre el control de pozos desde una perspectiva de gestión y aprobación de decisiones en lugar de ejecución directa. Ver el desglose completo en la <a href="/es/careers/certifications">página de certificaciones</a>, o la escalera en la que se ubica en <a href="/pillars/rig-floor-leadership">Liderazgo en el Piso de Perforación (inglés)</a>.</p>
 
         <div class="note-box">
-          <strong>Revisado por un supervisor en activo:</strong> Jabin Travis, quien <a href="/about#reviewed-by-a-working-driller">revisa nuestro contenido crítico de seguridad (inglés)</a>, tiene la certificación IADC WellSharp Supervisor. Su lectura: el paso de perforador a toolpusher tiene menos que ver con conocimiento técnico nuevo y más con confiar en tu propio criterio bajo presión en situaciones que no puedes ensayar del todo. La certificación demuestra competencia, pero el ascenso en sí se gana con un historial que los operadores realmente han visto.
+          <strong>Revisado por un supervisor en activo:</strong> Jabin Travis, quien <a href="/es/about/jabin-travis">revisa nuestro contenido crítico de seguridad</a>, tiene la certificación IADC WellSharp Supervisor. Su lectura: el paso de perforador a toolpusher tiene menos que ver con conocimiento técnico nuevo y más con confiar en tu propio criterio bajo presión en situaciones que no puedes ensayar del todo. La certificación demuestra competencia, pero el ascenso en sí se gana con un historial que los operadores realmente han visto.
         </div>
 
         <h2 id="que-viene-despues-de-toolpusher">Qué Viene Después de Toolpusher</h2>

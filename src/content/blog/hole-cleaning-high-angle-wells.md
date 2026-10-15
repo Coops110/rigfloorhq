@@ -3,6 +3,7 @@ title: "Hole Cleaning in High-Angle Wells: Why Cuttings Beds Form"
 description: "Above roughly 50 degrees, cuttings stop being carried out and start settling into beds. Why gravity changes the problem, what actually moves a bed."
 publishDate: "2026-08-03"
 author: "RigFloorHQ Team"
+reviewedByJabin: true
 category: "Drilling"
 tags: ["hole cleaning", "cuttings beds", "high angle", "directional drilling", "stuck pipe", "ECD"]
 diagrams:
@@ -24,7 +25,7 @@ faq:
     a: "Not directly, but it raises equivalent circulating density, which can fracture the formation and cause losses. Losing mud to the formation reduces hydrostatic pressure, which can allow an influx. The connection is indirect but real."
 ---
 
-*Reviewed for accuracy by [Jabin Travis](/about#reviewed-by-a-working-driller), IADC WellSharp-certified driller.*
+*Reviewed for accuracy by [Jabin Travis](/about/jabin-travis), IADC WellSharp-certified driller.*
 
 Hole cleaning is one of those subjects that sounds like housekeeping and turns out to be the reason a well got stuck. In a vertical hole it more or less takes care of itself. Past about 50 degrees it stops being automatic, and the difference is not a matter of degree — the mechanism changes entirely.
 

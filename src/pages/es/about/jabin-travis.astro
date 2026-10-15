@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import { SITE } from '../../../lib/site.js';
+import { JABIN_PERSON_ID } from '../../../lib/person.js';
+
+const siteUrl = 'https://rigfloorhq.com';
+
+// Mismo @id que la versión en inglés: es la misma persona real, solo cambia
+// el idioma y la URL de la página, no la identidad descrita. Ver
+// src/lib/person.js para el razonamiento completo, y la página en inglés
+// (src/pages/about/jabin-travis.astro) para el patrón que sigue esta.
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': JABIN_PERSON_ID,
+  name: 'Jabin Travis',
+  url: `${siteUrl}/es/about/jabin-travis`,
+  jobTitle: 'Drilling Operations Supervisor',
+  description:
+    'Profesional de perforación con 30 años de experiencia en pozos convencionales y horizontales, y en operaciones de workover/completions, en Estados Unidos, Azerbaiyán, Irak, Kuwait, Arabia Saudita, Jordania, los Emiratos Árabes Unidos y Turquía. Tiene las acreditaciones IADC WellSharp en Control de Pozo e IADC DIT en Inspección y Mantenimiento de Equipo de Taladro.',
+  knowsAbout: [
+    'Control de pozo',
+    'Operaciones de perforación',
+    'Inspección y mantenimiento de equipo de taladro',
+    'Perforación horizontal',
+    'Operaciones de workover y completions',
+  ],
+  hasCredential: [
+    {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'Acreditación IADC WellSharp',
+      name: 'Control de Pozo (Drilling Operations Supervisor, Surface)',
+    },
+    {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'Acreditación IADC DIT',
+      name: 'Inspección y Mantenimiento de Equipo de Taladro',
+    },
+  ],
+};
+---
+<BaseLayout
+  title="Jabin Travis, Revisor Técnico"
+  description="Jabin Travis es un profesional de perforación con 30 años de experiencia que revisa el contenido crítico de seguridad de RigFloorHQ por precisión técnica. Su trayectoria, credenciales y todo lo que ha revisado."
+  breadcrumbs={[{ label: 'Acerca de', href: '/es/about' }, { label: 'Jabin Travis', href: '/es/about/jabin-travis' }]}
+  jsonLd={personLd}
+  lang="es"
+  alternateHref="/about/jabin-travis"
+>
+  <Nav slot="nav" lang="es" alternateHref="/about/jabin-travis" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Acerca de: Revisor Técnico</div>
+    <h1>Jabin <span>Travis</span></h1>
+    <p class="page-hero-sub">Un perforador en activo con 30 años en el sector, revisando el contenido crítico de seguridad de RigFloorHQ por precisión real.</p>
+  </div>
+
+  <section class="block">
+    <div class="prose">
+      <h2>Trayectoria</h2>
+      <p>
+        Jabin Travis es un profesional de perforación con 30 años de experiencia en pozos
+        convencionales y horizontales, y en operaciones de workover/completions. Su
+        carrera abarca Estados Unidos, Azerbaiyán, Irak, Kuwait, Arabia Saudita, Jordania,
+        los Emiratos Árabes Unidos y Turquía, entornos operativos con regímenes
+        regulatorios, tipos de taladro y cuadrillas muy distintos, lo cual es parte de por
+        qué su revisión tiene peso más allá de la práctica de una sola región.
+      </p>
+      <p>
+        Tiene la acreditación IADC WellSharp en Control de Pozo (Drilling Operations
+        Supervisor, Surface) y la acreditación IADC DIT en Inspección y Mantenimiento de
+        Equipo de Taladro, además de un entrenamiento anterior de Control de Pozo
+        Avanzado completado en 2013.
+      </p>
+      <p>
+        Su papel en RigFloorHQ es de revisión, no de autoría de la política del sitio.
+        Verifica los videos explicativos, las calculadoras y las páginas de carrera
+        relacionadas con control de pozo y operaciones de taladro frente a lo que
+        realmente ocurre en un equipo en activo, y señala cuándo una explicación en
+        lenguaje claro se ha alejado de la realidad del campo. Ver
+        <a href="/about#reviewed-by-a-working-driller">cómo encaja esto en el enfoque
+        general del sitio hacia el material crítico de seguridad (inglés)</a> en la
+        página principal de Acerca de.
+      </p>
+
+      <h2>Credenciales</h2>
+      <ul>
+        <li><strong>IADC WellSharp</strong>: Control de Pozo (Drilling Operations Supervisor, Surface)</li>
+        <li><strong>IADC DIT</strong>: Inspección y Mantenimiento de Equipo de Taladro</li>
+        <li><strong>Entrenamiento de Control de Pozo Avanzado</strong>: completado en 2013</li>
+      </ul>
+
+      <h2>Lo Que Ha Revisado</h2>
+      <p>
+        Todo lo que sigue fue verificado por Jabin para precisión técnica, con una
+        excepción señalada por separado: un texto que escribió en primera persona desde
+        su propia experiencia en el taladro, no una revisión de un texto ajeno.
+      </p>
+
+      <h3>Videos explicativos</h3>
+      <ul>
+        <li><a href="/blog/hole-cleaning-high-angle-wells">Limpieza del Pozo en Pozos de Alto Ángulo (inglés)</a></li>
+        <li><a href="/blog/torque-and-drag-early-warning">Torque y Arrastre como Alerta Temprana (inglés)</a></li>
+      </ul>
+
+      <h3>Calculadoras</h3>
+      <ul>
+        <li><a href="/es/calculators/kill-sheet">Calculadora de Hoja de Control</a></li>
+        <li><a href="/es/calculators/hydrostatic">Calculadora de Presión Hidrostática</a></li>
+        <li><a href="/es/calculators/gas-migration">Calculadora de Migración de Gas</a></li>
+        <li><a href="/es/calculators/mud-weight-window">Calculadora de Ventana de Peso de Lodo</a></li>
+        <li><a href="/es/calculators/formulas-cheat-sheet">Hoja de Fórmulas de Perforación</a></li>
+      </ul>
+
+      <h3>Guías de carrera</h3>
+      <ul>
+        <li><a href="/careers/roughneck">Cómo Convertirte en Roughneck (inglés)</a>, incluidos los dos errores que más ve cometer a las cuadrillas nuevas.</li>
+        <li><a href="/es/careers/toolpusher">Cómo Convertirte en Toolpusher</a></li>
+      </ul>
+
+      <h3>Guías de referencia</h3>
+      <ul>
+        <li><a href="/pillars/rig-floor-leadership">Liderazgo en el Piso de Perforación: La Escalera Supervisora (inglés)</a></li>
+      </ul>
+
+      <h3>Contado en primera persona</h3>
+      <p>
+        <a href="/blog/volumetric-kill-real-story">Un Control Volumétrico de 48 Horas
+        (inglés)</a> es el propio relato de Jabin de un control real que trabajó, no una
+        revisión del texto de otra persona. Él es el autor de ese artículo, no su revisor
+        técnico.
+      </p>
+
+      <h2>Correcciones</h2>
+      <p>
+        Si algo atribuido a la revisión de Jabin está mal, escribe a
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a> indicando la página y qué está
+        mal. Ver la <a href="/es/about">página principal de Acerca de</a> para el enfoque
+        completo del sitio hacia correcciones y material crítico de seguridad.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

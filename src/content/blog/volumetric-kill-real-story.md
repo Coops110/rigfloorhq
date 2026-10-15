@@ -34,4 +34,4 @@ The Volumetric Method itself is a formula anyone can learn from a kill sheet. Wh
 
 ---
 
-See the [kill sheet calculator](/calculators/kill-sheet) for the arithmetic behind the Driller's Method and Wait and Weight, and [Driller's Method and Wait and Weight: Common Mix-Ups](/blog/drillers-method-wait-and-weight-mixups) for where the two get confused with the Volumetric Method. Background on shut-in procedure and the three kill methods is on the [well control reference page](/drilling/well-control). This account is reviewed and told firsthand by Jabin Travis — see his [full background](/about#reviewed-by-a-working-driller).
+See the [kill sheet calculator](/calculators/kill-sheet) for the arithmetic behind the Driller's Method and Wait and Weight, and [Driller's Method and Wait and Weight: Common Mix-Ups](/blog/drillers-method-wait-and-weight-mixups) for where the two get confused with the Volumetric Method. Background on shut-in procedure and the three kill methods is on the [well control reference page](/drilling/well-control). This account is reviewed and told firsthand by Jabin Travis — see his [full background](/about/jabin-travis).
