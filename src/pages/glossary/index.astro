@@ -4,53 +4,225 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 
 const terms = [
-  { term: "Annular Preventer", def: "Top element of a BOP stack; a rubber sealing element that closes around pipe of nearly any size or on open hole." },
-  { term: "BHA", def: "Bottom Hole Assembly. Everything below the drill collars — bit, stabilizers, MWD tools, motors." },
-  { term: "Blind Rams", def: "BOP rams that seal a fully open hole (no pipe present) using flat steel faces." },
-  { term: "BOP", def: "Blowout Preventer. High-pressure valve system on the wellhead that seals the well in an emergency." },
-  { term: "BOSIET", def: "Basic Offshore Safety Induction & Emergency Training. Mandatory for offshore work, includes HUET." },
-  { term: "Choke Line", def: "Piping that allows controlled circulation of fluid out of the well while the BOP is closed." },
-  { term: "Company Man", def: "The operating oil company's on-site representative with final authority on well decisions." },
+  { term: "Accumulator", def: "A hydraulic fluid reservoir precharged with nitrogen gas that stores enough energy to close BOP elements within seconds, even with rig power and pumps dead.", href: "/equipment/accumulator" },
+  { term: "Annular Preventer", def: "Top element of a BOP stack; a rubber sealing element that closes around pipe of nearly any size or on open hole.", href: "/equipment/bop" },
+  { term: "Annular Velocity", def: "The speed of drilling fluid moving up the annulus, critical for lifting cuttings to surface without eroding the wellbore or exceeding ECD limits.", href: "/calculators/annular-velocity" },
+  { term: "API 1104", def: "The pipeline welding standard. Mandatory for most rig pipeline welding positions, testing welders across multiple pipe positions.", href: "/welding" },
+  { term: "ASME Section IX", def: "The pressure vessel and boiler welding qualification standard, required for high-pressure vessel and piping work.", href: "/welding" },
+  { term: "Autoshear", def: "A subsea BOP emergency backup that automatically fires the shear rams if the LMRP disconnects from the stack unexpectedly.", href: "/equipment/bop" },
+  { term: "AWS D1.1", def: "The structural steel welding standard, required for platform, derrick, and other structural work. 6G pipe is its highest qualification position.", href: "/welding" },
+  { term: "AWS D3.6M", def: "The underwater welding certification standard, required for any subsea welding work.", href: "/welding/underwater-welding" },
+  { term: "Back-Off", def: "Deliberately separating stuck pipe at a connection above the free point, usually with left-hand torque and a string shot, leaving a clean thread rather than a torn-off end to fish.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Barite", def: "A high specific gravity mineral (barium sulfate) suspended in drilling fluid as the primary weighting agent that increases mud density.", href: "/drilling/mud-weight" },
+  { term: "Bent Sub", def: "A sub with a slight mechanical bend that, combined with a downhole motor, lets the driller build angle by sliding rather than rotating the whole string.", href: "/drilling/directional" },
+  { term: "BHA", def: "Bottom Hole Assembly. Everything below the drill collars — bit, stabilizers, MWD tools, motors.", href: "/equipment/drill-string" },
+  { term: "Bit Hydraulics", def: "The flow, pressure, and velocity through a bit's nozzles — TFA, jet velocity, hydraulic horsepower, and hydraulic impact — that determine how well it cleans the bottom of the hole.", href: "/calculators/bit-hydraulics" },
+  { term: "Blast Joint", def: "A heavy-wall, erosion-resistant tubing joint placed across the perforated interval, built to withstand high-velocity, erosive produced flow.", href: "/equipment/blast-joint" },
+  { term: "Blind Rams", def: "BOP rams that seal a fully open hole (no pipe present) using flat steel faces.", href: "/equipment/bop" },
+  { term: "BOP", def: "Blowout Preventer. High-pressure valve system on the wellhead that seals the well in an emergency.", href: "/equipment/bop" },
+  { term: "BOP Closing Ratio", def: "The ratio between hydraulic operating pressure and the wellbore pressure a BOP element can hold closed — used to confirm an annular or ram will actually seal against anticipated well pressure.", href: "/calculators/bop-closing-ratio" },
+  { term: "BOP Space-Out", def: "Confirming the exact elevation of every component in an assembled BOP stack relative to a fixed reference — usually the rig floor or ground level — so outlets and the annular land where the crew needs them.", href: "/equipment/bop" },
+  { term: "BOSIET", def: "Basic Offshore Safety Induction & Emergency Training. Mandatory for offshore work, includes HUET.", href: "/careers/certifications" },
+  { term: "Bridge Plug", def: "A downhole tool set at a specific depth in casing to isolate the wellbore below from above; comes in drillable (temporary) and retrievable or permanent versions.", href: "/equipment/bridge-plug" },
+  { term: "Build Rate", def: "How fast a directional well gains inclination, expressed in degrees per 100 ft. The governing number behind a well's planned profile.", href: "/drilling/directional" },
+  { term: "Bull Nose Plug", def: "A solid, rounded guide nose run on the bottom of a tool string to help it pass obstructions while running in hole — unlike a mule shoe, it has no flow path through it.", href: "/equipment/bull-nose-plug" },
+  { term: "Bullheading", def: "Pumping fluid directly down the drill string and forcing an influx back into the formation, rather than circulating it out — used when circulation isn't possible or safe.", href: "/calculators/bullheading" },
+  { term: "Bumper Sub", def: "A telescoping tool in a fishing or jarring string that allows a short up-down stroke, letting the string deliver or absorb impact independent of surface pipe movement.", href: "/equipment/bumper-sub" },
+  { term: "Buoyancy Factor", def: "The fraction by which drilling fluid reduces the effective weight of tubulars hanging in it, compared to their weight in air.", href: "/calculators/buoyancy" },
+  { term: "Burr Mill", def: "A downhole milling tool with an aggressive cutting structure used to dress and smooth sharp or jagged edges left by a previous milling or cutting run.", href: "/equipment/burr-mill" },
+  { term: "Casing Cutter", def: "An internal mechanical cutting tool that severs casing cleanly at a chosen depth so the section above can be retrieved.", href: "/equipment/casing-cutter" },
+  { term: "Casing Patch", def: "An expandable liner-type repair tool set across a casing leak or damaged section to restore pressure integrity without pulling the casing.", href: "/equipment/casing-patch" },
+  { term: "Casing Point", def: "The depth chosen to set a casing string, based on where the pore pressure and fracture gradient make it unsafe to continue drilling with the current mud weight.", href: "/drilling/casing" },
+  { term: "Casing Roller / Dressing Tool", def: "A tool run to restore out-of-round or damaged casing to a true bore by mechanically rolling or dressing the inside diameter.", href: "/equipment/casing-roller-dressing-tool" },
+  { term: "Casing Shear Ram", def: "A BOP ram that cuts heavy casing or tubulars a standard blind shear ram cannot sever. It does not seal — a blind shear ram above it closes the well after the cut.", href: "/equipment/bop" },
+  { term: "Casing Shoe", def: "The guide or float device run on the bottom joint of a casing string. A guide shoe simply rounds the leading edge; a float shoe adds a check valve to control cement placement and stop backflow.", href: "/equipment/casing-shoe" },
+  { term: "Cement Retainer", def: "A downhole tool set at a specific depth that isolates pressure below while allowing cement to be squeezed above it during a squeeze-cementing job.", href: "/equipment/cement-retainer" },
+  { term: "Cementing", def: "Pumping cement down casing and back up the annulus to bond the pipe to the formation, isolate pressure zones, and stop fluid migration behind the pipe.", href: "/drilling/casing" },
+  { term: "Centralizer", def: "A device attached to casing to hold it centered in the wellbore, so cement forms a uniform ring around the pipe rather than channeling to one side.", href: "/equipment/centralizer" },
+  { term: "Choke Line", def: "Piping that allows controlled circulation of fluid out of the well while the BOP is closed.", href: "/equipment/bop" },
+  { term: "Coiled Tubing Unit", def: "A well-service rig that runs one continuous reel of tubing rather than jointed pipe, used for clean-outs, stimulation, and fishing — and able to work on a live well without killing it first.", href: "/equipment/rig-types" },
+  { term: "Company Man", def: "The operating oil company's on-site representative with final authority on well decisions.", href: "/careers/company-man" },
+  { term: "Conductor Casing", def: "The shallowest, largest-diameter casing string. Prevents the wellbore from caving in near surface and supports the wellhead.", href: "/drilling/casing" },
+  { term: "Crossover Sub", def: "A connector used to join pipe or tool joints of different thread types or diameters within the same string.", href: "/equipment/crossover-sub" },
+  { term: "Deadman System", def: "A subsea BOP emergency backup that automatically fires the shear rams if hydraulic power, electrical power, and communications from the rig are all lost at once.", href: "/equipment/bop" },
   { term: "Derrickman", def: "Works the monkey board high in the derrick, guiding pipe stands and managing mud systems." },
-  { term: "Directional Driller", def: "Specialist who steers the bit along a planned trajectory using MWD tools and downhole motors." },
-  { term: "Dogleg Severity (DLS)", def: "Measure of how sharply a wellbore curves, in degrees per 100 ft. Excessive DLS increases torque/drag." },
-  { term: "Drawworks", def: "The winch system on the rig that raises and lowers the drill string via the traveling block." },
-  { term: "Drill Collar", def: "Heavy thick-walled pipe in the BHA that provides weight on bit (WOB)." },
-  { term: "ECD", def: "Equivalent Circulating Density. Effective mud weight while pumping, including annular friction losses — always higher than static mud weight." },
-  { term: "Fracture Pressure", def: "The pressure at which a formation cracks and drilling fluid is lost into the rock. Upper limit of the mud weight window." },
-  { term: "H2S", def: "Hydrogen sulfide — a toxic, flammable gas found in sour formations. Extremely dangerous even in small concentrations." },
-  { term: "HUET", def: "Helicopter Underwater Escape Training. Core component of BOSIET for offshore workers." },
-  { term: "HWDP", def: "Heavy Weight Drill Pipe. Thicker-walled transition pipe between drill pipe and drill collars." },
-  { term: "ICP", def: "Initial Circulating Pressure. The standpipe pressure held at the start of a kill circulation." },
-  { term: "IWCF", def: "International Well Control Forum — issues globally recognized well control certifications, Levels 2-4." },
-  { term: "Kelly", def: "The square or hexagonal pipe historically used to transmit rotation from the rotary table to the drill string; largely replaced by top drives on modern rigs." },
-  { term: "Kick", def: "An influx of formation fluid into the wellbore, caused by formation pressure exceeding hydrostatic pressure." },
-  { term: "Kill Mud Weight (KMW)", def: "The mud weight required to exactly balance formation pressure after a kick — the target weight for well control operations." },
-  { term: "Kill Sheet", def: "The calculation worksheet used during well control to document kick data and the pump schedule for killing the well." },
-  { term: "LOT", def: "Leak-Off Test. Pumps fluid into the well after each casing shoe to determine fracture gradient." },
-  { term: "LWD", def: "Logging While Drilling. Real-time formation evaluation data (resistivity, density, gamma ray) transmitted during drilling." },
+  { term: "Directional Driller", def: "Specialist who steers the bit along a planned trajectory using MWD tools and downhole motors.", href: "/drilling/directional" },
+  { term: "Dogleg Severity (DLS)", def: "Measure of how sharply a wellbore curves, in degrees per 100 ft. Excessive DLS increases torque/drag.", href: "/drilling/directional" },
+  { term: "Downhole Motor", def: "A general term for any motor placed in the drill string near the bit rather than at surface — most commonly a positive displacement mud motor, which turns the bit independently of the string above it.", href: "/equipment/positive-displacement-mud-motor" },
+  { term: "Drawworks", def: "The winch system on the rig that raises and lowers the drill string via the traveling block.", href: "/equipment/hoisting-system" },
+  { term: "Driller", def: "Operates the drilling controls from the rig floor or driller's cabin, directly responsible for drilling parameters and the first response to a kick.", href: "/careers/driller" },
+  { term: "Driller's Method", def: "A well kill method that circulates the kick out first at the original mud weight while holding casing pressure constant, then weights up and circulates again. Slower than Wait-and-Weight but can start immediately.", href: "/drilling/well-control" },
+  { term: "Drill Collar", def: "Heavy thick-walled pipe in the BHA that provides weight on bit (WOB).", href: "/equipment/drill-string" },
+  { term: "Drillship", def: "A purpose-built ship with a moon pool for the drill string, held on location by dynamic positioning rather than anchors. Works in water up to roughly 15,000 ft, deeper than any other rig type.", href: "/equipment/rig-types" },
+  { term: "Drill String", def: "The full connected system running from the rig floor to the bit — drill pipe, HWDP, drill collars, and BHA — that transmits rotation, weight, and drilling fluid downhole.", href: "/equipment/drill-string" },
+  { term: "Differential Sticking", def: "Stuck pipe held against a permeable formation by the pressure difference between the mud column and the formation — the hole stays open and circulation is unaffected, but the string won't move.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Drill-Off Test", def: "A deliberate test varying weight on bit and RPM against rate of penetration, to find the point where more weight or rotation stops improving drilling performance on the bit and formation in use.", href: "/calculators/drill-off-test" },
+  { term: "Dropped Object", def: "Any tool or piece of equipment that falls from height on a rig — the leading cause of injury and fatality on drilling rigs, which is why tools are tethered during work at height.", href: "/safety" },
+  { term: "ECD", def: "Equivalent Circulating Density. Effective mud weight while pumping, including annular friction losses — always higher than static mud weight.", href: "/calculators/ecd" },
+  { term: "EDS (Emergency Disconnect Sequence)", def: "The deliberate, operator-initiated sequence that shears pipe and releases the LMRP in a controlled order when a rig must come off the well in an emergency.", href: "/equipment/bop" },
+  { term: "Expandable Sand Screen", def: "A sand-control completion device run at a reduced outer diameter and expanded in place against the formation downhole, improving sand control versus a fixed screen.", href: "/equipment/expandable-sand-screen" },
+  { term: "FCAW", def: "Flux-Cored Arc Welding. A fast structural welding process; the self-shielded variant works in wind where MIG fails.", href: "/welding" },
+  { term: "FCP (Final Circulating Pressure)", def: "The standpipe pressure held for the remainder of a kill circulation once kill-weight mud reaches the bit, calculated from ICP and the mud weight change.", href: "/drilling/well-control" },
+  { term: "Fish", def: "Anything left in the wellbore that has to be recovered — a stuck BHA, parted pipe, or dropped junk — and the object of a fishing operation.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Fishing Swivel", def: "A tool in a fishing string that isolates rotation, letting the operator rotate the fish without rotating the working string above it, or vice versa.", href: "/equipment/fishing-swivel" },
+  { term: "FIT (Formation Integrity Test)", def: "A shoe integrity test that pressures the formation to a predetermined value and stops, confirming it holds that much without deliberately fracturing it. Gives less information than a LOT but avoids formation damage.", href: "/drilling/casing" },
+  { term: "Float Sub", def: "A sub housing a check valve in the drill string that stops drilling fluid from flowing back up the pipe once the pumps shut down.", href: "/equipment/float-sub" },
+  { term: "Fluid Circulation System", def: "The rig system — pumps, standpipe, and flowline — that moves drilling fluid from the mud pits, down the drill string, and back up the annulus.", href: "/equipment/fluid-circulation-system" },
+  { term: "FOET", def: "Further Offshore Emergency Training — the renewal course for BOSIET, required to keep offshore survival training current.", href: "/careers/certifications" },
+  { term: "Fracture Pressure", def: "The pressure at which a formation cracks and drilling fluid is lost into the rock. Upper limit of the mud weight window.", href: "/drilling/mud-weight" },
+  { term: "Free Point", def: "The depth, found by running a free point indicator on wireline, where applied stretch and torque stop transmitting down stuck pipe — everything above it can be recovered.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Gas Lift Mandrel", def: "A device installed in production tubing that holds a gas lift valve, injecting gas into the produced fluid to lighten the column and help it flow to surface.", href: "/equipment/gas-lift-mandrel" },
+  { term: "Gas Migration", def: "The upward movement of a gas bubble through standing mud in a shut-in well, which raises surface pressure over time even with no additional influx.", href: "/calculators/gas-migration" },
+  { term: "GMAW (MIG)", def: "Gas Metal Arc Welding. Fast and clean, used mostly in shop fabrication and indoor repairs because its shielding gas is disrupted by wind.", href: "/welding" },
+  { term: "GTAW (TIG)", def: "Gas Tungsten Arc Welding. The highest-quality weld process, used on stainless steel and exotic alloys, but slow and sensitive to wind and dirty conditions.", href: "/welding" },
+  { term: "H2S", def: "Hydrogen sulfide — a toxic, flammable gas found in sour formations. Extremely dangerous even in small concentrations.", href: "/safety/h2s" },
+  { term: "Hoisting System", def: "The rig system — derrick, drawworks, drilling line, and traveling block — that raises and lowers the drill string.", href: "/equipment/hoisting-system" },
+  { term: "Horizontal / ERD Kill Sheet", def: "Additional pressure and volume considerations layered onto a standard kill sheet for horizontal and extended-reach wells, where geometry changes how a kick behaves.", href: "/calculators/kill-sheet-horizontal" },
+  { term: "HUET", def: "Helicopter Underwater Escape Training. Core component of BOSIET for offshore workers.", href: "/careers/certifications" },
+  { term: "HWDP", def: "Heavy Weight Drill Pipe. Thicker-walled transition pipe between drill pipe and drill collars.", href: "/equipment/drill-string" },
+  { term: "Hydraulic Jar", def: "A tool in a fishing or drilling string that stores energy and releases it as a sudden impact, up or down, to free stuck pipe where steady overpull fails.", href: "/equipment/hydraulic-jar" },
+  { term: "Hydraulic-Set Retainer Packer", def: "A cement retainer-style packer set by applied hydraulic pressure rather than mechanical manipulation, used to isolate zones for squeeze cementing or testing.", href: "/equipment/hydraulic-set-retainer-packer" },
+  { term: "Hydrostatic Pressure", def: "The pressure exerted by a column of fluid in the wellbore, equal to 0.052 x mud weight (ppg) x true vertical depth. The primary tool for controlling formation pressure.", href: "/pillars/hydrostatic-pressure" },
+  { term: "Hyperbaric Welding", def: "Dry underwater welding performed inside a pressurized habitat at the work depth. The highest-quality underwater weld process, used down to roughly 1,000 m.", href: "/welding/underwater-welding" },
+  { term: "IADC Bit Classification", def: "A standardized code describing a drill bit's design — cutting structure, bearing type, and features — stamped on the bit before it reaches the hole.", href: "/calculators/iadc-bit-classification" },
+  { term: "IADC Dull Bit Grading", def: "A standardized eight-position code recording the condition of a drill bit after it's pulled, used to diagnose formation and drilling parameter issues.", href: "/calculators/iadc-dull-bit-grading" },
+  { term: "IADC WellSharp", def: "A globally recognized well control certification body, functionally equivalent to IWCF, with the same tiered structure from drill floor through supervisor level.", href: "/careers/certifications" },
+  { term: "ICP", def: "Initial Circulating Pressure. The standpipe pressure held at the start of a kill circulation.", href: "/calculators/kill-sheet" },
+  { term: "Intermediate Casing", def: "Casing that isolates unstable or abnormally pressured zones encountered on the way to the reservoir. A well may run one or several intermediate strings.", href: "/drilling/casing" },
+  { term: "IWCF", def: "International Well Control Forum — issues globally recognized well control certifications, Levels 2-4.", href: "/careers/certifications" },
+  { term: "Jack-up Rig", def: "An offshore rig that lowers three or four retractable steel legs to the seabed and jacks its hull above the waves. The workhorse of shallow-water drilling, limited to roughly 400 ft of water.", href: "/equipment/rig-types" },
+  { term: "Jetting Tool", def: "A downhole tool that uses high-velocity fluid jets to clean out fill or debris from the wellbore.", href: "/equipment/jetting-tool" },
+  { term: "Junk Basket", def: "A fishing tool, often magnetic, used to collect small metal fragments from the wellbore — typically run after a milling job.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Junk Mill", def: "A fishing tool that grinds junk too damaged to grip into fragments small enough to circulate out or push aside, destroying the fish rather than retrieving it whole.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Kelly", def: "The square or hexagonal pipe historically used to transmit rotation from the rotary table to the drill string; largely replaced by top drives on modern rigs.", href: "/equipment/rotating-system" },
+  { term: "Keyseating", def: "A mechanical sticking mechanism where rotating drill pipe wears a narrow, pipe-sized slot into the wall at a dogleg; the string passes freely until a larger tool joint or collar reaches the slot and jams.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Kick", def: "An influx of formation fluid into the wellbore, caused by formation pressure exceeding hydrostatic pressure.", href: "/drilling/well-control" },
+  { term: "Kick Influx Geometry", def: "The length, height, and gradient of an influx inside the wellbore — the inputs that determine how much kick a given well can tolerate before fracturing the shoe.", href: "/calculators/kick-influx-geometry" },
+  { term: "Kick Tolerance", def: "The largest influx a well can take and still be circulated out without exceeding the fracture pressure at the weakest shoe.", href: "/calculators/kick-tolerance" },
+  { term: "Kill Mud Weight (KMW)", def: "The mud weight required to exactly balance formation pressure after a kick — the target weight for well control operations.", href: "/calculators/kill-sheet" },
+  { term: "Kill Sheet", def: "The calculation worksheet used during well control to document kick data and the pump schedule for killing the well.", href: "/calculators/kill-sheet" },
+  { term: "Lag Time", def: "The time (or pumped volume) for fluid and cuttings to travel from the bit back to surface — used to correctly time mud logging readings and kill sheet volumes.", href: "/calculators/lag-and-volume" },
+  { term: "Landing Nipple", def: "A profiled fitting in a tubing string that provides a fixed, wireline-set landing point for a plug or flow-control device.", href: "/equipment/landing-nipple" },
+  { term: "Land Rig", def: "A truck- or skid-mounted drilling rig that works onshore. The most common rig type worldwide, ranging from shallow exploration wells to deep shale plays.", href: "/equipment/rig-types" },
+  { term: "Lifting Sub", def: "A sub fitted with a lifting bail or eye, used to handle heavy BHA components safely on the rig floor.", href: "/equipment/lifting-sub" },
+  { term: "Liner", def: "A casing string hung off the bottom of the previous casing rather than extending to the wellhead, saving steel and weight at the cost of needing a liner hanger and a tested overlap.", href: "/drilling/casing" },
+  { term: "Liner Hanger", def: "A device that suspends a liner from the inside of the previous casing string, rather than running it all the way to surface.", href: "/equipment/liner-hanger" },
+  { term: "LMRP (Lower Marine Riser Package)", def: "The upper section of a subsea BOP stack, carrying the annular preventers and flex joint, that can be disconnected and recovered separately from the ram stack below.", href: "/equipment/bop" },
+  { term: "LOT", def: "Leak-Off Test. Pumps fluid into the well after each casing shoe to determine fracture gradient.", href: "/drilling/casing" },
+  { term: "LWD", def: "Logging While Drilling. Real-time formation evaluation data (resistivity, density, gamma ray) transmitted during drilling.", href: "/drilling/directional" },
+  { term: "MAASP", def: "Maximum Allowable Annular Surface Pressure. The casing pressure that, added to hydrostatic, would just reach fracture pressure at the weakest shoe — the ceiling during a well kill.", href: "/calculators/maasp" },
+  { term: "Make-Up Torque", def: "The torque range a specific thread connection must be tightened to for a reliable seal — too little and it leaks, too much and it galls or damages the threads.", href: "/calculators/bit-torque" },
+  { term: "MAMW", def: "Maximum Allowable Mud Weight. The heaviest mud that can be used without exceeding the fracture pressure at the weakest point in the open hole, usually the last casing shoe.", href: "/calculators/mamw" },
+  { term: "Mechanical Sticking", def: "Stuck pipe caused by something physically obstructing the string — collapsed hole, cuttings beds, a keyseat, undergauge hole, or junk — rather than pressure holding it to the wall.", href: "/pillars/stuck-pipe-and-fishing-operations" },
   { term: "Monkey Board", def: "The derrick platform, typically 90-100 ft up, where the derrickman works during tripping operations." },
+  { term: "MPD (Managed Pressure Drilling)", def: "Techniques that actively control annular pressure, usually with a rotating control device and backpressure, to drill safely in a mud weight window too narrow for conventional methods.", href: "/drilling/mud-weight" },
+  { term: "Mud Balance", def: "A calibrated arm-and-cup scale used on the rig floor to measure the density of drilling fluid directly.", href: "/drilling/mud-weight" },
   { term: "Mud Logger", def: "Analyzes drill cuttings and gas shows in real time to identify formation changes and hydrocarbon indications." },
-  { term: "MWD", def: "Measurement While Drilling. Downhole tools transmitting directional data to surface via mud pulse telemetry." },
-  { term: "OIM", def: "Offshore Installation Manager. Overall command authority for an offshore installation and its personnel." },
-  { term: "Overbalance", def: "The margin by which hydrostatic pressure exceeds pore pressure. Typical safe range: 200-500 psi." },
-  { term: "PDC Bit", def: "Polycrystalline Diamond Compact bit — synthetic diamond cutters in a shearing action, the dominant bit type today." },
-  { term: "Pipe Rams", def: "BOP rams that close around a specific pipe diameter, sealing the annulus while pipe remains in the hole." },
+  { term: "Mud Pit System", def: "The surface tanks and solids-control equipment — shakers, desanders, desilters, centrifuges — that store and condition drilling fluid.", href: "/equipment/mud-pit-system" },
+  { term: "Mud Weight Conversion", def: "Converting drilling fluid density between the units used around the world — ppg, specific gravity, psi/ft, and kg/m3 — for the same fluid.", href: "/calculators/mud-weight-converter" },
+  { term: "Mud Weight Window", def: "The range of mud weights that keeps hydrostatic pressure above pore pressure while staying below fracture pressure. Narrows in overpressured or depleted fields.", href: "/calculators/mud-weight-window" },
+  { term: "Mule Shoe", def: "A beveled guide nose run on the bottom of a tool or tubing string to help it pass obstructions and deviations while running in hole.", href: "/equipment/mule-shoe" },
+  { term: "Multilateral Junction", def: "The point where a lateral wellbore branches from the main bore, classified by TAML level according to how much mechanical support and pressure isolation the junction provides.", href: "/equipment/multilateral-junction" },
+  { term: "MUX Control System", def: "Multiplexed electro-hydraulic control that sends an electrical signal down the umbilical to operate subsea BOP functions at the seabed, faster than a purely hydraulic pilot signal over long distances.", href: "/equipment/bop" },
+  { term: "MWD", def: "Measurement While Drilling. Downhole tools transmitting directional data to surface via mud pulse telemetry.", href: "/equipment/mwd-tool" },
+  { term: "NEBOSH IGC", def: "National Examination Board in Occupational Safety and Health — a globally recognized safety management qualification and the standard credential for HSE and safety officer roles.", href: "/careers/certifications" },
+  { term: "NMDC / Pony NMDC", def: "Non-Magnetic Drill Collar. A BHA component machined from non-magnetic alloy that shields MWD directional sensors from magnetic interference generated by the steel drill string.", href: "/equipment/nmdc-pony-nmdc" },
+  { term: "ODF Depth Correction", def: "Reconciling drill pipe tally depth against wireline depth after the rig floor reference datum (ODF) changes — for example a different substructure height on a workover rig or re-entry.", href: "/calculators/odf-depth-correction" },
+  { term: "Offshore Medical", def: "A medical fitness examination specific to offshore work, more rigorous than a standard physical, required before deployment and renewed periodically.", href: "/careers/certifications" },
+  { term: "OIM", def: "Offshore Installation Manager. Overall command authority for an offshore installation and its personnel.", href: "/careers/oim-rig-manager" },
+  { term: "On-Off Tool", def: "A tool that allows tubing to be mechanically disconnected from and reconnected to a packer without pulling the packer itself.", href: "/equipment/on-off-tool" },
+  { term: "OPITO IMIST", def: "International Minimum Industry Safety Training — a baseline safety awareness qualification most major operators require of all rig personnel regardless of role.", href: "/careers/certifications" },
+  { term: "Orienting Sub", def: "A sub used to set and confirm the rotational orientation of a downhole tool, such as a whipstock, before it is used.", href: "/equipment/orienting-sub" },
+  { term: "OSHA 30", def: "A 30-hour general industry or construction safety course, the North American standard for safety-focused roles, often paired with or used as an alternative to NEBOSH.", href: "/careers/certifications" },
+  { term: "Overbalance", def: "The margin by which hydrostatic pressure exceeds pore pressure. Typical safe range: 200-500 psi.", href: "/drilling/mud-weight" },
+  { term: "Overburden Pressure", def: "The pressure exerted by the total weight of rock above a given depth, typically around 1.0 psi/ft — the absolute ceiling on the pressure system.", href: "/drilling/mud-weight" },
+  { term: "Overshot", def: "The standard fishing tool for a fish with a reasonably intact outer surface. Swallows the top of the fish and grips it externally with a grapple.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Pack-Off", def: "A mechanical sticking mechanism where cuttings never carried out of the hole settle onto the low side and collapse around the string, usually announced by rising standpipe pressure and falling returns before the string sticks.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Packer", def: "A downhole tool that seals the annulus between tubing and casing, or between two casing strings, to isolate a zone.", href: "/equipment/packer" },
+  { term: "PDC Bit", def: "Polycrystalline Diamond Compact bit — synthetic diamond cutters in a shearing action, the dominant bit type today.", href: "/calculators/iadc-bit-classification" },
+  { term: "Permit to Work (PTW)", def: "A documented authorization system controlling hot work, confined space entry, and energy isolation — who signs it, what it covers, and what has to be verified before work starts." },
+  { term: "Pipe Pull Margin", def: "The additional tension needed to free stuck pipe, calculated wet (through fluid) or dry (in air) to check the pull stays within the string's rated capacity.", href: "/calculators/pipe-pull-margin" },
+  { term: "Pipe Rams", def: "BOP rams that close around a specific pipe diameter, sealing the annulus while pipe remains in the hole.", href: "/equipment/bop" },
+  { term: "Pipe Tally", def: "The running record of drill pipe and tubular lengths run into the hole, used to calculate capacity, displacement, and true depth.", href: "/calculators/drill-pipe-tally" },
+  { term: "Platform Rig", def: "A drilling rig fixed to the seabed on a steel jacket or concrete gravity base, permanently installed to drill dozens of wells from one location.", href: "/equipment/rig-types" },
   { term: "POOH / RIH", def: "Pull Out Of Hole / Run In Hole — tripping the drill string to surface or back into the wellbore." },
-  { term: "Pore Pressure", def: "The pressure of fluids within reservoir rock pores. Normal gradient roughly 0.433-0.465 psi/ft." },
-  { term: "Roughneck", def: "Rig floor crew member who makes up and breaks out pipe connections. Also called a floorhand." },
+  { term: "Pore Pressure", def: "The pressure of fluids within reservoir rock pores. Normal gradient roughly 0.433-0.465 psi/ft.", href: "/drilling/mud-weight" },
+  { term: "Positive Displacement Mud Motor (PDM)", def: "A downhole motor with a helical rotor and stator that converts drilling fluid flow into bit rotation, used for directional steering and dedicated drilling runs.", href: "/equipment/positive-displacement-mud-motor" },
+  { term: "Power Generation System", def: "The rig's engines and generators — often diesel-electric with SCR or VFD drives — that supply electrical power to rig equipment.", href: "/equipment/power-generation-system" },
+  { term: "Power Swivel", def: "A hydraulic or pneumatic rotating device used on workover rigs without a top drive to apply rotation to the tubing or pipe string.", href: "/equipment/power-swivel" },
+  { term: "Production Casing", def: "The final casing string, run through the reservoir. The well is completed and produced through this string.", href: "/drilling/casing" },
+  { term: "Pup Joint", def: "A short length of pipe, shorter than a standard joint, used to precisely space out a tubing or casing string.", href: "/equipment/pup-joint" },
+  { term: "Reversing Tool", def: "A tool that reverses normal circulation direction to recover junk or debris from the wellbore, often run as part of a fishing assembly.", href: "/equipment/reversing-tool" },
+  { term: "Ring Gasket (RTJ)", def: "A metal ring-type-joint gasket used on flanged wellhead and BOP connections, sized to match the connection's bore and pressure class.", href: "/calculators/flange-ring-gasket" },
+  { term: "Rig Move", def: "The planned relocation of a drilling rig from one wellsite to another — rigging down, hauling, and rigging up equipment, crews, and camp.", href: "/drilling/rig-move-plan" },
+  { term: "Riser Margin", def: "The extra mud weight carried subsea to compensate for the hydrostatic head of seawater in the riser, so the well stays controlled if the riser has to be disconnected.", href: "/calculators/riser-margin" },
+  { term: "ROP", def: "Rate of Penetration. How fast the bit is drilling, in ft/hr. A sudden increase is called a drilling break.", href: "/equipment/drill-string" },
+  { term: "Rotary Steerable System (RSS)", def: "A directional drilling tool that steers the bit while continuously rotating the entire string, improving hole cleaning and ROP compared to sliding with a motor.", href: "/drilling/directional" },
+  { term: "Rotating System", def: "The rig system — top drive or rotary table and kelly — that imparts rotation to the drill string.", href: "/equipment/rotating-system" },
+  { term: "Roughneck", def: "Rig floor crew member who makes up and breaks out pipe connections. Also called a floorhand.", href: "/careers/roughneck" },
   { term: "Roustabout", def: "Entry-level general labor position — cleaning, painting, moving equipment. No prior experience required." },
-  { term: "ROP", def: "Rate of Penetration. How fast the bit is drilling, in ft/hr. A sudden increase is called a drilling break." },
-  { term: "Shear Rams", def: "Emergency BOP rams that cut through drill pipe and seal the well simultaneously." },
-  { term: "SICP", def: "Shut-In Casing Pressure. Recorded on the casing side after shutting in on a kick." },
-  { term: "SIDPP", def: "Shut-In Drill Pipe Pressure. Directly reflects excess formation pressure above hydrostatic after shut-in." },
-  { term: "Toolpusher", def: "Overall supervisor of the drilling contractor's rig operations, managing all crews, tools, and equipment." },
-  { term: "Top Drive", def: "Motor system that rotates the drill string, allowing continuous rotation while adding stands — replaced the kelly on most modern rigs." },
+  { term: "SABS / DABS", def: "Single-Acting Bumper Sub / Double-Acting Bumper Sub — bumper subs that deliver impact in one direction only (SABS) or in both up and down strokes (DABS).", href: "/equipment/sabs-dabs" },
+  { term: "Safety Joint", def: "A deliberately weak, releasable connection built into a fishing string so the working string above a stuck fish can be backed off rather than becoming a second stuck object.", href: "/equipment/safety-joint" },
+  { term: "SCSSV", def: "Surface-Controlled Subsurface Safety Valve. A fail-safe valve in the tubing string, held open by hydraulic pressure from surface, that closes automatically if control is lost.", href: "/equipment/scssv" },
+  { term: "Seal Bore Liner Packer", def: "A packer providing a polished sealing bore at the liner-to-casing overlap, giving a seal assembly a surface to land in for a tieback or production string.", href: "/equipment/seal-bore-liner-packer" },
+  { term: "Section Mill", def: "A downhole mill that removes a full interval of casing around its entire circumference, exposing formation for a sidetrack or a cross-formation cement plug.", href: "/equipment/section-mill" },
+  { term: "Semi-Submersible", def: "A floating offshore rig held stable on submerged, flooded pontoons and anchored or dynamically positioned. Works in up to roughly 12,000 ft of water.", href: "/equipment/rig-types" },
+  { term: "Shear Rams", def: "Emergency BOP rams that cut through drill pipe and seal the well simultaneously.", href: "/equipment/bop" },
+  { term: "Shut-In (Soft / Hard)", def: "Closing in the well on a kick — soft shut-in closes the annular preventer first, hard shut-in closes a pipe ram first. Company procedure dictates which is used.", href: "/drilling/well-control" },
+  { term: "SICP", def: "Shut-In Casing Pressure. Recorded on the casing side after shutting in on a kick.", href: "/drilling/well-control" },
+  { term: "SIDPP", def: "Shut-In Drill Pipe Pressure. Directly reflects excess formation pressure above hydrostatic after shut-in.", href: "/drilling/well-control" },
+  { term: "Sliding Sleeve", def: "A completion device with ports that can be opened or closed with a wireline shifting tool to control flow between tubing and annulus.", href: "/equipment/sliding-sleeve" },
+  { term: "Slow Pump Rate (SPR)", def: "The standpipe pressure recorded at a reduced, pre-agreed pump rate before a kick, used as the baseline for adjusting kill pump pressure after a stroke rate or mud weight change.", href: "/calculators/pump-pressure-adjustment" },
+  { term: "Slug (Pit Gain Offset)", def: "A dose of heavier mud pumped into the top of the drill string before tripping, so the pipe can be pulled dry without creating a false pit gain.", href: "/calculators/slug-calculation" },
+  { term: "Snubbing Unit", def: "A well-service unit that forces pipe into a well under pressure, built for exactly the situation a drilling rig is not: a live, unkilled wellbore.", href: "/equipment/rig-types" },
+  { term: "Spear", def: "A fishing tool that enters the inside of a fish and expands to grip it from within — used where the fish's outer surface is damaged or it is large-bore pipe or casing.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Spiral Drill Collar", def: "A drill collar machined with helical grooves that reduce its contact area against the wellbore wall, cutting the risk of differential sticking for a modest loss of weight.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Spudcan", def: "The enlarged, conical footing at the base of a jack-up rig's legs that penetrates the seabed for bearing support. A punch-through happens when it breaks through a stiff crust into a softer layer below.", href: "/equipment/rig-types" },
+  { term: "Stabilizer", def: "A BHA component that keeps the string centered in the hole to control trajectory and reduce vibration.", href: "/equipment/stabilizer" },
+  { term: "Strapping Table", def: "A chart converting fluid fill height in a tank to volume, used for horizontal tanks where the relationship isn't linear.", href: "/calculators/horizontal-tank-capacity" },
+  { term: "Stuck Pipe", def: "A drill string that cannot be moved, rotated, or both. Falls into two families — differential sticking and mechanical sticking — that require opposite responses.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Submersible / Barge Rig", def: "A rig with a flooded hull that rests on the seabed in very shallow water — bays, swamps, and marshes. Limited to roughly 70 ft of water.", href: "/equipment/rig-types" },
+  { term: "Surface Casing", def: "Casing that protects freshwater aquifers from contamination and provides the structural base the BOP stack is installed on.", href: "/drilling/casing" },
+  { term: "Surge", def: "The pressure increase created by running pipe into the hole — mud is pushed ahead of the string, momentarily raising bottomhole pressure. Surge past fracture pressure causes lost circulation.", href: "/drilling/mud-weight" },
+  { term: "Swab", def: "The pressure reduction created by pulling pipe out of the hole — the string drags mud with it, momentarily lowering bottomhole pressure. Severe swabbing can pull in a kick.", href: "/drilling/mud-weight" },
+  { term: "Swamper", def: "A rig-move laborer who helps load and secure equipment onto trucks and trailers during a rig move.", href: "/drilling/rig-move-plan" },
+  { term: "Taper Tap", def: "A last-resort fishing tool that cuts its own thread into a damaged fish from the inside. Effective but committing — hard to release if the fish won't move.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "TCP Gun", def: "Tubing-Conveyed Perforating gun. A perforating gun assembly run in on tubing rather than wireline to perforate casing opposite the reservoir.", href: "/equipment/tcp-gun" },
+  { term: "Tender-Assisted Rig", def: "A drilling rig split in two: a compact drilling package sits on the platform while a tender vessel alongside carries the mud, power, and accommodation.", href: "/equipment/rig-types" },
+  { term: "Tieback String", def: "A casing string run to connect a liner back up to the surface, used when a well originally completed with a liner is later tied back for full-length production casing.", href: "/drilling/casing" },
+  { term: "Ton-Mile", def: "A measure of the work done on drilling line — load moved over distance — used to schedule when the line should be cut and slipped before it fatigues.", href: "/calculators/ton-mile" },
+  { term: "Toolpusher", def: "Overall supervisor of the drilling contractor's rig operations, managing all crews, tools, and equipment.", href: "/careers/toolpusher" },
+  { term: "Top Drive", def: "Motor system that rotates the drill string, allowing continuous rotation while adding stands — replaced the kelly on most modern rigs.", href: "/equipment/rotating-system" },
   { term: "Trip Gas", def: "Gas entering the wellbore when pulling the string out of hole due to the swab effect. Monitored by the mud logger." },
-  { term: "WOB", def: "Weight on Bit. The portion of drill collar weight applied to the bit to create cutting force." },
+  { term: "Trip Margin", def: "Extra mud weight or pressure margin held above the minimum needed to control the well, to cover the swab effect of pulling pipe out of hole.", href: "/calculators/trip-margin" },
+  { term: "Tripping Pressure Effects", def: "The combined surge and swab pressure changes created by moving pipe in the hole — a function of tripping speed, clearance, and mud rheology.", href: "/calculators/tripping-pressure-effects" },
+  { term: "Tubing Plug", def: "A wireline-set plug landed in a landing nipple to create a temporary flow barrier in a tubing string.", href: "/equipment/tubing-plug" },
+  { term: "Under-Reamer", def: "A tool that enlarges the wellbore below a restriction, expanding its cutting arms once it passes beyond the tighter section above.", href: "/equipment/under-reamer" },
+  { term: "Variable Bore Ram (VBR)", def: "A ram-type BOP element that seals across a range of pipe diameters rather than one fixed size, covering drill pipe and tubing without a ram change.", href: "/equipment/bop" },
+  { term: "Volumetric Method", def: "A well-kill technique used when the string cannot be circulated, controlling bottomhole pressure by bleeding a measured volume of fluid off the annulus as gas migrates upward.", href: "/pillars/advanced-well-control-and-hydrostatics" },
+  { term: "Wait-and-Weight (Engineer's Method)", def: "A well kill method that mixes kill-weight mud first, then circulates the well in a single stage. Fewer circulations than the Driller's Method, but needs time to mix the mud first.", href: "/drilling/well-control" },
+  { term: "Wash Pipe", def: "Pipe run over a fish to wash and clean around it, freeing it from fill or debris before a retrieval attempt.", href: "/equipment/wash-pipe" },
+  { term: "Weight-Up (Barite Requirement)", def: "Calculating how much barite must be added to raise drilling fluid to a target weight.", href: "/calculators/barite-required" },
+  { term: "Well Profile", def: "The planned shape of a directional wellbore — build and hold, S-curve, horizontal, or extended reach — chosen to keep torque, drag, and casing wear manageable.", href: "/drilling/directional" },
+  { term: "Well Protector", def: "A housing that shields exposed wellhead components and casing from mechanical damage and corrosion.", href: "/equipment/well-protector" },
+  { term: "Wet Welding", def: "Underwater welding performed with the welder directly in the water rather than in a dry habitat. Used for emergency repairs at 30-400 ft depth; lower quality than hyperbaric welding.", href: "/welding/underwater-welding" },
+  { term: "Whipstock", def: "An angled deflection tool set in the wellbore to force a bit or tool off a straight path, used to kick off a sidetrack.", href: "/equipment/whipstock" },
+  { term: "Window Mill", def: "A mill run on a whipstock assembly to cut a window through casing so a sidetrack can be drilled from inside it.", href: "/equipment/window-mill" },
+  { term: "WOB", def: "Weight on Bit. The portion of drill collar weight applied to the bit to create cutting force.", href: "/equipment/drill-string" },
+  { term: "Workover Rig", def: "A smaller rig that services wells that already exist — pulling tubing and rods, changing downhole equipment — rather than drilling new ones.", href: "/equipment/rig-types" },
+  { term: "LOTO", def: "Lockout/Tagout — procedures that isolate and tag out hydraulic, pneumatic, electrical, and mechanical energy sources before maintenance work begins.", href: "/safety" },
+  { term: "SMAW", def: "Shielded Metal Arc Welding (stick). The workhorse welding process on a rig — works outdoors in wind, with simple equipment, for structural repairs and pipe.", href: "/welding" },
+  { term: "STOP Card", def: "A safety observation card used to document hazards and safe behaviors seen on the job, part of a behavior-based safety observation program." },
 ];
 
 const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+// Sorted once here for both the on-page A-Z grid and the letter nav. The raw
+// `terms` list above stays in no particular order (new terms get appended
+// where they're easiest to cross-reference against source pages) — sorting
+// is a presentation concern, not a data-entry one.
+const sortedTerms = [...terms].sort((a, b) => a.term.localeCompare(b.term, 'en', { sensitivity: 'base', numeric: true }));
+const letters = Array.from(new Set(sortedTerms.map((t) => t.term[0].toUpperCase()))).sort();
 
 const glossaryLd = {
   "@context": "https://schema.org",
@@ -97,19 +269,79 @@ const glossaryLd = {
   </div>
 
   <section class="block">
+    <nav class="az-nav" aria-label="Jump to letter">
+      {letters.map((l) => (
+        <a href={`#letter-${l}`} class="az-nav-link">{l}</a>
+      ))}
+    </nav>
+
     <div class="glossary-grid">
-      {terms.map(t => (
-        <div class="gloss-item" id={slugify(t.term)}>
-          <div class="gloss-term">{t.term}</div>
-          <div class="gloss-def">{t.def}</div>
-        </div>
+      {letters.map((letter) => (
+        <>
+          <div class="gloss-letter-heading" id={`letter-${letter}`}>{letter}</div>
+          {sortedTerms.filter((t) => t.term[0].toUpperCase() === letter).map((t) => (
+            <div class="gloss-item" id={slugify(t.term)}>
+              <div class="gloss-term">{t.href ? <a href={t.href}>{t.term}</a> : t.term}</div>
+              <div class="gloss-def">{t.def}</div>
+            </div>
+          ))}
+        </>
       ))}
     </div>
   </section>
 
   <section class="block">
     <div class="note-box" style="max-width:700px;">
-      <strong>Looking for something deeper?</strong> Many of these terms link to full explainer pages elsewhere on the site — see <a href="/drilling/well-control" style="color:var(--amber);">Well Control</a>, <a href="/equipment/bop" style="color:var(--amber);">Blowout Preventers</a>, and <a href="/equipment/drill-string" style="color:var(--amber);">The Drill String</a> for complete technical breakdowns.
+      <strong>Looking for something deeper?</strong> Many of these terms link directly to full explainer, equipment, or calculator pages elsewhere on the site — see <a href="/drilling/well-control" style="color:var(--amber);">Well Control</a>, <a href="/equipment/bop" style="color:var(--amber);">Blowout Preventers</a>, and <a href="/equipment/drill-string" style="color:var(--amber);">The Drill String</a> for complete technical breakdowns.
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .az-nav {
+    position: sticky;
+    top: 48px;
+    z-index: 90;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    background: var(--steel);
+    border: 1px solid var(--iron);
+    border-radius: 4px;
+    padding: 10px 12px;
+    margin-bottom: 20px;
+  }
+  .az-nav-link {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--mist);
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 2px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .az-nav-link:hover, .az-nav-link:focus-visible { background: rgba(232,160,32,0.12); color: var(--amber); }
+
+  @media (min-width: 950px) {
+    .az-nav { top: 60px; }
+  }
+
+  .gloss-letter-heading {
+    grid-column: 1 / -1;
+    font-family: var(--cond);
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--amber);
+    background: var(--ink);
+    padding: 14px 20px 8px;
+    border-bottom: 2px solid var(--rust);
+    scroll-margin-top: 110px;
+  }
+
+  .gloss-term a { color: inherit; text-decoration: none; border-bottom: 1px dotted rgba(232,160,32,0.5); }
+  .gloss-term a:hover, .gloss-term a:focus-visible { color: var(--ember); border-bottom-style: solid; }
+</style>
