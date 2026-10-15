@@ -1,6 +1,6 @@
 ---
-title: "Pega Diferencial: Las Tres Condiciones, y Cómo"
-description: "La pega diferencial necesita sobrebalance, una formación permeable y una sarta estática. Elimine cualquiera de las tres y no puede ocurrir. Por qué"
+title: "Pega Diferencial: Las Tres Condiciones y Cómo Evitarla"
+description: "La pega diferencial necesita sobrebalance, una formación permeable y una sarta estática. Elimine cualquiera de las tres y no puede ocurrir."
 publishDate: "2026-08-03"
 author: "RigFloorHQ Team"
 category: "Perforación"

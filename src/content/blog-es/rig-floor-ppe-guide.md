@@ -1,6 +1,6 @@
 ---
-title: "Guía de EPP para el Piso de Perforación: Equipo"
-description: "La referencia completa de EPP para cuadrillas de perforación: estándares ANSI, OSHA, y API para cascos, guantes, ropa FR, protección contra caídas"
+title: "Guía de EPP para el Piso de Perforación"
+description: "La referencia completa de EPP para cuadrillas de perforación: estándares ANSI, OSHA, y API para cascos, guantes, ropa FR, protección contra caídas."
 publishDate: "2026-07-08"
 author: "RigFloorHQ Team"
 category: "Seguridad"

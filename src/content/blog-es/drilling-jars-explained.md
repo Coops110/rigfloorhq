@@ -1,6 +1,6 @@
 ---
-title: "Martillos de Perforación: Por Qué un Impacto"
-description: "Un martillo convierte la sobretensión constante en un golpe breve y violento almacenando el estiramiento de la tubería y liberándolo de golpe. Cómo"
+title: "Martillos de Perforación: Por Qué un Impacto Libera"
+description: "Un martillo convierte la sobretensión constante en un golpe breve y violento almacenando el estiramiento de la tubería y liberándolo de golpe."
 publishDate: "2026-08-03"
 author: "RigFloorHQ Team"
 category: "Perforación"

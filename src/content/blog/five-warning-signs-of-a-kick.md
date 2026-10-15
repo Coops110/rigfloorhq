@@ -1,5 +1,5 @@
 ---
-title: "Five Warning Signs of a Kick Every New Hand"
+title: "Five Warning Signs of a Kick Every New Hand Should Know Cold"
 description: "The early indicators of a well kick, why they matter more than the dramatic ones you see in movies, and what to actually do the moment you notice them."
 publishDate: "2026-07-08"
 author: "RigFloorHQ Team"

@@ -1,6 +1,6 @@
 ---
-title: "Drilling Jars Explained: Why an Impact Frees Pipe"
-description: "A jar turns steady overpull into a short, violent blow by storing stretch in the drill pipe and releasing it at once. How cocking and firing work, up jars"
+title: "Drilling Jars Explained: Why Impact Frees Stuck Pipe"
+description: "A jar turns steady overpull into a short, violent blow by storing stretch in the drill pipe and releasing it at once. How cocking and firing work."
 publishDate: "2026-08-03"
 author: "RigFloorHQ Team"
 category: "Drilling"

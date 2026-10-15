@@ -1,6 +1,6 @@
 ---
-title: "Roustabout to Driller: What the Timeline Actually"
-description: "A realistic look at how long it actually takes to progress from an entry-level rig job to running the console, and what determines whether you move faster"
+title: "Roustabout to Driller: What the Timeline Looks Like"
+description: "A realistic look at how long it takes to progress from an entry-level rig job to running the console, and what determines your pace versus average."
 publishDate: "2026-07-09"
 author: "RigFloorHQ Team"
 category: "Careers"

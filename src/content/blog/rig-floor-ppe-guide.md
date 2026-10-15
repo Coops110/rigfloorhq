@@ -1,5 +1,5 @@
 ---
-title: "Rig Floor PPE Guide: Personal Protective"
+title: "Rig Floor PPE Guide: Personal Protective Equipment"
 description: "The complete PPE reference for drilling crews: ANSI, OSHA, and API standards for hard hats, gloves, FR clothing, fall protection, and H2S gear on the rig floor."
 publishDate: "2026-07-08"
 author: "RigFloorHQ Team"

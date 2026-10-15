@@ -1,5 +1,5 @@
 ---
-title: "Welcome to RigFloorHQ: A Complete Field Reference, Built"
+title: "Welcome to RigFloorHQ: A Complete Field Reference"
 description: "Why we built RigFloorHQ, what's in it today, and what's coming next for anyone working in or entering the oil and gas drilling industry."
 publishDate: "2026-07-07"
 author: "RigFloorHQ Team"

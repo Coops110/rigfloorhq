@@ -1,6 +1,6 @@
 ---
-title: "Curvas de Control de Pozos: Escenarios Más"
-description: "Problemas de presión trabajados y escenarios límite de control de pozos — separadores de gas de lodo, lecturas de PWD, pruebas de BOP, comportamiento"
+title: "Curvas de Control de Pozos: Escenarios Más Difíciles"
+description: "Problemas de presión trabajados y escenarios límite de control de pozos — separadores de gas de lodo, lecturas de PWD, pruebas de BOP."
 publishDate: "2026-09-21"
 author: "RigFloorHQ Team"
 category: "Control de Pozos"

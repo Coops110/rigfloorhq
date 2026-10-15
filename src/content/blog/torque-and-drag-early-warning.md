@@ -1,6 +1,6 @@
 ---
-title: "Torque and Drag as Early Warning: Reading"
-description: "A torque figure means nothing on its own. What matters is the gap between what the model predicted and what the string actually did — and that gap opens"
+title: "Torque and Drag as Early Warning: Read the Trend"
+description: "A torque figure means nothing on its own. What matters is the gap between what the model predicted and what the string actually did."
 publishDate: "2026-08-03"
 author: "RigFloorHQ Team"
 category: "Drilling"

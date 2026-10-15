@@ -1,6 +1,6 @@
 ---
-title: "Hole Cleaning in High-Angle Wells: Why Cuttings"
-description: "Above roughly 50 degrees, cuttings stop being carried out and start settling into beds. Why gravity changes the problem, what actually moves a bed"
+title: "Hole Cleaning in High-Angle Wells: Why Cuttings Beds Form"
+description: "Above roughly 50 degrees, cuttings stop being carried out and start settling into beds. Why gravity changes the problem, what actually moves a bed."
 publishDate: "2026-08-03"
 author: "RigFloorHQ Team"
 category: "Drilling"

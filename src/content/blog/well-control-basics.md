@@ -1,6 +1,6 @@
 ---
-title: "What Is a Kick? Well Control Explained for New"
-description: "What a kick actually is, why hydrostatic pressure fails, how a flow check confirms an influx, and why hard and soft shut-in exist — the reasoning behind"
+title: "What Is a Kick? Well Control Explained for New Rig Crews"
+description: "What a kick actually is, why hydrostatic pressure fails, how a flow check confirms an influx, and why hard and soft shut-in exist."
 publishDate: "2026-07-09"
 author: "RigFloorHQ Team"
 category: "Well Control"

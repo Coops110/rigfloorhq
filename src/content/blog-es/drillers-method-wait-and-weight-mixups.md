@@ -1,6 +1,6 @@
 ---
-title: "Método del Perforador y Wait and Weight"
-description: "Dónde el Método del Perforador, Wait and Weight, y el Método Volumétrico se confunden entre sí — qué presión mantener constante, cómo se ve realmente"
+title: "Método del Perforador y Wait and Weight: Confusiones Comunes"
+description: "Dónde el Método del Perforador, Wait and Weight y el Método Volumétrico se confunden — qué presión mantener constante."
 publishDate: "2026-09-21"
 author: "RigFloorHQ Team"
 category: "Control de Pozos"

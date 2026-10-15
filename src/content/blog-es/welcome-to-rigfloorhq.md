@@ -1,6 +1,6 @@
 ---
-title: "Bienvenido a RigFloorHQ: Una Referencia de Campo Completa"
-description: "Por qué construimos RigFloorHQ, qué hay en él hoy, y qué viene después para cualquiera que trabaje en o esté entrando a la industria de perforación"
+title: "Bienvenido a RigFloorHQ: Referencia de Campo Completa"
+description: "Por qué construimos RigFloorHQ, qué hay en él hoy, y qué viene después para cualquiera que trabaje en o esté entrando a la industria petrolera y de gas."
 publishDate: "2026-07-07"
 author: "RigFloorHQ Team"
 category: "Anuncios"

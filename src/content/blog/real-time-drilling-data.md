@@ -1,6 +1,6 @@
 ---
-title: "Real-Time Drilling Performance Data: Platforms"
-description: "How real-time drilling data actually gets used on modern rigs — the systems behind it, what MWD/LWD data streams enable, and why the practice matters more"
+title: "Real-Time Drilling Performance Data: Platforms and Practices"
+description: "How real-time drilling data actually gets used on modern rigs — the systems behind it, what MWD/LWD data streams enable."
 publishDate: "2026-07-09"
 author: "RigFloorHQ Team"
 category: "Drilling Operations"

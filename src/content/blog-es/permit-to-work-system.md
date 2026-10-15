@@ -1,6 +1,6 @@
 ---
-title: "Sistema de Permisos de Trabajo en Taladros"
-description: "Cómo funciona el sistema PTW en un taladro en la práctica: trabajo en caliente, espacios confinados, aislamiento eléctrico y LOTO, SIMOPS, y el proceso"
+title: "Sistema de Permisos de Trabajo en Taladros de Perforación"
+description: "Cómo funciona el sistema PTW en un taladro en la práctica: trabajo en caliente, espacios confinados, aislamiento eléctrico y LOTO, SIMOPS."
 publishDate: "2026-07-23"
 author: "RigFloorHQ Team"
 category: "Seguridad"
