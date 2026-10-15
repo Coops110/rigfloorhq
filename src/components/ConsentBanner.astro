@@ -77,7 +77,11 @@ const t = lang === 'es'
       <div class="consent-inner">
         <div class="consent-view consent-view-main" id="consent-view-main">
           <div class="consent-copy">
-            <h2 id="consent-title">{t.title}</h2>
+            {/* Not a real h2 - a dialog title that would otherwise land in
+                every single page's heading outline for a UI overlay most
+                visitors never see expanded. aria-labelledby only needs an
+                element with this id, not specifically a heading tag. */}
+            <p class="consent-title" id="consent-title">{t.title}</p>
             <p id="consent-body">
               {t.body} <a href={t.privacyHref}>{t.privacy}</a>.
             </p>
@@ -97,7 +101,7 @@ const t = lang === 'es'
 
         <div class="consent-view consent-view-settings" id="consent-view-settings" hidden>
           <div class="consent-settings-body">
-            <h2 id="consent-settings-title">{t.settingsTitle}</h2>
+            <p class="consent-title" id="consent-settings-title">{t.settingsTitle}</p>
             <div class="consent-categories">
               <div class="consent-category">
                 <div class="consent-category-head">
@@ -351,7 +355,7 @@ const t = lang === 'es'
   .consent-view[hidden] { display: none; }
 
   .consent-copy, .consent-settings-body { flex: 1 1 auto; min-width: 0; }
-  .consent-copy h2, .consent-settings-body h2 {
+  .consent-title {
     font-family: var(--cond);
     font-weight: 700;
     font-size: 18px;

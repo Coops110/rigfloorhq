@@ -23,7 +23,10 @@ const copy = lang === 'es' ? {
 ---
 {variant === 'footer' ? (
   <div class="footer-newsletter">
-    <h2>{copy.footerHeading}</h2>
+    {/* Not an h2 - this is a footer chrome label repeated on every page, not
+        real page content, and shouldn't inflate the document's heading
+        structure. Styled identically via .footer-col-heading. */}
+    <p class="footer-col-heading">{copy.footerHeading}</p>
     <p class="footer-sub" style="margin-top:0;margin-bottom:12px;">{copy.footerSub}</p>
     <form
       action="https://buttondown.com/api/emails/embed-subscribe/ccooperh"
