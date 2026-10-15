@@ -97,11 +97,11 @@ const webAppLd = {
 
       <div class="prose">
         <h2>The Formula Used</h2>
-        <div class="formula-block">
-          <div class="formula-label">Maximum Allowable Annular Surface Pressure</div>
-          <div class="formula-eq">MAASP = LOT/FIT Pressure + [(LOT/FIT MW − Current MW) × 0.052 × Shoe TVD]</div>
-          <div class="formula-note">LOT/FIT pressure in psi, both mud weights in ppg, shoe TVD in feet, MAASP in psi.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Maximum Allowable Annular Surface Pressure</dt>
+          <dd class="formula-eq"><code>MAASP = LOT/FIT Pressure + [(LOT/FIT MW − Current MW) × 0.052 × Shoe TVD]</code></dd>
+          <dd class="formula-note">LOT/FIT pressure in psi, both mud weights in ppg, shoe TVD in feet, MAASP in psi.</dd>
+        </dl>
 
         <h3>Where This Fits</h3>
         <p>MAASP isn't a fixed number for the well — it moves every time mud weight changes, which is why it needs recalculating whenever mud is weighted up or down, not recorded once after the LOT/FIT and forgotten. The test itself, run right after drilling out the shoe, finds the pressure the formation just below it can take before breaking down or taking losses, at whatever mud weight was in the hole that day. Everything after that test is really asking one question: how much surface pressure is left before that same formation, at today's mud weight, hits that original limit? Feed in the LOT/FIT pressure, LOT/FIT mud weight, and shoe TVD from the completed test alongside whatever mud weight is currently in use, and this calculator answers exactly that.</p>

@@ -12,6 +12,15 @@ const jsonLd = {
   "@type": "Article",
   "headline": "How to Become a Toolpusher",
   "description": "The path from driller to toolpusher: what the role actually involves, the IADC WellSharp Supervisor certification it requires, realistic timeline, and pay.",
+};
+
+// reviewedBy belongs on WebPage per schema.org, not Article — see
+// src/lib/person.js. A separate WebPage node carries it instead of Article.
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/careers/toolpusher#webpage",
+  "url": "https://rigfloorhq.com/careers/toolpusher",
   "reviewedBy": reviewedByJabin(),
 };
 ---
@@ -20,6 +29,7 @@ const jsonLd = {
   description="The path from driller to toolpusher: what the role actually involves, the IADC WellSharp Supervisor certification it requires, realistic timeline, and pay."
   breadcrumbs={[{ label: 'Careers', href: '/careers' }, { label: 'Toolpusher', href: '/careers/toolpusher' }]}
   jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
   lang="en"
   alternateHref="/es/careers/toolpusher"
 >

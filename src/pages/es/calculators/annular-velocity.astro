@@ -22,9 +22,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/annular-velocity",
   "description": "Calculadora gratuita de velocidad anular: qué tan rápido se mueve el fluido de perforación hacia arriba por el anular a una tasa de bomba y capacidad anular dadas, para revisiones de limpieza del pozo.",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -71,11 +71,11 @@ const webAppLd = {
 
       <div class="prose">
         <h2>La Fórmula Usada</h2>
-        <div class="formula-block">
-          <div class="formula-label">Velocidad Anular</div>
-          <div class="formula-eq">AV = Producción de Bomba ÷ Capacidad Anular</div>
-          <div class="formula-note">Producción de bomba en bbl/min, capacidad anular en bbl/ft, AV en ft/min.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Velocidad Anular</dt>
+          <dd class="formula-eq"><code>AV = Producción de Bomba ÷ Capacidad Anular</code></dd>
+          <dd class="formula-note">Producción de bomba en bbl/min, capacidad anular en bbl/ft, AV en ft/min.</dd>
+        </dl>
 
         <h3>Dónde Encaja Esto</h3>
         <p>La velocidad anular es el enlace directo entre una tasa de bomba elegida y si el pozo realmente se está limpiando — el mismo problema real del mundo que la <a href="/es/blog/hole-cleaning-high-angle-wells">guía de limpieza del pozo</a> del sitio cubre desde el lado operacional (barridos, rotación de tubería, back-reaming). Obtén la capacidad anular para la sección específica de un <a href="/es/calculators/drill-pipe-tally">conteo de tubería de perforación</a> o un cálculo directo de agujero/DE de tubería, pasa la producción de bomba por esta calculadora, y compara el resultado contra el objetivo mínimo conocido de velocidad anular del pozo para ese tamaño de agujero y sistema de lodo antes de comprometerte a una tasa de bomba. La misma cifra de producción de bomba y concepto de capacidad anular también alimentan la <a href="/es/calculators/ecd">calculadora de ECD</a>, ya que la pérdida de presión por fricción anular es impulsada por el mismo flujo.</p>

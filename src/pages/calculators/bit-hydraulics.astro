@@ -130,22 +130,22 @@ const webAppLd = {
 
       <div class="prose">
         <h2>The Formulas Used</h2>
-        <div class="formula-block">
-          <div class="formula-label">Total Flow Area</div>
-          <div class="formula-eq">TFA = Σ [ π/4 × (Nozzle Size ÷ 32)² ] for each nozzle</div>
-        </div>
-        <div class="formula-block mt-24">
-          <div class="formula-label">Jet Velocity</div>
-          <div class="formula-eq">Vn (ft/sec) = 0.32 × Flow Rate (gpm) ÷ TFA (in²)</div>
-        </div>
-        <div class="formula-block mt-24">
-          <div class="formula-label">Bit Hydraulic Horsepower</div>
-          <div class="formula-eq">HHP = (Bit Pressure Drop × Flow Rate) ÷ 1714</div>
-        </div>
-        <div class="formula-block mt-24">
-          <div class="formula-label">HSI (Hydraulic Horsepower per Square Inch)</div>
-          <div class="formula-eq">HSI = HHP ÷ [π/4 × (Bit Size)²]</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Total Flow Area</dt>
+          <dd class="formula-eq"><code>TFA = Σ [ π/4 × (Nozzle Size ÷ 32)² ] for each nozzle</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Jet Velocity</dt>
+          <dd class="formula-eq"><code>Vn (ft/sec) = 0.32 × Flow Rate (gpm) ÷ TFA (in²)</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Bit Hydraulic Horsepower</dt>
+          <dd class="formula-eq"><code>HHP = (Bit Pressure Drop × Flow Rate) ÷ 1714</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">HSI (Hydraulic Horsepower per Square Inch)</dt>
+          <dd class="formula-eq"><code>HSI = HHP ÷ [π/4 × (Bit Size)²]</code></dd>
+        </dl>
 
         <div class="note-box mt-24">
           <strong>What's deliberately not derived here:</strong> bit pressure drop itself isn't calculated from mud weight, flow rate, and TFA — that formula's exact constant varies between references depending on assumed nozzle discharge coefficient, and it couldn't be confirmed with confidence against a real worked example while building this page. Bit pressure drop goes in as a known value (read from the standpipe pressure difference on/off bottom) rather than risk a formula that's wrong by a meaningful margin on a real job.

@@ -24,9 +24,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/tripping-pressure-effects",
   "description": "Calculadora gratuita de caída de presión por pie al sacar tubería seca o mojada, y qué tanto baja el nivel de lodo al sacar del pozo sin rellenar.",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -125,18 +125,18 @@ const webAppLd = {
 
       <div class="prose">
         <h2>Las Fórmulas Usadas</h2>
-        <div class="formula-block">
-          <div class="formula-label">Caída de Presión/ft — Tubería Seca</div>
-          <div class="formula-eq">ΔP/ft = Peso de Lodo × 0.052 × [Desp. de Acero ÷ (Capacidad − Desp. de Acero)]</div>
-        </div>
-        <div class="formula-block mt-24">
-          <div class="formula-label">Caída de Presión/ft — Tubería Mojada</div>
-          <div class="formula-eq">ΔP/ft = Peso de Lodo × 0.052 × [(Desp. de Acero + Capacidad de Tubería) ÷ Capacidad Anular]</div>
-        </div>
-        <div class="formula-block mt-24">
-          <div class="formula-label">Caída de Nivel de Lodo (Seca)</div>
-          <div class="formula-eq">Caída = Longitud Sacada × Desp. de Acero ÷ Capacidad</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Caída de Presión/ft — Tubería Seca</dt>
+          <dd class="formula-eq"><code>ΔP/ft = Peso de Lodo × 0.052 × [Desp. de Acero ÷ (Capacidad − Desp. de Acero)]</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Caída de Presión/ft — Tubería Mojada</dt>
+          <dd class="formula-eq"><code>ΔP/ft = Peso de Lodo × 0.052 × [(Desp. de Acero + Capacidad de Tubería) ÷ Capacidad Anular]</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Caída de Nivel de Lodo (Seca)</dt>
+          <dd class="formula-eq"><code>Caída = Longitud Sacada × Desp. de Acero ÷ Capacidad</code></dd>
+        </dl>
 
         <h3>Dónde Encaja Esto</h3>
         <p>Estos tres cálculos son la mecánica detrás del mismo riesgo de swab contra el que planean tanto la <a href="/es/calculators/trip-margin">calculadora de margen de viaje</a> como la <a href="/es/calculators/pipe-pull-margin">calculadora de margen de extracción de tubería seca y mojada</a> — el margen de viaje establece cuánto peso de lodo extra cargar, el margen de extracción dice qué tan lejos puede salir la tubería con seguridad, y esta página calcula la consecuencia real de presión y nivel de lodo de una longitud específica sacada seca o mojada. En un viaje real, la caída de nivel de lodo es lo que le dice a la cuadrilla exactamente cuánto rellenar el anular después de cada parada o conexión para que la presión hidrostática no se desplome conforme sale la tubería.</p>

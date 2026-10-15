@@ -100,21 +100,21 @@ const webAppLd = {
 
       <div class="prose">
         <h2>The Formulas Used</h2>
-        <div class="formula-block">
-          <div class="formula-label">1st Correction</div>
-          <div class="formula-eq">C1 = Original Rig Floor Elevation − Present Rig Floor Elevation</div>
-          <div class="formula-note">Applied to both drill pipe and wireline depths, since both were referenced to the original elevation.</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">2nd Correction</div>
-          <div class="formula-eq">C2 = Drill Pipe Tally Depth − Wireline Measured Depth</div>
-          <div class="formula-note">Only meaningful once both depths are read from the same reference point — apply C1 first if the rig floor also changed.</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Final Correction</div>
-          <div class="formula-eq">Final = C1 + C2</div>
-          <div class="formula-note">The total correction to apply to the drill pipe tally to get true depth against the new reference.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">1st Correction</dt>
+          <dd class="formula-eq"><code>C1 = Original Rig Floor Elevation − Present Rig Floor Elevation</code></dd>
+          <dd class="formula-note">Applied to both drill pipe and wireline depths, since both were referenced to the original elevation.</dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">2nd Correction</dt>
+          <dd class="formula-eq"><code>C2 = Drill Pipe Tally Depth − Wireline Measured Depth</code></dd>
+          <dd class="formula-note">Only meaningful once both depths are read from the same reference point — apply C1 first if the rig floor also changed.</dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Final Correction</dt>
+          <dd class="formula-eq"><code>Final = C1 + C2</code></dd>
+          <dd class="formula-note">The total correction to apply to the drill pipe tally to get true depth against the new reference.</dd>
+        </dl>
 
         <p>This is a datum reconciliation, not a stretch calculation — it doesn't account for drill pipe or wireline stretch over depth on its own. For the capacity and volume math that depth feeds into elsewhere, see the <a href="/calculators/formulas-cheat-sheet">drilling formulas cheat sheet</a>.</p>
 

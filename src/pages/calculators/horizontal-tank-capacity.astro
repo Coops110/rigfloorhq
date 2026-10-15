@@ -140,15 +140,15 @@ const webAppLd = {
 
       <div class="prose">
         <h2>The Formula Used</h2>
-        <div class="formula-block">
-          <div class="formula-label">Circular Segment Area at Fill Height h</div>
-          <div class="formula-eq">A(h) = r² × cos⁻¹((r − h) ÷ r) − (r − h) × √(2rh − h²)</div>
-          <div class="formula-note">r is the tank radius (half the diameter), h is fill height measured from the bottom of the tank, 0 ≤ h ≤ 2r. This is the exact area of the wetted circular cross-section at that fill height — not an approximation.</div>
-        </div>
-        <div class="formula-block mt-24">
-          <div class="formula-label">Volume at Fill Height h</div>
-          <div class="formula-eq">V(h) = A(h) × Tank Length</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Circular Segment Area at Fill Height h</dt>
+          <dd class="formula-eq"><code>A(h) = r² × cos⁻¹((r − h) ÷ r) − (r − h) × √(2rh − h²)</code></dd>
+          <dd class="formula-note">r is the tank radius (half the diameter), h is fill height measured from the bottom of the tank, 0 ≤ h ≤ 2r. This is the exact area of the wetted circular cross-section at that fill height — not an approximation.</dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Volume at Fill Height h</dt>
+          <dd class="formula-eq"><code>V(h) = A(h) × Tank Length</code></dd>
+        </dl>
         <div class="note-box mt-24">
           <strong>Verified before shipping.</strong> At h = 0 the formula gives exactly 0. At h = full diameter it reduces to the plain cylinder volume, πr²L. At h = half the diameter it gives exactly half that volume. And the 25%-height and 75%-height results always sum to exactly 100% of the full volume, by the circle's own symmetry. All four checks hold with this formula — that symmetry is what makes a fill-height table trustworthy rather than just plausible-looking.
         </div>

@@ -30,9 +30,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/gas-migration",
   "description": "Calculadora de migración de gas: ritmo de migración en ft/hr desde la acumulación de presión de cierre, y el volumen de purga del método volumétrico para mantener estable la presión de fondo.",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -99,15 +99,15 @@ const webAppLd = {
 
       <div class="prose">
         <h2>Las Fórmulas Usadas</h2>
-        <div class="formula-block">
-          <div class="formula-label">Ritmo de Migración de Gas</div>
-          <div class="formula-eq">Ritmo (ft/hr) = Aumento de Presión (psi/hr) ÷ Gradiente de Lodo (psi/ft)</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Volumen a Purgar (Método Volumétrico)</div>
-          <div class="formula-eq">Volumen (bbls) = (Presión a Purgar ÷ Gradiente de Lodo) × Capacidad Anular</div>
-          <div class="formula-note">Según la hoja de fórmulas WellSharp / IWCF en unidades de campo. Puede usarse la acumulación de SIDPP o SICP para el lado del ritmo de migración, la que se esté monitoreando.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Ritmo de Migración de Gas</dt>
+          <dd class="formula-eq"><code>Ritmo (ft/hr) = Aumento de Presión (psi/hr) ÷ Gradiente de Lodo (psi/ft)</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Volumen a Purgar (Método Volumétrico)</dt>
+          <dd class="formula-eq"><code>Volumen (bbls) = (Presión a Purgar ÷ Gradiente de Lodo) × Capacidad Anular</code></dd>
+          <dd class="formula-note">Según la hoja de fórmulas WellSharp / IWCF en unidades de campo. Puede usarse la acumulación de SIDPP o SICP para el lado del ritmo de migración, la que se esté monitoreando.</dd>
+        </dl>
 
         <p>Una vez que tienes un ritmo de migración, revisar si un ritmo de bombeo planeado para bombeo a matar realmente superaría ese ritmo es la última sección de la <a href="/es/calculators/bullheading">calculadora de bombeo a matar</a>. Para las presiones de cierre y el peso de matar en los que se alimenta esto más ampliamente, ver la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a>.</p>
 

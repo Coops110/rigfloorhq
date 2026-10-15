@@ -32,9 +32,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/kick-tolerance",
   "description": "Calculadora de tolerancia a la surgencia gratis: la surgencia equivalente en ppg que tu MAASP actual puede absorber en la zapata, usando el supuesto conservador estándar de gradiente cero.",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -97,11 +97,11 @@ const webAppLd = {
 
       <div class="prose">
         <h2>La Fórmula Usada</h2>
-        <div class="formula-block">
-          <div class="formula-label">Tolerancia a la Surgencia</div>
-          <div class="formula-eq">KT = [MAASP − (Altura de Surgencia × MW × 0.052)] ÷ (0.052 × TVD de Zapata)</div>
-          <div class="formula-note">MAASP en psi, altura de surgencia y TVD de zapata en pies, peso de lodo en ppg, tolerancia a la surgencia en ppg-equivalente.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Tolerancia a la Surgencia</dt>
+          <dd class="formula-eq"><code>KT = [MAASP − (Altura de Surgencia × MW × 0.052)] ÷ (0.052 × TVD de Zapata)</code></dd>
+          <dd class="formula-note">MAASP en psi, altura de surgencia y TVD de zapata en pies, peso de lodo en ppg, tolerancia a la surgencia en ppg-equivalente.</dd>
+        </dl>
 
         <h3>Dónde Encaja Esto</h3>
         <p>La tolerancia a la surgencia toma el límite de presión de superficie de la <a href="/es/calculators/maasp">calculadora de MAASP</a> y lo expresa como la surgencia máxima equivalente en ppg que la zapata puede absorber antes de alcanzar ese límite. Funciona con un supuesto deliberadamente conservador: trata la entrada como si tuviera gradiente hidrostático cero, tal como se comporta una surgencia de gas puro — el peor caso, no un promedio. Una entrada real con cualquier contenido líquido lleva algo de gradiente y dejaría más margen real del que muestra este número, pero un perforador no tiene forma de saber qué entró realmente hasta que se circula y se mide, así que la cifra de referencia debe asumir el fluido más ligero y menos indulgente en lugar de adivinar.</p>

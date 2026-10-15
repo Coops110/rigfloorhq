@@ -39,14 +39,24 @@ const webAppLd = {
   "inLanguage": "en",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
+
+// reviewedBy belongs on WebPage per schema.org, not on WebApplication — see
+// src/lib/person.js. A separate WebPage node carries it instead of
+// WebApplication itself.
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/calculators/kill-sheet#webpage",
+  "url": "https://rigfloorhq.com/calculators/kill-sheet",
   "reviewedBy": reviewedByJabin()
 };
 ---
 <BaseLayout
   title="Kill Sheet Calculator: KMW, ICP, FCP & Pressure Schedule"
   description="A kill sheet is the worksheet a rig crew fills out after shutting in on a kick to calculate kill mud weight, ICP, FCP, strokes to bit, and bottoms-up."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Kill Sheet', href: '/calculators/kill-sheet' }]}
   lang="en"
   alternateHref="/es/calculators/kill-sheet"
@@ -181,31 +191,31 @@ const webAppLd = {
 
       <div class="prose">
         <h2>The Formulas Used</h2>
-        <div class="formula-block">
-          <div class="formula-label">Kill Mud Weight</div>
-          <div class="formula-eq">KMW = OMW + (SIDPP ÷ (0.052 × TVD))</div>
-          <div class="formula-note">The mud weight required to exactly balance formation pressure at the bit. Per IADC WellSharp convention, the result is rounded <strong>up</strong> to the nearest 0.1 ppg, and that rounded value — not the raw calculation — is what carries into FCP below.</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Initial Circulating Pressure</div>
-          <div class="formula-eq">ICP = SIDPP + Slow Circ. Pressure</div>
-          <div class="formula-note">The standpipe pressure to hold at the start of the kill circulation.</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Final Circulating Pressure</div>
-          <div class="formula-eq">FCP = Slow Circ. Pressure × (KMW ÷ OMW)</div>
-          <div class="formula-note">The standpipe pressure once kill mud has fully displaced the wellbore.</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Strokes to Bit / Bottoms-Up</div>
-          <div class="formula-eq">Strokes = Volume (bbl) ÷ Pump Output (bbl/stroke)</div>
-          <div class="formula-note">Strokes to bit uses drill string volume. Bottoms-up uses annular volume. Total circulation is both added together.</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Pressure Step Down the String</div>
-          <div class="formula-eq">Pressure at step i = ICP − ((ICP − FCP) ÷ 10) × i</div>
-          <div class="formula-note">Ten even steps from ICP at the start to FCP once kill mud reaches the bit — the schedule you hold the drillpipe pressure to while pumping.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Kill Mud Weight</dt>
+          <dd class="formula-eq"><code>KMW = OMW + (SIDPP ÷ (0.052 × TVD))</code></dd>
+          <dd class="formula-note">The mud weight required to exactly balance formation pressure at the bit. Per IADC WellSharp convention, the result is rounded <strong>up</strong> to the nearest 0.1 ppg, and that rounded value — not the raw calculation — is what carries into FCP below.</dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Initial Circulating Pressure</dt>
+          <dd class="formula-eq"><code>ICP = SIDPP + Slow Circ. Pressure</code></dd>
+          <dd class="formula-note">The standpipe pressure to hold at the start of the kill circulation.</dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Final Circulating Pressure</dt>
+          <dd class="formula-eq"><code>FCP = Slow Circ. Pressure × (KMW ÷ OMW)</code></dd>
+          <dd class="formula-note">The standpipe pressure once kill mud has fully displaced the wellbore.</dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Strokes to Bit / Bottoms-Up</dt>
+          <dd class="formula-eq"><code>Strokes = Volume (bbl) ÷ Pump Output (bbl/stroke)</code></dd>
+          <dd class="formula-note">Strokes to bit uses drill string volume. Bottoms-up uses annular volume. Total circulation is both added together.</dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Pressure Step Down the String</dt>
+          <dd class="formula-eq"><code>Pressure at step i = ICP − ((ICP − FCP) ÷ 10) × i</code></dd>
+          <dd class="formula-note">Ten even steps from ICP at the start to FCP once kill mud reaches the bit — the schedule you hold the drillpipe pressure to while pumping.</dd>
+        </dl>
 
         <h3>What Is Slow Circulating Pressure?</h3>
         <p>SCR (sometimes SPR) is the standpipe pressure recorded at a reduced, standardized pump rate — measured routinely during normal operations specifically so it's available if a kick occurs. Without a current SCR reading, ICP and FCP can't be calculated accurately, which is why crews record it every shift as standard practice.</p>

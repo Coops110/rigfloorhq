@@ -276,19 +276,19 @@ const glossaryLd = {
       ))}
     </nav>
 
-    <div class="glossary-grid">
+    <dl class="glossary-grid">
       {letters.map((letter) => (
         <>
           <div class="gloss-letter-heading" id={`letter-${letter}`}>{letter}</div>
           {sortedTerms.filter((t) => t.term[0].toUpperCase() === letter).map((t) => (
             <div class="gloss-item" id={slugify(t.term)}>
-              <div class="gloss-term">{t.href ? <a href={t.href}>{t.term}</a> : t.term}</div>
-              <div class="gloss-def">{t.def}</div>
+              <dt class="gloss-term">{t.href ? <a href={t.href}>{t.term}</a> : t.term}</dt>
+              <dd class="gloss-def">{t.def}</dd>
             </div>
           ))}
         </>
       ))}
-    </div>
+    </dl>
   </section>
 
   <section class="block">

@@ -167,24 +167,24 @@ const webAppLd = {
 
       <div class="prose">
         <h2>The Formulas Used</h2>
-        <div class="formula-block">
-          <div class="formula-label">Pump Output — Triplex</div>
-          <div class="formula-eq">Output (bbl/stk) = 0.000243 × Liner² (in) × Stroke (in) × Efficiency</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Pump Output — Duplex</div>
-          <div class="formula-eq">Output (bbl/stk) = 0.000162 × Stroke × (2 × Liner² − Rod²) × Efficiency</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Capacity and Displacement</div>
-          <div class="formula-eq">Capacity (bbl/ft) = ID² ÷ 1029.4<br />Displacement (bbl/ft) = (OD² − ID²) ÷ 1029.4</div>
-          <div class="formula-note">Annular capacity uses the same shape: (hole ID² − pipe OD²) ÷ 1029.4.</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Lag Strokes and Time</div>
-          <div class="formula-eq">Strokes = Volume (bbl) ÷ Pump Output (bbl/stk)<br />Time (min) = Strokes ÷ SPM</div>
-          <div class="formula-note">Down uses drill string capacity. Up (bottoms-up) uses annular volume.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Pump Output — Triplex</dt>
+          <dd class="formula-eq"><code>Output (bbl/stk) = 0.000243 × Liner² (in) × Stroke (in) × Efficiency</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Pump Output — Duplex</dt>
+          <dd class="formula-eq"><code>Output (bbl/stk) = 0.000162 × Stroke × (2 × Liner² − Rod²) × Efficiency</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Capacity and Displacement</dt>
+          <dd class="formula-eq"><code>Capacity (bbl/ft) = ID² ÷ 1029.4<br />Displacement (bbl/ft) = (OD² − ID²) ÷ 1029.4</code></dd>
+          <dd class="formula-note">Annular capacity uses the same shape: (hole ID² − pipe OD²) ÷ 1029.4.</dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Lag Strokes and Time</dt>
+          <dd class="formula-eq"><code>Strokes = Volume (bbl) ÷ Pump Output (bbl/stk)<br />Time (min) = Strokes ÷ SPM</code></dd>
+          <dd class="formula-note">Down uses drill string capacity. Up (bottoms-up) uses annular volume.</dd>
+        </dl>
 
         <p>These are the same capacity and displacement formulas behind the <a href="/calculators/kill-sheet">kill sheet calculator</a>'s strokes-to-bit and bottoms-up figures — this page just runs them for routine lag correlation rather than a kill. If you need a running joint-by-joint depth tally rather than a one-shot volume, see the <a href="/calculators/drill-pipe-tally">drill pipe tally calculator</a>. For the constants written out with worked numbers, see the <a href="/calculators/formulas-cheat-sheet">drilling formulas cheat sheet</a>.</p>
 

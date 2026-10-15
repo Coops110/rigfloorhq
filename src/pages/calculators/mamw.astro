@@ -105,15 +105,15 @@ const webAppLd = {
 
       <div class="prose">
         <h2>The Formulas Used</h2>
-        <div class="formula-block">
-          <div class="formula-label">Maximum Allowable Mud Weight</div>
-          <div class="formula-eq">MAMW = Current MW + [LOT/FIT Pressure ÷ (0.052 × Shoe TVD)]</div>
-        </div>
-        <div class="formula-block mt-24">
-          <div class="formula-label">New MAASP With Kill Mud Weight</div>
-          <div class="formula-eq">New MAASP = (MAMW − Kill Mud Weight) × 0.052 × Shoe TVD</div>
-          <div class="formula-note">Both mud weights in ppg, shoe TVD in feet, MAASP and LOT/FIT pressure in psi.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Maximum Allowable Mud Weight</dt>
+          <dd class="formula-eq"><code>MAMW = Current MW + [LOT/FIT Pressure ÷ (0.052 × Shoe TVD)]</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">New MAASP With Kill Mud Weight</dt>
+          <dd class="formula-eq"><code>New MAASP = (MAMW − Kill Mud Weight) × 0.052 × Shoe TVD</code></dd>
+          <dd class="formula-note">Both mud weights in ppg, shoe TVD in feet, MAASP and LOT/FIT pressure in psi.</dd>
+        </dl>
 
         <h3>Where This Fits</h3>
         <p>MAMW and <a href="/calculators/maasp">MAASP</a> come from the same LOT/FIT test and describe the identical shoe limit, just in different units — one as an equivalent mud weight, one as a live surface pressure. Once a kick is confirmed and a kill mud weight is chosen on the <a href="/calculators/kill-sheet">kill sheet calculator</a>, the second box here answers the real operational question: is that kill mud weight actually safe for this shoe, and if not, how much surface pressure is left before it isn't? A negative or very small New MAASP means the planned kill mud weight is close to or past the shoe's real limit, which calls for the well control supervisor's attention before pumping starts, not after.</p>

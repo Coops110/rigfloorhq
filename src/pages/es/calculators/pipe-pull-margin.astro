@@ -26,9 +26,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/pipe-pull-margin",
   "description": "Longitud de tubería mojada o seca que puede sacarse antes de una caída de presión hidrostática objetivo, desde peso de lodo, capacidad anular, capacidad de tubería de perforación, y desplazamiento.",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -96,19 +96,19 @@ const webAppLd = {
 
       <div class="prose">
         <h2>Las Fórmulas Usadas</h2>
-        <div class="formula-block">
-          <div class="formula-label">Longitud de Tubería Mojada Sacada Antes de Llenado</div>
-          <div class="formula-eq">L = (ΔP × Capacidad Anular) ÷ [0.052 × MW × (Capacidad TP + Desplazamiento TP)]</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Longitud de Tubería Seca Sacada Antes de Llenado</div>
-          <div class="formula-eq">L = [ΔP × (Capacidad Anular + Capacidad TP)] ÷ [0.052 × MW × Desplazamiento TP]</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Caída de Presión Hidrostática por Pie, Sacando Tubería Mojada</div>
-          <div class="formula-eq">ΔP/ft = 0.052 × MW × [(Capacidad TP + Desplazamiento TP) ÷ Capacidad Anular]</div>
-          <div class="formula-note">Según la hoja de fórmulas WellSharp / IWCF en unidades de campo. Multiplicar la longitud de tubería mojada de arriba por esta cifra debe regresar el ΔP ingresado — una forma rápida de verificar ambas juntas.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Longitud de Tubería Mojada Sacada Antes de Llenado</dt>
+          <dd class="formula-eq"><code>L = (ΔP × Capacidad Anular) ÷ [0.052 × MW × (Capacidad TP + Desplazamiento TP)]</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Longitud de Tubería Seca Sacada Antes de Llenado</dt>
+          <dd class="formula-eq"><code>L = [ΔP × (Capacidad Anular + Capacidad TP)] ÷ [0.052 × MW × Desplazamiento TP]</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Caída de Presión Hidrostática por Pie, Sacando Tubería Mojada</dt>
+          <dd class="formula-eq"><code>ΔP/ft = 0.052 × MW × [(Capacidad TP + Desplazamiento TP) ÷ Capacidad Anular]</code></dd>
+          <dd class="formula-note">Según la hoja de fórmulas WellSharp / IWCF en unidades de campo. Multiplicar la longitud de tubería mojada de arriba por esta cifra debe regresar el ΔP ingresado — una forma rápida de verificar ambas juntas.</dd>
+        </dl>
 
         <p>Para capacidad de hoyo, desplazamiento, y un conteo de profundidad junta por junta desde OD/ID de tubería, ver la <a href="/es/calculators/drill-pipe-tally">calculadora de conteo de tubería de perforación</a>. Para la presión hidrostática contra la que se mide este margen, ver la <a href="/es/calculators/hydrostatic">calculadora de presión hidrostática</a>.</p>
 

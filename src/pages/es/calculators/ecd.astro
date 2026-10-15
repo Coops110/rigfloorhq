@@ -31,9 +31,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/ecd",
   "description": "Calculadora de ECD gratis: velocidad anular, pérdida de presión anular por fricción, y densidad de circulación equivalente a partir del peso de lodo, caudal y geometría del anular.",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -109,21 +109,21 @@ const webAppLd = {
 
       <div class="prose">
         <h2>Las Fórmulas Usadas</h2>
-        <div class="formula-block">
-          <div class="formula-label">Velocidad Anular</div>
-          <div class="formula-eq">V = (24.5 × Q) ÷ (Dh² − Dp²)</div>
-          <div class="formula-note">Caudal en gpm, DI de hoyo/revestimiento y DE de tubería en pulgadas, velocidad en ft/min.</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Pérdida de Presión Anular por Fricción</div>
-          <div class="formula-eq">P = (1.4327 × 10⁻⁷ × MW × L × V²) ÷ (Dh − Dp)</div>
-          <div class="formula-note">Una estimación en unidades de campo de la presión por fricción que suma el fluido al circular de regreso por todo el largo del anular.</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Densidad de Circulación Equivalente</div>
-          <div class="formula-eq">ECD = MW + (P ÷ 0.052 ÷ TVD)</div>
-          <div class="formula-note">Peso de lodo estático más la presión de fricción convertida de nuevo a un peso de lodo equivalente sobre la profundidad vertical verdadera.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Velocidad Anular</dt>
+          <dd class="formula-eq"><code>V = (24.5 × Q) ÷ (Dh² − Dp²)</code></dd>
+          <dd class="formula-note">Caudal en gpm, DI de hoyo/revestimiento y DE de tubería en pulgadas, velocidad en ft/min.</dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Pérdida de Presión Anular por Fricción</dt>
+          <dd class="formula-eq"><code>P = (1.4327 × 10⁻⁷ × MW × L × V²) ÷ (Dh − Dp)</code></dd>
+          <dd class="formula-note">Una estimación en unidades de campo de la presión por fricción que suma el fluido al circular de regreso por todo el largo del anular.</dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Densidad de Circulación Equivalente</dt>
+          <dd class="formula-eq"><code>ECD = MW + (P ÷ 0.052 ÷ TVD)</code></dd>
+          <dd class="formula-note">Peso de lodo estático más la presión de fricción convertida de nuevo a un peso de lodo equivalente sobre la profundidad vertical verdadera.</dd>
+        </dl>
 
         <h3>Dónde Encaja Esto</h3>
         <p>El peso de lodo estático, el número con el que trabaja la <a href="/es/calculators/hydrostatic">calculadora de presión hidrostática</a>, es solo el punto de partida. El ECD es el número que hay que revisar contra el gradiente de fractura una vez que las bombas están encendidas — la misma comparación que hace la <a href="/es/calculators/mud-weight-window">calculadora de ventana de peso de lodo</a> entre presión de poro y fractura, solo que contra la cifra más alta de circulación en lugar de la estática. Si ya ocurrió una entrada, el siguiente paso es la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a>, no esta. En un pozo direccional u horizontal, recuerda que la profundidad medida es la que maneja la velocidad y la fricción a lo largo de todo el anular, pero solo la TVD convierte esa fricción de vuelta a un peso de lodo equivalente — las dos profundidades hacen trabajos distintos en esta fórmula, igual que en el resto de este sitio.</p>

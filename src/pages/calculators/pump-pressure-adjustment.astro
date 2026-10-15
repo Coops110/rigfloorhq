@@ -100,14 +100,14 @@ const webAppLd = {
 
       <div class="prose">
         <h2>The Formulas Used</h2>
-        <div class="formula-block">
-          <div class="formula-label">New Pump Pressure With New Strokes</div>
-          <div class="formula-eq">P2 = P1 × (SPM2 ÷ SPM1)²</div>
-        </div>
-        <div class="formula-block mt-24">
-          <div class="formula-label">New Pressure Loss With New Mud</div>
-          <div class="formula-eq">P2 = P1 × (Mud Weight2 ÷ Mud Weight1)</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">New Pump Pressure With New Strokes</dt>
+          <dd class="formula-eq"><code>P2 = P1 × (SPM2 ÷ SPM1)²</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">New Pressure Loss With New Mud</dt>
+          <dd class="formula-eq"><code>P2 = P1 × (Mud Weight2 ÷ Mud Weight1)</code></dd>
+        </dl>
 
         <h3>Where This Fits</h3>
         <p>Both calculations answer the same practical question from different directions: what should the pump gauge read once something changes, without pumping at the new condition first to find out. The stroke-rate version is what sets the slow circulating rate (SCR) pressures used directly on the <a href="/calculators/kill-sheet">kill sheet calculator</a> — SCR readings are normally taken at reduced rate, then this same squared relationship is what a driller uses to sanity-check pressure at any other rate. The mud-weight version matters any time mud is weighted up or down mid-well and pump pressure at the same rate needs re-establishing before it can be compared against a baseline for a kick or washout indicator.</p>

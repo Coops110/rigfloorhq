@@ -26,9 +26,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/riser-margin",
   "description": "Calculadora de margen de riser para pozos submarinos: el margen extra de peso de lodo si se perdiera la columna del riser y fuera reemplazada por agua de mar, desde peso de lodo, gradiente de agua de mar, profundidad de agua, y espacio de aire.",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -96,11 +96,11 @@ const webAppLd = {
 
       <div class="prose">
         <h2>La Fórmula Usada</h2>
-        <div class="formula-block">
-          <div class="formula-label">Margen de Riser</div>
-          <div class="formula-eq">RM (ppg) = [(Hidrostática del Lodo en Riser − Hidrostática de Agua de Mar) ÷ 0.052] ÷ (TVD del Pozo − Profundidad de Agua − Espacio de Aire)</div>
-          <div class="formula-note">Hidrostática del Lodo en Riser = Peso de Lodo × 0.052 × (Profundidad de Agua + Espacio de Aire). Hidrostática de Agua de Mar = Gradiente de Agua de Mar × Profundidad de Agua solamente — el espacio de aire no tiene columna de fluido. Según la hoja de fórmulas WellSharp / IWCF en unidades de campo.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Margen de Riser</dt>
+          <dd class="formula-eq"><code>RM (ppg) = [(Hidrostática del Lodo en Riser − Hidrostática de Agua de Mar) ÷ 0.052] ÷ (TVD del Pozo − Profundidad de Agua − Espacio de Aire)</code></dd>
+          <dd class="formula-note">Hidrostática del Lodo en Riser = Peso de Lodo × 0.052 × (Profundidad de Agua + Espacio de Aire). Hidrostática de Agua de Mar = Gradiente de Agua de Mar × Profundidad de Agua solamente — el espacio de aire no tiene columna de fluido. Según la hoja de fórmulas WellSharp / IWCF en unidades de campo.</dd>
+        </dl>
 
         <p>0.442 psi/ft es un gradiente común de agua de mar (equivalente a unos 8.5 ppg); la densidad real del agua de mar local varía ligeramente según salinidad y temperatura. Para la matemática hidrostática en la que se basa esto, ver la <a href="/es/calculators/hydrostatic">calculadora de presión hidrostática</a>; para la pila de BOP submarina que este margen existe para proteger, ver la <a href="/es/equipment/bop">página de equipo BOP</a>.</p>
 

@@ -34,9 +34,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/horizontal-tank-capacity",
   "description": "Calculadora gratuita de capacidad de tanque cilíndrico horizontal: ingresa diámetro y longitud en galones/pulgadas o litros/centímetros y obtén una tabla de altura de llenado a volumen más una consulta instantánea.",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -121,15 +121,15 @@ const webAppLd = {
 
       <div class="prose">
         <h2>La Fórmula Usada</h2>
-        <div class="formula-block">
-          <div class="formula-label">Área de Segmento Circular a Altura de Llenado h</div>
-          <div class="formula-eq">A(h) = r² × cos⁻¹((r − h) ÷ r) − (r − h) × √(2rh − h²)</div>
-          <div class="formula-note">r es el radio del tanque (la mitad del diámetro), h es la altura de llenado medida desde el fondo del tanque, 0 ≤ h ≤ 2r. Esta es el área exacta de la sección transversal circular mojada a esa altura de llenado — no una aproximación.</div>
-        </div>
-        <div class="formula-block mt-24">
-          <div class="formula-label">Volumen a Altura de Llenado h</div>
-          <div class="formula-eq">V(h) = A(h) × Longitud del Tanque</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Área de Segmento Circular a Altura de Llenado h</dt>
+          <dd class="formula-eq"><code>A(h) = r² × cos⁻¹((r − h) ÷ r) − (r − h) × √(2rh − h²)</code></dd>
+          <dd class="formula-note">r es el radio del tanque (la mitad del diámetro), h es la altura de llenado medida desde el fondo del tanque, 0 ≤ h ≤ 2r. Esta es el área exacta de la sección transversal circular mojada a esa altura de llenado — no una aproximación.</dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Volumen a Altura de Llenado h</dt>
+          <dd class="formula-eq"><code>V(h) = A(h) × Longitud del Tanque</code></dd>
+        </dl>
         <div class="note-box mt-24">
           <strong>Verificado antes de publicar.</strong> En h = 0 la fórmula da exactamente 0. En h = diámetro completo se reduce al volumen de cilindro simple, πr²L. En h = la mitad del diámetro da exactamente la mitad de ese volumen. Y los resultados a 25% y 75% de altura siempre suman exactamente el 100% del volumen total, por la propia simetría del círculo. Las cuatro verificaciones se cumplen con esta fórmula — esa simetría es lo que hace que una tabla de altura de llenado sea confiable y no solo verosímil.
         </div>

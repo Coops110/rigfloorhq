@@ -101,19 +101,19 @@ const webAppLd = {
 
       <div class="prose">
         <h2>The Formulas Used</h2>
-        <div class="formula-block">
-          <div class="formula-label">Length of Wet Pipe Pulled Before Fill-Up</div>
-          <div class="formula-eq">L = (ΔP × Annulus Cap) ÷ [0.052 × MW × (DP Cap + DP Displ)]</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Length of Dry Pipe Pulled Before Fill-Up</div>
-          <div class="formula-eq">L = [ΔP × (Annulus Cap + DP Cap)] ÷ [0.052 × MW × DP Displ]</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Hydrostatic Pressure Drop per Foot, Pulling Wet Pipe</div>
-          <div class="formula-eq">ΔP/ft = 0.052 × MW × [(DP Cap + DP Displ) ÷ Annulus Cap]</div>
-          <div class="formula-note">Per the WellSharp / IWCF field-units formula sheet. Multiplying the wet-pipe length above by this figure returns the target ΔP entered — a quick way to sanity-check the two together.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Length of Wet Pipe Pulled Before Fill-Up</dt>
+          <dd class="formula-eq"><code>L = (ΔP × Annulus Cap) ÷ [0.052 × MW × (DP Cap + DP Displ)]</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Length of Dry Pipe Pulled Before Fill-Up</dt>
+          <dd class="formula-eq"><code>L = [ΔP × (Annulus Cap + DP Cap)] ÷ [0.052 × MW × DP Displ]</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Hydrostatic Pressure Drop per Foot, Pulling Wet Pipe</dt>
+          <dd class="formula-eq"><code>ΔP/ft = 0.052 × MW × [(DP Cap + DP Displ) ÷ Annulus Cap]</code></dd>
+          <dd class="formula-note">Per the WellSharp / IWCF field-units formula sheet. Multiplying the wet-pipe length above by this figure returns the target ΔP entered — a quick way to sanity-check the two together.</dd>
+        </dl>
 
         <p>For hole capacity, displacement, and a joint-by-joint depth tally from pipe OD/ID, see the <a href="/calculators/drill-pipe-tally">drill pipe tally calculator</a>. For the hydrostatic pressure this margin is measured against, see the <a href="/calculators/hydrostatic">hydrostatic pressure calculator</a>.</p>
 

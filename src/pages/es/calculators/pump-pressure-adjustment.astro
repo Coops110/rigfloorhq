@@ -22,9 +22,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/pump-pressure-adjustment",
   "description": "Calculadora gratuita para la nueva presión circulante después de un cambio de tasa de embolada o un cambio de peso de lodo, usando las fórmulas estándar de proporcionalidad IWCF.",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -100,14 +100,14 @@ const webAppLd = {
 
       <div class="prose">
         <h2>Las Fórmulas Usadas</h2>
-        <div class="formula-block">
-          <div class="formula-label">Nueva Presión de Bomba Con Nuevas Emboladas</div>
-          <div class="formula-eq">P2 = P1 × (SPM2 ÷ SPM1)²</div>
-        </div>
-        <div class="formula-block mt-24">
-          <div class="formula-label">Nueva Pérdida de Presión Con Nuevo Lodo</div>
-          <div class="formula-eq">P2 = P1 × (Peso de Lodo2 ÷ Peso de Lodo1)</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Nueva Presión de Bomba Con Nuevas Emboladas</dt>
+          <dd class="formula-eq"><code>P2 = P1 × (SPM2 ÷ SPM1)²</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Nueva Pérdida de Presión Con Nuevo Lodo</dt>
+          <dd class="formula-eq"><code>P2 = P1 × (Peso de Lodo2 ÷ Peso de Lodo1)</code></dd>
+        </dl>
 
         <h3>Dónde Encaja Esto</h3>
         <p>Ambos cálculos responden la misma pregunta práctica desde direcciones diferentes: qué debería leer el manómetro de la bomba una vez que algo cambie, sin bombear a la nueva condición primero para averiguarlo. La versión de tasa de embolada es lo que establece las presiones de tasa lenta de circulación (SCR) usadas directamente en la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> — las lecturas de SCR normalmente se toman a tasa reducida, luego esta misma relación al cuadrado es lo que un perforador usa para verificar presión a cualquier otra tasa. La versión de peso de lodo importa cada vez que el lodo se carga o se aligera a mitad del pozo y la presión de bomba a la misma tasa necesita reestablecerse antes de poder compararse contra una línea base para un indicador de surgencia o lavado.</p>

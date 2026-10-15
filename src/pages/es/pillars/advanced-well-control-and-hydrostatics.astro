@@ -22,8 +22,8 @@ const jsonLd = {
 ---
 <BaseLayout
   title="Control de Pozos Avanzado e Hidrostática: Guía para Supervisores"
-  description="Dominando el manejo de presión para supervisores e ingenieros: TVD vs MD, gradientes de presión, ECD, Método del Perforador vs Wait and Weight, método volumétrico, y MPD."
-  breadcrumbs={[{ label: 'Pilares', href: '/pillars' }, { label: 'Control de Pozos Avanzado', href: '/es/pillars/advanced-well-control-and-hydrostatics' }]}
+  description="Dominando el manejo de presión para supervisores e ingenieros: TVD vs MD, gradientes de presión, ECD, Método del Perforador, Wait and Weight y MPD."
+  breadcrumbs={[{ label: 'Guías Pilar', href: '/es/pillars' }, { label: 'Control de Pozos Avanzado', href: '/es/pillars/advanced-well-control-and-hydrostatics' }]}
   jsonLd={jsonLd}
   lang="es"
   alternateHref="/pillars/advanced-well-control-and-hydrostatics"
@@ -146,22 +146,22 @@ const jsonLd = {
     <h2 class="section-title">Preguntas <span>Frecuentes</span></h2>
 
     <div class="accordion">
-      <div class="acc-item">
-        <button class="acc-header"><h3>¿Cómo calculo el Peso de Lodo de Matanza (KMW)?</h3><span class="acc-arrow">▼</span></button>
+      <details class="acc-item">
+        <summary class="acc-header">¿Cómo calculo el Peso de Lodo de Matanza (KMW)?<span class="acc-arrow">▼</span></summary>
         <div class="acc-body"><p>KMW = (SIDPP ÷ (0.052 × TVD)) + Peso de Lodo Original. Ver la <a href="/es/calculators/hydrostatic" style="color:var(--amber);">suite de calculadoras hidrostáticas</a> para el cálculo completo resuelto.</p></div>
-      </div>
-      <div class="acc-item">
-        <button class="acc-header"><h3>¿Cuáles son las señales de advertencia principales de una surgencia?</h3><span class="acc-arrow">▼</span></button>
+      </details>
+      <details class="acc-item">
+        <summary class="acc-header">¿Cuáles son las señales de advertencia principales de una surgencia?<span class="acc-arrow">▼</span></summary>
         <div class="acc-body"><p>Los indicadores comunes incluyen un aumento en el volumen de pileta, un aumento en la tasa de flujo mientras se perfora, y una disminución en la presión de bombeo. Desglose completo en <a href="/es/blog/five-warning-signs-of-a-kick" style="color:var(--amber);">cinco señales de advertencia de una surgencia</a>.</p></div>
-      </div>
-      <div class="acc-item">
-        <button class="acc-header"><h3>¿Qué es el Método Volumétrico?</h3><span class="acc-arrow">▼</span></button>
+      </details>
+      <details class="acc-item">
+        <summary class="acc-header">¿Qué es el Método Volumétrico?<span class="acc-arrow">▼</span></summary>
         <div class="acc-body"><p>Una técnica de control de pozos no circulativa usada cuando la sarta de perforación está fuera del fondo o las bombas han fallado. Se basa en permitir que el gas se expanda mientras se purgan volúmenes específicos de lodo en superficie para mantener constante la presión de fondo.</p></div>
-      </div>
-      <div class="acc-item">
-        <button class="acc-header"><h3>¿Qué es la Perforación de Presión Controlada (MPD)?</h3><span class="acc-arrow">▼</span></button>
+      </details>
+      <details class="acc-item">
+        <summary class="acc-header">¿Qué es la Perforación de Presión Controlada (MPD)?<span class="acc-arrow">▼</span></summary>
         <div class="acc-body"><p>Un proceso de perforación avanzado usado para controlar con precisión el perfil de presión anular a lo largo del pozo, permitiendo a los operadores perforar pozos donde el margen entre la presión de poro y el gradiente de fractura es extremadamente estrecho.</p></div>
-      </div>
+      </details>
     </div>
   </section>
 
@@ -179,19 +179,3 @@ const jsonLd = {
   <SourcesStandards lang="es" ids={['api53', 'cfr250g', 'iwcf', 'iadcWellsharp']} />
 </BaseLayout>
 
-<script>
-function toggleAcc(btn: HTMLElement) {
-  const body = btn.nextElementSibling as HTMLElement;
-  const arrow = btn.querySelector('.acc-arrow') as HTMLElement;
-  const isOpen = body.classList.contains('open');
-  document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
-  document.querySelectorAll('.acc-arrow').forEach(a => (a as HTMLElement).style.transform = '');
-  if (!isOpen) {
-    body.classList.add('open');
-    arrow.style.transform = 'rotate(180deg)';
-  }
-}
-document.querySelectorAll('.acc-header').forEach(btn => {
-  btn.addEventListener('click', () => toggleAcc(btn as HTMLElement));
-});
-</script>

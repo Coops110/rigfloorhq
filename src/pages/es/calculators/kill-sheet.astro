@@ -32,9 +32,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/kill-sheet",
   "description": "Calculadora gratuita de hoja de control de pozo: peso de lodo de matanza, ICP, FCP, emboladas a la barrena, fondo hacia arriba, y el programa completo de presión de tubería.",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -178,31 +178,31 @@ const webAppLd = {
 
       <div class="prose">
         <h2>Las Fórmulas Usadas</h2>
-        <div class="formula-block">
-          <div class="formula-label">Peso de Lodo de Matanza</div>
-          <div class="formula-eq">KMW = OMW + (SIDPP ÷ (0.052 × TVD))</div>
-          <div class="formula-note">El peso de lodo requerido para equilibrar exactamente la presión de formación en la barrena. Según la convención de IADC WellSharp, el resultado se redondea <strong>hacia arriba</strong> a la décima de ppg más cercana, y ese valor redondeado — no el cálculo sin redondear — es el que se usa para el FCP a continuación.</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Presión de Circulación Inicial</div>
-          <div class="formula-eq">ICP = SIDPP + Presión de Circ. Lenta</div>
-          <div class="formula-note">La presión de standpipe a mantener al inicio de la circulación de matanza.</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Presión de Circulación Final</div>
-          <div class="formula-eq">FCP = Presión de Circ. Lenta × (KMW ÷ OMW)</div>
-          <div class="formula-note">La presión de standpipe una vez que el lodo de matanza ha desplazado completamente el pozo.</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Emboladas a la Barrena / Fondo Hacia Arriba</div>
-          <div class="formula-eq">Emboladas = Volumen (bbl) ÷ Rendimiento de Bomba (bbl/embolada)</div>
-          <div class="formula-note">A la barrena usa el volumen de la sarta. Fondo hacia arriba usa el volumen anular. La circulación total es la suma de ambos.</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Paso de Presión en la Sarta</div>
-          <div class="formula-eq">Presión en el paso i = ICP − ((ICP − FCP) ÷ 10) × i</div>
-          <div class="formula-note">Diez pasos iguales desde ICP al inicio hasta FCP una vez que el lodo de matanza llega a la barrena.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Peso de Lodo de Matanza</dt>
+          <dd class="formula-eq"><code>KMW = OMW + (SIDPP ÷ (0.052 × TVD))</code></dd>
+          <dd class="formula-note">El peso de lodo requerido para equilibrar exactamente la presión de formación en la barrena. Según la convención de IADC WellSharp, el resultado se redondea <strong>hacia arriba</strong> a la décima de ppg más cercana, y ese valor redondeado — no el cálculo sin redondear — es el que se usa para el FCP a continuación.</dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Presión de Circulación Inicial</dt>
+          <dd class="formula-eq"><code>ICP = SIDPP + Presión de Circ. Lenta</code></dd>
+          <dd class="formula-note">La presión de standpipe a mantener al inicio de la circulación de matanza.</dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Presión de Circulación Final</dt>
+          <dd class="formula-eq"><code>FCP = Presión de Circ. Lenta × (KMW ÷ OMW)</code></dd>
+          <dd class="formula-note">La presión de standpipe una vez que el lodo de matanza ha desplazado completamente el pozo.</dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Emboladas a la Barrena / Fondo Hacia Arriba</dt>
+          <dd class="formula-eq"><code>Emboladas = Volumen (bbl) ÷ Rendimiento de Bomba (bbl/embolada)</code></dd>
+          <dd class="formula-note">A la barrena usa el volumen de la sarta. Fondo hacia arriba usa el volumen anular. La circulación total es la suma de ambos.</dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Paso de Presión en la Sarta</dt>
+          <dd class="formula-eq"><code>Presión en el paso i = ICP − ((ICP − FCP) ÷ 10) × i</code></dd>
+          <dd class="formula-note">Diez pasos iguales desde ICP al inicio hasta FCP una vez que el lodo de matanza llega a la barrena.</dd>
+        </dl>
 
         <h3>¿Qué es la Presión de Circulación Lenta?</h3>
         <p>La SCR (a veces SPR) es la presión de standpipe registrada a una tasa de bombeo reducida y estandarizada — medida rutinariamente durante operaciones normales específicamente para que esté disponible si ocurre una surgencia. Sin una lectura de SCR actual, el ICP y FCP no se pueden calcular con precisión, por lo que las cuadrillas la registran cada turno como práctica estándar.</p>

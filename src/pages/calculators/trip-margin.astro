@@ -84,11 +84,11 @@ const webAppLd = {
 
       <div class="prose">
         <h2>The Formula Used</h2>
-        <div class="formula-block">
-          <div class="formula-label">Trip Margin / Safety Factor</div>
-          <div class="formula-eq">TM/SF = Base Mud Weight + [Safety Margin ÷ (0.052 × TVD)]</div>
-          <div class="formula-note">Base mud weight in ppg, safety margin in psi, TVD in feet, result in ppg.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Trip Margin / Safety Factor</dt>
+          <dd class="formula-eq"><code>TM/SF = Base Mud Weight + [Safety Margin ÷ (0.052 × TVD)]</code></dd>
+          <dd class="formula-note">Base mud weight in ppg, safety margin in psi, TVD in feet, result in ppg.</dd>
+        </dl>
 
         <h3>Where This Fits</h3>
         <p>Trip margin converts a policy safety-margin pressure into an actual mud weight you can carry in the hole, on top of whatever weight is needed to balance formation pressure alone. It's the mud-weight-side answer to the same swab risk that the <a href="/calculators/pipe-pull-margin">wet and dry pipe pull margin calculator</a> addresses from the pulled-footage side — trip margin says how much heavier to run the mud, pull margin says how far pipe can come out before hydrostatic drops too far, and a real trip plan checks both. If the calculated trip margin comes out barely above the base mud weight, that's a sign the safety margin figure itself, or the well's actual overbalance, needs a second look before pulling pipe. For the hydrostatic theory behind overbalance itself, see the <a href="/pillars/hydrostatic-pressure">hydrostatic pressure pillar</a>.</p>

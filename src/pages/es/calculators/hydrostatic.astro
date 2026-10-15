@@ -12,9 +12,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/hydrostatic",
   "description": "Calculadora gratuita de presión hidrostática. Ingresa peso de lodo y TVD para resultados en psi, con gradientes de poro y fractura.",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -82,11 +82,11 @@ const webAppLd = {
       <div class="prose">
         <h2>Cómo Funciona Esta Calculadora</h2>
         <p>Esta herramienta aplica la fórmula estándar de presión hidrostática usada en toda la industria de perforación:</p>
-        <div class="formula-block">
-          <div class="formula-label">Presión Hidrostática</div>
-          <div class="formula-eq">HP (psi) = 0.052 × MW (ppg) × TVD (ft)</div>
-          <div class="formula-note">0.052 es la constante de conversión de unidades que relaciona libras por galón y pies con psi.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Presión Hidrostática</dt>
+          <dd class="formula-eq"><code>HP (psi) = 0.052 × MW (ppg) × TVD (ft)</code></dd>
+          <dd class="formula-note">0.052 es la constante de conversión de unidades que relaciona libras por galón y pies con psi.</dd>
+        </dl>
         <p>Luego compara tu presión hidrostática con la presión de poro y de fractura a la misma profundidad (calculadas a partir de los gradientes que ingresas) para determinar si tu peso de lodo está de forma segura dentro de la ventana de peso de lodo.</p>
 
         <h3>Interpretando Tus Resultados</h3>

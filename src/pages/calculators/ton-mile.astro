@@ -140,24 +140,24 @@ const webAppLd = {
 
       <div class="prose">
         <h2>The Formulas Used</h2>
-        <div class="formula-block">
-          <div class="formula-label">Buoyancy Factor</div>
-          <div class="formula-eq">BF = (65.5 − MW) ÷ 65.5</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Round Trip Ton-Miles</div>
-          <div class="formula-eq">RTTM = [Wp × D × (Ls + D) + 2D × (2×Wb + Wc)] ÷ (5280 × 2000)</div>
-          <div class="formula-note">Wp = buoyed drill pipe weight/ft · D = depth · Ls = stand length · Wb = block weight · Wc = buoyed collar weight minus equivalent drill pipe weight over the collar length. Per API RP 9B / Lapeyrouse.</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Drilling, Coring &amp; Short-Trip Ton-Miles</div>
-          <div class="formula-eq">Drilling = 3 × (RTTM at B − RTTM at A)<br />Coring = 2 × (RTTM at B − RTTM at A)<br />Short-Trip = RTTM at B − RTTM at A</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Setting Casing Ton-Miles</div>
-          <div class="formula-eq">TM = [Wp × D × (Lj + D) + D × Wb] × 0.5 ÷ (5280 × 2000)</div>
-          <div class="formula-note">Wp = buoyed casing weight/ft · D = casing depth · Lj = length of one joint · Wb = block weight.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Buoyancy Factor</dt>
+          <dd class="formula-eq"><code>BF = (65.5 − MW) ÷ 65.5</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Round Trip Ton-Miles</dt>
+          <dd class="formula-eq"><code>RTTM = [Wp × D × (Ls + D) + 2D × (2×Wb + Wc)] ÷ (5280 × 2000)</code></dd>
+          <dd class="formula-note">Wp = buoyed drill pipe weight/ft · D = depth · Ls = stand length · Wb = block weight · Wc = buoyed collar weight minus equivalent drill pipe weight over the collar length. Per API RP 9B / Lapeyrouse.</dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Drilling, Coring &amp; Short-Trip Ton-Miles</dt>
+          <dd class="formula-eq"><code>Drilling = 3 × (RTTM at B − RTTM at A)<br />Coring = 2 × (RTTM at B − RTTM at A)<br />Short-Trip = RTTM at B − RTTM at A</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Setting Casing Ton-Miles</dt>
+          <dd class="formula-eq"><code>TM = [Wp × D × (Lj + D) + D × Wb] × 0.5 ÷ (5280 × 2000)</code></dd>
+          <dd class="formula-note">Wp = buoyed casing weight/ft · D = casing depth · Lj = length of one joint · Wb = block weight.</dd>
+        </dl>
 
         <p>Buoyancy factor here uses the same 65.5 constant as the <a href="/calculators/formulas-cheat-sheet">drilling formulas cheat sheet</a>'s buoyancy section — see that page if a figure needs reconciling to more decimal places.</p>
 

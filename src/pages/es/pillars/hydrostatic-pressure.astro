@@ -50,8 +50,8 @@ const jsonLd = {
 ---
 <BaseLayout
   title="Presión Hidrostática en la Perforación: La Referencia Completa"
-  description="Qué es realmente la presión hidrostática, la fórmula P = 0.052 × MW × TVD, cómo se relaciona con la presión de poro y de fractura, y por qué la TVD — no la profundidad medida."
-  breadcrumbs={[{ label: 'Pilares', href: '/pillars' }, { label: 'Presión Hidrostática', href: '/es/pillars/hydrostatic-pressure' }]}
+  description="Qué es realmente la presión hidrostática, la fórmula P = 0.052 × MW × TVD, y cómo se relaciona con la presión de poro y de fractura a cualquier profundidad."
+  breadcrumbs={[{ label: 'Guías Pilar', href: '/es/pillars' }, { label: 'Presión Hidrostática', href: '/es/pillars/hydrostatic-pressure' }]}
   jsonLd={jsonLd}
   lang="es"
   alternateHref="/pillars/hydrostatic-pressure"
@@ -152,10 +152,10 @@ const jsonLd = {
     <h2 class="section-title">Preguntas <span>Frecuentes</span></h2>
     <div class="accordion">
       {faq.map((item, i) => (
-        <div class="acc-item">
-          <button class="acc-header"><h3>{item.q}</h3><span class="acc-arrow">▼</span></button>
+        <details class="acc-item">
+          <summary class="acc-header">{item.q}<span class="acc-arrow">▼</span></summary>
           <div class="acc-body"><p set:html={item.a} /></div>
-        </div>
+        </details>
       ))}
     </div>
   </section>
@@ -173,19 +173,3 @@ const jsonLd = {
   </section>
 </BaseLayout>
 
-<script>
-function toggleAcc(btn: HTMLElement) {
-  const body = btn.nextElementSibling as HTMLElement;
-  const arrow = btn.querySelector('.acc-arrow') as HTMLElement;
-  const isOpen = body.classList.contains('open');
-  document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
-  document.querySelectorAll('.acc-arrow').forEach(a => (a as HTMLElement).style.transform = '');
-  if (!isOpen) {
-    body.classList.add('open');
-    arrow.style.transform = 'rotate(180deg)';
-  }
-}
-document.querySelectorAll('.acc-header').forEach(btn => {
-  btn.addEventListener('click', () => toggleAcc(btn as HTMLElement));
-});
-</script>

@@ -51,30 +51,30 @@ import SourcesStandards from '../../components/SourcesStandards.astro';
       <div>
         <h2 class="section-title" style="font-size:28px;">Shut-In <span>Procedure</span></h2>
         <div class="accordion">
-          <div class="acc-item">
-            <button class="acc-header"><h3>Step 1 — Detect & Stop Drilling</h3><span class="acc-arrow">▼</span></button>
+          <details class="acc-item">
+            <summary class="acc-header">Step 1 — Detect & Stop Drilling<span class="acc-arrow">▼</span></summary>
             <div class="acc-body"><p>Immediately pick up off bottom. Stop making hole the moment a kick is suspected. Raise the string to clear the kelly/top drive.</p></div>
-          </div>
-          <div class="acc-item">
-            <button class="acc-header"><h3>Step 2 — Shut In the Well</h3><span class="acc-arrow">▼</span></button>
+          </details>
+          <details class="acc-item">
+            <summary class="acc-header">Step 2 — Shut In the Well<span class="acc-arrow">▼</span></summary>
             <div class="acc-body"><p>Close the annular BOP (soft shut-in) or pipe ram (hard shut-in) per company procedure. Close the choke. Notify toolpusher and company man immediately.</p></div>
-          </div>
-          <div class="acc-item">
-            <button class="acc-header"><h3>Step 3 — Read Pressures</h3><span class="acc-arrow">▼</span></button>
+          </details>
+          <details class="acc-item">
+            <summary class="acc-header">Step 3 — Read Pressures<span class="acc-arrow">▼</span></summary>
             <div class="acc-body"><p>Allow pressures to stabilize (15–30 min). Record SIDPP, SICP, and pit gain volume — your inputs for the kill sheet.</p></div>
-          </div>
-          <div class="acc-item">
-            <button class="acc-header"><h3>Step 4 — Calculate Kill Mud Weight</h3><span class="acc-arrow">▼</span></button>
+          </details>
+          <details class="acc-item">
+            <summary class="acc-header">Step 4 — Calculate Kill Mud Weight<span class="acc-arrow">▼</span></summary>
             <div class="acc-body"><p>KMW = OMW + (SIDPP ÷ (0.052 × TVD)). Add safety margin per company policy. Calculate ICP and FCP for the kill sheet.</p></div>
-          </div>
-          <div class="acc-item">
-            <button class="acc-header"><h3>Step 5 — Kill the Well</h3><span class="acc-arrow">▼</span></button>
+          </details>
+          <details class="acc-item">
+            <summary class="acc-header">Step 5 — Kill the Well<span class="acc-arrow">▼</span></summary>
             <div class="acc-body"><p>Driller's Method or Wait-and-Weight — both are valid, follow your company's approved procedure. See comparison below.</p></div>
-          </div>
-          <div class="acc-item">
-            <button class="acc-header"><h3>Step 6 — Verify & Resume</h3><span class="acc-arrow">▼</span></button>
+          </details>
+          <details class="acc-item">
+            <summary class="acc-header">Step 6 — Verify & Resume<span class="acc-arrow">▼</span></summary>
             <div class="acc-body"><p>Confirm zero pressure and no flow before resuming. Investigate root cause before drilling ahead.</p></div>
-          </div>
+          </details>
         </div>
       </div>
     </div>
@@ -171,20 +171,3 @@ import SourcesStandards from '../../components/SourcesStandards.astro';
 
   <SourcesStandards lang="en" ids={['api53', 'cfr250g', 'iwcf', 'iadcWellsharp']} />
 </BaseLayout>
-
-<script>
-function toggleAcc(btn: HTMLElement) {
-  const body = btn.nextElementSibling as HTMLElement;
-  const arrow = btn.querySelector('.acc-arrow') as HTMLElement;
-  const isOpen = body.classList.contains('open');
-  document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
-  document.querySelectorAll('.acc-arrow').forEach(a => (a as HTMLElement).style.transform = '');
-  if (!isOpen) {
-    body.classList.add('open');
-    arrow.style.transform = 'rotate(180deg)';
-  }
-}
-document.querySelectorAll('.acc-header').forEach(btn => {
-  btn.addEventListener('click', () => toggleAcc(btn as HTMLElement));
-});
-</script>

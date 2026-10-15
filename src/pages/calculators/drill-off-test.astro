@@ -135,11 +135,11 @@ const webAppLd = {
 
       <div class="prose">
         <h2>The Formula Used</h2>
-        <div class="formula-block">
-          <div class="formula-label">Rate of Penetration</div>
-          <div class="formula-eq">ROP (ft/hr) = Footage Drilled (ft) ÷ Time (sec) × 3600</div>
-          <div class="formula-note">The rotary table holds footage at a fixed 1 ft per step, so it reduces to ROP = 3600 ÷ Time — same formula, footage just isn't a variable in that test.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Rate of Penetration</dt>
+          <dd class="formula-eq"><code>ROP (ft/hr) = Footage Drilled (ft) ÷ Time (sec) × 3600</code></dd>
+          <dd class="formula-note">The rotary table holds footage at a fixed 1 ft per step, so it reduces to ROP = 3600 ÷ Time — same formula, footage just isn't a variable in that test.</dd>
+        </dl>
 
         <h2 id="how-it-works">Running the Test on the Floor</h2>
         <p>A drill-off test is simple to run and easy to log badly, which is why a clean worksheet matters more than it looks like it should. For the WOB side: pick up off bottom, set a known weight on bit, and time how long it takes a fixed amount of weight — 10,000 lb is the common increment — to "drill off" back onto the bit as the string advances, logging the footage made in that time. Repeat at several different WOB settings, ideally bracketing the range the bit is expected to run at, not just testing higher and higher.</p>

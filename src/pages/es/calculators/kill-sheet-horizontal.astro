@@ -27,9 +27,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/kill-sheet-horizontal",
   "description": "Puntos extra de presión de tubería para el control de un pozo direccional u horizontal: volumen de sarta y emboladas al punto de inicio de curvatura (KOP) y fin de construcción (EOB), leídos contra el programa estándar ICP-a-FCP.",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -123,15 +123,15 @@ const webAppLd = {
 
       <div class="prose">
         <h2>Las Fórmulas Usadas</h2>
-        <div class="formula-block">
-          <div class="formula-label">Volumen de Sarta y Emboladas a un Punto de Control</div>
-          <div class="formula-eq">Volumen = MD del Punto × Capacidad de Tubería<br />Emboladas = Volumen ÷ Salida de Bomba</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Presión de Tubería en un Punto de Control</div>
-          <div class="formula-eq">Presión = ICP − (ICP − FCP) × (Emboladas al Punto ÷ Emboladas a la Barrena)</div>
-          <div class="formula-note">La misma relación de línea recta ICP-a-FCP que usa el programa estándar de 10 pasos de la hoja de control de pozo, evaluada en KOP y EOB en lugar de en incrementos parejos de emboladas.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Volumen de Sarta y Emboladas a un Punto de Control</dt>
+          <dd class="formula-eq"><code>Volumen = MD del Punto × Capacidad de Tubería<br />Emboladas = Volumen ÷ Salida de Bomba</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Presión de Tubería en un Punto de Control</dt>
+          <dd class="formula-eq"><code>Presión = ICP − (ICP − FCP) × (Emboladas al Punto ÷ Emboladas a la Barrena)</code></dd>
+          <dd class="formula-note">La misma relación de línea recta ICP-a-FCP que usa el programa estándar de 10 pasos de la hoja de control de pozo, evaluada en KOP y EOB en lugar de en incrementos parejos de emboladas.</dd>
+        </dl>
 
         <p>Esta página solo cubre los dos puntos de control extra — para peso de fluido de matar, ICP, FCP, emboladas a la barrena, y el programa completo de presión de 10 pasos, usa la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a>. Para los procedimientos del Método del Perforador y Esperar y Densificar que soporta este programa, ver la <a href="/es/drilling/well-control">página de referencia de control de pozos</a>.</p>
 

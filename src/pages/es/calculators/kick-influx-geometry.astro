@@ -23,9 +23,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/kick-influx-geometry",
   "description": "Calculadora gratuita de longitud de influjo a lo largo del pozo, altura vertical verdadera, gradiente de influjo, y presión de revestimiento con pozo cerrado a partir del volumen e inclinación de una surgencia.",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -106,20 +106,20 @@ const webAppLd = {
 
       <div class="prose">
         <h2>Las Fórmulas Usadas</h2>
-        <div class="formula-block">
-          <div class="formula-label">Longitud de Influjo a lo Largo del Pozo</div>
-          <div class="formula-eq">LoIAH = Volumen de Surgencia ÷ Capacidad Anular</div>
-        </div>
-        <div class="formula-block mt-24">
-          <div class="formula-label">Altura Vertical de Influjo</div>
-          <div class="formula-eq">IVH = LoIAH × cos(Inclinación del Pozo)</div>
-          <div class="formula-note">Inclinación medida desde vertical. Esta calculadora aplica la trigonometría correctamente en grados — ve la nota abajo sobre un error real encontrado en la hoja de cálculo fuente contra la que se revisó esto.</div>
-        </div>
-        <div class="formula-block mt-24">
-          <div class="formula-label">Presión de Revestimiento con Pozo Cerrado</div>
-          <div class="formula-eq">SICP = SIDPP + [Altura Vertical de Influjo × (Gradiente de Lodo − Gradiente de Influjo)]</div>
-          <div class="formula-note">Gradiente de lodo = Peso de Lodo × 0.052.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Longitud de Influjo a lo Largo del Pozo</dt>
+          <dd class="formula-eq"><code>LoIAH = Volumen de Surgencia ÷ Capacidad Anular</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Altura Vertical de Influjo</dt>
+          <dd class="formula-eq"><code>IVH = LoIAH × cos(Inclinación del Pozo)</code></dd>
+          <dd class="formula-note">Inclinación medida desde vertical. Esta calculadora aplica la trigonometría correctamente en grados — ve la nota abajo sobre un error real encontrado en la hoja de cálculo fuente contra la que se revisó esto.</dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Presión de Revestimiento con Pozo Cerrado</dt>
+          <dd class="formula-eq"><code>SICP = SIDPP + [Altura Vertical de Influjo × (Gradiente de Lodo − Gradiente de Influjo)]</code></dd>
+          <dd class="formula-note">Gradiente de lodo = Peso de Lodo × 0.052.</dd>
+        </dl>
 
         <div class="note-box mt-24">
           <strong>Un error real detectado al construir esta página:</strong> la hoja de cálculo de referencia contra la que se revisó esto calculaba la altura vertical de influjo alimentando un valor en grados a una función coseno que esperaba radianes — un error clásico de unidad en hoja de cálculo. Eso produce una altura vertical físicamente incorrecta, demasiado pequeña. Esta calculadora usa la trigonometría correcta (grados convertidos a radianes internamente), lo cual da una altura vertical notablemente mayor y correcta para las mismas entradas.

@@ -30,9 +30,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/lag-and-volume",
   "description": "Calculadora gratuita de retraso y volumen: rendimiento de bomba, volúmenes de sarta y anular, emboladas de retraso, y tiempo de retraso — para bombas triplex o dúplex.",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -165,24 +165,24 @@ const webAppLd = {
 
       <div class="prose">
         <h2>Las Fórmulas Usadas</h2>
-        <div class="formula-block">
-          <div class="formula-label">Rendimiento de Bomba — Triplex</div>
-          <div class="formula-eq">Rendimiento (bbl/emb) = 0.000243 × Liner² (in) × Carrera (in) × Eficiencia</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Rendimiento de Bomba — Dúplex</div>
-          <div class="formula-eq">Rendimiento (bbl/emb) = 0.000162 × Carrera × (2 × Liner² − Vástago²) × Eficiencia</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Capacidad y Desplazamiento</div>
-          <div class="formula-eq">Capacidad (bbl/ft) = ID² ÷ 1029.4<br />Desplazamiento (bbl/ft) = (OD² − ID²) ÷ 1029.4</div>
-          <div class="formula-note">La capacidad anular usa la misma forma: (ID del hoyo² − OD de tubería²) ÷ 1029.4.</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Emboladas y Tiempo de Retraso</div>
-          <div class="formula-eq">Emboladas = Volumen (bbl) ÷ Rendimiento de Bomba (bbl/emb)<br />Tiempo (min) = Emboladas ÷ SPM</div>
-          <div class="formula-note">Bajando usa la capacidad de la sarta. Subiendo (fondo hacia arriba) usa el volumen anular.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Rendimiento de Bomba — Triplex</dt>
+          <dd class="formula-eq"><code>Rendimiento (bbl/emb) = 0.000243 × Liner² (in) × Carrera (in) × Eficiencia</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Rendimiento de Bomba — Dúplex</dt>
+          <dd class="formula-eq"><code>Rendimiento (bbl/emb) = 0.000162 × Carrera × (2 × Liner² − Vástago²) × Eficiencia</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Capacidad y Desplazamiento</dt>
+          <dd class="formula-eq"><code>Capacidad (bbl/ft) = ID² ÷ 1029.4<br />Desplazamiento (bbl/ft) = (OD² − ID²) ÷ 1029.4</code></dd>
+          <dd class="formula-note">La capacidad anular usa la misma forma: (ID del hoyo² − OD de tubería²) ÷ 1029.4.</dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Emboladas y Tiempo de Retraso</dt>
+          <dd class="formula-eq"><code>Emboladas = Volumen (bbl) ÷ Rendimiento de Bomba (bbl/emb)<br />Tiempo (min) = Emboladas ÷ SPM</code></dd>
+          <dd class="formula-note">Bajando usa la capacidad de la sarta. Subiendo (fondo hacia arriba) usa el volumen anular.</dd>
+        </dl>
 
         <p>Estas son las mismas fórmulas de capacidad y desplazamiento detrás de las cifras de emboladas a la barrena y fondo hacia arriba de la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> — esta página solo las ejecuta para correlación de retraso rutinaria en lugar de una matanza. Si necesitas un tally continuo de profundidad junta por junta en lugar de un volumen de una sola vez, ve la <a href="/es/calculators/drill-pipe-tally">calculadora de tally de tubería</a>.</p>
 

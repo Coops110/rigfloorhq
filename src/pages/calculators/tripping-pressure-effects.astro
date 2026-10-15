@@ -123,18 +123,18 @@ const webAppLd = {
 
       <div class="prose">
         <h2>The Formulas Used</h2>
-        <div class="formula-block">
-          <div class="formula-label">Pressure Drop/ft — Dry Pipe</div>
-          <div class="formula-eq">ΔP/ft = MW × 0.052 × [Steel Disp ÷ (Capacity − Steel Disp)]</div>
-        </div>
-        <div class="formula-block mt-24">
-          <div class="formula-label">Pressure Drop/ft — Wet Pipe</div>
-          <div class="formula-eq">ΔP/ft = MW × 0.052 × [(Steel Disp + Pipe Capacity) ÷ Annular Capacity]</div>
-        </div>
-        <div class="formula-block mt-24">
-          <div class="formula-label">Drop in Mud Level (Dry)</div>
-          <div class="formula-eq">Drop = Length Pulled × Steel Disp ÷ Capacity</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Pressure Drop/ft — Dry Pipe</dt>
+          <dd class="formula-eq"><code>ΔP/ft = MW × 0.052 × [Steel Disp ÷ (Capacity − Steel Disp)]</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Pressure Drop/ft — Wet Pipe</dt>
+          <dd class="formula-eq"><code>ΔP/ft = MW × 0.052 × [(Steel Disp + Pipe Capacity) ÷ Annular Capacity]</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Drop in Mud Level (Dry)</dt>
+          <dd class="formula-eq"><code>Drop = Length Pulled × Steel Disp ÷ Capacity</code></dd>
+        </dl>
 
         <h3>Where This Fits</h3>
         <p>These three calculations are the mechanics behind the same swab risk the <a href="/calculators/trip-margin">trip margin calculator</a> and the <a href="/calculators/pipe-pull-margin">wet and dry pipe pull margin calculator</a> both plan around — trip margin sets how much extra mud weight to carry, pull margin says how far pipe can safely come out, and this page works out the actual pressure and mud-level consequence of a specific length pulled dry or wet. On a real trip, mud level drop is what tells the crew exactly how much to top up the annulus after every stand or connection to keep hydrostatic pressure from sagging as pipe comes out.</p>

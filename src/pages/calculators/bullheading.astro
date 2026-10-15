@@ -155,35 +155,35 @@ const webAppLd = {
 
       <div class="prose">
         <h2>The Formulas Used</h2>
-        <div class="formula-block">
-          <div class="formula-label">Kill Fluid Weight</div>
-          <div class="formula-eq">KFW = [SITP ÷ (0.052 × TVD)] + Original Fluid Weight</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Formation Fracture Pressure</div>
-          <div class="formula-eq">FFP = Fracture Gradient × Top Perfs TVD</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Initial Hydrostatic Pressure &amp; Fluid Density</div>
-          <div class="formula-eq">IHP = Formation Pressure − SITP<br />Density = IHP ÷ (TVD × 0.052)</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Max Initial / Final Surface Pressure</div>
-          <div class="formula-eq">Initial = FFP − IHP<br />Final = FFP − (KFW × 0.052 × TVD)</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Bullhead Pump Rate vs. Migration</div>
-          <div class="formula-eq">SPM = (Migration Rate ÷ 60) × Tubing Capacity ÷ Pump Output</div>
-          <div class="formula-note">Per the WellSharp / IWCF field-units formula sheet, well completion/workover section.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Kill Fluid Weight</dt>
+          <dd class="formula-eq"><code>KFW = [SITP ÷ (0.052 × TVD)] + Original Fluid Weight</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Formation Fracture Pressure</dt>
+          <dd class="formula-eq"><code>FFP = Fracture Gradient × Top Perfs TVD</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Initial Hydrostatic Pressure &amp; Fluid Density</dt>
+          <dd class="formula-eq"><code>IHP = Formation Pressure − SITP<br />Density = IHP ÷ (TVD × 0.052)</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Max Initial / Final Surface Pressure</dt>
+          <dd class="formula-eq"><code>Initial = FFP − IHP<br />Final = FFP − (KFW × 0.052 × TVD)</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Bullhead Pump Rate vs. Migration</dt>
+          <dd class="formula-eq"><code>SPM = (Migration Rate ÷ 60) × Tubing Capacity ÷ Pump Output</code></dd>
+          <dd class="formula-note">Per the WellSharp / IWCF field-units formula sheet, well completion/workover section.</dd>
+        </dl>
 
         <h2 id="brine">A Real Wrinkle: Brine Weight Changes With Temperature</h2>
         <p>Kill fluid weight above assumes the fluid stays the density it was mixed and measured at — true for drilling mud over most of a job, but heavy completion brines (calcium bromide, zinc bromide, and similar) lose noticeably more density per degree as they warm up going downhole. A brine weighed at surface temperature is not the same weight by the time it reaches a hot bottomhole, and the gap is large enough to matter against the tight surface-pressure margins above.</p>
-        <div class="formula-block">
-          <div class="formula-label">Fluid Density to Mix, Temperature-Corrected</div>
-          <div class="formula-eq">Density to Mix = Density at Avg. Temp + [(Avg. Temp − Surface Temp) × Weight Loss]</div>
-          <div class="formula-note">Weight loss is read from the brine's own weight range below, not a single constant — heavier brines lose more density per degree than lighter ones.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Fluid Density to Mix, Temperature-Corrected</dt>
+          <dd class="formula-eq"><code>Density to Mix = Density at Avg. Temp + [(Avg. Temp − Surface Temp) × Weight Loss]</code></dd>
+          <dd class="formula-note">Weight loss is read from the brine's own weight range below, not a single constant — heavier brines lose more density per degree than lighter ones.</dd>
+        </dl>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Brine Weight</th><th>Weight Loss per °F</th></tr></thead>

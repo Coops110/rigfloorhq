@@ -32,9 +32,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/maasp",
   "description": "Calculadora de MAASP gratis: presión máxima permisible en superficie del anular en la zapata a partir de tu prueba LOT/FIT, peso de lodo actual, y TVD de zapata.",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -97,11 +97,11 @@ const webAppLd = {
 
       <div class="prose">
         <h2>La Fórmula Usada</h2>
-        <div class="formula-block">
-          <div class="formula-label">Presión Máxima Permisible en Superficie del Anular</div>
-          <div class="formula-eq">MAASP = Presión LOT/FIT + [(MW LOT/FIT − MW Actual) × 0.052 × TVD de Zapata]</div>
-          <div class="formula-note">Presión LOT/FIT en psi, ambos pesos de lodo en ppg, TVD de zapata en pies, MAASP en psi.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Presión Máxima Permisible en Superficie del Anular</dt>
+          <dd class="formula-eq"><code>MAASP = Presión LOT/FIT + [(MW LOT/FIT − MW Actual) × 0.052 × TVD de Zapata]</code></dd>
+          <dd class="formula-note">Presión LOT/FIT en psi, ambos pesos de lodo en ppg, TVD de zapata en pies, MAASP en psi.</dd>
+        </dl>
 
         <h3>Dónde Encaja Esto</h3>
         <p>El MAASP no es un número fijo para el pozo — se mueve cada vez que cambia el peso de lodo, por lo que hay que recalcularlo cada vez que el lodo se sube o se baja de peso, no registrarlo una sola vez después del LOT/FIT y olvidarlo. La prueba en sí, realizada justo después de perforar bajo la zapata, encuentra la presión que la formación justo debajo puede soportar antes de romperse o tomar pérdidas, al peso de lodo que estaba en el pozo ese día. Todo lo que viene después de esa prueba realmente pregunta una sola cosa: ¿cuánta presión de superficie queda antes de que esa misma formación, al peso de lodo de hoy, alcance ese límite original? Ingresa la presión LOT/FIT, el peso de lodo LOT/FIT, y el TVD de zapata de la prueba ya realizada junto con el peso de lodo actualmente en uso, y esta calculadora responde exactamente eso.</p>

@@ -175,11 +175,11 @@ const webAppLd = {
       <div class="prose">
         <h2>Where the 0.052 Comes From</h2>
         <p>The constant that turns mud weight into a pressure gradient is not arbitrary, and knowing where it comes from makes it much harder to misuse.</p>
-        <div class="formula-block">
-          <div class="formula-label">Pressure gradient</div>
-          <div class="formula-eq">psi/ft = ppg × 0.052</div>
-          <div class="formula-note">Exactly: (1728 ÷ 231) ÷ 144 = 0.0519481. A US gallon is 231 cubic inches and a cubic foot is 1728, so a one-foot column over one square inch holds 0.0519481 gallons.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Pressure gradient</dt>
+          <dd class="formula-eq"><code>psi/ft = ppg × 0.052</code></dd>
+          <dd class="formula-note">Exactly: (1728 ÷ 231) ÷ 144 = 0.0519481. A US gallon is 231 cubic inches and a cubic foot is 1728, so a one-foot column over one square inch holds 0.0519481 gallons.</dd>
+        </dl>
         <p>This converter uses the full value rather than the rounded one. Over a 10,000 ft well the difference between 0.052 and 0.0519481 is about 5 psi at 10 ppg — immaterial on the floor, but there is no reason to carry the error.</p>
 
         <h3>Which unit gets used where</h3>

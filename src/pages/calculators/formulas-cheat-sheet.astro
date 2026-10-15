@@ -24,7 +24,14 @@ const jsonLd = {
       "headline": "Drilling Formulas Quick-Reference Cheat Sheet",
       "description": "Core drilling formulas, conversions, and a worked example for the rig floor: hydrostatic pressure, kill mud weight, MAASP, ECD, buoyancy, capacity.",
       "about": "Drilling and well control formulas",
-      "reviewedBy": reviewedByJabin()
+      // reviewedBy belongs on WebPage per schema.org, not TechArticle — it
+      // lives on mainEntityOfPage instead. This WebPage node also covers the
+      // WebApplication below, since both describe the same URL.
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rigfloorhq.com/calculators/formulas-cheat-sheet",
+        "reviewedBy": reviewedByJabin()
+      }
     }
   ]
 };
@@ -43,8 +50,7 @@ const webAppLd = {
   "inLanguage": "en",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
-  "reviewedBy": reviewedByJabin()
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
 ---
 <BaseLayout
@@ -70,65 +76,65 @@ const webAppLd = {
       <p>Every formula below is reviewed for accuracy by <a href="/about/jabin-travis" style="color:var(--amber);">Jabin Travis</a>, IADC WellSharp-certified driller, same as the calculators themselves.</p>
     </div>
 
-    <div class="formula-block">
-      <div class="formula-label">Hydrostatic Pressure</div>
-      <div class="formula-eq">HP (psi) = 0.052 × MW (ppg) × TVD (ft)</div>
-      <div class="formula-note">The static mud column pressure at a given depth. Run it: <a href="/calculators/hydrostatic">Hydrostatic Pressure Calculator</a>.</div>
-    </div>
+    <dl class="formula-block">
+      <dt class="formula-label">Hydrostatic Pressure</dt>
+      <dd class="formula-eq"><code>HP (psi) = 0.052 × MW (ppg) × TVD (ft)</code></dd>
+      <dd class="formula-note">The static mud column pressure at a given depth. Run it: <a href="/calculators/hydrostatic">Hydrostatic Pressure Calculator</a>.</dd>
+    </dl>
 
-    <div class="formula-block">
-      <div class="formula-label">Kill Mud Weight</div>
-      <div class="formula-eq">KMW = OMW + (SIDPP ÷ (0.052 × TVD))</div>
-      <div class="formula-note">The mud weight needed to balance the well after a kick, from shut-in drill pipe pressure. Run it: <a href="/calculators/kill-sheet">Kill Sheet Calculator</a>.</div>
-    </div>
+    <dl class="formula-block">
+      <dt class="formula-label">Kill Mud Weight</dt>
+      <dd class="formula-eq"><code>KMW = OMW + (SIDPP ÷ (0.052 × TVD))</code></dd>
+      <dd class="formula-note">The mud weight needed to balance the well after a kick, from shut-in drill pipe pressure. Run it: <a href="/calculators/kill-sheet">Kill Sheet Calculator</a>.</dd>
+    </dl>
 
-    <div class="formula-block">
-      <div class="formula-label">Maximum Allowable Annular Surface Pressure</div>
-      <div class="formula-eq">MAASP = LOT/FIT Pressure + [(LOT/FIT MW − Current MW) × 0.052 × Shoe TVD]</div>
-      <div class="formula-note">The ceiling on surface pressure before the shoe takes fluid. Run it: <a href="/calculators/maasp">MAASP Calculator</a>.</div>
-    </div>
+    <dl class="formula-block">
+      <dt class="formula-label">Maximum Allowable Annular Surface Pressure</dt>
+      <dd class="formula-eq"><code>MAASP = LOT/FIT Pressure + [(LOT/FIT MW − Current MW) × 0.052 × Shoe TVD]</code></dd>
+      <dd class="formula-note">The ceiling on surface pressure before the shoe takes fluid. Run it: <a href="/calculators/maasp">MAASP Calculator</a>.</dd>
+    </dl>
 
-    <div class="formula-block">
-      <div class="formula-label">Kick Tolerance</div>
-      <div class="formula-eq">KT = [MAASP − (Influx Height × MW × 0.052)] ÷ (0.052 × Shoe TVD)</div>
-      <div class="formula-note">How much kick the well can take before MAASP is exceeded. Run it: <a href="/calculators/kick-tolerance">Kick Tolerance Calculator</a>.</div>
-    </div>
+    <dl class="formula-block">
+      <dt class="formula-label">Kick Tolerance</dt>
+      <dd class="formula-eq"><code>KT = [MAASP − (Influx Height × MW × 0.052)] ÷ (0.052 × Shoe TVD)</code></dd>
+      <dd class="formula-note">How much kick the well can take before MAASP is exceeded. Run it: <a href="/calculators/kick-tolerance">Kick Tolerance Calculator</a>.</dd>
+    </dl>
 
-    <div class="formula-block">
-      <div class="formula-label">Equivalent Circulating Density</div>
-      <div class="formula-eq">ECD = MW + (Annular Friction Loss ÷ 0.052 ÷ TVD)</div>
-      <div class="formula-note">The effective mud weight while circulating, once friction pressure is added. Run it: <a href="/calculators/ecd">ECD Calculator</a>.</div>
-    </div>
+    <dl class="formula-block">
+      <dt class="formula-label">Equivalent Circulating Density</dt>
+      <dd class="formula-eq"><code>ECD = MW + (Annular Friction Loss ÷ 0.052 ÷ TVD)</code></dd>
+      <dd class="formula-note">The effective mud weight while circulating, once friction pressure is added. Run it: <a href="/calculators/ecd">ECD Calculator</a>.</dd>
+    </dl>
 
-    <div class="formula-block">
-      <div class="formula-label">Trip Margin / Safety Factor</div>
-      <div class="formula-eq">TM/SF = Base Mud Weight + [Safety Margin ÷ (0.052 × TVD)]</div>
-      <div class="formula-note">Extra mud weight carried to cover swab pressure while tripping. Run it: <a href="/calculators/trip-margin">Trip Margin Calculator</a>.</div>
-    </div>
+    <dl class="formula-block">
+      <dt class="formula-label">Trip Margin / Safety Factor</dt>
+      <dd class="formula-eq"><code>TM/SF = Base Mud Weight + [Safety Margin ÷ (0.052 × TVD)]</code></dd>
+      <dd class="formula-note">Extra mud weight carried to cover swab pressure while tripping. Run it: <a href="/calculators/trip-margin">Trip Margin Calculator</a>.</dd>
+    </dl>
 
     <h2 id="buoyancy" class="mt-24">Buoyancy &amp; String Weight</h2>
 
-    <div class="formula-block">
-      <div class="formula-label">Buoyancy Factor</div>
-      <div class="formula-eq">BF = 1 − (Fluid Weight (ppg) ÷ 65.5)</div>
-      <div class="formula-note">The fraction of a string's air weight it actually hangs as once submerged in fluid. Run it: <a href="/calculators/buoyancy">Buoyancy &amp; Tubular Weight Calculator</a>.</div>
-    </div>
+    <dl class="formula-block">
+      <dt class="formula-label">Buoyancy Factor</dt>
+      <dd class="formula-eq"><code>BF = 1 − (Fluid Weight (ppg) ÷ 65.5)</code></dd>
+      <dd class="formula-note">The fraction of a string's air weight it actually hangs as once submerged in fluid. Run it: <a href="/calculators/buoyancy">Buoyancy &amp; Tubular Weight Calculator</a>.</dd>
+    </dl>
 
     <div class="prose">
       <p>A note on 65.5: steel at 489.5 lb/ft³ works out at <strong>65.44 ppg</strong>, not 65.5. The rounded figure is the field convention and the difference is under a tenth of a percent, but if a number will not reconcile against a supplier's tally book, this is one of the places the discrepancy hides.</p>
     </div>
 
-    <div class="formula-block">
-      <div class="formula-label">Neutral Point</div>
-      <div class="formula-eq">Max WOB (lb) = Collar weight (lb/ft) × Length (ft) × BF</div>
-      <div class="formula-note">Keep the neutral point in the collars. Putting drill pipe in compression is how you buy a fatigue failure. More on pipe grades and inspection class: <a href="/equipment/drill-string">drill string page</a>.</div>
-    </div>
+    <dl class="formula-block">
+      <dt class="formula-label">Neutral Point</dt>
+      <dd class="formula-eq"><code>Max WOB (lb) = Collar weight (lb/ft) × Length (ft) × BF</code></dd>
+      <dd class="formula-note">Keep the neutral point in the collars. Putting drill pipe in compression is how you buy a fatigue failure. More on pipe grades and inspection class: <a href="/equipment/drill-string">drill string page</a>.</dd>
+    </dl>
 
-    <div class="formula-block">
-      <div class="formula-label">Capacity &amp; Displacement</div>
-      <div class="formula-eq">Capacity (bbl/ft) = ID² ÷ 1029.4<br />Displacement (bbl/ft) = (OD² − ID²) ÷ 1029.4</div>
-      <div class="formula-note">Volume per foot inside the pipe, and volume per foot the pipe itself displaces. Run it: <a href="/calculators/drill-pipe-tally">Drill Pipe Tally Calculator</a>.</div>
-    </div>
+    <dl class="formula-block">
+      <dt class="formula-label">Capacity &amp; Displacement</dt>
+      <dd class="formula-eq"><code>Capacity (bbl/ft) = ID² ÷ 1029.4<br />Displacement (bbl/ft) = (OD² − ID²) ÷ 1029.4</code></dd>
+      <dd class="formula-note">Volume per foot inside the pipe, and volume per foot the pipe itself displaces. Run it: <a href="/calculators/drill-pipe-tally">Drill Pipe Tally Calculator</a>.</dd>
+    </dl>
 
     <h2 id="conversions" class="mt-24">Mud Weight Conversions</h2>
     <div class="prose">
@@ -163,23 +169,23 @@ const webAppLd = {
       <p>Every depth on this page assumes the drill pipe tally and the rig floor reference it is measured from have not moved. When a rig floor elevation actually changes — a different substructure, a workover rig on a re-entry — reconcile it with the <a href="/calculators/odf-depth-correction">rig floor (ODF) depth correction calculator</a> before trusting a tally against it.</p>
     </div>
 
-    <div class="formula-block">
-      <div class="formula-label">TVD over a Constant-Inclination Section</div>
-      <div class="formula-eq">ΔTVD (ft) = ΔMD (ft) × cos I</div>
-      <div class="formula-note">I = inclination from vertical. In a build section use minimum curvature rather than this.</div>
-    </div>
+    <dl class="formula-block">
+      <dt class="formula-label">TVD over a Constant-Inclination Section</dt>
+      <dd class="formula-eq"><code>ΔTVD (ft) = ΔMD (ft) × cos I</code></dd>
+      <dd class="formula-note">I = inclination from vertical. In a build section use minimum curvature rather than this.</dd>
+    </dl>
 
-    <div class="formula-block">
-      <div class="formula-label">Build Rate</div>
-      <div class="formula-eq">Build rate (°/100 ft) = (I₂ − I₁) × 100 ÷ Course length (ft)</div>
-      <div class="formula-note">Inclination change only. It is not the same as dogleg severity unless azimuth is constant.</div>
-    </div>
+    <dl class="formula-block">
+      <dt class="formula-label">Build Rate</dt>
+      <dd class="formula-eq"><code>Build rate (°/100 ft) = (I₂ − I₁) × 100 ÷ Course length (ft)</code></dd>
+      <dd class="formula-note">Inclination change only. It is not the same as dogleg severity unless azimuth is constant.</dd>
+    </dl>
 
-    <div class="formula-block">
-      <div class="formula-label">Dogleg Severity</div>
-      <div class="formula-eq">cos β = cos(I₂ − I₁) − sin I₁ × sin I₂ × (1 − cos(A₂ − A₁))<br />DLS (°/100 ft) = β × 100 ÷ Course length (ft)</div>
-      <div class="formula-note">The minimum curvature dogleg angle β, accounting for both inclination and azimuth change. When azimuth is unchanged it collapses to the build rate above.</div>
-    </div>
+    <dl class="formula-block">
+      <dt class="formula-label">Dogleg Severity</dt>
+      <dd class="formula-eq"><code>cos β = cos(I₂ − I₁) − sin I₁ × sin I₂ × (1 − cos(A₂ − A₁))<br />DLS (°/100 ft) = β × 100 ÷ Course length (ft)</code></dd>
+      <dd class="formula-note">The minimum curvature dogleg angle β, accounting for both inclination and azimuth change. When azimuth is unchanged it collapses to the build rate above.</dd>
+    </dl>
     <div class="prose">
       <p>Well profiles, build sections and why dogleg severity limits matter are on the <a href="/drilling/directional">directional drilling page</a>.</p>
     </div>
@@ -237,28 +243,12 @@ const webAppLd = {
     <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
     <div class="accordion">
       {faq.map((item) => (
-        <div class="acc-item">
-          <button class="acc-header"><h3>{item.q}</h3><span class="acc-arrow">▼</span></button>
+        <details class="acc-item">
+          <summary class="acc-header">{item.q}<span class="acc-arrow">▼</span></summary>
           <div class="acc-body"><p set:html={item.a} /></div>
-        </div>
+        </details>
       ))}
     </div>
   </section>
 </BaseLayout>
 
-<script>
-function toggleAcc(btn: HTMLElement) {
-  const body = btn.nextElementSibling as HTMLElement;
-  const arrow = btn.querySelector('.acc-arrow') as HTMLElement;
-  const isOpen = body.classList.contains('open');
-  document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
-  document.querySelectorAll('.acc-arrow').forEach(a => (a as HTMLElement).style.transform = '');
-  if (!isOpen) {
-    body.classList.add('open');
-    arrow.style.transform = 'rotate(180deg)';
-  }
-}
-document.querySelectorAll('.acc-header').forEach(btn => {
-  btn.addEventListener('click', () => toggleAcc(btn as HTMLElement));
-});
-</script>

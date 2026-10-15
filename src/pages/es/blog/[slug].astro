@@ -49,10 +49,15 @@ const blogPosting = {
   "dateModified": post.data.modifiedDate || post.data.publishDate,
   "author": authorEntity,
   "publisher": { "@id": `${siteUrl}/#organization` },
-  ...(post.data.reviewedByJabin ? { "reviewedBy": reviewedByJabin() } : {}),
   "image": `${siteUrl}${shareImage}`,
   "inLanguage": "es",
-  "mainEntityOfPage": { "@type": "WebPage", "@id": postUrl },
+  // reviewedBy belongs on WebPage per schema.org, not BlogPosting — see the
+  // English route for the full note. Folded into mainEntityOfPage here.
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": postUrl,
+    ...(post.data.reviewedByJabin ? { "reviewedBy": reviewedByJabin() } : {}),
+  },
 };
 
 const jsonLd = blogPosting;

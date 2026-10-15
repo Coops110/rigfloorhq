@@ -30,9 +30,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/bit-hydraulics",
   "description": "Calculadora gratuita de hidráulica de barrena: área de flujo total a partir de tamaños de boquilla, velocidad de chorro, caballaje hidráulico de barrena, y caballaje hidráulico por pulgada cuadrada (HSI).",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -130,22 +130,22 @@ const webAppLd = {
 
       <div class="prose">
         <h2>Las Fórmulas Usadas</h2>
-        <div class="formula-block">
-          <div class="formula-label">Área de Flujo Total</div>
-          <div class="formula-eq">TFA = Σ [ π/4 × (Tamaño de Boquilla ÷ 32)² ] para cada boquilla</div>
-        </div>
-        <div class="formula-block mt-24">
-          <div class="formula-label">Velocidad de Chorro</div>
-          <div class="formula-eq">Vn (ft/seg) = 0.32 × Tasa de Flujo (gpm) ÷ TFA (in²)</div>
-        </div>
-        <div class="formula-block mt-24">
-          <div class="formula-label">Caballaje Hidráulico de Barrena</div>
-          <div class="formula-eq">HHP = (Caída de Presión de Barrena × Tasa de Flujo) ÷ 1714</div>
-        </div>
-        <div class="formula-block mt-24">
-          <div class="formula-label">HSI (Caballaje Hidráulico por Pulgada Cuadrada)</div>
-          <div class="formula-eq">HSI = HHP ÷ [π/4 × (Tamaño de Barrena)²]</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Área de Flujo Total</dt>
+          <dd class="formula-eq"><code>TFA = Σ [ π/4 × (Tamaño de Boquilla ÷ 32)² ] para cada boquilla</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Velocidad de Chorro</dt>
+          <dd class="formula-eq"><code>Vn (ft/seg) = 0.32 × Tasa de Flujo (gpm) ÷ TFA (in²)</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Caballaje Hidráulico de Barrena</dt>
+          <dd class="formula-eq"><code>HHP = (Caída de Presión de Barrena × Tasa de Flujo) ÷ 1714</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">HSI (Caballaje Hidráulico por Pulgada Cuadrada)</dt>
+          <dd class="formula-eq"><code>HSI = HHP ÷ [π/4 × (Tamaño de Barrena)²]</code></dd>
+        </dl>
 
         <div class="note-box mt-24">
           <strong>Lo que deliberadamente no se deriva aquí:</strong> la caída de presión de la barrena misma no se calcula a partir de peso de lodo, tasa de flujo, y TFA — la constante exacta de esa fórmula varía entre referencias dependiendo del coeficiente de descarga de boquilla asumido, y no pudo confirmarse con confianza contra un ejemplo real resuelto al construir esta página. La caída de presión de la barrena entra como un valor conocido (leído de la diferencia de presión de standpipe con/sin la barrena en el fondo) en lugar de arriesgar una fórmula que esté equivocada por un margen significativo en un trabajo real.

@@ -23,9 +23,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/mamw",
   "description": "Calculadora gratuita de MAMW: peso máximo admisible de lodo a partir de tu prueba LOT/FIT y TVD de zapata, más el nuevo MAASP una vez establecido un peso de lodo de control.",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -105,15 +105,15 @@ const webAppLd = {
 
       <div class="prose">
         <h2>Las Fórmulas Usadas</h2>
-        <div class="formula-block">
-          <div class="formula-label">Peso Máximo Admisible de Lodo</div>
-          <div class="formula-eq">MAMW = MW Actual + [Presión LOT/FIT ÷ (0.052 × TVD de Zapata)]</div>
-        </div>
-        <div class="formula-block mt-24">
-          <div class="formula-label">Nuevo MAASP Con Peso de Lodo de Control</div>
-          <div class="formula-eq">Nuevo MAASP = (MAMW − Peso de Lodo de Control) × 0.052 × TVD de Zapata</div>
-          <div class="formula-note">Ambos pesos de lodo en ppg, TVD de zapata en pies, MAASP y presión LOT/FIT en psi.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Peso Máximo Admisible de Lodo</dt>
+          <dd class="formula-eq"><code>MAMW = MW Actual + [Presión LOT/FIT ÷ (0.052 × TVD de Zapata)]</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Nuevo MAASP Con Peso de Lodo de Control</dt>
+          <dd class="formula-eq"><code>Nuevo MAASP = (MAMW − Peso de Lodo de Control) × 0.052 × TVD de Zapata</code></dd>
+          <dd class="formula-note">Ambos pesos de lodo en ppg, TVD de zapata en pies, MAASP y presión LOT/FIT en psi.</dd>
+        </dl>
 
         <h3>Dónde Encaja Esto</h3>
         <p>MAMW y <a href="/es/calculators/maasp">MAASP</a> vienen de la misma prueba LOT/FIT y describen el mismo límite idéntico de zapata, solo en unidades diferentes — uno como un peso de lodo equivalente, uno como una presión de superficie en vivo. Una vez que se confirma una surgencia y se elige un peso de lodo de control en la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a>, la segunda caja aquí responde la pregunta operacional real: ¿es ese peso de lodo de control realmente seguro para esta zapata, y si no, cuánta presión de superficie queda antes de que no lo sea? Un New MAASP negativo o muy pequeño significa que el peso de lodo de control planeado está cerca de o pasado el límite real de la zapata, lo cual requiere la atención del supervisor de control de pozos antes de empezar a bombear, no después.</p>

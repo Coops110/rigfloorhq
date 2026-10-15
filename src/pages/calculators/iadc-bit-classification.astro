@@ -255,16 +255,16 @@ const webAppLd = {
 
       <div class="prose">
         <h2>Reading a Full Code</h2>
-        <div class="formula-block">
-          <div class="formula-label">Roller Cone Example</div>
-          <div class="formula-eq">5 1 5 G</div>
-          <div class="formula-note">Series 5: TCI/insert, soft to medium-hard formation. Sub-series 1: softer end of that range. Bearing digit 5: sealed roller bearing, gauge protected. Feature letter G: extra gauge/body protection.</div>
-        </div>
-        <div class="formula-block mt-24">
-          <div class="formula-label">PDC Example</div>
-          <div class="formula-eq">M432</div>
-          <div class="formula-note">M: matrix body. 4: medium formation. 3: 13 mm PDC cutters. 2: short profile.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Roller Cone Example</dt>
+          <dd class="formula-eq"><code>5 1 5 G</code></dd>
+          <dd class="formula-note">Series 5: TCI/insert, soft to medium-hard formation. Sub-series 1: softer end of that range. Bearing digit 5: sealed roller bearing, gauge protected. Feature letter G: extra gauge/body protection.</dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">PDC Example</dt>
+          <dd class="formula-eq"><code>M432</code></dd>
+          <dd class="formula-note">M: matrix body. 4: medium formation. 3: 13 mm PDC cutters. 2: short profile.</dd>
+        </dl>
 
         <h2 id="why-it-matters">Why the Code Is Worth Reading, Not Just Matching</h2>
         <p>A classification code is a compressed engineering decision — formation strength assessment, cutter technology choice, bearing selection, and bit geometry, all reduced to three or four characters so a bit can be selected, ordered, and compared across manufacturers without a phone call. Reading it rather than just pattern-matching a familiar string means catching, for example, that a series-7 roller cone bit and a formation-type-7 PDC bit are answering the same "hard, semi-abrasive to abrasive formation" question with two structurally different tools — one crushing with carbide inserts on rotating cones, the other shearing with fixed cutters.</p>

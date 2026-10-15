@@ -117,9 +117,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/iadc-dull-bit-grading",
   "description": "Referencia gratuita de calificación de desgaste IADC: el código de 8 posiciones para calificar una barrena desgastada — estructura de corte, características de desgaste, ubicación, rodamientos/sellos, calibre y razón de salida.",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -252,11 +252,11 @@ const webAppLd = {
       <div class="prose">
         <h2>Leyendo un Código Completo</h2>
         <p>Juntando las ocho posiciones en orden, un código de calificación de desgaste se lee como un registro compacto. Por ejemplo:</p>
-        <div class="formula-block">
-          <div class="formula-label">Ejemplo Resuelto</div>
-          <div class="formula-eq">2 4 WT A E I NO TD</div>
-          <div class="formula-note">Filas internas 2/8 desgastadas, filas externas 4/8 desgastadas, característica de desgaste primaria dientes/cortadores desgastados, encontrada en todas las filas, sellos aún efectivos, la barrena salió en calibre, sin característica secundaria, sacada al alcanzar la profundidad total.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Ejemplo Resuelto</dt>
+          <dd class="formula-eq"><code>2 4 WT A E I NO TD</code></dd>
+          <dd class="formula-note">Filas internas 2/8 desgastadas, filas externas 4/8 desgastadas, característica de desgaste primaria dientes/cortadores desgastados, encontrada en todas las filas, sellos aún efectivos, la barrena salió en calibre, sin característica secundaria, sacada al alcanzar la profundidad total.</dd>
+        </dl>
         <p>Una barrena de cortador fijo se lee con las mismas ocho posiciones, con la posición 5 siempre mostrando <span class="highlight">X</span> ya que no hay rodamientos en ese tipo de barrena, y la posición 4 tomada de los códigos de ubicación de cortador fijo en vez de los de conos.</p>
 
         <h2 id="why-it-matters">Por Qué Importa Más Allá del Papeleo</h2>

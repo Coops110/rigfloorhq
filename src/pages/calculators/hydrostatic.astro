@@ -19,7 +19,17 @@ const webAppLd = {
   "inLanguage": "en",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
+
+// reviewedBy belongs on WebPage per schema.org, not on WebApplication — see
+// src/lib/person.js. A separate WebPage node carries it instead of
+// WebApplication itself.
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/calculators/hydrostatic#webpage",
+  "url": "https://rigfloorhq.com/calculators/hydrostatic",
   "reviewedBy": reviewedByJabin()
 };
 ---
@@ -28,7 +38,7 @@ const webAppLd = {
   description="Free hydrostatic pressure calculator. Enter mud weight and TVD for instant psi, with pore and fracture gradients for a safe or unsafe status."
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Hydrostatic Pressure', href: '/calculators/hydrostatic' }]}
   lang="en"
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   alternateHref="/es/calculators/hydrostatic"
 >
   <Nav slot="nav" lang="en" alternateHref="/es/calculators/hydrostatic" />
@@ -85,11 +95,11 @@ const webAppLd = {
       <div class="prose">
         <h2>How This Calculator Works</h2>
         <p>This tool applies the standard hydrostatic pressure formula used throughout the drilling industry:</p>
-        <div class="formula-block">
-          <div class="formula-label">Hydrostatic Pressure</div>
-          <div class="formula-eq">HP (psi) = 0.052 × MW (ppg) × TVD (ft)</div>
-          <div class="formula-note">0.052 is the unit conversion constant relating pounds per gallon and feet to psi — see <a href="/blog/hydrostatic-pressure-0052-constant">why it never changes between mud types</a> for the full derivation.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Hydrostatic Pressure</dt>
+          <dd class="formula-eq"><code>HP (psi) = 0.052 × MW (ppg) × TVD (ft)</code></dd>
+          <dd class="formula-note">0.052 is the unit conversion constant relating pounds per gallon and feet to psi — see <a href="/blog/hydrostatic-pressure-0052-constant">why it never changes between mud types</a> for the full derivation.</dd>
+        </dl>
         <p>It then compares your hydrostatic pressure against the pore pressure and fracture pressure at the same depth (calculated from the gradients you enter) to determine whether your mud weight sits safely inside the mud weight window.</p>
 
         <h3>Reading Your Results</h3>

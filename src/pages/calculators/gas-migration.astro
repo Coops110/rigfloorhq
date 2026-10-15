@@ -37,14 +37,24 @@ const webAppLd = {
   "inLanguage": "en",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
+
+// reviewedBy belongs on WebPage per schema.org, not on WebApplication — see
+// src/lib/person.js. A separate WebPage node carries it instead of
+// WebApplication itself.
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/calculators/gas-migration#webpage",
+  "url": "https://rigfloorhq.com/calculators/gas-migration",
   "reviewedBy": reviewedByJabin()
 };
 ---
 <BaseLayout
   title="Gas Migration Calculator: Rate & Volumetric Bleed Volume"
   description="Gas migration calculator: migration rate in ft/hr from shut-in pressure buildup, and the volumetric-method bleed volume to hold bottomhole pressure steady."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Gas Migration', href: '/calculators/gas-migration' }]}
   lang="en"
   alternateHref="/es/calculators/gas-migration"
@@ -102,15 +112,15 @@ const webAppLd = {
 
       <div class="prose">
         <h2>The Formulas Used</h2>
-        <div class="formula-block">
-          <div class="formula-label">Gas Migration Rate</div>
-          <div class="formula-eq">Rate (ft/hr) = Pressure Increase (psi/hr) ÷ Mud Gradient (psi/ft)</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Volume to Bleed (Volumetric Method)</div>
-          <div class="formula-eq">Volume (bbls) = (Pressure to Bleed ÷ Mud Gradient) × Annular Capacity</div>
-          <div class="formula-note">Per the WellSharp / IWCF field-units formula sheet. Either SIDPP or SICP buildup can be used for the migration-rate side, whichever is being monitored.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Gas Migration Rate</dt>
+          <dd class="formula-eq"><code>Rate (ft/hr) = Pressure Increase (psi/hr) ÷ Mud Gradient (psi/ft)</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Volume to Bleed (Volumetric Method)</dt>
+          <dd class="formula-eq"><code>Volume (bbls) = (Pressure to Bleed ÷ Mud Gradient) × Annular Capacity</code></dd>
+          <dd class="formula-note">Per the WellSharp / IWCF field-units formula sheet. Either SIDPP or SICP buildup can be used for the migration-rate side, whichever is being monitored.</dd>
+        </dl>
 
         <p>Once you have a migration rate, checking whether a planned bullhead pump rate would actually outpace it is the <a href="/calculators/bullheading">bullheading calculator</a>'s last section. For the shut-in pressures and kill weight this feeds into more broadly, see the <a href="/calculators/kill-sheet">kill sheet calculator</a>.</p>
 

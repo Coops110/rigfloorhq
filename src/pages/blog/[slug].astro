@@ -55,12 +55,18 @@ const blogPosting = {
   "dateModified": post.data.modifiedDate || post.data.publishDate,
   "author": authorEntity,
   "publisher": { "@id": `${siteUrl}/#organization` },
-  ...(post.data.reviewedByJabin ? { "reviewedBy": reviewedByJabin() } : {}),
   "image": `${siteUrl}${shareImage}`,
   "inLanguage": "en",
   // Tells search engines which URL this markup describes, so the article is
-  // not attributed to the listing page it was crawled from.
-  "mainEntityOfPage": { "@type": "WebPage", "@id": postUrl },
+  // not attributed to the listing page it was crawled from. reviewedBy
+  // belongs here too, per schema.org — it's a WebPage property, not
+  // BlogPosting — so it's folded into this node rather than sitting on the
+  // BlogPosting itself.
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": postUrl,
+    ...(post.data.reviewedByJabin ? { "reviewedBy": reviewedByJabin() } : {}),
+  },
 };
 
 const jsonLd = blogPosting;

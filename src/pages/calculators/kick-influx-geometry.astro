@@ -106,20 +106,20 @@ const webAppLd = {
 
       <div class="prose">
         <h2>The Formulas Used</h2>
-        <div class="formula-block">
-          <div class="formula-label">Length of Influx Along Hole</div>
-          <div class="formula-eq">LoIAH = Kick Volume ÷ Annular Capacity</div>
-        </div>
-        <div class="formula-block mt-24">
-          <div class="formula-label">Influx Vertical Height</div>
-          <div class="formula-eq">IVH = LoIAH × cos(Hole Inclination)</div>
-          <div class="formula-note">Inclination measured from vertical. This calculator applies the trig correctly in degrees — see the note below on a real error found in the source worksheet this was checked against.</div>
-        </div>
-        <div class="formula-block mt-24">
-          <div class="formula-label">Shut-In Casing Pressure</div>
-          <div class="formula-eq">SICP = SIDPP + [Influx Vertical Height × (Mud Gradient − Influx Gradient)]</div>
-          <div class="formula-note">Mud gradient = Mud Weight × 0.052.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Length of Influx Along Hole</dt>
+          <dd class="formula-eq"><code>LoIAH = Kick Volume ÷ Annular Capacity</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Influx Vertical Height</dt>
+          <dd class="formula-eq"><code>IVH = LoIAH × cos(Hole Inclination)</code></dd>
+          <dd class="formula-note">Inclination measured from vertical. This calculator applies the trig correctly in degrees — see the note below on a real error found in the source worksheet this was checked against.</dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Shut-In Casing Pressure</dt>
+          <dd class="formula-eq"><code>SICP = SIDPP + [Influx Vertical Height × (Mud Gradient − Influx Gradient)]</code></dd>
+          <dd class="formula-note">Mud gradient = Mud Weight × 0.052.</dd>
+        </dl>
 
         <div class="note-box mt-24">
           <strong>A real error caught building this page:</strong> the reference worksheet this was checked against computed influx vertical height by feeding a degrees value into a cosine function expecting radians — a classic spreadsheet unit bug. That produces a physically wrong, too-small vertical height. This calculator uses the correct trig (degrees converted to radians internally), which gives a noticeably larger, correct vertical height for the same inputs.

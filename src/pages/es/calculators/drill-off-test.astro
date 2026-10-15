@@ -54,9 +54,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/drill-off-test",
   "description": "Calculadora gratuita de prueba drill-off: registra lecturas de peso sobre la barrena y de rotación, y obtén la tasa de penetración (ROP) para cada paso, en vivo — el método de campo para hallar el WOB y RPM óptimos.",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -133,11 +133,11 @@ const webAppLd = {
 
       <div class="prose">
         <h2>La Fórmula Usada</h2>
-        <div class="formula-block">
-          <div class="formula-label">Tasa de Penetración</div>
-          <div class="formula-eq">ROP (ft/hr) = Pies Perforados (ft) ÷ Tiempo (seg) × 3600</div>
-          <div class="formula-note">La tabla rotativa mantiene los pies perforados fijos en 1 ft por paso, así que se reduce a ROP = 3600 ÷ Tiempo — la misma fórmula, solo que los pies perforados no son una variable en esa prueba.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Tasa de Penetración</dt>
+          <dd class="formula-eq"><code>ROP (ft/hr) = Pies Perforados (ft) ÷ Tiempo (seg) × 3600</code></dd>
+          <dd class="formula-note">La tabla rotativa mantiene los pies perforados fijos en 1 ft por paso, así que se reduce a ROP = 3600 ÷ Tiempo — la misma fórmula, solo que los pies perforados no son una variable en esa prueba.</dd>
+        </dl>
 
         <h2 id="how-it-works">Corriendo la Prueba en el Piso</h2>
         <p>Una prueba de drill-off es simple de correr y fácil de registrar mal, por lo que una hoja de trabajo limpia importa más de lo que parece. Para el lado del WOB: levanta del fondo, fija un peso conocido sobre la barrena, y cronometra cuánto tarda una cantidad fija de peso — 10,000 lb es el incremento común — en "destetarse" de vuelta sobre la barrena mientras la sarta avanza, registrando los pies hechos en ese tiempo. Repite en varios ajustes de WOB, idealmente cubriendo el rango en el que se espera que corra la barrena, no solo probando cada vez más alto.</p>

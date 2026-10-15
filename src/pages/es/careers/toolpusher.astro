@@ -11,14 +11,24 @@ const jsonLd = {
   "@type": "Article",
   "headline": "Cómo Convertirte en Toolpusher",
   "description": "La trayectoria de perforador a toolpusher: qué implica realmente el rol, la certificación IADC WellSharp Supervisor que requiere, cronograma realista, y salario.",
+};
+
+// reviewedBy belongs on WebPage per schema.org, not Article — see
+// src/lib/person.js. A separate WebPage node carries it instead of Article.
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/es/careers/toolpusher#webpage",
+  "url": "https://rigfloorhq.com/es/careers/toolpusher",
   "reviewedBy": reviewedByJabin(),
 };
 ---
 <BaseLayout
   title="Cómo Convertirte en Toolpusher — Trayectoria y Requisitos"
-  description="La trayectoria de perforador a toolpusher: qué implica realmente el rol, la certificación IADC WellSharp Supervisor que requiere, cronograma realista, y salario."
+  description="La trayectoria de perforador a toolpusher: qué implica realmente el rol, la certificación IADC WellSharp Supervisor que requiere, y el salario."
   breadcrumbs={[{ label: 'Carreras', href: '/es/careers' }, { label: 'Toolpusher', href: '/es/careers/toolpusher' }]}
   jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
   lang="es"
   alternateHref="/careers/toolpusher"
 >
@@ -71,7 +81,7 @@ const jsonLd = {
         </div>
 
         <h2 id="la-certificacion-que-lo-condiciona">La Certificación Que lo Condiciona</h2>
-        <p>Todo operador requiere certificación de control de pozos a nivel supervisor antes de entregar la autoridad de un toolpusher: <strong>IWCF Nivel 4</strong> o el nivel equivalente <strong>IADC WellSharp Supervisor</strong>. Se ubica un nivel por encima de la certificación IWCF Nivel 3 / WellSharp Driller que necesita un perforador, y cubre el control de pozos desde una perspectiva de gestión y aprobación de decisiones en lugar de ejecución directa. Ver el desglose completo en la <a href="/es/careers/certifications">página de certificaciones</a>, o la escalera en la que se ubica en <a href="/pillars/rig-floor-leadership">Liderazgo en el Piso de Perforación (inglés)</a>.</p>
+        <p>Todo operador requiere certificación de control de pozos a nivel supervisor antes de entregar la autoridad de un toolpusher: <strong>IWCF Nivel 4</strong> o el nivel equivalente <strong>IADC WellSharp Supervisor</strong>. Se ubica un nivel por encima de la certificación IWCF Nivel 3 / WellSharp Driller que necesita un perforador, y cubre el control de pozos desde una perspectiva de gestión y aprobación de decisiones en lugar de ejecución directa. Ver el desglose completo en la <a href="/es/careers/certifications">página de certificaciones</a>, o la escalera en la que se ubica en <a href="/es/pillars/rig-floor-leadership">Liderazgo en el Piso de Perforación</a>.</p>
 
         <div class="note-box">
           <strong>Revisado por un supervisor en activo:</strong> Jabin Travis, quien <a href="/es/about/jabin-travis">revisa nuestro contenido crítico de seguridad</a>, tiene la certificación IADC WellSharp Supervisor. Su lectura: el paso de perforador a toolpusher tiene menos que ver con conocimiento técnico nuevo y más con confiar en tu propio criterio bajo presión en situaciones que no puedes ensayar del todo. La certificación demuestra competencia, pero el ascenso en sí se gana con un historial que los operadores realmente han visto.
@@ -92,7 +102,7 @@ const jsonLd = {
         </div>
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
           <h3>Lectura Relacionada</h3>
-          <a href="/pillars/rig-floor-leadership" class="card-link">→ Liderazgo en el Piso de Perforación: La Escalera Completa (inglés)</a><br><br>
+          <a href="/es/pillars/rig-floor-leadership" class="card-link">→ Liderazgo en el Piso de Perforación: La Escalera Completa</a><br><br>
           <a href="/es/careers/driller" class="card-link">→ Cómo Convertirte en Perforador</a><br><br>
           <a href="/es/careers/oim-rig-manager" class="card-link">→ Cómo Convertirte en OIM / Gerente de Taladro</a><br><br>
           <a href="/es/careers/company-man" class="card-link">→ ¿Qué Hace un Company Man?</a><br><br>

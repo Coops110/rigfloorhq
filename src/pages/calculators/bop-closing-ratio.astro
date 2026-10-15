@@ -94,11 +94,11 @@ const webAppLd = {
 
       <div class="prose">
         <h2>The Formulas Used</h2>
-        <div class="formula-block">
-          <div class="formula-label">BOP Closing / Opening Pressure Required</div>
-          <div class="formula-eq">Pressure Required = Wellhead Pressure ÷ Ratio</div>
-          <div class="formula-note">Both wellhead pressure and required pressure in psi. The ratio is dimensionless (expressed as N:1).</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">BOP Closing / Opening Pressure Required</dt>
+          <dd class="formula-eq"><code>Pressure Required = Wellhead Pressure ÷ Ratio</code></dd>
+          <dd class="formula-note">Both wellhead pressure and required pressure in psi. The ratio is dimensionless (expressed as N:1).</dd>
+        </dl>
 
         <h3>Where This Fits</h3>
         <p>This is the mechanical link between a wellhead pressure reading and what the closing unit actually has to supply to hold it — directly relevant on the <a href="/equipment/bop">BOP equipment page</a> and any time the <a href="/equipment/accumulator">accumulator function test</a> is checked against real closing pressures rather than a generic target. As wellhead pressure climbs during a well control event, this is the quick check for whether the rig's accumulator system has enough working pressure margin above what a given ratio actually demands at the current shut-in pressure.</p>

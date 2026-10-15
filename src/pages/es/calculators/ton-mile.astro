@@ -30,9 +30,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/ton-mile",
   "description": "Calculadora gratuita de tonelada-milla: viaje redondo, perforación, coreo, viaje corto, y tonelada-millas de asentamiento de revestimiento según API RP 9B / Lapeyrouse.",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -138,24 +138,24 @@ const webAppLd = {
 
       <div class="prose">
         <h2>Las Fórmulas Usadas</h2>
-        <div class="formula-block">
-          <div class="formula-label">Factor de Flotación</div>
-          <div class="formula-eq">BF = (65.5 − MW) ÷ 65.5</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Tonelada-Millas de Viaje Redondo</div>
-          <div class="formula-eq">RTTM = [Wp × D × (Ls + D) + 2D × (2×Wb + Wc)] ÷ (5280 × 2000)</div>
-          <div class="formula-note">Wp = peso flotado de tubería de perforación/ft · D = profundidad · Ls = longitud de parada · Wb = peso del bloque · Wc = peso flotado de lastrabarrenas menos el peso equivalente de tubería de perforación sobre la longitud de los lastrabarrenas. Según API RP 9B / Lapeyrouse.</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Tonelada-Millas de Perforación, Coreo y Viaje Corto</div>
-          <div class="formula-eq">Perforación = 3 × (RTTM en B − RTTM en A)<br />Coreo = 2 × (RTTM en B − RTTM en A)<br />Viaje Corto = RTTM en B − RTTM en A</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Tonelada-Millas de Asentamiento de Revestimiento</div>
-          <div class="formula-eq">TM = [Wp × D × (Lj + D) + D × Wb] × 0.5 ÷ (5280 × 2000)</div>
-          <div class="formula-note">Wp = peso flotado de revestimiento/ft · D = profundidad de revestimiento · Lj = longitud de una junta · Wb = peso del bloque.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Factor de Flotación</dt>
+          <dd class="formula-eq"><code>BF = (65.5 − MW) ÷ 65.5</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Tonelada-Millas de Viaje Redondo</dt>
+          <dd class="formula-eq"><code>RTTM = [Wp × D × (Ls + D) + 2D × (2×Wb + Wc)] ÷ (5280 × 2000)</code></dd>
+          <dd class="formula-note">Wp = peso flotado de tubería de perforación/ft · D = profundidad · Ls = longitud de parada · Wb = peso del bloque · Wc = peso flotado de lastrabarrenas menos el peso equivalente de tubería de perforación sobre la longitud de los lastrabarrenas. Según API RP 9B / Lapeyrouse.</dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Tonelada-Millas de Perforación, Coreo y Viaje Corto</dt>
+          <dd class="formula-eq"><code>Perforación = 3 × (RTTM en B − RTTM en A)<br />Coreo = 2 × (RTTM en B − RTTM en A)<br />Viaje Corto = RTTM en B − RTTM en A</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Tonelada-Millas de Asentamiento de Revestimiento</dt>
+          <dd class="formula-eq"><code>TM = [Wp × D × (Lj + D) + D × Wb] × 0.5 ÷ (5280 × 2000)</code></dd>
+          <dd class="formula-note">Wp = peso flotado de revestimiento/ft · D = profundidad de revestimiento · Lj = longitud de una junta · Wb = peso del bloque.</dd>
+        </dl>
 
         <p>El factor de flotación aquí usa la misma constante 65.5 que la sección de flotación de la <a href="/es/calculators/formulas-cheat-sheet">hoja de referencia de fórmulas de perforación</a>.</p>
 

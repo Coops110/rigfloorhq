@@ -18,7 +18,17 @@ const webAppLd = {
   "inLanguage": "en",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
+
+// reviewedBy belongs on WebPage per schema.org, not on WebApplication — see
+// src/lib/person.js. A separate WebPage node carries it instead of
+// WebApplication itself.
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/calculators/mud-weight-window#webpage",
+  "url": "https://rigfloorhq.com/calculators/mud-weight-window",
   "reviewedBy": reviewedByJabin()
 };
 ---
@@ -27,7 +37,7 @@ const webAppLd = {
   description="Calculate and visualize your mud weight window between pore pressure and fracture gradient at any depth, with margin analysis in both psi and ppg."
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Mud Weight Window', href: '/calculators/mud-weight-window' }]}
   lang="en"
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   alternateHref="/es/calculators/mud-weight-window"
 >
   <Nav slot="nav" lang="en" alternateHref="/es/calculators/mud-weight-window" />

@@ -33,14 +33,19 @@ const jsonLd = {
       "description": "La trayectoria de carrera de perforador a toolpusher, OIM/gerente de taladro, y company man — qué distingue a cada nivel, y qué requiere realmente la certificación a nivel supervisor.",
       "about": "Progresión de carrera supervisora en un taladro petrolero",
       "url": "https://rigfloorhq.com/es/pillars/rig-floor-leadership",
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://rigfloorhq.com/es/pillars/rig-floor-leadership" },
+      // reviewedBy belongs on WebPage per schema.org, not TechArticle — it
+      // lives on mainEntityOfPage instead.
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://rigfloorhq.com/es/pillars/rig-floor-leadership",
+        "reviewedBy": reviewedByJabin()
+      },
       "datePublished": "2026-10-02",
       "dateModified": "2026-10-02",
       "inLanguage": "es",
       "image": "https://rigfloorhq.com/og-default.png",
       "author": { "@id": "https://rigfloorhq.com/#organization" },
-      "publisher": { "@id": "https://rigfloorhq.com/#organization" },
-      "reviewedBy": reviewedByJabin()
+      "publisher": { "@id": "https://rigfloorhq.com/#organization" }
     },
   ],
 };
@@ -48,7 +53,7 @@ const jsonLd = {
 <BaseLayout
   title="Liderazgo en el Piso de Perforación: La Escalera Supervisora"
   description="La trayectoria de perforador a toolpusher a OIM o gerente de taladro a company man — qué hace cada nivel, qué los distingue."
-  breadcrumbs={[{ label: 'Pilares', href: '/pillars' }, { label: 'Liderazgo en el Piso de Perforación', href: '/es/pillars/rig-floor-leadership' }]}
+  breadcrumbs={[{ label: 'Guías Pilar', href: '/es/pillars' }, { label: 'Liderazgo en el Piso de Perforación', href: '/es/pillars/rig-floor-leadership' }]}
   jsonLd={jsonLd}
   lang="es"
   alternateHref="/pillars/rig-floor-leadership"
@@ -117,10 +122,10 @@ const jsonLd = {
     <h2 class="section-title">Preguntas <span>Frecuentes</span></h2>
     <div class="accordion">
       {faq.map((item, i) => (
-        <div class="acc-item">
-          <button class="acc-header"><h3>{item.q}</h3><span class="acc-arrow">▼</span></button>
+        <details class="acc-item">
+          <summary class="acc-header">{item.q}<span class="acc-arrow">▼</span></summary>
           <div class="acc-body"><p set:html={item.a} /></div>
-        </div>
+        </details>
       ))}
     </div>
   </section>
@@ -136,19 +141,3 @@ const jsonLd = {
   <SourcesStandards lang="es" ids={['iwcf', 'iadcWellsharp']} />
 </BaseLayout>
 
-<script>
-function toggleAcc(btn: HTMLElement) {
-  const body = btn.nextElementSibling as HTMLElement;
-  const arrow = btn.querySelector('.acc-arrow') as HTMLElement;
-  const isOpen = body.classList.contains('open');
-  document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
-  document.querySelectorAll('.acc-arrow').forEach(a => (a as HTMLElement).style.transform = '');
-  if (!isOpen) {
-    body.classList.add('open');
-    arrow.style.transform = 'rotate(180deg)';
-  }
-}
-document.querySelectorAll('.acc-header').forEach(btn => {
-  btn.addEventListener('click', () => toggleAcc(btn as HTMLElement));
-});
-</script>

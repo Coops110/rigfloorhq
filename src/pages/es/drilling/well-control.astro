@@ -51,30 +51,30 @@ import SourcesStandards from '../../../components/SourcesStandards.astro';
       <div>
         <h2 class="section-title" style="font-size:28px;">Procedimiento de <span>Cierre</span></h2>
         <div class="accordion">
-          <div class="acc-item">
-            <button class="acc-header"><h3>Paso 1 — Detectar y Detener la Perforación</h3><span class="acc-arrow">▼</span></button>
+          <details class="acc-item">
+            <summary class="acc-header">Paso 1 — Detectar y Detener la Perforación<span class="acc-arrow">▼</span></summary>
             <div class="acc-body"><p>Levanta la sarta del fondo inmediatamente. Detén la perforación en el momento que se sospeche una surgencia. Sube la sarta para despejar el kelly/top drive.</p></div>
-          </div>
-          <div class="acc-item">
-            <button class="acc-header"><h3>Paso 2 — Cerrar el Pozo</h3><span class="acc-arrow">▼</span></button>
+          </details>
+          <details class="acc-item">
+            <summary class="acc-header">Paso 2 — Cerrar el Pozo<span class="acc-arrow">▼</span></summary>
             <div class="acc-body"><p>Cierra el BOP anular (cierre suave) o el ariete de tubería (cierre duro) según el procedimiento de la empresa. Cierra el choke. Notifica al toolpusher y al company man inmediatamente.</p></div>
-          </div>
-          <div class="acc-item">
-            <button class="acc-header"><h3>Paso 3 — Leer las Presiones</h3><span class="acc-arrow">▼</span></button>
+          </details>
+          <details class="acc-item">
+            <summary class="acc-header">Paso 3 — Leer las Presiones<span class="acc-arrow">▼</span></summary>
             <div class="acc-body"><p>Permite que las presiones se estabilicen (15–30 min). Registra el SIDPP, SICP, y el volumen de ganancia de pileta — tus datos para la hoja de control de pozo.</p></div>
-          </div>
-          <div class="acc-item">
-            <button class="acc-header"><h3>Paso 4 — Calcular el Peso de Lodo de Matanza</h3><span class="acc-arrow">▼</span></button>
+          </details>
+          <details class="acc-item">
+            <summary class="acc-header">Paso 4 — Calcular el Peso de Lodo de Matanza<span class="acc-arrow">▼</span></summary>
             <div class="acc-body"><p>KMW = OMW + (SIDPP ÷ (0.052 × TVD)). Agrega margen de seguridad según la política de la empresa. Calcula el ICP y FCP para la hoja de control de pozo.</p></div>
-          </div>
-          <div class="acc-item">
-            <button class="acc-header"><h3>Paso 5 — Matar el Pozo</h3><span class="acc-arrow">▼</span></button>
+          </details>
+          <details class="acc-item">
+            <summary class="acc-header">Paso 5 — Matar el Pozo<span class="acc-arrow">▼</span></summary>
             <div class="acc-body"><p>Método del Perforador o Wait-and-Weight — ambos son válidos, sigue el procedimiento aprobado de tu empresa. Ver comparación abajo.</p></div>
-          </div>
-          <div class="acc-item">
-            <button class="acc-header"><h3>Paso 6 — Verificar y Reanudar</h3><span class="acc-arrow">▼</span></button>
+          </details>
+          <details class="acc-item">
+            <summary class="acc-header">Paso 6 — Verificar y Reanudar<span class="acc-arrow">▼</span></summary>
             <div class="acc-body"><p>Confirma presión cero y sin flujo antes de reanudar. Investiga la causa raíz antes de continuar perforando.</p></div>
-          </div>
+          </details>
         </div>
       </div>
     </div>
@@ -114,7 +114,7 @@ import SourcesStandards from '../../../components/SourcesStandards.astro';
       <strong>Verificaciones Diarias de Presión del BOP:</strong> Presión del acumulador: <span class="highlight">3,000 psi</span> · Presión del manifold: <span class="highlight">1,500 psi</span> · Operación anular: <span class="highlight">700–1,500 psi</span> · Suministro de aire a las bombas: <span class="highlight">125 psi</span>. Detalle completo en la <a href="/es/equipment/bop" style="color:var(--amber);">página de equipo BOP</a>.
     </div>
 
-    <p style="color:var(--fog);font-size:14px;margin-top:24px;max-width:700px;">¿Quieres profundizar más? La guía <a href="/pillars/advanced-well-control-and-hydrostatics" style="color:var(--amber);">Control de Pozos Avanzado (inglés)</a> cubre TVD vs MD, ECD, el método volumétrico, perforación de presión controlada, y consideraciones regionales para certificación de nivel supervisor e ingeniero.</p>
+    <p style="color:var(--fog);font-size:14px;margin-top:24px;max-width:700px;">¿Quieres profundizar más? La guía <a href="/es/pillars/advanced-well-control-and-hydrostatics" style="color:var(--amber);">Control de Pozos Avanzado</a> cubre TVD vs MD, ECD, el método volumétrico, perforación de presión controlada, y consideraciones regionales para certificación de nivel supervisor e ingeniero.</p>
   </section>
 
   <section class="block">
@@ -176,19 +176,3 @@ import SourcesStandards from '../../../components/SourcesStandards.astro';
   <SourcesStandards lang="es" ids={['api53', 'cfr250g', 'iwcf', 'iadcWellsharp']} />
 </BaseLayout>
 
-<script>
-function toggleAcc(btn: HTMLElement) {
-  const body = btn.nextElementSibling as HTMLElement;
-  const arrow = btn.querySelector('.acc-arrow') as HTMLElement;
-  const isOpen = body.classList.contains('open');
-  document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
-  document.querySelectorAll('.acc-arrow').forEach(a => (a as HTMLElement).style.transform = '');
-  if (!isOpen) {
-    body.classList.add('open');
-    arrow.style.transform = 'rotate(180deg)';
-  }
-}
-document.querySelectorAll('.acc-header').forEach(btn => {
-  btn.addEventListener('click', () => toggleAcc(btn as HTMLElement));
-});
-</script>

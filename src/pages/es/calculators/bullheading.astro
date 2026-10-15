@@ -38,9 +38,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/bullheading",
   "description": "Calculadora de bombeo a matar (bullheading): peso de fluido de matar, presión de fractura de formación, presión máxima inicial y final de superficie, volumen a bombear, y ritmo de bomba para superar la migración de gas.",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -153,35 +153,35 @@ const webAppLd = {
 
       <div class="prose">
         <h2>Las Fórmulas Usadas</h2>
-        <div class="formula-block">
-          <div class="formula-label">Peso de Fluido de Matar</div>
-          <div class="formula-eq">KFW = [SITP ÷ (0.052 × TVD)] + Peso de Fluido Original</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Presión de Fractura de Formación</div>
-          <div class="formula-eq">FFP = Gradiente de Fractura × TVD Tope de Perforaciones</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Presión Hidrostática Inicial y Densidad de Fluido</div>
-          <div class="formula-eq">IHP = Presión de Formación − SITP<br />Densidad = IHP ÷ (TVD × 0.052)</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Presión Máxima Inicial / Final de Superficie</div>
-          <div class="formula-eq">Inicial = FFP − IHP<br />Final = FFP − (KFW × 0.052 × TVD)</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Ritmo de Bomba vs. Migración</div>
-          <div class="formula-eq">SPM = (Ritmo de Migración ÷ 60) × Capacidad de Tubería ÷ Salida de Bomba</div>
-          <div class="formula-note">Según la hoja de fórmulas WellSharp / IWCF en unidades de campo, sección de terminación/reacondicionamiento de pozos.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Peso de Fluido de Matar</dt>
+          <dd class="formula-eq"><code>KFW = [SITP ÷ (0.052 × TVD)] + Peso de Fluido Original</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Presión de Fractura de Formación</dt>
+          <dd class="formula-eq"><code>FFP = Gradiente de Fractura × TVD Tope de Perforaciones</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Presión Hidrostática Inicial y Densidad de Fluido</dt>
+          <dd class="formula-eq"><code>IHP = Presión de Formación − SITP<br />Densidad = IHP ÷ (TVD × 0.052)</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Presión Máxima Inicial / Final de Superficie</dt>
+          <dd class="formula-eq"><code>Inicial = FFP − IHP<br />Final = FFP − (KFW × 0.052 × TVD)</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Ritmo de Bomba vs. Migración</dt>
+          <dd class="formula-eq"><code>SPM = (Ritmo de Migración ÷ 60) × Capacidad de Tubería ÷ Salida de Bomba</code></dd>
+          <dd class="formula-note">Según la hoja de fórmulas WellSharp / IWCF en unidades de campo, sección de terminación/reacondicionamiento de pozos.</dd>
+        </dl>
 
         <h2 id="brine">Una Complicación Real: El Peso de la Salmuera Cambia con la Temperatura</h2>
         <p>El peso de fluido de matar de arriba asume que el fluido mantiene la densidad con la que fue mezclado y medido — cierto para el lodo de perforación en la mayoría de un trabajo, pero las salmueras pesadas de terminación (bromuro de calcio, bromuro de zinc, y similares) pierden notablemente más densidad por grado al calentarse yendo hacia el fondo. Una salmuera pesada a temperatura de superficie no tiene el mismo peso para cuando llega a un fondo de pozo caliente, y la diferencia es lo suficientemente grande como para importar contra los márgenes ajustados de presión de superficie de arriba.</p>
-        <div class="formula-block">
-          <div class="formula-label">Densidad de Fluido a Mezclar, Corregida por Temperatura</div>
-          <div class="formula-eq">Densidad a Mezclar = Densidad a Temp. Prom. + [(Temp. Prom. − Temp. Superficie) × Pérdida de Peso]</div>
-          <div class="formula-note">La pérdida de peso se lee del propio rango de peso de la salmuera abajo, no una constante única — las salmueras más pesadas pierden más densidad por grado que las más ligeras.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Densidad de Fluido a Mezclar, Corregida por Temperatura</dt>
+          <dd class="formula-eq"><code>Densidad a Mezclar = Densidad a Temp. Prom. + [(Temp. Prom. − Temp. Superficie) × Pérdida de Peso]</code></dd>
+          <dd class="formula-note">La pérdida de peso se lee del propio rango de peso de la salmuera abajo, no una constante única — las salmueras más pesadas pierden más densidad por grado que las más ligeras.</dd>
+        </dl>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Peso de Salmuera</th><th>Pérdida de Peso por °F</th></tr></thead>

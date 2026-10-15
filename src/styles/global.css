@@ -429,15 +429,21 @@ a.card { display: block; text-decoration: none; color: inherit; cursor: pointer;
 }
 
 /* ── FORMULA BLOCKS ─────────────────────────────────── */
+/* .formula-block is now a <dl>, .formula-label a <dt>, .formula-eq/
+   .formula-note <dd>s wrapping a <code> (markup changed from div soup to
+   dl/dt/dd + code for text-extractor semantics — see SEO audit
+   2026-10-15). The UA stylesheet gives <dd> a 40px margin-inline-start
+   that the old divs never had; zeroed below so the layout is unchanged. */
 .formula-block {
   background: var(--ink); border-left: 3px solid var(--rust); border-radius: 0 4px 4px 0;
   padding: 20px 24px; margin: 20px 0; font-family: var(--mono);
 }
 .formula-block .formula-label {
-  font-size: 10px; color: var(--ember); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px;
+  font-size: 10px; color: var(--ember); letter-spacing: 0.15em; text-transform: uppercase; margin: 0 0 8px;
 }
-.formula-block .formula-eq { font-size: 16px; color: var(--amber); margin-bottom: 8px; }
-.formula-block .formula-note { font-size: 12px; color: var(--fog); }
+.formula-block .formula-eq { font-size: 16px; color: var(--amber); margin: 0 0 8px; }
+.formula-block .formula-note { font-size: 12px; color: var(--fog); margin: 0; }
+.formula-block .formula-eq code, .formula-block .formula-note { font-family: inherit; }
 
 /* ── NOTE / CALLOUT BOXES ────────────────────────────── */
 .note-box {
@@ -665,25 +671,39 @@ td:first-child { font-family: var(--cond); font-weight: 700; font-size: 14px; co
 .safety-item p { font-size: 12px; color: var(--fog); line-height: 1.6; }
 
 /* ── ACCORDION ───────────────────────────────────────── */
+/* .acc-item is now a <details>, .acc-header a <summary> holding the question
+   text directly (no nested <h3> — invalid HTML and dropped by many text
+   extractors, per SEO audit 2026-10-15). Expand/collapse is native <details>
+   behavior now, not JS: the old toggleAcc() script and .acc-body.open class
+   are gone, and .acc-arrow rotates off the [open] attribute instead of
+   style.transform set from JS. */
 .accordion { max-width: 800px; border: 1px solid var(--iron); border-radius: 4px; overflow: hidden; }
 .acc-item { border-bottom: 1px solid var(--iron); }
 .acc-item:last-child { border-bottom: none; }
 .acc-header {
   width: 100%; background: none; border: none; padding: 16px 22px; display: flex; justify-content: space-between;
   align-items: center; cursor: pointer; transition: background 0.15s; text-align: left;
+  list-style: none;
+  font-family: var(--cond); font-weight: 700; font-size: 15px; text-transform: uppercase; color: var(--white); letter-spacing: 0.03em;
 }
+.acc-header::-webkit-details-marker { display: none; }
+.acc-header::marker { content: ''; }
 .acc-header:hover { background: var(--iron); }
-.acc-header h3 { font-family: var(--cond); font-weight: 700; font-size: 15px; text-transform: uppercase; color: var(--white); letter-spacing: 0.03em; }
 .acc-arrow { color: var(--ember); font-size: 16px; transition: transform 0.2s; }
-.acc-body { display: none; padding: 0 22px 18px; }
-.acc-body.open { display: block; }
+.acc-item[open] .acc-arrow { transform: rotate(180deg); }
+.acc-body { padding: 0 22px 18px; }
 .acc-body p { font-size: 13px; color: var(--fog); line-height: 1.7; margin-bottom: 8px; }
 
 /* ── GLOSSARY GRID ───────────────────────────────────── */
-.glossary-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--iron); border: 1px solid var(--iron); }
+/* .glossary-grid is a <dl>, .gloss-term a <dt>, .gloss-def a <dd> (markup
+   changed from div/div/div to dl/dt/dd for text-extractor semantics — see
+   SEO audit 2026-10-15). The UA stylesheet gives <dl> a block margin and
+   <dd> a 40px margin-inline-start that the old divs never had; both are
+   zeroed below so the grid layout is pixel-identical to before. */
+.glossary-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--iron); border: 1px solid var(--iron); margin: 0; }
 .gloss-item { background: var(--steel); padding: 16px 20px; }
-.gloss-term { font-family: var(--cond); font-weight: 700; font-size: 14px; text-transform: uppercase; color: var(--amber); letter-spacing: 0.03em; margin-bottom: 4px; }
-.gloss-def { font-size: 12px; color: var(--fog); line-height: 1.6; }
+.gloss-term { font-family: var(--cond); font-weight: 700; font-size: 14px; text-transform: uppercase; color: var(--amber); letter-spacing: 0.03em; margin: 0 0 4px; }
+.gloss-def { font-size: 12px; color: var(--fog); line-height: 1.6; margin: 0; }
 
 @media (min-width: 640px) {
   .glossary-grid { grid-template-columns: repeat(2, 1fr); }

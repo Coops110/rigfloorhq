@@ -28,9 +28,9 @@ const webAppLd = {
   "url": "https://rigfloorhq.com/es/calculators/buoyancy",
   "description": "Factor de flotación y peso flotado de tubería para tubería de extremo abierto, extremo cerrado, y tubería con fluido diferente adentro versus en el anular.",
   "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
   "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "browserRequirements": "Requiere JavaScript",
   "inLanguage": "es",
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -99,24 +99,24 @@ const webAppLd = {
 
       <div class="prose">
         <h2>Las Fórmulas Usadas</h2>
-        <div class="formula-block">
-          <div class="formula-label">Factor de Flotación</div>
-          <div class="formula-eq">BF = 1 − (Peso de Fluido ÷ 65.5)</div>
-          <div class="formula-note">Algunas referencias usan 65.4 para la densidad del acero en lugar de 65.5 — la diferencia es menos de una décima de porcentaje. Este sitio usa 65.5 en todas partes por consistencia; ver la <a href="/es/calculators/formulas-cheat-sheet#buoyancy">hoja de fórmulas de perforación</a> para la nota de por qué.</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Peso Flotado — Tubería de Extremo Abierto</div>
-          <div class="formula-eq">W = Peso (aire) × BF</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Peso Flotado — Extremo Cerrado, Sin Fluido Adentro</div>
-          <div class="formula-eq">W = Peso (aire) − [(OD² × Peso de Fluido) ÷ 24.5]</div>
-        </div>
-        <div class="formula-block">
-          <div class="formula-label">Peso Flotado — Fluido Diferente Dentro vs. Anular</div>
-          <div class="formula-eq">W = Peso (aire) + [(ID² × Peso de Fluido, adentro) ÷ 24.5] − [(OD² × Peso de Fluido, anular) ÷ 24.5]</div>
-          <div class="formula-note">Según la hoja de fórmulas WellSharp / IWCF en unidades de campo, sección de peso flotado de tubulares.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Factor de Flotación</dt>
+          <dd class="formula-eq"><code>BF = 1 − (Peso de Fluido ÷ 65.5)</code></dd>
+          <dd class="formula-note">Algunas referencias usan 65.4 para la densidad del acero en lugar de 65.5 — la diferencia es menos de una décima de porcentaje. Este sitio usa 65.5 en todas partes por consistencia; ver la <a href="/es/calculators/formulas-cheat-sheet#buoyancy">hoja de fórmulas de perforación</a> para la nota de por qué.</dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Peso Flotado — Tubería de Extremo Abierto</dt>
+          <dd class="formula-eq"><code>W = Peso (aire) × BF</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Peso Flotado — Extremo Cerrado, Sin Fluido Adentro</dt>
+          <dd class="formula-eq"><code>W = Peso (aire) − [(OD² × Peso de Fluido) ÷ 24.5]</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Peso Flotado — Fluido Diferente Dentro vs. Anular</dt>
+          <dd class="formula-eq"><code>W = Peso (aire) + [(ID² × Peso de Fluido, adentro) ÷ 24.5] − [(OD² × Peso de Fluido, anular) ÷ 24.5]</code></dd>
+          <dd class="formula-note">Según la hoja de fórmulas WellSharp / IWCF en unidades de campo, sección de peso flotado de tubulares.</dd>
+        </dl>
 
         <p>Para el caso simple de extremo abierto aplicado a la cifra de tonelada-milla de una sarta completa, ver la <a href="/es/calculators/ton-mile">calculadora de tonelada-milla</a>. El punto neutro y dónde mantener los lastrabarrenas en compresión están en la <a href="/es/calculators/formulas-cheat-sheet#buoyancy">hoja de fórmulas de perforación</a>.</p>
 

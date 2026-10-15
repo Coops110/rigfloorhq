@@ -71,11 +71,11 @@ const webAppLd = {
 
       <div class="prose">
         <h2>The Formula Used</h2>
-        <div class="formula-block">
-          <div class="formula-label">Barite Required</div>
-          <div class="formula-eq">Barite (lb/bbl) = 1500 × (Target MW − Current MW) ÷ (35.5 − Target MW)</div>
-          <div class="formula-note">Both mud weights in ppg. Result is pounds of barite per barrel of starting mud.</div>
-        </div>
+        <dl class="formula-block">
+          <dt class="formula-label">Barite Required</dt>
+          <dd class="formula-eq"><code>Barite (lb/bbl) = 1500 × (Target MW − Current MW) ÷ (35.5 − Target MW)</code></dd>
+          <dd class="formula-note">Both mud weights in ppg. Result is pounds of barite per barrel of starting mud.</dd>
+        </dl>
 
         <h3>Where This Fits</h3>
         <p>This is the practical weighting-up step behind several other calculators on the site: the mud engineer needs this figure any time a <a href="/calculators/kill-sheet">kill sheet</a> or the <a href="/calculators/mamw">MAMW calculator</a> calls for a heavier kill mud weight than what's currently in the pits, or any time the <a href="/calculators/maasp">MAASP</a> or mud weight window calls for weighting up ahead of drilling into a higher-pressure zone. As the target weight gets closer to barite's own 35.5 ppg absolute density, the denominator shrinks and the required quantity per barrel climbs sharply — a real practical ceiling on how heavy a water- or oil-based mud can realistically be weighted with barite alone.</p>
