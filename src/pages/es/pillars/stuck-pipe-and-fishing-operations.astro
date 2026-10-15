@@ -1,0 +1,247 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import SourcesStandards from '../../../components/SourcesStandards.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Pesca y Tubería Pegada",
+  "description": "Por qué se pega la tubería de perforación, cómo distinguir la pega diferencial de la pega mecánica antes de actuar, y cómo el martilleo, el back-off y las operaciones de pesca recuperan el pozo.",
+  "about": "Operaciones de perforación — tubería pegada y pesca",
+  "url": "https://rigfloorhq.com/es/pillars/stuck-pipe-and-fishing-operations",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://rigfloorhq.com/es/pillars/stuck-pipe-and-fishing-operations" },
+  "datePublished": "2026-08-03",
+  "dateModified": "2026-09-28",
+  "inLanguage": "es",
+  "image": "https://rigfloorhq.com/og-default.png",
+  "author": { "@id": "https://rigfloorhq.com/#organization" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
+---
+<BaseLayout
+  title="Pesca y Tubería Pegada: De Diagnóstico a Recuperación"
+  description="Por qué se pega la tubería, cómo distinguir la pega diferencial de la mecánica antes de actuar, y qué sigue: martilleo, punto libre y back-off, herramientas de pesca."
+  breadcrumbs={[{ label: 'Pilares', href: '/pillars' }, { label: 'Pesca y Tubería Pegada', href: '/es/pillars/stuck-pipe-and-fishing-operations' }]}
+  jsonLd={jsonLd}
+  lang="es"
+  alternateHref="/pillars/stuck-pipe-and-fishing-operations"
+>
+  <Nav slot="nav" lang="es" alternateHref="/pillars/stuck-pipe-and-fishing-operations" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Serie Técnica Avanzada</div>
+    <h1>Pesca y <span>Tubería Pegada</span></h1>
+    <p class="page-hero-sub">La tubería pegada es una de las cosas más costosas que pueden pasar en un pozo que, por lo demás, no ha salido mal. El mecanismo suele ser obvio después del hecho — y los primeros diez minutos deciden si se queda barato.</p>
+    <div class="page-meta">
+      <span class="page-meta-item">Diagnóstico antes de la acción</span>
+      <span class="page-meta-item">Material de referencia — no un procedimiento operativo</span>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <div class="danger-box">
+        <strong>Esta página explica mecanismos, no qué hacer en tu pozo.</strong> La respuesta a la tubería pegada la rige el procedimiento de tu operador y la dirección del supervisor de perforación en sitio. La primera acción equivocada puede convertir una situación recuperable en un pozo perdido, que es precisamente por qué la decisión no corresponde a una página de referencia.
+      </div>
+
+      <h2 id="por-que-importa">Por Qué Importa</h2>
+      <p>La tubería pegada rara vez destruye un pozo por sí sola. Lo que hace es consumir tiempo, y el tiempo de taladro se cobra sin importar si la sarta se está moviendo o no — el taladro, más cada compañía de servicio, embarcación y helicóptero que opera junto a él. Un evento de tubería pegada que toma tres días en resolverse es tres días de tarifa de spread completo por cero avance.</p>
+      <p>También es inusual entre los problemas de perforación por ser mayormente prevenible. La mayoría de los mecanismos de pega dan aviso: aumento de torque y arrastre, indicadores pobres de limpieza del hoyo, puntos apretados en las conexiones, sobretiro en los viajes. Los eventos que se vuelven costosos suelen ser aquellos donde esas señales estuvieron visibles por un tiempo y se trataron como normales.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Diagnóstico</div>
+    <h2 class="section-title">Dos Mecanismos, <span>Respuestas Opuestas</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:24px;">Casi toda tubería pegada cae en una de dos familias. No son variaciones del mismo tema — la respuesta correcta para una puede empeorar considerablemente la otra, que es por qué la identificación va antes que la acción.</p>
+
+    <div class="card-grid grid-2">
+      <div class="card">
+        <h3>Pega Diferencial</h3>
+        <p>La tubería queda sostenida contra una formación permeable por la diferencia de presión entre la columna de lodo y la formación. Nada se ha colapsado y el hoyo no está bloqueado — la sarta simplemente está pegada a la pared como una ventosa.</p>
+        <p><strong>Firma:</strong> la circulación no se ve afectada en absoluto. Puedes bombear con normalidad. La sarta no se moverá, y por lo general tampoco puede rotarse.</p>
+        <p style="font-size:13px;"><a href="/es/blog/differential-sticking-explained" style="color:var(--amber);">Las tres condiciones, en detalle →</a></p>
+        <span class="card-tag">Causada por presión</span>
+      </div>
+      <div class="card">
+        <h3>Pega Mecánica</h3>
+        <p>Algo obstruye físicamente la sarta — hoyo colapsado, recortes empaquetados, un keyseat, hoyo bajo calibre, chatarra o cemento. La geometría del pozo ha cambiado.</p>
+        <p><strong>Firma:</strong> la circulación está restringida o se pierde por completo, con la presión de bombeo subiendo. El movimiento puede ser posible en una sola dirección.</p>
+        <span class="card-tag">Causada por geometría</span>
+      </div>
+    </div>
+
+    <h2 class="section-title" style="font-size:26px;margin-top:36px;">La Pregunta Diagnóstica</h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:18px;">Tres observaciones las separan, y la primera es la más confiable:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Observación</th><th>Diferencial</th><th>Mecánica</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Circulación</td><td>Normal, retornos completos, presión sin cambios</td><td>Restringida o perdida, presión de standpipe subiendo</td></tr>
+          <tr><td>Movimiento de la sarta</td><td>Ninguno, en cualquier dirección</td><td>A menudo libre en una dirección — comúnmente de donde vino</td></tr>
+          <tr><td>Rotación</td><td>Usualmente imposible</td><td>Varía según el mecanismo</td></tr>
+          <tr><td>Cuándo pasó</td><td>Después de que la sarta estuvo quieta — una conexión, una toma de registros, una reparación</td><td>Durante un viaje, o perforando con condición de hoyo deteriorándose</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-box mt-24" style="max-width:800px;">
+      <strong>La circulación es la clave.</strong> Si todavía puedes circular libremente, el hoyo está abierto y el problema es presión sosteniendo la tubería contra la pared. Si la presión de bombeo está subiendo y los retornos están bajando, algo está físicamente en el camino. Establecer esto antes de hacer cualquier otra cosa es el hábito más útil en un evento de tubería pegada.
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Mecanismo Uno</div>
+    <h2 class="section-title">Pega <span>Diferencial</span></h2>
+    <div class="prose" style="max-width:820px;">
+      <p>La pega diferencial necesita tres cosas a la vez. Quita cualquiera de ellas y no puede ocurrir:</p>
+      <ul>
+        <li><strong>Sobrebalance</strong> — presión hidrostática del lodo significativamente por encima de la presión de poro de la formación;</li>
+        <li><strong>Una formación permeable</strong> — típicamente arenisca, donde se forma un revoque (filter cake) contra la pared;</li>
+        <li><strong>Una sarta estacionaria en contacto con esa pared</strong> — la tubería tiene que quedarse quieta el tiempo suficiente para que se forme el sello.</li>
+      </ul>
+      <p>El mecanismo es sencillo. Donde la tubería descansa contra el revoque, el lodo no puede circular entre la tubería y la pared, así que el área de contacto queda expuesta a la presión de formación mientras el resto de la sarta ve la hidrostática completa. La fuerza resultante es el sobrebalance multiplicado por el área de contacto — y el área de contacto crece cuanto más tiempo la sarta se queda quieta y más se incrusta en el revoque.</p>
+
+      <div class="formula-block" style="max-width:620px;">
+        <div class="formula-label">Fuerza de Pega</div>
+        <div class="formula-eq">F = ΔP × Área de Contacto</div>
+        <div class="formula-note">ΔP = sobrebalance (psi). Ambos términos crecen con el tiempo mientras el revoque se engrosa y la tubería se incrusta — por eso la fuerza es mucho menor en los primeros minutos que una hora después.</div>
+      </div>
+
+      <p>Esa dependencia del tiempo es el punto práctico. La pega diferencial reconocida de inmediato suele ser recuperable con manipulación ordinaria de la sarta. El mismo evento dejado una hora mientras se debate la causa puede necesitar una píldora de desprendimiento (spotting fluid) y considerablemente más tiempo.</p>
+
+      <h3>Por qué los lastrabarrenas suelen ser el culpable</h3>
+      <p>El área de contacto es lo que hace grande a la fuerza, así que la pega casi siempre ocurre en los <a href="/es/equipment/drill-string">lastrabarrenas</a> en lugar de la tubería de perforación — son el diámetro más grande de la sarta y se ubican en la sección con más probabilidad de estar contra la pared. Los lastrabarrenas espirales existen específicamente para reducir esto: las ranuras rompen el sello y recortan el área de contacto sustancialmente por una pérdida modesta de peso.</p>
+
+      <h3>Prevención</h3>
+      <ul>
+        <li><strong>Mantén el sobrebalance no más alto de lo necesario.</strong> El exceso de sobrebalance es el impulsor directo de la fuerza de pega, que es uno de los costos prácticos de correr un lodo más pesado de lo que exige la <a href="/es/drilling/mud-weight">ventana de peso de lodo</a>.</li>
+        <li><strong>No dejes la sarta quieta contra una zona permeable.</strong> Donde se sabe que el hoyo es propenso, las conexiones se mantienen cortas y la sarta se trabaja en lugar de dejarla estacionada.</li>
+        <li><strong>Maneja la calidad del revoque.</strong> Un revoque grueso y suave pega la tubería. El control de pérdida de fluido es la contribución del ingeniero de lodos para no quedarse pegado.</li>
+      </ul>
+
+      <div class="note-box">
+        <strong>La parte contraintuitiva.</strong> Liberar tubería pegada diferencialmente generalmente implica <em>reducir</em> la presión hidrostática — una reducción controlada del peso de lodo, o colocar una píldora más ligera sobre el intervalo pegado. Cada psi de sobrebalance que se quita es una reducción proporcional en la fuerza de pega. Esto también es por qué es una decisión de control de pozos y no una decisión del perforador: estás moviéndote deliberadamente hacia el fondo de la ventana de peso de lodo, y el <a href="/es/drilling/well-control">riesgo de surgencia</a> sube mientras lo haces.
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Mecanismo Dos</div>
+    <h2 class="section-title">Pega <span>Mecánica</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:24px;">La pega mecánica es una familia más que una sola falla. La respuesta depende de cuál miembro tienes, y de en qué dirección todavía se mueve la sarta.</p>
+
+    <div class="card-grid grid-2">
+      <div class="card">
+        <h3>Empaquetamiento y Camas de Recortes</h3>
+        <p>Los recortes que nunca se sacaron del hoyo se asientan sobre el lado bajo y eventualmente colapsan alrededor de la sarta. Fuertemente asociado con hoyo de alto ángulo, donde las camas se forman por encima de aproximadamente 50–60° — ver <a href="/es/drilling/directional" style="color:var(--amber);">perforación direccional</a>.</p>
+        <p><strong>Firma:</strong> presión de standpipe subiendo y retornos reducidos antes de que la sarta se pegue. Es el mecanismo que más a menudo se anuncia a sí mismo.</p>
+        <p style="font-size:13px;"><a href="/es/blog/hole-cleaning-high-angle-wells" style="color:var(--amber);">Limpieza del pozo en pozos de alto ángulo →</a></p>
+      </div>
+      <div class="card">
+        <h3>Keyseat</h3>
+        <p>En un dogleg, la tubería de perforación rotando desgasta una ranura angosta en la pared. La ranura es del tamaño de la tubería, así que la sarta pasa libremente a través de ella — hasta que las juntas de herramienta o los lastrabarrenas, más grandes, la alcanzan al salir y se atascan.</p>
+        <p><strong>Firma:</strong> libre mientras se perfora, sobretiro súbito a una profundidad consistente al sacar. Hacia abajo suele seguir libre.</p>
+      </div>
+      <div class="card">
+        <h3>Inestabilidad del Pozo</h3>
+        <p>Lutitas reactivas se hinchan o se desmoronan dentro del hoyo, o una formación estresada colapsa. Depende del tiempo — una sección estable al perforarla puede cerrarse horas después.</p>
+        <p><strong>Firma:</strong> derrumbes o recortes de tamaño mayor sobre las zarandas, el hoyo tomando más relleno del esperado, puntos apretados repetidos en el mismo intervalo.</p>
+      </div>
+      <div class="card">
+        <h3>Hoyo Bajo Calibre y Chatarra</h3>
+        <p>Una formación abrasiva desgasta la barrena dejándola bajo calibre, así que la siguiente barrena no pasará. O algo se cae dentro — una herramienta de mano, un cono de barrena, parte de un ensamblaje de fondo.</p>
+        <p><strong>Firma:</strong> pega a una profundidad específica al bajar, con la medición de calibre de la barrena anterior como pista.</p>
+      </div>
+    </div>
+
+    <div class="danger-box mt-24" style="max-width:820px;">
+      <strong>La dirección de movimiento libre importa.</strong> Con un keyseat, la sarta usualmente todavía bajará; forzarla más hacia arriba empuja la junta de herramienta con más fuerza dentro de la ranura. Con un empaquetamiento, trabajar hacia abajo puede empeorar el puente. Hacia dónde está libre la sarta es información diagnóstica, y vale la pena establecerla con cuidado en lugar de jalar fuerte y ver qué pasa.
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Recuperación</div>
+    <h2 class="section-title">Martilleo, Punto Libre <span>y Back-Off</span></h2>
+    <div class="prose" style="max-width:820px;">
+      <h3 id="martilleo">Martilleo</h3>
+      <p>Un <a href="/es/equipment/hydraulic-jar">martillo hidráulico</a> es una herramienta corrida en la sarta que almacena energía y la libera de golpe, entregando un impacto en lugar de un tiro constante. El sobretiro constante aplica fuerza de forma suave y a menudo es inefectivo contra una tubería que está genuinamente pegada; una carga de impacto puede romper el enlace donde la tensión sostenida no puede.</p>
+      <p>Los martillos son direccionales. Un <strong>martillo ascendente</strong> se arma jalando tensión y dispara hacia arriba — la opción usual cuando la sarta está pegada hacia arriba. Un <strong>martillo descendente</strong> dispara hacia abajo, usado donde la obstrucción está arriba. Muchas sartas corren ambos, más un <a href="/es/equipment/hydraulic-jar#accelerator">acelerador de martillo</a> para mejorar el impacto.</p>
+      <p style="font-size:13px;"><a href="/es/equipment/hydraulic-jar">Cómo un martillo almacena y libera energía, martillo ascendente vs. descendente, y el acelerador →</a></p>
+      <p>La restricción crítica es que martillar es una operación diseñada, no fuerza bruta. Las cargas de impacto del martillo pasan a través de la sarta, y el martilleo repetido es un mecanismo de fatiga sobre las juntas de herramienta igual que lo es un <a href="/es/drilling/directional">dogleg</a>. Los límites de sobretiro vienen del componente más débil de la sarta, que para tubería usada se fija por su clase inspeccionada en lugar de su grado marcado con plantilla.</p>
+
+      <h3 id="punto-libre">Punto Libre</h3>
+      <p>Si el martilleo no funciona, la siguiente pregunta es dónde está pegada la sarta. Un indicador de punto libre se corre con cable de registro dentro de la tubería y mide dónde el estiramiento y el torque aplicados dejan de transmitirse — arriba de esa profundidad la tubería se mueve, debajo no.</p>
+      <p>Esto importa porque define qué puede recuperarse. Todo lo que está arriba del punto libre puede sacarse y reutilizarse; todo lo que está debajo es el pescado.</p>
+
+      <h3 id="back-off">Back-Off (Desenrosque)</h3>
+      <p>Una vez conocido el punto libre, la sarta se separa en una conexión justo arriba de él. Convencionalmente esto se hace aplicando torque a la izquierda y detonando un pequeño cordón detonante (string shot) en la junta elegida, que afloja la conexión en el momento justo en que se aplica el torque. Una <a href="/es/equipment/reversing-tool">herramienta de reversa</a> a menudo forma parte del mismo ensamblaje de pesca, permitiendo que los escombros o recortes alrededor del pescado se circulen de vuelta hacia arriba por dentro de la sarta una vez completado el back-off, en lugar de dejarlos en el anular abierto.</p>
+      <p>El resultado es un tope de pescado limpio y conocido — una rosca de conexión real en lugar de un extremo arrancado. Esa distinción decide qué tan directo es el trabajo de pesca, que es por qué se prefiere ampliamente un back-off deliberado sobre partir la sarta por sobretiro. Correr una <a href="/es/equipment/safety-joint">junta de seguridad</a> arriba del ensamblaje de pesca de antemano construye un punto débil deliberado en la sarta misma, así que si el pescado no puede liberarse, la sarta de pesca no se convierte en un segundo objeto pegado encima del primero.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Pesca</div>
+    <h2 class="section-title">Recuperando <span>el Pescado</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:24px;">Un "pescado" es cualquier cosa dejada en el hoyo que tiene que salir. La selección de herramienta depende casi por completo de la condición de su parte superior.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Herramienta</th><th>Agarra</th><th>Se usa cuando</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Overshot</td><td>El exterior del pescado</td><td>El caballo de batalla. Envuelve la parte superior del pescado y agarra por fuera con un grapple. Necesita una superficie exterior razonablemente intacta.</td></tr>
+          <tr><td>Lanza (Spear)</td><td>El interior del pescado</td><td>Donde el exterior está dañado o el pescado es de gran diámetro interno — revestimiento, tubing, tubería de lavado. Entra al interior y se expande.</td></tr>
+          <tr><td>Macho Cónico (Taper Tap)</td><td>Interior, cortando rosca</td><td>Último recurso sobre una parte superior dañada. Corta su propia rosca dentro del pescado. Comprometedor — difícil de liberar si el pescado no se mueve.</td></tr>
+          <tr><td>Fresa de Chatarra (Junk Mill)</td><td>Destruye en lugar de recuperar</td><td>Para chatarra que no puede agarrarse. La muele en fragmentos lo bastante pequeños para circular hacia afuera o apartar.</td></tr>
+          <tr><td>Canasta de Chatarra / Imán</td><td>Recoge escombros</td><td>Recuperar fragmentos metálicos pequeños, a menudo después de fresar.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-box mt-24" style="max-width:820px;">
+      <strong>La pesca es una decisión con límite de tiempo, no un esfuerzo abierto.</strong> Los operadores normalmente fijan de antemano un límite económico — un número de días, o un costo — después del cual el trabajo se detiene y se toma la alternativa. Sin ese límite, la pesca puede consumir más tiempo de taladro del que habría tomado perforar una sección de reemplazo.
+    </div>
+
+    <h2 class="section-title" style="font-size:26px;margin-top:36px;">Cuándo Detenerse: <span>Sidetrack</span></h2>
+    <p style="color:var(--mist);max-width:800px;line-height:1.8;font-size:15px;">Si el pescado no puede recuperarse dentro del límite, el hoyo debajo de él se abandona. Se coloca un tapón de cemento arriba del pescado, y se inicia un nuevo hoyo desde el costado del pozo existente arriba del tapón — un sidetrack, cortado a través de la pared del revestimiento con un whipstock y una <a href="/es/equipment/window-mill">fresa de ventana</a>.</p>
+    <p style="color:var(--mist);max-width:800px;line-height:1.8;font-size:15px;">La sección perdida tiene que volver a perforarse, así que un sidetrack es costoso. Con frecuencia sigue siendo más barato que continuar pescando, y el tapón de cemento se vuelve parte del arreglo de barreras permanentes del pozo, lo cual lo pone bajo los mismos requisitos de integridad que cualquier otra <a href="/es/drilling/casing" style="color:var(--amber);">barrera cementada</a>.</p>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Prevención</div>
+    <h2 class="section-title">Las Señales Que <span>Llegan Primero</span></h2>
+    <div class="two-col">
+      <div>
+        <p style="color:var(--mist);line-height:1.8;font-size:15px;">La mayoría de la tubería pegada está precedida por cambios de tendencia en lugar de un evento súbito. <strong style="color:var(--white);">El torque y el arrastre</strong> subiendo a lo largo de conexiones sucesivas dice que el hoyo se está volviendo más difícil de atravesar. <strong style="color:var(--white);">El sobretiro en las conexiones</strong> a una profundidad consistente señala un intervalo específico.</p>
+        <p style="color:var(--mist);line-height:1.8;font-size:15px;"><strong style="color:var(--white);">Los retornos de zarandas</strong> son el diagnóstico más barato del taladro. Derrumbes en lugar de recortes significa que el pozo está fallando. Volúmenes menores a lo que implica la tasa perforada significa que los recortes se están quedando en el fondo, y una cama se está formando en algún lugar.</p>
+      </div>
+      <div>
+        <p style="color:var(--mist);line-height:1.8;font-size:15px;"><strong style="color:var(--white);">El relleno del hoyo</strong> en los viajes es una medición directa: un hoyo que consistentemente toma más relleno del calculado está revelando algo. <strong style="color:var(--white);">La tendencia, no el valor absoluto,</strong> es lo que importa en todo esto — una cifra de torque que sería normal en un pozo es una advertencia en otro si se duplicó en un turno.</p>
+        <p style="color:var(--mist);line-height:1.8;font-size:15px;">Aquí es exactamente donde los <a href="/es/blog/real-time-drilling-data" style="color:var(--amber);">datos de perforación en tiempo real</a> justifican su costo. Las tendencias son visibles bastante antes del evento, pero solo si alguien está vigilando la tendencia en lugar del número instantáneo. Cómo leerlas contra un modelo calibrado se cubre en <a href="/es/blog/torque-and-drag-early-warning" style="color:var(--amber);">torque y arrastre como alerta temprana</a>.</p>
+      </div>
+    </div>
+
+    <div class="danger-box mt-24" style="max-width:820px;">
+      <strong>Material de referencia, no instrucción operativa.</strong> Nada en esta página autoriza ninguna acción en un pozo en vivo. La respuesta a la tubería pegada la fija el procedimiento de tu operador y la dirige el supervisor de perforación en sitio. Si algo aquí difiere de ellos, ellos rigen.
+    </div>
+
+    <div class="related-links" style="max-width:960px;">
+      <a href="/es/equipment/drill-string" class="related-link"><div class="rl-label">Equipo</div><div class="rl-title">La Sarta de Perforación</div></a>
+      <a href="/es/drilling/mud-weight" class="related-link"><div class="rl-label">Presión</div><div class="rl-title">Peso de Lodo y Presión Hidrostática</div></a>
+      <a href="/es/drilling/directional" class="related-link"><div class="rl-label">Trayectoria</div><div class="rl-title">Perforación Direccional</div></a>
+      <a href="/es/drilling/well-control" class="related-link"><div class="rl-label">Crítico de Seguridad</div><div class="rl-title">Control de Pozos y Surgencias</div></a>
+      <a href="/es/drilling/casing" class="related-link"><div class="rl-label">Barreras</div><div class="rl-title">Revestimiento y Cementación</div></a>
+      <a href="/es/glossary" class="related-link"><div class="rl-label">Referencia</div><div class="rl-title">Glosario de Campo</div></a>
+    </div>
+  </section>
+
+  <SourcesStandards lang="es" ids={['iwcf', 'iadcWellsharp']} />
+</BaseLayout>

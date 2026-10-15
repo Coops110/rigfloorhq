@@ -26,13 +26,17 @@ const jsonLd = {
   breadcrumbs={[{ label: 'Pillars', href: '/pillars' }, { label: 'Advanced Well Control', href: '/pillars/advanced-well-control-and-hydrostatics' }]}
   jsonLd={jsonLd}
   lang="en"
+  alternateHref="/es/pillars/advanced-well-control-and-hydrostatics"
 >
-  {/* No alternateHref: this page has no Spanish equivalent. It previously
-      pointed at /es/drilling/well-control, which reciprocates to
-      /drilling/well-control instead — so the annotation was ignored by search
-      engines anyway, while also asserting that this page and
-      /drilling/well-control were translations of one another. */}
-  <Nav slot="nav" lang="en" />
+  {/* alternateHref now points at the real Spanish translation of this page,
+      src/pages/es/pillars/advanced-well-control-and-hydrostatics.astro (added
+      2026-10-15). It previously had no alternateHref at all: an earlier
+      version pointed at /es/drilling/well-control, which reciprocates to
+      /drilling/well-control instead, so the annotation was both ignored by
+      search engines and factually wrong — this page and /drilling/well-control
+      are not translations of one another. That mistake doesn't apply to the
+      current target, which is this page's actual ES counterpart. */}
+  <Nav slot="nav" lang="en" alternateHref="/es/pillars/advanced-well-control-and-hydrostatics" />
   <Footer slot="footer" lang="en" />
 
   <div class="page-hero">

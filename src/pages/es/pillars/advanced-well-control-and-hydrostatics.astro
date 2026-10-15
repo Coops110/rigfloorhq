@@ -1,0 +1,197 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import SourcesStandards from '../../../components/SourcesStandards.astro';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Control de Pozos Avanzado",
+  "description": "Referencia de manejo de presión para supervisores e ingenieros: TVD vs MD, gradientes de presión, ECD, métodos de matanza, y consideraciones regionales de control de pozos.",
+  "about": "Ingeniería de control de pozos",
+  "url": "https://rigfloorhq.com/es/pillars/advanced-well-control-and-hydrostatics",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://rigfloorhq.com/es/pillars/advanced-well-control-and-hydrostatics" },
+  "datePublished": "2026-07-09",
+  "dateModified": "2026-10-01",
+  "inLanguage": "es",
+  "image": "https://rigfloorhq.com/og-default.png",
+  "author": { "@id": "https://rigfloorhq.com/#organization" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
+---
+<BaseLayout
+  title="Control de Pozos Avanzado e Hidrostática: Guía para Supervisores"
+  description="Dominando el manejo de presión para supervisores e ingenieros: TVD vs MD, gradientes de presión, ECD, Método del Perforador vs Wait and Weight, método volumétrico, y MPD."
+  breadcrumbs={[{ label: 'Pilares', href: '/pillars' }, { label: 'Control de Pozos Avanzado', href: '/es/pillars/advanced-well-control-and-hydrostatics' }]}
+  jsonLd={jsonLd}
+  lang="es"
+  alternateHref="/pillars/advanced-well-control-and-hydrostatics"
+>
+  {/* Esta página ahora SÍ tiene un equivalente real en español — esta misma
+      página — así que alternateHref apunta de vuelta a ella. (Previamente
+      esta página no tenía alternateHref porque no existía traducción: ver
+      el historial de src/pages/pillars/advanced-well-control-and-hydrostatics.astro
+      para esa nota, ya obsoleta desde que esta página se creó.) */}
+  <Nav slot="nav" lang="es" alternateHref="/pillars/advanced-well-control-and-hydrostatics" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Serie Técnica Avanzada</div>
+    <h1>Control de Pozos <span>Avanzado</span></h1>
+    <p class="page-hero-sub">Dominando el manejo de presión para supervisores e ingenieros a través de la Cuenca Pérmica, la Costa del Golfo, y operaciones costa afuera globales.</p>
+    <div class="page-meta">
+      <a href="/es/calculators/kill-sheet" class="btn btn-primary" style="margin-top:8px;">Acceder a las Hojas de Control de Pozo Digitales</a>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="prose" style="max-width:800px;margin:0 auto;text-align:left;">
+      <h2 style="text-align:center;">La Ciencia de la Presión en el Campo</h2>
+      <p>Desde los yacimientos de alta presión de la Cuenca Delaware hasta los retos de aguas profundas del Golfo de México, el control de pozos avanzado y la hidrostática forman la columna vertebral de la seguridad en la perforación. Esta referencia cubre el terreno técnico que necesita el personal que pasa de la certificación básica Nivel 2/3 a los roles supervisores y de ingeniería Nivel 4/5 — si primero necesitas el concepto fundamental en sí, empieza con la <a href="/es/pillars/hydrostatic-pressure">página de referencia de presión hidrostática</a>.</p>
+      <p>En el sector de petróleo y gas, una surgencia no es solo una demora operativa — es un problema de física de alto riesgo. Manejar la presión hidrostática efectivamente evita que los fluidos de formación entren al pozo, protegiendo tanto a la cuadrilla como la integridad del equipo del taladro.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Fundamentos</div>
+    <h2 class="section-title">Fundamentos Hidrostáticos <span>Centrales</span></h2>
+    <p style="color:var(--fog);max-width:700px;margin-bottom:24px;">Antes de pasar a procedimientos de matanza complejos, todo perforador e ingeniero debe dominar la fórmula rectora — la barrera primaria contra los reventones.</p>
+
+    <div class="formula-block" style="max-width:600px;">
+      <div class="formula-label">Presión Hidrostática</div>
+      <div class="formula-eq">P = 0.052 × Peso de Lodo (ppg) × TVD (ft)</div>
+      <div class="formula-note">Para de dónde viene realmente el 0.052 y por qué es idéntico en todos los tipos de lodo, ver <a href="/blog/hydrostatic-pressure-0052-constant" style="color:var(--amber);">la derivación completa (inglés)</a>.</div>
+    </div>
+
+    <picture>
+      <source type="image/avif" srcset="/images/blog/tvd-vs-md.avif" />
+      <source type="image/webp" srcset="/images/blog/tvd-vs-md.webp" />
+      <img src="/images/blog/tvd-vs-md.png" width="1640" height="1120" alt="Diagrama comparando la Profundidad Vertical Verdadera (la distancia vertical recta) con la Profundidad Medida (la distancia más larga a lo largo de una trayectoria de pozo desviada)" style="max-width:820px;width:100%;height:auto;margin:28px 0;border:1px solid var(--iron);border-radius:6px;" />
+    </picture>
+
+    <div class="card-grid mt-24">
+      <div class="card">
+        <h3>Profundidad Vertical Verdadera (TVD)</h3>
+        <p>La hidrostática avanzada distingue estrictamente la Profundidad Medida (MD) de la TVD. En pozos direccionales y horizontales, la presión hidrostática la genera solo la columna vertical de fluido, no la longitud total de tubería — crítico para operadores costa afuera en el Golfo y perforadores direccionales en tierra en el Permian.</p>
+      </div>
+      <div class="card">
+        <h3>Gradientes de Presión</h3>
+        <p>Los gradientes estándar de agua salada se ubican alrededor de 0.465 psi/pie. Cuando las presiones de formación exceden esto — presión anormal — el manejo hidrostático mediante sistemas de lodo de alta densidad se vuelve necesario. Ver la <a href="/es/drilling/mud-weight">guía de peso de lodo</a> para el desglose completo.</p>
+      </div>
+      <div class="card">
+        <h3>Densidad Equivalente de Circulación</h3>
+        <p>El ECD toma en cuenta la presión adicional que ejerce la fricción del fluido durante la circulación. En ventanas de peso de lodo estrechas, manejar el ECD es la diferencia entre mantener el control del pozo y fracturar la formación.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Métodos de Matanza</div>
+    <h2 class="section-title">Control Secundario de Pozos <span>y Métodos de Matanza</span></h2>
+    <p style="color:var(--fog);max-width:700px;margin-bottom:24px;">Cuando las barreras primarias fallan y se detecta una surgencia, los supervisores eligen el método de circulación apropiado según las condiciones del pozo y los límites del equipo.</p>
+
+    <div class="two-col">
+      <div>
+        <h3 style="font-family:var(--cond);font-weight:700;font-size:19px;text-transform:uppercase;color:var(--white);margin-bottom:10px;">El Método del Perforador</h3>
+        <p style="color:var(--fog);font-size:14px;margin-bottom:12px;">Comúnmente usado cuando la surgencia se descubre de inmediato. Involucra dos circulaciones completas:</p>
+        <ul style="padding-left:20px;">
+          <li style="color:var(--mist);margin-bottom:8px;">Primera circulación: remover la entrada usando el peso de lodo original</li>
+          <li style="color:var(--mist);margin-bottom:8px;">Segunda circulación: bombear lodo de matanza para estabilizar el pozo</li>
+          <li style="color:var(--mist);margin-bottom:8px;">Beneficio: permite respuesta inmediata sin esperar a que el lodo de matanza se densifique</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-family:var(--cond);font-weight:700;font-size:19px;text-transform:uppercase;color:var(--white);margin-bottom:10px;">Método Wait and Weight</h3>
+        <p style="color:var(--fog);font-size:14px;margin-bottom:12px;">A menudo preferido para minimizar la presión sobre el revestimiento y el stack de BOP. Requiere solo una circulación:</p>
+        <ul style="padding-left:20px;">
+          <li style="color:var(--mist);margin-bottom:8px;">El lodo de matanza se prepara antes de que comience la circulación</li>
+          <li style="color:var(--mist);margin-bottom:8px;">La entrada se circula hacia afuera mientras se bombea el lodo de matanza hacia adentro</li>
+          <li style="color:var(--mist);margin-bottom:8px;">Beneficio: reduce el tiempo total en que el pozo está bajo presión y mantiene menor presión en la zapata</li>
+        </ul>
+      </div>
+    </div>
+
+    <picture>
+      <source type="image/avif" srcset="/images/blog/kill-methods-comparison.avif" />
+      <source type="image/webp" srcset="/images/blog/kill-methods-comparison.webp" />
+      <img src="/images/blog/kill-methods-comparison.png" width="1640" height="1040" alt="Comparación lado a lado del Método del Perforador (dos circulaciones) frente al Método Wait and Weight (una sola circulación) para matar un pozo" style="max-width:820px;width:100%;height:auto;margin:28px 0;border:1px solid var(--iron);border-radius:6px;" />
+    </picture>
+
+    <p style="color:var(--fog);margin-top:24px;">Para cálculos automatizados, usa la <a href="/es/calculators/kill-sheet" style="color:var(--amber);">calculadora de hoja de control de pozo</a>.</p>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Contexto Regional</div>
+    <h2 class="section-title">Contexto Operativo <span>Local</span></h2>
+    <p style="color:var(--fog);max-width:700px;margin-bottom:24px;">Distintas regiones presentan retos hidrostáticos distintos.</p>
+
+    <div class="two-col">
+      <div>
+        <ul style="padding-left:20px;">
+          <li style="color:var(--mist);margin-bottom:12px;"><strong style="color:var(--white);">La Cuenca Pérmica (TX/NM):</strong> ventanas estrechas entre la presión de poro y los gradientes de fractura en secciones laterales horizontales</li>
+          <li style="color:var(--mist);margin-bottom:12px;"><strong style="color:var(--white);">La Costa del Golfo:</strong> manejo de presión hidrostática en ambientes de alta temperatura y formaciones complejas de domos salinos</li>
+          <li style="color:var(--mist);margin-bottom:12px;"><strong style="color:var(--white);">Aguas Profundas Costa Afuera:</strong> control de pozos submarino, incluyendo márgenes de riser y el efecto de las temperaturas frías del océano sobre la reología del lodo</li>
+        </ul>
+      </div>
+      <div class="card" style="border:1px solid var(--iron);border-radius:4px;">
+        <h3>Enfoque en Equipo: El BOP</h3>
+        <p>El preventor de reventones es la última línea de defensa. Entender las clasificaciones de presión de los arietes y los preventores anulares es un componente central del control de pozos avanzado. Ver la guía completa de <a href="/es/equipment/bop" style="color:var(--amber);">componentes del BOP</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title">Preguntas <span>Frecuentes</span></h2>
+
+    <div class="accordion">
+      <div class="acc-item">
+        <button class="acc-header"><h3>¿Cómo calculo el Peso de Lodo de Matanza (KMW)?</h3><span class="acc-arrow">▼</span></button>
+        <div class="acc-body"><p>KMW = (SIDPP ÷ (0.052 × TVD)) + Peso de Lodo Original. Ver la <a href="/es/calculators/hydrostatic" style="color:var(--amber);">suite de calculadoras hidrostáticas</a> para el cálculo completo resuelto.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-header"><h3>¿Cuáles son las señales de advertencia principales de una surgencia?</h3><span class="acc-arrow">▼</span></button>
+        <div class="acc-body"><p>Los indicadores comunes incluyen un aumento en el volumen de pileta, un aumento en la tasa de flujo mientras se perfora, y una disminución en la presión de bombeo. Desglose completo en <a href="/es/blog/five-warning-signs-of-a-kick" style="color:var(--amber);">cinco señales de advertencia de una surgencia</a>.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-header"><h3>¿Qué es el Método Volumétrico?</h3><span class="acc-arrow">▼</span></button>
+        <div class="acc-body"><p>Una técnica de control de pozos no circulativa usada cuando la sarta de perforación está fuera del fondo o las bombas han fallado. Se basa en permitir que el gas se expanda mientras se purgan volúmenes específicos de lodo en superficie para mantener constante la presión de fondo.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-header"><h3>¿Qué es la Perforación de Presión Controlada (MPD)?</h3><span class="acc-arrow">▼</span></button>
+        <div class="acc-body"><p>Un proceso de perforación avanzado usado para controlar con precisión el perfil de presión anular a lo largo del pozo, permitiendo a los operadores perforar pozos donde el margen entre la presión de poro y el gradiente de fractura es extremadamente estrecho.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="note-box" style="max-width:800px;margin:0 auto 32px;text-align:center;">
+      <strong>Avanza tu carrera en perforación.</strong> Ya sea que te estés preparando para la certificación de supervisor IOGP o necesites referencia en tiempo real en el campo, este es tu punto de partida técnico completo.
+    </div>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="/es/drilling/well-control" class="btn btn-primary">Procedimientos de Control de Pozos</a>
+      <a href="/es/calculators" class="btn btn-outline">Todas las Calculadoras de Perforación</a>
+    </div>
+    <p style="text-align:center;margin-top:20px;font-size:13px;color:var(--fog);">Explora el <a href="/es/glossary" style="color:var(--amber);">glosario de campo completo</a> para terminología petrolera.</p>
+  </section>
+
+  <SourcesStandards lang="es" ids={['api53', 'cfr250g', 'iwcf', 'iadcWellsharp']} />
+</BaseLayout>
+
+<script>
+function toggleAcc(btn: HTMLElement) {
+  const body = btn.nextElementSibling as HTMLElement;
+  const arrow = btn.querySelector('.acc-arrow') as HTMLElement;
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.acc-arrow').forEach(a => (a as HTMLElement).style.transform = '');
+  if (!isOpen) {
+    body.classList.add('open');
+    arrow.style.transform = 'rotate(180deg)';
+  }
+}
+document.querySelectorAll('.acc-header').forEach(btn => {
+  btn.addEventListener('click', () => toggleAcc(btn as HTMLElement));
+});
+</script>

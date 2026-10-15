@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import SourcesStandards from '../../../components/SourcesStandards.astro';
+import { reviewedByJabin } from '../../../lib/person.js';
+
+const faq = [
+  {
+    q: '¿Cuál es la trayectoria de carrera de perforador a toolpusher a OIM?',
+    a: 'El perforador maneja una cuadrilla desde la consola. El toolpusher supervisa todas las cuadrillas y el equipo de un solo taladro, coordinando entre todos los turnos. El OIM (Gerente de Instalación Costa Afuera) — o gerente de taladro en tierra — tiene la máxima autoridad operativa en esa instalación, responsable de cada persona y operación a bordo, no solo de la perforación. Cada escalón hacia arriba cambia control técnico directo por responsabilidad operativa y de personal más amplia.',
+  },
+  {
+    q: '¿Qué certificación necesita un toolpusher o un OIM?',
+    a: 'IWCF Nivel 4 o el nivel equivalente IADC WellSharp Supervisor — el nivel más alto de certificación en control de pozos, por encima del nivel 3 (Perforador). Cubre la toma de decisiones de control de pozos a nivel supervisor, no solo la ejecución, y es un requisito estricto que la mayoría de los operadores no dispensa.',
+  },
+  {
+    q: '¿Un company man es lo mismo que un toolpusher?',
+    a: 'No, y este es el par de roles que más se confunde en un taladro. Un toolpusher trabaja para el contratista de perforación y maneja las cuadrillas y el equipo del contratista. Un company man trabaja para el operador (la petrolera que financia el pozo) y tiene la autoridad final sobre las decisiones del programa del pozo. Trabajan uno junto al otro todos los días pero responden a empleadores distintos con prioridades distintas.',
+  },
+  {
+    q: '¿Cuánto tiempo toma convertirse en toolpusher?',
+    a: 'No hay un cronograma fijo, pero la mayoría de los toolpushers han pasado 10-15 años en operaciones de perforación, incluyendo varios años como perforador, antes de dar el paso. El ascenso se gana por juicio demostrado bajo presión a través de muchos pozos, no solo por certificación — la certificación es necesaria pero no suficiente.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Liderazgo en el Piso de Perforación: La Escalera Supervisora",
+      "description": "La trayectoria de carrera de perforador a toolpusher, OIM/gerente de taladro, y company man — qué distingue a cada nivel, y qué requiere realmente la certificación a nivel supervisor.",
+      "about": "Progresión de carrera supervisora en un taladro petrolero",
+      "url": "https://rigfloorhq.com/es/pillars/rig-floor-leadership",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://rigfloorhq.com/es/pillars/rig-floor-leadership" },
+      "datePublished": "2026-10-02",
+      "dateModified": "2026-10-02",
+      "inLanguage": "es",
+      "image": "https://rigfloorhq.com/og-default.png",
+      "author": { "@id": "https://rigfloorhq.com/#organization" },
+      "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+      "reviewedBy": reviewedByJabin()
+    },
+  ],
+};
+---
+<BaseLayout
+  title="Liderazgo en el Piso de Perforación: La Escalera Supervisora"
+  description="La trayectoria de perforador a toolpusher a OIM o gerente de taladro a company man — qué hace cada nivel, qué los distingue."
+  breadcrumbs={[{ label: 'Pilares', href: '/pillars' }, { label: 'Liderazgo en el Piso de Perforación', href: '/es/pillars/rig-floor-leadership' }]}
+  jsonLd={jsonLd}
+  lang="es"
+  alternateHref="/pillars/rig-floor-leadership"
+>
+  <Nav slot="nav" lang="es" alternateHref="/pillars/rig-floor-leadership" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Referencia Fundamental — Carreras</div>
+    <h1>Liderazgo en el <span>Piso de Perforación</span></h1>
+    <p class="page-hero-sub">Perforador es solo el primer escalón supervisor. Aquí está la escalera completa arriba de él — toolpusher, OIM o gerente de taladro, y company man — qué separa a cada nivel, y qué hace falta realmente para subirla.</p>
+  </div>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <h2 id="por-que-el-perforador-no-es-el-tope">Por Qué el Perforador No Es el Tope</h2>
+      <p>La mayoría del contenido de carrera sobre el piso de perforación se detiene en perforador, porque es el primer rol con autoridad supervisora real y el que la mayoría de la gente imagina cuando piensa "maneja el taladro". Pero un perforador supervisa una cuadrilla, para un turno, en una consola. Arriba de eso hay un segundo nivel de liderazgo que maneja todo el taladro, toda la instalación, o todo el programa del pozo — trabajos que cambian ejecución técnica directa por responsabilidad operativa y de personal más amplia.</p>
+      <p>Ese nivel está genuinamente poco cubierto en relación con lo que paga y con qué tan directamente se conecta con la vía de certificación en la que ya está cada perforador. Esta página es el mapa de ese nivel.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">La Escalera</div>
+    <h2 class="section-title">Perforador <span>→ Toolpusher → OIM → Company Man</span></h2>
+    <p style="color:var(--fog);max-width:740px;margin-bottom:24px;">Cada escalón cambia de qué eres responsable, no solo cuánto te pagan.</p>
+
+    <div class="card-grid grid-3">
+      <div class="card">
+        <h3>Toolpusher</h3>
+        <p>Supervisa cada cuadrilla y todo el equipo de un solo taladro para el contratista de perforación — la máxima autoridad operativa en sitio del taladro. Ver la guía completa de <a href="/es/careers/toolpusher">Toolpusher</a>.</p>
+      </div>
+      <div class="card">
+        <h3>OIM / Gerente de Taladro</h3>
+        <p>Máxima autoridad operativa en toda la instalación — plataforma costa afuera o pad en tierra — responsable de cada persona y operación a bordo, no solo de la perforación. Ver la guía completa de <a href="/es/careers/oim-rig-manager">OIM / Gerente de Taladro</a>.</p>
+      </div>
+      <div class="card">
+        <h3>Company Man</h3>
+        <p>Trabaja para el operador, no para el contratista de perforación. Última palabra sobre las decisiones del programa del pozo. Una trayectoria de carrera genuinamente distinta a las otras tres. Ver la guía completa de <a href="/es/careers/company-man">Company Man</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">La Puerta</div>
+    <h2 class="section-title">IADC WellSharp <span>Nivel Supervisor</span></h2>
+    <div class="two-col">
+      <div class="prose">
+        <p>La vía de certificación no se detiene en perforador. <a href="/es/careers/certifications">IWCF Nivel 3 o IADC WellSharp Driller</a> te mete en el asiento de la consola — pero los roles de toolpusher y nivel OIM requieren el siguiente escalón: <strong>IWCF Nivel 4</strong>, o la certificación equivalente <strong>IADC WellSharp Supervisor</strong>.</p>
+        <p>El nivel supervisor cubre la toma de decisiones de control de pozos desde una perspectiva gerencial — aprobar procedimientos de matanza, manejar múltiples operaciones simultáneas, y tomar las decisiones que un perforador ejecuta pero no tiene autoridad para originar. Es un requisito estricto en la mayoría de los operadores, no una formalidad, y se renueva en el mismo ciclo de examen multianual que cualquier otro nivel IWCF/WellSharp.</p>
+      </div>
+      <div class="card" style="border:1px solid var(--iron);border-radius:4px;">
+        <h3>Revisado por un Supervisor en Activo</h3>
+        <p>Jabin Travis, quien <a href="/es/about/jabin-travis">revisa nuestro contenido crítico de seguridad</a>, tiene la certificación IADC WellSharp Supervisor él mismo. Su aporte dio forma a las páginas de toolpusher y OIM enlazadas arriba — no descripciones genéricas, sino lo que la certificación y el ascenso realmente implican día a día.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Confusión Común</div>
+    <h2 class="section-title">Toolpusher <span>vs. Company Man</span></h2>
+    <p style="max-width:740px;color:var(--mist);line-height:1.8;">Estos dos roles se confunden constantemente porque trabajan uno junto al otro en el mismo taladro todos los días — pero no comparten empleador, y no comparten prioridad. El <a href="/es/careers/toolpusher">toolpusher</a> trabaja para el <strong>contratista de perforación</strong> y es responsable de que el taladro funcione de forma segura y eficiente. El <a href="/es/careers/company-man">company man</a> trabaja para el <strong>operador</strong> que financia el pozo y tiene la autoridad final sobre el programa del pozo mismo. Un toolpusher puede recomendar; un company man decide. Entender esa división es la forma más rápida de entender cómo funciona realmente la autoridad en un taladro.</p>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title">Preguntas <span>Frecuentes</span></h2>
+    <div class="accordion">
+      {faq.map((item, i) => (
+        <div class="acc-item">
+          <button class="acc-header"><h3>{item.q}</h3><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><p set:html={item.a} /></div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="block">
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="/es/careers/driller" class="btn btn-outline">Cómo Convertirte en Perforador</a>
+      <a href="/es/careers/salary" class="btn btn-outline">Guía Salarial Completa</a>
+      <a href="/es/careers/certifications" class="btn btn-primary">Certificaciones Explicadas</a>
+    </div>
+  </section>
+
+  <SourcesStandards lang="es" ids={['iwcf', 'iadcWellsharp']} />
+</BaseLayout>
+
+<script>
+function toggleAcc(btn: HTMLElement) {
+  const body = btn.nextElementSibling as HTMLElement;
+  const arrow = btn.querySelector('.acc-arrow') as HTMLElement;
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.acc-arrow').forEach(a => (a as HTMLElement).style.transform = '');
+  if (!isOpen) {
+    body.classList.add('open');
+    arrow.style.transform = 'rotate(180deg)';
+  }
+}
+document.querySelectorAll('.acc-header').forEach(btn => {
+  btn.addEventListener('click', () => toggleAcc(btn as HTMLElement));
+});
+</script>

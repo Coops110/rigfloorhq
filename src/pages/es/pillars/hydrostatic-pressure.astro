@@ -1,0 +1,191 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import SourcesStandards from '../../../components/SourcesStandards.astro';
+
+const faq = [
+  {
+    q: '¿Qué es la presión hidrostática en la perforación?',
+    a: 'La presión ejercida por la columna vertical de fluido de perforación que se mantiene en el pozo, causada por su propio peso. Aumenta con la profundidad y con el peso de lodo, y es la barrera principal que contiene el fluido de formación hasta que el pozo esté realmente entubado y cementado.',
+  },
+  {
+    q: '¿Cuál es la fórmula de la presión hidrostática?',
+    a: 'P = 0.052 × Peso de Lodo (ppg) × TVD (ft), donde P está en psi. 0.052 es una constante fija de conversión de unidades, no una propiedad del lodo — ver la derivación completa enlazada abajo.',
+  },
+  {
+    q: '¿Qué pasa si la presión hidrostática es demasiado baja?',
+    a: 'Si la presión hidrostática cae por debajo de la presión de formación, el fluido de formación puede entrar al pozo — una surgencia. Sin control, eso puede progresar hacia un reventón. Por eso el peso de lodo se elige para quedar por encima de la presión de poro con un margen de seguridad, y por eso el margen de viaje y los efectos de swab/surge importan durante el movimiento de la tubería.',
+  },
+  {
+    q: '¿Qué pasa si la presión hidrostática es demasiado alta?',
+    a: 'Si la presión hidrostática supera la presión de fractura de la formación, la formación puede agrietarse y empezar a tomar fluido — pérdida de circulación. Este es el límite superior de la ventana de peso de lodo, y es por eso que el peso de lodo no se maximiza simplemente por margen de seguridad contra surgencias.',
+  },
+  {
+    q: '¿Por qué la presión hidrostática usa TVD y no la profundidad medida?',
+    a: 'La presión hidrostática viene de la altura vertical de la columna de fluido, no de la longitud total de tubería u hoyo. En un pozo vertical la TVD y la profundidad medida son el mismo número, pero en un pozo desviado, horizontal o de alcance extendido divergen significativamente — meter la profundidad medida en la fórmula sobreestima la presión, a veces de forma severa.',
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Presión Hidrostática en la Perforación: La Referencia Completa",
+      "description": "Qué es la presión hidrostática, la fórmula que la rige, cómo se relaciona con la presión de poro y de fractura y la ventana de peso de lodo, y por qué la TVD — no la profundidad medida — es lo que realmente la determina.",
+      "about": "Presión hidrostática en el fluido de perforación",
+      "url": "https://rigfloorhq.com/es/pillars/hydrostatic-pressure",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://rigfloorhq.com/es/pillars/hydrostatic-pressure" },
+      "datePublished": "2026-10-01",
+      "dateModified": "2026-10-01",
+      "inLanguage": "es",
+      "image": "https://rigfloorhq.com/og-default.png",
+      "author": { "@id": "https://rigfloorhq.com/#organization" },
+      "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+    },
+
+  ],
+};
+---
+<BaseLayout
+  title="Presión Hidrostática en la Perforación: La Referencia Completa"
+  description="Qué es realmente la presión hidrostática, la fórmula P = 0.052 × MW × TVD, cómo se relaciona con la presión de poro y de fractura, y por qué la TVD — no la profundidad medida."
+  breadcrumbs={[{ label: 'Pilares', href: '/pillars' }, { label: 'Presión Hidrostática', href: '/es/pillars/hydrostatic-pressure' }]}
+  jsonLd={jsonLd}
+  lang="es"
+  alternateHref="/pillars/hydrostatic-pressure"
+>
+  <Nav slot="nav" lang="es" alternateHref="/pillars/hydrostatic-pressure" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Referencia Fundamental</div>
+    <h1>Presión <span>Hidrostática</span></h1>
+    <p class="page-hero-sub">El concepto más determinante en control de pozos: la presión que una columna de fluido de perforación ejerce por el simple hecho de estar en el pozo, y por qué todo — desde la selección del peso de lodo hasta la detección de surgencias — vuelve a ella.</p>
+    <div class="page-meta">
+      <a href="/es/calculators/hydrostatic" class="btn btn-primary" style="margin-top:8px;">Abrir la Calculadora de Presión Hidrostática</a>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <h2 id="que-es">Qué Es Realmente la Presión Hidrostática</h2>
+      <p>Todo fluido ejerce presión por el simple hecho de tener peso y estar en una columna — cuanto más profundo vas, más fluido hay apilado arriba de ti, y más presión ejerce. Un pozo perforado y lleno de lodo es exactamente eso: una columna de fluido, y la presión en el fondo de esa columna es la presión hidrostática del fluido de perforación. No la causa el bombeo, la circulación, ni nada dinámico — está ahí en el instante en que el fluido entra al pozo, sin importar si las bombas están trabajando o completamente apagadas.</p>
+      <p>Esto importa porque la presión hidrostática es la <strong>barrera primaria</strong> en control de pozos — lo primero y más básico que se interpone entre el pozo y una entrada incontrolada de fluido de formación, antes de que cualquier barrera mecánica como un BOP entre siquiera en juego. Si el peso de lodo está mal, la barrera ya está mal antes de que se toque una sola válvula.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">La Fórmula</div>
+    <h2 class="section-title">P = 0.052 × MW <span>× TVD</span></h2>
+    <p style="color:var(--fog);max-width:700px;margin-bottom:24px;">Tres variables, una constante. Cambia cualquiera de las tres entradas y la presión cambia de forma predecible — no hay complejidad oculta una vez que entiendes qué significa cada término.</p>
+
+    <div class="formula-block" style="max-width:640px;">
+      <div class="formula-label">Presión Hidrostática</div>
+      <div class="formula-eq">P (psi) = 0.052 × Peso de Lodo (ppg) × TVD (ft)</div>
+      <div class="formula-note">0.052 es una constante fija de conversión de unidades — es idéntica para cualquier tipo de lodo. Ver <a href="/blog/hydrostatic-pressure-0052-constant" style="color:var(--amber);">por qué nunca cambia (inglés)</a> para la derivación completa desde primeros principios.</div>
+    </div>
+
+    <div class="note-box" style="max-width:640px;">
+      <strong id="ejemplo-resuelto">Ejemplo resuelto:</strong> Lodo de 10.5 ppg a 10,000 pies TVD: P = 0.052 × 10.5 × 10,000 = <span class="highlight">5,460 psi</span>. Baja a 9.0 ppg a la misma profundidad y la columna genera solo 0.052 × 9.0 × 10,000 = <span class="highlight">4,680 psi</span> — un cambio de 780 psi por solo 1.5 ppg de peso de lodo, que es exactamente el margen sobre el que anda montada una surgencia cuando la presión hidrostática queda por debajo de la presión de poro.
+    </div>
+
+    <div class="card-grid mt-24">
+      <div class="card">
+        <h3>Peso de Lodo (ppg)</h3>
+        <p>La única variable que realmente controlas día a día. Un lodo más pesado significa más presión hidrostática a la misma profundidad — ver la <a href="/es/drilling/mud-weight">guía de peso de lodo</a> para cómo se elige y se ajusta en el campo.</p>
+      </div>
+      <div class="card">
+        <h3>Profundidad Vertical Verdadera (ft)</h3>
+        <p>No la profundidad medida. En un pozo vertical ambas son iguales; en un pozo desviado u horizontal divergen marcadamente, y solo la altura vertical de la columna genera presión — ver el desglose de TVD vs. MD en la referencia de <a href="/es/pillars/advanced-well-control-and-hydrostatics">Control de Pozos Avanzado</a>.</p>
+      </div>
+      <div class="card">
+        <h3>Corre los Números</h3>
+        <p>La <a href="/es/calculators/hydrostatic">calculadora de presión hidrostática</a> ejecuta esta fórmula en vivo y compara tu resultado contra la presión de poro y de fractura automáticamente, para que no tengas que hacer la comparación a mano.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">La Ventana</div>
+    <h2 class="section-title">Presión de Poro, Presión de Fractura, <span>y la Ventana Entre Ambas</span></h2>
+    <div class="two-col">
+      <div class="prose">
+        <p>La presión hidrostática no existe de forma aislada — tiene que mantenerse entre dos límites de la formación, y ambas direcciones de falla son problemas reales y costosos:</p>
+        <ul>
+          <li><strong style="color:var(--white);">Demasiado baja, por debajo de la presión de poro:</strong> el fluido de formación entra al pozo — una surgencia. Sin control, esto puede progresar hacia un reventón.</li>
+          <li><strong style="color:var(--white);">Demasiado alta, por encima de la presión de fractura:</strong> la formación misma se agrieta y empieza a tomar fluido — pérdida de circulación, que puede convertirse en su propio problema de control.</li>
+        </ul>
+        <p>La brecha entre esos dos límites a cualquier profundidad dada es la <strong>ventana de peso de lodo</strong> — el rango seguro en el que un perforador tiene que mantener el peso de lodo. En algunas formaciones esa ventana es amplia y tolerante; en otras, especialmente en yacimientos profundos o agotados, puede ser lo bastante estrecha para que pequeños errores en cualquier dirección causen un problema real. Mapea la ventana completa de un pozo con la <a href="/es/calculators/mud-weight-window">calculadora de ventana de peso de lodo</a>.</p>
+      </div>
+      <div class="card" style="border:1px solid var(--iron);border-radius:4px;">
+        <h3>Cuando la Barrera Ya Falló</h3>
+        <p>Si la presión hidrostática ya cayó por debajo de la presión de formación y una surgencia está en curso, la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> calcula el peso de lodo de matanza y el programa de presiones completo necesario para recuperar el control. La referencia de <a href="/es/pillars/advanced-well-control-and-hydrostatics">Control de Pozos Avanzado</a> cubre completos los procedimientos de matanza del Método del Perforador y Wait and Weight.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Más Allá de lo Estático</div>
+    <h2 class="section-title">Dónde Esto Se Vuelve <span>Más Complicado</span></h2>
+    <p style="color:var(--fog);max-width:740px;margin-bottom:24px;">La presión hidrostática estática de la fórmula de arriba es la base, pero tres efectos reales de campo alejan la presión de fondo real de ese número estático.</p>
+
+    <div class="card-grid grid-3">
+      <div class="card">
+        <h3>Circulando: ECD</h3>
+        <p>Una vez que las bombas están trabajando, la fricción del fluido en movimiento se suma a la presión hidrostática estática — Densidad Equivalente de Circulación. En ventanas de peso de lodo estrechas, esta presión adicional puede ser la diferencia entre una presión de fondo circulante segura y una que fractura la formación. Corre el cálculo en la <a href="/es/calculators/ecd">calculadora de ECD</a>.</p>
+      </div>
+      <div class="card">
+        <h3>En Viajes: Swab y Surge</h3>
+        <p>Sacar la tubería del pozo puede hacer swab momentáneo en la presión de fondo, bajándola por debajo de la estática; metiendo tubería se puede causar surge y subirla. El margen de viaje es el peso de lodo adicional que se lleva específicamente para proteger contra el lado swab de esto — ver la <a href="/es/calculators/trip-margin">calculadora de margen de viaje</a>.</p>
+      </div>
+      <div class="card">
+        <h3>Límites de Zapata: MAASP</h3>
+        <p>La zapata de revestimiento tiene su propio límite de fractura, independiente de la formación en hoyo abierto más abajo. La Presión Superficial Anular Máxima Permisible traduce ese límite de zapata en un número de presión de superficie en vivo que una cuadrilla realmente puede vigilar — ver la <a href="/es/calculators/maasp">calculadora de MAASP</a> y la relacionada <a href="/es/calculators/kick-tolerance">calculadora de tolerancia a la surgencia</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title">Preguntas <span>Frecuentes</span></h2>
+    <div class="accordion">
+      {faq.map((item, i) => (
+        <div class="acc-item">
+          <button class="acc-header"><h3>{item.q}</h3><span class="acc-arrow">▼</span></button>
+          <div class="acc-body"><p set:html={item.a} /></div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <SourcesStandards lang="es" ids={['iwcf', 'iadcWellsharp', 'cfr250g']} />
+
+  <section class="block">
+    <div class="note-box" style="max-width:800px;margin:0 auto 32px;text-align:center;">
+      <strong>Esta página es la base.</strong> Para el material de nivel supervisor e ingeniero construido sobre ella — métodos de matanza, contexto regional, y el conjunto completo de fórmulas — continúa a <a href="/es/pillars/advanced-well-control-and-hydrostatics" style="color:var(--amber);">Control de Pozos Avanzado</a>.
+    </div>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="/es/calculators/hydrostatic" class="btn btn-primary">Calculadora de Presión Hidrostática</a>
+      <a href="/es/calculators" class="btn btn-outline">Todas las Calculadoras de Perforación</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+function toggleAcc(btn: HTMLElement) {
+  const body = btn.nextElementSibling as HTMLElement;
+  const arrow = btn.querySelector('.acc-arrow') as HTMLElement;
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.acc-arrow').forEach(a => (a as HTMLElement).style.transform = '');
+  if (!isOpen) {
+    body.classList.add('open');
+    arrow.style.transform = 'rotate(180deg)';
+  }
+}
+document.querySelectorAll('.acc-header').forEach(btn => {
+  btn.addEventListener('click', () => toggleAcc(btn as HTMLElement));
+});
+</script>
