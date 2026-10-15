@@ -1,0 +1,364 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+// Traducción de src/pages/glossary/index.astro. Mismos 209 términos, mismo
+// orden de entrada, mismos enlaces cruzados — apuntando a la versión /es/ de
+// cada página destino donde existe. Cuatro términos no tienen equivalente en
+// español todavía (las tres guías de /pillars/ y el convertidor de peso de
+// lodo) y enlazan a la página en inglés en su lugar, el mismo patrón que el
+// resto del sitio en español usa para destinos sin traducir (ver
+// src/pages/es/calculators/index.astro, la tarjeta del convertidor de peso de
+// lodo). Esos enlaces llevan " (inglés)" después del término, igual que en
+// cualquier otra página en español del sitio.
+const terms = [
+  { term: "Acumulador", def: "Un reservorio de fluido hidráulico precargado con nitrógeno que almacena suficiente energía para cerrar los elementos del BOP en segundos, incluso con la energía del taladro y las bombas apagadas.", href: "/es/equipment/accumulator" },
+  { term: "Preventor Anular", def: "Elemento superior del stack de BOP; un elemento sellante de goma que se cierra alrededor de tubería de casi cualquier diámetro o sobre hoyo abierto.", href: "/es/equipment/bop" },
+  { term: "Velocidad Anular", def: "La velocidad del fluido de perforación moviéndose hacia arriba por el espacio anular, crítica para levantar los recortes a superficie sin erosionar el pozo ni exceder los límites de ECD.", href: "/es/calculators/annular-velocity" },
+  { term: "API 1104", def: "El estándar de soldadura de tuberías. Obligatorio para la mayoría de las posiciones de soldadura de tubería en taladros, probando a los soldadores en múltiples posiciones de tubo.", href: "/es/welding" },
+  { term: "ASME Sección IX", def: "El estándar de calificación de soldadura de recipientes a presión y calderas, requerido para trabajo de recipientes y tuberías de alta presión.", href: "/es/welding" },
+  { term: "Autoshear", def: "Un respaldo de emergencia del BOP submarino que dispara automáticamente los arietes de corte si el LMRP se desconecta del stack de forma inesperada.", href: "/es/equipment/bop" },
+  { term: "AWS D1.1", def: "El estándar de soldadura de acero estructural, requerido para trabajo en plataformas, mástiles y otras estructuras. La posición de tubo 6G es su calificación más alta.", href: "/es/welding" },
+  { term: "AWS D3.6M", def: "El estándar de certificación de soldadura submarina, requerido para cualquier trabajo de soldadura submarina.", href: "/es/welding/underwater-welding" },
+  { term: "Back-Off", def: "Separar deliberadamente tubería pegada en una conexión por encima del punto libre, usualmente con torque hacia la izquierda y un string shot, dejando una rosca limpia en lugar de un extremo desgarrado para pescar.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Barita", def: "Un mineral de alta gravedad específica (sulfato de bario) suspendido en el fluido de perforación como el principal agente densificante que aumenta la densidad del lodo.", href: "/es/drilling/mud-weight" },
+  { term: "Bent Sub", def: "Un sub con una ligera curvatura mecánica que, combinado con un motor de fondo, permite al perforador construir ángulo deslizando en lugar de rotando toda la sarta.", href: "/es/drilling/directional" },
+  { term: "BHA", def: "Ensamblaje de Fondo (Bottom Hole Assembly). Todo lo que está debajo de los lastrabarrenas — barrena, estabilizadores, herramientas MWD, motores.", href: "/es/equipment/drill-string" },
+  { term: "Hidráulica de Barrena", def: "El flujo, presión y velocidad a través de las boquillas de una barrena — TFA, velocidad del chorro, caballos de fuerza hidráulicos e impacto hidráulico — que determinan qué tan bien limpia el fondo del hoyo.", href: "/es/calculators/bit-hydraulics" },
+  { term: "Junta de Impacto", def: "Un tramo de tubería de pared gruesa y resistente a la erosión colocado a través del intervalo perforado, construido para soportar flujo producido erosivo de alta velocidad.", href: "/es/equipment/blast-joint" },
+  { term: "Arietes Ciegos", def: "Arietes de BOP que sellan un hoyo completamente abierto (sin tubería presente) usando caras planas de acero.", href: "/es/equipment/bop" },
+  { term: "BOP", def: "Preventor de Reventones (Blowout Preventer). Sistema de válvulas de alta presión en el cabezal del pozo que sella el pozo en una emergencia.", href: "/es/equipment/bop" },
+  { term: "Relación de Cierre del BOP", def: "La relación entre la presión de operación hidráulica y la presión del pozo que un elemento de BOP puede sostener cerrado — usada para confirmar que un anular o ariete realmente sellará contra la presión de pozo anticipada.", href: "/es/calculators/bop-closing-ratio" },
+  { term: "Space-Out del BOP", def: "Confirmar la elevación exacta de cada componente en un stack de BOP armado respecto a una referencia fija — usualmente el piso del taladro o el nivel del terreno — para que las salidas y el anular queden donde la cuadrilla los necesita.", href: "/es/equipment/bop" },
+  { term: "BOSIET", def: "Entrenamiento Básico de Inducción de Seguridad y Emergencia Costa Afuera. Obligatorio para trabajo costa afuera, incluye HUET.", href: "/es/careers/certifications" },
+  { term: "Tapón Puente", def: "Una herramienta de fondo fijada a una profundidad específica en el revestimiento para aislar el pozo debajo de arriba; viene en versiones perforables (temporales) y recuperables o permanentes.", href: "/es/equipment/bridge-plug" },
+  { term: "Tasa de Construcción", def: "Qué tan rápido un pozo direccional gana inclinación, expresado en grados por 100 pies. El número rector detrás del perfil planeado de un pozo.", href: "/es/drilling/directional" },
+  { term: "Tapón de Nariz de Toro", def: "Una nariz guía sólida y redondeada corrida en el fondo de una sarta de herramientas para ayudarla a pasar obstrucciones mientras se corre en el hoyo — a diferencia de una zapata mula, no tiene ningún paso de flujo a través de ella.", href: "/es/equipment/bull-nose-plug" },
+  { term: "Bullheading", def: "Bombear fluido directamente por la sarta de perforación y forzar un influjo de vuelta hacia la formación, en lugar de circularlo hacia afuera (bombeo a matar) — usado cuando circular no es posible o seguro.", href: "/es/calculators/bullheading" },
+  { term: "Sub de Golpe", def: "Una herramienta telescópica en una sarta de pesca o de martilleo que permite una carrera corta arriba-abajo, dejando que la sarta entregue o absorba impacto independientemente del movimiento de la tubería en superficie.", href: "/es/equipment/bumper-sub" },
+  { term: "Factor de Flotación", def: "La fracción por la cual el fluido de perforación reduce el peso efectivo de los tubulares colgados en él, comparado con su peso en aire.", href: "/es/calculators/buoyancy" },
+  { term: "Fresa de Rebaba", def: "Una herramienta de fresado de fondo con una estructura de corte agresiva usada para dresar y suavizar bordes filosos o irregulares dejados por una corrida previa de fresado o corte.", href: "/es/equipment/burr-mill" },
+  { term: "Cortador de Revestimiento", def: "Una herramienta de corte mecánico interno que corta el revestimiento limpiamente a una profundidad elegida para que la sección de arriba pueda recuperarse.", href: "/es/equipment/casing-cutter" },
+  { term: "Parche de Revestimiento", def: "Una herramienta de reparación tipo liner expandible fijada a través de una fuga o sección dañada del revestimiento para restaurar la integridad de presión sin sacar el revestimiento.", href: "/es/equipment/casing-patch" },
+  { term: "Punto de Revestimiento", def: "La profundidad elegida para fijar una sarta de revestimiento, basada en dónde el gradiente de presión de poro y de fractura hacen inseguro continuar perforando con el peso de lodo actual.", href: "/es/drilling/casing" },
+  { term: "Rodillo de Revestimiento / Dresado", def: "Una herramienta corrida para restaurar a un diámetro verdadero el revestimiento ovalado o dañado, rodando o dresando mecánicamente el diámetro interno.", href: "/es/equipment/casing-roller-dressing-tool" },
+  { term: "Ariete de Corte de Revestimiento", def: "Un ariete de BOP que corta revestimiento pesado o tubulares que un ariete de corte ciego estándar no puede cortar. No sella — un ariete de corte ciego arriba de él cierra el pozo después del corte.", href: "/es/equipment/bop" },
+  { term: "Zapata de Revestimiento", def: "El dispositivo guía o de flotación corrido en la junta inferior de una sarta de revestimiento. Una zapata guía simplemente redondea el borde delantero; una zapata flotadora agrega una válvula check para controlar la colocación del cemento y detener el contraflujo.", href: "/es/equipment/casing-shoe" },
+  { term: "Retenedor de Cemento", def: "Una herramienta de fondo fijada a una profundidad específica que aísla la presión debajo mientras permite que el cemento se inyecte arriba de ella durante un trabajo de cementación a presión (squeeze).", href: "/es/equipment/cement-retainer" },
+  { term: "Cementación", def: "Bombear cemento por el revestimiento y de vuelta hacia arriba por el espacio anular para unir la tubería a la formación, aislar zonas de presión, y detener la migración de fluido detrás de la tubería.", href: "/es/drilling/casing" },
+  { term: "Centralizador de Revestimiento", def: "Un dispositivo fijado al revestimiento para mantenerlo centrado en el pozo, de modo que el cemento forme un anillo uniforme alrededor de la tubería en lugar de canalizarse hacia un lado.", href: "/es/equipment/centralizer" },
+  { term: "Línea de Choke", def: "Tubería que permite la circulación controlada de fluido hacia afuera del pozo mientras el BOP está cerrado.", href: "/es/equipment/bop" },
+  { term: "Unidad de Tubería Continua", def: "Un taladro de servicio al pozo que corre un carrete continuo de tubería en lugar de tubería con conexiones, usado para limpiezas, estimulación y pesca — y capaz de trabajar en un pozo vivo sin matarlo primero.", href: "/es/equipment/rig-types" },
+  { term: "Company Man", def: "El representante en sitio de la compañía petrolera operadora, con autoridad final sobre las decisiones del pozo.", href: "/es/careers/company-man" },
+  { term: "Revestimiento Conductor", def: "La sarta de revestimiento más somera y de mayor diámetro. Previene que el pozo se derrumbe cerca de superficie y soporta el cabezal del pozo.", href: "/es/drilling/casing" },
+  { term: "Sub de Cruce", def: "Un conector usado para unir tubería o juntas de herramienta de diferentes tipos de rosca o diámetros dentro de la misma sarta.", href: "/es/equipment/crossover-sub" },
+  { term: "Sistema Deadman", def: "Un respaldo de emergencia del BOP submarino que dispara automáticamente los arietes de corte si la energía hidráulica, la energía eléctrica y las comunicaciones desde el taladro se pierden todas a la vez.", href: "/es/equipment/bop" },
+  { term: "Encuellador (Derrickman)", def: "Trabaja en el monkey board en lo alto del mástil, guiando paradas de tubería y manejando los sistemas de lodo." },
+  { term: "Perforador Direccional", def: "Especialista que dirige la barrena a lo largo de una trayectoria planeada usando herramientas MWD y motores de fondo.", href: "/es/drilling/directional" },
+  { term: "Severidad de Dogleg (DLS)", def: "Medida de qué tan pronunciadamente se curva un pozo, en grados por 100 pies. Un DLS excesivo aumenta el torque/arrastre.", href: "/es/drilling/directional" },
+  { term: "Motor de Fondo", def: "Un término general para cualquier motor colocado en la sarta de perforación cerca de la barrena en lugar de en superficie — más comúnmente un motor de lodo de desplazamiento positivo, que gira la barrena independientemente de la sarta arriba de él.", href: "/es/equipment/positive-displacement-mud-motor" },
+  { term: "Malacate (Drawworks)", def: "El sistema de malacate en el taladro que sube y baja la sarta de perforación a través del bloque viajero.", href: "/es/equipment/hoisting-system" },
+  { term: "Perforador", def: "Opera los controles de perforación desde el piso del taladro o la cabina del perforador, directamente responsable de los parámetros de perforación y la primera respuesta ante una surgencia.", href: "/es/careers/driller" },
+  { term: "Método del Perforador", def: "Un método de matanza de pozo que circula la surgencia hacia afuera primero con el peso de lodo original mientras mantiene constante la presión de revestimiento, luego aumenta el peso y circula de nuevo. Más lento que Wait-and-Weight pero puede comenzar inmediatamente.", href: "/es/drilling/well-control" },
+  { term: "Lastrabarrena (Drill Collar)", def: "Tubería pesada de pared gruesa en el BHA que proporciona peso sobre la barrena (WOB).", href: "/es/equipment/drill-string" },
+  { term: "Buque de Perforación", def: "Un buque construido específicamente con una piscina de perforación (moon pool) para la sarta de perforación, mantenido en posición por posicionamiento dinámico en lugar de anclas. Trabaja en agua de hasta aproximadamente 15,000 pies, más profundo que cualquier otro tipo de taladro.", href: "/es/equipment/rig-types" },
+  { term: "Sarta de Perforación", def: "El sistema conectado completo que va desde el piso del taladro hasta la barrena — tubería de perforación, HWDP, lastrabarrenas y BHA — que transmite rotación, peso y fluido de perforación hacia el fondo.", href: "/es/equipment/drill-string" },
+  { term: "Pega Diferencial", def: "Tubería pegada contra una formación permeable por la diferencia de presión entre la columna de lodo y la formación — el hoyo permanece abierto y la circulación no se afecta, pero la sarta no se mueve.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Prueba Drill-Off", def: "Una prueba deliberada que varía el peso sobre la barrena y el RPM contra la tasa de penetración, para encontrar el punto donde más peso o rotación deja de mejorar el desempeño de perforación en esta barrena y formación específicas.", href: "/es/calculators/drill-off-test" },
+  { term: "Objeto Caído", def: "Cualquier herramienta o pieza de equipo que cae desde altura en un taladro — la principal causa de lesiones y muertes en taladros de perforación, razón por la cual las herramientas se amarran durante el trabajo en altura.", href: "/es/safety" },
+  { term: "ECD", def: "Densidad Equivalente de Circulación. Peso de lodo efectivo mientras se bombea, incluyendo las pérdidas de presión por fricción anular — siempre mayor que el peso de lodo estático.", href: "/es/calculators/ecd" },
+  { term: "EDS (Secuencia de Desconexión de Emergencia)", def: "La secuencia deliberada, iniciada por el operador, que corta la tubería y libera el LMRP en un orden controlado cuando un taladro debe salir del pozo en una emergencia.", href: "/es/equipment/bop" },
+  { term: "Malla Expandible de Control de Arena", def: "Un dispositivo de completación para control de arena corrido a un diámetro exterior reducido y expandido en sitio contra la formación en el fondo, mejorando el control de arena respecto a una malla fija.", href: "/es/equipment/expandable-sand-screen" },
+  { term: "FCAW", def: "Soldadura de Arco con Núcleo Fundente. Un proceso de soldadura estructural rápido; la variante autoprotegida funciona con viento donde el MIG falla.", href: "/es/welding" },
+  { term: "FCP (Presión Final de Circulación)", def: "La presión de standpipe sostenida durante el resto de una circulación de matanza una vez que el lodo de peso de matanza llega a la barrena, calculada a partir del ICP y el cambio de peso de lodo.", href: "/es/drilling/well-control" },
+  { term: "Pescado (Fish)", def: "Cualquier cosa que queda en el pozo y debe recuperarse — un BHA pegado, tubería partida, o chatarra caída — y el objeto de una operación de pesca.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Unión de Pesca", def: "Una herramienta en una sarta de pesca que aísla la rotación, permitiendo que el operador rote el pescado sin rotar la sarta de trabajo arriba de él, o viceversa.", href: "/es/equipment/fishing-swivel" },
+  { term: "FIT (Prueba de Integridad de Formación)", def: "Una prueba de integridad del zapato que presuriza la formación hasta un valor predeterminado y se detiene, confirmando que resiste eso sin fracturarla deliberadamente. Da menos información que un LOT pero evita dañar la formación.", href: "/es/drilling/casing" },
+  { term: "Sub Flotador", def: "Un sub que alberga una válvula check en la sarta de perforación que detiene el flujo de fluido de perforación de vuelta hacia arriba por la tubería una vez que las bombas se apagan.", href: "/es/equipment/float-sub" },
+  { term: "Sistema de Circulación de Fluido", def: "El sistema del taladro — bombas, standpipe y flowline — que mueve el fluido de perforación desde las presas de lodo, bajando por la sarta de perforación, y de vuelta hacia arriba por el espacio anular.", href: "/es/equipment/fluid-circulation-system" },
+  { term: "FOET", def: "Entrenamiento Adicional de Emergencia Costa Afuera — el curso de renovación para BOSIET, requerido para mantener vigente el entrenamiento de supervivencia costa afuera.", href: "/es/careers/certifications" },
+  { term: "Presión de Fractura", def: "La presión a la cual una formación se agrieta y el fluido de perforación se pierde hacia la roca. Límite superior de la ventana de peso de lodo.", href: "/es/drilling/mud-weight" },
+  { term: "Punto Libre", def: "La profundidad, encontrada corriendo un indicador de punto libre en cable, donde el estiramiento y torque aplicados dejan de transmitirse por la tubería pegada — todo arriba de ese punto puede recuperarse.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Mandril de Levantamiento por Gas", def: "Un dispositivo instalado en la tubería de producción que alberga una válvula de levantamiento por gas, inyectando gas al fluido producido para aligerar la columna y ayudarla a fluir a superficie.", href: "/es/equipment/gas-lift-mandrel" },
+  { term: "Migración de Gas", def: "El movimiento ascendente de una burbuja de gas a través del lodo estático en un pozo cerrado, que eleva la presión en superficie con el tiempo incluso sin ningún influjo adicional.", href: "/es/calculators/gas-migration" },
+  { term: "GMAW (MIG)", def: "Soldadura de Arco Metálico con Gas. Rápida y limpia, usada principalmente en fabricación de taller y reparaciones en interiores porque su gas de protección se ve afectado por el viento.", href: "/es/welding" },
+  { term: "GTAW (TIG)", def: "Soldadura de Arco de Tungsteno con Gas. El proceso de soldadura de más alta calidad, usado en acero inoxidable y aleaciones exóticas, pero lento y sensible al viento y condiciones sucias.", href: "/es/welding" },
+  { term: "H2S", def: "Sulfuro de hidrógeno — un gas tóxico e inflamable encontrado en formaciones amargas. Extremadamente peligroso incluso en concentraciones pequeñas.", href: "/es/safety/h2s" },
+  { term: "Sistema de Izaje", def: "El sistema del taladro — mástil, malacate, línea de perforación, y bloque viajero — que sube y baja la sarta de perforación.", href: "/es/equipment/hoisting-system" },
+  { term: "Hoja de Control Horizontal / ERD", def: "Consideraciones adicionales de presión y volumen añadidas a una hoja de control de pozo estándar para pozos horizontales y de alcance extendido, donde la geometría cambia cómo se comporta una surgencia.", href: "/es/calculators/kill-sheet-horizontal" },
+  { term: "HUET", def: "Entrenamiento de Escape Submarino de Helicóptero. Componente central de BOSIET para trabajadores costa afuera.", href: "/es/careers/certifications" },
+  { term: "HWDP", def: "Tubería Pesada (Heavy Weight Drill Pipe). Tubería de transición de pared más gruesa entre la tubería de perforación y los lastrabarrenas.", href: "/es/equipment/drill-string" },
+  { term: "Martillo Hidráulico", def: "Una herramienta en una sarta de pesca o de perforación que almacena energía y la libera como un impacto súbito, hacia arriba o abajo, para liberar tubería pegada donde el sobretiro constante falla.", href: "/es/equipment/hydraulic-jar" },
+  { term: "Empacador de Retención Hidráulico", def: "Un empacador tipo retenedor de cemento fijado por presión hidráulica aplicada en lugar de manipulación mecánica, usado para aislar zonas para cementación a presión o pruebas.", href: "/es/equipment/hydraulic-set-retainer-packer" },
+  { term: "Presión Hidrostática", def: "La presión ejercida por una columna de fluido en el pozo, igual a 0.052 x peso de lodo (ppg) x profundidad vertical verdadera. La herramienta principal para controlar la presión de formación.", href: "/pillars/hydrostatic-pressure" },
+  { term: "Soldadura Hiperbárica", def: "Soldadura submarina en seco realizada dentro de un hábitat presurizado a la profundidad de trabajo. El proceso de soldadura submarina de más alta calidad, usado hasta aproximadamente 1,000 m.", href: "/es/welding/underwater-welding" },
+  { term: "Clasificación IADC de Barrenas", def: "Un código estandarizado que describe el diseño de una barrena de perforación — estructura de corte, tipo de rodamiento, y características — grabado en la barrena antes de que llegue al hoyo.", href: "/es/calculators/iadc-bit-classification" },
+  { term: "Calificación de Desgaste IADC", def: "Un código estandarizado de ocho posiciones que registra la condición de una barrena después de ser sacada, usado para diagnosticar problemas de formación y de parámetros de perforación.", href: "/es/calculators/iadc-dull-bit-grading" },
+  { term: "IADC WellSharp", def: "Un organismo de certificación de control de pozos globalmente reconocido, funcionalmente equivalente a IWCF, con la misma estructura escalonada desde el piso de perforación hasta nivel supervisor.", href: "/es/careers/certifications" },
+  { term: "ICP", def: "Presión Inicial de Circulación. La presión de standpipe sostenida al inicio de una circulación de matanza.", href: "/es/calculators/kill-sheet" },
+  { term: "Revestimiento Intermedio", def: "Revestimiento que aísla zonas inestables o de presión anormal encontradas en el camino hacia el yacimiento. Un pozo puede correr una o varias sartas intermedias.", href: "/es/drilling/casing" },
+  { term: "IWCF", def: "International Well Control Forum — emite certificaciones de control de pozos globalmente reconocidas, Niveles 2 a 4.", href: "/es/careers/certifications" },
+  { term: "Taladro Jack-Up", def: "Un taladro costa afuera que baja tres o cuatro patas de acero retráctiles hasta el lecho marino y eleva su casco por encima de las olas. El caballo de batalla de la perforación en aguas someras, limitado a aproximadamente 400 pies de agua.", href: "/es/equipment/rig-types" },
+  { term: "Herramienta de Chorro", def: "Una herramienta de fondo que usa chorros de fluido de alta velocidad para limpiar relleno o escombros del pozo.", href: "/es/equipment/jetting-tool" },
+  { term: "Canasta de Chatarra", def: "Una herramienta de pesca, a menudo magnética, usada para recolectar fragmentos pequeños de metal del pozo — típicamente corrida después de un trabajo de fresado.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Fresa de Chatarra", def: "Una herramienta de pesca que muele chatarra demasiado dañada para agarrar en fragmentos lo bastante pequeños para circular hacia afuera o apartar, destruyendo el pescado en lugar de recuperarlo entero.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Kelly", def: "La tubería cuadrada o hexagonal usada históricamente para transmitir rotación de la mesa rotaria a la sarta de perforación; en gran parte reemplazada por top drives en taladros modernos.", href: "/es/equipment/rotating-system" },
+  { term: "Keyseating", def: "Un mecanismo de pega mecánica donde la tubería de perforación rotando desgasta una ranura angosta, del tamaño de la tubería, en la pared en un dogleg; la sarta pasa libremente hasta que una junta de herramienta o collar más grande llega a la ranura y se atasca.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Surgencia (Kick)", def: "Un influjo de fluido de formación hacia el pozo, causado por la presión de formación excediendo la presión hidrostática.", href: "/es/drilling/well-control" },
+  { term: "Geometría de Influjo de Surgencia", def: "El largo, altura y gradiente de un influjo dentro del pozo — los datos de entrada que determinan cuánta surgencia puede tolerar un pozo dado antes de fracturar el zapato.", href: "/es/calculators/kick-influx-geometry" },
+  { term: "Tolerancia a la Surgencia", def: "El influjo más grande que un pozo puede tomar y aun así circularse hacia afuera sin exceder la presión de fractura en el zapato más débil.", href: "/es/calculators/kick-tolerance" },
+  { term: "Peso de Lodo de Matanza (KMW)", def: "El peso de lodo requerido para balancear exactamente la presión de formación después de una surgencia — el peso objetivo para las operaciones de control de pozos.", href: "/es/calculators/kill-sheet" },
+  { term: "Hoja de Control de Pozo", def: "La hoja de cálculo usada durante el control de pozos para documentar los datos de la surgencia y el programa de bombeo para matar el pozo.", href: "/es/calculators/kill-sheet" },
+  { term: "Tiempo de Retraso (Lag Time)", def: "El tiempo (o volumen bombeado) para que el fluido y los recortes viajen desde la barrena de vuelta a superficie — usado para cronometrar correctamente las lecturas de mud logging y los volúmenes de la hoja de control.", href: "/es/calculators/lag-and-volume" },
+  { term: "Niple de Asiento", def: "Un accesorio perfilado en una sarta de tubería que proporciona un punto de asiento fijo, fijado en cable, para un tapón o dispositivo de control de flujo.", href: "/es/equipment/landing-nipple" },
+  { term: "Taladro Terrestre", def: "Un taladro de perforación montado en camión o sobre patines que trabaja en tierra. El tipo de taladro más común en el mundo, desde pozos exploratorios someros hasta yacimientos de lutita profundos.", href: "/es/equipment/rig-types" },
+  { term: "Sub de Izaje", def: "Un sub equipado con una argolla o bail de izaje, usado para manejar de forma segura componentes pesados del BHA en el piso del taladro.", href: "/es/equipment/lifting-sub" },
+  { term: "Liner", def: "Una sarta de revestimiento colgada del fondo de la sarta de revestimiento anterior en lugar de extenderse hasta el cabezal, ahorrando acero y peso al costo de necesitar un colgador de liner y un traslape probado.", href: "/es/drilling/casing" },
+  { term: "Colgador de Liner", def: "Un dispositivo que suspende un liner desde el interior de la sarta de revestimiento anterior, en lugar de correrlo todo el camino hasta superficie.", href: "/es/equipment/liner-hanger" },
+  { term: "LMRP (Paquete Inferior del Riser Marino)", def: "La sección superior de un stack de BOP submarino, que lleva los preventores anulares y la junta flexible, que puede desconectarse y recuperarse por separado del stack de arietes debajo.", href: "/es/equipment/bop" },
+  { term: "LOT (Prueba de Fuga)", def: "Bombea fluido al pozo después de cada zapato de revestimiento para determinar el gradiente de fractura.", href: "/es/drilling/casing" },
+  { term: "LWD", def: "Registro Durante la Perforación. Datos de evaluación de formación en tiempo real (resistividad, densidad, rayos gamma) transmitidos durante la perforación.", href: "/es/drilling/directional" },
+  { term: "MAASP", def: "Presión Superficial Anular Máxima Permisible. La presión de revestimiento que, sumada a la hidrostática, apenas alcanzaría la presión de fractura en el zapato más débil — el techo durante una matanza de pozo.", href: "/es/calculators/maasp" },
+  { term: "Torque de Apriete (Make-Up Torque)", def: "El rango de torque al cual una conexión de rosca específica debe apretarse para un sello confiable — muy poco y gotea, demasiado y daña o raya las roscas.", href: "/es/calculators/bit-torque" },
+  { term: "MAMW", def: "Peso de Lodo Máximo Permisible. El lodo más pesado que puede usarse sin exceder la presión de fractura en el punto más débil del hoyo abierto, usualmente el último zapato de revestimiento.", href: "/es/calculators/mamw" },
+  { term: "Pega Mecánica", def: "Tubería pegada causada por algo que obstruye físicamente la sarta — hoyo colapsado, camas de recortes, un keyseat, hoyo bajo calibre, o chatarra — en lugar de presión sosteniéndola contra la pared.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Monkey Board", def: "La plataforma del mástil, típicamente a 90-100 pies de altura, donde trabaja el encuellador durante operaciones de viaje." },
+  { term: "MPD (Perforación de Presión Controlada)", def: "Técnicas que controlan activamente la presión anular, usualmente con un dispositivo de control rotativo y contrapresión, para perforar de forma segura en una ventana de peso de lodo demasiado estrecha para métodos convencionales.", href: "/es/drilling/mud-weight" },
+  { term: "Balanza de Lodo", def: "Una balanza calibrada de brazo y taza usada en el piso del taladro para medir directamente la densidad del fluido de perforación.", href: "/es/drilling/mud-weight" },
+  { term: "Mud Logger", def: "Analiza los recortes de perforación y las muestras de gas en tiempo real para identificar cambios de formación e indicaciones de hidrocarburos." },
+  { term: "Sistema de Presas de Lodo", def: "Los tanques de superficie y el equipo de control de sólidos — zarandas, desarenadores, deslimadores, centrífugas — que almacenan y acondicionan el fluido de perforación.", href: "/es/equipment/mud-pit-system" },
+  { term: "Conversión de Peso de Lodo", def: "Convertir la densidad del fluido de perforación entre las unidades usadas alrededor del mundo — ppg, gravedad específica, psi/pie, y kg/m3 — para el mismo fluido.", href: "/calculators/mud-weight-converter" },
+  { term: "Ventana de Peso de Lodo", def: "El rango de pesos de lodo que mantiene la presión hidrostática por encima de la presión de poro mientras permanece debajo de la presión de fractura. Se estrecha en campos sobrepresurizados o agotados.", href: "/es/calculators/mud-weight-window" },
+  { term: "Zapata Mula", def: "Una nariz guía biselada corrida en el fondo de una sarta de herramientas o tubería para ayudarla a pasar obstrucciones y desviaciones mientras se corre en el hoyo.", href: "/es/equipment/mule-shoe" },
+  { term: "Unión Multilateral", def: "El punto donde un pozo lateral se ramifica del pozo principal, clasificado por nivel TAML según cuánto soporte mecánico y aislamiento de presión proporciona la unión.", href: "/es/equipment/multilateral-junction" },
+  { term: "Sistema de Control MUX", def: "Control electrohidráulico multiplexado que envía una señal eléctrica por el umbilical para operar las funciones del BOP submarino en el lecho marino, más rápido que una señal piloto puramente hidráulica a largas distancias.", href: "/es/equipment/bop" },
+  { term: "MWD", def: "Medición Durante la Perforación. Herramientas de fondo que transmiten datos direccionales a superficie vía telemetría de pulso de lodo.", href: "/es/equipment/mwd-tool" },
+  { term: "NEBOSH IGC", def: "National Examination Board in Occupational Safety and Health — una calificación de gestión de seguridad globalmente reconocida y la credencial estándar para roles de HSE y oficial de seguridad.", href: "/es/careers/certifications" },
+  { term: "NMDC / Pony NMDC", def: "Lastrabarrenas No Magnético. Un componente del BHA maquinado de aleación no magnética que protege a los sensores direccionales MWD de la interferencia magnética generada por la sarta de perforación de acero.", href: "/es/equipment/nmdc-pony-nmdc" },
+  { term: "Corrección de Profundidad ODF", def: "Reconciliar la profundidad por tally de tubería de perforación contra la profundidad en cable después de que el datum de referencia del piso del taladro (ODF) cambia — por ejemplo una altura de subestructura diferente en un taladro de workover o una reentrada.", href: "/es/calculators/odf-depth-correction" },
+  { term: "Examen Médico Costa Afuera", def: "Un examen de aptitud médica específico para trabajo costa afuera, más riguroso que un examen físico estándar, requerido antes del despliegue y renovado periódicamente.", href: "/es/careers/certifications" },
+  { term: "OIM", def: "Gerente de Instalación Costa Afuera (Offshore Installation Manager). Máxima autoridad de mando para una instalación costa afuera y su personal.", href: "/es/careers/oim-rig-manager" },
+  { term: "Herramienta On-Off", def: "Una herramienta que permite que la tubería se desconecte y reconecte mecánicamente de un empacador sin sacar el empacador mismo.", href: "/es/equipment/on-off-tool" },
+  { term: "OPITO IMIST", def: "International Minimum Industry Safety Training — una calificación básica de concientización de seguridad que la mayoría de los operadores principales requieren de todo el personal del taladro, sin importar el rol.", href: "/es/careers/certifications" },
+  { term: "Sub Orientador", def: "Un sub usado para fijar y confirmar la orientación rotacional de una herramienta de fondo, como un whipstock, antes de usarla.", href: "/es/equipment/orienting-sub" },
+  { term: "OSHA 30", def: "Un curso de seguridad de industria general o construcción de 30 horas, el estándar norteamericano para roles enfocados en seguridad, a menudo combinado con o usado como alternativa a NEBOSH.", href: "/es/careers/certifications" },
+  { term: "Sobrebalance", def: "El margen por el cual la presión hidrostática excede la presión de poro. Rango seguro típico: 200-500 psi.", href: "/es/drilling/mud-weight" },
+  { term: "Presión de Sobrecarga", def: "La presión ejercida por el peso total de roca arriba de una profundidad dada, típicamente alrededor de 1.0 psi/pie — el techo absoluto del sistema de presión.", href: "/es/drilling/mud-weight" },
+  { term: "Overshot", def: "La herramienta de pesca estándar para un pescado con una superficie exterior razonablemente intacta. Traga la parte superior del pescado y lo agarra externamente con un grapple.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Pack-Off", def: "Un mecanismo de pega mecánica donde recortes nunca sacados del hoyo se asientan en el lado bajo y colapsan alrededor de la sarta, usualmente anunciado por presión de standpipe en aumento y retornos cayendo antes de que la sarta se pegue.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Empacador", def: "Una herramienta de fondo que sella el espacio anular entre la tubería y el revestimiento, o entre dos sartas de revestimiento, para aislar una zona.", href: "/es/equipment/packer" },
+  { term: "Barrena PDC", def: "Barrena de Compacto Policristalino de Diamante — cortadores de diamante sintético en una acción de cizallamiento, el tipo de barrena dominante hoy.", href: "/es/calculators/iadc-bit-classification" },
+  { term: "Permiso de Trabajo (PTW)", def: "Un sistema documentado de autorización que controla el trabajo en caliente, la entrada a espacios confinados, y el aislamiento de energía — quién lo firma, qué cubre, y qué debe verificarse antes de comenzar el trabajo." },
+  { term: "Margen de Jalón de Tubería", def: "La tensión adicional necesaria para liberar tubería pegada, calculada mojada (a través del fluido) o seca (en aire) para verificar que el jalón se mantenga dentro de la capacidad clasificada de la sarta.", href: "/es/calculators/pipe-pull-margin" },
+  { term: "Arietes de Tubería", def: "Arietes de BOP que cierran alrededor de un diámetro de tubería específico, sellando el espacio anular mientras la tubería permanece en el hoyo.", href: "/es/equipment/bop" },
+  { term: "Tally de Tubería", def: "El registro corrido de las longitudes de tubería de perforación y tubulares corridos en el hoyo, usado para calcular capacidad, desplazamiento, y profundidad verdadera.", href: "/es/calculators/drill-pipe-tally" },
+  { term: "Taladro de Plataforma", def: "Un taladro de perforación fijo al lecho marino sobre una chaqueta de acero o base de gravedad de concreto, instalado permanentemente para perforar docenas de pozos desde una ubicación.", href: "/es/equipment/rig-types" },
+  { term: "POOH / RIH", def: "Pull Out Of Hole / Run In Hole — maniobrar la sarta de perforación hacia superficie o de vuelta hacia el pozo." },
+  { term: "Presión de Poro", def: "La presión de los fluidos dentro de los poros de la roca del yacimiento. Gradiente normal aproximadamente 0.433-0.465 psi/pie.", href: "/es/drilling/mud-weight" },
+  { term: "Motor de Lodo de Desplazamiento Positivo (PDM)", def: "Un motor de fondo con un rotor y estator helicoidales que convierte el flujo de fluido de perforación en rotación de la barrena, usado para dirección direccional y corridas de perforación dedicadas.", href: "/es/equipment/positive-displacement-mud-motor" },
+  { term: "Sistema de Generación de Energía", def: "Los motores y generadores del taladro — a menudo diésel-eléctricos con drives SCR o VFD — que suministran energía eléctrica al equipo del taladro.", href: "/es/equipment/power-generation-system" },
+  { term: "Power Swivel", def: "Un dispositivo rotatorio hidráulico o neumático usado en taladros de workover sin top drive para aplicar rotación a la sarta de tubería o tubería de perforación.", href: "/es/equipment/power-swivel" },
+  { term: "Revestimiento de Producción", def: "La sarta de revestimiento final, corrida a través del yacimiento. El pozo se completa y produce a través de esta sarta.", href: "/es/drilling/casing" },
+  { term: "Junta Pup", def: "Un tramo corto de tubería, más corto que una junta estándar, usado para espaciar con precisión una sarta de tubería o revestimiento.", href: "/es/equipment/pup-joint" },
+  { term: "Herramienta de Reversa", def: "Una herramienta que invierte la dirección normal de circulación para recuperar chatarra o escombros del pozo, a menudo corrida como parte de un ensamblaje de pesca.", href: "/es/equipment/reversing-tool" },
+  { term: "Empaque Tipo Anillo (RTJ)", def: "Un empaque metálico tipo anillo usado en conexiones embridadas de cabezal de pozo y BOP, dimensionado para coincidir con el diámetro y la clase de presión de la conexión.", href: "/es/calculators/flange-ring-gasket" },
+  { term: "Movimiento de Taladro", def: "La reubicación planeada de un taladro de perforación de una ubicación de pozo a otra — desarmando, transportando, y armando equipo, cuadrillas, y campamento.", href: "/es/drilling/rig-move-plan" },
+  { term: "Margen de Riser", def: "El peso de lodo extra cargado en el pozo submarino para compensar la carga hidrostática del agua de mar en el riser, de modo que el pozo permanezca controlado si el riser tiene que desconectarse.", href: "/es/calculators/riser-margin" },
+  { term: "ROP", def: "Tasa de Penetración. Qué tan rápido está perforando la barrena, en pies/hora. Un aumento súbito se llama drilling break.", href: "/es/equipment/drill-string" },
+  { term: "Sistema Rotativo Direccionable (RSS)", def: "Una herramienta de perforación direccional que dirige la barrena mientras rota continuamente toda la sarta, mejorando la limpieza del hoyo y el ROP comparado con deslizar con un motor.", href: "/es/drilling/directional" },
+  { term: "Sistema Rotatorio", def: "El sistema del taladro — top drive o mesa rotaria y kelly — que imparte rotación a la sarta de perforación.", href: "/es/equipment/rotating-system" },
+  { term: "Roughneck", def: "Miembro de la cuadrilla del piso de perforación que hace y deshace conexiones de tubería. También llamado floorhand.", href: "/es/careers/roughneck" },
+  { term: "Roustabout", def: "Posición de trabajo general de nivel inicial — limpieza, pintura, movimiento de equipo. No se requiere experiencia previa." },
+  { term: "SABS / DABS", def: "Sub de Golpe de Acción Simple / Sub de Golpe de Acción Doble — subs de golpe que entregan impacto en una sola dirección (SABS) o en ambas carreras, arriba y abajo (DABS).", href: "/es/equipment/sabs-dabs" },
+  { term: "Junta de Seguridad", def: "Una conexión deliberadamente débil y liberable incorporada en una sarta de pesca para que la sarta de trabajo arriba de un pescado pegado pueda liberarse (back-off) en lugar de convertirse en un segundo objeto pegado.", href: "/es/equipment/safety-joint" },
+  { term: "SCSSV", def: "Válvula de Seguridad de Subsuelo Controlada desde Superficie. Una válvula a prueba de fallas en la sarta de tubería, mantenida abierta por presión hidráulica desde superficie, que se cierra automáticamente si se pierde el control.", href: "/es/equipment/scssv" },
+  { term: "Empacador de Liner con Orificio Sellante", def: "Un empacador que proporciona un orificio sellante pulido en el traslape de liner a revestimiento, dando a un ensamblaje sellante una superficie donde asentarse para una sarta de tieback o de producción.", href: "/es/equipment/seal-bore-liner-packer" },
+  { term: "Fresa de Sección", def: "Una fresa de fondo que remueve un intervalo completo de revestimiento alrededor de toda su circunferencia, exponiendo la formación para un sidetrack o un tapón de cemento transversal a la formación.", href: "/es/equipment/section-mill" },
+  { term: "Semisumergible", def: "Un taladro flotante costa afuera mantenido estable sobre pontones sumergidos e inundados y anclado o posicionado dinámicamente. Trabaja en hasta aproximadamente 12,000 pies de agua.", href: "/es/equipment/rig-types" },
+  { term: "Arietes de Corte", def: "Arietes de BOP de emergencia que cortan la tubería de perforación y sellan el pozo simultáneamente.", href: "/es/equipment/bop" },
+  { term: "Cierre (Suave / Duro)", def: "Cerrar el pozo en una surgencia — el cierre suave cierra primero el preventor anular, el cierre duro cierra primero un ariete de tubería. El procedimiento de la empresa dicta cuál se usa.", href: "/es/drilling/well-control" },
+  { term: "SICP", def: "Presión de Revestimiento con Pozo Cerrado. Registrada en el lado del revestimiento después de cerrar el pozo en una surgencia.", href: "/es/drilling/well-control" },
+  { term: "SIDPP", def: "Presión de Tubería de Perforación con Pozo Cerrado. Refleja directamente el exceso de presión de formación por encima de la hidrostática después del cierre.", href: "/es/drilling/well-control" },
+  { term: "Camisa Deslizante", def: "Un dispositivo de completación con puertos que pueden abrirse o cerrarse con una herramienta de cambio en cable para controlar el flujo entre la tubería y el anular.", href: "/es/equipment/sliding-sleeve" },
+  { term: "Caudal de Bombeo Lento (SPR)", def: "La presión de standpipe registrada a un caudal de bombeo reducido y preacordado antes de una surgencia, usada como línea base para ajustar la presión de bombeo de matanza después de un cambio de velocidad de bombeo o de peso de lodo.", href: "/es/calculators/pump-pressure-adjustment" },
+  { term: "Slug (Compensación de Ganancia de Pileta)", def: "Una dosis de lodo más pesado bombeada a la parte superior de la sarta de perforación antes de un viaje, para que la tubería pueda sacarse seca sin crear una ganancia de pileta falsa.", href: "/es/calculators/slug-calculation" },
+  { term: "Unidad de Snubbing", def: "Una unidad de servicio al pozo que fuerza tubería hacia un pozo bajo presión, construida exactamente para la situación en la que un taladro de perforación no está pensado para operar: un pozo vivo, sin matar.", href: "/es/equipment/rig-types" },
+  { term: "Spear", def: "Una herramienta de pesca que entra al interior de un pescado y se expande para agarrarlo desde dentro — usada donde la superficie exterior del pescado está dañada o es tubería o revestimiento de gran diámetro.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Lastrabarrena Espiral", def: "Un lastrabarrena maquinado con ranuras helicoidales que reducen su área de contacto contra la pared del pozo, disminuyendo el riesgo de pega diferencial a cambio de una pérdida modesta de peso.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Spudcan", def: "La base cónica y ensanchada en el fondo de las patas de un taladro jack-up que penetra el lecho marino para soporte de carga. Un punch-through ocurre cuando rompe a través de una corteza rígida hacia una capa más blanda debajo.", href: "/es/equipment/rig-types" },
+  { term: "Estabilizador", def: "Un componente del BHA que mantiene la sarta centrada en el hoyo para controlar la trayectoria y reducir la vibración.", href: "/es/equipment/stabilizer" },
+  { term: "Tabla de Aforo", def: "Una tabla que convierte la altura de llenado de fluido en un tanque a volumen, usada para tanques horizontales donde la relación no es lineal.", href: "/es/calculators/horizontal-tank-capacity" },
+  { term: "Tubería Pegada", def: "Una sarta de perforación que no puede moverse, rotarse, o ninguna de las dos. Se divide en dos familias — pega diferencial y pega mecánica — que requieren respuestas opuestas.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Sumergible / Barcaza", def: "Un taladro con un casco inundado que descansa en el lecho marino en agua muy somera — bahías, pantanos, y ciénagas. Limitado a aproximadamente 70 pies de agua.", href: "/es/equipment/rig-types" },
+  { term: "Revestimiento Superficial", def: "Revestimiento que protege los acuíferos de agua dulce de la contaminación y proporciona la base estructural sobre la cual se instala el stack de BOP.", href: "/es/drilling/casing" },
+  { term: "Surge", def: "El aumento de presión creado al correr tubería hacia el hoyo — el lodo es empujado adelante de la sarta, elevando momentáneamente la presión de fondo. El surge que sobrepasa la presión de fractura causa pérdida de circulación.", href: "/es/drilling/mud-weight" },
+  { term: "Swab", def: "La reducción de presión creada al sacar tubería del hoyo — la sarta arrastra lodo con ella, bajando momentáneamente la presión de fondo. Un swab severo puede provocar una surgencia.", href: "/es/drilling/mud-weight" },
+  { term: "Swamper", def: "Un trabajador de movimiento de taladro que ayuda a cargar y asegurar equipo en camiones y remolques durante un movimiento de taladro.", href: "/es/drilling/rig-move-plan" },
+  { term: "Taper Tap", def: "Una herramienta de pesca de último recurso que corta su propia rosca en un pescado dañado desde el interior. Efectiva pero comprometedora — difícil de liberar si el pescado no se mueve.", href: "/pillars/stuck-pipe-and-fishing-operations" },
+  { term: "Cañón TCP", def: "Cañón perforador transportado en tubería (Tubing-Conveyed Perforating). Un ensamblaje de cañón de perforación corrido en tubería en lugar de cable para perforar el revestimiento frente al yacimiento.", href: "/es/equipment/tcp-gun" },
+  { term: "Taladro Asistido por Tender", def: "Un taladro de perforación dividido en dos: un paquete de perforación compacto se asienta en la plataforma mientras una embarcación tender al lado lleva el lodo, la energía, y el alojamiento.", href: "/es/equipment/rig-types" },
+  { term: "Sarta de Tieback", def: "Una sarta de revestimiento corrida para conectar un liner de vuelta hasta superficie, usada cuando un pozo originalmente completado con un liner se amarra de vuelta después para revestimiento de producción de longitud completa.", href: "/es/drilling/casing" },
+  { term: "Tonelada-Milla", def: "Una medida del trabajo realizado sobre la línea de perforación — carga movida sobre distancia — usada para programar cuándo la línea debe cortarse y deslizarse antes de que fatigue.", href: "/es/calculators/ton-mile" },
+  { term: "Toolpusher", def: "Supervisor general de las operaciones del taladro del contratista de perforación, manejando todas las cuadrillas, herramientas, y equipo.", href: "/es/careers/toolpusher" },
+  { term: "Top Drive", def: "Sistema de motor que rota la sarta de perforación, permitiendo rotación continua mientras se agregan paradas — reemplazó al kelly en la mayoría de los taladros modernos.", href: "/es/equipment/rotating-system" },
+  { term: "Gas de Viaje", def: "Gas que entra al pozo al sacar la sarta del hoyo debido al efecto de swab. Monitoreado por el mud logger." },
+  { term: "Margen de Viaje", def: "Peso de lodo o margen de presión extra sostenido por encima del mínimo necesario para controlar el pozo, para cubrir el efecto de swab al sacar tubería del hoyo.", href: "/es/calculators/trip-margin" },
+  { term: "Efectos de Presión al Viajar", def: "Los cambios combinados de presión por surge y swab creados al mover tubería en el hoyo — una función de la velocidad de viaje, la holgura, y la reología del lodo.", href: "/es/calculators/tripping-pressure-effects" },
+  { term: "Tapón de Tubería", def: "Un tapón fijado en cable y asentado en un niple de asiento para crear una barrera de flujo temporal en una sarta de tubería.", href: "/es/equipment/tubing-plug" },
+  { term: "Escariador Bajo Restricción", def: "Una herramienta que ensancha el pozo debajo de una restricción, expandiendo sus brazos de corte una vez que pasa más allá de la sección más angosta de arriba.", href: "/es/equipment/under-reamer" },
+  { term: "Ariete de Diámetro Variable (VBR)", def: "Un elemento de BOP tipo ariete que sella sobre un rango de diámetros de tubería en lugar de un tamaño fijo, cubriendo tubería de perforación y de producción sin cambiar de ariete.", href: "/es/equipment/bop" },
+  { term: "Método Volumétrico", def: "Una técnica de matanza de pozo usada cuando la sarta no puede circularse, controlando la presión de fondo al desahogar un volumen medido de fluido del anular mientras el gas migra hacia arriba.", href: "/pillars/advanced-well-control-and-hydrostatics" },
+  { term: "Wait-and-Weight (Método del Ingeniero)", def: "Un método de matanza de pozo que mezcla primero el lodo de peso de matanza, luego circula el pozo en una sola etapa. Menos circulaciones que el Método del Perforador, pero necesita tiempo para mezclar el lodo primero.", href: "/es/drilling/well-control" },
+  { term: "Tubería de Lavado", def: "Tubería corrida sobre un pescado para lavarlo y limpiarlo alrededor, liberándolo de relleno o escombros antes de un intento de recuperación.", href: "/es/equipment/wash-pipe" },
+  { term: "Aumento de Peso (Barita Requerida)", def: "Calcular cuánta barita debe agregarse para subir el fluido de perforación a un peso objetivo.", href: "/es/calculators/barite-required" },
+  { term: "Perfil de Pozo", def: "La forma planeada de un pozo direccional — construir y mantener, curva S, horizontal, o alcance extendido — elegida para mantener manejables el torque, el arrastre, y el desgaste del revestimiento.", href: "/es/drilling/directional" },
+  { term: "Protector de Pozo", def: "Una carcasa que protege los componentes expuestos del cabezal del pozo y el revestimiento de daño mecánico y corrosión.", href: "/es/equipment/well-protector" },
+  { term: "Soldadura Húmeda", def: "Soldadura submarina realizada con el soldador directamente en el agua en lugar de en un hábitat seco. Usada para reparaciones de emergencia a 30-400 pies de profundidad; de menor calidad que la soldadura hiperbárica.", href: "/es/welding/underwater-welding" },
+  { term: "Whipstock", def: "Una herramienta de desviación angulada fijada en el pozo para forzar a una barrena o herramienta fuera de una trayectoria recta, usada para iniciar un sidetrack.", href: "/es/equipment/whipstock" },
+  { term: "Fresa de Ventana", def: "Una fresa corrida en un ensamblaje de whipstock para cortar una ventana a través del revestimiento para que un sidetrack pueda perforarse desde dentro de ella.", href: "/es/equipment/window-mill" },
+  { term: "WOB", def: "Peso Sobre la Barrena (Weight on Bit). La porción del peso de los lastrabarrenas aplicada a la barrena para crear fuerza de corte.", href: "/es/equipment/drill-string" },
+  { term: "Taladro de Workover", def: "Un taladro más pequeño que da servicio a pozos que ya existen — sacando tubería y varillas, cambiando equipo de fondo — en lugar de perforar nuevos.", href: "/es/equipment/rig-types" },
+  { term: "LOTO", def: "Bloqueo/Etiquetado — procedimientos que aíslan y etiquetan fuentes de energía hidráulica, neumática, eléctrica, y mecánica antes de que comience el trabajo de mantenimiento.", href: "/es/safety" },
+  { term: "SMAW", def: "Soldadura de Arco Metálico Protegido (electrodo). El proceso de soldadura caballo de batalla en un taladro — funciona al aire libre con viento, con equipo simple, para reparaciones estructurales y tubería.", href: "/es/welding" },
+  { term: "Tarjeta STOP", def: "Una tarjeta de observación de seguridad usada para documentar peligros y comportamientos seguros vistos en el trabajo, parte de un programa de observación de seguridad basado en comportamiento." },
+];
+
+// Misma lógica que la versión en inglés, con normalización de acentos antes
+// de reducir a ASCII — mismo patrón que src/pages/es/well-control-quiz.astro —
+// para que términos como "Perforación Direccional" generen un slug legible
+// en lugar de perder las vocales acentuadas.
+const slugify = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+// Cuatro términos no tienen página en español todavía y enlazan directamente
+// a la versión en inglés (las tres guías de /pillars/ y el convertidor de
+// peso de lodo) — ver la nota al inicio del archivo.
+const isEnglishOnly = (href?: string) => !!href && !href.startsWith('/es/');
+
+// Ordenado una sola vez aquí para la grilla A-Z y la navegación de letras. La
+// lista cruda `terms` arriba no sigue ningún orden particular (los términos
+// nuevos se agregan donde es más fácil cotejarlos contra la página fuente en
+// inglés) — ordenar es una cuestión de presentación, no de captura de datos.
+const sortedTerms = [...terms].sort((a, b) => a.term.localeCompare(b.term, 'es', { sensitivity: 'base', numeric: true }));
+const letters = Array.from(new Set(sortedTerms.map((t) => t.term[0].toUpperCase()))).sort();
+
+const glossaryLd = {
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "@id": "https://rigfloorhq.com/es/glossary#set",
+  "name": "Glosario de Petróleo y Gas de RigFloorHQ",
+  "url": "https://rigfloorhq.com/es/glossary",
+  "inLanguage": "es",
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+  "hasDefinedTerm": terms.map((t) => ({
+    "@type": "DefinedTerm",
+    "name": t.term,
+    "description": t.def,
+    "url": `https://rigfloorhq.com/es/glossary#${slugify(t.term)}`,
+    "inDefinedTermSet": "https://rigfloorhq.com/es/glossary#set",
+  })),
+};
+---
+<BaseLayout
+  title="Glosario de Taladros Petroleros — Referencia Completa A-Z"
+  description="Glosario completo de terminología de taladros petroleros y perforación, de BHA a WOB. Cada término explicado en lenguaje claro, tanto para novatos como para cuadrillas experimentadas."
+  breadcrumbs={[{ label: 'Glosario', href: '/es/glossary' }]}
+  jsonLd={glossaryLd}
+  lang="es"
+  alternateHref="/glossary"
+>
+  {/* Sin alternateHref en el layout estaría mal aquí: a diferencia de la
+      versión en inglés (que no tenía contraparte en español cuando se
+      escribió ese comentario), esta página SÍ es la traducción real de
+      /glossary, así que la relación de hreflang es correcta y debe
+      declararse en ambos sentidos. Ver el comentario equivalente, ahora
+      corregido, en src/pages/glossary/index.astro. */}
+  <Nav slot="nav" lang="es" alternateHref="/glossary" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">11 — Referencia</div>
+    <h1>Glosario <span>de Campo</span></h1>
+    <p class="page-hero-sub">Cada término usado en el taladro, en un solo lugar. De BHA a WOB — aprende estos y sonarás como si ya hubieras estado ahí.</p>
+    <div class="page-meta">
+      <span class="page-meta-item"><strong>{terms.length}</strong> términos y contando</span>
+    </div>
+  </div>
+
+  <section class="block">
+    <nav class="az-nav" aria-label="Saltar a letra">
+      {letters.map((l) => (
+        <a href={`#letter-${l}`} class="az-nav-link">{l}</a>
+      ))}
+    </nav>
+
+    <div class="glossary-grid">
+      {letters.map((letter) => (
+        <>
+          <div class="gloss-letter-heading" id={`letter-${letter}`}>{letter}</div>
+          {sortedTerms.filter((t) => t.term[0].toUpperCase() === letter).map((t) => (
+            <div class="gloss-item" id={slugify(t.term)}>
+              <div class="gloss-term">{t.href ? <a href={t.href}>{t.term}{isEnglishOnly(t.href) && ' (inglés)'}</a> : t.term}</div>
+              <div class="gloss-def">{t.def}</div>
+            </div>
+          ))}
+        </>
+      ))}
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="note-box" style="max-width:700px;">
+      <strong>¿Buscas algo más profundo?</strong> Muchos de estos términos enlazan directamente a páginas completas de explicación, equipo, o calculadoras en otras partes del sitio — ver <a href="/es/drilling/well-control" style="color:var(--amber);">Control de Pozos</a>, <a href="/es/equipment/bop" style="color:var(--amber);">Preventores de Reventones</a>, y <a href="/es/equipment/drill-string" style="color:var(--amber);">La Sarta de Perforación</a> para desgloses técnicos completos.
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .az-nav {
+    position: sticky;
+    top: 48px;
+    z-index: 90;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    background: var(--steel);
+    border: 1px solid var(--iron);
+    border-radius: 4px;
+    padding: 10px 12px;
+    margin-bottom: 20px;
+  }
+  .az-nav-link {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--mist);
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 2px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .az-nav-link:hover, .az-nav-link:focus-visible { background: rgba(232,160,32,0.12); color: var(--amber); }
+
+  @media (min-width: 950px) {
+    .az-nav { top: 60px; }
+  }
+
+  .gloss-letter-heading {
+    grid-column: 1 / -1;
+    font-family: var(--cond);
+    font-weight: 700;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--amber);
+    background: var(--ink);
+    padding: 14px 20px 8px;
+    border-bottom: 2px solid var(--rust);
+    scroll-margin-top: 110px;
+  }
+
+  .gloss-term a { color: inherit; text-decoration: none; border-bottom: 1px dotted rgba(232,160,32,0.5); }
+  .gloss-term a:hover, .gloss-term a:focus-visible { color: var(--ember); border-bottom-style: solid; }
+</style>

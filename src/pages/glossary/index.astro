@@ -247,16 +247,17 @@ const glossaryLd = {
   breadcrumbs={[{ label: 'Glossary', href: '/glossary' }]}
   jsonLd={glossaryLd}
   lang="en"
+  alternateHref="/es/glossary"
 >
-  {/* No alternateHref on the layout: the glossary has no Spanish version, and
-      declaring hreflang es -> /es claimed the Spanish homepage as its
-      translation. /es reciprocates to /, so the annotation was ignored, and it
-      misdescribed two unrelated pages as a language pair.
-
-      Nav still gets alternateHref so the language switcher keeps sending
-      Spanish readers to the Spanish homepage — that is a navigation choice and
-      does not assert a translation relationship. */}
-  <Nav slot="nav" lang="en" alternateHref="/es" />
+  {/* alternateHref now points at the real Spanish translation,
+      src/pages/es/glossary/index.astro (added once the full 209-term
+      translation shipped). Previously this page had no Spanish version, so
+      declaring hreflang es -> /es would have claimed the Spanish homepage as
+      its translation; /es reciprocates to /, so that annotation would have
+      been ignored and misdescribed two unrelated pages as a language pair.
+      That no longer applies now that /es/glossary is a genuine translation
+      pair with this page. */}
+  <Nav slot="nav" lang="en" alternateHref="/es/glossary" />
   <Footer slot="footer" lang="en" />
 
   <div class="page-hero">
