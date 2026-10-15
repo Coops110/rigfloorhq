@@ -8,6 +8,11 @@
   },
   "redirects": [
     {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap-index.xml",
+      "permanent": true
+    },
+    {
       "source": "/blog/rig-floor-ppe-guide-personal-protective-equipment-for-drilling-operations.html",
       "destination": "/blog/rig-floor-ppe-guide",
       "permanent": true
@@ -93,6 +98,10 @@
         {
           "key": "Access-Control-Allow-Origin",
           "value": "https://rigfloorhq.com"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400"
         }
       ]
     },

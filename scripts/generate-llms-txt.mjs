@@ -79,19 +79,23 @@ export function generateLlmsTxt(outDir, logger) {
   const es = pages.filter((p) => p.path.startsWith('/es'));
 
   const home = en.find((p) => p.path === '/');
-  const careers = en.filter((p) => p.path.startsWith('/careers'));
-  const equipment = en.filter((p) => p.path.startsWith('/equipment'));
-  const drilling = en.filter((p) => p.path.startsWith('/drilling'));
-  const calculators = en.filter((p) => p.path.startsWith('/calculators'));
-  const welding = en.filter((p) => p.path.startsWith('/welding'));
-  const safety = en.filter((p) => p.path.startsWith('/safety'));
-  const pillars = en.filter((p) => p.path.startsWith('/pillars'));
+  // Trailing slash on each prefix deliberately excludes the section's own
+  // hub page (e.g. bare "/equipment") from its own count — `startsWith`
+  // without it was counting every hub as one of its own child pages, the
+  // off-by-one the 2026-10-15 audit caught (claimed 35/57, real 34/56).
+  const careers = en.filter((p) => p.path.startsWith('/careers/'));
+  const equipment = en.filter((p) => p.path.startsWith('/equipment/'));
+  const drilling = en.filter((p) => p.path.startsWith('/drilling/'));
+  const calculators = en.filter((p) => p.path.startsWith('/calculators/'));
+  const welding = en.filter((p) => p.path.startsWith('/welding/'));
+  const safety = en.filter((p) => p.path.startsWith('/safety/'));
+  const pillars = en.filter((p) => p.path.startsWith('/pillars/'));
   const glossary = en.filter((p) => p.path === '/glossary');
   const quiz = en.filter((p) => p.path === '/well-control-quiz');
   const about = en.filter((p) => p.path === '/about');
-  const blog = en.filter((p) => p.path.startsWith('/blog'));
+  const blog = en.filter((p) => p.path.startsWith('/blog/'));
 
-  const esBlog = es.filter((p) => p.path.startsWith('/es/blog'));
+  const esBlog = es.filter((p) => p.path.startsWith('/es/blog/'));
   const enBlogCount = blog.length;
   const esBlogCount = esBlog.length;
 
@@ -137,7 +141,7 @@ export function generateLlmsTxt(outDir, logger) {
     );
     sections.push(
       `## Spanish (Español)\n\n` +
-        `RigFloorHQ is fully translated into Spanish at [/es](${SITE}/es) — ${es.length} of ${pages.length} total pages, including ${esBlogCount} of ${enBlogCount} blog posts. Hub pages:\n\n` +
+        `RigFloorHQ has a Spanish section at [/es](${SITE}/es) — ${es.length} of ${pages.length} total pages, including ${esBlogCount} of ${enBlogCount} blog posts. Hub pages:\n\n` +
         esHubs
           .slice()
           .sort((a, b) => a.path.localeCompare(b.path))

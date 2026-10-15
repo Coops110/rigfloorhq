@@ -11,12 +11,12 @@ export const CITATIONS = {
     en: {
       href: 'https://www.api.org/products-and-services/standards',
       label: 'API Std 53',
-      note: "Well Control Equipment Systems for Drilling Wells — installation, testing and inspection requirements for BOP stacks. Listed in API's standards catalog; API does not publish a free standalone page for this one the way it does for 14A.",
+      note: "Well Control Equipment Systems for Drilling Wells — installation, testing and inspection requirements for BOP stacks, listed in API's standards catalog.",
     },
     es: {
       href: 'https://www.api.org/products-and-services/standards',
       label: 'API Std 53',
-      note: 'Sistemas de equipos de control de pozo para la perforación de pozos — requisitos de instalación, prueba e inspección para stacks de BOP. Catálogo de normas de API; API no publica una página independiente gratuita para esta norma como sí lo hace para la 14A.',
+      note: 'Sistemas de equipos de control de pozo para la perforación de pozos — requisitos de instalación, prueba e inspección para stacks de BOP, incluido en el catálogo de normas de API.',
     },
   },
   api14a: {
@@ -35,12 +35,12 @@ export const CITATIONS = {
     en: {
       href: 'https://www.ecfr.gov/current/title-30/chapter-II/subchapter-B/part-250/subpart-G',
       label: '30 CFR 250 Subpart G',
-      note: 'BSEE well operations and equipment rules for the US Outer Continental Shelf, including the BOP testing intervals referenced on this page.',
+      note: 'BSEE well operations and equipment rules for the US Outer Continental Shelf, including well-control and BOP equipment requirements.',
     },
     es: {
       href: 'https://www.ecfr.gov/current/title-30/chapter-II/subchapter-B/part-250/subpart-G',
       label: '30 CFR 250 Subparte G',
-      note: 'Normas de BSEE sobre operaciones y equipos de pozo para la plataforma continental exterior de EE. UU., incluidos los intervalos de prueba de BOP mencionados en esta página.',
+      note: 'Normas de BSEE sobre operaciones y equipos de pozo para la plataforma continental exterior de EE. UU., incluidos los requisitos de control de pozo y equipos BOP.',
     },
   },
   oshaH2s: {

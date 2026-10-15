@@ -57,7 +57,7 @@ const webp2 = withExt(image2, 'webp');
   <picture>
     <source type="image/avif" srcset={avif1} />
     <source type="image/webp" srcset={webp1} />
-    <img class="tool-gallery-img active" src={image1} alt={alt} loading="lazy" data-index="0" width={dims1?.width} height={dims1?.height} />
+    <img class="tool-gallery-img active" src={image1} alt={alt} loading="eager" fetchpriority="high" data-index="0" width={dims1?.width} height={dims1?.height} />
   </picture>
   <picture>
     <source type="image/avif" srcset={avif2} />
