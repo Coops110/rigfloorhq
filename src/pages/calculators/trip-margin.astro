@@ -15,15 +15,7 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
+
 
 const webAppLd = {
   "@context": "https://schema.org",
@@ -45,7 +37,6 @@ const webAppLd = {
 <BaseLayout
   title="Trip Margin / Safety Factor Calculator"
   description="Free trip margin (safety factor) calculator: the extra mud weight carried above formation balance to protect against swabbing in a kick while tripping."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Trip Margin', href: '/calculators/trip-margin' }]}
   lang="en"

@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -54,7 +44,6 @@ const webAppLd = {
 <BaseLayout
   title="Kill Sheet Calculator: KMW, ICP, FCP & Pressure Schedule"
   description="A kill sheet is the worksheet a rig crew fills out after shutting in on a kick to calculate kill mud weight, ICP, FCP, strokes to bit, and bottoms-up."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Kill Sheet', href: '/calculators/kill-sheet' }]}
   lang="en"

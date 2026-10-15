@@ -22,15 +22,7 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
+
 
 const webAppLd = {
   "@context": "https://schema.org",
@@ -52,7 +44,6 @@ const webAppLd = {
 <BaseLayout
   title="Drill Pipe Lag & Volume Calculator"
   description="Free lag and volume calculator: pump output, string and annular volumes, lag strokes, and lag time up and down — for triplex or duplex pumps."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Lag & Volume', href: '/calculators/lag-and-volume' }]}
   lang="en"

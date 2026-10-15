@@ -22,15 +22,7 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
+
 
 const webAppLd = {
   "@context": "https://schema.org",
@@ -52,7 +44,6 @@ const webAppLd = {
 <BaseLayout
   title="Ton-Mile Calculator: Drilling Line Service Life"
   description="Free ton-mile calculator for drilling line service life: round trip, drilling, coring, short trip, and setting-casing ton-miles per API RP 9B / Lapeyrouse."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Ton-Mile', href: '/calculators/ton-mile' }]}
   lang="en"

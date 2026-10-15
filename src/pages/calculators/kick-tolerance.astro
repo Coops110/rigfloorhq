@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -54,7 +44,6 @@ const webAppLd = {
 <BaseLayout
   title="Kick Tolerance Calculator (ppg)"
   description="Free kick tolerance calculator: the ppg-equivalent gas kick your current MAASP can absorb at the casing shoe, using the standard zero-gradient worst case."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Kick Tolerance', href: '/calculators/kick-tolerance' }]}
   lang="en"

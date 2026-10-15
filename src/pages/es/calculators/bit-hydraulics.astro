@@ -22,16 +22,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -52,7 +42,6 @@ const webAppLd = {
 <BaseLayout
   title="Calculadora de Hidráulica de Barrena: TFA"
   description="Calculadora gratuita de hidráulica de barrena: área de flujo total a partir de tamaños de boquilla, velocidad de chorro, caballaje hidráulico de barrena."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Hidráulica de Barrena', href: '/es/calculators/bit-hydraulics' }]}
   lang="es"

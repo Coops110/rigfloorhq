@@ -14,15 +14,7 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
+
 
 const webAppLd = {
   "@context": "https://schema.org",
@@ -44,7 +36,6 @@ const webAppLd = {
 <BaseLayout
   title="BOP Closing & Opening Ratio Calculator"
   description="Free calculator for the hydraulic operating pressure required to close or open a BOP at a given wellhead pressure and the tool's rated ratio."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'BOP Closing Ratio', href: '/calculators/bop-closing-ratio' }]}
   lang="en"

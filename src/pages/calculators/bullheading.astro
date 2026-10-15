@@ -32,16 +32,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -62,7 +52,6 @@ const webAppLd = {
 <BaseLayout
   title="Bullheading Calculator: Surface Pressure Limits & Kill Fluid"
   description="Bullheading calculator: kill fluid weight, formation fracture pressure, initial and final max surface pressure, volume to bullhead."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Bullheading', href: '/calculators/bullheading' }]}
   lang="en"

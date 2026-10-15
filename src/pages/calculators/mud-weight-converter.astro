@@ -48,15 +48,7 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
+
 
 const webAppLd = {
   "@context": "https://schema.org",
@@ -78,7 +70,6 @@ const webAppLd = {
 <BaseLayout
   title="Mud Weight Converter: ppg, sg and psi/ft"
   description="Convert mud weight between ppg, specific gravity, lb/ft³, kg/m³ and psi/ft instantly. Also converts pressure and depth. Every field updates as you type."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Mud Weight Converter', href: '/calculators/mud-weight-converter' }]}
   lang="en"

@@ -22,16 +22,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -52,7 +42,6 @@ const webAppLd = {
 <BaseLayout
   title="Calculadora de Tonelada-Milla: Vida de Línea de Perforación"
   description="Calculadora gratuita de tonelada-milla: viaje redondo, perforación, coreo, viaje corto, y asentamiento de revestimiento según API RP 9B / Lapeyrouse."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Tonelada-Milla', href: '/es/calculators/ton-mile' }]}
   lang="es"

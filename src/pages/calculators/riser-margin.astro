@@ -18,16 +18,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -48,7 +38,6 @@ const webAppLd = {
 <BaseLayout
   title="Riser Margin Calculator: Subsea Mud vs. Seawater"
   description="Riser margin calculator for subsea wells: the extra mud weight margin if the riser column were lost and replaced by seawater, from mud weight."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Riser Margin', href: '/calculators/riser-margin' }]}
   lang="en"

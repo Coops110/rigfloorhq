@@ -15,16 +15,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -45,7 +35,6 @@ const webAppLd = {
 <BaseLayout
   title="MAMW Calculator: Maximum Allowable Mud Weight & New MAASP"
   description="Free MAMW calculator: maximum allowable mud weight from your LOT/FIT test and shoe TVD, plus new MAASP once a kill mud weight is set."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'MAMW', href: '/calculators/mamw' }]}
   lang="en"

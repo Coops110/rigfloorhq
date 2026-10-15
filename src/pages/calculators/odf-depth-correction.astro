@@ -22,15 +22,7 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
+
 
 const webAppLd = {
   "@context": "https://schema.org",
@@ -52,7 +44,6 @@ const webAppLd = {
 <BaseLayout
   title="Rig Floor (ODF) Depth Correction Calculator"
   description="Free ODF depth correction calculator: reconcile drill pipe tally depth against wireline depth after a rig floor elevation change."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'ODF Depth Correction', href: '/calculators/odf-depth-correction' }]}
   lang="en"

@@ -22,16 +22,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -52,7 +42,6 @@ const webAppLd = {
 <BaseLayout
   title="Calculadora de Corrección de Profundidad ODF"
   description="Calculadora de corrección de profundidad ODF: reconcilia la profundidad de tally de tubería contra la profundidad de cable tras un cambio de elevación."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Corrección de Profundidad ODF', href: '/es/calculators/odf-depth-correction' }]}
   lang="es"

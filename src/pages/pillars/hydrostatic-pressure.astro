@@ -44,14 +44,7 @@ const jsonLd = {
       "author": { "@id": "https://rigfloorhq.com/#organization" },
       "publisher": { "@id": "https://rigfloorhq.com/#organization" }
     },
-    {
-      "@type": "FAQPage",
-      "mainEntity": faq.map((f) => ({
-        "@type": "Question",
-        "name": f.q,
-        "acceptedAnswer": { "@type": "Answer", "text": f.a },
-      })),
-    },
+    
   ],
 };
 ---

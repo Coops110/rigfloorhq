@@ -14,16 +14,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -44,7 +34,6 @@ const webAppLd = {
 <BaseLayout
   title="New Pump Pressure Calculator: Stroke Rate & Mud Weight"
   description="Free calculator for new circulating pressure after a stroke-rate change or a mud weight change, using the standard IWCF proportionality formulas."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Pump Pressure Adjustment', href: '/calculators/pump-pressure-adjustment' }]}
   lang="en"

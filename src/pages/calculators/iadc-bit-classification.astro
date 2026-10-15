@@ -102,16 +102,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -132,7 +122,6 @@ const webAppLd = {
 <BaseLayout
   title="IADC Rock Bit & PDC Bit Classification Chart"
   description="Free IADC bit classification reference: roller cone (rock bit) series, sub-series and bearing codes, plus PDC body, formation, cutter."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'IADC Bit Classification', href: '/calculators/iadc-bit-classification' }]}
   lang="en"

@@ -94,16 +94,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const bores = [...new Set(FLANGE_DATA.map((r) => r[0]))];
 const pressures = [...new Set(FLANGE_DATA.map((r) => r[1]))].sort((a, b) => parseInt(a) - parseInt(b));
 
@@ -127,7 +117,6 @@ const webAppLd = {
 <BaseLayout
   title="Tabla de Bridas y Empaques Tipo Anillo"
   description="Diámetro y clasificación de presión API 6A/6BX a número de empaque, cantidad de espárragos, tamaño de espárrago y DE de brida — dimensiones de Cameron."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Bridas y Empaques', href: '/es/calculators/flange-ring-gasket' }]}
   lang="es"

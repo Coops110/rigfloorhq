@@ -22,16 +22,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -52,7 +42,6 @@ const webAppLd = {
 <BaseLayout
   title="Bit Hydraulics Calculator: TFA, Jet Velocity, HHP, HSI"
   description="Free bit hydraulics calculator: total flow area from nozzle sizes, jet velocity, bit hydraulic horsepower, and hydraulic horsepower per square inch (HSI)."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Bit Hydraulics', href: '/calculators/bit-hydraulics' }]}
   lang="en"

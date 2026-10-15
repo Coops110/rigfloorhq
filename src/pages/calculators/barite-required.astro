@@ -14,16 +14,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -44,7 +34,6 @@ const webAppLd = {
 <BaseLayout
   title="Barite Required Calculator: Weighting Up Drilling Mud"
   description="Free calculator for how much barite, in pounds per barrel, is needed to raise drilling mud from one weight to a heavier target weight."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Barite Required', href: '/calculators/barite-required' }]}
   lang="en"

@@ -22,16 +22,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -52,7 +42,6 @@ const webAppLd = {
 <BaseLayout
   title="Drill Pipe Tally Calculator: Capacity, Displacement & Depth"
   description="Free drill pipe tally calculator: enter OD, ID, joint length and joint count to get hole capacity, steel displacement, and a running depth tally table."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Drill Pipe Tally', href: '/calculators/drill-pipe-tally' }]}
   lang="en"

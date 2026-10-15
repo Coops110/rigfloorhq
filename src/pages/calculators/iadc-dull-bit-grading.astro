@@ -114,16 +114,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -144,7 +134,6 @@ const webAppLd = {
 <BaseLayout
   title="IADC Dull Bit Grading Chart & Code Reference"
   description="Free IADC dull bit grading reference: the 8-position code for grading a dull drill bit — cutting structure wear, dull characteristics, location."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'IADC Dull Bit Grading', href: '/calculators/iadc-dull-bit-grading' }]}
   lang="en"

@@ -23,15 +23,7 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
+
 
 const webAppLd = {
   "@context": "https://schema.org",
@@ -53,7 +45,6 @@ const webAppLd = {
 <BaseLayout
   title="ECD Calculator: Equivalent Circulating Density"
   description="Free ECD calculator: annular velocity, annular friction pressure loss, and equivalent circulating density from mud weight, flow rate and annulus geometry."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'ECD', href: '/calculators/ecd' }]}
   lang="en"

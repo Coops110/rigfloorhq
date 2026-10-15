@@ -18,16 +18,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -48,7 +38,6 @@ const webAppLd = {
 <BaseLayout
   title="Calculadora de Margen de Riser: Lodo vs. Agua de Mar"
   description="Calculadora de margen de riser para pozos submarinos: el margen extra de peso de lodo si se perdiera la columna del riser."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Margen de Riser', href: '/es/calculators/riser-margin' }]}
   lang="es"

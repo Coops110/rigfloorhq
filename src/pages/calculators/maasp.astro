@@ -24,16 +24,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -54,7 +44,6 @@ const webAppLd = {
 <BaseLayout
   title="MAASP Calculator: Maximum Allowable Annular Surface Pressure"
   description="Free MAASP calculator: maximum allowable annular surface pressure at the casing shoe from your LOT/FIT test, current mud weight, and shoe TVD."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'MAASP', href: '/calculators/maasp' }]}
   lang="en"

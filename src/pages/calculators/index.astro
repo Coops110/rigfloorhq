@@ -460,41 +460,6 @@ import Footer from '../../components/Footer.astro';
           { "@type": "ListItem", "position": 17, "name": "MAASP Calculator", "url": "https://rigfloorhq.com/calculators/maasp" },
           { "@type": "ListItem", "position": 18, "name": "Kick Tolerance Calculator", "url": "https://rigfloorhq.com/calculators/kick-tolerance" }
         ]
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Where does the 0.052 constant come from?",
-            "acceptedAnswer": { "@type": "Answer", "text": "It converts pounds per gallon into psi per foot. A column of fluid one foot tall over one square inch of area holds 12 cubic inches, which is 12 divided by 231 = 0.05195 gallons. Multiply mud weight in ppg by that figure and you get the pressure that column exerts in psi per foot. The industry rounds it to 0.052." }
-          },
-          {
-            "@type": "Question",
-            "name": "Should I use TVD or measured depth?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Always true vertical depth for any pressure calculation. Measured depth is used for pipe volumes, strokes, and lag time, not hydrostatic pressure." }
-          },
-          {
-            "@type": "Question",
-            "name": "Can I use these during an actual well control event?",
-            "acceptedAnswer": { "@type": "Answer", "text": "No. These are reference and training tools. Live well control decisions belong to your certified well control supervisor working from your company's approved procedures and a physical kill sheet." }
-          },
-          {
-            "@type": "Question",
-            "name": "Do these match the IWCF and IADC exam formulas?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Yes. The formulas shown are the standard ones taught in well control certification. Working through them by hand and checking against the calculator is a reasonable way to prepare, but no website replaces an accredited course." }
-          },
-          {
-            "@type": "Question",
-            "name": "Do you support metric units?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Not currently. Everything runs in oilfield units of ppg, psi, and feet. For SI work the equivalent hydrostatic constant is 0.0981 when using specific gravity and metres to get bar." }
-          },
-          {
-            "@type": "Question",
-            "name": "Is my data stored?",
-            "acceptedAnswer": { "@type": "Answer", "text": "No. Every calculation runs client-side in your browser. Nothing is transmitted or saved." }
-          }
-        ]
       }
     ]
   })} />

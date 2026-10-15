@@ -18,15 +18,7 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
+
 
 const webAppLd = {
   "@context": "https://schema.org",
@@ -48,7 +40,6 @@ const webAppLd = {
 <BaseLayout
   title="Buoyancy & Tubular Weight Calculator"
   description="Buoyancy factor and buoyed pipe weight for open-ended pipe, closed-ended pipe, and pipe with different fluid inside versus in the annulus."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Buoyancy', href: '/calculators/buoyancy' }]}
   lang="en"

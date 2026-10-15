@@ -26,16 +26,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -56,7 +46,6 @@ const webAppLd = {
 <BaseLayout
   title="Calculadora de Capacidad de Tanque Horizontal"
   description="Calculadora gratuita de capacidad de tanque cilíndrico horizontal: ingresa diámetro y longitud y obtén una tabla de altura de llenado a volumen."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Capacidad de Tanque Horizontal', href: '/es/calculators/horizontal-tank-capacity' }]}
   lang="es"

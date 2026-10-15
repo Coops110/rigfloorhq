@@ -46,16 +46,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -76,7 +66,6 @@ const webAppLd = {
 <BaseLayout
   title="Hoja de Trabajo de Prueba Drill-Off: Optimización de WOB"
   description="Calculadora gratuita de prueba drill-off: registra lecturas de peso sobre la barrena y de rotación, y obtén la tasa de penetración (ROP) para cada paso."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Prueba Drill-Off', href: '/es/calculators/drill-off-test' }]}
   lang="es"

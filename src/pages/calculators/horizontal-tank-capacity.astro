@@ -45,16 +45,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -75,7 +65,6 @@ const webAppLd = {
 <BaseLayout
   title="Horizontal Tank Capacity Calculator: Fill Height to Volume"
   description="Free horizontal cylindrical tank capacity calculator: enter diameter and length and get a fill-height-to-volume table plus an instant lookup."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Horizontal Tank Capacity', href: '/calculators/horizontal-tank-capacity' }]}
   lang="en"

@@ -14,15 +14,7 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
+
 
 const webAppLd = {
   "@context": "https://schema.org",
@@ -44,7 +36,6 @@ const webAppLd = {
 <BaseLayout
   title="Calculadora de Barita Requerida: Cargando el Lodo"
   description="Calculadora gratuita de cuánta barita, en libras por barril, se necesita para subir el lodo de perforación de un peso a un peso objetivo más pesado."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Barita Requerida', href: '/es/calculators/barite-required' }]}
   lang="es"

@@ -30,16 +30,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -60,7 +50,6 @@ const webAppLd = {
 <BaseLayout
   title="Calculadora de Bombeo a Matar: Límites de Presión"
   description="Calculadora de bombeo a matar (bullheading): peso de fluido de matar, presión de fractura de formación, presión máxima inicial y final de superficie."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Bombeo a Matar', href: '/es/calculators/bullheading' }]}
   lang="es"

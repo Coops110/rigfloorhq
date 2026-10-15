@@ -66,15 +66,7 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
+
 
 const webAppLd = {
   "@context": "https://schema.org",
@@ -96,7 +88,6 @@ const webAppLd = {
 <BaseLayout
   title="Tabla de Rosca y Torque de Apriete de Barrena"
   description="Tamaño de barrena a conexión roscada, más torque de apriete para barrenas PDC y de conos — cifras Mínimo, Máximo y Máximo Severo de Reed Hycalog."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Rosca y Torque de Barrena', href: '/es/calculators/bit-torque' }]}
   lang="es"

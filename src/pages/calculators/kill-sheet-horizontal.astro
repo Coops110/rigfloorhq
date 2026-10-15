@@ -19,16 +19,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -49,7 +39,6 @@ const webAppLd = {
 <BaseLayout
   title="Horizontal & Extended-Reach Kill Sheet Additions"
   description="Extra drillpipe pressure checkpoints for a directional or horizontal well kill: string volume and strokes to kick-off point (KOP) and end of build (EOB)."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Horizontal Kill Sheet', href: '/calculators/kill-sheet-horizontal' }]}
   lang="en"

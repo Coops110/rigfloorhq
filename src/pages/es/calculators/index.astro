@@ -445,42 +445,6 @@ import Footer from '../../../components/Footer.astro';
           { "@type": "ListItem", "position": 17, "name": "Calculadora de MAASP", "url": "https://rigfloorhq.com/es/calculators/maasp" },
           { "@type": "ListItem", "position": 18, "name": "Calculadora de Tolerancia a la Surgencia", "url": "https://rigfloorhq.com/es/calculators/kick-tolerance" }
         ]
-      },
-      {
-        "@type": "FAQPage",
-        "inLanguage": "es",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "¿De dónde viene la constante 0.052?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Convierte libras por galón en psi por pie. Una columna de fluido de un pie de altura sobre una pulgada cuadrada de área contiene 12 pulgadas cúbicas, que equivalen a 12 dividido entre 231 = 0.05195 galones. Multiplica el peso del lodo en ppg por esa cifra y obtienes la presión que ejerce esa columna en psi por pie. La industria la redondea a 0.052." }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Debo usar TVD o profundidad medida?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Siempre profundidad vertical verdadera para cualquier cálculo de presión. La profundidad medida se usa para volúmenes de tubería, emboladas y tiempo de retraso, no para presión hidrostática." }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Puedo usar estas herramientas durante un evento real de control de pozos?",
-            "acceptedAnswer": { "@type": "Answer", "text": "No. Son herramientas de referencia y capacitación. Las decisiones de control de pozos en vivo corresponden a tu supervisor certificado de control de pozos, trabajando con los procedimientos aprobados de tu empresa y una hoja de control física." }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Coinciden con las fórmulas de los exámenes IWCF e IADC?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Sí. Las fórmulas mostradas son las estándar enseñadas en la certificación de control de pozos. Resolverlas a mano y comparar con la calculadora es una forma razonable de prepararse, pero ningún sitio web reemplaza un curso acreditado." }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Soportan unidades métricas?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Por ahora no. Todo funciona en unidades de campo petrolero: ppg, psi y pies. Para trabajo en SI, la constante hidrostática equivalente es 0.0981 usando gravedad específica y metros para obtener bar." }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Se guardan mis datos?",
-            "acceptedAnswer": { "@type": "Answer", "text": "No. Cada cálculo se ejecuta del lado del cliente en tu navegador. No se transmite ni se guarda nada." }
-          }
-        ]
       }
     ]
   })} />

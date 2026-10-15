@@ -97,16 +97,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -127,7 +117,6 @@ const webAppLd = {
 <BaseLayout
   title="Tabla de Clasificación IADC: Barrenas de Conos y PDC"
   description="Referencia gratuita de clasificación IADC: códigos de serie, sub-serie y rodamiento para barrenas de conos, más códigos de cuerpo, formación."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Clasificación IADC', href: '/es/calculators/iadc-bit-classification' }]}
   lang="es"

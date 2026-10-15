@@ -14,16 +14,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -44,7 +34,6 @@ const webAppLd = {
 <BaseLayout
   title="Calculadora de Nueva Presión de Bomba: Cambios de Tasa"
   description="Calculadora gratuita de la nueva presión circulante tras un cambio de tasa de embolada o de peso de lodo."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Ajuste de Presión de Bomba', href: '/es/calculators/pump-pressure-adjustment' }]}
   lang="es"

@@ -65,15 +65,7 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
+
 
 const webAppLd = {
   "@context": "https://schema.org",
@@ -95,7 +87,6 @@ const webAppLd = {
 <BaseLayout
   title="Bit Thread & Make-Up Torque Chart"
   description="Bit size to thread connection, plus make-up torque for PDC and roller cone bits — Reed Hycalog's published Minimum, Maximum and Maximum Severe figures."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Bit Thread & Torque', href: '/calculators/bit-torque' }]}
   lang="en"

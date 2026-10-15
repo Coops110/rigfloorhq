@@ -14,15 +14,7 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
+
 
 const webAppLd = {
   "@context": "https://schema.org",
@@ -44,7 +36,6 @@ const webAppLd = {
 <BaseLayout
   title="Slug Volume & Pit Gain Calculator"
   description="Free calculator for the slug volume needed for a desired dry pipe length, and the expected pit gain from pumping that slug."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Slug Calculation', href: '/calculators/slug-calculation' }]}
   lang="en"

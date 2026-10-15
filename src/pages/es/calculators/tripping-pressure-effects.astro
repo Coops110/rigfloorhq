@@ -14,15 +14,7 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
+
 
 const webAppLd = {
   "@context": "https://schema.org",
@@ -44,7 +36,6 @@ const webAppLd = {
 <BaseLayout
   title="Calculadora de Efectos de Presión al Viajar"
   description="Calculadora gratuita de caída de presión por pie al sacar tubería seca o mojada, y qué tanto baja el nivel de lodo al sacar del pozo sin rellenar."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Efectos de Presión al Viajar', href: '/es/calculators/tripping-pressure-effects' }]}
   lang="es"

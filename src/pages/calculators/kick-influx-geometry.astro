@@ -15,16 +15,6 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
-
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -45,7 +35,6 @@ const webAppLd = {
 <BaseLayout
   title="Kick Influx Geometry Calculator: Length, Height, Gradient"
   description="Free calculator for influx length along hole, true vertical height, influx gradient, and shut-in casing pressure from a kick's kick volume and inclination."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Kick Influx Geometry', href: '/calculators/kick-influx-geometry' }]}
   lang="en"

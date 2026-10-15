@@ -94,15 +94,7 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faq.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
+
 
 // Rendered server-side so the full chart is present and crawlable without
 // JS. The filter script only toggles row visibility, it never writes content.
@@ -129,7 +121,6 @@ const webAppLd = {
 <BaseLayout
   title="Flange & Ring Gasket Lookup Chart"
   description="API 6A/6BX flange bore and pressure rating to ring gasket number, stud count, stud size and flange OD — Cameron's published dimensions, filterable."
-  jsonLd={jsonLd}
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Flange & Ring Gasket', href: '/calculators/flange-ring-gasket' }]}
   lang="en"
