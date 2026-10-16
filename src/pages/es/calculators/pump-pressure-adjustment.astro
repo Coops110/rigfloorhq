@@ -12,6 +12,10 @@ const faq = [
     q: '¿Por qué la nueva pérdida de presión escala directamente con el peso de lodo, no al cuadrado?',
     a: 'La pérdida de presión por fricción también es directamente proporcional a la densidad del fluido — un lodo más pesado simplemente es más difícil de empujar por la misma tubería y anular a la misma tasa. A diferencia de la relación con la tasa de flujo, esa es una relación lineal (línea recta), así que la fórmula del nuevo lodo usa una razón directa en lugar de una al cuadrado.',
   },
+  {
+    q: '¿Qué es una tasa de circulación lenta (SCR) y por qué importa aquí?',
+    a: 'Una SCR es una presión de bomba medida y registrada a una tasa de embolada reducida y pre-acordada (comúnmente un par de tasas como 30 y 45 SPM) para que una presión de tasa de control ya se conozca antes de un evento de control de pozo, en lugar de adivinarse durante uno. La relación al cuadrado de tasa de embolada de esta calculadora es exactamente cómo un perforador revisa o escala una lectura de SCR a una tasa diferente sin volver a bombear a cada velocidad posible.',
+  },
 ];
 
 const webAppLd = {
@@ -96,6 +100,10 @@ const webAppLd = {
             <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Nueva Pérdida de Presión</span><span class="output-value" id="out-newpl">—</span></div>
           </div>
         </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Solo de referencia.</strong> Confirma una lectura real de SCR a la tasa de control planeada antes de confiar en una cifra escalada para un evento real de control de pozo — esta calculadora revisa las matemáticas de proporcionalidad, no sustituye una medición de presión fresca.
+        </div>
       </div>
 
       <div class="prose">
@@ -107,6 +115,19 @@ const webAppLd = {
         <dl class="formula-block mt-24">
           <dt class="formula-label">Nueva Pérdida de Presión Con Nuevo Lodo</dt>
           <dd class="formula-eq"><code>P2 = P1 × (Peso de Lodo2 ÷ Peso de Lodo1)</code></dd>
+        </dl>
+
+        <h3>Ejemplo Resuelto</h3>
+        <p>Se registró una SCR de 1,200 psi a 50 SPM. ¿Cuál es la presión esperada a la tasa normal de perforación de 75 SPM?</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Nueva Presión de Bomba Con Nuevas Emboladas</dt>
+          <dd class="formula-eq"><code>P2 = 1200 × (75 ÷ 50)² = 1200 × 2.25 = 2,700 psi</code></dd>
+        </dl>
+        <p>Ahora supón que esa misma sarta luego se carga de 9.6 ppg a un lodo de control de 12.0 ppg, con la cifra de 2,700 psi anterior como la pérdida de presión inicial:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Nueva Pérdida de Presión Con Nuevo Lodo</dt>
+          <dd class="formula-eq"><code>P2 = 2700 × (12.0 ÷ 9.6) = 2700 × 1.25 = 3,375 psi</code></dd>
+          <dd class="formula-note">La nueva SCR a usar en la hoja de control de pozo una vez que el lodo más pesado realmente esté en la sarta y circulado a superficie.</dd>
         </dl>
 
         <h3>Dónde Encaja Esto</h3>

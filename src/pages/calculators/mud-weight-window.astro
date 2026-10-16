@@ -4,6 +4,21 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import { reviewedByJabin } from '../../lib/person.js';
 
+const faq = [
+  {
+    q: 'What counts as a "narrow" mud weight window?',
+    a: 'There\'s no fixed cutoff, but a window under roughly 0.5 ppg between pore pressure and fracture gradient is generally treated as narrow enough to need tight mud weight control, careful ECD management, and often managed pressure drilling (MPD) techniques. A window of several ppg in a normally pressured, geologically simple section gives much more comfortable room for error.',
+  },
+  {
+    q: 'Does a comfortable window at this depth mean it stays comfortable deeper?',
+    a: 'No — pore pressure and fracture gradient both evolve with depth, often independently of each other, so a window that looks safe at the current TVD can narrow sharply a few hundred feet deeper. Re-run this calculator at each new TVD of interest, and always re-check it before setting the next casing string.',
+  },
+  {
+    q: 'Why does this calculator use ppg-equivalent instead of straight psi?',
+    a: 'Comparing mud weight directly against pore and fracture gradients in the same ppg unit a mud report already uses avoids a conversion step mid-well, where a unit error is easy to make and hard to catch. If you specifically need the psi figures at a given depth, run the same TVD and mud weight through the hydrostatic pressure calculator.',
+  },
+];
+
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -95,6 +110,10 @@ const webPageLd = {
             </div>
           </div>
         </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>This is a reference tool, not an operational authority.</strong> Real pore pressure and fracture gradient figures used for casing design or mud weight selection belong to the well's drilling engineer, derived from offset data, seismic analysis, and actual LOT/FIT results — never plan a real drilling program from assumed gradients entered here.
+        </div>
       </div>
 
       <div class="prose">
@@ -104,6 +123,41 @@ const webPageLd = {
 
         <h3>How to Read the Visual</h3>
         <p>The bar represents your window from pore pressure (left, red) through the safe zone (center, green) to fracture pressure (right, red). The white marker shows exactly where your current mud weight sits. A marker near either edge means very little margin for error — a small pressure fluctuation could push you into kick or lost-circulation territory.</p>
+
+        <h3>The Formulas Used</h3>
+        <dl class="formula-block">
+          <dt class="formula-label">Window Width</dt>
+          <dd class="formula-eq"><code>Window = Fracture Gradient − Pore Pressure Gradient</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Margin Above Pore Pressure / Below Fracture</dt>
+          <dd class="formula-eq"><code>Margin = Current Mud Weight − Pore Pressure Gradient   (or)   Fracture Gradient − Current Mud Weight</code></dd>
+          <dd class="formula-note">All figures in ppg-equivalent. Multiply any of these by 0.052 × TVD to express the same margin in psi.</dd>
+        </dl>
+
+        <h3>Worked Example</h3>
+        <p>A well at 10,000 ft TVD, running 12.0 ppg mud, against a 9.5 ppg pore pressure gradient and a 15.0 ppg fracture gradient:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Window Width</dt>
+          <dd class="formula-eq"><code>15.0 − 9.5 = 5.5 ppg (≈ 0.052 × 5.5 × 10,000 = 2,860 psi)</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Margin Above Pore Pressure</dt>
+          <dd class="formula-eq"><code>12.0 − 9.5 = 2.5 ppg (≈ 1,300 psi)</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Margin Below Fracture</dt>
+          <dd class="formula-eq"><code>15.0 − 12.0 = 3.0 ppg (≈ 1,560 psi)</code></dd>
+          <dd class="formula-note">Current mud weight sits inside a healthy 5.5 ppg window, slightly closer to the pore-pressure boundary (2.5 ppg margin) than the fracture boundary (3.0 ppg) — comfortable, but worth re-checking as TVD increases.</dd>
+        </dl>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
 
         <h2>Where to Get Real Pore & Fracture Data</h2>
         <p>This calculator uses figures you supply — for actual well planning, pore pressure is predicted from offset well data, seismic velocity analysis, and while-drilling indicators (like the d-exponent method), while fracture gradient is measured directly via a Leak-Off Test (LOT) at each casing shoe. See the <a href="/drilling/casing">casing design page</a> for how these figures drive casing point selection.</p>

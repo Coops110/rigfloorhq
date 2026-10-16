@@ -1,0 +1,218 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+// CONVERSION FACTORS — DERIVED, NOT REMEMBERED
+// Mirrors src/pages/calculators/mud-weight-converter.astro exactly; see that
+// file for the full derivation notes. Every figure comes from exact
+// definitions: 1 US gallon = 231 in³, 1 lb = 0.45359237 kg,
+// 1 US gal = 3.785411784 L, g = 9.80665 m/s², 1 ft = 0.3048 m.
+//
+//   lb/ft³ per ppg  = 1728/231            = 7.4805194805
+//   psi/ft per ppg  = (1728/231)/144      = 0.0519480519   <- the "0.052"
+//   kg/m³  per ppg  = (0.45359237/3.785411784)*1000
+//                                          = 119.8264273169
+//   sg     per ppg  = kg/m³ / 1000        = 0.1198264273
+//
+// data-factor holds the RECIPROCAL of these, same as the English page —
+// the number of base units one of that unit represents.
+const faq = [
+  {
+    q: '¿Cómo se convierte ppg a gravedad específica?',
+    a: 'Multiplica libras por galón por 0.11983. El agua a 8.33 ppg sale en 0.998 de gravedad específica, que es la comprobación que vale la pena recordar — si tu respuesta no sale cerca de 1.0 para agua, la conversión fue en el sentido equivocado. Para ir en el otro sentido, divide entre 0.11983 o multiplica por 8.345.',
+  },
+  {
+    q: '¿Cómo se convierte ppg a psi por pie?',
+    a: 'Multiplica por 0.052. La cifra exacta es 0.0519481, que viene de que un galón estadounidense son 231 pulgadas cúbicas: una columna de un pie sobre una pulgada cuadrada contiene 1728/231/144 galones. La industria redondea esto a 0.052 y es lo bastante preciso para trabajo de campo, pero este convertidor usa el valor completo.',
+  },
+  {
+    q: '¿Cuál es el peso de lodo del agua dulce y del agua de mar?',
+    a: 'El agua dulce es aproximadamente 8.33 ppg, que son 0.433 psi/ft y gravedad específica 1.0. El agua de mar es aproximadamente 8.55 ppg, o 0.445 psi/ft y gravedad específica 1.03. Esos dos gradientes son los puntos de referencia de los que parten la mayoría de las estimaciones de presión de poro.',
+  },
+  {
+    q: '¿Qué es el peso de lodo equivalente?',
+    a: 'El peso de lodo equivalente expresa una presión a profundidad como el peso de lodo que la produciría, para que presiones a distintas profundidades puedan compararse directamente. Divide la presión en psi entre 0.052 y entre la profundidad vertical verdadera en pies. Así es como se cita en ppg una presión de formación o el resultado de una prueba de fuga.',
+  },
+  {
+    q: '¿Este convertidor usa TVD o profundidad medida?',
+    a: 'Ninguna — una conversión de unidades entre ppg, gravedad específica y psi/ft no depende de la profundidad en absoluto. La profundidad solo entra cuando conviertes un gradiente en una presión real, y ahí siempre debe ser la profundidad vertical verdadera. La sección de profundidad aquí convierte solo pies y metros.',
+  },
+  {
+    q: '¿Por qué mi cifra en kg/m³ no coincide con la gravedad específica por 1000?',
+    a: 'Sí coincide, y ese es el punto — la gravedad específica es densidad relativa al agua a 1000 kg/m³, así que los dos difieren solo por un factor de 1000. Ver ambas es útil porque los reportes de lodo en regiones métricas citan kg/m³ mientras que los resultados de laboratorio y la mayoría de los libros de texto citan gravedad específica.',
+  },
+];
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/mud-weight-converter#app",
+  "name": "Convertidor de Peso de Lodo: ppg, sg y psi/ft",
+  "url": "https://rigfloorhq.com/es/calculators/mud-weight-converter",
+  "description": "Convierte el peso de lodo entre ppg, gravedad específica, lb/ft³, kg/m³ y psi/ft al instante. También convierte presión y profundidad. Cada campo se actualiza mientras escribes.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requiere JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
+---
+<BaseLayout
+  title="Convertidor de Peso de Lodo: ppg, sg y psi/ft"
+  description="Convierte el peso de lodo entre ppg, gravedad específica, lb/ft³, kg/m³ y psi/ft al instante. También convierte presión y profundidad. Cada campo se actualiza mientras escribes."
+  extraJsonLd={[webAppLd]}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Convertidor de Peso de Lodo', href: '/es/calculators/mud-weight-converter' }]}
+  lang="es"
+  alternateHref="/calculators/mud-weight-converter"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/mud-weight-converter" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Convertidor de <span>Peso de Lodo</span></h1>
+    <p class="page-hero-sub">Escribe en cualquier casilla y el resto se actualiza. Peso de lodo, presión y profundidad, en las unidades que realmente se usan en un piso de perforación y en un reporte de laboratorio.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">⚖ Peso de Lodo / Densidad</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;">
+            <button type="button" class="preset-btn" data-ppg="8.33">Agua dulce 8.33</button>
+            <button type="button" class="preset-btn" data-ppg="8.55">Agua de mar 8.55</button>
+            <button type="button" class="preset-btn" data-ppg="10">10 ppg</button>
+            <button type="button" class="preset-btn" data-ppg="16">16 ppg</button>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="u-ppg">Libras por galón (ppg)</label>
+              <input type="number" id="u-ppg" class="conv" data-group="mw" data-factor="1" placeholder="ej. 12.0" step="any">
+            </div>
+            <div class="input-group">
+              <label for="u-sg">Gravedad específica (sg)</label>
+              <input type="number" id="u-sg" class="conv" data-group="mw" data-factor="8.345404452019" placeholder="ej. 1.44" step="any">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="u-psift">Gradiente de presión (psi/ft)</label>
+              <input type="number" id="u-psift" class="conv" data-group="mw" data-factor="19.25" placeholder="ej. 0.624" step="any">
+            </div>
+            <div class="input-group">
+              <label for="u-lbft3">Densidad (lb/ft³)</label>
+              <input type="number" id="u-lbft3" class="conv" data-group="mw" data-factor="0.133680555556" placeholder="ej. 89.8" step="any">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="u-kgm3">Densidad (kg/m³)</label>
+              <input type="number" id="u-kgm3" class="conv" data-group="mw" data-factor="0.008345404452" placeholder="ej. 1438" step="any">
+            </div>
+            <div class="input-group">
+              <label for="u-bar10m">Gradiente (bar/10m)</label>
+              <input type="number" id="u-bar10m" class="conv" data-group="mw" data-factor="8.509944223582" placeholder="ej. 1.41" step="any">
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">◉ Presión</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="p-psi">psi</label>
+              <input type="number" id="p-psi" class="conv" data-group="p" data-factor="1" placeholder="ej. 5200" step="any">
+            </div>
+            <div class="input-group">
+              <label for="p-bar">bar</label>
+              <input type="number" id="p-bar" class="conv" data-group="p" data-factor="14.503773773" placeholder="ej. 358" step="any">
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="p-kpa">kPa</label>
+              <input type="number" id="p-kpa" class="conv" data-group="p" data-factor="0.14503773773" placeholder="ej. 35853" step="any">
+            </div>
+            <div class="input-group">
+              <label for="p-kgcm2">kg/cm²</label>
+              <input type="number" id="p-kgcm2" class="conv" data-group="p" data-factor="14.2233433" placeholder="ej. 366" step="any">
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">↕ Profundidad</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="d-ft">Pies (ft)</label>
+              <input type="number" id="d-ft" class="conv" data-group="d" data-factor="1" placeholder="ej. 10000" step="any">
+            </div>
+            <div class="input-group">
+              <label for="d-m">Metros (m)</label>
+              <input type="number" id="d-m" class="conv" data-group="d" data-factor="3.280839895" placeholder="ej. 3048" step="any">
+            </div>
+          </div>
+        </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Puntos de referencia que vale la pena saber de memoria.</strong> Agua dulce <span class="highlight">8.33 ppg</span> = 0.433 psi/ft = sg 1.00. Agua de mar <span class="highlight">8.55 ppg</span> = 0.445 psi/ft = sg 1.03. Si una conversión no sale cerca de esto para algo que sabes que es agua, fue en el sentido equivocado.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>De Dónde Viene el 0.052</h2>
+        <p>La constante que convierte el peso de lodo en un gradiente de presión no es arbitraria, y saber de dónde viene hace mucho más difícil usarla mal.</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Gradiente de presión</dt>
+          <dd class="formula-eq"><code>psi/ft = ppg × 0.052</code></dd>
+          <dd class="formula-note">Exactamente: (1728 ÷ 231) ÷ 144 = 0.0519481. Un galón estadounidense son 231 pulgadas cúbicas y un pie cúbico son 1728, así que una columna de un pie sobre una pulgada cuadrada contiene 0.0519481 galones.</dd>
+        </dl>
+        <p>Este convertidor usa el valor completo en lugar del redondeado. En un pozo de 10,000 ft la diferencia entre 0.052 y 0.0519481 es de unos 5 psi a 10 ppg — insignificante en el piso, pero no hay razón para cargar con el error.</p>
+
+        <h3>Qué unidad se usa dónde</h3>
+        <ul>
+          <li><strong>ppg</strong> — la unidad de trabajo en la mayoría de los taladros en EE. UU. e internacionales, y en la que están escritos los reportes de lodo.</li>
+          <li><strong>Gravedad específica</strong> — resultados de laboratorio, libros de texto, y cualquier cosa que compare un fluido con el agua.</li>
+          <li><strong>psi/ft</strong> — gradientes de presión de poro y fractura, y cualquier cosa que se compare contra una prueba de fuga.</li>
+          <li><strong>kg/m³ y bar/10m</strong> — operaciones métricas, comunes en Europa, Latinoamérica y gran parte del Medio Oriente.</li>
+          <li><strong>lb/ft³</strong> — especificaciones de cemento y materiales a granel más seguido que fluido de perforación.</li>
+        </ul>
+
+        <p>Para convertir uno de estos gradientes en una presión real a profundidad, usa la <a href="/es/calculators/hydrostatic">calculadora de presión hidrostática</a>, que aplica la misma constante contra la profundidad vertical verdadera. Para saber entre qué debe quedar el peso de lodo, ver la <a href="/es/calculators/mud-weight-window">calculadora de ventana de peso de lodo</a>, y para la teoría de fondo la <a href="/es/drilling/mud-weight">referencia de peso de lodo y presión</a> la desarrolla a fondo. Para la referencia completa que une presión de poro, presión de fractura y esta constante, ver el <a href="/es/pillars/hydrostatic-pressure">pilar de presión hidrostática</a>.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .preset-btn {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--mist);
+    background: var(--iron);
+    border: 1px solid var(--iron);
+    border-radius: 3px;
+    padding: 6px 11px;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .preset-btn:hover, .preset-btn:focus-visible {
+    border-color: var(--rust);
+    color: var(--white);
+  }
+</style>
+
+<script is:inline src="/scripts/calculators/mud-weight-converter.js" defer></script>

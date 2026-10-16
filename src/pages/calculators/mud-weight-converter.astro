@@ -73,11 +73,9 @@ const webAppLd = {
   extraJsonLd={[webAppLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Mud Weight Converter', href: '/calculators/mud-weight-converter' }]}
   lang="en"
+  alternateHref="/es/calculators/mud-weight-converter"
 >
-  {/* No alternateHref: there is no Spanish version of this page, so BaseLayout
-      emits no hreflang at all rather than declaring an alternate that does not
-      reciprocate. The Nav switcher still goes somewhere sensible. */}
-  <Nav slot="nav" lang="en" alternateHref="/es/calculators" />
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators/mud-weight-converter" />
   <Footer slot="footer" lang="en" />
 
   <div class="page-hero">

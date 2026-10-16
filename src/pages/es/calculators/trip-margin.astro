@@ -88,6 +88,14 @@ const webAppLd = {
           <dd class="formula-note">Peso de lodo base en ppg, margen de seguridad en psi, TVD en pies, resultado en ppg.</dd>
         </dl>
 
+        <h3>Ejemplo Resuelto</h3>
+        <p>Un pozo balanceado a 10.0 ppg a 9,000 ft de TVD, cargando un margen de seguridad de compañía de 200 psi para viajar:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Margen de Viaje / Factor de Seguridad</dt>
+          <dd class="formula-eq"><code>TM/SF = 10.0 + [200 ÷ (0.052 × 9,000)] = 10.0 + [200 ÷ 468] = 10.0 + 0.43 = 10.43 ppg</code></dd>
+          <dd class="formula-note">La cuadrilla corre 10.43 ppg en lugar del punto de balance desnudo de 10.0 ppg — el 0.43 ppg extra es el colchón contra la presión de swab al sacar la sarta del pozo.</dd>
+        </dl>
+
         <h3>Dónde Encaja Esto</h3>
         <p>El margen de viaje convierte una presión de margen de seguridad de política en un peso de lodo real que puedes cargar en el pozo, encima de lo que se necesita para balancear solo la presión de formación. Es la respuesta del lado del peso de lodo al mismo riesgo de swab que la <a href="/es/calculators/pipe-pull-margin">calculadora de margen de extracción de tubería seca y mojada</a> aborda desde el lado de la longitud extraída — el margen de viaje dice cuánto más pesado correr el lodo, el margen de extracción dice qué tan lejos puede salir la tubería antes de que la hidrostática baje demasiado, y un plan de viaje real revisa ambos. Si el margen de viaje calculado sale apenas arriba del peso de lodo base, es una señal de que la cifra misma del margen de seguridad, o el sobrebalance real del pozo, necesita una segunda revisión antes de sacar tubería. Para las matemáticas completas de caída de presión y nivel de lodo de un viaje específico, ver la <a href="/es/calculators/tripping-pressure-effects">calculadora de efectos de presión en viajes</a>.</p>
 

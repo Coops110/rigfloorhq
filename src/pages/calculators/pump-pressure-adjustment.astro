@@ -12,6 +12,10 @@ const faq = [
     q: 'Why does new pressure loss scale directly with mud weight, not squared?',
     a: 'Friction pressure loss is also directly proportional to fluid density — a heavier mud is simply harder to push through the same pipe and annulus at the same rate. Unlike the flow-rate relationship, that\'s a straight-line (linear) relationship, so the new-mud formula uses a direct ratio rather than a squared one.',
   },
+  {
+    q: 'What is a slow circulating rate (SCR) and why does this matter for it?',
+    a: 'An SCR is a pump pressure measured and logged at a reduced, pre-agreed stroke rate (commonly a couple of rates such as 30 and 45 SPM) so a kill-rate pressure is already known before a well control event, rather than guessed at during one. This calculator\'s squared stroke-rate relationship is exactly how a driller checks or scales an SCR reading to a different rate without re-pumping at every possible speed.',
+  },
 ];
 
 const webAppLd = {
@@ -96,6 +100,10 @@ const webAppLd = {
             <div class="output-line headline" style="border-bottom:none;"><span class="output-label">New Pressure Loss</span><span class="output-value" id="out-newpl">—</span></div>
           </div>
         </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Reference only.</strong> Confirm an actual SCR reading at the planned kill rate before relying on a scaled figure for a real well control event — this calculator checks the proportionality math, not a substitute for a fresh pressure measurement.
+        </div>
       </div>
 
       <div class="prose">
@@ -107,6 +115,19 @@ const webAppLd = {
         <dl class="formula-block mt-24">
           <dt class="formula-label">New Pressure Loss With New Mud</dt>
           <dd class="formula-eq"><code>P2 = P1 × (Mud Weight2 ÷ Mud Weight1)</code></dd>
+        </dl>
+
+        <h3>Worked Example</h3>
+        <p>An SCR of 1,200 psi was logged at 50 SPM. What's the expected pressure at the normal drilling rate of 75 SPM?</p>
+        <dl class="formula-block">
+          <dt class="formula-label">New Pump Pressure With New Strokes</dt>
+          <dd class="formula-eq"><code>P2 = 1200 × (75 ÷ 50)² = 1200 × 2.25 = 2,700 psi</code></dd>
+        </dl>
+        <p>Now say that same string later gets weighted up from 9.6 ppg to a 12.0 ppg kill mud, with the 2,700 psi figure above as the starting pressure loss:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">New Pressure Loss With New Mud</dt>
+          <dd class="formula-eq"><code>P2 = 2700 × (12.0 ÷ 9.6) = 2700 × 1.25 = 3,375 psi</code></dd>
+          <dd class="formula-note">The new SCR to use on the kill sheet once the heavier mud is actually in the string and circulated to surface.</dd>
         </dl>
 
         <h3>Where This Fits</h3>

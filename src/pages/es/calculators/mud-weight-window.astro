@@ -3,6 +3,21 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 
+const faq = [
+  {
+    q: '¿Qué se considera una ventana de peso de lodo "estrecha"?',
+    a: 'No hay un límite fijo, pero una ventana por debajo de aproximadamente 0.5 ppg entre la presión de poro y el gradiente de fractura generalmente se trata como lo bastante estrecha para necesitar control estricto de peso de lodo, manejo cuidadoso de ECD, y a menudo técnicas de perforación de presión controlada (MPD). Una ventana de varios ppg en una sección de presión normal y geológicamente simple da mucho más espacio cómodo para error.',
+  },
+  {
+    q: '¿Una ventana cómoda a esta profundidad significa que seguirá cómoda más abajo?',
+    a: 'No — la presión de poro y el gradiente de fractura evolucionan ambos con la profundidad, a menudo de forma independiente uno del otro, así que una ventana que se ve segura en el TVD actual puede estrecharse bruscamente unos cientos de pies más abajo. Vuelve a correr esta calculadora en cada nuevo TVD de interés, y siempre revísala de nuevo antes de asentar la siguiente sarta de revestimiento.',
+  },
+  {
+    q: '¿Por qué esta calculadora usa equivalente-ppg en lugar de psi directo?',
+    a: 'Comparar el peso de lodo directamente contra los gradientes de poro y fractura en la misma unidad ppg que ya usa un reporte de lodo evita un paso de conversión a mitad del pozo, donde un error de unidad es fácil de cometer y difícil de detectar. Si específicamente necesitas las cifras en psi a una profundidad dada, corre el mismo TVD y peso de lodo por la calculadora de presión hidrostática.',
+  },
+];
+
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -82,6 +97,10 @@ const webAppLd = {
             </div>
           </div>
         </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>Esta es una herramienta de referencia, no una autoridad operacional.</strong> Las cifras reales de presión de poro y gradiente de fractura usadas para diseño de revestimiento o selección de peso de lodo pertenecen al ingeniero de perforación del pozo, derivadas de datos de pozos vecinos, análisis sísmico, y resultados reales de LOT/FIT — nunca planifiques un programa de perforación real a partir de gradientes asumidos ingresados aquí.
+        </div>
       </div>
 
       <div class="prose">
@@ -91,6 +110,41 @@ const webAppLd = {
 
         <h3>Cómo Leer la Visualización</h3>
         <p>La barra representa tu ventana desde la presión de poro (izquierda, rojo) a través de la zona segura (centro, verde) hasta la presión de fractura (derecha, rojo). El marcador blanco muestra exactamente dónde se ubica tu peso de lodo actual. Un marcador cerca de cualquier borde significa muy poco margen para error — una pequeña fluctuación de presión podría llevarte a territorio de surgencia o pérdida de circulación.</p>
+
+        <h3>Las Fórmulas Usadas</h3>
+        <dl class="formula-block">
+          <dt class="formula-label">Ancho de Ventana</dt>
+          <dd class="formula-eq"><code>Ventana = Gradiente de Fractura − Gradiente de Presión de Poro</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Margen Sobre Presión de Poro / Bajo Fractura</dt>
+          <dd class="formula-eq"><code>Margen = Peso de Lodo Actual − Gradiente de Presión de Poro   (o)   Gradiente de Fractura − Peso de Lodo Actual</code></dd>
+          <dd class="formula-note">Todas las cifras en equivalente-ppg. Multiplica cualquiera de estas por 0.052 × TVD para expresar el mismo margen en psi.</dd>
+        </dl>
+
+        <h3>Ejemplo Resuelto</h3>
+        <p>Un pozo a 10,000 ft de TVD, corriendo lodo a 12.0 ppg, contra un gradiente de presión de poro de 9.5 ppg y un gradiente de fractura de 15.0 ppg:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Ancho de Ventana</dt>
+          <dd class="formula-eq"><code>15.0 − 9.5 = 5.5 ppg (≈ 0.052 × 5.5 × 10,000 = 2,860 psi)</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Margen Sobre Presión de Poro</dt>
+          <dd class="formula-eq"><code>12.0 − 9.5 = 2.5 ppg (≈ 1,300 psi)</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Margen Bajo Fractura</dt>
+          <dd class="formula-eq"><code>15.0 − 12.0 = 3.0 ppg (≈ 1,560 psi)</code></dd>
+          <dd class="formula-note">El peso de lodo actual se ubica dentro de una ventana saludable de 5.5 ppg, ligeramente más cerca del límite de presión de poro (margen de 2.5 ppg) que del límite de fractura (3.0 ppg) — cómodo, pero vale la pena revisarlo de nuevo conforme aumenta el TVD.</dd>
+        </dl>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
 
         <h2>Dónde Obtener Datos Reales de Poro y Fractura</h2>
         <p>Esta calculadora usa cifras que tú proporcionas — para la planificación real del pozo, la presión de poro se predice a partir de datos de pozos vecinos, análisis de velocidad sísmica, e indicadores durante la perforación (como el método del exponente-d), mientras que el gradiente de fractura se mide directamente mediante una Prueba de Fuga (LOT) en cada zapato de revestimiento. Ver la <a href="/es/drilling/casing">página de diseño de revestimiento</a> para cómo estas cifras determinan la selección de puntos de revestimiento.</p>

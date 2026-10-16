@@ -5,6 +5,21 @@ import Footer from '../../components/Footer.astro';
 import NewsletterSignup from '../../components/NewsletterSignup.astro';
 import { reviewedByJabin } from '../../lib/person.js';
 
+const faq = [
+  {
+    q: 'Does this formula use measured depth or true vertical depth?',
+    a: "True vertical depth, always. Hydrostatic pressure depends on the vertical height of the fluid column above a point, not how much pipe or hole it took to get there — in a deviated or horizontal well, measured depth (MD) is longer than TVD, and plugging MD into this formula overstates the real pressure.",
+  },
+  {
+    q: 'Why is the constant 0.052 instead of a rounder number?',
+    a: 'It comes from exact unit geometry, not a convenient approximation: a US gallon is 231 cubic inches, so a one-foot column over one square inch holds 1728 ÷ 231 ÷ 144 = 0.0519481 gallons. The industry rounds that to 0.052 for field use, which is accurate enough for most purposes — see the full derivation linked below if the extra precision matters for a specific calculation.',
+  },
+  {
+    q: 'What does it mean if hydrostatic pressure comes out higher than fracture pressure?',
+    a: "That's the critical overbalanced condition this calculator flags — mud pressure has crossed the point where the formation itself breaks down, so fluid starts going into the formation instead of returning to surface (lost circulation), and the apparent pressure control is false. Treat it as urgent: stop and reassess mud weight against actual LOT/FIT data rather than continuing to drill on an assumed gradient.",
+  },
+];
+
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -90,6 +105,10 @@ const webPageLd = {
         <div class="note-box mt-24" style="max-width:700px;">
           <strong>Not sure what to enter?</strong> Freshwater pore pressure gradient ≈ <span class="highlight">0.433 psi/ft</span>. Seawater ≈ <span class="highlight">0.445 psi/ft</span>. A typical fracture gradient in normally pressured formations runs <span class="highlight">0.7–0.85 psi/ft</span> but varies significantly by basin and depth — always use actual leak-off test (LOT) data for real operations.
         </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>This is a reference tool, not an operational authority.</strong> Real pore pressure, fracture gradient, and overbalance limits for a live well belong to your drilling engineer and certified well control supervisor, working from actual LOT/FIT and offset data — never set a real mud weight program from this calculator alone.
+        </div>
       </div>
 
       <div class="prose">
@@ -109,6 +128,30 @@ const webPageLd = {
           <li><strong style="color:var(--warn);">High Overbalance</strong> — over 1,500 psi margin. Watch <a href="/calculators/ecd">ECD</a> carefully; risk of formation damage or differential sticking.</li>
           <li><strong style="color:var(--danger);">Underbalanced / Overbalanced (critical)</strong> — hydrostatic pressure has crossed pore or fracture pressure entirely. Immediate review required.</li>
         </ul>
+
+        <h3>Worked Example</h3>
+        <p>12.0 ppg mud at 10,000 ft TVD, against a 0.433 psi/ft pore pressure gradient and a 0.75 psi/ft fracture gradient:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Hydrostatic Pressure</dt>
+          <dd class="formula-eq"><code>HP = 0.052 × 12.0 × 10,000 = 6,240 psi</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Pore Pressure / Fracture Pressure</dt>
+          <dd class="formula-eq"><code>PP = 0.433 × 10,000 = 4,330 psi    FP = 0.75 × 10,000 = 7,500 psi</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Overbalance</dt>
+          <dd class="formula-eq"><code>6,240 − 4,330 = 1,910 psi</code></dd>
+          <dd class="formula-note">Above the 1,500 psi threshold this page uses for "High Overbalance" — comfortably clear of pore pressure, but the margin is now large enough to watch ECD and differential-sticking risk rather than assume it's simply safe.</dd>
+        </dl>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
 
         <p>For full formula derivations and worked examples, see the <a href="/drilling/mud-weight">mud weight and pressure reference page</a>. If you're working through an active kick, use the <a href="/calculators/kill-sheet">kill sheet calculator</a> instead. For the complete reference on hydrostatic pressure itself — pore/fracture pressure, ECD, trip margin, and MAASP all tied together — see the <a href="/pillars/hydrostatic-pressure">hydrostatic pressure pillar page</a>. Need to convert mud weight to a different unit first? Use the <a href="/calculators/mud-weight-converter">mud weight converter</a>.</p>
       </div>

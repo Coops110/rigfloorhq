@@ -4,6 +4,21 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import NewsletterSignup from '../../../components/NewsletterSignup.astro';
 
+const faq = [
+  {
+    q: '¿Esta fórmula usa profundidad medida o profundidad vertical verdadera?',
+    a: 'Profundidad vertical verdadera, siempre. La presión hidrostática depende de la altura vertical de la columna de fluido sobre un punto, no de cuánta tubería o agujero tomó llegar ahí — en un pozo desviado u horizontal, la profundidad medida (MD) es más larga que el TVD, y usar MD en esta fórmula sobreestima la presión real.',
+  },
+  {
+    q: '¿Por qué la constante es 0.052 en lugar de un número más redondo?',
+    a: 'Viene de geometría exacta de unidades, no de una aproximación conveniente: un galón US son 231 pulgadas cúbicas, así que una columna de un pie sobre una pulgada cuadrada contiene 1728 ÷ 231 ÷ 144 = 0.0519481 galones. La industria redondea eso a 0.052 para uso de campo, lo cual es suficientemente preciso para la mayoría de propósitos — ver la derivación completa enlazada abajo si la precisión extra importa para un cálculo específico.',
+  },
+  {
+    q: '¿Qué significa si la presión hidrostática sale más alta que la presión de fractura?',
+    a: 'Esa es la condición crítica de sobrebalance que esta calculadora señala — la presión del lodo ha cruzado el punto donde la formación misma se rompe, así que el fluido empieza a entrar a la formación en lugar de regresar a superficie (pérdida de circulación), y el control de presión aparente es falso. Trátalo como urgente: detente y reevalúa el peso de lodo contra datos reales de LOT/FIT en lugar de seguir perforando sobre un gradiente asumido.',
+  },
+];
+
 const webAppLd = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -77,6 +92,10 @@ const webAppLd = {
         <div class="note-box mt-24" style="max-width:700px;">
           <strong>¿No sabes qué ingresar?</strong> El gradiente de presión de poro de agua dulce ≈ <span class="highlight">0.433 psi/ft</span>. Agua de mar ≈ <span class="highlight">0.445 psi/ft</span>. Un gradiente de fractura típico en formaciones de presión normal es de <span class="highlight">0.7–0.85 psi/ft</span> pero varía significativamente según la cuenca y profundidad — siempre usa datos reales de prueba de fuga (LOT) para operaciones reales.
         </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>Esta es una herramienta de referencia, no una autoridad operacional.</strong> Las cifras reales de presión de poro, gradiente de fractura y límites de sobrebalance para un pozo en vivo pertenecen a tu ingeniero de perforación y supervisor certificado de control de pozos, trabajando con datos reales de LOT/FIT y de pozos vecinos — nunca establezcas un programa real de peso de lodo solo a partir de esta calculadora.
+        </div>
       </div>
 
       <div class="prose">
@@ -96,6 +115,30 @@ const webAppLd = {
           <li><strong style="color:var(--warn);">Sobrebalance Alto</strong> — más de 1,500 psi de margen. Vigila el <a href="/es/calculators/ecd">ECD</a> cuidadosamente; riesgo de daño de formación o pegadura diferencial.</li>
           <li><strong style="color:var(--danger);">Subbalanceado / Sobrebalanceado (crítico)</strong> — la presión hidrostática ha cruzado completamente la presión de poro o de fractura. Se requiere revisión inmediata.</li>
         </ul>
+
+        <h3>Ejemplo Resuelto</h3>
+        <p>Lodo de 12.0 ppg a 10,000 ft de TVD, contra un gradiente de presión de poro de 0.433 psi/ft y un gradiente de fractura de 0.75 psi/ft:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Presión Hidrostática</dt>
+          <dd class="formula-eq"><code>HP = 0.052 × 12.0 × 10,000 = 6,240 psi</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Presión de Poro / Presión de Fractura</dt>
+          <dd class="formula-eq"><code>PP = 0.433 × 10,000 = 4,330 psi    FP = 0.75 × 10,000 = 7,500 psi</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Sobrebalance</dt>
+          <dd class="formula-eq"><code>6,240 − 4,330 = 1,910 psi</code></dd>
+          <dd class="formula-note">Por encima del umbral de 1,500 psi que esta página usa para "Sobrebalance Alto" — cómodamente libre de la presión de poro, pero el margen ya es lo bastante grande para vigilar el ECD y el riesgo de pegadura diferencial en lugar de asumir que simplemente es seguro.</dd>
+        </dl>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
 
         <p>Para derivaciones completas de fórmulas y ejemplos resueltos, ver la <a href="/es/drilling/mud-weight">página de referencia de peso de lodo y presión</a>. Si estás trabajando con una surgencia activa, usa la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> en su lugar.</p>
       </div>

@@ -12,6 +12,10 @@ const faq = [
     q: 'Does this account for volume increase from adding barite?',
     a: 'No — this gives the weight of barite (in lb per barrel of starting mud) needed to reach the target weight, treating the added solids as if they replace an equivalent liquid volume. A full mud engineering calculation also tracks the resulting volume increase and solids content; this calculator answers the weighting-material question specifically, not total system volume.',
   },
+  {
+    q: 'How many sacks of barite does the lb/bbl figure translate into?',
+    a: 'Divide the total pounds needed (lb/bbl × system volume in bbl) by the sack weight your supplier actually uses — commonly 100 lb per sack in the US, though some regions still use other sizes. Always confirm the sack weight on the delivery ticket rather than assuming, since ordering against the wrong sack size under- or over-orders material by a real margin.',
+  },
 ];
 
 const webAppLd = {
@@ -67,6 +71,10 @@ const webAppLd = {
             <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Barite Required</span><span class="output-value" id="out-barite">—</span></div>
           </div>
         </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Reference only.</strong> Confirm the mud system's actual volume and the barite's own measured specific gravity before ordering material for a real weight-up — field barite assay varies around the nominal 35.5 ppg API figure, and treating a lighter actual batch as if it were nominal under-orders material.
+        </div>
       </div>
 
       <div class="prose">
@@ -75,6 +83,18 @@ const webAppLd = {
           <dt class="formula-label">Barite Required</dt>
           <dd class="formula-eq"><code>Barite (lb/bbl) = 1500 × (Target MW − Current MW) ÷ (35.5 − Target MW)</code></dd>
           <dd class="formula-note">Both mud weights in ppg. Result is pounds of barite per barrel of starting mud.</dd>
+        </dl>
+
+        <h3>Worked Example</h3>
+        <p>Weighting up a 500 bbl active system from 10.5 ppg to a 12.0 ppg kill mud weight:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Barite Required</dt>
+          <dd class="formula-eq"><code>Barite = 1500 × (12.0 − 10.5) ÷ (35.5 − 12.0) = 1500 × 1.5 ÷ 23.5 = 95.7 lb/bbl</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Total for a 500 bbl System</dt>
+          <dd class="formula-eq"><code>95.7 lb/bbl × 500 bbl = 47,850 lb ≈ 479 sacks at 100 lb/sack</code></dd>
+          <dd class="formula-note">Round up for mixing losses and to avoid a second trip to the pump room mid-weight-up.</dd>
         </dl>
 
         <h3>Where This Fits</h3>

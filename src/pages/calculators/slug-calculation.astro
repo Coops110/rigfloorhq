@@ -12,6 +12,10 @@ const faq = [
     q: 'Why does pumping a slug cause a pit gain?',
     a: 'The slug is heavier than the mud already in the pits, so pumping it in and displacing an equal volume of lighter mud back to the pits — the U-tubing effect — shows up as a real, expected pit gain. Confirming this expected gain matches what the calculator predicts is exactly how a crew rules out a real kick showing up at the same moment a slug is pumped.',
   },
+  {
+    q: "What if the actual pit gain doesn't match the predicted figure?",
+    a: 'A small discrepancy from mixing losses or trapped air at surface is normal, but a gain noticeably larger than predicted should always be treated as a possible influx first, not written off as a calculation quirk — stop and flow-check per well control procedure before resuming the trip.',
+  },
 ];
 
 
@@ -102,6 +106,10 @@ const webAppLd = {
             <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Expected Pit Gain</span><span class="output-value" id="out-pitgain">—</span></div>
           </div>
         </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Reference only.</strong> This assumes a clean, fully displaced slug. Real surface equipment lag, trapped air, and mixing losses mean an actual gain should be read as a sanity check against this figure, not an exact substitute for watching the pits during the job.
+        </div>
       </div>
 
       <div class="prose">
@@ -113,6 +121,19 @@ const webAppLd = {
         <dl class="formula-block mt-24">
           <dt class="formula-label">Pit Gain Due to Slug U-Tubing</dt>
           <dd class="formula-eq"><code>Pit Gain = Slug Volume × (Slug Weight − Mud Weight) ÷ Mud Weight</code></dd>
+        </dl>
+
+        <h3>Worked Example</h3>
+        <p>Pumping a 12.0 ppg slug into a string carrying 10.0 ppg mud, aiming for 200 ft of dry pipe with 5" 19.5 lb/ft drill pipe (capacity 0.01776 bbl/ft):</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Slug Volume</dt>
+          <dd class="formula-eq"><code>V = (200 × 0.01776 × 10.0) ÷ (12.0 − 10.0) = 35.52 ÷ 2 = 17.76 bbl</code></dd>
+        </dl>
+        <p>Feeding that same 17.76 bbl slug volume into the pit gain formula:</p>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Pit Gain Due to Slug U-Tubing</dt>
+          <dd class="formula-eq"><code>Pit Gain = 17.76 × (12.0 − 10.0) ÷ 10.0 = 17.76 × 0.2 = 3.55 bbl</code></dd>
+          <dd class="formula-note">The crew expects to see roughly a 3.55 bbl pit gain right after pumping — the number the actual pit-level reading gets checked against.</dd>
         </dl>
 
         <h3>Where This Fits</h3>

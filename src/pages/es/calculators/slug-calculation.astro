@@ -12,6 +12,10 @@ const faq = [
     q: '¿Por qué bombear un slug causa una ganancia de pileta?',
     a: 'El slug es más pesado que el lodo que ya está en las piletas, así que bombearlo adentro y desplazar un volumen igual de lodo más ligero de vuelta a las piletas — el efecto de U-tubing — se muestra como una ganancia de pileta real y esperada. Confirmar que esta ganancia esperada coincide con lo que predice la calculadora es exactamente cómo una cuadrilla descarta que una surgencia real aparezca en el mismo momento en que se bombea un slug.',
   },
+  {
+    q: '¿Qué pasa si la ganancia de pileta real no coincide con la cifra predicha?',
+    a: 'Una pequeña discrepancia por pérdidas de mezclado o aire atrapado en superficie es normal, pero una ganancia notablemente mayor a la predicha siempre debe tratarse primero como una posible entrada de fluido, no descartarse como una rareza del cálculo — detente y haz una revisión de flujo según el procedimiento de control de pozos antes de continuar el viaje.',
+  },
 ];
 
 
@@ -102,6 +106,10 @@ const webAppLd = {
             <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Ganancia de Pileta Esperada</span><span class="output-value" id="out-pitgain">—</span></div>
           </div>
         </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Solo de referencia.</strong> Esto asume un slug limpio y completamente desplazado. El retraso real del equipo de superficie, el aire atrapado y las pérdidas de mezclado significan que una ganancia real debe leerse como una revisión de cordura contra esta cifra, no como un sustituto exacto de vigilar las piletas durante el trabajo.
+        </div>
       </div>
 
       <div class="prose">
@@ -113,6 +121,19 @@ const webAppLd = {
         <dl class="formula-block mt-24">
           <dt class="formula-label">Ganancia de Pileta por U-Tubing del Slug</dt>
           <dd class="formula-eq"><code>Ganancia de Pileta = Volumen de Slug × (Peso de Slug − Peso de Lodo) ÷ Peso de Lodo</code></dd>
+        </dl>
+
+        <h3>Ejemplo Resuelto</h3>
+        <p>Bombeando un slug de 12.0 ppg a una sarta que carga lodo de 10.0 ppg, buscando 200 ft de tubería seca con tubería de perforación de 5" 19.5 lb/ft (capacidad 0.01776 bbl/ft):</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Volumen de Slug</dt>
+          <dd class="formula-eq"><code>V = (200 × 0.01776 × 10.0) ÷ (12.0 − 10.0) = 35.52 ÷ 2 = 17.76 bbl</code></dd>
+        </dl>
+        <p>Usando ese mismo volumen de slug de 17.76 bbl en la fórmula de ganancia de pileta:</p>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Ganancia de Pileta por U-Tubing del Slug</dt>
+          <dd class="formula-eq"><code>Ganancia de Pileta = 17.76 × (12.0 − 10.0) ÷ 10.0 = 17.76 × 0.2 = 3.55 bbl</code></dd>
+          <dd class="formula-note">La cuadrilla espera ver aproximadamente 3.55 bbl de ganancia de pileta justo después de bombear — el número contra el cual se revisa la lectura real del nivel de pileta.</dd>
         </dl>
 
         <h3>Dónde Encaja Esto</h3>

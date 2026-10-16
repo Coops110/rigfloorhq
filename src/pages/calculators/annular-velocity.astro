@@ -12,6 +12,10 @@ const faq = [
     q: 'Which annular section is the one that actually matters?',
     a: 'The largest-diameter, slowest-velocity section of the annulus — usually around the drill collars or the widest open-hole interval — since that\'s where velocity is lowest and cuttings are most likely to settle. A string with several annular sections of different capacity needs annular velocity checked in each one, not just at one convenient depth.',
   },
+  {
+    q: 'What annular velocity is considered the minimum for good hole cleaning?',
+    a: 'There\'s no single number — it depends on cuttings size and shape, mud rheology, hole angle, and rotation — but a commonly used starting point for vertical wells is roughly 100-150 ft/min in the critical (largest, slowest) annular section, with directional and horizontal wells typically needing more because cuttings beds form on the low side of the hole. Treat it as a planning baseline, not a substitute for a hole-cleaning model specific to the well.',
+  },
 ];
 
 
@@ -69,6 +73,10 @@ const webAppLd = {
             <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Annular Velocity</span><span class="output-value" id="out-av">—</span></div>
           </div>
         </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Reference only.</strong> The minimum annular velocity needed for adequate hole cleaning depends on cuttings size, mud rheology, and hole angle — confirm the actual target for this well against your company's hydraulics program rather than a generic rule of thumb.
+        </div>
       </div>
 
       <div class="prose">
@@ -77,6 +85,19 @@ const webAppLd = {
           <dt class="formula-label">Annular Velocity</dt>
           <dd class="formula-eq"><code>AV = Pump Output ÷ Annular Capacity</code></dd>
           <dd class="formula-note">Pump output in bbl/min, annular capacity in bbl/ft, AV in ft/min.</dd>
+        </dl>
+
+        <h3>Worked Example</h3>
+        <p>A 12¼" hole with 5" OD drill pipe in the open-hole section, pumping at 10 bbl/min:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Annular Capacity</dt>
+          <dd class="formula-eq"><code>AC = (12.25² − 5²) ÷ 1029.4 = 0.1215 bbl/ft</code></dd>
+          <dd class="formula-note">Standard annular capacity formula: (hole ID² − pipe OD²) ÷ 1029.4, both diameters in inches.</dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Annular Velocity</dt>
+          <dd class="formula-eq"><code>AV = 10 ÷ 0.1215 = 82.3 ft/min</code></dd>
+          <dd class="formula-note">At 10 bbl/min, this annulus is running well under the roughly 100-150 ft/min most operators target for reliable cuttings transport in a vertical hole — a sign to increase pump rate or revisit the hole-cleaning plan before drilling ahead.</dd>
         </dl>
 
         <h3>Where This Fits</h3>

@@ -20,7 +20,12 @@ export default defineConfig({
   site: 'https://rigfloorhq.com',
   trailingSlash: 'never',
   build: {
-    format: 'directory'
+    format: 'directory',
+    // The sitewide global.css+fonts.css bundle is small (~7KB) and used on
+    // every page, so forcing it inline avoids a render-blocking external
+    // stylesheet request without the staleness cost it'd have on a large,
+    // page-specific bundle.
+    inlineStylesheets: 'always'
   },
   compressHTML: true,
   integrations: [

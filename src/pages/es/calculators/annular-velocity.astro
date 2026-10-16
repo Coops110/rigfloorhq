@@ -12,6 +12,10 @@ const faq = [
     q: '¿Cuál sección anular es la que realmente importa?',
     a: 'La sección de mayor diámetro y menor velocidad del anular — usualmente alrededor de los lastrabarrenas o el intervalo de agujero abierto más ancho — ya que ahí es donde la velocidad es más baja y los recortes tienen más probabilidad de asentarse. Una sarta con varias secciones anulares de diferente capacidad necesita que se revise la velocidad anular en cada una, no solo en una profundidad conveniente.',
   },
+  {
+    q: '¿Qué velocidad anular se considera el mínimo para una buena limpieza del pozo?',
+    a: 'No hay un número único — depende del tamaño y forma de los recortes, la reología del lodo, el ángulo del pozo y la rotación — pero un punto de partida comúnmente usado para pozos verticales es aproximadamente 100-150 ft/min en la sección anular crítica (la más ancha y lenta), y los pozos direccionales y horizontales típicamente necesitan más porque se forman camas de recortes en el lado bajo del agujero. Trátalo como una línea base de planificación, no como sustituto de un modelo de limpieza específico para el pozo.',
+  },
 ];
 
 const webAppLd = {
@@ -67,6 +71,10 @@ const webAppLd = {
             <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Velocidad Anular</span><span class="output-value" id="out-av">—</span></div>
           </div>
         </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Solo de referencia.</strong> La velocidad anular mínima necesaria para una limpieza adecuada del pozo depende del tamaño de los recortes, la reología del lodo y el ángulo del pozo — confirma el objetivo real para este pozo contra el programa de hidráulica de tu compañía, no una regla general genérica.
+        </div>
       </div>
 
       <div class="prose">
@@ -75,6 +83,19 @@ const webAppLd = {
           <dt class="formula-label">Velocidad Anular</dt>
           <dd class="formula-eq"><code>AV = Producción de Bomba ÷ Capacidad Anular</code></dd>
           <dd class="formula-note">Producción de bomba en bbl/min, capacidad anular en bbl/ft, AV en ft/min.</dd>
+        </dl>
+
+        <h3>Ejemplo Resuelto</h3>
+        <p>Un agujero de 12¼" con tubería de perforación de 5" OD en la sección de agujero abierto, bombeando a 10 bbl/min:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Capacidad Anular</dt>
+          <dd class="formula-eq"><code>AC = (12.25² − 5²) ÷ 1029.4 = 0.1215 bbl/ft</code></dd>
+          <dd class="formula-note">Fórmula estándar de capacidad anular: (ID del agujero² − OD de la tubería²) ÷ 1029.4, ambos diámetros en pulgadas.</dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Velocidad Anular</dt>
+          <dd class="formula-eq"><code>AV = 10 ÷ 0.1215 = 82.3 ft/min</code></dd>
+          <dd class="formula-note">A 10 bbl/min, este anular está corriendo bastante por debajo de los 100-150 ft/min que la mayoría de los operadores buscan para un transporte confiable de recortes en un pozo vertical — una señal para aumentar la tasa de bomba o revisar el plan de limpieza antes de seguir perforando.</dd>
         </dl>
 
         <h3>Dónde Encaja Esto</h3>

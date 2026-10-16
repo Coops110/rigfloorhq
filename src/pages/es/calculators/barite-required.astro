@@ -12,6 +12,10 @@ const faq = [
     q: '¿Esto toma en cuenta el aumento de volumen por agregar barita?',
     a: 'No — esto da el peso de barita (en lb por barril de lodo inicial) necesario para alcanzar el peso objetivo, tratando los sólidos agregados como si reemplazaran un volumen líquido equivalente. Un cálculo completo de ingeniería de lodos también rastrea el aumento de volumen resultante y el contenido de sólidos; esta calculadora responde específicamente la pregunta del material de carga, no el volumen total del sistema.',
   },
+  {
+    q: '¿A cuántos sacos de barita se traduce la cifra en lb/bbl?',
+    a: 'Divide el total de libras necesarias (lb/bbl × volumen del sistema en bbl) entre el peso de saco que realmente usa tu proveedor — comúnmente 100 lb por saco en EE. UU., aunque algunas regiones usan otros tamaños. Siempre confirma el peso del saco en el ticket de entrega en lugar de asumirlo, ya que ordenar contra el tamaño de saco equivocado sub- o sobre-ordena material por un margen real.',
+  },
 ];
 
 
@@ -69,6 +73,10 @@ const webAppLd = {
             <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Barita Requerida</span><span class="output-value" id="out-barite">—</span></div>
           </div>
         </div>
+
+        <div class="note-box mt-24" style="max-width:700px;">
+          <strong>Solo de referencia.</strong> Confirma el volumen real del sistema de lodo y la gravedad específica medida de la barita antes de ordenar material para una carga real — el ensayo de barita de campo varía alrededor de la cifra nominal API de 35.5 ppg, y tratar un lote real más ligero como si fuera nominal sub-ordena material.
+        </div>
       </div>
 
       <div class="prose">
@@ -77,6 +85,18 @@ const webAppLd = {
           <dt class="formula-label">Barita Requerida</dt>
           <dd class="formula-eq"><code>Barita (lb/bbl) = 1500 × (MW Objetivo − MW Actual) ÷ (35.5 − MW Objetivo)</code></dd>
           <dd class="formula-note">Ambos pesos de lodo en ppg. El resultado es libras de barita por barril de lodo inicial.</dd>
+        </dl>
+
+        <h3>Ejemplo Resuelto</h3>
+        <p>Cargando un sistema activo de 500 bbl de 10.5 ppg a un peso de lodo de control de 12.0 ppg:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Barita Requerida</dt>
+          <dd class="formula-eq"><code>Barita = 1500 × (12.0 − 10.5) ÷ (35.5 − 12.0) = 1500 × 1.5 ÷ 23.5 = 95.7 lb/bbl</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Total para un Sistema de 500 bbl</dt>
+          <dd class="formula-eq"><code>95.7 lb/bbl × 500 bbl = 47,850 lb ≈ 479 sacos a 100 lb/saco</code></dd>
+          <dd class="formula-note">Redondea hacia arriba para pérdidas de mezclado y evitar un segundo viaje a la sala de bombas a mitad de la carga.</dd>
         </dl>
 
         <h3>Dónde Encaja Esto</h3>

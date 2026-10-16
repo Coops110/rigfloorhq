@@ -100,6 +100,20 @@ const webAppLd = {
           <dd class="formula-note">Both wellhead pressure and required pressure in psi. The ratio is dimensionless (expressed as N:1).</dd>
         </dl>
 
+        <h3>Worked Example</h3>
+        <p>Shut in with 8,000 psi at the BOP stack, closing on a preventer rated at a 7:1 closing ratio:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Pressure Required to Close</dt>
+          <dd class="formula-eq"><code>8000 ÷ 7 = 1,143 psi</code></dd>
+          <dd class="formula-note">Comfortably inside a typical 1,500 psi regulated closing-unit manifold pressure, so the accumulator system has margin left to hold.</dd>
+        </dl>
+        <p>After bleeding the stack down to 500 psi residual, opening the same preventer rated at a 2.3:1 opening ratio:</p>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Pressure Required to Open</dt>
+          <dd class="formula-eq"><code>500 ÷ 2.3 = 217 psi</code></dd>
+          <dd class="formula-note">Close to the lower end of a typical opening-manifold regulator setting — worth a direct check against the unit's actual opening pressure before assuming it will open cleanly at full residual pressure.</dd>
+        </dl>
+
         <h3>Where This Fits</h3>
         <p>This is the mechanical link between a wellhead pressure reading and what the closing unit actually has to supply to hold it — directly relevant on the <a href="/equipment/bop">BOP equipment page</a> and any time the <a href="/equipment/accumulator">accumulator function test</a> is checked against real closing pressures rather than a generic target. As wellhead pressure climbs during a well control event, this is the quick check for whether the rig's accumulator system has enough working pressure margin above what a given ratio actually demands at the current shut-in pressure.</p>
 
