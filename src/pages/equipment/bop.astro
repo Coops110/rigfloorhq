@@ -86,17 +86,17 @@ const techArticleJsonLd = techArticleSchema({
         <picture>
           <source
             type="image/avif"
-            srcset="/images/blog/bop-stack-diagram-660w.avif 660w, /images/blog/bop-stack-diagram-1320w.avif 1320w, /images/blog/bop-stack-diagram.avif 1800w"
+            srcset="/images/blog/bop-stack-diagram-380w.avif 380w, /images/blog/bop-stack-diagram-660w.avif 660w, /images/blog/bop-stack-diagram-1320w.avif 1320w, /images/blog/bop-stack-diagram.avif 1800w"
             sizes="(max-width: 700px) 100vw, 660px"
           />
           <source
             type="image/webp"
-            srcset="/images/blog/bop-stack-diagram-660w.webp 660w, /images/blog/bop-stack-diagram-1320w.webp 1320w, /images/blog/bop-stack-diagram.webp 1800w"
+            srcset="/images/blog/bop-stack-diagram-380w.webp 380w, /images/blog/bop-stack-diagram-660w.webp 660w, /images/blog/bop-stack-diagram-1320w.webp 1320w, /images/blog/bop-stack-diagram.webp 1800w"
             sizes="(max-width: 700px) 100vw, 660px"
           />
           <img
             src="/images/blog/bop-stack-diagram.png"
-            srcset="/images/blog/bop-stack-diagram-660w.png 660w, /images/blog/bop-stack-diagram-1320w.png 1320w, /images/blog/bop-stack-diagram.png 1800w"
+            srcset="/images/blog/bop-stack-diagram-380w.png 380w, /images/blog/bop-stack-diagram-660w.png 660w, /images/blog/bop-stack-diagram-1320w.png 1320w, /images/blog/bop-stack-diagram.png 1800w"
             sizes="(max-width: 700px) 100vw, 660px"
             alt={stackAlt} width="1800" height="1120" loading="lazy" decoding="async" style="max-width:100%;height:auto;margin:22px 0;border:1px solid var(--iron);border-radius:6px;" />
         </picture>
@@ -135,7 +135,7 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="stack-arrangement">How a Stack Is Arranged</h2>
         <p>Order is not arbitrary. Reading a surface stack from the wellhead up, the rams come first, with a drilling spool carrying the choke and kill outlets set between them, and the annular on top. Two principles drive that arrangement.</p>
         <p>The annular goes highest because it is the most forgiving element and the least able to hold pressure — it is the one you reach for first and the one you least want holding the well alone. The choke and kill outlets go <em>below</em> at least one sealing element, because an outlet above everything that is closed is connected to nothing.</p>
-        <p>Subsea stacks follow the same logic with more of everything. The ram bodies sit on the wellhead connector at the seabed, and a lower marine riser package — carrying the annulars and the flex joint — lands on top of them, so the LMRP can be released and recovered while the rams stay latched to the well.</p>
+        <p>Subsea stacks follow the same logic with more of everything. The ram bodies sit on the wellhead connector at the seabed, and a lower marine riser package — carrying the annulars and the flex joint — lands on top of them, so the LMRP can be released and recovered while the rams stay latched to the well. Having that stack a riser's length below the rig floor also changes the pressure math: see the <a href="/calculators/riser-margin">riser margin calculator</a> for the extra mud weight carried to cover a disconnected riser filled with seawater.</p>
 
         <h2 id="space-out">BOP Space-Out: How Stack Elevations Are Measured</h2>
         <p>Space-out is the process of confirming exactly where each component in an assembled stack sits, in elevation, relative to a fixed reference — usually the rig floor (top of rotary table) or ground level. It matters because the stack has to satisfy several constraints at once: the choke and kill outlets have to land at a height the crew can actually work from, the annular has to clear the rig floor for stripping operations, and the whole assembly has to fit between the wellhead connector and the substructure without the driller finding that out the hard way.</p>
@@ -170,7 +170,7 @@ const techArticleJsonLd = techArticleSchema({
         <p>A BOP is only as good as its ability to close when everything else has failed, which is a question about the control system rather than the stack.</p>
 
         <h3>Accumulators</h3>
-        <p>Closing pressure comes from accumulator bottles — steel vessels precharged with nitrogen, then filled with hydraulic fluid against that gas cushion. The stored energy means the stack can be closed with the rig black and the pumps dead, which is exactly the condition you need it in. API STD 53 sets how much usable volume must be available, sized so the critical functions can be operated without recharging.</p>
+        <p>Closing pressure comes from accumulator bottles — steel vessels precharged with nitrogen, then filled with hydraulic fluid against that gas cushion. The stored energy means the stack can be closed with the rig black and the pumps dead, which is exactly the condition you need it in. API STD 53 sets how much usable volume must be available, sized so the critical functions can be operated without recharging. The actual hydraulic operating pressure needed to close or open a given preventer at a given wellhead pressure comes from its rated closing ratio — run it on the <a href="/calculators/bop-closing-ratio">BOP closing and opening ratio calculator</a>.</p>
         <p>This is what the daily pressure readings below are checking. An accumulator that has bled down, or lost its nitrogen precharge, can look fine on a gauge and still not have the volume to close a ram.</p>
 
         <h3>Subsea control pods</h3>

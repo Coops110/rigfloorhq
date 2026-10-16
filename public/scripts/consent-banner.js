@@ -10,6 +10,31 @@
   var banner = document.getElementById('consent-banner');
   if (!banner) return;
 
+  // Everything below was running synchronously the moment this deferred
+  // script executed — right in the DOMContentLoaded window where the audit
+  // measured a long task up to 188ms. None of it is needed before the
+  // visitor can actually interact with the page, so it's wrapped in init()
+  // and scheduled on idle instead. The pointerdown/keydown/touchstart/scroll
+  // listeners below still catch an immediate interaction (e.g. clicking the
+  // footer's "Cookie settings" link fires pointerdown before click, so
+  // window.rigFloorHQOpenConsent exists by the time the click handler reads
+  // it) — same deferral pattern BaseLayout.astro uses for gtag.js.
+  if (window.__consentBannerInit) return;
+  function init() {
+    if (window.__consentBannerInit) return;
+    window.__consentBannerInit = true;
+    runConsentBanner();
+  }
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(init, { timeout: 1500 });
+  } else {
+    setTimeout(init, 150);
+  }
+  ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (evt) {
+    window.addEventListener(evt, init, { once: true, passive: true });
+  });
+
+  function runConsentBanner() {
   var mainView = document.getElementById('consent-view-main');
   var settingsView = document.getElementById('consent-view-settings');
   var acceptBtn = document.getElementById('consent-accept');
@@ -180,4 +205,5 @@
   window.rigFloorHQOpenConsent = function () { show('settings', true); };
 
   if (!read() && probablyNeedsBanner()) show('main', false);
+  } // end runConsentBanner
 })();

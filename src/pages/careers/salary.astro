@@ -2,6 +2,15 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/careers/salary.astro',
+  path: '/careers/salary',
+  headline: 'Oil Rig Salaries 2026: $38k to $300k by Role',
+  description: 'Real 2026 pay for every rig role — roustabout $38k to company man $300k+ — plus onshore vs offshore differences and the certs each step needs.',
+  lang: 'en',
+});
 ---
 <BaseLayout
   {/* Title and description are length-budgeted deliberately. BaseLayout appends
@@ -16,6 +25,7 @@ import Footer from '../../components/Footer.astro';
       Keep these numbers in sync with the pay table if it is ever updated. */}
   title="Oil Rig Salaries 2026: $38k to $300k by Role"
   description="Real 2026 pay for every rig role — roustabout $38k to company man $300k+ — plus onshore vs offshore differences and the certs each step needs."
+  extraJsonLd={[techArticleJsonLd]}
   breadcrumbs={[{ label: 'Careers', href: '/careers' }, { label: 'Salary Guide', href: '/careers/salary' }]}
   lang="en"
   alternateHref="/es/careers/salary"
@@ -28,6 +38,12 @@ import Footer from '../../components/Footer.astro';
     <h1>Oil Rig <span>Salary Guide</span></h1>
     <p class="page-hero-sub">What every position actually pays in 2026, and why offshore consistently pays more than the equivalent onshore role.</p>
   </div>
+
+  <section class="block">
+    <div class="note-box" style="max-width:800px;">
+      <strong>Short answer:</strong> Oil rig pay ranges from about $38,000 a year for an entry-level roustabout to $300,000-plus for a company man, with most experienced hands clearing $70,000 to $120,000. Offshore roles pay 30–40% more than the same job onshore, and BLS data independently puts toolpushers at $124,100 a year nationally.
+    </div>
+  </section>
 
   <section class="block">
     <div class="section-eyebrow">By Position</div>

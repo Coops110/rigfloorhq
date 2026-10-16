@@ -77,13 +77,18 @@ const techArticleJsonLd = techArticleSchema({
 
         <picture>
           <source
+            type="image/avif"
+            srcset="/images/blog/bop-stack-diagram-380w.avif 380w, /images/blog/bop-stack-diagram-660w.avif 660w, /images/blog/bop-stack-diagram-1320w.avif 1320w, /images/blog/bop-stack-diagram.avif 1800w"
+            sizes="(max-width: 700px) 100vw, 660px"
+          />
+          <source
             type="image/webp"
-            srcset="/images/blog/bop-stack-diagram-660w.webp 660w, /images/blog/bop-stack-diagram-1320w.webp 1320w, /images/blog/bop-stack-diagram.webp 1800w"
+            srcset="/images/blog/bop-stack-diagram-380w.webp 380w, /images/blog/bop-stack-diagram-660w.webp 660w, /images/blog/bop-stack-diagram-1320w.webp 1320w, /images/blog/bop-stack-diagram.webp 1800w"
             sizes="(max-width: 700px) 100vw, 660px"
           />
           <img
             src="/images/blog/bop-stack-diagram.png"
-            srcset="/images/blog/bop-stack-diagram-660w.png 660w, /images/blog/bop-stack-diagram-1320w.png 1320w, /images/blog/bop-stack-diagram.png 1800w"
+            srcset="/images/blog/bop-stack-diagram-380w.png 380w, /images/blog/bop-stack-diagram-660w.png 660w, /images/blog/bop-stack-diagram-1320w.png 1320w, /images/blog/bop-stack-diagram.png 1800w"
             sizes="(max-width: 700px) 100vw, 660px"
             alt={stackAlt} width="1800" height="1120" loading="lazy" decoding="async" style="max-width:100%;height:auto;margin:22px 0;border:1px solid var(--iron);border-radius:6px;" />
         </picture>
@@ -122,7 +127,7 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="organizacion-del-stack">Cómo Se Organiza un Stack</h2>
         <p>El orden no es arbitrario. Leyendo un stack superficial desde el cabezal del pozo hacia arriba, primero van los arietes, con un carrete de perforación que lleva las salidas de choke y matanza colocado entre ellos, y el anular arriba de todo. Dos principios rigen ese orden.</p>
         <p>El anular va más arriba porque es el elemento más tolerante y el que menos presión puede sostener: es el primero al que se recurre y el que menos se quiere que sostenga el pozo solo. Las salidas de choke y matanza van por debajo de al menos un elemento de sellado, porque una salida por encima de todo lo que está cerrado no está conectada a nada.</p>
-        <p>Los stacks submarinos siguen la misma lógica con más de todo. Los cuerpos de los arietes se asientan sobre el conector del cabezal en el lecho marino, y un paquete inferior del riser marino (LMRP), que lleva los anulares y la junta flexible, se posa encima de ellos, de modo que el LMRP puede liberarse y recuperarse mientras los arietes permanecen enganchados al pozo.</p>
+        <p>Los stacks submarinos siguen la misma lógica con más de todo. Los cuerpos de los arietes se asientan sobre el conector del cabezal en el lecho marino, y un paquete inferior del riser marino (LMRP), que lleva los anulares y la junta flexible, se posa encima de ellos, de modo que el LMRP puede liberarse y recuperarse mientras los arietes permanecen enganchados al pozo. Tener ese stack a la profundidad de todo un riser por debajo del piso del taladro también cambia la matemática de presión: ver la <a href="/es/calculators/riser-margin">calculadora de margen de riser</a> para el peso de lodo extra que se lleva para cubrir un riser desconectado lleno de agua de mar.</p>
 
         <h2 id="space-out">Space-Out del BOP: Cómo Se Miden las Elevaciones del Stack</h2>
         <p>El space-out es el proceso de confirmar exactamente dónde se ubica cada componente de un stack armado, en elevación, respecto a una referencia fija, usualmente el piso del taladro (parte superior de la mesa rotaria) o el nivel del terreno. Importa porque el stack debe satisfacer varias restricciones a la vez: las salidas de choke y matanza tienen que quedar a una altura desde la que el equipo realmente pueda trabajar, el anular tiene que despejar el piso del taladro para operaciones de stripping, y todo el conjunto tiene que encajar entre el conector del cabezal y la subestructura sin que el perforador lo descubra de la peor manera.</p>
@@ -157,7 +162,7 @@ const techArticleJsonLd = techArticleSchema({
         <p>Un BOP es tan bueno como su capacidad de cerrar cuando todo lo demás ha fallado, y eso es una cuestión del sistema de control, no del stack.</p>
 
         <h3>Acumuladores</h3>
-        <p>La presión de cierre viene de botellas acumuladoras: recipientes de acero precargados con nitrógeno y luego llenados con fluido hidráulico contra ese cojín de gas. La energía almacenada significa que el stack puede cerrarse con el taladro sin energía y las bombas paradas, que es exactamente la condición en la que se necesita que funcione. API STD 53 establece cuánto volumen utilizable debe estar disponible, dimensionado para que las funciones críticas puedan operarse sin recargar.</p>
+        <p>La presión de cierre viene de botellas acumuladoras: recipientes de acero precargados con nitrógeno y luego llenados con fluido hidráulico contra ese cojín de gas. La energía almacenada significa que el stack puede cerrarse con el taladro sin energía y las bombas paradas, que es exactamente la condición en la que se necesita que funcione. API STD 53 establece cuánto volumen utilizable debe estar disponible, dimensionado para que las funciones críticas puedan operarse sin recargar. La presión hidráulica real necesaria para cerrar o abrir un preventor dado a una presión de cabezal determinada depende de su relación de cierre nominal — calcúlala en la <a href="/es/calculators/bop-closing-ratio">calculadora de relación de cierre y apertura de BOP</a>.</p>
         <p>Esto es lo que verifican las lecturas de presión diarias de abajo. Un acumulador que se ha descargado, o que perdió su precarga de nitrógeno, puede verse bien en un manómetro y aun así no tener el volumen para cerrar un ariete.</p>
 
         <h3>Pods de control submarinos</h3>

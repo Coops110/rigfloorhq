@@ -51,9 +51,9 @@ Un chequeo de flujo es la forma más rápida de confirmar o descartar una entrad
 Si el pozo continúa fluyendo con las bombas apagadas y sin efecto de sifón mecánico presente, esa es una surgencia confirmada. En ese punto, la cuadrilla pasa directamente al procedimiento de cierre — sin verificación adicional, sin dudar.
 
 <picture>
-  <source type="image/avif" srcset="/images/blog/well-control-flowchart.avif" />
-  <source type="image/webp" srcset="/images/blog/well-control-flowchart.webp" />
-  <img src="/images/blog/well-control-flowchart.png" width="2000" height="560" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Cinco pasos del control de pozos: detectar señales, chequeo de flujo, cerrar el pozo, registrar y calcular, matar el pozo" />
+  <source type="image/avif" srcset="/images/blog/well-control-flowchart-380w.avif 380w, /images/blog/well-control-flowchart.avif 2000w" sizes="(max-width: 700px) 100vw, 700px" />
+  <source type="image/webp" srcset="/images/blog/well-control-flowchart-380w.webp 380w, /images/blog/well-control-flowchart.webp 2000w" sizes="(max-width: 700px) 100vw, 700px" />
+  <img src="/images/blog/well-control-flowchart.png" srcset="/images/blog/well-control-flowchart-380w.png 380w, /images/blog/well-control-flowchart.png 2000w" sizes="(max-width: 700px) 100vw, 700px" width="2000" height="560" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Cinco pasos del control de pozos: detectar señales, chequeo de flujo, cerrar el pozo, registrar y calcular, matar el pozo" />
 </picture>
 
 > **Vale la pena saber:** el control de pozos se divide en dos componentes — un componente activo (monitoreo continuo de la presión del fluido de perforación) y un componente pasivo (el preventor de reventones mismo, listo por si el monitoreo activo se pierde algo).

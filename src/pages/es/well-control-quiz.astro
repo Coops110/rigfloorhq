@@ -18,6 +18,25 @@ type Question = {
 
 const questions = quizData as Question[];
 
+const faq = [
+  {
+    q: '¿Este quiz está afiliado oficialmente a IWCF o IADC?',
+    a: 'No. Las preguntas cubren el mismo terreno que se evalúa en los exámenes de certificación de control de pozos IWCF e IADC WellSharp, pero este quiz no está producido, avalado ni afiliado a ninguno de los dos organismos, y aprobarlo no sustituye una certificación acreditada. Trátalo como práctica y autoevaluación antes o junto con una capacitación real, no como un reemplazo de ella.',
+  },
+  {
+    q: '¿Hay una nota mínima para aprobar?',
+    a: 'No hay un corte fijo — esto no es un examen calificado. Cada tema muestra tu puntaje sobre el total de preguntas de ese tema al final, además de una revisión completa de cada pregunta con la respuesta correcta y su explicación, para que veas exactamente dónde estás débil en lugar de solo una etiqueta de aprobado/reprobado.',
+  },
+  {
+    q: '¿Puedo repetir un tema, y me saldrán las mismas preguntas?',
+    a: 'Sí, repite cualquier tema las veces que quieras. Las preguntas se mezclan cada vez que empiezas un tema, así que el orden cambia, aunque el banco de preguntas de ese tema sigue siendo el mismo — está pensado para práctica repetida hasta que el material se fije, no para un intento único.',
+  },
+  {
+    q: '¿Necesito crear una cuenta o instalar algo?',
+    a: 'No. No hay registro, no hay inicio de sesión, y no hay nada que instalar. Elige un tema y carga de inmediato en el navegador. Como dice la nota arriba, nada de lo que ingreses se guarda ni se envía a ningún lugar — recargar la página borra tu progreso, lo que también significa que no hay cuenta donde perder ese progreso.',
+  },
+];
+
 const topicOrder = [
   'Conocimientos Básicos',
   'Presión Básica',
@@ -112,6 +131,19 @@ const quizLd = {
     <div class="prose">
       <p>Resolver estos cálculos tú mismo primero vale más que leer la explicación en frío — la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> usa las mismas matemáticas que estas preguntas evalúan.</p>
       <p>Para las explicaciones completas detrás de estos temas, ver la <a href="/es/drilling/well-control">referencia de control de pozos</a> y la <a href="/es/pillars/advanced-well-control-and-hydrostatics">guía de Control de Pozos Avanzado</a>. Cada sección arriba se complementa con una lectura más profunda: <a href="/es/blog/well-control-basics">fundamentos de control de pozos para cuadrillas nuevas</a>, <a href="/es/blog/five-warning-signs-of-a-kick">cinco señales de advertencia de una surgencia</a>, <a href="/es/blog/shut-in-pressure-behavior-explained">comportamiento de la presión de cierre</a>, <a href="/es/blog/drillers-method-wait-and-weight-mixups">confusiones de Método del Perforador y Wait and Weight</a>, y <a href="/es/blog/pit-volumes-maasp-math-mistakes">errores de matemáticas de volúmenes de pileta y MAASP</a>.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title">Preguntas Sobre <span>el Quiz</span></h2>
+    <div class="accordion" style="max-width:820px;">
+      {faq.map((item) => (
+        <details class="acc-item">
+          <summary class="acc-header">{item.q}<span class="acc-arrow">▼</span></summary>
+          <div class="acc-body"><p>{item.a}</p></div>
+        </details>
+      ))}
     </div>
   </section>
 </BaseLayout>

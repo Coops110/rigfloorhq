@@ -48,8 +48,11 @@ const jsonLd = {
   <section class="block">
     <div class="prose" style="max-width:800px;margin:0 auto;text-align:left;">
       <h2 style="text-align:center;">La Ciencia de la Presión en el Campo</h2>
-      <p>Desde los yacimientos de alta presión de la Cuenca Delaware hasta los retos de aguas profundas del Golfo de México, el control de pozos avanzado y la hidrostática forman la columna vertebral de la seguridad en la perforación. Esta referencia cubre el terreno técnico que necesita el personal que pasa de la certificación básica Nivel 2/3 a los roles supervisores y de ingeniería Nivel 4 — si primero necesitas el concepto fundamental en sí, empieza con la <a href="/es/pillars/hydrostatic-pressure">página de referencia de presión hidrostática</a>, o con [fundamentos de control de pozos para cuadrillas nuevas](/es/blog/well-control-basics) si lo que necesitas son los fundamentos de respuesta a una surgencia y no las matemáticas avanzadas.</p>
+      <p>Desde los yacimientos de alta presión de la Cuenca Delaware hasta los retos de aguas profundas del Golfo de México, el control de pozos avanzado y la hidrostática forman la columna vertebral de la seguridad en la perforación. Esta referencia cubre el terreno técnico que necesita el personal que pasa de la certificación básica Nivel 2/3 a los roles supervisores y de ingeniería Nivel 4 — si primero necesitas el concepto fundamental en sí, empieza con la <a href="/es/pillars/hydrostatic-pressure">página de referencia de presión hidrostática</a>, o con <a href="/es/blog/well-control-basics">fundamentos de control de pozos para cuadrillas nuevas</a> si lo que necesitas son los fundamentos de respuesta a una surgencia y no las matemáticas avanzadas.</p>
       <p>En el sector de petróleo y gas, una surgencia no es solo una demora operativa — es un problema de física de alto riesgo. Manejar la presión hidrostática efectivamente evita que los fluidos de formación entren al pozo, protegiendo tanto a la cuadrilla como la integridad del equipo del taladro.</p>
+      <div class="danger-box mt-24">
+        <strong>Material de referencia, no una autoridad operativa.</strong> Esta página explica el razonamiento de ingeniería detrás de los procedimientos de matanza y el manejo de presión — no autoriza ninguna acción en un pozo real. El peso de lodo de matanza real, la elección del método de matanza, y los parámetros de MPD le corresponden a tu ingeniero de perforación y supervisor de control de pozos certificado, trabajando con datos reales de SIDPP/SICP y pileta, nunca solo con esta página de referencia.
+      </div>
     </div>
   </section>
 
@@ -112,11 +115,17 @@ const jsonLd = {
       </div>
     </div>
 
+    <p style="color:var(--fog);margin-top:20px;">Ambos métodos circulan a una tasa de matanza reducida y preestablecida en lugar de la tasa de perforación normal, así que la presión de standpipe tiene que recalcularse para esa tasa más lenta y para el lodo de matanza más pesado, en lugar de leerse de la tabla de perforación normal — ver la <a href="/es/calculators/pump-pressure-adjustment" style="color:var(--amber);">calculadora de nueva presión de bombeo</a> para ese ajuste.</p>
+
     <picture>
       <source type="image/avif" srcset="/images/blog/kill-methods-comparison.avif" />
       <source type="image/webp" srcset="/images/blog/kill-methods-comparison.webp" />
       <img src="/images/blog/kill-methods-comparison.png" width="1640" height="1040" alt="Comparación lado a lado del Método del Perforador (dos circulaciones) frente al Método Wait and Weight (una sola circulación) para matar un pozo" style="max-width:820px;width:100%;height:auto;margin:28px 0;border:1px solid var(--iron);border-radius:6px;" />
     </picture>
+
+    <div class="note-box mt-24" style="max-width:800px;">
+      <strong id="ejemplo-resuelto">Ejemplo resuelto — Peso de Lodo de Matanza:</strong> Cierre a 11,500 ft TVD con 11.2 ppg de peso de lodo original y 420 psi de SIDPP. KMW = 11.2 + (420 ÷ (0.052 × 11,500)) = 11.2 + (420 ÷ 598) = 11.2 + 0.70 = <span class="highlight">11.90 ppg</span>, redondeado hacia arriba a <span class="highlight">12.0 ppg</span> según la convención IADC WellSharp antes de mezclar realmente el lodo de matanza. Ese margen de 0.7 ppg es exactamente la precisión que se pierde haciendo este cálculo a mano bajo presión de tiempo — por eso existe la <a href="/es/calculators/kill-sheet" style="color:var(--amber);">calculadora de hoja de control de pozo</a>.
+    </div>
 
     <p style="color:var(--fog);margin-top:24px;">Para cálculos automatizados, usa la <a href="/es/calculators/kill-sheet" style="color:var(--amber);">calculadora de hoja de control de pozo</a>.</p>
     <p style="color:var(--fog);margin-top:12px;">Estos métodos se ven limpios en el papel. Para cómo se desarrollan realmente, ver los errores comunes de <a href="/es/blog/drillers-method-wait-and-weight-mixups" style="color:var(--amber);">Método del Perforador vs. Wait and Weight</a>, un conjunto de <a href="/es/blog/well-control-curveball-scenarios" style="color:var(--amber);">escenarios curveball de control de pozos</a> que complican la secuencia de manual, y los <a href="/es/blog/pit-volumes-maasp-math-mistakes" style="color:var(--amber);">errores de matemáticas de volúmenes de pileta y MAASP</a> que tropiezan los números detrás de todo esto.</p>
@@ -125,7 +134,7 @@ const jsonLd = {
   <section class="block">
     <div class="section-eyebrow">Contexto Regional</div>
     <h2 class="section-title">Contexto Operativo <span>Local</span></h2>
-    <p style="color:var(--fog);max-width:700px;margin-bottom:24px;">Distintas regiones presentan retos hidrostáticos distintos.</p>
+    <p style="color:var(--fog);max-width:700px;margin-bottom:24px;">La misma matemática hidrostática aplica en todas partes, pero el margen de error que deja se reduce o se amplía según dónde estés perforando.</p>
 
     <div class="two-col">
       <div>

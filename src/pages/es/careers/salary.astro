@@ -2,10 +2,20 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/careers/salary.astro',
+  path: '/es/careers/salary',
+  headline: 'Guía Salarial de Taladros Petroleros 2026 — Cada Rol',
+  description: 'Datos salariales reales de 2026 para cada posición en taladros petroleros: roustabout, roughneck, encuellador, perforador, toolpusher, soldador.',
+  lang: 'es',
+});
 ---
 <BaseLayout
   title="Guía Salarial de Taladros Petroleros 2026 — Cada Rol"
   description="Datos salariales reales de 2026 para cada posición en taladros petroleros: roustabout, roughneck, encuellador, perforador, toolpusher, soldador."
+  extraJsonLd={[techArticleJsonLd]}
   breadcrumbs={[{ label: 'Carreras', href: '/es/careers' }, { label: 'Guía Salarial', href: '/es/careers/salary' }]}
   lang="es"
   alternateHref="/careers/salary"
@@ -18,6 +28,12 @@ import Footer from '../../../components/Footer.astro';
     <h1>Guía Salarial de <span>Taladros Petroleros</span></h1>
     <p class="page-hero-sub">Cuánto paga realmente cada posición en 2026, y por qué costa afuera consistentemente paga más que el rol equivalente en tierra.</p>
   </div>
+
+  <section class="block">
+    <div class="note-box" style="max-width:800px;">
+      <strong>Respuesta corta:</strong> La paga en taladros petroleros va de unos $38,000 al año para un roustabout inicial a más de $300,000 para un company man; la mayoría de manos experimentadas gana entre $70,000 y $120,000. Costa afuera paga 30–40% más que en tierra, y el BLS confirma que los toolpushers ganan $124,100 al año.
+    </div>
+  </section>
 
   <section class="block">
     <div class="section-eyebrow">Por Posición</div>

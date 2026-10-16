@@ -3,10 +3,20 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/drilling/well-control.astro',
+  path: '/es/drilling/well-control',
+  headline: 'Control de Pozos y Surgencias — Reconocimiento, Cierre',
+  description: 'Referencia completa de control de pozos: señales de reconocimiento de surgencias, procedimientos de cierre, el método del perforador vs. wait-and-weight.',
+  lang: 'es',
+});
 ---
 <BaseLayout
   title="Control de Pozos y Surgencias — Reconocimiento, Cierre"
   description="Referencia completa de control de pozos: señales de reconocimiento de surgencias, procedimientos de cierre, el método del perforador vs. wait-and-weight."
+  extraJsonLd={[techArticleJsonLd]}
   breadcrumbs={[{ label: 'Perforación', href: '/es/drilling' }, { label: 'Control de Pozos', href: '/es/drilling/well-control' }]}
   lang="es"
   alternateHref="/drilling/well-control"
@@ -35,7 +45,7 @@ import SourcesStandards from '../../../components/SourcesStandards.astro';
           </div>
           <div class="safety-item orange">
             <h3>🔶 Cerrar el Pozo Ahora</h3>
-            <p>Ganancia de pileta mayor a 2 bbls. Pozo fluyendo con bombas apagadas. Cualquier SIDPP/SICP positivo después del cierre.</p>
+            <p>Ganancia de pileta mayor a 2 bbls. Pozo fluyendo con bombas apagadas. Cualquier SIDPP/SICP positivo después del cierre. Esa ganancia de pileta también indica aproximadamente cuánto ha subido la entrada por el espacio anular — ver la <a href="/es/calculators/kick-influx-geometry" style="color:var(--amber);">calculadora de geometría de entrada de surgencia</a> para la longitud, altura y gradiente de la entrada a partir de la ganancia y la inclinación del pozo.</p>
           </div>
           <div class="safety-item red">
             <h3>🚨 Emergencia</h3>
@@ -61,7 +71,7 @@ import SourcesStandards from '../../../components/SourcesStandards.astro';
           </details>
           <details class="acc-item">
             <summary class="acc-header">Paso 3 — Leer las Presiones<span class="acc-arrow">▼</span></summary>
-            <div class="acc-body"><p>Permite que las presiones se estabilicen (15–30 min). Registra el SIDPP, SICP, y el volumen de ganancia de pileta — tus datos para la hoja de control de pozo.</p></div>
+            <div class="acc-body"><p>Permite que las presiones se estabilicen (15–30 min). Registra el SIDPP, SICP, y el volumen de ganancia de pileta — tus datos para la hoja de control de pozo. Verifica esa ganancia de pileta contra la tolerancia a surgencia del pozo antes de decidir que la matanza puede proceder según lo planeado — ver la <a href="/es/calculators/kick-tolerance" style="color:var(--amber);">calculadora de tolerancia a surgencia</a>.</p></div>
           </details>
           <details class="acc-item">
             <summary class="acc-header">Paso 4 — Calcular el Peso de Lodo de Matanza<span class="acc-arrow">▼</span></summary>
@@ -104,7 +114,7 @@ import SourcesStandards from '../../../components/SourcesStandards.astro';
       </table>
     </div>
 
-    <p style="color:var(--fog);font-size:13px;margin-top:20px;max-width:700px;">Ambos métodos son aceptados por la industria y enseñados en la certificación de control de pozos de IWCF/IADC. Cuál se usa depende de la política de la empresa, la severidad de la surgencia, y el lodo de matanza disponible en el sitio. Usa la <a href="/es/calculators/kill-sheet" style="color:var(--amber);">calculadora de hoja de control de pozo</a> para calcular los números reales de cualquiera de los dos métodos.</p>
+    <p style="color:var(--fog);font-size:13px;margin-top:20px;max-width:700px;">Ambos métodos son aceptados por la industria y enseñados en la certificación de control de pozos de IWCF/IADC. Cuál se usa depende de la política de la empresa, la severidad de la surgencia, y el lodo de matanza disponible en el sitio. Usa la <a href="/es/calculators/kill-sheet" style="color:var(--amber);">calculadora de hoja de control de pozo</a> para calcular los números reales de cualquiera de los dos métodos. Una tercera opción, el bullheading, se salta por completo la circulación de la entrada hacia afuera y en su lugar bombea fluido de matanza directamente hacia abajo contra la formación — una técnica real para una sarta taponada o cuando circular no es posible, con sus propios límites de presión de superficie calculados en la <a href="/es/calculators/bullheading" style="color:var(--amber);">calculadora de bullheading</a>.</p>
 
     <div class="note-box mt-24">
       <strong id="ejemplo-resuelto">Ejemplo resuelto — Peso de Lodo de Matanza:</strong> Cierre a 10,000 pies TVD con 10.0 ppg de peso de lodo original y 300 psi de SIDPP. KMW = 10.0 + (300 ÷ (0.052 × 10,000)) = 10.0 + (300 ÷ 520) = 10.0 + 0.58 = <span class="highlight">10.58 ppg</span>, que se redondea hacia arriba a <span class="highlight">10.6 ppg</span> según la convención de IADC WellSharp. Corre los mismos números en la <a href="/es/calculators/kill-sheet" style="color:var(--amber);">calculadora de hoja de control de pozo</a> y obtendrás la misma cifra.

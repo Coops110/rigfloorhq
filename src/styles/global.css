@@ -116,6 +116,7 @@ nav.site-nav {
 .nav-logo-img {
   height: 100%;
   width: auto;
+  aspect-ratio: 580 / 176;
   display: block;
 }
 

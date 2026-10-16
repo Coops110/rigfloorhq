@@ -3,6 +3,25 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 
+const faq = [
+  {
+    q: '¿Qué es RigFloorHQ?',
+    a: 'Un sitio de referencia gratuito e independiente sobre el trabajo en el piso de perforación petrolera y de gas — carreras desde obrero de piso hasta toolpusher, las matemáticas de presión detrás del control de pozos, referencia de perforación y equipo, y soldadura de taladro. Sin publicidad ni contenido pagado, y no lo opera ningún contratista ni operadora. Ver la <a href="/es/about">página de quiénes somos</a> para saber quién lo escribe y revisa.',
+  },
+  {
+    q: '¿Necesito experiencia para trabajar en un taladro petrolero?',
+    a: 'No. Obrero de piso (roustabout) es el punto de entrada estándar, y la mayoría de los operadores capacitan en el trabajo en lugar de exigir experiencia previa — lo que sí buscan es buena condición física, un historial limpio de drogas y alcohol, y la disposición a trabajar turnos de 12 horas en condiciones duras. Ver <a href="/es/careers/roustabout">cómo convertirte en obrero de piso</a> para el proceso real de contratación.',
+  },
+  {
+    q: '¿Las calculadoras y el quiz son realmente gratis?',
+    a: 'Sí, sin registro, sin muro de pago, sin pedir tu correo. Las <a href="/es/calculators">calculadoras</a> usan las mismas fórmulas enseñadas en la certificación de control de pozos IWCF/IADC, y el <a href="/es/well-control-quiz">quiz de 200 preguntas</a> cubre el mismo terreno para practicar. Ambos existen para que una persona en el campo pueda verificar números reales sin buscar en un libro de texto.',
+  },
+  {
+    q: '¿Esto es certificación o capacitación oficial?',
+    a: 'No. Este es material de referencia y de práctica, no un curso acreditado de IWCF o IADC, y completar algo en este sitio no otorga ninguna certificación. La certificación real se obtiene a través de un proveedor de capacitación acreditado — este sitio existe para ayudarte a entender el material antes de esa capacitación y repasarlo después.',
+  },
+];
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -73,6 +92,19 @@ const jsonLd = {
         <p>Todos los procesos de soldadura usados en un taladro, las certificaciones que importan, y la trayectoria profesional de soldador junior a CWI.</p>
         <a href="/es/welding" class="card-link">Guía de Soldadura de Taladro →</a>
       </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title">Antes de <span>Empezar</span></h2>
+    <div class="accordion" style="max-width:820px;">
+      {faq.map((item) => (
+        <details class="acc-item">
+          <summary class="acc-header">{item.q}<span class="acc-arrow">▼</span></summary>
+          <div class="acc-body"><p set:html={item.a} /></div>
+        </details>
+      ))}
     </div>
   </section>
 

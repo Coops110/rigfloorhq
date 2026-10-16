@@ -4,6 +4,25 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import quizData from '../lib/data/well-control-quiz.json';
 
+const faq = [
+  {
+    q: 'Is this quiz officially affiliated with IWCF or IADC?',
+    a: "No. The questions cover the same ground tested in IWCF and IADC WellSharp well control certification exams, but this quiz isn't produced, endorsed, or affiliated with either body, and passing it doesn't substitute for accredited certification. Treat it as practice and self-assessment before or alongside real training, not a replacement for it.",
+  },
+  {
+    q: 'Is there a passing score?',
+    a: "No fixed cutoff — this isn't a graded exam. Each topic shows your score out of that topic's question count at the end, plus a full review of every question with the correct answer and explanation, so you can see exactly where you're weak rather than just a pass/fail label.",
+  },
+  {
+    q: 'Can I retake a topic, and will I get the same questions?',
+    a: "Yes, retake any topic as many times as you want. Questions shuffle each time you start a topic, so the order changes, though the question pool for that topic itself stays the same — it's meant for repeated practice until the material sticks, not a one-shot test.",
+  },
+  {
+    q: 'Do I need to create an account or install anything?',
+    a: "No. There's no signup, no login, and nothing to install. Pick a topic and it loads in the browser immediately. As the note above states, nothing you enter is saved or sent anywhere — reloading the page clears your progress, which also means there's no account to lose progress from.",
+  },
+];
+
 // 200 well control practice questions across 8 topics. Generic theory and
 // numbers only — no rig, well, or company reference anywhere in the source
 // data, verified before this page was built.
@@ -114,6 +133,19 @@ const quizLd = {
     <div class="prose">
       <p>Working these calculations out yourself first is worth more than reading the explanation cold — the <a href="/calculators/kill-sheet">kill sheet calculator</a> and <a href="/calculators/formulas-cheat-sheet">drilling formulas cheat sheet</a> run the same math these questions test.</p>
       <p>For the full explanations behind these topics, see the <a href="/drilling/well-control">well control reference</a> and the <a href="/pillars/advanced-well-control-and-hydrostatics">Advanced Well Control guide</a>. Each section above pairs with a deeper read: <a href="/blog/well-control-basics">well control basics for new crews</a>, <a href="/blog/five-warning-signs-of-a-kick">five warning signs of a kick</a>, <a href="/blog/shut-in-pressure-behavior-explained">shut-in pressure behavior</a>, <a href="/blog/drillers-method-wait-and-weight-mixups">Driller's Method and Wait and Weight mix-ups</a>, <a href="/blog/volumetric-kill-real-story">a real volumetric kill</a>, <a href="/blog/well-control-curveball-scenarios">well control curveball scenarios</a>, and <a href="/blog/pit-volumes-maasp-math-mistakes">pit volumes and MAASP math mistakes</a>.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title">Quiz <span>Questions</span></h2>
+    <div class="accordion" style="max-width:820px;">
+      {faq.map((item) => (
+        <details class="acc-item">
+          <summary class="acc-header">{item.q}<span class="acc-arrow">▼</span></summary>
+          <div class="acc-body"><p>{item.a}</p></div>
+        </details>
+      ))}
     </div>
   </section>
 </BaseLayout>

@@ -3,6 +3,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
+const faq = [
+  {
+    q: 'What is RigFloorHQ?',
+    a: "A free, independent reference site for oil and gas rig floor work — careers from roustabout to toolpusher, the pressure math behind well control, drilling and equipment reference, and rig welding. No ads, no paid placement, and it isn't run by any drilling contractor or operator. See the full <a href=\"/about\">about page</a> for who writes and reviews it.",
+  },
+  {
+    q: 'Do I need experience to work on an oil rig?',
+    a: 'No. Roustabout is the standard entry point and most operators train on the job rather than requiring prior experience — what they do want is physical fitness, a clean drug/alcohol record, and the willingness to work 12-hour tours in rough conditions. See <a href="/careers/roustabout">how to become a roustabout</a> for the real hiring process.',
+  },
+  {
+    q: 'Are the calculators and quiz actually free?',
+    a: "Yes, no signup, no paywall, no email capture. The <a href=\"/calculators\">calculators</a> run the same formulas taught in IWCF/IADC well control certification, and the <a href=\"/well-control-quiz\">200-question quiz</a> covers the same ground for practice. Both exist so a working hand can check real numbers without hunting through a textbook.",
+  },
+  {
+    q: 'Is this official certification or training?',
+    a: "No. This is reference material and practice material, not an accredited IWCF or IADC course, and completing anything on this site does not confer certification. Real certification happens through an accredited training provider — this site exists to help you understand the material going in and refresh it afterward.",
+  },
+];
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -94,6 +113,19 @@ const jsonLd = {
         <div class="stat"><span class="stat-num">200</span><span class="stat-label">Practice questions</span></div>
         <div class="stat"><span class="stat-num">8</span><span class="stat-label">Topics covered</span></div>
       </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title">Before You <span>Dig In</span></h2>
+    <div class="accordion" style="max-width:820px;">
+      {faq.map((item) => (
+        <details class="acc-item">
+          <summary class="acc-header">{item.q}<span class="acc-arrow">▼</span></summary>
+          <div class="acc-body"><p set:html={item.a} /></div>
+        </details>
+      ))}
     </div>
   </section>
 

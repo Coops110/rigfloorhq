@@ -89,7 +89,7 @@ ASTM F2413 steel toe or composite toe boots are the floor-level minimum, but rig
 
 ## Hearing Protection
 
-Mud pumps, the rotary table, and diesel generators regularly push ambient noise above 85 dB — the OSHA action level that triggers mandatory hearing conservation programs. Foam or silicone earplugs (NRR 25-33) work for general floor duty, while electronic earmuffs that allow radio communication are common for the driller and assistant driller positions who need to hear commands while blocking equipment noise.
+Mud pumps, the rotary table, and diesel generators regularly push ambient noise above 85 dB — the OSHA action level that triggers mandatory hearing conservation programs. Foam or silicone earplugs (NRR 25-33) work for general floor duty, while electronic earmuffs that allow radio communication are common for the driller and assistant driller positions who need to hear commands while blocking equipment noise. <a href="https://www.awin1.com/cread.php?awinmid=124690&awinaffid=3124772&clickref=ppe-guide-hearing&p=https%3A%2F%2Fwww.isotunes.com%2F" rel="sponsored noopener" target="_blank">ISOtunes</a> is one certified option built specifically for this — Bluetooth-enabled electronic hearing protection rated for industrial noise, with radio/call-communication built in rather than bolted on. *(RigFloorHQ is an ISOtunes affiliate — we may earn a commission if you buy through this link, at no extra cost to you.)*
 
 Dual protection — plugs plus muffs — is standard practice anywhere sustained noise exceeds 105 dB, such as near an open mud pump during pumping operations.
 

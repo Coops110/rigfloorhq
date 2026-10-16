@@ -4,6 +4,25 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
 
+const faq = [
+  {
+    q: 'Can jarring free differentially stuck pipe?',
+    a: "Rarely on its own. Differential sticking is a pressure problem, not a mechanical obstruction — an impact load doesn't remove the overbalance holding the pipe to the wall. The real fix is reducing hydrostatic pressure across the stuck interval, usually with a spotting fluid. Jarring is the right first tool for mechanical sticking (a keyseat, a pack-off), where there's an actual physical obstruction for the impact to break loose.",
+  },
+  {
+    q: 'What happens if fishing fails?',
+    a: "The operator's pre-set time or cost limit runs out, and the hole below the fish is abandoned. A cement plug is set above it, and a sidetrack is kicked off from the side of the existing wellbore through a whipstock and window mill. The lost section has to be redrilled, so it's expensive, but an open-ended fishing job can cost more than a sidetrack while still ending in the same place.",
+  },
+  {
+    q: 'Is reducing mud weight always the fix for stuck pipe?',
+    a: "No — it's specifically the fix for differential sticking, and only after that mechanism has been confirmed. Reducing mud weight while mechanically stuck does nothing for the obstruction, and lowering hydrostatic pressure anywhere raises kick risk, which is why this is a well control decision made by the drilling engineer and supervisor, not a default first move.",
+  },
+  {
+    q: 'How long before stuck pipe becomes unrecoverable?',
+    a: "There's no fixed clock, but differential sticking caught in the first few minutes is usually freed with ordinary string manipulation or a quick spotting fluid job; left for an hour, the contact area and sticking force have both grown substantially and recovery gets harder and slower. That time-dependence is the single biggest argument for recognizing the mechanism fast rather than debating it.",
+  },
+];
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
@@ -114,6 +133,10 @@ const jsonLd = {
         <div class="formula-note">ΔP = overbalance (psi). Both terms grow with time as the cake thickens and the pipe beds in — which is why the force is far lower in the first minutes than it is an hour later.</div>
       </div>
 
+      <div class="note-box mt-24" style="max-width:700px;">
+        <strong id="worked-example">Worked example — Sticking Force:</strong> 6.5 in OD drill collars sitting against a permeable sandstone with 800 psi of overbalance, over an estimated 40 sq in of actual wall contact. F = 800 × 40 = <span class="highlight">32,000 lbf</span> — over 14 tons holding the string in place from differential pressure alone, before accounting for how much that contact area grows the longer the string sits still. That number is why diagnosing differential sticking in the first few minutes is worth more than any fishing tool bought after the fact.
+      </div>
+
       <p>That time dependence is the practical point. Differential sticking that is recognised immediately is often recoverable with ordinary string manipulation. The same event left for an hour while the cause is debated may need a spotting fluid and considerably more time.</p>
 
       <h3>Why drill collars are usually the culprit</h3>
@@ -174,7 +197,7 @@ const jsonLd = {
       <p>A <a href="/equipment/hydraulic-jar">drilling jar</a> is a tool run in the string that stores energy and releases it suddenly, delivering an impact rather than a steady pull. Steady overpull applies force smoothly and is often ineffective against a pipe that is stuck fast; an impact load can break the bond where sustained tension will not.</p>
       <p>Jars are directional. An <strong>up jar</strong> is cocked by pulling tension and fires upward — the usual choice when the string is stuck going up. A <strong>down jar</strong> fires downward, used where the obstruction is above. Many strings run both, plus an <a href="/equipment/hydraulic-jar#accelerator">accelerator</a> to improve the impact.</p>
       <p style="font-size:13px;"><a href="/equipment/hydraulic-jar">How a jar stores and releases energy, up jar vs. down jar, and the accelerator →</a></p>
-      <p>The critical constraint is that jarring is a designed operation, not brute force. Jar impact loads pass through the string, and repeated jarring is a fatigue mechanism on tool joints in the same way a <a href="/drilling/directional">dogleg</a> is. Overpull limits come from the weakest component in the string, which for used pipe is set by its inspected class rather than its stencilled grade.</p>
+      <p>The critical constraint is that jarring is a designed operation, not brute force. Jar impact loads pass through the string, and repeated jarring is a fatigue mechanism on tool joints in the same way a <a href="/drilling/directional">dogleg</a> is. Overpull limits come from the weakest component in the string, which for used pipe is set by its inspected class rather than its stencilled grade — run the actual wet or dry pull margin against that limit with the <a href="/calculators/pipe-pull-margin">pipe pull margin calculator</a> before committing to a hard pull.</p>
 
       <h3 id="free-point">Free Point</h3>
       <p>If jarring does not work, the next question is where the string is stuck. A free point indicator is run on wireline inside the pipe and measures where applied stretch and torque stop being transmitted — above that depth the pipe is moving, below it is not.</p>
@@ -233,7 +256,18 @@ const jsonLd = {
       <strong>Reference material, not operating instruction.</strong> Nothing on this page authorises any action on a live well. Stuck pipe response is set by your operator's procedures and directed by the drilling supervisor on site. If anything here differs from those, those govern.
     </div>
 
-    <div class="related-links" style="max-width:960px;">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+    <div class="accordion">
+      {faq.map((item) => (
+        <details class="acc-item">
+          <summary class="acc-header">{item.q}<span class="acc-arrow">▼</span></summary>
+          <div class="acc-body"><p>{item.a}</p></div>
+        </details>
+      ))}
+    </div>
+
+    <div class="related-links" style="max-width:960px;margin-top:28px;">
       <a href="/equipment/drill-string" class="related-link"><div class="rl-label">Equipment</div><div class="rl-title">The Drill String</div></a>
       <a href="/drilling/mud-weight" class="related-link"><div class="rl-label">Pressure</div><div class="rl-title">Mud Weight &amp; Hydrostatics</div></a>
       <a href="/drilling/directional" class="related-link"><div class="rl-label">Well Path</div><div class="rl-title">Directional Drilling</div></a>

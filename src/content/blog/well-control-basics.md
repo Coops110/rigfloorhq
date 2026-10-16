@@ -50,9 +50,9 @@ A flow check is the fastest way to confirm or rule out an influx, and it should 
 If the well continues to flow with pumps shut down and no mechanical siphoning effect present, that's a confirmed kick. At that point, the crew moves directly into the shut-in procedure — no further verification, no second-guessing.
 
 <picture>
-  <source type="image/avif" srcset="/images/blog/well-control-flowchart.avif" />
-  <source type="image/webp" srcset="/images/blog/well-control-flowchart.webp" />
-  <img src="/images/blog/well-control-flowchart.png" width="2000" height="560" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Five steps of well control: detect signs, flow check, shut in, record and calculate, kill the well" />
+  <source type="image/avif" srcset="/images/blog/well-control-flowchart-380w.avif 380w, /images/blog/well-control-flowchart.avif 2000w" sizes="(max-width: 700px) 100vw, 700px" />
+  <source type="image/webp" srcset="/images/blog/well-control-flowchart-380w.webp 380w, /images/blog/well-control-flowchart.webp 2000w" sizes="(max-width: 700px) 100vw, 700px" />
+  <img src="/images/blog/well-control-flowchart.png" srcset="/images/blog/well-control-flowchart-380w.png 380w, /images/blog/well-control-flowchart.png 2000w" sizes="(max-width: 700px) 100vw, 700px" width="2000" height="560" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Five steps of well control: detect signs, flow check, shut in, record and calculate, kill the well" />
 </picture>
 
 > **Worth knowing:** well control breaks down into two components — an active component (continuous drilling fluid pressure monitoring) and a passive component (the blowout preventer itself, sitting ready if the active monitoring misses something).

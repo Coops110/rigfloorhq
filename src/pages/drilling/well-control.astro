@@ -3,10 +3,20 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/drilling/well-control.astro',
+  path: '/drilling/well-control',
+  headline: 'Well Control & Kicks — Recognition, Shut-In, Kill Procedures',
+  description: "Complete well control reference: kick recognition signs, shut-in procedures, the driller's method vs wait-and-weight, and kill sheet calculations.",
+  lang: 'en',
+});
 ---
 <BaseLayout
   title="Well Control & Kicks — Recognition, Shut-In, Kill Procedures"
   description="Complete well control reference: kick recognition signs, shut-in procedures, the driller's method vs wait-and-weight, and kill sheet calculations."
+  extraJsonLd={[techArticleJsonLd]}
   breadcrumbs={[{ label: 'Drilling', href: '/drilling' }, { label: 'Well Control', href: '/drilling/well-control' }]}
   lang="en"
   alternateHref="/es/drilling/well-control"
@@ -35,7 +45,7 @@ import SourcesStandards from '../../components/SourcesStandards.astro';
           </div>
           <div class="safety-item orange">
             <h3>🔶 Shut In Now</h3>
-            <p>Pit gain greater than 2 bbls. Well flowing with pumps off. Any positive SIDPP/SICP after shut-in.</p>
+            <p>Pit gain greater than 2 bbls. Well flowing with pumps off. Any positive SIDPP/SICP after shut-in. That pit gain volume also tells you roughly how far the influx has moved up the annulus — see the <a href="/calculators/kick-influx-geometry" style="color:var(--amber);">kick influx geometry calculator</a> for influx length, height and gradient from the gain and hole inclination.</p>
           </div>
           <div class="safety-item red">
             <h3>🚨 Emergency</h3>
@@ -61,7 +71,7 @@ import SourcesStandards from '../../components/SourcesStandards.astro';
           </details>
           <details class="acc-item">
             <summary class="acc-header">Step 3 — Read Pressures<span class="acc-arrow">▼</span></summary>
-            <div class="acc-body"><p>Allow pressures to stabilize (15–30 min). Record SIDPP, SICP, and pit gain volume — your inputs for the kill sheet.</p></div>
+            <div class="acc-body"><p>Allow pressures to stabilize (15–30 min). Record SIDPP, SICP, and pit gain volume — your inputs for the kill sheet. Check that pit gain against the well's kick tolerance before deciding the kill can proceed as planned — see the <a href="/calculators/kick-tolerance" style="color:var(--amber);">kick tolerance calculator</a>.</p></div>
           </details>
           <details class="acc-item">
             <summary class="acc-header">Step 4 — Calculate Kill Mud Weight<span class="acc-arrow">▼</span></summary>
@@ -104,7 +114,7 @@ import SourcesStandards from '../../components/SourcesStandards.astro';
       </table>
     </div>
 
-    <p style="color:var(--fog);font-size:13px;margin-top:20px;max-width:700px;">Both methods are industry-accepted and taught in IWCF/IADC well control certification. Which one is used depends on company policy, kick severity, and available kill mud on location. Use the <a href="/calculators/kill-sheet" style="color:var(--amber);">kill sheet calculator</a> to run the actual numbers for either method, or the <a href="/calculators/formulas-cheat-sheet" style="color:var(--amber);">drilling formulas cheat sheet</a> if you are working them out on paper.</p>
+    <p style="color:var(--fog);font-size:13px;margin-top:20px;max-width:700px;">Both methods are industry-accepted and taught in IWCF/IADC well control certification. Which one is used depends on company policy, kick severity, and available kill mud on location. Use the <a href="/calculators/kill-sheet" style="color:var(--amber);">kill sheet calculator</a> to run the actual numbers for either method, or the <a href="/calculators/formulas-cheat-sheet" style="color:var(--amber);">drilling formulas cheat sheet</a> if you are working them out on paper. A third option, bullheading, skips circulating the influx out entirely and instead pumps kill fluid straight down against the formation — a real technique for a plugged string or when circulating isn't possible, with its own surface pressure limits worked out on the <a href="/calculators/bullheading" style="color:var(--amber);">bullheading calculator</a>.</p>
 
     <div class="note-box mt-24">
       <strong id="worked-example">Worked example — Kill Mud Weight:</strong> Shut in at 10,000 ft TVD on 10.0 ppg original mud weight with 300 psi SIDPP. KMW = 10.0 + (300 ÷ (0.052 × 10,000)) = 10.0 + (300 ÷ 520) = 10.0 + 0.58 = <span class="highlight">10.58 ppg</span>, which rounds up to <span class="highlight">10.6 ppg</span> per IADC WellSharp convention. Run the same numbers through the <a href="/calculators/kill-sheet" style="color:var(--amber);">kill sheet calculator</a> and you'll get the identical figure.

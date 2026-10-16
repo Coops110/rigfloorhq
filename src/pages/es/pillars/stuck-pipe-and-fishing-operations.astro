@@ -4,6 +4,25 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
 
+const faq = [
+  {
+    q: '¿El martilleo puede liberar tubería pegada diferencialmente?',
+    a: 'Raramente por sí solo. La pega diferencial es un problema de presión, no una obstrucción mecánica — una carga de impacto no elimina el sobrebalance que mantiene la tubería contra la pared. La solución real es reducir la presión hidrostática en el intervalo pegado, usualmente con un fluido spotting. El martilleo es la herramienta correcta para la pega mecánica (un keyseat, un empaquetamiento), donde hay una obstrucción física real que el impacto puede romper.',
+  },
+  {
+    q: '¿Qué pasa si la pesca falla?',
+    a: 'Se agota el límite de tiempo o costo que el operador fijó de antemano, y el pozo debajo del pez se abandona. Se coloca un tapón de cemento arriba y se inicia un sidetrack desde el costado del pozo existente, a través de un whipstock y un window mill. La sección perdida tiene que volver a perforarse, así que es costoso, pero una pesca sin límite puede costar más que un sidetrack y de todos modos terminar en el mismo lugar.',
+  },
+  {
+    q: '¿Reducir el peso de lodo siempre es la solución para la tubería pegada?',
+    a: 'No — es específicamente la solución para la pega diferencial, y solo después de confirmar ese mecanismo. Reducir el peso de lodo con pega mecánica no hace nada contra la obstrucción, y bajar la presión hidrostática en cualquier caso aumenta el riesgo de surgencia, por lo que esta es una decisión de control de pozos que toma el ingeniero de perforación y el supervisor, no un primer movimiento por defecto.',
+  },
+  {
+    q: '¿Cuánto tiempo pasa antes de que la tubería pegada sea irrecuperable?',
+    a: 'No hay un reloj fijo, pero la pega diferencial detectada en los primeros minutos usualmente se libera con manipulación ordinaria de la sarta o un fluido spotting rápido; dejada una hora, el área de contacto y la fuerza de pega han crecido sustancialmente y la recuperación se vuelve más difícil y lenta. Esa dependencia del tiempo es el argumento más fuerte para reconocer el mecanismo rápido en lugar de debatirlo.',
+  },
+];
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
@@ -114,6 +133,10 @@ const jsonLd = {
         <div class="formula-note">ΔP = sobrebalance (psi). Ambos términos crecen con el tiempo mientras el revoque se engrosa y la tubería se incrusta — por eso la fuerza es mucho menor en los primeros minutos que una hora después.</div>
       </div>
 
+      <div class="note-box mt-24" style="max-width:700px;">
+        <strong id="ejemplo-resuelto">Ejemplo resuelto — Fuerza de Pega:</strong> Lastrabarrenas de 6.5 in OD contra una arenisca permeable con 800 psi de sobrebalance, sobre un área de contacto estimada de 40 pulg² contra la pared. F = 800 × 40 = <span class="highlight">32,000 lbf</span> — más de 14 toneladas sosteniendo la sarta en su lugar solo por presión diferencial, antes de contar cuánto crece esa área de contacto cuanto más tiempo la sarta se queda quieta. Ese número es la razón por la que diagnosticar la pega diferencial en los primeros minutos vale más que cualquier herramienta de pesca comprada después del hecho.
+      </div>
+
       <p>Esa dependencia del tiempo es el punto práctico. La pega diferencial reconocida de inmediato suele ser recuperable con manipulación ordinaria de la sarta. El mismo evento dejado una hora mientras se debate la causa puede necesitar una píldora de desprendimiento (spotting fluid) y considerablemente más tiempo.</p>
 
       <h3>Por qué los lastrabarrenas suelen ser el culpable</h3>
@@ -174,7 +197,7 @@ const jsonLd = {
       <p>Un <a href="/es/equipment/hydraulic-jar">martillo hidráulico</a> es una herramienta corrida en la sarta que almacena energía y la libera de golpe, entregando un impacto en lugar de un tiro constante. El sobretiro constante aplica fuerza de forma suave y a menudo es inefectivo contra una tubería que está genuinamente pegada; una carga de impacto puede romper el enlace donde la tensión sostenida no puede.</p>
       <p>Los martillos son direccionales. Un <strong>martillo ascendente</strong> se arma jalando tensión y dispara hacia arriba — la opción usual cuando la sarta está pegada hacia arriba. Un <strong>martillo descendente</strong> dispara hacia abajo, usado donde la obstrucción está arriba. Muchas sartas corren ambos, más un <a href="/es/equipment/hydraulic-jar#accelerator">acelerador de martillo</a> para mejorar el impacto.</p>
       <p style="font-size:13px;"><a href="/es/equipment/hydraulic-jar">Cómo un martillo almacena y libera energía, martillo ascendente vs. descendente, y el acelerador →</a></p>
-      <p>La restricción crítica es que martillar es una operación diseñada, no fuerza bruta. Las cargas de impacto del martillo pasan a través de la sarta, y el martilleo repetido es un mecanismo de fatiga sobre las juntas de herramienta igual que lo es un <a href="/es/drilling/directional">dogleg</a>. Los límites de sobretiro vienen del componente más débil de la sarta, que para tubería usada se fija por su clase inspeccionada en lugar de su grado marcado con plantilla.</p>
+      <p>La restricción crítica es que martillar es una operación diseñada, no fuerza bruta. Las cargas de impacto del martillo pasan a través de la sarta, y el martilleo repetido es un mecanismo de fatiga sobre las juntas de herramienta igual que lo es un <a href="/es/drilling/directional">dogleg</a>. Los límites de sobretiro vienen del componente más débil de la sarta, que para tubería usada se fija por su clase inspeccionada en lugar de su grado marcado con plantilla — calcula el margen de tiro real, seca o mojada, contra ese límite con la <a href="/es/calculators/pipe-pull-margin">calculadora de margen de tiro de tubería</a> antes de comprometerte con un tiro fuerte.</p>
 
       <h3 id="punto-libre">Punto Libre</h3>
       <p>Si el martilleo no funciona, la siguiente pregunta es dónde está pegada la sarta. Un indicador de punto libre se corre con cable de registro dentro de la tubería y mide dónde el estiramiento y el torque aplicados dejan de transmitirse — arriba de esa profundidad la tubería se mueve, debajo no.</p>
@@ -233,7 +256,18 @@ const jsonLd = {
       <strong>Material de referencia, no instrucción operativa.</strong> Nada en esta página autoriza ninguna acción en un pozo en vivo. La respuesta a la tubería pegada la fija el procedimiento de tu operador y la dirige el supervisor de perforación en sitio. Si algo aquí difiere de ellos, ellos rigen.
     </div>
 
-    <div class="related-links" style="max-width:960px;">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title">Preguntas <span>Frecuentes</span></h2>
+    <div class="accordion">
+      {faq.map((item) => (
+        <details class="acc-item">
+          <summary class="acc-header">{item.q}<span class="acc-arrow">▼</span></summary>
+          <div class="acc-body"><p>{item.a}</p></div>
+        </details>
+      ))}
+    </div>
+
+    <div class="related-links" style="max-width:960px;margin-top:28px;">
       <a href="/es/equipment/drill-string" class="related-link"><div class="rl-label">Equipo</div><div class="rl-title">La Sarta de Perforación</div></a>
       <a href="/es/drilling/mud-weight" class="related-link"><div class="rl-label">Presión</div><div class="rl-title">Peso de Lodo y Presión Hidrostática</div></a>
       <a href="/es/drilling/directional" class="related-link"><div class="rl-label">Trayectoria</div><div class="rl-title">Perforación Direccional</div></a>
