@@ -130,7 +130,7 @@ Un programa funcional de EPP para el piso de perforación no es un póster en la
 
 Esta guía cubre las categorías de equipo que más importan en una ubicación de perforación activa, desde cascos hasta arneses de protección contra caídas. Los estándares de OSHA, ANSI, y API dan el marco de referencia, pero la protección real viene de emparejar el equipo con el peligro específico frente a ti — ya sea una bomba de lodo generando 105 dB o una surgencia de gas amargo que requiere respuesta de escape inmediata.
 
-Para contexto más amplio sobre los peligros que impulsan estos requisitos de EPP, el [resumen de seguridad del taladro](/es/safety) y la [guía de equipo BOP](/es/equipment/bop) profundizan más en los sistemas contra los cuales este EPP está diseñado para proteger, y el [glosario](/glossary) es útil para terminología desconocida.
+Para contexto más amplio sobre los peligros que impulsan estos requisitos de EPP, el [resumen de seguridad del taladro](/es/safety) y la [guía de equipo BOP](/es/equipment/bop) profundizan más en los sistemas contra los cuales este EPP está diseñado para proteger, y el [glosario](/glossary) es útil para terminología desconocida. Un trabajador visto sin el equipo correcto para la tarea es también una observación clásica de [tarjeta STOP](/es/blog/stop-card-system), no solo una corrección verbal para olvidar después.
 
 ## Preguntas Frecuentes
 

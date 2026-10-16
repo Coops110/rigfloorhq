@@ -130,7 +130,7 @@ A functional rig floor PPE program isn't a poster on the doghouse wall — it's 
 
 This guide covers the equipment categories that matter most on an active drilling location, from hard hats to fall protection harnesses. Standards from OSHA, ANSI, and API give the framework, but the actual protection comes from matching gear to the specific hazard in front of you — whether that's a mud pump generating 105 dB or a sour gas kick requiring immediate escape response.
 
-For broader context on the hazards driving these PPE requirements, the [rig safety overview](/safety) and [BOP equipment guide](/equipment/bop) go deeper into the systems this PPE is designed to protect against, and the [glossary](/glossary) is useful for unfamiliar terminology.
+For broader context on the hazards driving these PPE requirements, the [rig safety overview](/safety) and [BOP equipment guide](/equipment/bop) go deeper into the systems this PPE is designed to protect against, and the [glossary](/glossary) is useful for unfamiliar terminology. A worker spotted without the right gear for the task is also a textbook [STOP card](/blog/stop-card-system) observation, not just a verbal correction to forget about.
 
 ## Frequently Asked Questions
 

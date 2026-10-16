@@ -125,11 +125,11 @@ Equivalent Circulating Density (ECD) also matters here. Circulating adds frictio
 
 Kick detection and BOP procedures aren't skills you pick up once and forget. Well control certification requires periodic recertification precisely because procedures, equipment, and regulatory standards evolve.
 
-If you're building or advancing a career on the rig floor, understanding where well control certification fits into career progression matters — the [certifications overview](/careers/certifications) breaks down what's required and how it stacks against other rig floor qualifications.
+If you're building or advancing a career on the rig floor, understanding where well control certification fits into career progression matters — the [certifications overview](/careers/certifications) breaks down what's required and how it stacks against other rig floor qualifications. Crew readiness extends past well control drills too — a working [STOP card program](/blog/stop-card-system) is how a lot of rigs catch the small procedural slips that turn into a real kick in the first place.
 
 Well control also doesn't exist in isolation from the rest of rig operations. Drill string integrity, covered on the [drill string components page](/equipment/drill-string), affects everything from shear ram function to pressure transmission during a kill. Structural repairs on rig floor equipment, including BOP stack components and choke manifolds, often require welding work performed to strict pressure-vessel standards — covered in the [welding fundamentals section](/welding).
 
-For a broader look at how well control fits into the full drilling sequence, from spud to total depth, the [drilling operations overview](/drilling) and [rig equipment overview](/equipment) provide the surrounding context. And if you're comparing tools before your next well, the full [drilling calculators suite](/calculators) covers hydrostatic pressure, kill sheets, and mud weight windows in one place.
+For a broader look at how well control fits into the full drilling sequence, from spud to total depth, the [drilling operations overview](/drilling) and [rig equipment overview](/equipment) provide the surrounding context. And if you're comparing tools before your next well, the full [drilling calculators suite](/calculators) covers hydrostatic pressure, kill sheets, and mud weight windows in one place. Once the basics here are solid, the [Advanced Well Control guide](/pillars/advanced-well-control-and-hydrostatics) picks up where this leaves off, and [shut-in pressure behavior](/blog/shut-in-pressure-behavior-explained) goes deeper on what the gauges actually do once the well is closed in.
 
 ## Common Misconceptions
 

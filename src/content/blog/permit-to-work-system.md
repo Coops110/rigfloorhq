@@ -149,7 +149,7 @@ Supervisors carry the operational weight of the PTW system, and a few habits sep
 - **Audit closed permits periodically.** Review completed permits for gaps in documentation, not just incidents.
 - **Cross-train crews on permit categories.** A [roughneck](/careers/roughneck) who understands why a confined space permit requires continuous monitoring is less likely to bypass it under pressure.
 
-Reference material like the [drilling glossary](/glossary) is worth keeping close at hand for crews working across multiple operators, since permit terminology and isolation naming conventions vary between companies.
+Reference material like the [drilling glossary](/glossary) is worth keeping close at hand for crews working across multiple operators, since permit terminology and isolation naming conventions vary between companies. A permit gap spotted on the floor — an isolation point missed, a gas test skipped — is also exactly what belongs on a [STOP card](/blog/stop-card-system), feeding the same corrective loop the PTW system depends on.
 
 ## Conclusion
 

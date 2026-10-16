@@ -149,7 +149,7 @@ Los supervisores cargan el peso operacional del sistema PTW, y unos cuantos háb
 - **Audita permisos cerrados periódicamente.** Revisa brechas de documentación, no solo incidentes.
 - **Capacita a la cuadrilla en las categorías de permiso.** Un [obrero de piso](/es/careers/roughneck) que entiende por qué un permiso de espacio confinado exige monitoreo continuo es menos propenso a saltárselo bajo presión.
 
-Material de referencia como el [glosario de perforación](/glossary) vale la pena tenerlo a mano para cuadrillas que trabajan con múltiples operadores, ya que la terminología de permisos y aislamientos varía entre compañías.
+Material de referencia como el [glosario de perforación](/glossary) vale la pena tenerlo a mano para cuadrillas que trabajan con múltiples operadores, ya que la terminología de permisos y aislamientos varía entre compañías. Una brecha de permiso detectada en el piso — un punto de aislamiento omitido, una prueba de gas saltada — es también exactamente lo que corresponde a una [tarjeta STOP](/es/blog/stop-card-system), alimentando el mismo ciclo correctivo del que depende el sistema de permisos de trabajo.
 
 ## Conclusión
 

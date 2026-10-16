@@ -79,7 +79,7 @@ Effective observation isn't about watching everything at once. Behavioral safety
 
 On the rig floor, the categories that generate the most useful STOP data include:
 
-- **PPE compliance:** hard hats, FR coveralls, task-rated gloves, hearing protection near rotating equipment — the full standards are in the [rig floor PPE guide](/blog/rig-floor-ppe-guide).
+- **PPE compliance:** hard hats, FR coveralls, task-rated gloves, hearing protection near rotating equipment — the full standards, including how to choose [oil rig boots](/blog/oil-rig-boots) that actually hold up, are in the [rig floor PPE guide](/blog/rig-floor-ppe-guide).
 - **Dropped object prevention:** tethering, secondary retention on tools used at height, housekeeping on the derrick.
 - **LOTO and stored energy:** lockout tags applied correctly before maintenance, zero-energy verification before opening equipment.
 - **Well control discipline:** flow checks, kick indicators reported, adherence to [shut-in and kill procedures](/drilling/well-control) during simulated or real events.
