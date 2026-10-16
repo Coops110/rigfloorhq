@@ -23,9 +23,14 @@ function formatDate(dateStr: string) {
 
 const siteUrl = 'https://rigfloorhq.com';
 const postUrl = `${siteUrl}/es/blog/${post.id}`;
-// See the English route for why SVG cannot be the share image.
+// See the English route for why SVG cannot be the share image, and for why
+// the no-custom-image case is undefined rather than '/og-default.png' —
+// BaseLayout resolves the generated es-blog-<slug>.png from the URL path.
 const isRaster = (p: string) => /\.(png|jpe?g|webp)$/i.test(p);
-const shareImage = post.data.image && isRaster(post.data.image) ? post.data.image : '/og-default.png';
+const shareImage = post.data.image && isRaster(post.data.image) ? post.data.image : undefined;
+// JSON-LD needs a concrete URL regardless (it isn't resolved by BaseLayout),
+// so mirror the same fallback chain here rather than leaving it undefined.
+const jsonLdImage = shareImage || `/og/es-blog-${post.id}.png`;
 
 // Same pattern as the English template (src/pages/blog/[slug].astro). See
 // its comment for the isJabin vs reviewedByJabin distinction. Same stable
@@ -49,7 +54,7 @@ const blogPosting = {
   "dateModified": post.data.modifiedDate || post.data.publishDate,
   "author": authorEntity,
   "publisher": { "@id": `${siteUrl}/#organization` },
-  "image": `${siteUrl}${shareImage}`,
+  "image": `${siteUrl}${jsonLdImage}`,
   "inLanguage": "es",
   // reviewedBy belongs on WebPage per schema.org, not BlogPosting — see the
   // English route for the full note. Folded into mainEntityOfPage here.

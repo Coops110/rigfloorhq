@@ -28,7 +28,13 @@ const postUrl = `${siteUrl}/blog/${post.id}`;
 // X, which is worse than the generic fallback. Inline SVG diagrams in the body
 // are fine; they just cannot serve as the share image.
 const isRaster = (p: string) => /\.(png|jpe?g|webp)$/i.test(p);
-const shareImage = post.data.image && isRaster(post.data.image) ? post.data.image : '/og-default.png';
+// undefined (not '/og-default.png') when there's no custom image, so
+// BaseLayout's own path-based auto-detection picks up the generated
+// blog-<slug>.png from scripts/generate-og-images.mjs instead.
+const shareImage = post.data.image && isRaster(post.data.image) ? post.data.image : undefined;
+// JSON-LD needs a concrete URL regardless (it isn't resolved by BaseLayout),
+// so mirror the same fallback chain here rather than leaving it undefined.
+const jsonLdImage = shareImage || `/og/blog-${post.id}.png`;
 
 // isJabin: he wrote the post himself (e.g. a firsthand account), so he's the
 // author entity. reviewedByJabin: someone else wrote it, but he checked it
@@ -55,7 +61,7 @@ const blogPosting = {
   "dateModified": post.data.modifiedDate || post.data.publishDate,
   "author": authorEntity,
   "publisher": { "@id": `${siteUrl}/#organization` },
-  "image": `${siteUrl}${shareImage}`,
+  "image": `${siteUrl}${jsonLdImage}`,
   "inLanguage": "en",
   // Tells search engines which URL this markup describes, so the article is
   // not attributed to the listing page it was crawled from. reviewedBy

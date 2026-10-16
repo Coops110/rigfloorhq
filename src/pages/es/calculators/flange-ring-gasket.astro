@@ -195,20 +195,4 @@ const webAppLd = {
   </section>
 </BaseLayout>
 
-<script>
-  const boreSel = document.getElementById('fl-bore') as HTMLSelectElement | null;
-  const pressSel = document.getElementById('fl-press') as HTMLSelectElement | null;
-  const rows = Array.from(document.querySelectorAll<HTMLTableRowElement>('#fl-table tbody tr'));
-
-  function applyFilter() {
-    const bore = boreSel?.value ?? '';
-    const press = pressSel?.value ?? '';
-    rows.forEach((row) => {
-      const matches = (!bore || row.dataset.bore === bore) && (!press || row.dataset.press === press);
-      row.style.display = matches ? '' : 'none';
-    });
-  }
-
-  boreSel?.addEventListener('change', applyFilter);
-  pressSel?.addEventListener('change', applyFilter);
-</script>
+<script is:inline src="/scripts/calculators/flange-ring-gasket.js" defer></script>

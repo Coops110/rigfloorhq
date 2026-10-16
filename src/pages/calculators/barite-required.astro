@@ -96,27 +96,4 @@ const webAppLd = {
   .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
 </style>
 
-<script>
-  function num(id: string): number {
-    const el = document.getElementById(id) as HTMLInputElement | null;
-    const v = parseFloat(el?.value ?? '');
-    return isFinite(v) ? v : 0;
-  }
-  function fmt(n: number, d: number): string {
-    if (!isFinite(n)) return '0';
-    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
-  }
-  function set(id: string, text: string) {
-    (document.getElementById(id) as HTMLElement).textContent = text;
-  }
-
-  function calc() {
-    const mw1 = num('br-mw1'), mw2 = num('br-mw2');
-    const denom = 35.5 - mw2;
-    const barite = denom > 0 ? 1500 * (mw2 - mw1) / denom : 0;
-    set('out-barite', fmt(barite, 1) + ' lb/bbl');
-  }
-
-  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
-  calc();
-</script>
+<script is:inline src="/scripts/calculators/barite-required.js" defer></script>

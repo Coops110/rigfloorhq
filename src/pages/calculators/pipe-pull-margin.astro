@@ -133,36 +133,4 @@ const webAppLd = {
   .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
 </style>
 
-<script>
-  function num(id: string): number {
-    const el = document.getElementById(id) as HTMLInputElement | null;
-    const v = parseFloat(el?.value ?? '');
-    return isFinite(v) ? v : 0;
-  }
-  function fmt(n: number, d: number): string {
-    if (!isFinite(n)) return '0';
-    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
-  }
-  function set(id: string, text: string) {
-    (document.getElementById(id) as HTMLElement).textContent = text;
-  }
-
-  function calc() {
-    const dp = num('dp'), mw = num('mw'), acap = num('acap'), dpcap = num('dpcap'), dpdisp = num('dpdisp');
-
-    const wetDenom = 0.052 * mw * (dpcap + dpdisp);
-    const wet = wetDenom !== 0 ? (dp * acap) / wetDenom : 0;
-
-    const dryDenom = 0.052 * mw * dpdisp;
-    const dry = dryDenom !== 0 ? (dp * (acap + dpcap)) / dryDenom : 0;
-
-    const perft = acap !== 0 ? 0.052 * mw * ((dpcap + dpdisp) / acap) : 0;
-
-    set('out-wet', fmt(wet, 1) + ' ft');
-    set('out-dry', fmt(dry, 1) + ' ft');
-    set('out-perft', fmt(perft, 4) + ' psi/ft');
-  }
-
-  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
-  calc();
-</script>
+<script is:inline src="/scripts/calculators/pipe-pull-margin.js" defer></script>

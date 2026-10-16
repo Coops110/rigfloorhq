@@ -91,7 +91,7 @@ const webAppLd = {
         </dl>
 
         <h3>Where This Fits</h3>
-        <p>Trip margin converts a policy safety-margin pressure into an actual mud weight you can carry in the hole, on top of whatever weight is needed to balance formation pressure alone. It's the mud-weight-side answer to the same swab risk that the <a href="/calculators/pipe-pull-margin">wet and dry pipe pull margin calculator</a> addresses from the pulled-footage side — trip margin says how much heavier to run the mud, pull margin says how far pipe can come out before hydrostatic drops too far, and a real trip plan checks both. If the calculated trip margin comes out barely above the base mud weight, that's a sign the safety margin figure itself, or the well's actual overbalance, needs a second look before pulling pipe. For the hydrostatic theory behind overbalance itself, see the <a href="/pillars/hydrostatic-pressure">hydrostatic pressure pillar</a>.</p>
+        <p>Trip margin converts a policy safety-margin pressure into an actual mud weight you can carry in the hole, on top of whatever weight is needed to balance formation pressure alone. It's the mud-weight-side answer to the same swab risk that the <a href="/calculators/pipe-pull-margin">wet and dry pipe pull margin calculator</a> addresses from the pulled-footage side — trip margin says how much heavier to run the mud, pull margin says how far pipe can come out before hydrostatic drops too far, and a real trip plan checks both. If the calculated trip margin comes out barely above the base mud weight, that's a sign the safety margin figure itself, or the well's actual overbalance, needs a second look before pulling pipe. For the full pressure-drop and mud-level math behind a specific trip, see the <a href="/calculators/tripping-pressure-effects">tripping pressure effects calculator</a>. For the hydrostatic theory behind overbalance itself, see the <a href="/pillars/hydrostatic-pressure">hydrostatic pressure pillar</a>.</p>
 
         <h2 id="faq">Frequently Asked Questions</h2>
         {faq.map((item) => (
@@ -110,26 +110,4 @@ const webAppLd = {
   .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
 </style>
 
-<script>
-  function num(id: string): number {
-    const el = document.getElementById(id) as HTMLInputElement | null;
-    const v = parseFloat(el?.value ?? '');
-    return isFinite(v) ? v : 0;
-  }
-  function fmt(n: number, d: number): string {
-    if (!isFinite(n)) return '0';
-    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
-  }
-  function set(id: string, text: string) {
-    (document.getElementById(id) as HTMLElement).textContent = text;
-  }
-
-  function calc() {
-    const mw = num('tm-mw'), sm = num('tm-sm'), tvd = num('tm-tvd');
-    const tmsf = mw + sm / (0.052 * tvd);
-    set('out-tmsf', fmt(tmsf, 2) + ' ppg');
-  }
-
-  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
-  calc();
-</script>
+<script is:inline src="/scripts/calculators/trip-margin.js" defer></script>

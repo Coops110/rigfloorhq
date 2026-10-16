@@ -95,61 +95,10 @@ const webAppLd = {
         <h2>Dónde Obtener Datos Reales de Poro y Fractura</h2>
         <p>Esta calculadora usa cifras que tú proporcionas — para la planificación real del pozo, la presión de poro se predice a partir de datos de pozos vecinos, análisis de velocidad sísmica, e indicadores durante la perforación (como el método del exponente-d), mientras que el gradiente de fractura se mide directamente mediante una Prueba de Fuga (LOT) en cada zapato de revestimiento. Ver la <a href="/es/drilling/casing">página de diseño de revestimiento</a> para cómo estas cifras determinan la selección de puntos de revestimiento.</p>
 
-        <p>Para cálculos directos de presión vs. profundidad, usa la <a href="/es/calculators/hydrostatic">calculadora de presión hidrostática</a>. Si ya tienes el pozo cerrado por una surgencia, ve directamente a la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a>.</p>
+        <p>Para cálculos directos de presión vs. profundidad, usa la <a href="/es/calculators/hydrostatic">calculadora de presión hidrostática</a>. Mientras circulas, la fricción se suma encima de esta ventana estática — ver la <a href="/es/calculators/ecd">calculadora de ECD</a> para saber cuánto. Si ya tienes el pozo cerrado por una surgencia, ve directamente a la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a>.</p>
       </div>
     </div>
   </section>
 </BaseLayout>
 
-<script>
-  function num(id: string): number {
-    const el = document.getElementById(id) as HTMLInputElement | null;
-    const v = parseFloat(el?.value ?? '');
-    return isFinite(v) ? v : 0;
-  }
-
-  function clearOutputs() {
-    (document.getElementById('out-window') as HTMLElement).textContent = '—';
-    (document.getElementById('out-margin-low') as HTMLElement).textContent = '—';
-    (document.getElementById('out-margin-high') as HTMLElement).textContent = '—';
-    (document.getElementById('out-position') as HTMLElement).textContent = '—';
-    (document.getElementById('mww-visual') as HTMLElement).style.display = 'none';
-  }
-
-  function calc() {
-    const current = num('mww-current'), pp = num('mww-pp'), fg = num('mww-fg');
-
-    if (!current || !pp || !fg || fg <= pp) {
-      clearOutputs();
-      return;
-    }
-
-    const window = fg - pp;
-    const marginLow = current - pp;
-    const marginHigh = fg - current;
-
-    (document.getElementById('out-window') as HTMLElement).textContent = window.toFixed(2) + ' ppg';
-    (document.getElementById('out-margin-low') as HTMLElement).textContent = marginLow.toFixed(2) + ' ppg';
-    (document.getElementById('out-margin-high') as HTMLElement).textContent = marginHigh.toFixed(2) + ' ppg';
-
-    const statusEl = document.getElementById('out-position') as HTMLElement;
-    if (current < pp) {
-      statusEl.innerHTML = '<span class="status-badge status-danger">🚨 Bajo la Presión de Poro</span>';
-    } else if (current > fg) {
-      statusEl.innerHTML = '<span class="status-badge status-danger">⛔ Sobre la Presión de Fractura</span>';
-    } else if (marginLow < 0.3 || marginHigh < 0.3) {
-      statusEl.innerHTML = '<span class="status-badge status-caution">⚠ Margen Estrecho</span>';
-    } else {
-      statusEl.innerHTML = '<span class="status-badge status-safe">✅ Dentro de la Ventana Segura</span>';
-    }
-
-    // Visual marker position
-    const pct = Math.max(0, Math.min(100, ((current - pp) / window) * 100));
-    const marker = document.getElementById('mww-marker') as HTMLElement;
-    marker.style.left = `calc(${pct}% - 1.5px)`;
-    (document.getElementById('mww-visual') as HTMLElement).style.display = 'block';
-  }
-
-  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
-  clearOutputs();
-</script>
+<script is:inline src="/scripts/calculators/mud-weight-window-es.js" defer></script>

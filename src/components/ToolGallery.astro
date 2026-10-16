@@ -12,7 +12,6 @@ interface Props {
   alt: string;
 }
 const { image1, image2, alt } = Astro.props;
-const uid = Math.random().toString(36).slice(2, 9);
 
 // The gallery is always rendered at a fixed aspect-ratio:1/1 box via CSS
 // (width/height:100%, object-fit:contain), so these attributes carry zero
@@ -53,7 +52,7 @@ const webp1 = withExt(image1, 'webp');
 const avif2 = withExt(image2, 'avif');
 const webp2 = withExt(image2, 'webp');
 ---
-<div class="tool-gallery" id={`gallery-${uid}`} role="img" aria-label={alt}>
+<div class="tool-gallery" role="img" aria-label={alt}>
   <picture>
     <source type="image/avif" srcset={avif1} />
     <source type="image/webp" srcset={webp1} />
@@ -104,28 +103,4 @@ const webp2 = withExt(image2, 'webp');
   .tool-gallery-dot.active { background: #e8a020; border-color: #e8a020; }
 </style>
 
-<script is:inline define:vars={{ uid }}>
-  (function () {
-    const root = document.getElementById(`gallery-${uid}`);
-    if (!root) return;
-    const imgs = root.querySelectorAll('.tool-gallery-img');
-    const dots = root.querySelectorAll('.tool-gallery-dot');
-    function show(index) {
-      imgs.forEach((el) => el.classList.toggle('active', el.dataset.index === String(index)));
-      dots.forEach((el) => el.classList.toggle('active', el.dataset.index === String(index)));
-    }
-    let current = 0;
-    root.addEventListener('click', (e) => {
-      if (e.target.closest('.tool-gallery-dot')) return;
-      current = current === 0 ? 1 : 0;
-      show(current);
-    });
-    dots.forEach((dot) => {
-      dot.addEventListener('click', (e) => {
-        e.stopPropagation();
-        current = Number(dot.dataset.index);
-        show(current);
-      });
-    });
-  })();
-</script>
+<script is:inline src="/scripts/tool-gallery.js" defer></script>

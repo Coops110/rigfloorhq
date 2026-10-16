@@ -102,57 +102,7 @@ const t = lang === 'es'
   </div>
 </div>
 
-<script>
-  // Delegated so it works for any number of embed blocks on a page, including
-  // ones rendered inside a content collection.
-  document.addEventListener('click', (e) => {
-    const btn = (e.target as HTMLElement)?.closest('.embed-copy') as HTMLButtonElement | null;
-    if (!btn) return;
-    // Scope to the field, not the whole block — there are two textareas now
-    // (embed snippet and credit line) and .embed-offer would always find the
-    // first one, so the credit button would silently copy the wrong thing.
-    const scope = btn.closest('.embed-field') || btn.closest('.embed-offer');
-    const box = scope?.querySelector('.embed-code') as HTMLTextAreaElement | null;
-    if (!box) return;
-
-    // Every path has to say what happened. The first version selected the text
-    // on fallback and changed nothing on the button, so the user saw a
-    // highlighted box and had no idea whether it had copied.
-    const flash = (msg: string, success: boolean) => {
-      if (btn.dataset.busy) return;
-      btn.dataset.busy = '1';
-      const original = btn.textContent;
-      btn.textContent = msg;
-      btn.classList.toggle('is-copied', success);
-      setTimeout(() => {
-        btn.textContent = original;
-        btn.classList.remove('is-copied');
-        delete btn.dataset.busy;
-      }, 2200);
-    };
-
-    const copied = () => flash(btn.dataset.copied || 'Copied', true);
-
-    // Selecting the text is the fallback, and it is a real outcome rather than
-    // a failure — the user just has to finish the job with the keyboard.
-    const selectOnly = () => {
-      box.focus();
-      box.select();
-      let ok = false;
-      try { ok = document.execCommand('copy'); } catch { ok = false; }
-      if (ok) copied();
-      else flash(btn.dataset.selected || 'Selected — press Ctrl+C', false);
-    };
-
-    // writeText needs a secure context AND transient user activation, and can
-    // still be refused by permissions policy. Treat rejection as normal.
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(box.value).then(copied).catch(selectOnly);
-    } else {
-      selectOnly();
-    }
-  });
-</script>
+<script is:inline src="/scripts/diagram-embed.js" defer></script>
 
 <style>
   .embed-offer {

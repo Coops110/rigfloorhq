@@ -171,42 +171,4 @@ const webAppLd = {
   .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
 </style>
 
-<script>
-  function num(id: string): number {
-    const el = document.getElementById(id) as HTMLInputElement | null;
-    const v = parseFloat(el?.value ?? '');
-    return isFinite(v) ? v : 0;
-  }
-  function fmt(n: number, d: number): string {
-    if (!isFinite(n)) return '0';
-    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
-  }
-  function set(id: string, text: string) {
-    (document.getElementById(id) as HTMLElement).textContent = text;
-  }
-
-  function tfaFor32nds(n: number): number {
-    const d = n / 32;
-    return Math.PI / 4 * d * d;
-  }
-
-  function calc() {
-    const n1 = num('bh-n1'), n2 = num('bh-n2'), n3 = num('bh-n3');
-    const tfa = tfaFor32nds(n1) + tfaFor32nds(n2) + tfaFor32nds(n3);
-    set('out-tfa', fmt(tfa, 3) + ' in²');
-
-    const q = num('bh-q'), tfa2 = num('bh-tfa2');
-    const jv = tfa2 > 0 ? 0.32 * q / tfa2 : 0;
-    set('out-jv', fmt(jv, 1) + ' ft/sec');
-
-    const dp = num('bh-dp'), q2 = num('bh-q2'), size = num('bh-size');
-    const hhp = dp * q2 / 1714;
-    const bitArea = Math.PI / 4 * size * size;
-    const hsi = bitArea > 0 ? hhp / bitArea : 0;
-    set('out-hhp', fmt(hhp, 1) + ' hp');
-    set('out-hsi', fmt(hsi, 2) + ' hp/in²');
-  }
-
-  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
-  calc();
-</script>
+<script is:inline src="/scripts/calculators/bit-hydraulics.js" defer></script>

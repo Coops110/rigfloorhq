@@ -119,28 +119,4 @@ const webAppLd = {
   .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
 </style>
 
-<script>
-  function num(id: string): number {
-    const el = document.getElementById(id) as HTMLInputElement | null;
-    const v = parseFloat(el?.value ?? '');
-    return isFinite(v) ? v : 0;
-  }
-  function fmt(n: number, d: number): string {
-    if (!isFinite(n)) return '0';
-    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
-  }
-  function set(id: string, text: string) {
-    (document.getElementById(id) as HTMLElement).textContent = text;
-  }
-
-  function calc() {
-    const whp1 = num('bop-whp1'), cr = num('bop-cr');
-    set('out-close', fmt(cr > 0 ? whp1 / cr : 0, 0) + ' psi');
-
-    const whp2 = num('bop-whp2'), or_ = num('bop-or');
-    set('out-open', fmt(or_ > 0 ? whp2 / or_ : 0, 0) + ' psi');
-  }
-
-  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
-  calc();
-</script>
+<script is:inline src="/scripts/calculators/bop-closing-ratio.js" defer></script>

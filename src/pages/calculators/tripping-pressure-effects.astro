@@ -137,7 +137,7 @@ const webAppLd = {
         </dl>
 
         <h3>Where This Fits</h3>
-        <p>These three calculations are the mechanics behind the same swab risk the <a href="/calculators/trip-margin">trip margin calculator</a> and the <a href="/calculators/pipe-pull-margin">wet and dry pipe pull margin calculator</a> both plan around — trip margin sets how much extra mud weight to carry, pull margin says how far pipe can safely come out, and this page works out the actual pressure and mud-level consequence of a specific length pulled dry or wet. On a real trip, mud level drop is what tells the crew exactly how much to top up the annulus after every stand or connection to keep hydrostatic pressure from sagging as pipe comes out.</p>
+        <p>These three calculations are the mechanics behind the same swab risk the <a href="/calculators/trip-margin">trip margin calculator</a> and the <a href="/calculators/pipe-pull-margin">wet and dry pipe pull margin calculator</a> both plan around — trip margin sets how much extra mud weight to carry, pull margin says how far pipe can safely come out, and this page works out the actual pressure and mud-level consequence of a specific length pulled dry or wet. On a real trip, mud level drop is what tells the crew exactly how much to top up the annulus after every stand or connection to keep hydrostatic pressure from sagging as pipe comes out. For the broader static-vs-dynamic pressure picture these numbers sit inside, see the <a href="/pillars/hydrostatic-pressure">hydrostatic pressure pillar</a>.</p>
 
         <h2 id="faq">Frequently Asked Questions</h2>
         {faq.map((item) => (
@@ -155,34 +155,4 @@ const webAppLd = {
   .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
 </style>
 
-<script>
-  function num(id: string): number {
-    const el = document.getElementById(id) as HTMLInputElement | null;
-    const v = parseFloat(el?.value ?? '');
-    return isFinite(v) ? v : 0;
-  }
-  function fmt(n: number, d: number): string {
-    if (!isFinite(n)) return '0';
-    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
-  }
-  function set(id: string, text: string) {
-    (document.getElementById(id) as HTMLElement).textContent = text;
-  }
-
-  function calc() {
-    const mw = num('tpe-mw'), sd = num('tpe-sd'), cc = num('tpe-cc');
-    const dry = (cc - sd) > 0 ? mw * 0.052 * (sd / (cc - sd)) : 0;
-    set('out-dry', fmt(dry, 4) + ' psi/ft');
-
-    const mw2 = num('tpe-mw2'), dpc = num('tpe-dpc'), ac = num('tpe-ac');
-    const wet = ac > 0 ? mw2 * 0.052 * ((sd + dpc) / ac) : 0;
-    set('out-wet', fmt(wet, 4) + ' psi/ft');
-
-    const len = num('tpe-len'), sd2 = num('tpe-sd2'), cc2 = num('tpe-cc2');
-    const drop = cc2 > 0 ? len * sd2 / cc2 : 0;
-    set('out-drop', fmt(drop, 1) + ' ft');
-  }
-
-  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
-  calc();
-</script>
+<script is:inline src="/scripts/calculators/tripping-pressure-effects.js" defer></script>

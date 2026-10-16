@@ -220,7 +220,7 @@ const webPageLd = {
         <h3>What Is Slow Circulating Pressure?</h3>
         <p>SCR (sometimes SPR) is the standpipe pressure recorded at a reduced, standardized pump rate — measured routinely during normal operations specifically so it's available if a kick occurs. Without a current SCR reading, ICP and FCP can't be calculated accurately, which is why crews record it every shift as standard practice.</p>
 
-        <p>For the full step-by-step shut-in procedure and the difference between the Driller's Method and Wait-and-Weight, see the <a href="/drilling/well-control">well control reference page</a>. For string and annular capacities on your own pipe sizes, the <a href="/calculators/formulas-cheat-sheet">drilling formulas cheat sheet</a> has the capacity formula written out. On a directional or horizontal well, the <a href="/calculators/kill-sheet-horizontal">horizontal kill sheet additions</a> extend this same schedule with two more checkpoints at kick-off point and end of build. Once a kill mud weight is chosen, check it against the shoe on the <a href="/calculators/mamw">MAMW calculator</a>, work out the barite needed to actually reach it on the <a href="/calculators/barite-required">barite required calculator</a>, and re-check pump pressure at the reduced kill rate with the <a href="/calculators/pump-pressure-adjustment">pump pressure adjustment calculator</a> if SCR was recorded at a different stroke rate.</p>
+        <p>For the full step-by-step shut-in procedure and the difference between the Driller's Method and Wait-and-Weight, see the <a href="/drilling/well-control">well control reference page</a>. For string and annular capacities on your own pipe sizes, the <a href="/calculators/formulas-cheat-sheet">drilling formulas cheat sheet</a> has the capacity formula written out. On a directional or horizontal well, the <a href="/calculators/kill-sheet-horizontal">horizontal kill sheet additions</a> extend this same schedule with two more checkpoints at kick-off point and end of build. Once a kill mud weight is chosen, check it against the shoe on the <a href="/calculators/mamw">MAMW calculator</a>, work out the barite needed to actually reach it on the <a href="/calculators/barite-required">barite required calculator</a>, and re-check pump pressure at the reduced kill rate with the <a href="/calculators/pump-pressure-adjustment">pump pressure adjustment calculator</a> if SCR was recorded at a different stroke rate. For supervisor-level kill method comparison, MPD, and regional kill considerations, see the <a href="/pillars/advanced-well-control-and-hydrostatics">Advanced Well Control guide</a>.</p>
 
         <h2 id="faq">Frequently Asked Questions</h2>
         {faq.map((item) => (
@@ -241,65 +241,4 @@ const webPageLd = {
   .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
 </style>
 
-<script>
-  function num(id: string): number {
-    const el = document.getElementById(id) as HTMLInputElement | null;
-    const v = parseFloat(el?.value ?? '');
-    return isFinite(v) ? v : 0;
-  }
-  function fmt(n: number, d: number): string {
-    if (!isFinite(n)) return '0';
-    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
-  }
-
-  function calc() {
-    const tvd = num('ks-tvd'), omw = num('omw'), sidpp = num('sidpp'), scr = num('spr');
-    const sicp = num('sicp'), maasp = num('maasp');
-    const pumpOut = num('pumpout');
-    const stringVol = num('dp-len') * num('dp-cap') + num('bha-len') * num('bha-cap');
-    const annVol = num('dpann-len') * num('dpann-cap') + num('bhaann-len') * num('bhaann-cap');
-
-    const kmwRaw = tvd > 0 ? sidpp / (0.052 * tvd) + omw : omw;
-    // IADC WellSharp rounding rule: Kill Mud Weight always rounds UP to the
-    // nearest 0.1 ppg, and the rounded value carries into FCP below - never
-    // the raw unrounded figure.
-    const kmw = Math.ceil(kmwRaw * 10) / 10;
-    const icp = scr + sidpp;
-    const fcp = omw > 0 ? scr * (kmw / omw) : 0;
-    const strokesToBit = pumpOut > 0 ? stringVol / pumpOut : 0;
-    const strokesUp = pumpOut > 0 ? annVol / pumpOut : 0;
-    const totalStrokes = strokesToBit + strokesUp;
-
-    const maaspWarning = document.getElementById('maasp-warning');
-    if (maaspWarning) (maaspWarning as HTMLElement).style.display = (maasp > 0 && sicp > maasp) ? 'block' : 'none';
-
-    (document.getElementById('out-kmw') as HTMLElement).textContent = fmt(kmw, 1) + ' ppg';
-    (document.getElementById('out-icp') as HTMLElement).textContent = fmt(icp, 0) + ' psi';
-    (document.getElementById('out-fcp') as HTMLElement).textContent = fmt(fcp, 0) + ' psi';
-    (document.getElementById('out-stringvol') as HTMLElement).textContent = fmt(stringVol, 1) + ' bbls';
-    (document.getElementById('out-annvol') as HTMLElement).textContent = fmt(annVol, 1) + ' bbls';
-    (document.getElementById('out-strokesbit') as HTMLElement).textContent = fmt(strokesToBit, 0) + ' strokes';
-    (document.getElementById('out-strokesup') as HTMLElement).textContent = fmt(strokesUp, 0) + ' strokes';
-    (document.getElementById('out-strokestotal') as HTMLElement).textContent = fmt(totalStrokes, 0) + ' strokes';
-
-    const tbody = document.querySelector('#sched-table tbody');
-    if (tbody && strokesToBit > 0) {
-      const stepStrokes = Math.floor(strokesToBit / 10);
-      let rows = '';
-      for (let i = 0; i <= 10; i++) {
-        const strokes = i === 10 ? Math.round(strokesToBit) : stepStrokes * i;
-        // IADC WellSharp rounding rule: Pressure Reduction Schedule rounds
-        // DOWN to a whole number, not to the nearest psi.
-        const pressure = Math.floor(icp - ((icp - fcp) / 10) * i);
-        const label = i === 0 ? 'Start' : i === 10 ? 'At Bit' : i * 10 + '%';
-        rows += `<tr><td>${label}</td><td>${fmt(strokes, 0)}</td><td>${fmt(pressure, 0)} psi</td></tr>`;
-      }
-      tbody.innerHTML = rows;
-    } else if (tbody) {
-      tbody.innerHTML = '';
-    }
-  }
-
-  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
-  calc();
-</script>
+<script is:inline src="/scripts/calculators/kill-sheet.js" defer></script>

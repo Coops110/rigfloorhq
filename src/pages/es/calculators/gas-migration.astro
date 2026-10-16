@@ -127,32 +127,4 @@ const webAppLd = {
   .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
 </style>
 
-<script>
-  function num(id: string): number {
-    const el = document.getElementById(id) as HTMLInputElement | null;
-    const v = parseFloat(el?.value ?? '');
-    return isFinite(v) ? v : 0;
-  }
-  function fmt(n: number, d: number): string {
-    if (!isFinite(n)) return '0';
-    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
-  }
-  function set(id: string, text: string) {
-    (document.getElementById(id) as HTMLElement).textContent = text;
-  }
-
-  function calc() {
-    const pinc = num('pinc'), mw = num('mw');
-    const grad = mw * 0.052;
-    const rate = grad > 0 ? pinc / grad : 0;
-    set('out-grad', fmt(grad, 4) + ' psi/ft');
-    set('out-rate', fmt(rate, 1) + ' ft/hr');
-
-    const pbleed = num('pbleed'), acap = num('acap');
-    const bleedvol = grad > 0 ? (pbleed / grad) * acap : 0;
-    set('out-bleedvol', fmt(bleedvol, 2) + ' bbls');
-  }
-
-  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
-  calc();
-</script>
+<script is:inline src="/scripts/calculators/gas-migration.js" defer></script>

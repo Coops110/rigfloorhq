@@ -120,34 +120,4 @@ const webAppLd = {
   .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
 </style>
 
-<script>
-  function num(id: string): number {
-    const el = document.getElementById(id) as HTMLInputElement | null;
-    const v = parseFloat(el?.value ?? '');
-    return isFinite(v) ? v : 0;
-  }
-  function fmt(n: number, d: number): string {
-    if (!isFinite(n)) return '0';
-    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
-  }
-  function set(id: string, text: string) {
-    (document.getElementById(id) as HTMLElement).textContent = text;
-  }
-
-  function calc() {
-    const mw = num('mw'), swg = num('swg'), wd = num('wd'), ag = num('ag'), tvd = num('tvd');
-
-    const riserLen = wd + ag;
-    const rmh = mw * 0.052 * riserLen;
-    const swh = swg * wd;
-    const denom = tvd - wd - ag;
-    const margin = denom !== 0 ? ((rmh - swh) / 0.052) / denom : 0;
-
-    set('out-rmh', fmt(rmh, 0) + ' psi');
-    set('out-swh', fmt(swh, 0) + ' psi');
-    set('out-margin', fmt(margin, 2) + ' ppg');
-  }
-
-  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
-  calc();
-</script>
+<script is:inline src="/scripts/calculators/riser-margin.js" defer></script>

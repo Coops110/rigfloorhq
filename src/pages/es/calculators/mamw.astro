@@ -136,30 +136,4 @@ const webAppLd = {
   .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
 </style>
 
-<script>
-  function num(id: string): number {
-    const el = document.getElementById(id) as HTMLInputElement | null;
-    const v = parseFloat(el?.value ?? '');
-    return isFinite(v) ? v : 0;
-  }
-  function fmt(n: number, d: number): string {
-    if (!isFinite(n)) return '0';
-    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
-  }
-  function set(id: string, text: string) {
-    (document.getElementById(id) as HTMLElement).textContent = text;
-  }
-
-  function calc() {
-    const mw = num('mamw-mw'), lp = num('mamw-lp'), tvd = num('mamw-tvd');
-    const mamw = mw + lp / (0.052 * tvd);
-    set('out-mamw', fmt(mamw, 2) + ' ppg');
-
-    const killmw = num('mamw-killmw'), tvd2 = num('mamw-tvd2'), mamw2 = num('mamw-mamw2');
-    const newMaasp = (mamw2 - killmw) * 0.052 * tvd2;
-    set('out-newmaasp', fmt(newMaasp, 0) + ' psi');
-  }
-
-  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
-  calc();
-</script>
+<script is:inline src="/scripts/calculators/mamw.js" defer></script>

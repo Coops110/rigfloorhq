@@ -214,45 +214,4 @@ const webAppLd = {
   .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
 </style>
 
-<script>
-  function num(id: string): number {
-    const el = document.getElementById(id) as HTMLInputElement | null;
-    const v = parseFloat(el?.value ?? '');
-    return isFinite(v) ? v : 0;
-  }
-  function fmt(n: number, d: number): string {
-    if (!isFinite(n)) return '0';
-    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
-  }
-  function set(id: string, text: string) {
-    (document.getElementById(id) as HTMLElement).textContent = text;
-  }
-
-  function calc() {
-    const fp = num('fp'), sitp = num('sitp'), tvd = num('tvd'), omw = num('omw'), fg = num('fg');
-
-    const kfw = tvd > 0 ? (sitp / (0.052 * tvd)) + omw : 0;
-    const ffp = fg * tvd;
-    const ihp = fp - sitp;
-    const iafd = tvd > 0 ? ihp / (tvd * 0.052) : 0;
-    const misp = ffp - ihp;
-    const mfsp = ffp - (kfw * 0.052 * tvd);
-
-    set('out-kfw', fmt(kfw, 2) + ' ppg');
-    set('out-ffp', fmt(ffp, 0) + ' psi');
-    set('out-ihp', fmt(ihp, 0) + ' psi');
-    set('out-iafd', fmt(iafd, 2) + ' ppg');
-    set('out-misp', fmt(misp, 0) + ' psi');
-    set('out-mfsp', fmt(mfsp, 0) + ' psi');
-
-    const vol = num('vsl') + num('veot') + num('vperf') + num('vbot');
-    set('out-vol', fmt(vol, 1) + ' bbls');
-
-    const gmr = num('gmr'), tcap = num('tcap'), pout = num('pout');
-    const spm = pout > 0 ? (gmr / 60) * tcap / pout : 0;
-    set('out-spm', fmt(spm, 3) + ' spm');
-  }
-
-  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
-  calc();
-</script>
+<script is:inline src="/scripts/calculators/bullheading.js" defer></script>

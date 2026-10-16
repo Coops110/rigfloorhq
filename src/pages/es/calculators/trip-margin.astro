@@ -89,7 +89,7 @@ const webAppLd = {
         </dl>
 
         <h3>Dónde Encaja Esto</h3>
-        <p>El margen de viaje convierte una presión de margen de seguridad de política en un peso de lodo real que puedes cargar en el pozo, encima de lo que se necesita para balancear solo la presión de formación. Es la respuesta del lado del peso de lodo al mismo riesgo de swab que la <a href="/es/calculators/pipe-pull-margin">calculadora de margen de extracción de tubería seca y mojada</a> aborda desde el lado de la longitud extraída — el margen de viaje dice cuánto más pesado correr el lodo, el margen de extracción dice qué tan lejos puede salir la tubería antes de que la hidrostática baje demasiado, y un plan de viaje real revisa ambos. Si el margen de viaje calculado sale apenas arriba del peso de lodo base, es una señal de que la cifra misma del margen de seguridad, o el sobrebalance real del pozo, necesita una segunda revisión antes de sacar tubería.</p>
+        <p>El margen de viaje convierte una presión de margen de seguridad de política en un peso de lodo real que puedes cargar en el pozo, encima de lo que se necesita para balancear solo la presión de formación. Es la respuesta del lado del peso de lodo al mismo riesgo de swab que la <a href="/es/calculators/pipe-pull-margin">calculadora de margen de extracción de tubería seca y mojada</a> aborda desde el lado de la longitud extraída — el margen de viaje dice cuánto más pesado correr el lodo, el margen de extracción dice qué tan lejos puede salir la tubería antes de que la hidrostática baje demasiado, y un plan de viaje real revisa ambos. Si el margen de viaje calculado sale apenas arriba del peso de lodo base, es una señal de que la cifra misma del margen de seguridad, o el sobrebalance real del pozo, necesita una segunda revisión antes de sacar tubería. Para las matemáticas completas de caída de presión y nivel de lodo de un viaje específico, ver la <a href="/es/calculators/tripping-pressure-effects">calculadora de efectos de presión en viajes</a>.</p>
 
         <h2 id="faq">Preguntas Frecuentes</h2>
         {faq.map((item) => (
@@ -108,26 +108,4 @@ const webAppLd = {
   .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
 </style>
 
-<script>
-  function num(id: string): number {
-    const el = document.getElementById(id) as HTMLInputElement | null;
-    const v = parseFloat(el?.value ?? '');
-    return isFinite(v) ? v : 0;
-  }
-  function fmt(n: number, d: number): string {
-    if (!isFinite(n)) return '0';
-    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
-  }
-  function set(id: string, text: string) {
-    (document.getElementById(id) as HTMLElement).textContent = text;
-  }
-
-  function calc() {
-    const mw = num('tm-mw'), sm = num('tm-sm'), tvd = num('tm-tvd');
-    const tmsf = mw + sm / (0.052 * tvd);
-    set('out-tmsf', fmt(tmsf, 2) + ' ppg');
-  }
-
-  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
-  calc();
-</script>
+<script is:inline src="/scripts/calculators/trip-margin.js" defer></script>

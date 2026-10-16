@@ -132,30 +132,4 @@ const webAppLd = {
   .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
 </style>
 
-<script>
-  function num(id: string): number {
-    const el = document.getElementById(id) as HTMLInputElement | null;
-    const v = parseFloat(el?.value ?? '');
-    return isFinite(v) ? v : 0;
-  }
-  function fmt(n: number, d: number): string {
-    if (!isFinite(n)) return '0';
-    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
-  }
-
-  function calc() {
-    const orig = num('odf-orig'), present = num('odf-present');
-    const dp = num('odf-dp'), wl = num('odf-wl');
-
-    const c1 = orig - present;
-    const c2 = (dp !== 0 || wl !== 0) ? (dp - wl) : 0;
-    const final = c1 + c2;
-
-    (document.getElementById('out-c1') as HTMLElement).textContent = fmt(c1, 1) + ' ft';
-    (document.getElementById('out-c2') as HTMLElement).textContent = fmt(c2, 1) + ' ft';
-    (document.getElementById('out-final') as HTMLElement).textContent = (final >= 0 ? '+' : '') + fmt(final, 1) + ' ft';
-  }
-
-  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
-  calc();
-</script>
+<script is:inline src="/scripts/calculators/odf-depth-correction.js" defer></script>

@@ -105,7 +105,7 @@ const webAppLd = {
 
         <h3>Dónde Encaja Esto</h3>
         <p>El MAASP no es un número fijo para el pozo — se mueve cada vez que cambia el peso de lodo, por lo que hay que recalcularlo cada vez que el lodo se sube o se baja de peso, no registrarlo una sola vez después del LOT/FIT y olvidarlo. La prueba en sí, realizada justo después de perforar bajo la zapata, encuentra la presión que la formación justo debajo puede soportar antes de romperse o tomar pérdidas, al peso de lodo que estaba en el pozo ese día. Todo lo que viene después de esa prueba realmente pregunta una sola cosa: ¿cuánta presión de superficie queda antes de que esa misma formación, al peso de lodo de hoy, alcance ese límite original? Ingresa la presión LOT/FIT, el peso de lodo LOT/FIT, y el TVD de zapata de la prueba ya realizada junto con el peso de lodo actualmente en uso, y esta calculadora responde exactamente eso.</p>
-        <p>El MAASP es el número en vivo sobre el que se construye la tolerancia a la surgencia — un MAASP pequeño significa que una surgencia pequeña ya pone en riesgo la zapata, que es exactamente lo que calcula después la <a href="/es/calculators/kick-tolerance">calculadora de tolerancia a la surgencia</a>. También es una de dos formas en que los programas de control de pozos expresan el mismo límite: el MAASP lo expresa como una presión de superficie en psi, mientras que el Peso de Lodo Máximo Permisible expresa el mismo límite como un peso de lodo equivalente — la misma zapata, la misma prueba, solo dos unidades distintas para el mismo techo. Si ya hay una surgencia en curso y se está subiendo el peso del lodo para matarla, revisa el nuevo MAASP contra la presión de revestimiento cerrada real en la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a>, en lugar de asumir que la cifra de hoy sigue siendo válida una vez que cambia el peso de lodo.</p>
+        <p>El MAASP es el número en vivo sobre el que se construye la tolerancia a la surgencia — un MAASP pequeño significa que una surgencia pequeña ya pone en riesgo la zapata, que es exactamente lo que calcula después la <a href="/es/calculators/kick-tolerance">calculadora de tolerancia a la surgencia</a>. También es una de dos formas en que los programas de control de pozos expresan el mismo límite: el MAASP lo expresa como una presión de superficie en psi, mientras que el Peso de Lodo Máximo Permisible expresa el mismo límite como un peso de lodo equivalente — la misma zapata, la misma prueba, solo dos unidades distintas para el mismo techo. Si ya hay una surgencia en curso y se está subiendo el peso del lodo para matarla, revisa el nuevo MAASP contra la presión de revestimiento cerrada real en la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a>, en lugar de asumir que la cifra de hoy sigue siendo válida una vez que cambia el peso de lodo. Para problemas resueltos de MAASP y volúmenes de pileta donde este razonamiento suele aplicarse mal, ver <a href="/es/blog/pit-volumes-maasp-math-mistakes">errores de matemáticas de volúmenes de pileta y MAASP</a>.</p>
 
         <h2 id="faq">Preguntas Frecuentes</h2>
         {faq.map((item) => (
@@ -126,29 +126,4 @@ const webAppLd = {
   .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
 </style>
 
-<script>
-  function num(id: string): number {
-    const el = document.getElementById(id) as HTMLInputElement | null;
-    const v = parseFloat(el?.value ?? '');
-    return isFinite(v) ? v : 0;
-  }
-  function fmt(n: number, d: number): string {
-    if (!isFinite(n)) return '0';
-    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
-  }
-  function set(id: string, text: string) {
-    (document.getElementById(id) as HTMLElement).textContent = text;
-  }
-
-  function calc() {
-    const lp = num('maasp-lp'), lmw = num('maasp-lmw'), mw = num('maasp-mw'), tvd = num('maasp-tvd');
-    const margin = lmw - mw;
-    const maasp = lp + margin * 0.052 * tvd;
-
-    set('out-margin', fmt(margin, 1) + ' ppg');
-    set('out-maasp', fmt(maasp, 0) + ' psi');
-  }
-
-  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
-  calc();
-</script>
+<script is:inline src="/scripts/calculators/maasp.js" defer></script>

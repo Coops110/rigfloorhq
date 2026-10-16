@@ -153,42 +153,4 @@ const webAppLd = {
   .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
 </style>
 
-<script>
-  function num(id: string): number {
-    const el = document.getElementById(id) as HTMLInputElement | null;
-    const v = parseFloat(el?.value ?? '');
-    return isFinite(v) ? v : 0;
-  }
-  function fmt(n: number, d: number): string {
-    if (!isFinite(n)) return '0';
-    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
-  }
-  function set(id: string, text: string) {
-    (document.getElementById(id) as HTMLElement).textContent = text;
-  }
-
-  function checkpoint(md: number, dpcap: number, pumpOut: number, icp: number, fcp: number, stb: number) {
-    const vol = md * dpcap;
-    const strokes = pumpOut > 0 ? vol / pumpOut : 0;
-    const pressure = stb > 0 ? icp - (icp - fcp) * (strokes / stb) : icp;
-    return { vol, strokes, pressure };
-  }
-
-  function calc() {
-    const icp = num('icp'), fcp = num('fcp'), stb = num('stb');
-    const dpcap = num('dpcap'), pumpOut = num('pumpout');
-
-    const kop = checkpoint(num('kopmd'), dpcap, pumpOut, icp, fcp, stb);
-    set('out-kopvol', fmt(kop.vol, 1) + ' bbls');
-    set('out-kopstrokes', fmt(kop.strokes, 0) + ' emboladas');
-    set('out-koppress', fmt(kop.pressure, 0) + ' psi');
-
-    const eob = checkpoint(num('eobmd'), dpcap, pumpOut, icp, fcp, stb);
-    set('out-eobvol', fmt(eob.vol, 1) + ' bbls');
-    set('out-eobstrokes', fmt(eob.strokes, 0) + ' emboladas');
-    set('out-eobpress', fmt(eob.pressure, 0) + ' psi');
-  }
-
-  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
-  calc();
-</script>
+<script is:inline src="/scripts/calculators/kill-sheet-horizontal-es.js" defer></script>

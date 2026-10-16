@@ -207,7 +207,7 @@ const webAppLd = {
         <h3>¿Qué es la Presión de Circulación Lenta?</h3>
         <p>La SCR (a veces SPR) es la presión de standpipe registrada a una tasa de bombeo reducida y estandarizada — medida rutinariamente durante operaciones normales específicamente para que esté disponible si ocurre una surgencia. Sin una lectura de SCR actual, el ICP y FCP no se pueden calcular con precisión, por lo que las cuadrillas la registran cada turno como práctica estándar.</p>
 
-        <p>Para el procedimiento completo de cierre paso a paso y la diferencia entre el Método del Perforador y Esperar y Densificar, ver la <a href="/es/drilling/well-control">página de referencia de control de pozos</a>. Para capacidades de sarta y anular en tus propios tamaños de tubería, la <a href="/es/calculators/formulas-cheat-sheet">hoja de referencia de fórmulas de perforación</a> tiene la fórmula de capacidad escrita completa. En un pozo direccional u horizontal, las <a href="/es/calculators/kill-sheet-horizontal">adiciones de hoja de control horizontal</a> extienden este mismo programa con dos puntos de control más en el inicio de curvatura y fin de construcción.</p>
+        <p>Para el procedimiento completo de cierre paso a paso y la diferencia entre el Método del Perforador y Esperar y Densificar, ver la <a href="/es/drilling/well-control">página de referencia de control de pozos</a>. Para capacidades de sarta y anular en tus propios tamaños de tubería, la <a href="/es/calculators/formulas-cheat-sheet">hoja de referencia de fórmulas de perforación</a> tiene la fórmula de capacidad escrita completa. En un pozo direccional u horizontal, las <a href="/es/calculators/kill-sheet-horizontal">adiciones de hoja de control horizontal</a> extienden este mismo programa con dos puntos de control más en el inicio de curvatura y fin de construcción. Para comparación de métodos de matanza a nivel supervisor, MPD, y consideraciones regionales, ver la <a href="/es/pillars/advanced-well-control-and-hydrostatics">guía de Control de Pozos Avanzado</a>.</p>
 
         <h2 id="faq">Preguntas Frecuentes</h2>
         {faq.map((item) => (
@@ -228,65 +228,4 @@ const webAppLd = {
   .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
 </style>
 
-<script>
-  function num(id: string): number {
-    const el = document.getElementById(id) as HTMLInputElement | null;
-    const v = parseFloat(el?.value ?? '');
-    return isFinite(v) ? v : 0;
-  }
-  function fmt(n: number, d: number): string {
-    if (!isFinite(n)) return '0';
-    return n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
-  }
-
-  function calc() {
-    const tvd = num('ks-tvd'), omw = num('omw'), sidpp = num('sidpp'), scr = num('spr');
-    const sicp = num('sicp'), maasp = num('maasp');
-    const pumpOut = num('pumpout');
-    const stringVol = num('dp-len') * num('dp-cap') + num('bha-len') * num('bha-cap');
-    const annVol = num('dpann-len') * num('dpann-cap') + num('bhaann-len') * num('bhaann-cap');
-
-    const kmwRaw = tvd > 0 ? sidpp / (0.052 * tvd) + omw : omw;
-    // Regla de redondeo de IADC WellSharp: el Peso de Lodo de Matanza siempre
-    // se redondea HACIA ARRIBA a la décima de ppg más cercana, y ese valor
-    // redondeado se usa para el FCP a continuación - nunca la cifra sin redondear.
-    const kmw = Math.ceil(kmwRaw * 10) / 10;
-    const icp = scr + sidpp;
-    const fcp = omw > 0 ? scr * (kmw / omw) : 0;
-    const strokesToBit = pumpOut > 0 ? stringVol / pumpOut : 0;
-    const strokesUp = pumpOut > 0 ? annVol / pumpOut : 0;
-    const totalStrokes = strokesToBit + strokesUp;
-
-    const maaspWarning = document.getElementById('maasp-warning');
-    if (maaspWarning) (maaspWarning as HTMLElement).style.display = (maasp > 0 && sicp > maasp) ? 'block' : 'none';
-
-    (document.getElementById('out-kmw') as HTMLElement).textContent = fmt(kmw, 1) + ' ppg';
-    (document.getElementById('out-icp') as HTMLElement).textContent = fmt(icp, 0) + ' psi';
-    (document.getElementById('out-fcp') as HTMLElement).textContent = fmt(fcp, 0) + ' psi';
-    (document.getElementById('out-stringvol') as HTMLElement).textContent = fmt(stringVol, 1) + ' bbls';
-    (document.getElementById('out-annvol') as HTMLElement).textContent = fmt(annVol, 1) + ' bbls';
-    (document.getElementById('out-strokesbit') as HTMLElement).textContent = fmt(strokesToBit, 0) + ' emboladas';
-    (document.getElementById('out-strokesup') as HTMLElement).textContent = fmt(strokesUp, 0) + ' emboladas';
-    (document.getElementById('out-strokestotal') as HTMLElement).textContent = fmt(totalStrokes, 0) + ' emboladas';
-
-    const tbody = document.querySelector('#sched-table tbody');
-    if (tbody && strokesToBit > 0) {
-      const stepStrokes = Math.floor(strokesToBit / 10);
-      let rows = '';
-      for (let i = 0; i <= 10; i++) {
-        const strokes = i === 10 ? Math.round(strokesToBit) : stepStrokes * i;
-        // Regla de IADC WellSharp: el Programa de Reducción de Presión se
-        // redondea HACIA ABAJO a un número entero, no al más cercano.
-        const pressure = Math.floor(icp - ((icp - fcp) / 10) * i);
-        const label = i === 0 ? 'Inicio' : i === 10 ? 'En Barrena' : i * 10 + '%';
-        rows += `<tr><td>${label}</td><td>${fmt(strokes, 0)}</td><td>${fmt(pressure, 0)} psi</td></tr>`;
-      }
-      tbody.innerHTML = rows;
-    } else if (tbody) {
-      tbody.innerHTML = '';
-    }
-  }
-
-  document.querySelectorAll('.calc-box input').forEach((el) => el.addEventListener('input', calc));
-  calc();
-</script>
+<script is:inline src="/scripts/calculators/kill-sheet-es.js" defer></script>
