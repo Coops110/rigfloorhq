@@ -73,7 +73,11 @@ If H₂S is a possibility in the formation being drilled, shut-in procedure chan
 
 The blowout preventer is a high-pressure valve system installed on top of the wellhead, capable of sealing the wellbore in seconds.
 
-<img src="/images/blog/bop-stack-diagram.png" width="1800" height="1120" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="BOP stack from top to bottom: annular preventer, pipe rams, blind rams, and shear rams, with choke and kill lines running to the wellhead" />
+<picture>
+  <source type="image/avif" srcset="/images/blog/bop-stack-diagram-380w.avif 380w, /images/blog/bop-stack-diagram-660w.avif 660w, /images/blog/bop-stack-diagram-1320w.avif 1320w, /images/blog/bop-stack-diagram.avif 1800w" sizes="(max-width: 760px) 100vw, 720px" />
+  <source type="image/webp" srcset="/images/blog/bop-stack-diagram-380w.webp 380w, /images/blog/bop-stack-diagram-660w.webp 660w, /images/blog/bop-stack-diagram-1320w.webp 1320w, /images/blog/bop-stack-diagram.webp 1800w" sizes="(max-width: 760px) 100vw, 720px" />
+  <img src="/images/blog/bop-stack-diagram.png" srcset="/images/blog/bop-stack-diagram-380w.png 380w, /images/blog/bop-stack-diagram-660w.png 660w, /images/blog/bop-stack-diagram-1320w.png 1320w, /images/blog/bop-stack-diagram.png 1800w" sizes="(max-width: 760px) 100vw, 720px" width="1800" height="1120" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="BOP stack from top to bottom: annular preventer, pipe rams, blind rams, and shear rams, with choke and kill lines running to the wellhead" />
+</picture>
 
 A standard BOP stack, from top to bottom, typically includes:
 

@@ -17,9 +17,11 @@
   --mist:     #d1d8e4;
   --paper:    #f0f2f6;
   --white:    #ffffff;
-  --mono: 'IBM Plex Mono', monospace;
-  --cond: 'Barlow Condensed', sans-serif;
-  --body: 'Inter', sans-serif;
+  /* Each stack names a metric-matched fallback face (font-fallbacks.css)
+     before the generic, so the swap to the webfont does not re-flow text. */
+  --mono: 'IBM Plex Mono', 'IBM Plex Mono Fallback', monospace;
+  --cond: 'Barlow Condensed', 'Barlow Condensed Fallback', sans-serif;
+  --body: 'Inter', 'Inter Fallback', sans-serif;
 }
 
 /* ── COLOUR CONTRAST NOTE ────────────────────────────────────
@@ -846,3 +848,99 @@ footer.site-footer {
 
 /* Rig card / equipment card generic styles (used with inline structure in equipment pages) */
 .rig-card, .career-step .card { max-width: 100%; }
+
+/* ── MOBILE LEGIBILITY + TAP TARGETS (SEO/UX audit 2026-10-17, item 17) ──
+   Two measured problems at a 375px viewport: 9-11px mono uppercase labels
+   (unreadable on a phone outdoors, which is where this audience reads), and
+   25-30 links per page under 44px tall, almost all in the footer.
+
+   Font floor: below 900px every mono label is at least 12px. Desktop keeps
+   its 10-11px sizes — there is room there and the design was tuned for it.
+   This block sits at the end of the file on purpose so it wins over the
+   min-width:640px rules above, which set some of these to 11px.
+
+   Tap targets: gated on (pointer: coarse) OR a narrow viewport rather than
+   width alone, so a touch tablet in landscape gets them too, while a desktop
+   with a mouse keeps the tighter footer rhythm. 44px is the WCAG 2.5.5 / Apple
+   HIG figure; the hit area grows, the visible text does not move. */
+@media (max-width: 899px) {
+  .hero-eyebrow, .page-hero-eyebrow, .page-meta-item, .section-eyebrow,
+  .card .card-link, .card-tag, .formula-block .formula-label, th,
+  .status-badge, .inline-badge, .input-group label, .output-label,
+  .role-level, .hier-row.header span, .cs-years, .cs-salary,
+  .footer-col-heading, .footer-newsletter h2, .footer-bottom,
+  .stat-label, .related-link .rl-label, .toc-title,
+  .breadcrumb a, .breadcrumb span.current {
+    font-size: 12px;
+  }
+  /* Same uppercase tracking at a larger size reads too loose; pull it in. */
+  .stat-label, .related-link .rl-label, th { letter-spacing: 0.06em; }
+  /* Tables scroll inside their wrapper instead of being clipped by the
+     page's overflow-x:hidden. Tighter cell padding lets most of them fit
+     at 375px outright; the rest scroll horizontally inside .table-wrap. */
+  th { padding: 10px 12px; }
+  td { padding: 12px; }
+
+  /* Labels styled inside individual pages — component-scoped <style> blocks
+     (higher specificity than anything here) and a few inline style=""
+     spans. They are raised from this file, with !important, rather than by
+     editing each page, because editing a page's own source file moves its
+     sitemap <lastmod> (scripts/git-lastmod.mjs) and a font-size floor is not
+     a content change. Scoped to mobile only, so desktop is untouched. */
+  .blog-card-category, .blog-card-date, .blog-card-link,
+  .hero-quiz-badge-sub, .bio-group, .bio-foot, .preset-btn,
+  .qi-progress, .qi-topic-label,
+  [style*="font-family:var(--mono);font-size:10px"],
+  [style*="font-family:var(--mono);font-size:11px"] {
+    font-size: 12px !important;
+  }
+  .preset-btn { min-height: 44px; }
+  .highlight { font-size: max(0.9em, 12px); }
+}
+
+/* A scrollable region has to be reachable by keyboard (axe
+   scrollable-region-focusable); wide tables carry tabindex="0" for that. */
+.table-wrap:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+/* Wide tables that genuinely cannot fit a phone (the BOP stack table: four
+   columns of multi-part sizes). Squeezed to 343px, the size column wrapped
+   to nine lines and the pressure column was cut off with nothing to say more
+   existed. On narrow screens the table keeps a readable minimum width and
+   scrolls inside its wrapper, with an edge shadow on whichever side has more
+   to scroll to.
+
+   The shadow is the "background-attachment: local" technique: two ink
+   gradients scroll with the content and cover the two fixed shadows when
+   that edge is reached. That only works if the covers match what is behind
+   them, so the wrapper paints its own --ink background instead of relying
+   on whichever section colour it happens to sit in. */
+.table-scroll-hint {
+  background:
+    linear-gradient(to right, var(--ink) 40%, rgba(14,15,17,0)) left center / 28px 100% no-repeat local,
+    linear-gradient(to left, var(--ink) 40%, rgba(14,15,17,0)) right center / 28px 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, rgba(0,0,0,.7), rgba(0,0,0,0)) left center / 14px 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,.7), rgba(0,0,0,0)) right center / 14px 100% no-repeat scroll,
+    var(--ink);
+}
+@media (max-width: 599px) {
+  .table-scroll-hint > table { min-width: 520px; }
+}
+
+@media (pointer: coarse), (max-width: 899px) {
+  .footer-social { gap: 12px; }
+  .footer-social a { width: 44px; height: 44px; }
+  .footer-col a {
+    display: flex; align-items: center; min-height: 44px; margin-bottom: 0;
+  }
+  .footer-legal { gap: 0 18px; }
+  .footer-legal a, .footer-legal-btn {
+    display: inline-flex; align-items: center; min-height: 44px; min-width: 44px;
+  }
+  .nav-lang-switch {
+    display: inline-flex !important; align-items: center; justify-content: center;
+    min-height: 44px; min-width: 44px;
+  }
+  .nav-mobile-link { min-height: 44px; display: flex; align-items: center; }
+  .newsletter-btn { min-height: 44px; }
+  .number-stepper-btn { width: 44px; font-size: 12px; }
+}

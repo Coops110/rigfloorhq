@@ -205,4 +205,10 @@ const t = lang === 'es'
   }
   .embed-copy:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
   .embed-manual { font-size: 11.5px; color: var(--fog); }
+
+  /* Mobile floor: 12px text, 44px-tall buttons (audit 2026-10-17). */
+  @media (max-width: 899px) {
+    .embed-label, .embed-sublabel, .embed-copy, .embed-download, .embed-code, .embed-manual { font-size: 12px; }
+    .embed-copy, .embed-download { min-height: 44px; display: inline-flex; align-items: center; }
+  }
 </style>

@@ -44,7 +44,7 @@ const DIST_DIR = join(__dirname, '..', 'dist');
 // maintain instead of externalizing them.
 const ALLOWED_INLINE_SCRIPT_HASHES = new Set([
   'sha256-vsqpZLGrisMaElu7SUdUsEb5tPqyySOafGzvqcwi90Y=',
-  'sha256-p6a9jePVv5OKxsBHV/u63A4+/RZzcqmal2sW65CVu+g=',
+  'sha256-zBXAj3xYmIuhWuiClzeJz6vHUg8jVKrYqRwyFVhe+PY=',
   'sha256-CAy8X8yXpAkXCoBVIuNiRbwuK1h4jVQqlQJ3CH3XO+g=',
 ]);
 

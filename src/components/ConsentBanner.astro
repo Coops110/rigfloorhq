@@ -302,7 +302,11 @@ const t = lang === 'es'
     .consent-inner { padding: 12px 14px 14px; }
     .consent-copy p { font-size: 12px; }
     .consent-actions { gap: 8px; }
-    .consent-btn { flex: 1 1 0; min-width: 0; padding: 10px 8px; }
+    .consent-btn { flex: 1 1 0; min-width: 0; padding: 10px 8px; min-height: 44px; }
+    .consent-link, .consent-category-lock { font-size: 12px; }
+    .consent-link { min-height: 44px; margin-top: 0; }
+    .consent-switch { width: 48px; height: 28px; }
+    .consent-switch-thumb { width: 20px; height: 20px; }
   }
 
   @media (prefers-reduced-motion: reduce) {

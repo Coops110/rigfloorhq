@@ -25,11 +25,27 @@
     window.__consentBannerInit = true;
     runConsentBanner();
   }
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(init, { timeout: 1500 });
-  } else {
-    setTimeout(init, 150);
+  // Wait for the load event first, then for idle time. Scheduling on idle
+  // alone fired during the initial render on a throttled phone (Lighthouse
+  // measured a 216-489ms long task here, inside the TBT window). After load
+  // there is nothing left for it to compete with. The banner still appears
+  // within a second or two of the page settling, and the interaction
+  // listeners below still run it at once if the visitor acts first.
+  //
+  // Deliberately no requestAnimationFrame anywhere in this chain: rAF is
+  // paused in background tabs, which once left the banner invisible while
+  // focus had moved into it (see CLAUDE.md, "Verify, don't assert"). `load`,
+  // requestIdleCallback-with-timeout and setTimeout all still fire in a
+  // background tab — throttled, never stopped.
+  function scheduleInit() {
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(init, { timeout: 2000 });
+    } else {
+      setTimeout(init, 200);
+    }
   }
+  if (document.readyState === 'complete') scheduleInit();
+  else window.addEventListener('load', scheduleInit, { once: true });
   ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (evt) {
     window.addEventListener(evt, init, { once: true, passive: true });
   });
@@ -99,9 +115,25 @@
   // cause a consent violation.
   function probablyNeedsBanner() {
     if (CONSENT_BANNER_SCOPE === 'all') return true;
+    // Cheap pre-filter. The first Intl.DateTimeFormat() call in a page loads
+    // the time-zone database, measured at 100-200ms on a 4x-throttled CPU.
+    // Every zone the regex below matches (Europe/*, the Atlantic islands,
+    // Arctic/Longyearbyen, Cyprus) sits between UTC-1 and UTC+4 in both winter
+    // and summer (getTimezoneOffset 60 down to -240), so a browser outside
+    // that band cannot match the regex below and the expensive call is
+    // skipped. Inside the band the full check runs exactly as before, so
+    // the set of visitors who see the banner is unchanged.
+    try {
+      var offset = new Date().getTimezoneOffset();
+      if (offset > 60 || offset < -240) return false;
+    } catch (e) { /* fall through to the full check */ }
     try {
       var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-      return /^(Europe|Atlantic\/(Canary|Madeira|Faroe|Azores)|Arctic\/Longyearbyen)/.test(tz);
+      // Atlantic/Reykjavik (Iceland, EEA) and Asia/Nicosia / Asia/Famagusta
+      // (Cyprus, EU) are in CONSENT_REQUIRED_REGIONS but sit outside
+      // Europe/*, so they used to get denied-by-default storage with no
+      // banner to accept it from. Both are inside the offset band above.
+      return /^(Europe|Atlantic\/(Canary|Madeira|Faroe|Azores|Reykjavik)|Arctic\/Longyearbyen|Asia\/(Nicosia|Famagusta))/.test(tz);
     } catch (e) {
       return true; // uncertain → show it
     }
