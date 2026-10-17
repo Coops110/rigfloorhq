@@ -1,5 +1,5 @@
 ---
-title: "Cuando No Puedes Bombear: Una Matanza Volumétrica Real de 48 Horas"
+title: "Cuando No Puedes Bombear: Matanza Volumétrica Real"
 description: "Un relato real de una matanza volumétrica ejecutada cuando el pozo no aceptaba circulación, y por qué bombear-poco-y-cerrar fue la decisión equivocada a tomar."
 publishDate: "2026-09-25"
 author: "Jabin Travis"

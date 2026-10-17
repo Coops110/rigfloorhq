@@ -177,7 +177,7 @@ const terms = [
   { term: "Fresa de Sección", def: "Una fresa de fondo que remueve un intervalo completo de revestimiento alrededor de toda su circunferencia, exponiendo la formación para un sidetrack o un tapón de cemento transversal a la formación.", href: "/es/equipment/section-mill" },
   { term: "Semisumergible", def: "Un taladro flotante costa afuera mantenido estable sobre pontones sumergidos e inundados y anclado o posicionado dinámicamente. Trabaja en hasta aproximadamente 12,000 pies de agua.", href: "/es/equipment/rig-types" },
   { term: "Arietes de Corte", def: "Arietes de BOP de emergencia que cortan la tubería de perforación y sellan el pozo simultáneamente.", href: "/es/equipment/bop" },
-  { term: "Cierre (Suave / Duro)", def: "Cerrar el pozo en una surgencia — el cierre suave abre primero la línea de choke y luego cierra el BOP, entrando gradualmente; el cierre duro cierra primero el BOP y luego abre la línea de choke, atrapando la presión más rápido pero con un pico más agudo. Cualquiera de los dos métodos puede usar el anular o un ariete de tubería, según lo que haya en el pozo.", href: "/es/drilling/well-control" },
+  { term: "Cierre (Suave / Duro)", def: "Cerrar el pozo en una surgencia — el cierre duro cierra el BOP contra un choke ya cerrado y luego abre la válvula HCR de la línea de choke para leer la presión con el choke todavía cerrado, atrapando la presión más rápido pero con un pico más agudo; el cierre suave abre la válvula HCR con el choke abierto, cierra el BOP y luego cierra el choke, entrando gradualmente. Cualquiera de los dos métodos puede usar el anular o un ariete de tubería, según lo que haya en el pozo.", href: "/es/drilling/well-control" },
   { term: "SICP", def: "Presión de Revestimiento con Pozo Cerrado. Registrada en el lado del revestimiento después de cerrar el pozo en una surgencia.", href: "/es/drilling/well-control" },
   { term: "SIDPP", def: "Presión de Tubería de Perforación con Pozo Cerrado. Refleja directamente el exceso de presión de formación por encima de la hidrostática después del cierre.", href: "/es/drilling/well-control" },
   { term: "Camisa Deslizante", def: "Un dispositivo de completación con puertos que pueden abrirse o cerrarse con una herramienta de cambio en cable para controlar el flujo entre la tubería y el anular.", href: "/es/equipment/sliding-sleeve" },
@@ -222,6 +222,17 @@ const terms = [
   { term: "LOTO", def: "Bloqueo/Etiquetado — procedimientos que aíslan y etiquetan fuentes de energía hidráulica, neumática, eléctrica, y mecánica antes de que comience el trabajo de mantenimiento.", href: "/es/safety" },
   { term: "SMAW", def: "Soldadura de Arco Metálico Protegido (electrodo). El proceso de soldadura caballo de batalla en un taladro — funciona al aire libre con viento, con equipo simple, para reparaciones estructurales y tubería.", href: "/es/welding" },
   { term: "Tarjeta STOP", def: "Una tarjeta de observación de seguridad usada para documentar peligros y comportamientos seguros vistos en el trabajo, parte de un programa de observación de seguridad basado en comportamiento." },
+  { term: "Cuñas", en: "Slips", def: "Cuñas dentadas y cónicas que se asientan en el tazón de la mesa rotaria, agarran la tubería y sostienen todo el peso de la sarta mientras se hace o se rompe una conexión.", href: "/es/equipment/rotating-system" },
+  { term: "Llaves de Fuerza", en: "Tongs", def: "Llaves grandes para enroscar y desenroscar las conexiones de tubería con el torque correcto. Las manuales las manejan los ayudantes de piso; las llaves hidráulicas y el iron roughneck hacen el mismo trabajo de forma mecánica.", href: "/es/equipment/rotating-system" },
+  { term: "Elevadores", en: "Elevators", def: "Abrazaderas con bisagra colgadas de los brazos del bloque viajero o del top drive que se cierran alrededor de la tubería debajo de la unión para subir y bajar la sarta.", href: "/es/equipment/hoisting-system" },
+  { term: "Iron Roughneck", en: "Iron Roughneck", def: "Máquina hidráulica en el piso del taladro que enrosca y aplica torque, o desenrosca, las conexiones de tubería, reemplazando las llaves manuales y alejando las manos de la tubería en rotación.", href: "/es/equipment/rotating-system" },
+  { term: "Caseta del Perforador", en: "Doghouse", def: "La pequeña caseta a nivel del piso del taladro donde se guardan los registros del perforador, la cuadrilla descansa y se almacenan herramientas. En muchos taladros la cabina de control del perforador está al lado.", href: "/es/careers/driller" },
+  { term: "Rampa de Tubería", en: "Catwalk", def: "La rampa y pasarela junto a los burros de tubería usada para subir y bajar tubulares al piso del taladro, a menudo con una máquina de manejo de tubería en taladros modernos.", href: "/es/careers/roustabout" },
+  { term: "Hueco de Ratón", en: "Mousehole", def: "Un agujero revestido poco profundo en el piso del taladro junto a la mesa rotaria donde se deja lista la siguiente junta de tubería para tomarla rápido durante una conexión.", href: "/es/equipment/rotating-system" },
+  { term: "Hitch (Rotación)", en: "Hitch", def: "La rotación de trabajo: los días seguidos que un trabajador pasa en el taladro antes de volver a casa, por ejemplo 14 por 14 o 21 por 21.", href: "/es/careers" },
+  { term: "Turno (Tour)", en: "Tour", def: "Un turno en el taladro; en inglés se pronuncia \"tower\". La mayoría de las cuadrillas trabajan turnos de 12 horas, y el reporte diario IADC registra lo ocurrido en cada uno.", href: "/es/careers" },
+  { term: "Motorista", en: "Motorman", def: "El trabajador responsable de los motores, generadores y equipos mecánicos del taladro. En taladros terrestres suele ser el paso entre ayudante de piso y encuellador.", href: "/es/careers/roughneck" },
+  { term: "Piso del Taladro", en: "Rig Floor", def: "La cubierta de trabajo alrededor de la mesa rotaria donde el perforador y los ayudantes de piso hacen conexiones, sacan y meten tubería y manejan herramientas. También llamado piso de perforación.", href: "/es/careers/roughneck" },
 ];
 
 // Misma lógica que la versión en inglés, con normalización de acentos antes
@@ -253,6 +264,7 @@ const glossaryLd = {
   "hasDefinedTerm": terms.map((t) => ({
     "@type": "DefinedTerm",
     "name": t.term,
+    ...(t.en ? { "alternateName": t.en } : {}),
     "description": t.def,
     "url": `https://rigfloorhq.com/es/glossary#${slugify(t.term)}`,
     "inDefinedTermSet": "https://rigfloorhq.com/es/glossary#set",
@@ -299,7 +311,7 @@ const glossaryLd = {
           {sortedTerms.filter((t) => t.term[0].toUpperCase() === letter).map((t) => (
             <div class="gloss-item" id={slugify(t.term)}>
               <dt class="gloss-term">{t.href ? <a href={t.href}>{t.term}{isEnglishOnly(t.href) && ' (inglés)'}</a> : t.term}</dt>
-              <dd class="gloss-def">{t.def}</dd>
+              <dd class="gloss-def">{t.en && <span class="gloss-en">Inglés: {t.en}. </span>}{t.def}</dd>
             </div>
           ))}
         </>

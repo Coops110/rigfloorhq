@@ -1,6 +1,6 @@
 ---
 title: "¿Qué es una Surgencia? Control de Pozos Explicado"
-description: "Qué es una surgencia, por qué falla la presión hidrostática, cómo un chequeo de flujo confirma un influjo, y por qué existen el cierre duro."
+description: "Qué es una surgencia, por qué falla la presión hidrostática, cómo un chequeo de flujo confirma un influjo, y por qué existen el cierre duro y el cierre suave."
 publishDate: "2026-07-09"
 author: "RigFloorHQ Team"
 category: "Control de Pozos"
@@ -62,9 +62,9 @@ Si el pozo continúa fluyendo con las bombas apagadas y sin efecto de sifón mec
 
 Una vez que se confirma una surgencia, la cuadrilla ejecuta una secuencia de cierre basada en la política de la empresa: cierre duro o cierre suave.
 
-**El cierre duro** cierra el BOP primero, luego abre la línea de choke. Esto atrapa la presión más rápido, minimizando el volumen de entrada, pero produce un pico de presión más agudo que algunos operadores quieren evitar en formaciones más débiles.
+**El cierre duro** cierra el BOP contra un choke ya cerrado. Luego se abre la válvula HCR de la línea de choke para leer la presión de casing en el panel del choke, pero el choke ajustable permanece cerrado. Esto atrapa la presión más rápido, minimizando el volumen de entrada, pero produce un pico de presión más agudo que algunos operadores quieren evitar en formaciones más débiles.
 
-**El cierre suave** abre la línea de choke primero, luego cierra el BOP, suavizando la entrada a la presión de cierre más gradualmente. Este es a menudo el método preferido donde la integridad de la formación o la resistencia del zapato de revestimiento son una preocupación.
+**El cierre suave** abre la válvula HCR de la línea de choke con el choke abierto, cierra el BOP y luego cierra el choke, suavizando la entrada a la presión de cierre más gradualmente. Este es a menudo el método preferido donde la integridad de la formación o la resistencia del zapato de revestimiento son una preocupación.
 
 Sin importar el método, una vez cerrado, la cuadrilla registra la Presión de Tubería con Pozo Cerrado (SIDPP), la Presión de Revestimiento con Pozo Cerrado (SICP), y la ganancia de pileta. Estos números alimentan directamente los cálculos de matanza — pásalos por la [calculadora de hoja de control de pozo](/es/calculators/kill-sheet) una vez que el SIDPP esté confirmado.
 
@@ -227,7 +227,7 @@ Las señales más tempranas de una surgencia incluyen aumento del caudal de sali
 
 ### ¿Cuál es la diferencia entre cierre duro y cierre suave?
 
-El cierre duro cierra el BOP antes de abrir la línea de choke, atrapando la presión más rápido pero creando un pico de presión más agudo. El cierre suave abre la línea de choke primero, luego cierra el BOP, suavizando la acumulación de presión más gradualmente para formaciones sensibles.
+El cierre duro cierra el BOP contra un choke cerrado y luego abre la válvula HCR de la línea de choke para leer la presión con el choke todavía cerrado. Atrapa la presión más rápido pero crea un pico de presión más agudo. El cierre suave abre la válvula HCR con el choke abierto, cierra el BOP y luego cierra el choke, suavizando la acumulación de presión más gradualmente para formaciones sensibles.
 
 ### ¿Es mejor el Método del Perforador o el Método Wait and Weight para control de pozos?
 

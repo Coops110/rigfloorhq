@@ -61,7 +61,9 @@ const autoSlug = (() => {
 })();
 const autoOgDiskPath = path.join(process.cwd(), 'public', 'og', `${autoSlug}.png`);
 const resolvedOgImage = ogImage || (fs.existsSync(autoOgDiskPath) ? `/og/${autoSlug}.png` : '/og-default.png');
-const fullTitle = title.includes('RigFloorHQ') ? title : `${title} | RigFloorHQ`;
+// The brand suffix is 13 characters and Google truncates near 60, so it is only
+// appended when it still fits — a cut-off target phrase costs more than the brand.
+const fullTitle = title.includes('RigFloorHQ') || title.length + 13 > 60 ? title : `${title} | RigFloorHQ`;
 
 const otherLang = lang === 'es' ? 'en' : 'es';
 const alternateURL = alternateHref ? `${siteUrl}${alternateHref}` : null;

@@ -41,11 +41,11 @@ const techArticleJsonLd = techArticleSchema({
           </div>
           <div class="safety-item yellow">
             <h3>⚠ Warning Signs</h3>
-            <p>Increasing pit volume (0.5–2 bbls). Drilling break. Increase in return flow while pumps are constant.</p>
+            <p>Any unexplained pit gain, however small. Drilling break. Increase in return flow while pump rate is constant. Hole taking the wrong fill on trips. Any of these means stop and flow check.</p>
           </div>
           <div class="safety-item orange">
             <h3>🔶 Shut In Now</h3>
-            <p>Pit gain greater than 2 bbls. Well flowing with pumps off. Any positive SIDPP/SICP after shut-in. That pit gain volume also tells you roughly how far the influx has moved up the annulus — see the <a href="/calculators/kick-influx-geometry" style="color:var(--amber);">kick influx geometry calculator</a> for influx length, height and gradient from the gain and hole inclination.</p>
+            <p>Positive flow check: the well flows with pumps off. Any confirmed, unexplained pit gain. Do not wait for the gain to reach a set number of barrels; the smaller the influx when you shut in, the easier the kill. Any positive SIDPP/SICP after shut-in. That pit gain volume also tells you roughly how far the influx has moved up the annulus — see the <a href="/calculators/kick-influx-geometry" style="color:var(--amber);">kick influx geometry calculator</a> for influx length, height and gradient from the gain and hole inclination.</p>
           </div>
           <div class="safety-item red">
             <h3>🚨 Emergency</h3>
@@ -62,16 +62,16 @@ const techArticleJsonLd = techArticleSchema({
         <h2 class="section-title" style="font-size:28px;">Shut-In <span>Procedure</span></h2>
         <div class="accordion">
           <details class="acc-item">
-            <summary class="acc-header">Step 1 — Detect & Stop Drilling<span class="acc-arrow">▼</span></summary>
-            <div class="acc-body"><p>Immediately pick up off bottom. Stop making hole the moment a kick is suspected. Raise the string to clear the kelly/top drive.</p></div>
+            <summary class="acc-header">Step 1 — Stop Drilling, Space Out, Flow Check<span class="acc-arrow">▼</span></summary>
+            <div class="acc-body"><p>Stop making hole the moment a kick is suspected. Pick up off bottom and space out so a tool joint is clear of the BOP element you will close. Stop the pumps, then flow check: watch the flow line or trip tank for flow with pumps off. If the well flows, or you have any doubt, shut in. Do not keep circulating to "see if it settles".</p></div>
           </details>
           <details class="acc-item">
             <summary class="acc-header">Step 2 — Shut In the Well<span class="acc-arrow">▼</span></summary>
-            <div class="acc-body"><p>For soft shut-in: open the choke line, then close the BOP (annular or ram, per company procedure), easing in gradually. For hard shut-in: close the BOP first, then open the choke line HCR valve to read pressures — the choke itself stays closed throughout. Notify toolpusher and company man immediately.</p></div>
+            <div class="acc-body"><p>Follow the shut-in method your company procedure and well-specific bridging document specify. Hard shut-in: with the adjustable choke already closed, close the BOP (annular or ram per procedure), then open the choke line HCR valve so casing pressure reads on the choke panel; the choke itself stays closed. Soft shut-in: open the choke line HCR valve with the choke open, close the BOP, then close the choke. Notify toolpusher and company man immediately.</p></div>
           </details>
           <details class="acc-item">
             <summary class="acc-header">Step 3 — Read Pressures<span class="acc-arrow">▼</span></summary>
-            <div class="acc-body"><p>Allow pressures to stabilize (15–30 min). Record SIDPP, SICP, and pit gain volume — your inputs for the kill sheet. Check that pit gain against the well's kick tolerance before deciding the kill can proceed as planned — see the <a href="/calculators/kick-tolerance" style="color:var(--amber);">kick tolerance calculator</a>.</p></div>
+            <div class="acc-body"><p>Record stabilised SIDPP and SICP at the interval your company procedure specifies, and log pressures against time. Do not wait a fixed period: if both pressures keep climbing together after they have stabilised, gas is likely migrating and needs managing per procedure. Record SIDPP, SICP, and pit gain volume — your inputs for the kill sheet. Check that pit gain against the well's kick tolerance before deciding the kill can proceed as planned — see the <a href="/calculators/kick-tolerance" style="color:var(--amber);">kick tolerance calculator</a>.</p></div>
           </details>
           <details class="acc-item">
             <summary class="acc-header">Step 4 — Calculate Kill Mud Weight<span class="acc-arrow">▼</span></summary>

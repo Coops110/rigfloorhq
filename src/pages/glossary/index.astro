@@ -168,7 +168,7 @@ const terms = [
   { term: "Section Mill", def: "A downhole mill that removes a full interval of casing around its entire circumference, exposing formation for a sidetrack or a cross-formation cement plug.", href: "/equipment/section-mill" },
   { term: "Semi-Submersible", def: "A floating offshore rig held stable on submerged, flooded pontoons and anchored or dynamically positioned. Works in up to roughly 12,000 ft of water.", href: "/equipment/rig-types" },
   { term: "Shear Rams", def: "Emergency BOP rams that cut through drill pipe and seal the well simultaneously.", href: "/equipment/bop" },
-  { term: "Shut-In (Soft / Hard)", def: "Closing in the well on a kick — soft shut-in opens the choke line first, then closes the BOP, easing in gradually; hard shut-in closes the BOP first, then opens the choke line, trapping pressure faster but with a sharper spike. Either method can use the annular or a pipe ram, depending on what's in the hole.", href: "/drilling/well-control" },
+  { term: "Shut-In (Soft / Hard)", def: "Closing in the well on a kick — hard shut-in closes the BOP against an already-closed choke, then opens the choke line HCR valve to read pressure with the choke still closed, trapping pressure fastest but with a sharper spike; soft shut-in opens the HCR valve with the choke open, closes the BOP, then closes the choke, easing in gradually. Either method can use the annular or a pipe ram, depending on what's in the hole.", href: "/drilling/well-control" },
   { term: "SICP", def: "Shut-In Casing Pressure. Recorded on the casing side after shutting in on a kick.", href: "/drilling/well-control" },
   { term: "SIDPP", def: "Shut-In Drill Pipe Pressure. Directly reflects excess formation pressure above hydrostatic after shut-in.", href: "/drilling/well-control" },
   { term: "Sliding Sleeve", def: "A completion device with ports that can be opened or closed with a wireline shifting tool to control flow between tubing and annulus.", href: "/equipment/sliding-sleeve" },
@@ -213,6 +213,17 @@ const terms = [
   { term: "LOTO", def: "Lockout/Tagout — procedures that isolate and tag out hydraulic, pneumatic, electrical, and mechanical energy sources before maintenance work begins.", href: "/safety" },
   { term: "SMAW", def: "Shielded Metal Arc Welding (stick). The workhorse welding process on a rig — works outdoors in wind, with simple equipment, for structural repairs and pipe.", href: "/welding" },
   { term: "STOP Card", def: "A safety observation card used to document hazards and safe behaviors seen on the job, part of a behavior-based safety observation program." },
+  { term: "Slips", def: "Tapered, toothed wedges set in the rotary table bowl that grip the drill pipe and hold the full string weight while a connection is made or broken.", href: "/equipment/rotating-system" },
+  { term: "Tongs", def: "Large wrenches used to make up and break out pipe connections to the correct torque. Manual tongs are swung by the floorhands; power tongs and iron roughnecks do the same job hydraulically.", href: "/equipment/rotating-system" },
+  { term: "Elevators", def: "Hinged clamps hung from the traveling block or top drive links that latch around the pipe below the tool joint so the string can be lifted and lowered.", href: "/equipment/hoisting-system" },
+  { term: "Iron Roughneck", def: "A hydraulic machine on the rig floor that spins in and torques up, or breaks out, drill pipe connections, replacing manual tongs and keeping hands away from the rotating pipe.", href: "/equipment/rotating-system" },
+  { term: "Doghouse", def: "The small building at rig floor level where the driller's records are kept, crews take breaks and tools are stored. On many rigs the driller's control cabin sits next to it.", href: "/careers/driller" },
+  { term: "Catwalk", def: "The ramp and walkway alongside the pipe racks used to move tubulars up to and down from the rig floor, often with a powered pipe-handling machine on modern rigs.", href: "/careers/roustabout" },
+  { term: "Mousehole", def: "A shallow cased hole in the rig floor next to the rotary table where the next joint of pipe is stood ready so it can be picked up quickly during a connection.", href: "/equipment/rotating-system" },
+  { term: "Hitch", def: "A work rotation: the block of consecutive days a crew member spends on the rig before going home, such as 14 on and 14 off or 21 on and 21 off.", href: "/careers" },
+  { term: "Tour", def: "A shift on the rig, pronounced \"tower\". Most crews work 12-hour tours, and the tour sheet (IADC daily drilling report) records what happened on each one.", href: "/careers" },
+  { term: "Motorman", def: "The crew member responsible for the rig's engines, generators and mechanical equipment. Often the step between floorhand and derrickhand on land rigs.", href: "/careers/roughneck" },
+  { term: "Rig Floor", def: "The working deck around the rotary table where the driller and floorhands make connections, trip pipe and handle tools. Also called the drill floor.", href: "/careers/roughneck" },
 ];
 
 const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');

@@ -61,9 +61,9 @@ If the well continues to flow with pumps shut down and no mechanical siphoning e
 
 Once a kick is confirmed, the crew executes a shut-in sequence based on company policy: hard shut-in or soft shut-in.
 
-**Hard shut-in** closes the BOP first, then opens the choke line. This traps pressure fastest, minimizing influx volume, but produces a sharper pressure spike that some operators want to avoid on weaker formations.
+**Hard shut-in** closes the BOP against an already-closed choke. The choke line HCR valve is then opened so casing pressure reads on the choke panel, but the adjustable choke itself stays closed. This traps pressure fastest, minimizing influx volume, but produces a sharper pressure spike that some operators want to avoid on weaker formations.
 
-**Soft shut-in** opens the choke line first, then closes the BOP, easing into shut-in pressure more gradually. This is often the preferred method where formation integrity or casing shoe strength is a concern.
+**Soft shut-in** opens the choke line HCR valve with the choke open, closes the BOP, then closes the choke, easing into shut-in pressure more gradually. This is often the preferred method where formation integrity or casing shoe strength is a concern.
 
 Regardless of method, once shut in, the crew records Shut-In Drillpipe Pressure (SIDPP), Shut-In Casing Pressure (SICP), and pit gain. These numbers feed directly into kill calculations — run them through the [kill sheet calculator](/calculators/kill-sheet) once SIDPP is confirmed.
 
@@ -217,7 +217,7 @@ The earliest signs of a kick include increased flow rate out without a matching 
 
 ### What's the difference between hard shut-in and soft shut-in?
 
-Hard shut-in closes the BOP before opening the choke line, trapping pressure fastest but creating a sharper pressure spike. Soft shut-in opens the choke line first, then closes the BOP, easing pressure buildup more gradually for sensitive formations.
+Hard shut-in closes the BOP against a closed choke, then opens the choke line HCR valve to read pressure with the choke still closed. It traps pressure fastest but creates a sharper pressure spike. Soft shut-in opens the HCR valve with the choke open, closes the BOP, then closes the choke, easing pressure buildup more gradually for sensitive formations.
 
 ### Is the Driller's Method or Wait and Weight Method better for well control?
 

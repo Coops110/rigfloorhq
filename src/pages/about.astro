@@ -27,7 +27,7 @@ const postsEs = (await getCollection('blogEs')).filter((p) => !p.data.draft);
     <div class="page-meta">
       <span class="page-meta-item"><strong>{posts.length}</strong> articles published</span>
       <span class="page-meta-item"><strong>{postsEs.length}</strong> in Spanish</span>
-      <span class="page-meta-item">No ads, no paid placement</span>
+      <span class="page-meta-item">No ads, no paid placement, affiliate links disclosed</span>
     </div>
   </div>
 
@@ -56,8 +56,10 @@ const postsEs = (await getCollection('blogEs')).filter((p) => !p.data.draft);
         an interest in what you conclude about training, equipment or employers.
       </p>
       <p>
-        We carry no advertising, take no payment for coverage, and run no affiliate links
-        or referral commissions. Nothing on this site is placed because someone paid for it
+        We carry no advertising and take no payment for coverage. A small number of product
+        links are affiliate links: if you buy through one, we may earn a commission at no extra
+        cost to you. Those links are marked as sponsored, and they never decide what we
+        recommend or how a page reads. Nothing on this site is placed because someone paid for it
         to be there.
       </p>
 

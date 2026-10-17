@@ -41,11 +41,11 @@ const techArticleJsonLd = techArticleSchema({
           </div>
           <div class="safety-item yellow">
             <h3>⚠ Señales de Advertencia</h3>
-            <p>Aumento del volumen de pileta (0.5–2 bbls). Drilling break (aumento súbito de ROP). Aumento del flujo de retorno mientras las bombas están constantes.</p>
+            <p>Cualquier ganancia de pileta sin explicación, por pequeña que sea. Drilling break (aumento súbito de ROP). Aumento del flujo de retorno con el caudal de bombeo constante. Llenado incorrecto del pozo durante los viajes. Cualquiera de estas señales significa parar y hacer una prueba de flujo.</p>
           </div>
           <div class="safety-item orange">
             <h3>🔶 Cerrar el Pozo Ahora</h3>
-            <p>Ganancia de pileta mayor a 2 bbls. Pozo fluyendo con bombas apagadas. Cualquier SIDPP/SICP positivo después del cierre. Esa ganancia de pileta también indica aproximadamente cuánto ha subido la entrada por el espacio anular — ver la <a href="/es/calculators/kick-influx-geometry" style="color:var(--amber);">calculadora de geometría de entrada de surgencia</a> para la longitud, altura y gradiente de la entrada a partir de la ganancia y la inclinación del pozo.</p>
+            <p>Prueba de flujo positiva: el pozo fluye con las bombas apagadas. Cualquier ganancia de pileta confirmada y sin explicación. No esperes a que la ganancia llegue a un número fijo de barriles; cuanto menor sea la entrada al cerrar, más fácil será la matanza. Cualquier SIDPP/SICP positivo después del cierre. Esa ganancia de pileta también indica aproximadamente cuánto ha subido la entrada por el espacio anular — ver la <a href="/es/calculators/kick-influx-geometry" style="color:var(--amber);">calculadora de geometría de entrada de surgencia</a> para la longitud, altura y gradiente de la entrada a partir de la ganancia y la inclinación del pozo.</p>
           </div>
           <div class="safety-item red">
             <h3>🚨 Emergencia</h3>
@@ -62,16 +62,16 @@ const techArticleJsonLd = techArticleSchema({
         <h2 class="section-title" style="font-size:28px;">Procedimiento de <span>Cierre</span></h2>
         <div class="accordion">
           <details class="acc-item">
-            <summary class="acc-header">Paso 1 — Detectar y Detener la Perforación<span class="acc-arrow">▼</span></summary>
-            <div class="acc-body"><p>Levanta la sarta del fondo inmediatamente. Detén la perforación en el momento que se sospeche una surgencia. Sube la sarta para despejar el kelly/top drive.</p></div>
+            <summary class="acc-header">Paso 1 — Detener la Perforación, Espaciar y Prueba de Flujo<span class="acc-arrow">▼</span></summary>
+            <div class="acc-body"><p>Detén la perforación en el momento que se sospeche una surgencia. Levanta la sarta del fondo y espacia para que ninguna unión quede frente al elemento del BOP que vas a cerrar. Apaga las bombas y haz la prueba de flujo: observa la línea de flujo o el tanque de viaje con las bombas apagadas. Si el pozo fluye, o si hay cualquier duda, cierra. No sigas circulando para "ver si se calma".</p></div>
           </details>
           <details class="acc-item">
             <summary class="acc-header">Paso 2 — Cerrar el Pozo<span class="acc-arrow">▼</span></summary>
-            <div class="acc-body"><p>Para cierre suave: abre la línea de choke, luego cierra el BOP (anular o ariete, según el procedimiento de la empresa), entrando gradualmente. Para cierre duro: cierra primero el BOP, luego abre la válvula HCR de la línea de choke para leer las presiones — el choke en sí permanece cerrado todo el tiempo. Notifica al toolpusher y al company man inmediatamente.</p></div>
+            <div class="acc-body"><p>Sigue el método de cierre que indique el procedimiento de tu empresa y el documento puente del pozo. Cierre duro: con el choke ajustable ya cerrado, cierra el BOP (anular o ariete según el procedimiento) y luego abre la válvula HCR de la línea de choke para leer la presión de casing en el panel del choke; el choke permanece cerrado. Cierre suave: abre la válvula HCR de la línea de choke con el choke abierto, cierra el BOP y luego cierra el choke. Notifica al toolpusher y al company man inmediatamente.</p></div>
           </details>
           <details class="acc-item">
             <summary class="acc-header">Paso 3 — Leer las Presiones<span class="acc-arrow">▼</span></summary>
-            <div class="acc-body"><p>Permite que las presiones se estabilicen (15–30 min). Registra el SIDPP, SICP, y el volumen de ganancia de pileta — tus datos para la hoja de control de pozo. Verifica esa ganancia de pileta contra la tolerancia a surgencia del pozo antes de decidir que la matanza puede proceder según lo planeado — ver la <a href="/es/calculators/kick-tolerance" style="color:var(--amber);">calculadora de tolerancia a surgencia</a>.</p></div>
+            <div class="acc-body"><p>Registra el SIDPP y el SICP estabilizados en el intervalo que indique el procedimiento de tu empresa, y anota las presiones contra el tiempo. No esperes un tiempo fijo: si ambas presiones siguen subiendo juntas después de estabilizarse, es probable que el gas esté migrando y debe manejarse según el procedimiento. Registra el SIDPP, SICP, y el volumen de ganancia de pileta — tus datos para la hoja de control de pozo. Verifica esa ganancia de pileta contra la tolerancia a surgencia del pozo antes de decidir que la matanza puede proceder según lo planeado — ver la <a href="/es/calculators/kick-tolerance" style="color:var(--amber);">calculadora de tolerancia a surgencia</a>.</p></div>
           </details>
           <details class="acc-item">
             <summary class="acc-header">Paso 4 — Calcular el Peso de Lodo de Matanza<span class="acc-arrow">▼</span></summary>

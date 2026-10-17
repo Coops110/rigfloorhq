@@ -27,7 +27,7 @@ const postsEs = (await getCollection('blogEs')).filter((p) => !p.data.draft);
     <div class="page-meta">
       <span class="page-meta-item"><strong>{postsEs.length}</strong> artículos en español</span>
       <span class="page-meta-item"><strong>{posts.length}</strong> en inglés</span>
-      <span class="page-meta-item">Sin publicidad ni contenido pagado</span>
+      <span class="page-meta-item">Sin publicidad ni contenido pagado, enlaces de afiliación declarados</span>
     </div>
   </div>
 
@@ -58,8 +58,10 @@ const postsEs = (await getCollection('blogEs')).filter((p) => !p.data.draft);
         lo que concluyas sobre formación, equipos o empleadores.
       </p>
       <p>
-        No mostramos publicidad, no cobramos por cobertura y no utilizamos enlaces de
-        afiliación ni comisiones por recomendación. Nada de lo que hay en este sitio está
+        No mostramos publicidad y no cobramos por cobertura. Algunos enlaces a productos son
+        enlaces de afiliación: si compras a través de uno, podemos recibir una comisión sin costo
+        adicional para ti. Esos enlaces están marcados como patrocinados y nunca deciden qué
+        recomendamos ni cómo se escribe una página. Nada de lo que hay en este sitio está
         aquí porque alguien haya pagado por ello.
       </p>
 
