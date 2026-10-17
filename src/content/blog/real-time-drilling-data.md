@@ -42,7 +42,7 @@ Nothing about real-time data changes what the driller is fundamentally doing —
 
 ### In Directional Steering
 
-Real-time MWD data is what makes modern directional and horizontal drilling possible at all. A directional driller adjusts a downhole motor or rotary steerable system based on inclination and azimuth readings arriving in something close to real time — without that data stream, steering a wellbore to a precise target thousands of feet away simply doesn't work.
+Real-time MWD data is what makes modern directional and horizontal drilling possible at all. A directional driller adjusts a downhole motor (usually a [positive displacement mud motor](/equipment/positive-displacement-mud-motor)) or rotary steerable system based on inclination and azimuth readings arriving in something close to real time — without that data stream, steering a wellbore to a precise target thousands of feet away simply doesn't work.
 
 ### In Remote Operations Centers
 

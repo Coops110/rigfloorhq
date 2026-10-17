@@ -2,29 +2,35 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { articleSchema } from '../../lib/techarticle.js';
 import { reviewedByJabin } from '../../lib/person.js';
 
-// Google retired rich-result support for HowTo in 2023, so this used to be
-// dead weight on the page even when it validated. Article is the correct
-// primary-entity type for a how-to guide written as prose rather than a
-// literal numbered procedure — no step array to fabricate, since the page
-// was never marked up with real HowToStep-shaped content to begin with.
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Roughneck Job: Rig Floor Duties, Pay and Promotion",
-  "description": "Step-by-step guide to starting a career as an oil rig roughneck with no prior experience.",
-};
+// Article for this career guide. Dates come from git via the same map the
+// sitemap uses, so dateModified always equals this URL's sitemap lastmod;
+// author and publisher are the Organization @id (see src/lib/techarticle.js).
+// reviewedBy is a WebPage property in schema.org, so it sits on this page's
+// WebPage node, which the Article names as its mainEntityOfPage.
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/careers/roughneck.astro',
+  path: '/careers/roughneck',
+  headline: "Roughneck Job: Rig Floor Duties, Pay and Promotion",
+  description: "What a roughneck (floorhand) does on the rig floor: connections and trips, tours and hitches, pay, certifications, and the path up to derrickhand and driller.",
+  lang: 'en',
+  extra: { mainEntityOfPage: { "@id": "https://rigfloorhq.com/careers/roughneck#webpage" } },
+});
 
-// reviewedBy belongs on WebPage per schema.org, not Article — see
-// src/lib/person.js. A separate WebPage node carries it instead of Article.
 const webPageLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   "@id": "https://rigfloorhq.com/careers/roughneck#webpage",
   "url": "https://rigfloorhq.com/careers/roughneck",
+  "name": "Roughneck Job: Duties, Pay and Promotion",
+  "inLanguage": "en",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/careers/roughneck#article" },
   "reviewedBy": reviewedByJabin(),
 };
+
 ---
 <BaseLayout
   title="Roughneck Job: Duties, Pay and Promotion"
@@ -54,7 +60,7 @@ const webPageLd = {
       <div class="prose">
         <h2 id="what-a-roughneck-actually-does">What a Roughneck Actually Does</h2>
         <p>A roughneck works directly on the rig floor, handling every part of the drilling process that involves the pipe itself. That means operating the tongs and iron roughneck to make up and break out pipe connections, running the catwalk that feeds pipe up to the floor, handling drill collars and BHA components, and keeping the rig floor clean and safe during operations.</p>
-        <p>It's physically demanding work — expect to lift, pull, and carry heavy equipment in 12-hour tours, often in extreme heat, cold, or offshore conditions. But it's also the foundation of every drilling career. Nearly every <a href="/careers/toolpusher">toolpusher</a>, driller, and rig manager started exactly here.</p>
+        <p>It's physically demanding work — expect to lift, pull, and carry heavy equipment in 12-hour tours, often in extreme heat, cold, or offshore conditions. But it's also the foundation of every drilling career. Nearly every <a href="/careers/toolpusher">toolpusher</a>, driller, and rig manager started exactly here, and the <a href="/pillars/rig-floor-leadership">rig floor leadership guide</a> maps that supervisory career ladder from driller upward.</p>
 
         <h2 id="roughneck-vs-roustabout-whats-the-difference">Roughneck vs Roustabout — What's the Difference?</h2>
         <p>These two titles get confused constantly. A <a href="/careers/roustabout"><strong>roustabout</strong></a> is the true entry-level position: general labor, cleaning, painting, moving supplies, and helping other trades. A <strong>roughneck</strong> (also called a floorhand) works specifically on the drill floor handling pipe and drilling equipment. Most people start as a <a href="/careers/roustabout">roustabout</a> and get promoted into a roughneck role within 1–2 years.</p>

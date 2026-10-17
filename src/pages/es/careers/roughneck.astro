@@ -2,18 +2,19 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { articleSchema } from '../../../lib/techarticle.js';
 
-// Google retired rich-result support for HowTo in 2023, so this used to be
-// dead weight on the page even when it validated. Article is the correct
-// primary-entity type for a how-to guide written as prose rather than a
-// literal numbered procedure — no step array to fabricate, since the page
-// was never marked up with real HowToStep-shaped content to begin with.
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Trabajo de Roughneck: Funciones, Salario y Ascenso",
-  "description": "Guía paso a paso para comenzar una carrera como roughneck en un taladro petrolero sin experiencia previa.",
-};
+// Article for this career guide. Dates come from git via the same map the
+// sitemap uses, so dateModified always equals this URL's sitemap lastmod;
+// author and publisher are the Organization @id (see src/lib/techarticle.js).
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/es/careers/roughneck.astro',
+  path: '/es/careers/roughneck',
+  headline: "Trabajo de Roughneck: Funciones, Salario y Ascenso",
+  description: "Qué hace un roughneck (ayudante de piso) en el piso del taladro: conexiones y viajes, turnos y rotaciones, salario, certificaciones y el camino a encuellador y perforador.",
+  lang: 'es',
+});
+
 ---
 <BaseLayout
   title="Roughneck: Funciones, Salario y Ascenso"
@@ -42,10 +43,10 @@ const jsonLd = {
       <div class="prose">
         <h2 id="que-hace-realmente-un-roughneck">Qué Hace Realmente un Roughneck</h2>
         <p>Un roughneck trabaja directamente en el piso de perforación, manejando cada parte del proceso de perforación que involucra la tubería misma. Eso significa operar las llaves de fuerza (tongs) y el iron roughneck para hacer y deshacer conexiones de tubería, operar el catwalk que alimenta la tubería hacia el piso, manejar los lastrabarrenas y componentes del BHA, y mantener el piso de perforación limpio y seguro durante las operaciones.</p>
-        <p>Es trabajo físicamente exigente — espera levantar, jalar, y cargar equipo pesado en turnos de 12 horas, a menudo en calor extremo, frío, o condiciones costa afuera. Pero también es la base de toda carrera en perforación. Casi todo toolpusher, perforador, y gerente de taladro comenzó exactamente aquí.</p>
+        <p>Es trabajo físicamente exigente — espera levantar, jalar, y cargar equipo pesado en turnos de 12 horas, a menudo en calor extremo, frío, o condiciones costa afuera. Pero también es la base de toda carrera en perforación. Casi todo toolpusher, perforador, y gerente de taladro comenzó exactamente aquí, y la <a href="/es/pillars/rig-floor-leadership">guía de liderazgo en el piso de perforación</a> describe esa escalera de supervisión desde perforador hacia arriba.</p>
 
         <h2 id="roughneck-vs-roustabout-cual-es-la-diferencia">Roughneck vs. Roustabout — ¿Cuál es la Diferencia?</h2>
-        <p>Estos dos títulos se confunden constantemente. Un <a href="/es/careers/roustabout"><strong>roustabout (obrero de piso)</strong></a> es la posición verdaderamente de nivel inicial: trabajo general, limpieza, pintura, movimiento de suministros, y ayuda a otros oficios. Un <strong>roughneck</strong> (también llamado floorhand) trabaja específicamente en el piso de perforación manejando tubería y equipo de perforación. La mayoría de las personas comienzan como <a href="/es/careers/roustabout">roustabout</a> y son promovidas a un rol de roughneck dentro de 1 a 2 años.</p>
+        <p>Estos dos títulos se confunden constantemente. Un <a href="/es/careers/roustabout"><strong>ayudante de patio (roustabout)</strong></a> es la posición verdaderamente de nivel inicial: trabajo general, limpieza, pintura, movimiento de suministros, y ayuda a otros oficios. Un <strong>roughneck</strong> (también llamado floorhand) trabaja específicamente en el piso de perforación manejando tubería y equipo de perforación. La mayoría de las personas comienzan como <a href="/es/careers/roustabout">roustabout</a> y son promovidas a un rol de roughneck dentro de 1 a 2 años.</p>
 
         <h2 id="paso-a-paso-como-conseguir-el-trabajo">Paso a Paso: Cómo Conseguir el Trabajo</h2>
         <h3>1. Cumple los Requisitos Básicos</h3>

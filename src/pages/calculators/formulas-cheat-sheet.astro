@@ -4,6 +4,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import NewsletterSignup from '../../components/NewsletterSignup.astro';
 import { reviewedByJabin } from '../../lib/person.js';
+import { techArticleSchema } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -16,41 +17,34 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "TechArticle",
-      "headline": "Drilling Formulas Quick-Reference Cheat Sheet",
-      "description": "Core drilling formulas, conversions, and a worked example for the rig floor: hydrostatic pressure, kill mud weight, MAASP, ECD, buoyancy, capacity.",
-      "about": "Drilling and well control formulas",
-      // reviewedBy belongs on WebPage per schema.org, not TechArticle — it
-      // lives on mainEntityOfPage instead. This WebPage node also covers the
-      // WebApplication below, since both describe the same URL.
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://rigfloorhq.com/calculators/formulas-cheat-sheet",
-        "reviewedBy": reviewedByJabin()
-      }
-    }
-  ]
-};
+// One primary entity for this URL: a TechArticle. It is a reference sheet,
+// not an app, so the WebApplication block it used to carry alongside (two
+// competing primary entities for one URL) is gone. reviewedBy is a WebPage
+// property in schema.org, so it sits on the page's own WebPage node, which
+// the TechArticle names as mainEntityOfPage. Dates come from git via the same
+// map as the sitemap lastmod (src/lib/techarticle.js).
+const jsonLd = techArticleSchema({
+  sourcePath: 'src/pages/calculators/formulas-cheat-sheet.astro',
+  path: '/calculators/formulas-cheat-sheet',
+  headline: "Drilling Formulas Quick-Reference Cheat Sheet",
+  description: "Core drilling formulas, conversions, and a worked example for the rig floor: hydrostatic pressure, kill mud weight, MAASP, ECD, buoyancy, capacity.",
+  lang: 'en',
+  extra: {
+    about: { "@type": "Thing", "name": "Drilling and well control formulas" },
+    mainEntityOfPage: { "@id": "https://rigfloorhq.com/calculators/formulas-cheat-sheet#webpage" },
+  },
+});
 
-const webAppLd = {
+const webPageLd = {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "@id": "https://rigfloorhq.com/calculators/formulas-cheat-sheet#app",
-  "name": "Drilling Formulas Cheat Sheet — Quick Reference",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/calculators/formulas-cheat-sheet#webpage",
   "url": "https://rigfloorhq.com/calculators/formulas-cheat-sheet",
-  "description": "Core drilling formulas, conversions, and a worked example for the rig floor: hydrostatic pressure, kill mud weight, MAASP, ECD, buoyancy, capacity.",
-  "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Drilling engineering calculator",
-  "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requires JavaScript",
+  "name": "Drilling Formulas Cheat Sheet — Quick Reference",
   "inLanguage": "en",
-  "isAccessibleForFree": true,
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/calculators/formulas-cheat-sheet#article" },
+  "reviewedBy": reviewedByJabin()
 };
 ---
 <BaseLayout
@@ -60,7 +54,7 @@ const webAppLd = {
   lang="en"
   alternateHref="/es/calculators/formulas-cheat-sheet"
   jsonLd={jsonLd}
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webPageLd]}
 >
   <Nav slot="nav" lang="en" alternateHref="/es/calculators/formulas-cheat-sheet" />
   <Footer slot="footer" lang="en" />

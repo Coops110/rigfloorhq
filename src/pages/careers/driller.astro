@@ -2,8 +2,22 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { articleSchema } from '../../lib/techarticle.js';
+
+// Article for this career guide. Dates come from git via the same map the
+// sitemap uses, so dateModified always equals this URL's sitemap lastmod;
+// author and publisher are the Organization @id (see src/lib/techarticle.js).
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/careers/driller.astro',
+  path: '/careers/driller',
+  headline: "How to Become a Driller — Career Path & IWCF Requirements",
+  description: "The complete path from roughneck to driller: IWCF well control certifications, timeline, salary, and what the job actually involves at the console.",
+  lang: 'en',
+});
+
 ---
 <BaseLayout
+  jsonLd={jsonLd}
   title="How to Become a Driller — Career Path & IWCF Requirements"
   description="The complete path from roughneck to driller: IWCF well control certifications, timeline, salary, and what the job actually involves at the console."
   breadcrumbs={[{ label: 'Careers', href: '/careers' }, { label: 'Driller', href: '/careers/driller' }]}

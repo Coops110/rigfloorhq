@@ -32,6 +32,32 @@ function git(command) {
  * caller treats as "emit no lastmod" rather than guessing.
  */
 export function buildGitLastmodMap() {
+  const dates = buildGitDatesMap();
+  if (!dates) return null;
+  const map = new Map();
+  for (const [file, { modified }] of dates) map.set(file, modified);
+  return map;
+}
+
+/**
+ * The same single `git log` pass, keeping both ends of each file's history:
+ * `modified` is the newest commit touching the path (exactly what the sitemap
+ * uses as <lastmod>), `published` the oldest. Schema datePublished and
+ * dateModified are built from this (src/lib/techarticle.js), so the on-page
+ * dateModified always equals the sitemap lastmod for the same source file.
+ *
+ * `published` is null in a shallow clone: the oldest commit *visible* there is
+ * only the fetch-depth cut-off, not the file's first commit, so reporting it
+ * would claim a page is newer than it is. --no-renames means a renamed file's
+ * history starts at the rename, which can only make datePublished later than
+ * the truth, never earlier.
+ *
+ * Cached per process: astro.config.mjs and every page importing
+ * techarticle.js share one subprocess.
+ */
+let cachedDates;
+export function buildGitDatesMap() {
+  if (cachedDates !== undefined) return cachedDates;
   let log;
   try {
     // %x00 writes a NUL byte, which cannot occur in a path, so it reliably
@@ -39,6 +65,7 @@ export function buildGitLastmodMap() {
     log = git('git log --pretty=format:%x00%cI --name-only --no-renames');
   } catch {
     console.warn('[sitemap] git history unavailable — building without lastmod');
+    cachedDates = null;
     return null;
   }
 
@@ -50,7 +77,7 @@ export function buildGitLastmodMap() {
     // A shallow clone still yields correct dates for whatever it contains;
     // files whose last edit predates the cut-off simply get no lastmod, which
     // is the safe direction to be wrong in.
-    console.warn('[sitemap] shallow clone — pages older than the fetch depth will have no lastmod');
+    console.warn('[sitemap] shallow clone — pages older than the fetch depth will have no lastmod, and schema datePublished is omitted');
   }
 
   const map = new Map();
@@ -62,8 +89,13 @@ export function buildGitLastmodMap() {
     }
     const file = line.trim();
     if (!file || !date) continue;
-    if (!map.has(file)) map.set(file, date);
+    const entry = map.get(file);
+    // Newest commit first: the first sighting is the last modification, and
+    // every later sighting is older, so it keeps overwriting `published`.
+    if (!entry) map.set(file, { modified: date, published: shallow ? null : date });
+    else if (!shallow) entry.published = date;
   }
+  cachedDates = map;
   return map;
 }
 

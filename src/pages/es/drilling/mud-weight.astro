@@ -2,14 +2,16 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Peso de Lodo, Presión Hidrostática y la Ventana de Peso de Lodo",
-  "description": "Cómo calcular la presión hidrostática, presión de poro, presión de fractura, y manejar de forma segura la ventana de peso de lodo durante la perforación.",
-  "about": "Ingeniería de perforación"
-};
+const jsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/drilling/mud-weight.astro',
+  path: '/es/drilling/mud-weight',
+  headline: "Peso de Lodo, Presión Hidrostática y la Ventana de Peso de Lodo",
+  description: "Cómo calcular la presión hidrostática, presión de poro, presión de fractura, y manejar de forma segura la ventana de peso de lodo durante la perforación.",
+  lang: 'es',
+  extra: { about: { "@type": "Thing", "name": "Ingeniería de perforación" } },
+});
 ---
 <BaseLayout
   title="Cálculo de Peso de Lodo y Presión Hidrostática"

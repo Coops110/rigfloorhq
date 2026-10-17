@@ -117,6 +117,8 @@ Un procedimiento LOTO correcto incluye:
 - Una verificación de energía cero realizada y documentada antes de iniciar el trabajo
 - Una secuencia clara de retiro, con candados removidos solo por quien los aplicó
 
+En un taladro diésel-eléctrico, la mayoría de esos puntos de aislamiento llevan al [sistema de generación de energía del taladro](/es/equipment/power-generation-system): los interruptores de los generadores, la casa de SCR o VFD que distribuye la energía al malacate, las bombas de lodo y el top drive, y el centro de control de motores. Anote en el permiso el interruptor o la barra específica, no solo "el generador", o la verificación de energía cero no tendrá nada preciso que comprobar.
+
 La energía mecánica almacenada — resortes, acumuladores presurizados, cargas suspendidas — requiere el mismo rigor que el aislamiento eléctrico y nunca debe tratarse como un peligro de menor nivel.
 
 ## Gestión de SIMOPS Bajo el Sistema de Permisos

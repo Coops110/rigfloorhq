@@ -2,14 +2,16 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Mud Weight: What Makes Drilling Fluid Heavy",
-  "description": "What mud weight is, how it's measured in ppg and SG, what makes drilling fluid heavy, and the mud weight window between pore and fracture pressure.",
-  "about": "Drilling engineering"
-};
+const jsonLd = techArticleSchema({
+  sourcePath: 'src/pages/drilling/mud-weight.astro',
+  path: '/drilling/mud-weight',
+  headline: "Mud Weight: What Makes Drilling Fluid Heavy",
+  description: "What mud weight is, how it's measured in ppg and SG, what makes drilling fluid heavy, and the mud weight window between pore and fracture pressure.",
+  lang: 'en',
+  extra: { about: { "@type": "Thing", "name": "Drilling engineering" } },
+});
 ---
 <BaseLayout
   title="Mud Weight: What Makes Drilling Fluid Heavy"

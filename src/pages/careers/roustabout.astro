@@ -2,27 +2,35 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { articleSchema } from '../../lib/techarticle.js';
 import { reviewedByJabin } from '../../lib/person.js';
 
-// Article is the correct primary-entity type here, matching the pattern
-// already established on the roughneck page — see the comment there for
-// why (Google retired HowTo rich results in 2023, and this is prose, not
-// a literal HowToStep procedure). reviewedBy lives on a sibling WebPage
-// node, not on Article, per schema.org and src/lib/person.js.
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "How to Become a Roustabout",
-  "description": "Step-by-step guide to starting a career as an oil rig roustabout with no prior experience — the true entry point into the industry.",
-};
+// Article for this career guide. Dates come from git via the same map the
+// sitemap uses, so dateModified always equals this URL's sitemap lastmod;
+// author and publisher are the Organization @id (see src/lib/techarticle.js).
+// reviewedBy is a WebPage property in schema.org, so it sits on this page's
+// WebPage node, which the Article names as its mainEntityOfPage.
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/careers/roustabout.astro',
+  path: '/careers/roustabout',
+  headline: "How to Become a Roustabout",
+  description: "Step-by-step guide to becoming an oil rig roustabout with zero experience: requirements, pay, what the job actually involves, and how to get hired.",
+  lang: 'en',
+  extra: { mainEntityOfPage: { "@id": "https://rigfloorhq.com/careers/roustabout#webpage" } },
+});
 
 const webPageLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   "@id": "https://rigfloorhq.com/careers/roustabout#webpage",
   "url": "https://rigfloorhq.com/careers/roustabout",
+  "name": "How to Become a Roustabout: Entry-Level Guide",
+  "inLanguage": "en",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/careers/roustabout#article" },
   "reviewedBy": reviewedByJabin(),
 };
+
 ---
 <BaseLayout
   title="How to Become a Roustabout: Entry-Level Guide"
@@ -91,7 +99,7 @@ const webPageLd = {
         </ul>
 
         <h2 id="what-comes-next">What Comes Next</h2>
-        <p>After roughly 1–2 years as a roustabout, the next step up is <a href="/careers/roughneck"><strong>roughneck</strong></a> — moving onto the drill floor itself to handle pipe connections directly. From there, the path continues through derrickman, assistant driller, and eventually driller. See the full <a href="/careers/roughneck">path to becoming a roughneck</a> for what that promotion actually involves.</p>
+        <p>After roughly 1–2 years as a roustabout, the next step up is <a href="/careers/roughneck"><strong>roughneck</strong></a> — moving onto the drill floor itself to handle pipe connections directly. From there, the path continues through derrickman, assistant driller, and eventually driller. See the full <a href="/careers/roughneck">path to becoming a roughneck</a> for what that promotion actually involves. Beyond the console, the supervisory career ladder (toolpusher, then OIM or rig manager) is laid out in the <a href="/pillars/rig-floor-leadership">rig floor leadership guide</a>.</p>
       </div>
 
       <div>

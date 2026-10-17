@@ -2,8 +2,22 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { articleSchema } from '../../lib/techarticle.js';
+
+// Article for this career guide. Dates come from git via the same map the
+// sitemap uses, so dateModified always equals this URL's sitemap lastmod;
+// author and publisher are the Organization @id (see src/lib/techarticle.js).
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/careers/oim-rig-manager.astro',
+  path: '/careers/oim-rig-manager',
+  headline: "How to Become an OIM / Rig Manager — Career Path",
+  description: "What an Offshore Installation Manager (OIM) or onshore rig manager actually does, the path from toolpusher, required certifications, and pay.",
+  lang: 'en',
+});
+
 ---
 <BaseLayout
+  jsonLd={jsonLd}
   title="How to Become an OIM / Rig Manager — Career Path"
   description="What an Offshore Installation Manager (OIM) or onshore rig manager actually does, the path from toolpusher, required certifications, and pay."
   breadcrumbs={[{ label: 'Careers', href: '/careers' }, { label: 'OIM / Rig Manager', href: '/careers/oim-rig-manager' }]}

@@ -10,9 +10,9 @@ const siteUrl = 'https://rigfloorhq.com';
 // The canonical Person record. Every reviewedBy reference elsewhere on the
 // site points at this @id via src/lib/person.js rather than re-typing any of
 // this. This page is the one place his name, credentials and bio are typed
-// out in full.
-const personLd = {
-  '@context': 'https://schema.org',
+// out in full. The Spanish page emits only its own ProfilePage pointing at
+// this @id, so one entity never carries two conflicting urls.
+const person = {
   '@type': 'Person',
   '@id': JABIN_PERSON_ID,
   name: 'Jabin Travis',
@@ -38,6 +38,22 @@ const personLd = {
       credentialCategory: 'IADC DIT accreditation',
       name: 'Rig Equipment Inspection and Maintenance',
     },
+  ],
+};
+
+const personLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ProfilePage',
+      '@id': `${siteUrl}/about/jabin-travis#profilepage`,
+      url: `${siteUrl}/about/jabin-travis`,
+      name: 'Jabin Travis, Technical Reviewer',
+      inLanguage: 'en',
+      isPartOf: { '@id': `${siteUrl}/#website` },
+      mainEntity: { '@id': JABIN_PERSON_ID },
+    },
+    person,
   ],
 };
 ---

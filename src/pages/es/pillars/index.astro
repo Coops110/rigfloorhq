@@ -35,8 +35,10 @@ const jsonLd = {
   "@type": "CollectionPage",
   "name": "Guías Pilar de RigFloorHQ",
   "description": "Guías de referencia de nivel supervisor e ingeniero sobre control de pozos, presión hidrostática, liderazgo en el piso de perforación y operaciones de tubería pegada.",
+  "@id": "https://rigfloorhq.com/es/pillars#webpage",
   "url": "https://rigfloorhq.com/es/pillars",
   "inLanguage": "es",
+  "isPartOf": { "@id": "https://rigfloorhq.com/es#website" },
   "mainEntity": {
     "@type": "ItemList",
     "itemListElement": pillars.map((p, i) => ({
@@ -78,6 +80,39 @@ const jsonLd = {
           <span class="card-link">Leer la Guía →</span>
         </a>
       ))}
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Alcance</div>
+    <h2 class="section-title">Qué Cubre <span>Cada Guía</span></h2>
+    <div class="prose" style="max-width:820px;">
+      <p>Las páginas centrales del resto del sitio (perforación, equipos, carreras, calculadoras) responden una pregunta cada una. Una guía pilar es la capa siguiente: un solo tema seguido de principio a fin, desde lo básico de campo hasta las decisiones que realmente tiene que tomar un perforador, un toolpusher o un ingeniero de perforación, con enlaces a las calculadoras y a los artículos más cortos que tratan cada paso por separado.</p>
+
+      <h3>Control de Pozos Avanzado</h3>
+      <p><strong>Cubre:</strong> el manejo de presiones una vez cerrado el pozo: por qué la TVD y no la profundidad medida determina cada cifra de presión, los gradientes de presión, la densidad equivalente de circulación y cómo se comparan los métodos de matar el pozo. <strong>Para quién es:</strong> perforadores que preparan IWCF o IADC WellSharp a nivel supervisor, toolpushers e ingenieros que aprueban hojas de control. <strong>Empiece por:</strong> la <a href="/es/drilling/well-control">página de procedimientos de control de pozos</a> para lo básico del cierre, y después la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> y sus <a href="/es/calculators/kill-sheet-horizontal">adiciones para pozos horizontales</a>. Relacionado: <a href="/es/blog/drillers-method-wait-and-weight-mixups">confusiones entre el Método del Perforador y Esperar y Densificar</a>, la <a href="/es/calculators/bullheading">calculadora de bullheading</a>, la <a href="/es/calculators/gas-migration">calculadora de migración de gas</a> y el <a href="/es/well-control-quiz">cuestionario de práctica de control de pozos</a>.</p>
+
+      <h3>Presión Hidrostática</h3>
+      <p><strong>Cubre:</strong> la física sobre la que descansa cualquier otro cálculo de presión: de dónde sale la constante 0.052, cómo la presión de poro, la presión de fractura y el peso de lodo definen la ventana operativa, y qué pasa en cada borde de ella. <strong>Para quién es:</strong> personal nuevo y estudiantes que quieren aprender la base una vez y bien, y cualquiera que esté revisando por qué un número parece incorrecto. <strong>Empiece por:</strong> la <a href="/es/calculators/hydrostatic">calculadora de presión hidrostática</a> y <a href="/es/blog/hydrostatic-pressure-0052-constant">de dónde sale la constante 0.052</a>. Relacionado: <a href="/es/drilling/mud-weight">peso de lodo y ventana de peso de lodo</a>, el <a href="/es/calculators/mud-weight-converter">convertidor de peso de lodo</a>, las calculadoras de <a href="/es/calculators/maasp">MAASP</a>, <a href="/es/calculators/kick-tolerance">tolerancia de surgencia</a>, <a href="/es/calculators/ecd">ECD</a> y <a href="/es/calculators/trip-margin">margen de viaje</a>, y la <a href="/es/calculators/formulas-cheat-sheet">hoja de fórmulas de perforación</a>.</p>
+
+      <h3>Liderazgo en el Piso de Perforación</h3>
+      <p><strong>Cubre:</strong> la escalera de supervisión por encima del piso de perforación: qué cambia entre perforador, toolpusher y OIM o gerente de taladro, dónde encaja el company man del operador al lado de esa cadena, y qué certificación condiciona cada ascenso. <strong>Para quién es:</strong> asistentes de perforador y perforadores que planean el siguiente paso, y cualquiera que quiera entender quién decide qué en un taladro. <strong>Empiece por:</strong> la <a href="/es/careers/driller">guía de carrera de perforador</a>, y después <a href="/es/careers/toolpusher">cómo convertirte en toolpusher</a> y la <a href="/es/careers/oim-rig-manager">guía de OIM y gerente de taladro</a>. Relacionado: <a href="/es/careers/company-man">qué hace un company man</a>, las <a href="/es/careers/certifications">certificaciones de taladros petroleros</a>, el <a href="/es/drilling/rig-move-plan">plan de mudanza del taladro</a> y el <a href="/es/blog/stop-card-system">sistema de tarjetas STOP</a> que un supervisor tiene que mantener vivo.</p>
+
+      <h3>Pesca y Tubería Pegada</h3>
+      <p><strong>Cubre:</strong> distinguir la pega diferencial de la pega mecánica antes de actuar, porque la primera respuesta equivocada empeora cualquiera de las dos; después el martilleo, el punto libre y el back-off, las herramientas de pesca, y cuándo un sidetrack es la respuesta más barata. <strong>Para quién es:</strong> perforadores y toolpushers de turno cuando la sarta deja de moverse, y cuadrillas de workover que corren trabajos de pesca. <strong>Empiece por:</strong> <a href="/es/blog/differential-sticking-explained">la pega diferencial explicada</a> y <a href="/es/blog/torque-and-drag-early-warning">el torque y el arrastre como alerta temprana</a>. Relacionado: <a href="/es/blog/drilling-jars-explained">cómo funcionan los martillos de perforación</a>, el <a href="/es/equipment/hydraulic-jar">martillo hidráulico</a>, el <a href="/es/equipment/power-swivel">power swivel usado en la pesca con equipos de workover</a> y la <a href="/es/calculators/pipe-pull-margin">calculadora de margen de tensión de tubería</a>.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Por Dónde Empezar</div>
+    <h2 class="section-title">Qué Guía <span>Leer Primero</span></h2>
+    <div class="prose" style="max-width:820px;">
+      <ul>
+        <li><strong>Si estudia para una certificación de control de pozos:</strong> primero Presión Hidrostática, después Control de Pozos Avanzado. La aritmética de la hoja de control solo tiene sentido cuando la constante 0.052 y la regla de la TVD ya son automáticas.</li>
+        <li><strong>Si trabaja en el piso y apunta a la consola:</strong> Liderazgo en el Piso de Perforación para la escalera, y después Pesca y Tubería Pegada, porque una sarta pegada en su turno es el evento con más probabilidad de poner a prueba a un perforador nuevo.</li>
+        <li><strong>Si es ingeniero o company man:</strong> Control de Pozos Avanzado y Pesca y Tubería Pegada; las dos están escritas al nivel de las decisiones que usted aprueba.</li>
+      </ul>
+      <p>Ninguna de estas guías sustituye los procedimientos aprobados de su empresa ni su programa de pozo. Explican el razonamiento detrás de ellos para que el procedimiento tenga sentido cuando sea usted quien lo sigue.</p>
     </div>
   </section>
 </BaseLayout>

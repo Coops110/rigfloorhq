@@ -1,21 +1,59 @@
-// TechArticle JSON-LD builder for equipment reference pages.
+// Article / TechArticle JSON-LD builder.
 //
-// datePublished and dateModified both come from the page's own git lastmod —
-// the last commit that touched its source file (see scripts/git-lastmod.mjs,
-// the same map the sitemap's <lastmod> is built from). That's the only real
-// per-page date this site tracks; there's no separate "originally published"
-// timestamp recorded anywhere, so inventing a different value for
-// datePublished would be a false signal, not a more accurate one. A page
-// whose file has no resolvable git history gets neither field rather than a
-// guessed date.
-import { buildGitLastmodMap } from '../../scripts/git-lastmod.mjs';
+// Dates come from git, through the same single `git log` pass the sitemap
+// uses (scripts/git-lastmod.mjs):
+//   dateModified  = the last commit touching the page's own source file,
+//                   which is exactly the sitemap <lastmod> for that URL;
+//   datePublished = the first commit touching it.
+// There is no separate editorial date recorded anywhere for these pages, so
+// git is the only honest per-page answer. A page whose file has no resolvable
+// history gets neither field rather than a guessed date, and in a shallow
+// clone datePublished is omitted (the oldest visible commit is only the
+// fetch-depth cut-off, not the real first commit).
+//
+// Both values are normalised to UTC (toISOString) because that is the form
+// @astrojs/sitemap writes <lastmod> in, so the two strings match exactly.
+import fs from 'node:fs';
+import path from 'node:path';
+import { buildGitDatesMap } from '../../scripts/git-lastmod.mjs';
 
 const siteUrl = 'https://rigfloorhq.com';
+const ORG_ID = `${siteUrl}/#organization`;
 
-// Computed once per build process. Every page importing this module gets the
-// same cached Map back (module resolution is cached by resolved path), so
+// Computed once per build process (cached inside git-lastmod.mjs), so
 // `git log` runs once for the whole build rather than once per page.
-const lastmodMap = buildGitLastmodMap();
+const datesMap = buildGitDatesMap();
+
+function utc(iso) {
+  return iso ? new Date(iso).toISOString() : undefined;
+}
+
+/**
+ * { datePublished, dateModified } for one repo-relative source file, either
+ * field omitted when it cannot be resolved honestly.
+ * @param {string} sourcePath e.g. 'src/pages/careers/roustabout.astro'
+ */
+export function gitDates(sourcePath) {
+  const entry = datesMap ? datesMap.get(sourcePath) : undefined;
+  if (!entry) return {};
+  const out = {};
+  if (entry.published) out.datePublished = utc(entry.published);
+  if (entry.modified) out.dateModified = utc(entry.modified);
+  return out;
+}
+
+/**
+ * The same raster og:image BaseLayout resolves for a URL path: the per-page
+ * card in public/og/ when one was generated, otherwise og-default.png. Never
+ * names a file that is not on disk.
+ * @param {string} urlPath e.g. '/careers/roustabout'
+ */
+export function ogImageFor(urlPath) {
+  const trimmed = urlPath.replace(/^\/|\/$/g, '');
+  const slug = trimmed === '' ? 'home' : trimmed.replace(/\//g, '-');
+  const disk = path.join(process.cwd(), 'public', 'og', `${slug}.png`);
+  return `${siteUrl}${fs.existsSync(disk) ? `/og/${slug}.png` : '/og-default.png'}`;
+}
 
 /**
  * @param {Object} opts
@@ -25,20 +63,30 @@ const lastmodMap = buildGitLastmodMap();
  * @param {string} opts.headline
  * @param {string} opts.description
  * @param {'en'|'es'} [opts.lang]
+ * @param {'Article'|'TechArticle'} [opts.type]
+ * @param {Object} [opts.extra] further properties merged in last
+ *   (e.g. `about`, or `mainEntityOfPage` pointing at a page's own WebPage node)
  */
-export function techArticleSchema({ sourcePath, path, headline, description, lang = 'en' }) {
-  const date = lastmodMap ? lastmodMap.get(sourcePath) : undefined;
-  const url = `${siteUrl}${path}`;
+export function articleSchema({ sourcePath, path: urlPath, headline, description, lang = 'en', type = 'Article', extra = {} }) {
+  const url = `${siteUrl}${urlPath}`;
   return {
     '@context': 'https://schema.org',
-    '@type': 'TechArticle',
+    '@type': type,
+    '@id': `${url}#article`,
     headline,
     description,
     url,
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
-    ...(date ? { datePublished: date, dateModified: date } : {}),
+    ...gitDates(sourcePath),
     inLanguage: lang,
-    author: { '@id': `${siteUrl}/#organization` },
-    publisher: { '@id': `${siteUrl}/#organization` },
+    image: ogImageFor(urlPath),
+    author: { '@id': ORG_ID },
+    publisher: { '@id': ORG_ID },
+    ...extra,
   };
+}
+
+/** TechArticle for equipment / reference pages. Same shape as articleSchema. */
+export function techArticleSchema(opts) {
+  return articleSchema({ ...opts, type: 'TechArticle' });
 }

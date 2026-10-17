@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { gitDates, ogImageFor } from '../../../lib/techarticle.js';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
 
 const faq = [
@@ -31,10 +32,10 @@ const jsonLd = {
   "about": "Operaciones de perforación — tubería pegada y pesca",
   "url": "https://rigfloorhq.com/es/pillars/stuck-pipe-and-fishing-operations",
   "mainEntityOfPage": { "@type": "WebPage", "@id": "https://rigfloorhq.com/es/pillars/stuck-pipe-and-fishing-operations" },
-  "datePublished": "2026-08-03",
-  "dateModified": "2026-09-28",
+  // Dates from git, the same source as this URL's sitemap lastmod.
+  ...gitDates('src/pages/es/pillars/stuck-pipe-and-fishing-operations.astro'),
   "inLanguage": "es",
-  "image": "https://rigfloorhq.com/og-default.png",
+  "image": ogImageFor('/es/pillars/stuck-pipe-and-fishing-operations'),
   "author": { "@id": "https://rigfloorhq.com/#organization" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
@@ -228,6 +229,8 @@ const jsonLd = {
         </tbody>
       </table>
     </div>
+
+    <p style="color:var(--mist);max-width:800px;line-height:1.8;font-size:15px;margin-top:20px;">Tanto el fresado como el lavado sobre el pescado (washover) necesitan rotación en la sarta de pesca. En un taladro de perforación la da el top drive o la mesa rotaria. En un equipo de workover o de servicio a pozos, que normalmente no tiene ninguno de los dos, la da un <a href="/es/equipment/power-swivel" style="color:var(--amber);">power swivel (unión giratoria hidráulica)</a>: un swivel hidráulico colgado del aparejo que gira la sarta de trabajo y a la vez permite bombear fluido a través de ella. Cuando el pescado está atrapado a lo largo de su cuerpo y no solo en la parte superior, la <a href="/es/equipment/wash-pipe" style="color:var(--amber);">tubería de lavado bajada sobre el pescado</a> corta el relleno o el cemento a su alrededor antes de volver a enganchar el overshot.</p>
 
     <div class="note-box mt-24" style="max-width:820px;">
       <strong>La pesca es una decisión con límite de tiempo, no un esfuerzo abierto.</strong> Los operadores normalmente fijan de antemano un límite económico — un número de días, o un costo — después del cual el trabajo se detiene y se toma la alternativa. Sin ese límite, la pesca puede consumir más tiempo de taladro del que habría tomado perforar una sección de reemplazo.

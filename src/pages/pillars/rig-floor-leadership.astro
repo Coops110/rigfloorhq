@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { gitDates, ogImageFor } from '../../lib/techarticle.js';
 import SourcesStandards from '../../components/SourcesStandards.astro';
 import { reviewedByJabin } from '../../lib/person.js';
 
@@ -40,10 +41,10 @@ const jsonLd = {
         "@id": "https://rigfloorhq.com/pillars/rig-floor-leadership",
         "reviewedBy": reviewedByJabin()
       },
-      "datePublished": "2026-10-02",
-      "dateModified": "2026-10-02",
+      // Dates from git, the same source as this URL's sitemap lastmod.
+      ...gitDates('src/pages/pillars/rig-floor-leadership.astro'),
       "inLanguage": "en",
-      "image": "https://rigfloorhq.com/og-default.png",
+      "image": ogImageFor('/pillars/rig-floor-leadership'),
       "author": { "@id": "https://rigfloorhq.com/#organization" },
       "publisher": { "@id": "https://rigfloorhq.com/#organization" }
     },
