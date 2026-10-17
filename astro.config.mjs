@@ -4,6 +4,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { buildGitLastmodMap, sourceCandidates } from './scripts/git-lastmod.mjs';
 import { generateLlmsTxt } from './scripts/generate-llms-txt.mjs';
+import { fingerprintScripts } from './scripts/fingerprint-scripts.mjs';
 
 // Blog slugs carrying `noindex: true` in their frontmatter. Must be kept in
 // sync by hand — see the filter comment below for why.
@@ -95,6 +96,18 @@ export default defineConfig({
     // descriptions, canonicals and robots meta rather than guessing. See
     // scripts/generate-llms-txt.mjs for why: the hand-written version this
     // replaced listed 25 of 279 URLs and was wrong the moment a page moved.
+    // ?v=<content hash> on every /scripts/*.js reference in the built HTML,
+    // so vercel.json can cache them immutably. See the script for why this
+    // rewrites dist/ rather than page sources.
+    {
+      name: 'fingerprint-scripts',
+      hooks: {
+        'astro:build:done': ({ dir, logger }) => {
+          fingerprintScripts(fileURLToPath(dir), logger);
+        },
+      },
+    },
+
     {
       name: 'llms-txt-generator',
       hooks: {

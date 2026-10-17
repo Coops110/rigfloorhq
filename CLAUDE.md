@@ -209,7 +209,16 @@ subsets were dead weight.
 
 Only two faces are preloaded: Barlow Condensed 900 (the LCP element) and Inter
 400 (body). Preloading more makes them compete for bandwidth on the slow
-connections the audit models. Adding preloads is not free.
+connections the audit models. Adding preloads is not free. Removing the Inter
+one is not free either: tried 2026-10-17, Lighthouse mobile FCP got 300-450ms
+worse on `/` and `/calculators/ecd`, LCP unchanged.
+
+`src/styles/font-fallbacks.css` defines metric-matched fallback faces
+(`size-adjust` / `ascent-override` on local Arial/Roboto/Courier New), named
+in the `--cond`, `--body` and `--mono` stacks. Barlow Condensed 900 is ~67% of
+Arial Bold's width, so without them the hero `h1` painted far too wide and the
+home page jumped 106px on the font swap; with them it moves 2px. The numbers
+are per weight and measured, not guessed. Re-measure if a family changes.
 
 **Font filenames are not content-hashed, and `vercel.json` serves `/fonts/`
 `immutable` for a year.** If a regenerated file ever differs, rename it, or
@@ -264,6 +273,17 @@ inline by necessity — the `consent default` command has to reach `dataLayer`
 before `gtag.js` loads — so any `script-src` without matching hashes or a nonce
 would break the cookie banner and silently take consent handling with it. Add
 one only with hashes, and only after testing the banner in a real browser.
+
+That has since happened: `script-src` now lists `'self'`, googletagmanager
+and the sha256 of each of the three inline blocks in `BaseLayout`, mirrored in
+`scripts/check-no-inline-scripts.mjs`. **Any edit to those blocks — a comment
+included — changes the hash.** Rebuild, run the check, put the new hash in
+both files, and test the banner in a browser.
+
+`/scripts/*.js` references get `?v=<content hash>` added to the built HTML by
+`scripts/fingerprint-scripts.mjs` (an `astro:build:done` hook), and
+`vercel.json` caches `/scripts/*` immutably only when that `v` query is
+present. Page sources keep writing plain `/scripts/x.js`; do not hand-add `?v=`.
 
 Do not treat Lighthouse's Trust and Safety section as a scoreboard. Those items
 are **unscored**: the site reported Best Practices 100 while sending none of

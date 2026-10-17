@@ -146,7 +146,15 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
       Only these two faces are preloaded: Barlow Condensed 900 is the hero h1,
       which is the LCP element, and Inter 400 is body copy. Preloading the rest
       would compete with them for bandwidth on the slow connections this audit
-      models, which is the opposite of the point. */}
+      models, which is the opposite of the point.
+
+      Dropping the Inter preload (leaving only the LCP face) was tried and
+      measured on 2026-10-17: Lighthouse mobile FCP got ~300-450ms WORSE on
+      both / and /calculators/ecd (1.21s -> 1.66s, 1.36s -> 1.66s), LCP
+      unchanged, because Inter is then discovered only after layout and
+      lands on the simulated critical path. Keep it. The metric-matched
+      fallbacks in src/styles/font-fallbacks.css are what stop the swap
+      re-flowing the page. */}
   <link rel="preload" href="/fonts/barlow-condensed-900-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin />
 
@@ -242,14 +250,24 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
           gtag('config', GA_ID);
         }
       </script>
+      {/* The gtag.js library itself (~176 KiB) is the single biggest chunk of
+          page weight and the main driver of mobile TBT/INP risk. The
+          consent/dataLayer stub above is already set up and queues calls fine
+          before the real library arrives, so there is no correctness reason
+          to fetch it eagerly. It loads on the first real interaction or
+          scroll, or else 3s after the load event and then only in idle time.
+          Plain idle scheduling still ran it inside the initial render window
+          on a throttled phone: two 130-340ms long tasks at ~2.9s, the largest
+          share of mobile TBT. Consent is unaffected: the consent
+          default/update calls above sit in dataLayer and are processed in
+          order whenever the library arrives.
+
+          This block is hashed into vercel.json's script-src and into
+          scripts/check-no-inline-scripts.mjs. Any edit to it, comments
+          included, changes the hash: rebuild, run the check, and update
+          both. This explanation lives in an Astro comment so it does not
+          ship in every page. */}
       <script is:inline define:vars={{ GA_ID }}>
-        // The gtag.js library itself (~176 KiB) is the single biggest chunk
-        // of page weight and the main driver of mobile TBT/INP risk. The
-        // consent/dataLayer stub above is already set up and queues calls
-        // fine before the real library arrives, so there's no correctness
-        // reason to fetch it eagerly — only a habit. Load it on idle, or on
-        // first real interaction/scroll if the browser is still busy when
-        // idle fires, so it never competes with the actual page render.
         function loadGtagScript() {
           if (window.__gtagScriptLoading) return;
           window.__gtagScriptLoading = true;
@@ -258,11 +276,17 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
           s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
           document.head.appendChild(s);
         }
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(loadGtagScript, { timeout: 4000 });
-        } else {
-          setTimeout(loadGtagScript, 3000);
+        function afterLoad() {
+          setTimeout(function () {
+            if ('requestIdleCallback' in window) {
+              requestIdleCallback(loadGtagScript, { timeout: 2000 });
+            } else {
+              loadGtagScript();
+            }
+          }, 3000);
         }
+        if (document.readyState === 'complete') afterLoad();
+        else window.addEventListener('load', afterLoad, { once: true });
         ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (evt) {
           window.addEventListener(evt, loadGtagScript, { once: true, passive: true });
         });
@@ -304,6 +328,7 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
 
   <style is:global>
     @import "../styles/fonts.css";
+    @import "../styles/font-fallbacks.css";
     @import "../styles/global.css";
   </style>
 </head>

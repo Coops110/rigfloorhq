@@ -53,12 +53,26 @@ const HEADLINE_FONT = 'Bahnschrift';
 const MONO_FONT = 'Consolas';
 
 const EYEBROW = {
-  en: { pillars: 'PILLAR GUIDE', calculators: 'CALCULATOR', equipment: 'EQUIPMENT', blog: 'BLOG' },
-  es: { pillars: 'GUÍA PILAR', calculators: 'CALCULADORA', equipment: 'EQUIPO', blog: 'BLOG' },
+  en: {
+    pillars: 'PILLAR GUIDE', calculators: 'CALCULATOR', equipment: 'EQUIPMENT', blog: 'BLOG',
+    careers: 'CAREERS', drilling: 'DRILLING', safety: 'SAFETY', welding: 'WELDING',
+    glossary: 'GLOSSARY', quiz: 'QUIZ', home: 'OIL & GAS FIELD REFERENCE',
+  },
+  es: {
+    pillars: 'GUÍA PILAR', calculators: 'CALCULADORA', equipment: 'EQUIPO', blog: 'BLOG',
+    careers: 'CARRERAS', drilling: 'PERFORACIÓN', safety: 'SEGURIDAD', welding: 'SOLDADURA',
+    glossary: 'GLOSARIO', quiz: 'CUESTIONARIO', home: 'REFERENCIA DE PETRÓLEO Y GAS',
+  },
 };
 const EYEBROW_HUB = {
-  en: { pillars: 'PILLAR GUIDES', calculators: 'CALCULATORS', equipment: 'EQUIPMENT', blog: 'BLOG' },
-  es: { pillars: 'GUÍAS PILAR', calculators: 'CALCULADORAS', equipment: 'EQUIPO', blog: 'BLOG' },
+  en: {
+    pillars: 'PILLAR GUIDES', calculators: 'CALCULATORS', equipment: 'EQUIPMENT', blog: 'BLOG',
+    careers: 'CAREERS', drilling: 'DRILLING', safety: 'SAFETY', welding: 'WELDING', glossary: 'GLOSSARY',
+  },
+  es: {
+    pillars: 'GUÍAS PILAR', calculators: 'CALCULADORAS', equipment: 'EQUIPO', blog: 'BLOG',
+    careers: 'CARRERAS', drilling: 'PERFORACIÓN', safety: 'SEGURIDAD', welding: 'SOLDADURA', glossary: 'GLOSARIO',
+  },
 };
 
 function escapeXml(s) {
@@ -246,6 +260,29 @@ async function processBlog(lang) {
   return results;
 }
 
+// A top-level page that is a single .astro file rather than a directory —
+// the home page and the well-control quiz. `slug` must match BaseLayout's
+// path-derived name: / -> home, /es -> es, /well-control-quiz ->
+// well-control-quiz, /es/well-control-quiz -> es-well-control-quiz.
+async function processSinglePage(fileRel, category, lang, slugEn, slugEs) {
+  const file = path.join(root, 'src', 'pages', ...(lang === 'es' ? ['es'] : []), fileRel);
+  let source;
+  try {
+    source = await readFile(file, 'utf-8');
+  } catch {
+    console.warn(`skip (not found): ${file}`);
+    return [];
+  }
+  const title = extractAstroTitle(source);
+  if (!title) {
+    console.warn(`no literal title="..." found, skipping: ${file}`);
+    return [];
+  }
+  const slug = lang === 'es' ? slugEs : slugEn;
+  const size = await renderCard(slug, { eyebrow: EYEBROW[lang][category], title });
+  return [{ slug, title, size }];
+}
+
 async function main() {
   await mkdir(outDir, { recursive: true });
 
@@ -254,6 +291,13 @@ async function main() {
     all.push(...(await processAstroDir('pillars', 'pillars', lang)));
     all.push(...(await processAstroDir('calculators', 'calculators', lang)));
     all.push(...(await processAstroDir('equipment', 'equipment', lang)));
+    all.push(...(await processAstroDir('careers', 'careers', lang)));
+    all.push(...(await processAstroDir('drilling', 'drilling', lang)));
+    all.push(...(await processAstroDir('safety', 'safety', lang)));
+    all.push(...(await processAstroDir('welding', 'welding', lang)));
+    all.push(...(await processAstroDir('glossary', 'glossary', lang)));
+    all.push(...(await processSinglePage('index.astro', 'home', lang, 'home', 'es')));
+    all.push(...(await processSinglePage('well-control-quiz.astro', 'quiz', lang, 'well-control-quiz', 'es-well-control-quiz')));
     all.push(...(await processBlog(lang)));
   }
 

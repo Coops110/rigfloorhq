@@ -74,7 +74,11 @@ Si el H₂S es una posibilidad en la formación que se está perforando, el proc
 
 El preventor de reventones es un sistema de válvulas de alta presión instalado encima del cabezal del pozo, capaz de sellar el pozo en segundos.
 
-<img src="/images/blog/bop-stack-diagram.png" width="1800" height="1120" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Stack de BOP de arriba a abajo: preventor anular, arietes de tubería, arietes ciegos, y arietes de corte, con líneas de choke y matanza corriendo hacia el cabezal del pozo" />
+<picture>
+  <source type="image/avif" srcset="/images/blog/bop-stack-diagram-380w.avif 380w, /images/blog/bop-stack-diagram-660w.avif 660w, /images/blog/bop-stack-diagram-1320w.avif 1320w, /images/blog/bop-stack-diagram.avif 1800w" sizes="(max-width: 760px) 100vw, 720px" />
+  <source type="image/webp" srcset="/images/blog/bop-stack-diagram-380w.webp 380w, /images/blog/bop-stack-diagram-660w.webp 660w, /images/blog/bop-stack-diagram-1320w.webp 1320w, /images/blog/bop-stack-diagram.webp 1800w" sizes="(max-width: 760px) 100vw, 720px" />
+  <img src="/images/blog/bop-stack-diagram.png" srcset="/images/blog/bop-stack-diagram-380w.png 380w, /images/blog/bop-stack-diagram-660w.png 660w, /images/blog/bop-stack-diagram-1320w.png 1320w, /images/blog/bop-stack-diagram.png 1800w" sizes="(max-width: 760px) 100vw, 720px" width="1800" height="1120" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Stack de BOP de arriba a abajo: preventor anular, arietes de tubería, arietes ciegos, y arietes de corte, con líneas de choke y matanza corriendo hacia el cabezal del pozo" />
+</picture>
 
 Un stack de BOP estándar, de arriba a abajo, típicamente incluye:
 
