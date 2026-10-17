@@ -4,6 +4,7 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import DiagramEmbed from '../../../components/DiagramEmbed.astro';
 import { techArticleSchema } from '../../../lib/techarticle.js';
+import KeyFacts from '../../../components/KeyFacts.astro';
 
 const stackAlt = "Stack de BOP de arriba hacia abajo: preventor anular, arietes de tubería, arietes ciegos, y arietes de corte, con líneas de choke y matanza que corren hacia el cabezal del pozo. El anular va más arriba porque sella sobre cualquier diámetro de tubería o sobre hoyo abierto; los arietes debajo sellan con más fuerza pero cada uno solo en lo que está cortado para sellar, y los arietes de corte en la parte inferior cortan la tubería misma como último recurso.";
 
@@ -13,34 +14,10 @@ const stackAlt = "Stack de BOP de arriba hacia abajo: preventor anular, arietes 
 // 250.737 es una prueba de presión cada 14 días y una prueba funcional cada 7
 // días. Ver la nota equivalente en la versión en inglés.
 //
-// Los pares de FAQ se renderizan como contenido visible más abajo. No se
-// agrega esquema FAQPage: fue retirado de todo el sitio como peso muerto.
-const faq = [
-  {
-    q: '¿Qué es un preventor de reventones?',
-    a: 'Un preventor de reventones es un stack de elementos de sellado de alta presión instalado en el cabezal del pozo que puede cerrar el pozo en segundos si el fluido de formación empieza a fluir a superficie sin control. Es el hardware que hace posible cerrar una surgencia: sin un BOP funcional no hay forma de sostener presión mientras se mata el pozo.',
-  },
-  {
-    q: '¿Qué hace realmente un preventor de reventones?',
-    a: 'Sella el espacio anular (el espacio alrededor de la tubería de perforación) o el hoyo abierto, de modo que la presión pueda contenerse y leerse en superficie. Sellar es solo el primer paso. Una vez cerrado, las líneas de choke y matanza permiten que el equipo circule la surgencia hacia afuera y bombee lodo más pesado hacia adentro mientras el pozo permanece cerrado.',
-  },
-  {
-    q: '¿Cuáles son los tipos de preventor de reventones?',
-    a: 'Dos familias. Los preventores anulares usan un elemento de goma que se cierra apretando alrededor de casi cualquier diámetro de tubería o sobre hoyo abierto. Los preventores de ariete usan bloques de acero opuestos y vienen en cuatro tipos: arietes de tubería para un diámetro específico, arietes de diámetro variable para un rango de tamaños, arietes ciegos para hoyo abierto, y arietes de corte que cortan la tubería. Un stack normalmente lleva ambas familias.',
-  },
-  {
-    q: '¿Qué hay en un stack de BOP?',
-    a: 'De arriba hacia abajo, un stack típico lleva el preventor anular, luego varios preventores de ariete, con salidas de choke y matanza entre ellos, asentándose sobre el conector del cabezal. El anular va más arriba porque es el más tolerante y el de menor clasificación; los arietes debajo sostienen más presión pero cada uno solo sella sobre lo que fue cortado para sellar. Los stacks submarinos agregan un paquete inferior del riser marino (LMRP) arriba de todo.',
-  },
-  {
-    q: '¿Cómo funciona el sistema de control de un BOP?',
-    a: 'La presión hidráulica almacenada en botellas acumuladoras cargadas con nitrógeno cierra los preventores, de modo que el stack puede operarse con el taladro sin energía. Los stacks superficiales se conectan directamente a la unidad acumuladora. Los stacks submarinos se operan a través de dos pods de control redundantes, convencionalmente azul y amarillo, y llevan respaldos de emergencia que cierran los arietes de corte sin ninguna señal del taladro.',
-  },
-  {
-    q: '¿Con qué frecuencia se prueba un BOP?',
-    a: 'Las pruebas funcionales ciclan cada elemento abriendo y cerrando sin presión; las pruebas de presión lo sellan contra una presión de prueba real. Bajo API STD 53 y, para trabajo en la plataforma continental exterior de EE. UU., BSEE 30 CFR 250.737, en términos generales eso es una prueba funcional cada 7 días y una prueba de presión cada 14 días para stacks submarinos. Los intervalos difieren según la jurisdicción y se ajustan después de cualquier evento de control de pozos o cambio de equipo, así que trabaja según el estándar que rige tu taladro.',
-  },
-];
+// La sección de FAQ se retiró el 2026-10-17 (auditoría CQ-5): las seis
+// respuestas repetían secciones del cuerpo casi palabra por palabra. La
+// tabla de datos clave y la línea de Normas la reemplazan. No hay esquema
+// FAQPage que mantener sincronizado.
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/bop.astro',
@@ -92,6 +69,12 @@ const techArticleJsonLd = techArticleSchema({
             sizes="(max-width: 700px) 100vw, 660px"
             alt={stackAlt} width="1800" height="1120" loading="lazy" decoding="async" style="max-width:100%;height:auto;margin:22px 0;border:1px solid var(--iron);border-radius:6px;" />
         </picture>
+
+        <KeyFacts
+          lang="es"
+          rows={[["Dónde va", "Sobre el cabezal del pozo o cabezal de revestimiento, debajo del piso de perforación (stack de superficie), o enganchado al cabezal submarino en el lecho marino (stack submarino)."], ["Diámetros comunes", "7-1/16\", 11\", 13-5/8\", 18-3/4\" y 21-1/4\" de paso nominal; 13-5/8\" es el tamaño más común en tierra y plataforma, 18-3/4\" el habitual en submarino."], ["Clases de presión de trabajo", "2,000, 3,000, 5,000, 10,000, 15,000 y 20,000 psi (2M–20M)."], ["Elementos de sello", "Preventor anular (elemento empacador de elastómero); preventores de arietes con arietes de tubería, de diámetro variable, ciegos, ciegos de corte o de corte de revestimiento."], ["Elastómeros", "Nitrilo (NBR) para servicio general; nitrilo hidrogenado (HNBR) y compuestos especiales para alta temperatura o servicio amargo."], ["Se acciona con", "Fluido hidráulico almacenado en botellas acumuladoras precargadas con nitrógeno, normalmente un sistema de cierre de 3,000 psi en stacks de superficie."]]}
+          standards={["api16a", "api53", "api16d", "cfr250g"]}
+        />
 
         <h2 id="las-dos-familias">Las Dos Familias de Preventores</h2>
         <p>Todo en un stack es un anular o un ariete. La diferencia no es solo de forma: decide sobre qué puede sellar cada uno, y por eso un stack lleva ambos en lugar de varios del que parezca mejor.</p>
@@ -191,13 +174,6 @@ const techArticleJsonLd = techArticleSchema({
         <p>Dos pruebas distintas responden dos preguntas distintas. Una <strong>prueba funcional</strong> cicla cada elemento abriendo y cerrando sin presión, demostrando que todavía se mueve. Una <strong>prueba de presión</strong> lo sella contra una presión de prueba real, demostrando que todavía sostiene. Pasar una no dice nada sobre la otra.</p>
         <p>Los intervalos los fija el estándar que rige el taladro y no una sola regla global. API STD 53 es la referencia de la industria, habiendo sustituido a API RP 53; para trabajo en la plataforma continental exterior de EE. UU., BSEE 30 CFR 250.737 es la versión vinculante, y en términos generales es una prueba funcional cada 7 días y una prueba de presión cada 14 días en un stack submarino. Los intervalos en tierra y fuera de EE. UU. difieren, y cada jurisdicción ajusta el calendario después de cualquier evento de control de pozos o cualquier cambio al equipo. Una secuencia completa prueba cada ariete y el anular individualmente antes de que se reanude la perforación.</p>
 
-        <h2 id="faq">Preguntas Frecuentes</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
 
         <h2 id="reuse">Reutiliza el diagrama</h2>
         <DiagramEmbed
@@ -213,6 +189,7 @@ const techArticleJsonLd = techArticleSchema({
         <div class="toc">
           <div class="toc-title">En Esta Página</div>
           <a href="#que-hace-un-bop">Qué Hace un BOP</a>
+          <a href="#key-facts">Datos Clave</a>
           <a href="#las-dos-familias">Las Dos Familias</a>
           <a href="#tipos-de-ariete">Los Cuatro Tipos de Ariete</a>
           <a href="#organizacion-del-stack">Organización del Stack</a>
@@ -224,7 +201,6 @@ const techArticleJsonLd = techArticleSchema({
           <a href="#stacks-de-bop-superficiales-vs-submarinos">Superficial vs. Submarino</a>
           <a href="#clasificaciones-de-presion-y-clases">Clasificaciones de Presión</a>
           <a href="#requisitos-de-prueba">Requisitos de Prueba</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
           <h3>Lectura Relacionada</h3>

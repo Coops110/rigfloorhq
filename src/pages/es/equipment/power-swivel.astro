@@ -4,25 +4,8 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
 import { techArticleSchema } from '../../../lib/techarticle.js';
+import KeyFacts from '../../../components/KeyFacts.astro';
 
-const faq = [
-  {
-    q: '¿Qué es un power swivel?',
-    a: 'Un power swivel es una unidad rotativa autónoma, generalmente accionada hidráulicamente, montada en el mástil de un taladro de workover o servicio de pozos. Proporciona rotación y permite la circulación de fluido a través de la sarta debajo de ella, haciendo el trabajo que haría un sistema de kelly y mesa rotaria, o el top drive de un taladro de perforación, pero dimensionado y construido para taladros de servicio más pequeños que normalmente no tienen ninguno de los dos.',
-  },
-  {
-    q: '¿Para qué se usa un power swivel?',
-    a: 'Cubre cualquier trabajo en un taladro de workover que necesite rotar la sarta: operaciones de pesca, moler o perforar tapones de cemento y bridge plugs, molienda de revestimiento, desviaciones, perforación en agujero abierto, y coreo. Rotar mientras se lava sobre o se trabaja un pescado es uno de sus usos más comunes, ya que muchos taladros de servicio no tienen otra forma de girar la sarta.',
-  },
-  {
-    q: '¿En qué se diferencia un power swivel del top drive de un taladro de perforación?',
-    a: 'Funcionan bajo el mismo principio básico — una unidad motriz hidráulica o eléctrica que rota la sarta mientras cuelga en el derrick o mástil — pero un power swivel es la versión más ligera y simple construida para el mástil más pequeño y el ciclo de trabajo menor de un taladro de workover. El top drive de un taladro de perforación suele ser más grande, con manejo integrado de tubería y conexión automática que un power swivel normalmente no tiene.',
-  },
-  {
-    q: '¿Un power swivel reemplaza el gancho y el bloque viajero del taladro?',
-    a: 'No. Cuelga del gancho y bloque viajero existentes de la misma forma que lo haría un kelly o un top drive, añadiendo rotación y una vía de fluido a través de su propia conexión de cuello de ganso. El sistema de izaje del taladro sigue haciendo el levantamiento y bajada; el power swivel solo añade la capacidad de girar la sarta mientras eso sucede.',
-  },
-];
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/power-swivel.astro',
@@ -57,6 +40,12 @@ const techArticleJsonLd = techArticleSchema({
         <p>Un power swivel es una unidad rotativa autónoma, generalmente accionada por motor hidráulico, que cuelga en el mástil de un taladro de workover o servicio de pozos desde el gancho y bloque viajero existentes. Proporciona las dos cosas que la rotación necesita en un solo paquete: torque para girar la sarta debajo de ella, y una vía de fluido — a través de una conexión interna de cuello de ganso — para que la circulación siga fluyendo a través de la sarta rotativa de la misma forma que lo haría a través del kelly o top drive de un taladro de perforación.</p>
         <p>Muchos taladros de workover y servicio están construidos sin mesa rotaria ni un top drive a escala de taladro de perforación, ya que la mayoría de su trabajo (sacar y correr tubería, completaciones básicas) no necesita rotación. Un power swivel es lo que se atornilla o arma para los trabajos en ese mismo taladro que sí la necesitan.</p>
 
+        <KeyFacts
+          lang="es"
+          rows={[["Dónde va", "Colgado del gancho de un taladro de reacondicionamiento o de servicio, debajo del bloque viajero, con la sarta armada debajo."], ["Accionamiento", "Motores hidráulicos alimentados por una unidad de potencia hidráulica diésel independiente; el torque y la velocidad dependen de la presión y el caudal hidráulicos."], ["Restricción de torque", "Un brazo de torque o una línea amarrada al mástil impide que el cuerpo del swivel gire bajo carga."], ["Recorrido del fluido", "Cuello de ganso y empaquetadura de washpipe, el mismo arreglo de una unión giratoria de perforación."], ["Trabajos típicos", "Molienda, perforación de tapones y cemento, washover y pesca, desvíos livianos, toma de núcleos."]]}
+          standards={["api8c"]}
+        />
+
         <h2 id="when-used">Para Qué Se Usa</h2>
         <ul>
           <li><strong>Operaciones de pesca</strong> — rotar una herramienta liberadora enganchada en un pescado, o rotar mientras se lava sobre tubería atascada para liberarla.</li>
@@ -71,23 +60,16 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="how-it-mounts">Cómo Se Monta y Opera</h2>
         <p>El power swivel cuelga del gancho existente del taladro, el mismo punto donde se conectaría un kelly o los elevadores, así que el sistema de izaje sigue haciendo todo el levantamiento y bajada. Motores hidráulicos o eléctricos integrados en la unidad giran un eje interno conectado a la sarta debajo, mientras el fluido de perforación o workover se bombea a través del propio cuello de ganso de la unidad y baja por la sarta rotativa exactamente como lo haría a través de un top drive. Una vez terminado el trabajo que necesitaba rotación, el power swivel se desarma y el taladro vuelve a correr tubería de forma convencional.</p>
 
-        <h2 id="faq">Preguntas Frecuentes</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
       </div>
 
       <div>
         <div class="toc">
           <div class="toc-title">En Esta Página</div>
           <a href="#what-it-is">Qué Es</a>
+          <a href="#key-facts">Datos Clave</a>
           <a href="#when-used">Para Qué Se Usa</a>
           <a href="#vs-top-drive">vs. Top Drive</a>
           <a href="#how-it-mounts">Cómo Se Monta</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div class="note-box mt-24">
           <strong>Solo referencia.</strong> El torque, la velocidad, y las clasificaciones de presión varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la unidad antes de confiar en cualquier cifra de aquí para un trabajo real.

@@ -4,25 +4,8 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
 import { techArticleSchema } from '../../../lib/techarticle.js';
+import KeyFacts from '../../../components/KeyFacts.astro';
 
-const faq = [
-  {
-    q: '¿Para qué se usa un colgador de liner?',
-    a: 'Un colgador de liner suspende un liner — una sarta de revestimiento que no llega hasta superficie — desde el interior del fondo de la sarta de revestimiento anterior, en lugar de que el liner cuelgue del cabezal de pozo como lo haría una sarta de revestimiento completa. Transfiere todo el peso del liner al revestimiento existente en el punto de traslape.',
-  },
-  {
-    q: '¿Por qué correr un liner en lugar de una sarta de revestimiento completa hasta superficie?',
-    a: 'Un liner cubre solo la sección de agujero abierto debajo de la zapata de revestimiento anterior, con algo de traslape en ese revestimiento, en lugar de duplicar tubería hasta superficie. Eso ahorra costo y tiempo de corrida real en pozos más profundos, ya que no tiene sentido correr una sarta extra entera por secciones ya revestidas — el liner solo necesita cubrir el agujero nuevo más suficiente traslape para sellar y anclar correctamente.',
-  },
-  {
-    q: '¿Cómo soporta realmente el colgador el peso del liner?',
-    a: 'Un cono de asentamiento impulsa los slips hacia afuera para morder la pared interior de la sarta de revestimiento anterior, y una vez asentado, ese agarre carga todo el peso del liner a través del colgador y hacia el revestimiento existente en lugar de hacia el fondo del pozo. El orificio pulido y área de sello debajo de los slips entonces permite que la sarta de corrida/asentamiento se libere y se saque sin perturbar ese agarre que carga el peso.',
-  },
-  {
-    q: '¿Qué es un empacador de tope de liner, y siempre se necesita?',
-    a: 'Un empacador de tope de liner (a veces integrado con el colgador mismo) sella el anular en el traslape entre el liner y el revestimiento anterior, además de la función mecánica de colgar — necesario cuando ese traslape tiene que sostener presión o aislar una zona, no solo cargar peso. Algunos trabajos de colgador de liner dependen solo de cemento para ese sello, dependiendo de los requisitos reales de aislamiento del pozo.',
-  },
-];
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/liner-hanger.astro',
@@ -56,6 +39,12 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="what-it-is">Qué Es un Colgador de Liner</h2>
         <p>Un colgador de liner suspende un liner — una sarta de revestimiento que cubre agujero abierto nuevo más algo de traslape en el <a href="/es/drilling/casing">revestimiento anterior</a>, pero no llega hasta superficie — desde el interior de ese revestimiento anterior en lugar de desde el cabezal de pozo. Es el enlace mecánico que transfiere todo el peso del liner al revestimiento existente en el traslape, que es lo que hace posible correr un liner en lugar de una sarta completa en primer lugar.</p>
 
+        <KeyFacts
+          lang="es"
+          rows={[["Dónde va", "En el tope del liner, asentado dentro de la sarta de revestimiento anterior a lo largo del traslape — comúnmente unos cientos de pies."], ["Métodos de asentamiento", "Mecánico (rotación o reciprocación), hidráulico (presión después de que asienta una bola), o expandible (el cuerpo del colgador se expande contra el revestimiento)."], ["Partes principales", "Cuñas y cono, empacador de tope de liner, receptáculo de tie-back (PBR), herramienta de corrida y asentamiento, tapones limpiadores para la cementación."], ["Rotación", "Muchos colgadores llevan un rodamiento para poder rotar el liner durante la cementación y mejorar la colocación del cemento."], ["Trayectoria de la carga", "El peso del liner pasa por las cuñas al revestimiento anterior — el grado, peso y estado de ese revestimiento a la profundidad del colgador forman parte de la verificación de diseño."]]}
+          standards={["api19lh"]}
+        />
+
         <h2 id="why-liner">Por Qué Correr un Liner en Lugar de Revestimiento Completo</h2>
         <p>Una sarta de revestimiento completa corre desde el agujero abierto nuevo hasta superficie, incluso a través de secciones ya revestidas por una sarta anterior. Un liner se salta esa longitud redundante por completo — solo cubre el agujero nuevo debajo de la última zapata de revestimiento, más suficiente traslape para sellar y anclar correctamente, y se cuelga de ese revestimiento anterior en lugar del cabezal de pozo. En un pozo profundo con varias sartas de revestimiento, esto ahorra costo y tiempo de corrida real al no duplicar tubería por intervalos que no la necesitan dos veces.</p>
 
@@ -66,23 +55,16 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="liner-top-packer">Empacador de Tope de Liner — Sellando, No Solo Colgando</h2>
         <p>Los slips del colgador resuelven el problema mecánico de cargar peso, pero no crean automáticamente un sello de presión en el traslape. Un <strong>empacador de tope de liner</strong> — a veces integrado al ensamblaje del colgador mismo, a veces corrido por separado — sella ese traslape cuando el trabajo genuinamente lo necesita para sostener presión o aislar una zona, además de la función puramente mecánica de colgar. No todo trabajo de liner requiere uno: algunos dependen solo de cemento en el traslape para el aislamiento, dependiendo de lo que requieran los requisitos reales de presión y aislamiento zonal del pozo.</p>
 
-        <h2 id="faq">Preguntas Frecuentes</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
       </div>
 
       <div>
         <div class="toc">
           <div class="toc-title">En Esta Página</div>
           <a href="#what-it-is">Qué Es</a>
+          <a href="#key-facts">Datos Clave</a>
           <a href="#why-liner">Por Qué Correr un Liner</a>
           <a href="#how-it-hangs">Cómo Carga el Colgador</a>
           <a href="#liner-top-packer">Empacador de Tope de Liner</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div class="note-box mt-24">
           <strong>Solo referencia.</strong> Los mecanismos de asentamiento y clasificaciones de carga varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.

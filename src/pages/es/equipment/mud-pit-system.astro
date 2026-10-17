@@ -3,25 +3,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import { techArticleSchema } from '../../../lib/techarticle.js';
+import KeyFacts from '../../../components/KeyFacts.astro';
 
-const faq = [
-  {
-    q: '¿Por qué no se puede simplemente reutilizar el fluido de perforación directamente de los retornos del pozo sin procesarlo?',
-    a: 'Los retornos regresan cargados de sólidos perforados — todo desde recortes gruesos hasta partículas coloidales finas — más, dependiendo del pozo, gas atrapado. Dejada en el fluido, esa carga de sólidos aumenta la viscosidad y densidad de formas difíciles de controlar, acelera el desgaste de las bombas, y reduce qué tan efectivamente el fluido puede seguir transportando recortes nuevos. El procesamiento saca esos sólidos y gas antes de que el fluido vuelva a bajar al pozo.',
-  },
-  {
-    q: '¿En qué orden trabajan realmente los componentes de control de sólidos?',
-    a: 'Las zarandas vibratorias primero — atrapan los recortes más gruesos usando mallas vibratorias y manejan la mayor parte del volumen. Lo que pasa por las mallas de las zarandas sigue a los desarenadores, luego a los deslimadores, que usan hidrociclones para separar por fuerza centrífuga partículas progresivamente más finas. Un desgasificador remueve el gas atrapado en el punto de la secuencia que tenga sentido para el sistema de fluido específico, ya que el lodo cortado por gas es un problema real de densidad y eficiencia de bombeo por sí solo.',
-  },
-  {
-    q: '¿Qué es un hidrociclón, y cómo separa partículas sin partes móviles?',
-    a: 'Un hidrociclón es un recipiente en forma de cono sin ninguna parte móvil interna — el fluido entra tangencialmente cerca de la parte superior y se fuerza a una espiral apretada, y la fuerza centrífuga lanza las partículas sólidas más densas hacia afuera contra la pared del cono, donde bajan en espiral y salen por el fondo, mientras el fluido limpio sale hacia arriba por el centro. Los desarenadores y deslimadores son el mismo dispositivo básico en diferentes tamaños: conos más pequeños giran más rápido y separan partículas más finas.',
-  },
-  {
-    q: '¿Qué es una centrífuga, y cuándo se agrega una al sistema de control de sólidos?',
-    a: 'Una centrífuga es un separador mecánico de mayor velocidad usado para los sólidos más finos que los hidrociclones solos no pueden remover eficientemente — común en trabajos que usan sistemas de fluido más costosos (como lodo base aceite) donde recuperar y reutilizar el fluido base en lugar de descartarlo con los sólidos tiene una justificación de costo real. Es una etapa adicional más allá de la secuencia estándar de zaranda/desarenador/deslimador, no un requisito universal en todo pozo.',
-  },
-];
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/mud-pit-system.astro',
@@ -44,7 +27,7 @@ const techArticleJsonLd = techArticleSchema({
 
   <div class="page-hero">
     <div class="page-hero-eyebrow">Equipo — Sistemas Principales</div>
-    <h1>Presas de Lodo / Sistema de <span>Control de Sólidos</span></h1>
+    <h1>Piletas de Lodo / Sistema de <span>Control de Sólidos</span></h1>
     <p class="page-hero-sub">Zarandas vibratorias, desarenadores, deslimadores, y desgasificadores que limpian los sólidos perforados y el gas del fluido de perforación retornado antes de que vuelva a bajar al pozo.</p>
   </div>
 
@@ -54,6 +37,12 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="what-it-is">Qué Hace Este Sistema</h2>
         <p>El fluido de perforación que regresa del <a href="/es/equipment/fluid-circulation-system">sistema de circulación</a> está cargado con todo lo que acaba de sacar del pozo — recortes que van desde pedazos gruesos hasta partículas coloidales finas, y a veces gas atrapado. Dejada en el fluido, esa carga aumenta la viscosidad y densidad de formas difíciles de controlar, acelera el desgaste de las bombas de lodo, y reduce constantemente qué tan bien puede el fluido transportar recortes nuevos en su siguiente viaje hacia abajo y de regreso. El sistema de control de sólidos existe para sacar ese material de vuelta para que el mismo fluido pueda reutilizarse en lugar de reemplazarse.</p>
         <p>El fluido procesado termina en tanques de lodo cilíndricos horizontales, y leer el volumen de pileta en una mirilla o una tabla de sondeo solo funciona si realmente puedes convertir una altura de llenado en un volumen para ese tanque específico — ver la <a href="/es/calculators/horizontal-tank-capacity">calculadora de capacidad de tanque horizontal</a> para esa conversión.</p>
+
+        <KeyFacts
+          lang="es"
+          rows={[["Orden de procesamiento", "Zarandas → desgasificador → desarenador → deslimador → centrífuga (opcional). El desgasificador suele ir justo después de las zarandas para que el lodo cortado por gas nunca llegue a las bombas centrífugas que alimentan los conos."], ["Conos del desarenador", "Normalmente de 6\" a 12\" de diámetro; retira sólidos tamaño arena, aproximadamente de 40 micras en adelante."], ["Conos del deslimador", "Normalmente de 2\" a 5\" de diámetro (4\" es común); retira sólidos tamaño limo, aproximadamente de 15 a 40 micras."], ["Centrífuga", "Retira los sólidos más finos, hasta unas 2 a 5 micras, o recupera barita y fluido base en sistemas densificados y base aceite."], ["Mallas de zaranda", "Se identifican por número API según API RP 13C (por ejemplo API 140) en lugar del antiguo conteo “mesh”."], ["Piletas del sistema", "Piletas activas (de succión), piletas de reserva, pileta de píldora y tanque de viaje, con sensores del totalizador de volumen de piletas (PVT) para detectar surgencias."]]}
+          standards={["api13c"]}
+        />
 
         <h2 id="shakers">Zarandas Vibratorias</h2>
         <p>Las zarandas vibratorias son la primera etapa en la secuencia y manejan la mayor parte del volumen: mallas vibratorias por donde fluyen los retornos, atrapando los recortes más gruesos mientras dejan pasar el fluido y las partículas más finas hacia las piletas de abajo. El tamaño de malla es una compensación real y ajustable — mallas más finas atrapan más sólidos pero procesan el fluido más lentamente y se desgastan más rápido; mallas más gruesas mueven más volumen pero dejan pasar más sólidos finos a la siguiente etapa.</p>
@@ -70,24 +59,17 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="portable-tanks">Los Tanques Portátiles No Son Parte de Este Sistema</h2>
         <p>Las piletas y el equipo de procesamiento de arriba son rectangulares, construidos dentro del sistema de lodo mismo. Los tanques portátiles de combustible, agua, o químicos de una locación son una clase de recipiente totalmente diferente y más simple — usualmente un cilindro horizontal sobre un patín, sin nada del procesamiento de zaranda/hidrociclón que cubre esta página. Ve la <a href="/es/calculators/horizontal-tank-capacity">calculadora de capacidad de tanque horizontal</a> para convertir una lectura de varilla en uno de esos en un volumen real.</p>
 
-        <h2 id="faq">Preguntas Frecuentes</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
       </div>
 
       <div>
         <div class="toc">
           <div class="toc-title">En Esta Página</div>
           <a href="#what-it-is">Qué Hace</a>
+          <a href="#key-facts">Datos Clave</a>
           <a href="#shakers">Zarandas Vibratorias</a>
           <a href="#hydrocyclones">Desarenadores y Deslimadores</a>
           <a href="#degassers">Desgasificadores</a>
           <a href="#centrifuges">Centrífugas</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
           <h3>Lectura Relacionada</h3>

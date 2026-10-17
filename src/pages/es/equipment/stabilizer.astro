@@ -4,25 +4,8 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
 import { techArticleSchema } from '../../../lib/techarticle.js';
+import KeyFacts from '../../../components/KeyFacts.astro';
 
-const faq = [
-  {
-    q: '¿Qué hace un estabilizador?',
-    a: 'Un estabilizador mantiene el ensamblaje de fondo centrado en el pozo. Sus aletas corren a diámetro completo del hoyo, así que en lugar de que el BHA cuelgue hacia un lado en un hoyo de mayor diámetro por gravedad, se mantiene más o menos sobre la línea central del pozo. Eso controla cómo se flexiona el ensamblaje bajo carga de compresión, que es lo que en realidad determina si el pozo mantiene la trayectoria planeada o se desvía.',
-  },
-  {
-    q: '¿Cuál es la diferencia entre estabilizadores de sarta, cerca de la barrena, y de rodillos-escariadores?',
-    a: 'Es ubicación y tipo de aleta, no una función distinta. Un estabilizador cerca de la barrena se coloca directamente arriba de la barrena y tiene el mayor efecto individual sobre la tendencia a construir o tumbar ángulo, ya que controla la primera fuerza lateral que siente la barrena. Un estabilizador de sarta se coloca más arriba en el BHA, típicamente sobre los lastrabarrenas, controlando la rigidez general del ensamblaje y dónde hace contacto con la pared más lejos de la barrena. Un estabilizador de rodillos-escariadores reemplaza las aletas fijas con rodillos giratorios que cortan y reducen fricción, bajando torque y desgaste en secciones abrasivas o muy direccionales, a costa de una herramienta mecánicamente más compleja y más propensa a fallas que un diseño de aleta fija.',
-  },
-  {
-    q: '¿Importa si la aleta es recta o espiral?',
-    a: 'Ambas mantienen el mismo OD a diámetro completo; la diferencia está en cómo se mueve el fluido alrededor de la herramienta. Un estabilizador de aleta recta tiene menos área de flujo a su alrededor y puede empacarse más rápido en condiciones deficientes de limpieza de hoyo. Las aletas helicoidales de un estabilizador de aleta espiral dejan un canal de flujo más ancho alrededor del cuerpo, reduciendo la pérdida de presión anular y el riesgo de embolamiento de barrena en ese punto de la sarta — la razón estándar por la que las aletas espirales son la opción por defecto a menos que un trabajo específico requiera el diseño recto más simple.',
-  },
-  {
-    q: '¿Qué causa que falle un estabilizador?',
-    a: 'El desgaste de aletas por formaciones abrasivas es la falla rutinaria, reduciendo gradualmente el OD hasta que la herramienta ya no sostiene realmente el diámetro completo y deja de cumplir su función aunque siga en la sarta. La ruptura de aletas ocurre bajo cargas laterales altas en un dogleg severo o un evento de pega de tubería. En un estabilizador de rodillos-escariadores, los propios rodillos pueden agarrotarse o perder sus rodamientos, momento en el cual se comportan como una aleta fija desgastada en lugar del contacto rodante de baja fricción para el que fueron corridos.',
-  },
-];
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/stabilizer.astro',
@@ -57,6 +40,12 @@ const techArticleJsonLd = techArticleSchema({
         <p>Un estabilizador es un sub integrado al <a href="/es/equipment/drill-string">ensamblaje de fondo (BHA)</a> con aletas maquinadas o soldadas a diámetro completo del hoyo, corriendo a lo largo de su cuerpo. A diferencia de una barrena o un <a href="/es/equipment/under-reamer">escariador bajo restricción</a>, no corta hoyo nuevo — sus aletas se apoyan contra la pared del hoyo ya perforado, manteniendo esa sección del ensamblaje centrada en lugar de dejarla combarse o inclinarse hacia un lado bajo su propio peso y carga de compresión.</p>
         <p>Dónde se coloca un estabilizador, y cuántos se corren en un ensamblaje dado, es una de las principales palancas que usan los perforadores direccionales para controlar la tendencia a construir, mantener o tumbar ángulo — el mismo BHA con un estabilizador movido unos pies, o quitado por completo, puede comportarse de forma totalmente distinta en el fondo.</p>
 
+        <KeyFacts
+          lang="es"
+          rows={[["Dónde va", "Cerca de la barrena (justo encima de la barrena, caja-caja) y en posiciones de sarta dentro de la sección de lastrabarrenas."], ["Calibre", "Calibre completo (igual al tamaño de la barrena) o ligeramente bajo calibre, normalmente una fracción de pulgada."], ["Tipos de cuerpo", "Aleta integral, aleta soldada, camisa reemplazable y camisa no rotativa; aletas rectas o en espiral."], ["Protección contra desgaste", "Recubrimiento duro o insertos de carburo de tungsteno en las caras de las aletas."], ["Material", "Acero de baja aleación tratado térmicamente, comúnmente AISI 4145H modificado; se usan versiones no magnéticas cerca de los sensores MWD."], ["Revisar antes de bajar", "Diámetro de las aletas con anillo calibrador — un estabilizador gastado bajo calibre cambia cómo todo el BHA construye, mantiene o tumba ángulo."]]}
+          standardsNote={"Ninguna especificación de producto API cubre los estabilizadores como herramienta; sus conexiones pin y caja son conexiones rotarias de hombro API, roscadas y calibradas según API Spec 7-2."}
+        />
+
         <h2 id="placement-types">Ubicación: Sarta, Cerca de la Barrena y Rodillos-Escariadores</h2>
         <p>Los tres nombres describen dónde se ubica un estabilizador y de qué están hechas sus aletas, no tres funciones distintas:</p>
         <ul>
@@ -79,24 +68,17 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="vs-under-reamer">Estabilizador vs. Escariador Bajo Restricción</h2>
         <p>Ambas herramientas corren a diámetro completo en el BHA, que es donde se confunden. Un estabilizador centra la sarta en un hoyo que ya tiene el diámetro que va a tener — no corta, y el OD de sus aletas queda fijo desde el día que se fabrica. Un <a href="/es/equipment/under-reamer">escariador bajo restricción</a> ensancha activamente el pozo, plegando sus brazos para pasar una restricción y luego cortando un hoyo más ancho que esa restricción una vez despejada. Un estabilizador de rodillos-escariadores es el que más se acerca a la línea entre ambos, ya que sus rodillos pueden trabajar levemente la pared del hoyo, pero no está construido para remover un volumen significativo como sí lo hace la estructura de corte de un escariador bajo restricción.</p>
 
-        <h2 id="faq">Preguntas Frecuentes</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
       </div>
 
       <div>
         <div class="toc">
           <div class="toc-title">En Esta Página</div>
           <a href="#what-it-is">Qué Es</a>
+          <a href="#key-facts">Datos Clave</a>
           <a href="#placement-types">Sarta / Cerca de la Barrena / Rodillos</a>
           <a href="#blade-design">Aleta Recta vs. Espiral</a>
           <a href="#failure-modes">Fallas Comunes</a>
           <a href="#vs-under-reamer">vs. Escariador Bajo Restricción</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div class="note-box mt-24">
           <strong>Solo referencia.</strong> Las tolerancias de diámetro de aleta y las recomendaciones de espaciamiento varían por fabricante, tamaño de hoyo, y programa direccional — siempre confirma contra la hoja de especificaciones real de la herramienta y el plan direccional del pozo antes de confiar en cualquier cifra de aquí para un trabajo real.

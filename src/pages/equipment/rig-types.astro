@@ -4,37 +4,12 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import DiagramEmbed from '../../components/DiagramEmbed.astro';
 import { techArticleSchema } from '../../lib/techarticle.js';
+import KeyFacts from '../../components/KeyFacts.astro';
 
 const classAlt = "Six rig types arranged left to right by increasing water depth. A land rig stands on the ground with no water at all. Three bottom-supported offshore types transfer their weight to the seabed: a submersible barge rests its flooded hull on the bottom in under 70 feet, a jack-up lowers three legs to the seabed and lifts its hull clear of the waves in up to 400 feet, and a platform rig sits on a fixed steel jacket in up to 1,500 feet. Two floating types never touch the seabed and hold station instead: a semi-submersible floats on submerged pontoons held by moorings or thrusters in up to 12,000 feet, and a drillship is a ship hull held on dynamic positioning in up to 15,000 feet. The dividing line is whether the rig rests on the bottom or floats, and that is what the water depth limit is really measuring.";
 
-// FAQ pairs are rendered as visible content below as well as structured data.
-// Marking up questions that are not on the page is a structured data violation.
-const faq = [
-  {
-    q: 'What are the main types of drilling rig?',
-    a: 'Land rigs drill onshore. Offshore, the types divide by how the rig is held in place: submersible barges, jack-ups and platform rigs rest their weight on the seabed, while semi-submersibles and drillships float and hold station on moorings or thrusters. That one distinction — bottom-supported or floating — is what sets each type\u2019s water depth limit.',
-  },
-  {
-    q: 'What is a conventional drilling rig?',
-    a: 'It depends on who is speaking. To a rig mover, a conventional rig is one dismantled into loads and rebuilt at the next location, as opposed to a mobile, telescoping or walking rig. To a driller, conventional means the string is turned by a kelly and rotary table rather than a top drive. To a geologist, conventional refers to the reservoir rather than the rig. Ask which is meant before answering.',
-  },
-  {
-    q: 'What is the difference between a jack-up and a semi-submersible?',
-    a: 'A jack-up lowers legs to the seabed and lifts its hull above the waves, so it is a fixed structure while it works — cheaper and very stable, but limited to roughly 400 feet of water and dependent on seabed that will carry the legs. A semi-submersible floats on submerged pontoons and holds station on moorings or thrusters, which costs more but works in thousands of feet.',
-  },
-  {
-    q: 'Which rig type works in the deepest water?',
-    a: 'Drillships, at up to about 15,000 feet of water, with semi-submersibles close behind at around 12,000. Both are floaters, which is the reason: once a rig stops resting on the seabed, water depth stops being a structural limit and becomes a station-keeping and riser problem instead.',
-  },
-  {
-    q: 'What decides which rig is used on a well?',
-    a: 'Water depth rules out most options first. Seabed conditions can eliminate a jack-up even in shallow water if the ground will not carry a spudcan. Weather and station-keeping decide between moored and dynamically positioned floaters. The well programme decides the rest — one well over an existing platform is a different job from a multi-well exploration campaign.',
-  },
-  {
-    q: 'Is a workover rig a drilling rig?',
-    a: 'No. A workover or pulling unit services wells that already exist — pulling tubing and rods, changing downhole equipment — and is far smaller than a drilling rig. Coiled tubing and snubbing units are also well service rather than drilling, and snubbing units are built to work on a live well under pressure, which a drilling rig is not.',
-  },
-];
+// The FAQ section was removed 2026-10-17 (audit CQ-5): every answer restated a
+// body section. The "at a glance" table replaced it.
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/rig-types.astro',
@@ -174,6 +149,20 @@ const techArticleJsonLd = techArticleSchema({
   </section>
 
   <section class="block">
+    <div class="section-eyebrow">Summary</div>
+    <KeyFacts
+      lang="en"
+      id="at-a-glance"
+      headingClass="section-title"
+      heading={"Rig Types <span>at a Glance</span>"}
+      head={["Rig type", "How it is supported", "Station-keeping", "BOP location", "Typical water depth"]}
+      rows={[["Land rig", "On a pad or substructure on the ground", "None needed", "Surface, below the rig floor", "Onshore"], ["Submersible / barge", "Hull ballasted down onto the bottom", "Rests on the bottom", "Surface", "Up to about 70 ft"], ["Jack-up", "Legs on the seabed, hull jacked clear of the waves", "Rests on the bottom", "Surface, under the cantilever", "Up to about 400 ft"], ["Platform rig", "Drilling package on a fixed platform structure", "Fixed", "Surface", "Up to about 1,500 ft"], ["Semi-submersible", "Floats on submerged pontoons and columns", "Moorings or dynamic positioning", "Subsea, on the seabed wellhead", "About 400 to 12,000 ft"], ["Drillship", "Floats on a ship hull", "Dynamic positioning (some moored)", "Subsea, on the seabed wellhead", "Up to about 15,000 ft"]]}
+      standards={["api4f"]}
+      standardsNote={"Mobile offshore units — barges, jack-ups, semi-submersibles and drillships — are also built to the IMO MODU Code and classed by a classification society."}
+    />
+  </section>
+
+  <section class="block">
     <div class="section-eyebrow">Selection</div>
     <h2 class="section-title">What Actually Decides <span>the Rig</span></h2>
     <p style="color:var(--fog);max-width:740px;margin-bottom:24px;">Rig selection is not a preference. Four constraints narrow it to one or two realistic options before anyone considers cost.</p>
@@ -268,13 +257,6 @@ const techArticleJsonLd = techArticleSchema({
   <section class="block">
     <div class="two-col">
       <div class="prose">
-        <h2 id="faq">Frequently Asked Questions</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
 
         <h2 id="reuse">Reuse the diagram</h2>
         <DiagramEmbed

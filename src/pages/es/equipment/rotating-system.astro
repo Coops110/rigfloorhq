@@ -3,25 +3,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import { techArticleSchema } from '../../../lib/techarticle.js';
+import KeyFacts from '../../../components/KeyFacts.astro';
 
-const faq = [
-  {
-    q: '¿Qué gira realmente la sarta de perforación?',
-    a: 'En casi todo taladro moderno, un top drive — una unidad de motor que viaja en la torre junto al bloque viajero y se conecta directamente a la parte superior de la sarta de perforación. Los taladros más antiguos, y algunos todavía en servicio, usan una mesa rotaria en el piso de perforación girando un kelly cuadrado o hexagonal que pasa por un buje de kelly correspondiente, con el resto de la sarta colgando debajo.',
-  },
-  {
-    q: '¿Por qué la industria pasó de mesa rotaria y kelly a top drives?',
-    a: 'Un top drive puede rotar mientras el bloque se mueve, lo cual un kelly no puede — un kelly es de longitud fija, así que una vez que se ha corrido tan abajo como llega, la rotación se detiene mientras se agrega un nuevo tramo. Un top drive permite que todo un tramo (o más) se perfore en un movimiento rotatorio continuo, las conexiones se hacen mecánicamente en lugar de a mano, y puede rotar mientras se viaja dentro o fuera del pozo, lo cual es una ventaja real para la limpieza del pozo y para evitar tubería pegada en un viaje marginal.',
-  },
-  {
-    q: '¿Está la mesa rotaria completamente obsoleta?',
-    a: 'No del todo — muchos taladros mantienen una mesa rotaria instalada incluso con un top drive, ya que todavía hace trabajo útil: respaldar conexiones durante el manejo de tubería, y dar una forma de rotar la sarta desde el piso de perforación si el top drive mismo está fuera por mantenimiento. Un puñado de taladros más antiguos o pequeños todavía perforan solo con kelly y mesa rotaria sin ningún top drive.',
-  },
-  {
-    q: '¿Qué es la unión giratoria, y un top drive todavía necesita una?',
-    a: 'La unión giratoria es lo que permite que la sarta rotatoria de abajo se conecte al gancho y bloque viajero no rotatorios de arriba, mientras también pasa fluido de perforación desde el standpipe/manguera estacionario hacia la sarta rotatoria. Un top drive tiene su propia función de unión giratoria integrada dentro de la unidad misma — no es un componente colgante separado como lo es en un taladro de kelly y mesa rotaria, pero el mismo trabajo básico (conexión rotatoria más paso de fluido) todavía tiene que suceder en algún lugar del ensamblaje.',
-  },
-];
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/rotating-system.astro',
@@ -54,6 +37,12 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="what-it-is">Qué Hace el Sistema Rotatorio</h2>
         <p>La rotación es lo que convierte el peso sobre la barrena y el fluido de perforación en un pozo real — la barrena solo corta roca mientras está girando. El sistema rotatorio es lo que sea que transmita esa rotación desde superficie, a través de la <a href="/es/equipment/drill-string">sarta de perforación</a>, hasta la barrena. Dos configuraciones fundamentalmente diferentes han hecho este trabajo a lo largo de la historia de la industria, y entender ambas importa porque muchos taladros todavía corren la más antigua.</p>
 
+        <KeyFacts
+          lang="es"
+          rows={[["Opciones de accionamiento", "Top drive (estándar en la mayoría de los taladros modernos), kelly y mesa rotaria (taladros antiguos y pequeños), power swivel (taladros de reacondicionamiento y servicio)."], ["Clasificación del top drive", "Capacidad de carga de aproximadamente 250 a 1,000 toneladas; torque continuo de perforación en decenas de miles de lb-pie."], ["Aberturas de la mesa rotaria", "Tamaños comunes 17-1/2\", 20-1/2\", 27-1/2\", 37-1/2\" y 49-1/2\"; la abertura limita la barrena y el revestimiento más grandes que pueden pasar."], ["Kelly", "Cuadrado o hexagonal, normalmente de unos 40 pies de largo, con válvulas de kelly superior e inferior."], ["Velocidad típica de perforación", "Aproximadamente 60 a 180 rpm en superficie; un motor de fondo suma su propia velocidad en la barrena."], ["Conexión del fluido", "El cuello de ganso y la empaquetadura del washpipe pasan el lodo de la manguera rotaria a la sarta en rotación."]]}
+          standards={["api8c", "api7k", "api7_1"]}
+        />
+
         <h2 id="top-drive">Top Drive</h2>
         <p>Un top drive es una unidad de motor autocontenida que cuelga en la torre desde el bloque viajero y se conecta directamente a la parte superior de la sarta de perforación, rotándola desde arriba mientras todo el ensamblaje se sube o baja. Ha reemplazado la mesa rotaria y el kelly como el estándar en la gran mayoría de los taladros modernos, por una razón real y práctica: puede rotar continuamente mientras el bloque viaja, lo cual una configuración de kelly no puede.</p>
         <p>Esa sola capacidad cambia mucho sobre cómo realmente sucede la perforación. Un tramo entero — a veces más — puede perforarse en una sola corrida rotatoria continua en lugar de detener la rotación cada longitud de kelly para agregar una junta. Las conexiones se hacen y se rompen mecánicamente a través del top drive mismo en lugar de a mano con llaves en el piso de perforación. Y la sarta puede rotarse mientras se viaja dentro o fuera del pozo, lo cual es una ventaja genuina para mantener los recortes en movimiento y evitar una sarta mecánicamente pegada en un viaje marginal.</p>
@@ -67,23 +56,16 @@ const techArticleJsonLd = techArticleSchema({
         <p>En algún lugar del ensamblaje, una conexión rotatoria tiene que dejar que la sarta de abajo gire libremente mientras el gancho y el bloque viajero de arriba permanecen estacionarios, y el fluido de perforación tiene que pasar desde la manguera del standpipe estacionario hacia la sarta rotatoria sin fugarse. En un taladro de kelly, la <strong>unión giratoria</strong> es un componente colgante distinto haciendo exactamente ese trabajo, ubicado directamente arriba del kelly. Un top drive tiene esta misma función integrada dentro de la unidad misma en lugar de como un componente visible separado — el trabajo no desaparece, solo se mueve dentro de la carcasa propia del top drive.</p>
         <p>Esta función de unión giratoria es distinta de un <a href="/es/equipment/power-swivel">power swivel</a> — una unidad rotativa autónoma usada en taladros de workover y servicio de pozos que típicamente no tienen ni top drive ni mesa rotaria.</p>
 
-        <h2 id="faq">Preguntas Frecuentes</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
       </div>
 
       <div>
         <div class="toc">
           <div class="toc-title">En Esta Página</div>
           <a href="#what-it-is">Qué Hace</a>
+          <a href="#key-facts">Datos Clave</a>
           <a href="#top-drive">Top Drive</a>
           <a href="#rotary-kelly">Mesa Rotaria y Kelly</a>
           <a href="#swivel">La Unión Giratoria</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
           <h3>Lectura Relacionada</h3>

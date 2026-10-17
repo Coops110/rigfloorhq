@@ -3,6 +3,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import { techArticleSchema } from '../../../lib/techarticle.js';
+import KeyFacts from '../../../components/KeyFacts.astro';
+import DrillStringDiagram from '../../../components/DrillStringDiagram.astro';
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/drill-string.astro',
@@ -36,33 +38,43 @@ const techArticleJsonLd = techArticleSchema({
         <p>La sarta de perforación transmite rotación y peso a la barrena mientras proporciona un conducto para que el fluido de perforación viaje desde superficie, baje por la tubería, salga por las boquillas de la barrena, y regrese por el espacio anular llevando los recortes de roca. Cada junta está roscada y apretada a especificaciones precisas — una conexión fallida a miles de pies de profundidad es un problema serio y costoso. Que ese retorno realmente arrastre los recortes en vez de dejarlos asentarse de nuevo sobre la sarta depende de la <a href="/es/calculators/annular-velocity">velocidad anular</a> — demasiado lenta, y empiezan a aplicar los problemas de limpieza de hoyo que cubre <a href="/es/pillars/stuck-pipe-and-fishing-operations">tubería pegada y operaciones de pesca</a>.</p>
 
         <h2 id="componentes-de-arriba-a-abajo">Componentes, de Arriba a Abajo</h2>
-        <div style="display:flex;flex-direction:column;gap:8px;margin:24px 0;">
-          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--iron);border-radius:3px;align-items:center;">
-            <span style="font-family:var(--mono);font-size:11px;color:var(--rust);min-width:56px;">ARRIBA</span>
-            <div><strong style="color:var(--white);font-size:14px;">Top Drive</strong><br><span style="font-size:12px;color:var(--fog);">Los taladros modernos usan un motor top drive en lugar de un kelly y mesa rotaria, permitiendo rotación completa mientras se agregan paradas, en lugar de solo incrementos de 90 pies.</span></div>
-          </div>
-          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
+        <DrillStringDiagram lang="es" />
+        <ol style="list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;margin:24px 0;">
+          <li style="display:flex;gap:16px;padding:14px 16px;background:var(--iron);border-radius:3px;align-items:center;">
+            <span style="font-family:var(--mono);font-size:11px;color:var(--ember);min-width:56px;">ARRIBA</span>
+            <div><strong style="color:var(--white);font-size:14px;">Top Drive</strong><br><span style="font-size:12px;color:var(--fog);">Los taladros modernos usan un motor top drive en lugar de un kelly y mesa rotaria, de modo que la sarta sigue rotando mientras se perfora una parada completa de 90 pies, en lugar de parar en cada junta sencilla de 30 pies.</span></div>
+          </li>
+          <li style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
             <div><strong style="color:var(--white);font-size:14px;">Tubería de Perforación</strong><br><span style="font-size:12px;color:var(--fog);">Cuerpo principal de la sarta — 5" de diámetro exterior, juntas de 30 pies roscadas entre sí. Puede llegar a miles de pies de profundidad.</span></div>
-          </div>
-          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
+          </li>
+          <li style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
             <div><strong style="color:var(--white);font-size:14px;">Tubería Pesada (HWDP)</strong><br><span style="font-size:12px;color:var(--fog);">Tubería de transición de pared más gruesa entre la tubería de perforación y los lastrabarrenas, reduciendo fallas por fatiga en el punto de máximo esfuerzo.</span></div>
-          </div>
-          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
+          </li>
+          <li style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
+            <div><strong style="color:var(--white);font-size:14px;">Martillo de Perforación</strong><br><span style="font-size:12px;color:var(--fog);">Acumula el estiramiento de la sarta y lo libera como un golpe seco, hacia arriba o hacia abajo, para liberar tubería pegada. Normalmente va en la sección de tubería pesada o de lastrabarrenas — ver el <a href="/es/equipment/hydraulic-jar" style="color:var(--amber);">martillo hidráulico</a> y <a href="/es/blog/drilling-jars-explained" style="color:var(--amber);">cómo se ubican y disparan los martillos de perforación</a>.</span></div>
+          </li>
+          <li style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
             <div><strong style="color:var(--white);font-size:14px;">Lastrabarrenas (Drill Collars)</strong><br><span style="font-size:12px;color:var(--fog);">Tubería pesada de pared gruesa que proporciona peso sobre la barrena (WOB) — la fuerza descendente necesaria para que la barrena corte la roca.</span></div>
-          </div>
-          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
+          </li>
+          <li style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
             <div><strong style="color:var(--white);font-size:14px;">Herramientas MWD/LWD</strong><br><span style="font-size:12px;color:var(--fog);">Herramientas de medición y registro que transmiten datos direccionales y de formación a superficie en tiempo real. Ver <a href="/es/equipment/mwd-tool" style="color:var(--amber);">cómo funciona el MWD</a> y <a href="/es/drilling/directional" style="color:var(--amber);">perforación direccional</a>.</span></div>
-          </div>
-          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
+          </li>
+          <li style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
             <div><strong style="color:var(--white);font-size:14px;">Estabilizadores</strong><br><span style="font-size:12px;color:var(--fog);">Mantienen el BHA centrado en el hoyo para controlar la trayectoria y reducir la vibración. Ver <a href="/es/equipment/stabilizer" style="color:var(--amber);">tipos de sarta, cerca de la barrena y rodillo-escariador</a> y el <a href="/es/equipment/under-reamer" style="color:var(--amber);">escariador bajo restricción</a> relacionado, que ensancha el hoyo en lugar de solo centrar la sarta.</span></div>
-          </div>
-          <div style="display:flex;gap:16px;padding:14px 16px;background:var(--iron);border-radius:3px;align-items:center;">
-            <span style="font-family:var(--mono);font-size:11px;color:var(--rust);min-width:56px;">ABAJO</span>
+          </li>
+          <li style="display:flex;gap:16px;padding:14px 16px;background:var(--iron);border-radius:3px;align-items:center;">
+            <span style="font-family:var(--mono);font-size:11px;color:var(--ember);min-width:56px;">ABAJO</span>
             <div><strong style="color:var(--white);font-size:14px;">Barrena</strong><br><span style="font-size:12px;color:var(--fog);">Corta la roca. El tipo se elige según la dureza de la formación — ver comparación abajo.</span></div>
-          </div>
-        </div>
+          </li>
+        </ol>
 
         <p>Los componentes de diferentes diámetros o tipos de rosca a lo largo de la sarta (lastrabarrenas que se reducen a tubería pesada, o herramientas de distintos fabricantes) se unen con un <a href="/es/equipment/crossover-sub">crossover sub</a>, y a menudo se coloca un <a href="/es/equipment/float-sub">float sub</a> en la sarta para alojar una válvula check que detiene el reflujo de fluido hacia arriba por la tubería una vez que se apagan las bombas.</p>
+
+        <KeyFacts
+          lang="es"
+          rows={[["Orden, de arriba a abajo", "Top drive (o kelly) → tubería de perforación → tubería pesada → martillo → lastrabarrenas con estabilizadores → MWD/LWD → estabilizador cerca de la barrena → barrena."], ["Diámetros de tubería de perforación", "De 2-3/8\" a 6-5/8\" de diámetro exterior; 5\" y 5-1/2\" son los más comunes en taladros de perforación."], ["Longitud de junta", "Rango API 2 (unos 27–30 pies) es el estándar; el Rango 3 (unos 38–45 pies) se usa en algunos taladros profundos y costa afuera."], ["Grados de tubería de perforación", "E75, X95, G105 y S135 — el número es la resistencia mínima a la fluencia en miles de psi."], ["Tubería pesada (HWDP)", "Mismo diámetro exterior que la tubería de perforación con la que se corre, pared más gruesa, tool joints extralargos y un recalque central de desgaste."], ["Lastrabarrenas", "Aproximadamente de 3-1/8\" a 11\" de diámetro exterior, juntas de unos 30–31 pies; de acero, o de aleación no magnética alrededor de los sensores MWD."], ["Conexiones", "Conexiones rotarias de hombro API, pin y caja — por ejemplo NC50 en tubería de perforación de 5\"."]]}
+          standards={["api5dp", "api7_1", "api7g"]}
+        />
 
         <h2 id="tipos-de-barrena">Tipos de Barrena</h2>
         <div class="table-wrap">
@@ -110,6 +122,7 @@ const techArticleJsonLd = techArticleSchema({
           <div class="toc-title">En Esta Página</div>
           <a href="#que-hace-la-sarta-de-perforacion">Qué Hace la Sarta de Perforación</a>
           <a href="#componentes-de-arriba-a-abajo">Componentes de Arriba a Abajo</a>
+          <a href="#key-facts">Datos Clave</a>
           <a href="#tipos-de-barrena">Tipos de Barrena</a>
           <a href="#parametros-de-perforacion-monitoreados-a-traves-de-la-sarta">Parámetros Monitoreados</a>
           <a href="#el-punto-neutro">El Punto Neutro</a>

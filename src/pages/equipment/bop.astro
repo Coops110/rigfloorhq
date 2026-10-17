@@ -4,6 +4,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import DiagramEmbed from '../../components/DiagramEmbed.astro';
 import { techArticleSchema } from '../../lib/techarticle.js';
+import KeyFacts from '../../components/KeyFacts.astro';
 
 const stackAlt = "BOP stack from top to bottom: annular preventer, pipe rams, blind rams, and shear rams, with choke and kill lines running to the wellhead. The annular sits highest because it seals on any pipe size or on open hole; the rams below it seal harder but each only on what it is cut for, and the shear rams at the bottom cut the pipe itself as a last resort.";
 
@@ -16,34 +17,9 @@ const stackAlt = "BOP stack from top to bottom: annular preventer, pipe rams, bl
 // Worth having someone who runs these tests confirm the figures before this
 // page ranks well enough for them to matter.
 //
-// FAQ pairs are rendered as visible content below as well as structured data.
-// Marking up questions that are not on the page is a structured data violation.
-const faq = [
-  {
-    q: 'What is a blowout preventer?',
-    a: 'A blowout preventer is a stack of high-pressure sealing elements installed on the wellhead that can close the wellbore in seconds if formation fluid starts flowing to surface uncontrolled. It is the hardware that makes shutting in a kick possible: without a functioning BOP there is no way to hold pressure while the well is killed.',
-  },
-  {
-    q: 'What does a blowout preventer actually do?',
-    a: 'It seals the annulus — the space around the drill pipe — or the open hole, so that pressure can be contained and read at surface. Sealing is only the first step. Once shut in, the choke and kill lines let the crew circulate the influx out and pump heavier mud in while the well stays closed.',
-  },
-  {
-    q: 'What are the types of blowout preventer?',
-    a: 'Two families. Annular preventers use a rubber element that squeezes closed around almost any pipe size or on open hole. Ram preventers use opposing steel blocks and come in four kinds: pipe rams for one specific pipe diameter, variable bore rams for a range of sizes, blind rams for open hole, and shear rams that cut the pipe. A stack normally carries both families.',
-  },
-  {
-    q: 'What is in a BOP stack?',
-    a: 'From the top down, a typical stack runs annular preventer, then several ram preventers, with choke and kill outlets between them, landing on the wellhead connector. The annular is highest because it is the most forgiving and the lowest rated; the rams below it hold more pressure but each only seals on what it was cut for. Subsea stacks add a lower marine riser package on top.',
-  },
-  {
-    q: 'How does a BOP control system work?',
-    a: 'Hydraulic pressure stored in nitrogen-charged accumulator bottles closes the preventers, so the stack can be operated with the rig black. Surface stacks are piped directly to the accumulator unit. Subsea stacks are operated through two redundant control pods, conventionally blue and yellow, and carry emergency backups that close the shear rams without any signal from the rig.',
-  },
-  {
-    q: 'How often is a BOP tested?',
-    a: 'Function tests cycle each element open and closed without pressure; pressure tests seal it against a real test pressure. Under API STD 53 and, for US outer continental shelf work, BSEE 30 CFR 250.737, that is broadly a function test every 7 days and a pressure test every 14 days for subsea stacks. Intervals differ by jurisdiction and tighten after any well control event or equipment change, so work to the standard that governs your rig.',
-  },
-];
+// The FAQ section was removed 2026-10-17 (audit CQ-5): all six answers
+// restated body sections nearly word for word. The key facts table and the
+// Standards line replaced it. No FAQPage schema exists to keep in sync.
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/bop.astro',
@@ -100,6 +76,12 @@ const techArticleJsonLd = techArticleSchema({
             sizes="(max-width: 700px) 100vw, 660px"
             alt={stackAlt} width="1800" height="1120" loading="lazy" decoding="async" style="max-width:100%;height:auto;margin:22px 0;border:1px solid var(--iron);border-radius:6px;" />
         </picture>
+
+        <KeyFacts
+          lang="en"
+          rows={[["Where it sits", "On the wellhead or casing head below the rig floor (surface stack), or latched to the subsea wellhead on the seabed (subsea stack)."], ["Common bore sizes", "7-1/16\", 11\", 13-5/8\", 18-3/4\" and 21-1/4\" nominal through-bore; 13-5/8\" is the most common land and platform size, 18-3/4\" the usual subsea size."], ["Working pressure classes", "2,000, 3,000, 5,000, 10,000, 15,000 and 20,000 psi (2M–20M)."], ["Sealing elements", "Annular preventer (elastomer packing unit); ram preventers fitted with pipe, variable bore, blind, blind shear or casing shear rams."], ["Elastomers", "Nitrile (NBR) for general service; hydrogenated nitrile (HNBR) and specialist compounds for higher temperature or sour service."], ["Operated by", "Hydraulic fluid stored in nitrogen-precharged accumulator bottles, typically a 3,000 psi closing system on surface stacks."]]}
+          standards={["api16a", "api53", "api16d", "cfr250g"]}
+        />
 
         <h2 id="the-two-families">The Two Families of Preventer</h2>
         <p>Everything in a stack is either an annular or a ram. The difference is not just shape — it decides what each one can seal on, and it is why a stack carries both rather than several of the better one.</p>
@@ -199,13 +181,6 @@ const techArticleJsonLd = techArticleSchema({
         <p>Two different tests answer two different questions. A <strong>function test</strong> cycles each element open and closed without pressure, proving it still moves. A <strong>pressure test</strong> seals it against a real test pressure, proving it still holds. Passing one says nothing about the other.</p>
         <p>Intervals are set by the standard that governs the rig rather than by a single global rule. API STD 53 is the industry reference, having superseded API RP 53; for US outer continental shelf work, BSEE 30 CFR 250.737 is the binding version, and it is broadly a function test every 7 days and a pressure test every 14 days on a subsea stack. Onshore and non-US intervals differ, and every jurisdiction tightens the schedule after a well control event or any change to the equipment. A full sequence tests each ram and the annular individually before drilling resumes.</p>
 
-        <h2 id="faq">Frequently Asked Questions</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
 
         <h2 id="reuse">Reuse the diagram</h2>
         <DiagramEmbed
@@ -221,6 +196,7 @@ const techArticleJsonLd = techArticleSchema({
         <div class="toc">
           <div class="toc-title">On This Page</div>
           <a href="#what-a-bop-does">What a BOP Does</a>
+          <a href="#key-facts">Key Facts</a>
           <a href="#the-two-families">The Two Families</a>
           <a href="#ram-types">The Four Ram Types</a>
           <a href="#stack-arrangement">How a Stack Is Arranged</a>
@@ -232,7 +208,6 @@ const techArticleJsonLd = techArticleSchema({
           <a href="#surface-vs-subsea-bop-stacks">Surface vs Subsea</a>
           <a href="#pressure-ratings-classes">Pressure Ratings</a>
           <a href="#testing-requirements">Testing Requirements</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
           <h3>Related Reading</h3>

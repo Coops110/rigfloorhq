@@ -4,25 +4,8 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ToolGallery from '../../components/ToolGallery.astro';
 import { techArticleSchema } from '../../lib/techarticle.js';
+import KeyFacts from '../../components/KeyFacts.astro';
 
-const faq = [
-  {
-    q: 'What is a hydraulic jar used for?',
-    a: "A hydraulic jar delivers a sudden impact load to a stuck section of string, rather than a steady pull. Sustained overpull applies force smoothly and is often ineffective against pipe that's genuinely stuck, since the stuck point can simply absorb steady tension without ever breaking free — an impact load hits with far more force in a far shorter time, and can break a bond that steady tension never would.",
-  },
-  {
-    q: 'What is the difference between an up jar and a down jar?',
-    a: "Direction. An up jar is cocked by pulling tension into the tool from surface and fires upward once it releases, the standard choice when the string is stuck and needs to come free moving up. A down jar fires downward instead, used where the obstruction is above the stuck point rather than below it — for example working a bit back down through a bridge or pack-off. Many fishing and drilling strings run a jar of each type, positioned for whichever direction the job is more likely to need.",
-  },
-  {
-    q: 'What is a jar accelerator, and why is it often run with the jar?',
-    a: "A jar accelerator is a separate tool, usually run just above or below the jar itself, that stores additional energy — typically through a compressible gas or spring chamber — and releases it in the same instant the jar fires. On its own, a jar's impact energy is limited by how much the drill string itself can stretch and store tension over the string's length above it; in a shallow stuck point, there isn't much string length left to stretch, so the jar's impact is weaker. The accelerator adds stored energy independent of string stretch, restoring a strong impact even when the stuck point is too shallow for the string alone to store much.",
-  },
-  {
-    q: 'What causes a hydraulic jar to fail?',
-    a: 'Premature firing under normal drilling loads is one failure mode, cocking and releasing the jar when nothing is actually stuck and nothing was intended to happen — wasted, sometimes damaging, impacts on a string that didn\'t need them. Failure to fire when actually needed is the opposite and more consequential problem, usually from a worn or contaminated hydraulic metering section that no longer delays and releases correctly under tension. Spline wear in the anti-rotation section is the routine mechanical wear failure, eventually letting the hammer and anvil faces rotate slightly out of alignment and lose some of the impact\'s effectiveness.',
-  },
-];
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/hydraulic-jar.astro',
@@ -57,6 +40,12 @@ const techArticleJsonLd = techArticleSchema({
         <p>A hydraulic jar is a mechanical tool made up in the <a href="/equipment/drill-string">string</a> that converts steady, stored tension into a sudden mechanical impact. Internally it's built around a splined mandrel that slides through a housing, timed by a hydraulic metering section — pull tension into the tool from surface, and once the metering piston has bled through the fluid at a controlled rate, the mandrel releases and the hammer face strikes the anvil face with the full stored energy, all at once rather than gradually.</p>
         <p>That impact is the entire reason the tool exists. Steady overpull applies force smoothly over time, and a section of string genuinely stuck against the wall or wedged in junk can simply absorb that steady load without ever letting go. A sharp impact concentrates the same, or less, total energy into a fraction of a second — often enough to break a bond that sustained tension alone never would.</p>
 
+        <KeyFacts
+          lang="en"
+          rows={[["Where it sits", "In the BHA, usually in the heavyweight or collar section, placed so the jar is not working right at the neutral point; an accelerator, when run, goes above it."], ["Common sizes", "About 3-1/8\" to 9-1/2\" OD, matched to the drill collar size."], ["Firing", "Most drilling jars are double-acting — they fire both up and down — with a hydraulic delay set by the metering section."], ["Hydraulic vs. mechanical", "A hydraulic jar fires after a time delay at a range of loads; a mechanical jar fires at a preset trip load."], ["What affects the delay", "Applied overpull, hydraulic oil temperature downhole, and seal wear in the metering section."], ["Run records", "Circulating hours and jarring cycles are logged so the jar is pulled for service before it is worn out."]]}
+          standardsNote={"No API product specification governs drilling jars; ratings and operating limits come from the manufacturer’s performance data for the specific tool."}
+        />
+
         <h2 id="up-down"> Up Jar vs. Down Jar</h2>
         <p>Jars are directional tools, and which way they fire matters as much as the fact that they fire at all. An <strong>up jar</strong> is cocked by pulling tension into the string from surface and releases upward — the standard choice whenever the stuck section needs to come free moving up the hole, which covers most stuck-pipe events. A <strong>down jar</strong> fires downward instead, used where the obstruction sits above the point that needs to move — for example, working a bit or BHA back down through a bridge or pack-off that's blocking it from above rather than gripping it from below. Many drilling and fishing strings run one of each, positioned so the string has an impact tool ready in whichever direction the job is more likely to actually need.</p>
 
@@ -74,24 +63,17 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="vs-safety-joint">Hydraulic Jar vs. Safety Joint</h2>
         <p>Both tools are run in anticipation of a string getting stuck, which is where the confusion starts, but they solve the problem at opposite ends. A hydraulic jar is a recovery tool — it's there to actively try to break the stuck section free through impact, used while the crew is still attempting to save the whole string. A <a href="/equipment/safety-joint">safety joint</a> is a concession tool — it's there so that if the stuck section can't be freed, whatever's above the joint can still be released and recovered cleanly, accepting the loss of what's below. A well-designed fishing or drilling string often carries both: the jar to try to free things first, the safety joint as the planned fallback if the jar doesn't work.</p>
 
-        <h2 id="faq">Frequently Asked Questions</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
       </div>
 
       <div>
         <div class="toc">
           <div class="toc-title">On This Page</div>
           <a href="#what-it-is">What It Is</a>
+          <a href="#key-facts">Key Facts</a>
           <a href="#up-down">Up Jar vs. Down Jar</a>
           <a href="#accelerator">Jar Accelerator</a>
           <a href="#failure-modes">Failure Modes</a>
           <a href="#vs-safety-joint">vs. Safety Joint</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div class="note-box mt-24">
           <strong>Reference only.</strong> Trip loads, impact ratings, and metering behavior vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.

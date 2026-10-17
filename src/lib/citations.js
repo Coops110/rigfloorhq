@@ -91,4 +91,223 @@ export const CITATIONS = {
       note: 'Programa de acreditación de control de pozo de IADC, la otra vía de certificación ampliamente reconocida junto con IWCF.',
     },
   },
+  // Equipment-page standards (2026-10-17). API has no free per-standard page
+  // for most of these, so like api53 they link to API's standards catalog
+  // (checked live 2026-10-17) and the label names the exact document.
+  api16a: {
+    en: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 16A",
+      note: "Specification for Drill-through Equipment — design, rating and testing of ram and annular BOPs, drilling spools and their connections.",
+    },
+    es: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 16A",
+      note: "Especificación para equipo de paso total (drill-through) — diseño, clasificación y prueba de BOP de arietes y anulares, carretes de perforación y sus conexiones.",
+    },
+  },
+  api16d: {
+    en: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 16D",
+      note: "Control Systems for Drilling Well Control Equipment and Control Systems for Diverter Equipment — accumulator sizing, closing units, control pods and panels.",
+    },
+    es: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 16D",
+      note: "Sistemas de control para equipos de control de pozo y para equipos desviadores (diverter) — dimensionamiento de acumuladores, unidades de cierre, pods y paneles de control.",
+    },
+  },
+  api5dp: {
+    en: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 5DP",
+      note: "Drill Pipe — tube body grades (E, X, G, S), dimensions and the tool joints welded to them.",
+    },
+    es: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 5DP",
+      note: "Tubería de perforación — grados del cuerpo del tubo (E, X, G, S), dimensiones y las juntas (tool joints) soldadas a él.",
+    },
+  },
+  api7_1: {
+    en: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 7-1",
+      note: "Rotary Drill Stem Elements — kellys, kelly valves, drill stem subs, steel and non-magnetic drill collars, and drilling and coring bits.",
+    },
+    es: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 7-1",
+      note: "Elementos rotarios de la sarta — kellys, válvulas de kelly, subs de sarta, lastrabarrenas de acero y no magnéticos, y barrenas de perforación y de núcleo.",
+    },
+  },
+  api7g: {
+    en: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API RP 7G",
+      note: "Drill Stem Design and Operating Limits — the recommended practice used to size a string for tension, torsion, collapse and fatigue.",
+    },
+    es: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API RP 7G",
+      note: "Diseño y límites operativos de la sarta — la práctica recomendada usada para dimensionar una sarta a tensión, torsión, colapso y fatiga.",
+    },
+  },
+  api8c: {
+    en: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 8C",
+      note: "Drilling and Production Hoisting Equipment (PSL 1 and PSL 2) — traveling blocks, hooks, elevators, links, rotary and power swivels.",
+    },
+    es: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 8C",
+      note: "Equipo de izaje para perforación y producción (PSL 1 y PSL 2) — bloques viajeros, ganchos, elevadores, brazos, uniones giratorias y power swivels.",
+    },
+  },
+  api4f: {
+    en: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 4F",
+      note: "Drilling and Well Servicing Structures — load rating, design and inspection of masts, derricks and substructures.",
+    },
+    es: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 4F",
+      note: "Estructuras de perforación y servicio de pozos — clasificación de carga, diseño e inspección de mástiles, torres y subestructuras.",
+    },
+  },
+  api9a: {
+    en: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 9A",
+      note: "Wire Rope — construction, grades and minimum breaking strength of the wire rope used as drilling line.",
+    },
+    es: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 9A",
+      note: "Cable de acero — construcción, grados y resistencia mínima a la rotura del cable usado como línea de perforación.",
+    },
+  },
+  api9b: {
+    en: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API RP 9B",
+      note: "Application, Care, and Use of Wire Rope for Oil Field Service — including ton-mile based slip-and-cut programs.",
+    },
+    es: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API RP 9B",
+      note: "Aplicación, cuidado y uso del cable de acero en servicio petrolero — incluidos los programas de corrido y corte por toneladas-milla.",
+    },
+  },
+  api7k: {
+    en: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 7K",
+      note: "Drilling and Well Servicing Equipment — rotary tables and bushings, piston mud-pump components, drawworks components, high-pressure mud hoses, slips and tongs.",
+    },
+    es: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 7K",
+      note: "Equipo de perforación y servicio de pozos — mesas rotarias y bujes, componentes de bombas de lodo de pistón, componentes del malacate, mangueras de lodo de alta presión, cuñas y llaves.",
+    },
+  },
+  api13c: {
+    en: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API RP 13C",
+      note: "Drilling Fluid Processing Systems Evaluation — how solids-control performance is assessed, and the API number system that replaced 'mesh' for shaker screens.",
+    },
+    es: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API RP 13C",
+      note: "Evaluación de sistemas de procesamiento de fluidos de perforación — cómo se evalúa el control de sólidos, y la designación API que reemplazó al 'mesh' en las mallas de zaranda.",
+    },
+  },
+  api5ct: {
+    en: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 5CT",
+      note: "Casing and Tubing — steel grades, dimensions and testing for the casing a shoe is made up on.",
+    },
+    es: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 5CT",
+      note: "Revestimiento y tubería de producción — grados de acero, dimensiones y pruebas del revestimiento sobre el que se arma la zapata.",
+    },
+  },
+  api10f: {
+    en: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 10F",
+      note: "Cementing Float Equipment — performance testing of float shoes and float collars (it replaced the older API RP 10F).",
+    },
+    es: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 10F",
+      note: "Equipo de flotación para cementación — pruebas de desempeño de zapatas y collares flotadores (reemplazó a la antigua API RP 10F).",
+    },
+  },
+  api10d: {
+    en: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 10D",
+      note: "Casing Bow-spring Centralizers — starting force, running force and restoring force testing.",
+    },
+    es: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 10D",
+      note: "Centralizadores de resorte de arco para revestimiento — pruebas de fuerza de arranque, de corrida y de restauración.",
+    },
+  },
+  api10d2: {
+    en: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API RP 10D-2",
+      note: "Centralizer Placement and Stop Collar Testing — calculating spacing for a target standoff.",
+    },
+    es: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API RP 10D-2",
+      note: "Ubicación de centralizadores y prueba de collares de tope — cálculo del espaciamiento para una separación (standoff) objetivo.",
+    },
+  },
+  api11d1: {
+    en: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 11D1",
+      note: "Packers and Bridge Plugs — design validation grades (V0 to V6) and quality grades for packers.",
+    },
+    es: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 11D1",
+      note: "Empacadores y tapones puente — grados de validación de diseño (V0 a V6) y grados de calidad para empacadores.",
+    },
+  },
+  api19lh: {
+    en: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 19LH",
+      note: "Liner Hanger Equipment — hangers, liner top packers, tie-back receptacles and running tools.",
+    },
+    es: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API Spec 19LH",
+      note: "Equipo de colgadores de liner — colgadores, empacadores de tope de liner, receptáculos de tie-back y herramientas de corrida.",
+    },
+  },
+  api500: {
+    en: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API RP 500",
+      note: "Classification of Locations for Electrical Installations at Petroleum Facilities (Class I, Division 1 and 2) — the area classification that decides where rig electrical equipment may sit.",
+    },
+    es: {
+      href: "https://www.api.org/products-and-services/standards",
+      label: "API RP 500",
+      note: "Clasificación de áreas para instalaciones eléctricas en instalaciones petroleras (Clase I, División 1 y 2) — la clasificación que decide dónde puede ubicarse el equipo eléctrico del taladro.",
+    },
+  },
 };

@@ -1,0 +1,177 @@
+---
+// Labelled drill string diagram, top drive to bit. Inline SVG so the labels
+// are real text (translatable, crisp at any size) and the colours follow the
+// site tokens. Added 2026-10-17 for audit finding DS-1: "drill string
+// components" ranks diagram decks, and this page had no picture at all.
+//
+// Inline only — never point og:image at an SVG (see CLAUDE.md, Metadata).
+// Not to scale on purpose: at true scale the pipe would be a hairline and the
+// BHA a speck at the bottom of a three-mile line.
+export interface Props {
+  lang?: 'en' | 'es';
+}
+const { lang = 'en' } = Astro.props;
+
+const t = lang === 'es'
+  ? {
+      title: 'Diagrama de la sarta de perforación, del top drive a la barrena',
+      desc: 'De arriba hacia abajo: el top drive (o kelly y mesa rotaria) sobre el piso de perforación; la tubería de perforación con un tool joint en cada conexión; la tubería pesada (HWDP); el martillo de perforación; un sub de cruce; los lastrabarrenas con un estabilizador de sarta; la herramienta MWD dentro de un lastrabarrena no magnético; el estabilizador cerca de la barrena; y la barrena. El punto neutro queda dentro de los lastrabarrenas: arriba de él la sarta trabaja a tensión, abajo a compresión. Los lastrabarrenas y todo lo que va debajo forman el BHA. No está a escala.',
+      floor: 'Piso de perforación',
+      bha: 'BHA',
+      labels: [
+        ['Top drive o kelly', 'o kelly y mesa rotaria'],
+        ['Tubería de perforación', 'juntas de ~30 pies; tool joint en cada conexión'],
+        ['Tubería pesada (HWDP)', 'transición de rigidez hacia los lastrabarrenas'],
+        ['Martillo de perforación', 'golpe hacia arriba o abajo si la sarta se pega'],
+        ['Sub de cruce', 'une roscas o diámetros distintos'],
+        ['Lastrabarrenas', 'dan el peso sobre la barrena'],
+        ['Punto neutro', 'tensión arriba · compresión abajo'],
+        ['Estabilizador de sarta', 'centra el BHA en el hoyo'],
+        ['MWD', 'en un lastrabarrena no magnético'],
+        ['Estabilizador cerca de la barrena', 'controla la tendencia de ángulo'],
+        ['Barrena', 'PDC, tricónica o impregnada'],
+      ],
+      caption: 'Componentes de la sarta de perforación de arriba a abajo, con el punto neutro dentro de los lastrabarrenas. Diagrama esquemático, no a escala.',
+    }
+  : {
+      title: 'Drill string diagram, top drive to bit',
+      desc: 'From the top: the top drive (or kelly and rotary table) above the rig floor; drill pipe with a tool joint at every connection; heavyweight drill pipe (HWDP); the drilling jar; a crossover sub; drill collars carrying a string stabilizer; the MWD tool inside a non-magnetic drill collar; the near-bit stabilizer; and the bit. The neutral point sits inside the drill collars: above it the string is in tension, below it in compression. The drill collars and everything below them make up the BHA. Not to scale.',
+      floor: 'Rig floor',
+      bha: 'BHA',
+      labels: [
+        ['Top drive or kelly', 'or kelly and rotary table'],
+        ['Drill pipe', '~30 ft joints; tool joint at each connection'],
+        ['Heavyweight drill pipe', 'stiffness transition to the collars'],
+        ['Drilling jar', 'hits up or down if the string sticks'],
+        ['Crossover sub', 'joins different threads or sizes'],
+        ['Drill collars', 'supply weight on bit'],
+        ['Neutral point', 'tension above · compression below'],
+        ['String stabilizer', 'centres the BHA in the hole'],
+        ['MWD tool', 'in a non-magnetic drill collar'],
+        ['Near-bit stabilizer', 'controls build, hold or drop'],
+        ['Bit', 'PDC, roller cone or impregnated'],
+      ],
+      caption: 'Drill string components from top to bottom, with the neutral point kept inside the drill collars. Schematic, not to scale.',
+    };
+
+// [label y, component y the leader points at, component right edge x]
+const anchors: [number, number, number][] = [
+  [56, 60, 200],   // top drive
+  [250, 270, 158], // drill pipe
+  [455, 465, 160], // HWDP
+  [530, 537, 164], // jar
+  [595, 610, 166], // crossover
+  [650, 655, 170], // collars
+  [700, 700, 196], // neutral point
+  [760, 761, 182], // string stabilizer
+  [825, 830, 170], // MWD
+  [880, 872, 182], // near-bit stabilizer
+  [950, 912, 176], // bit
+];
+const LX = 252;
+---
+<figure class="ds-figure">
+  <svg class="ds-svg" viewBox="0 0 560 970" role="img" aria-labelledby={`ds-title-${lang} ds-desc-${lang}`} xmlns="http://www.w3.org/2000/svg">
+    <title id={`ds-title-${lang}`}>{t.title}</title>
+    <desc id={`ds-desc-${lang}`}>{t.desc}</desc>
+
+    <rect class="ds-bg" x="0" y="0" width="560" height="970" rx="6" />
+
+    {/* wellbore walls */}
+    <line class="ds-wall" x1="116" y1="132" x2="116" y2="958" />
+    <line class="ds-wall" x1="184" y1="132" x2="184" y2="958" />
+
+    {/* top drive and quill */}
+    <rect class="ds-steel" x="100" y="20" width="100" height="80" rx="6" />
+    <rect class="ds-steel" x="143" y="100" width="14" height="32" />
+    {/* rig floor */}
+    <line class="ds-floor" x1="24" y1="132" x2="236" y2="132" />
+    <text class="ds-floorlabel" x={LX} y="138">{t.floor}</text>
+
+    {/* drill pipe with tool joints */}
+    <rect class="ds-steel" x="142" y="132" width="16" height="288" />
+    <rect class="ds-joint" x="137" y="195" width="26" height="10" rx="2" />
+    <rect class="ds-joint" x="137" y="285" width="26" height="10" rx="2" />
+    <rect class="ds-joint" x="137" y="375" width="26" height="10" rx="2" />
+
+    {/* HWDP with centre wear pad */}
+    <rect class="ds-steel" x="140" y="420" width="20" height="90" />
+    <rect class="ds-joint" x="136" y="458" width="28" height="14" rx="2" />
+
+    {/* jar */}
+    <rect class="ds-jar" x="136" y="510" width="28" height="55" rx="2" />
+    <line class="ds-jarline" x1="136" y1="537" x2="164" y2="537" />
+
+    {/* HWDP below the jar */}
+    <rect class="ds-steel" x="140" y="565" width="20" height="35" />
+
+    {/* crossover sub */}
+    <polygon class="ds-joint" points="140,600 160,600 170,620 130,620" />
+
+    {/* drill collars */}
+    <rect class="ds-steel" x="130" y="620" width="40" height="180" />
+    <line class="ds-seam" x1="130" y1="690" x2="170" y2="690" />
+    <line class="ds-seam" x1="130" y1="730" x2="170" y2="730" />
+
+    {/* neutral point */}
+    <line class="ds-neutral" x1="104" y1="700" x2="196" y2="700" />
+
+    {/* string stabilizer */}
+    <rect class="ds-stab" x="118" y="750" width="64" height="22" rx="3" />
+    <line class="ds-seam" x1="126" y1="772" x2="140" y2="750" />
+    <line class="ds-seam" x1="146" y1="772" x2="160" y2="750" />
+    <line class="ds-seam" x1="166" y1="772" x2="180" y2="750" />
+
+    {/* MWD in non-mag collar */}
+    <rect class="ds-nonmag" x="130" y="800" width="40" height="60" />
+    <text class="ds-tag" x="150" y="834" text-anchor="middle">MWD</text>
+
+    {/* near-bit stabilizer */}
+    <rect class="ds-stab" x="118" y="862" width="64" height="20" rx="3" />
+
+    {/* bit */}
+    <path class="ds-bit" d="M122 884 H178 V904 Q178 916 164 926 L150 936 L136 926 Q122 916 122 904 Z" />
+
+    {/* BHA bracket */}
+    <path class="ds-bracket" d="M86 600 H78 V936 H86" />
+    <text class="ds-bha" x="70" y="772" text-anchor="middle" transform="rotate(-90 70 772)">{t.bha}</text>
+
+    {/* leaders and labels */}
+    {anchors.map(([ly, cy, cx], i) => (
+      <g>
+        <line class={i === 6 ? 'ds-leader ds-leader-np' : 'ds-leader'} x1={cx + 4} y1={cy} x2={LX - 6} y2={ly - 5} />
+        <text class={i === 6 ? 'ds-name ds-name-np' : 'ds-name'} x={LX} y={ly}>{t.labels[i][0]}</text>
+        {i === 6 && <text class="ds-note" x={LX} y={ly + 22}>{t.labels[i][1]}</text>}
+      </g>
+    ))}
+
+  </svg>
+  <figcaption>{t.caption}</figcaption>
+</figure>
+
+<style>
+  .ds-figure { margin: 24px 0 28px; max-width: 580px; }
+  .ds-svg { display: block; width: 100%; height: auto; border: 1px solid var(--iron); border-radius: 6px; }
+  .ds-figure figcaption { font-size: 13px; color: var(--fog); line-height: 1.6; margin-top: 10px; }
+  .ds-bg { fill: var(--ink); }
+  .ds-wall { stroke: var(--iron); stroke-width: 2; }
+  .ds-floor { stroke: var(--fog); stroke-width: 2; stroke-dasharray: 6 4; }
+  .ds-steel { fill: var(--iron); stroke: var(--fog); stroke-width: 1.5; }
+  .ds-joint { fill: #3a465f; stroke: var(--mist); stroke-width: 1.2; }
+  .ds-seam { stroke: var(--fog); stroke-width: 1; }
+  .ds-jar { fill: rgba(232,160,32,0.22); stroke: var(--amber); stroke-width: 1.8; }
+  .ds-jarline { stroke: var(--amber); stroke-width: 1.5; }
+  .ds-stab { fill: #46536e; stroke: var(--mist); stroke-width: 1.4; }
+  .ds-nonmag { fill: var(--steel); stroke: var(--ember); stroke-width: 1.6; stroke-dasharray: 4 3; }
+  .ds-tag { fill: var(--mist); font-family: var(--mono); font-size: 11px; }
+  .ds-bit { fill: var(--fog); stroke: var(--mist); stroke-width: 1.4; }
+  .ds-neutral { stroke: var(--amber); stroke-width: 2; stroke-dasharray: 5 3; }
+  .ds-bracket { fill: none; stroke: var(--fog); stroke-width: 1.5; }
+  .ds-bha { fill: var(--mist); font-family: var(--mono); font-size: 18px; letter-spacing: 0.12em; }
+  .ds-leader { stroke: var(--fog); stroke-width: 1; }
+  .ds-leader-np { stroke: var(--amber); }
+  .ds-name { fill: var(--white); font-family: var(--cond); font-weight: 700; font-size: 21px; letter-spacing: 0.02em; }
+  .ds-name-np { fill: var(--amber); }
+  .ds-note { fill: var(--mist); font-family: var(--body); font-size: 17px; }
+  .ds-floorlabel { fill: var(--fog); font-family: var(--mono); font-size: 16px; letter-spacing: 0.04em; }
+</style>
