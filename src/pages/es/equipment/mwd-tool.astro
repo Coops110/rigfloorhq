@@ -4,29 +4,8 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
 import { techArticleSchema } from '../../../lib/techarticle.js';
+import KeyFacts from '../../../components/KeyFacts.astro';
 
-const faq = [
-  {
-    q: '¿Qué significa MWD y qué hace?',
-    a: 'MWD significa Measurement While Drilling (Medición Durante la Perforación). Es una herramienta de fondo, integrada en el ensamblaje de fondo, que mide la inclinación, azimut, y orientación de toolface del pozo en tiempo real mientras avanza la perforación, y transmite esos datos a superficie sin necesidad de detenerse y correr un registro de línea eléctrica separado. Es la herramienta central que hace posible la perforación direccional moderna.',
-  },
-  {
-    q: '¿Cómo envía MWD datos a la superficie?',
-    a: 'La mayoría de las herramientas MWD usan telemetría de pulsos de lodo: una válvula dentro de la herramienta restringe el flujo de fluido de perforación en un patrón controlado, creando pulsos de presión que viajan hacia arriba por la columna de lodo dentro de la sarta de perforación hasta superficie, donde un transductor de presión los detecta y decodifica de vuelta en datos. Las herramientas de pulso positivo restringen brevemente el flujo para crear un pico de presión; las de pulso negativo ventean brevemente fluido para crear una caída de presión; las de onda continua modulan una válvula rotatoria para crear una señal de onda senoidal constante. La telemetría electromagnética (EM) es una alternativa menos común que envía una señal a través de la formación misma en lugar de la columna de lodo, útil en perforación con aire o bajo balance donde no hay una columna continua de lodo para pulsar.',
-  },
-  {
-    q: '¿Cuál es la diferencia entre MWD y LWD?',
-    a: 'MWD mide los parámetros direccionales y mecánicos propios del pozo — inclinación, azimut, toolface, y a menudo choque/vibración y peso/torque de fondo. LWD (Logging While Drilling) mide la formación misma — rayos gamma, resistividad, densidad, y otras propiedades petrofísicas, el mismo tipo de datos que un registro de línea eléctrica recolectaría, pero registrados en tiempo real mientras se perfora. Los dos a menudo se agrupan en el mismo collar o el mismo BHA y comparten el mismo sistema de telemetría de pulsos de lodo a superficie, que es por qué los términos a veces se usan indistintamente para la misma herramienta, pero miden cosas fundamentalmente diferentes.',
-  },
-  {
-    q: '¿Dónde se posiciona la herramienta MWD en la sarta de perforación?',
-    a: 'Las herramientas MWD se ubican en el ensamblaje de fondo, típicamente posicionadas arriba del motor de lodo y la barrena y debajo de los lastrabarrenas, lo suficientemente cerca de la barrena para dar una lectura direccional que refleje dónde está realmente la barrena, no solo dónde estaba la sarta a cierta distancia arriba del pozo. La ubicación exacta depende del diseño específico del BHA y de si también hay LWD, un motor de lodo, o un sistema rotatorio direccional en la sarta.',
-  },
-  {
-    q: '¿Cuáles son las fallas comunes de MWD?',
-    a: 'El mecanismo del pulser mismo es el punto de falla más común — escombros o material de pérdida de circulación ensuciando la válvula del pulser, o desgaste mecánico en corridas largas, ambos degradan o detienen la señal. El agotamiento de batería (en herramientas alimentadas por batería) o la falla de turbina/generador (en herramientas alimentadas por flujo de lodo) corta el poder a toda la herramienta. La detección de señal en superficie también puede fallar en sistemas de lodo ruidosos — ruido pesado de bomba, lodo cortado por gas, o tasas de flujo muy bajas pueden hacer que los pulsos sean difíciles de distinguir de fluctuaciones de presión de fondo, incluso cuando la herramienta de fondo misma está funcionando correctamente.',
-  },
-];
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/mwd-tool.astro',
@@ -61,6 +40,12 @@ const techArticleJsonLd = techArticleSchema({
         <p>MWD (Measurement While Drilling) es una herramienta de fondo integrada en el ensamblaje de fondo que mide continuamente la inclinación del pozo (qué tan lejos está de la vertical), azimut (la dirección de compás hacia la que se dirige), y toolface (la orientación de una carcasa doblada o herramienta direccional relativa al pozo) mientras avanza la perforación. Antes de MWD, obtener estos datos significaba detener la barrena, correr un instrumento de registro de línea eléctrica separado por la sarta, y volverlo a sacar — lento, y solo una foto instantánea en un momento. MWD en cambio reporta continuamente, casi en tiempo real, sin detener nunca la perforación para tomar una lectura, que es lo que hace posible el control de <a href="/es/drilling/directional">perforación direccional</a> en tiempo real.</p>
         <p>Dentro de la herramienta, un juego de acelerómetros y magnetómetros (o en algunos diseños, sensores giroscópicos, usados donde la interferencia magnética del revestimiento o la formación hace que los sensores magnéticos sean poco confiables) mide la orientación de la sarta directamente. Muchas herramientas MWD también cargan sensores adicionales para choque y vibración de fondo, y a veces peso sobre la barrena y torque sobre la barrena, dando al perforador direccional una imagen más completa en tiempo real de lo que realmente está pasando en la barrena.</p>
 
+        <KeyFacts
+          lang="es"
+          rows={[["Dónde va", "En el BHA cerca de la barrena, encima del motor de fondo o del sistema rotativo direccional, alojada en un lastrabarrena no magnético."], ["Mide", "Inclinación, azimut y cara de la herramienta (toolface); a menudo rayos gamma, choque y vibración, y presión anular durante la perforación."], ["Sensores", "Acelerómetros y magnetómetros triaxiales; sensores giroscópicos donde el revestimiento o pozos vecinos causan interferencia magnética."], ["Telemetría", "Pulso de lodo positivo, negativo u onda continua; electromagnética (EM) donde no hay columna líquida continua."], ["Velocidad de datos", "Baja — la telemetría por pulso de lodo mueve datos en bits por segundo, así que los registros direccionales y el toolface tienen prioridad sobre los registros masivos."], ["Energía", "Baterías de litio o un alternador de turbina accionado por el lodo."]]}
+          standardsNote={"Ninguna especificación de producto API rige las herramientas MWD; las clasificaciones y límites operativos salen de los datos de desempeño del fabricante para la herramienta específica. La precisión de los registros direccionales suele expresarse según los modelos de error de ISCWSA."}
+        />
+
         <h2 id="telemetry">Telemetría de Pulsos de Lodo</h2>
         <p>El método dominante para llevar los datos MWD a superficie es la telemetría de pulsos de lodo: una válvula dentro de la herramienta crea una perturbación controlada en el fluido de perforación que fluye por la sarta, y esa perturbación viaja hacia arriba por la columna de lodo como un pulso de presión, detectado en superficie por un transductor de presión en el standpipe y decodificado de vuelta a los datos originales. Tres tipos principales de pulso están en uso — las herramientas de <strong>pulso positivo</strong> restringen brevemente el flujo para elevar la presión, las de <strong>pulso negativo</strong> ventean brevemente fluido a una ruta de menor presión para bajar la presión, y las de <strong>onda continua</strong> rotan una válvula ranurada para generar una señal de onda senoidal modulada constante en lugar de pulsos discretos.</p>
         <p>La <strong>telemetría electromagnética (EM)</strong> es una alternativa menos común que envía su señal como una onda electromagnética a través de la formación misma en lugar de pulsar la columna de lodo. Se usa principalmente donde la telemetría de pulsos de lodo no funciona bien o no funciona en absoluto — perforación con aire, espuma, o bajo balance, donde no hay una columna continua de lodo líquido por la cual un pulso pueda viajar.</p>
@@ -79,24 +64,17 @@ const techArticleJsonLd = techArticleSchema({
           <li><strong>Deriva de sensor o interferencia magnética</strong> de revestimiento cercano, otros componentes del BHA, o anomalías magnéticas locales, degradando la precisión direccional incluso mientras la herramienta reporta normalmente por lo demás.</li>
         </ul>
 
-        <h2 id="faq">Preguntas Frecuentes</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
       </div>
 
       <div>
         <div class="toc">
           <div class="toc-title">En Esta Página</div>
           <a href="#what-it-is">Qué Es</a>
+          <a href="#key-facts">Datos Clave</a>
           <a href="#telemetry">Telemetría de Pulsos de Lodo</a>
           <a href="#mwd-vs-lwd">MWD vs. LWD</a>
           <a href="#placement">Ubicación en el BHA</a>
           <a href="#failure-modes">Fallas Comunes</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div class="note-box mt-24">
           <strong>Solo referencia.</strong> El tipo de telemetría y las especificaciones de sensores varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.

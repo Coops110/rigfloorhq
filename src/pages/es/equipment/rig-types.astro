@@ -4,37 +4,12 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import DiagramEmbed from '../../../components/DiagramEmbed.astro';
 import { techArticleSchema } from '../../../lib/techarticle.js';
+import KeyFacts from '../../../components/KeyFacts.astro';
 
 const classAlt = "Seis tipos de taladro ordenados de izquierda a derecha según profundidad de agua creciente. Un taladro terrestre se apoya en tierra, sin agua de por medio. Tres tipos costa afuera apoyados en el fondo transfieren su peso al lecho marino: una barcaza sumergible apoya su casco inundado en el fondo en menos de 70 pies, un jack-up baja tres patas hasta el lecho marino y eleva su casco por encima de las olas en hasta 400 pies, y un taladro de plataforma se apoya en una chaqueta de acero fija en hasta 1,500 pies. Dos tipos flotantes nunca tocan el lecho marino y en cambio mantienen posición: un semisumergible flota sobre pontones sumergidos sostenidos por anclas o propulsores en hasta 12,000 pies, y un buque de perforación es un casco de barco mantenido en posición mediante posicionamiento dinámico en hasta 15,000 pies. La línea divisoria es si el taladro descansa en el fondo o flota, y eso es lo que realmente mide el límite de profundidad de agua.";
 
-// Los pares de FAQ se renderizan como contenido visible más abajo. No se
-// agrega esquema FAQPage: fue retirado de todo el sitio como peso muerto.
-const faq = [
-  {
-    q: '¿Cuáles son los principales tipos de taladro de perforación?',
-    a: 'Los taladros terrestres perforan en tierra. Costa afuera, los tipos se dividen según cómo se sostiene el taladro en su lugar: las barcazas sumergibles, los jack-ups y los taladros de plataforma apoyan su peso en el lecho marino, mientras que los semisumergibles y los buques de perforación flotan y mantienen posición con anclas o propulsores. Esa única distinción, apoyado en el fondo o flotante, es lo que fija el límite de profundidad de agua de cada tipo.',
-  },
-  {
-    q: '¿Qué es un taladro de perforación convencional?',
-    a: 'Depende de quién lo diga. Para quien mueve taladros, uno convencional es el que se desarma en cargas y se vuelve a armar en la siguiente ubicación, a diferencia de uno móvil, telescópico o caminante. Para un perforador, convencional significa que la sarta se gira con una kelly y mesa rotaria en lugar de un top drive. Para un geólogo, convencional se refiere al yacimiento y no al taladro. Preguntá cuál de los sentidos se quiere decir antes de responder.',
-  },
-  {
-    q: '¿Cuál es la diferencia entre un jack-up y un semisumergible?',
-    a: 'Un jack-up baja sus patas hasta el lecho marino y eleva su casco por encima de las olas, así que es una estructura fija mientras trabaja: más barato y muy estable, pero limitado a unos 400 pies de agua y dependiente de un lecho marino que soporte las patas. Un semisumergible flota sobre pontones sumergidos y mantiene posición con anclas o propulsores, lo cual cuesta más pero funciona en miles de pies.',
-  },
-  {
-    q: '¿Qué tipo de taladro trabaja en el agua más profunda?',
-    a: 'Los buques de perforación, hasta unos 15,000 pies de agua, con los semisumergibles cerca detrás, alrededor de 12,000. Ambos son flotadores, y esa es la razón: en cuanto un taladro deja de apoyarse en el lecho marino, la profundidad del agua deja de ser un límite estructural y se vuelve un problema de mantenimiento de posición y de riser.',
-  },
-  {
-    q: '¿Qué decide qué taladro se usa en un pozo?',
-    a: 'La profundidad del agua descarta la mayoría de las opciones primero. Las condiciones del lecho marino pueden eliminar un jack-up incluso en agua somera si el terreno no soporta una zapata (spudcan). El clima y el mantenimiento de posición decide entre flotadores anclados y de posicionamiento dinámico. El programa del pozo decide el resto: un pozo sobre una plataforma existente es un trabajo distinto a una campaña de exploración multipozo.',
-  },
-  {
-    q: '¿Un taladro de workover es un taladro de perforación?',
-    a: 'No. Una unidad de workover o de pulling da servicio a pozos que ya existen (saca tubería y varillas, cambia equipo de fondo) y es mucho más pequeña que un taladro de perforación. Las unidades de tubería continua (coiled tubing) y de snubbing también son de servicio al pozo y no de perforación, y las unidades de snubbing están hechas para trabajar en un pozo vivo bajo presión, algo para lo que un taladro de perforación no está diseñado.',
-  },
-];
+// La sección de FAQ se retiró el 2026-10-17 (auditoría CQ-5): cada respuesta
+// repetía una sección del cuerpo. La tabla "de un vistazo" la reemplaza.
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/rig-types.astro',
@@ -160,6 +135,20 @@ const techArticleJsonLd = techArticleSchema({
   </section>
 
   <section class="block">
+    <div class="section-eyebrow">Resumen</div>
+    <KeyFacts
+      lang="es"
+      id="at-a-glance"
+      headingClass="section-title"
+      heading={"Tipos de Taladro <span>de un Vistazo</span>"}
+      head={["Tipo de taladro", "Cómo se apoya", "Posicionamiento", "Ubicación del BOP", "Profundidad de agua típica"]}
+      rows={[["Taladro de tierra", "Sobre una plataforma o subestructura en el terreno", "No se necesita", "Superficie, debajo del piso de perforación", "En tierra"], ["Sumergible / barcaza", "Casco lastrado hasta apoyarse en el fondo", "Apoyado en el fondo", "Superficie", "Hasta unos 70 pies"], ["Jack-up", "Patas en el lecho marino, casco elevado sobre las olas", "Apoyado en el fondo", "Superficie, bajo el cantiléver", "Hasta unos 400 pies"], ["Taladro de plataforma", "Paquete de perforación sobre una estructura de plataforma fija", "Fijo", "Superficie", "Hasta unos 1,500 pies"], ["Semisumergible", "Flota sobre pontones y columnas sumergidos", "Anclas o posicionamiento dinámico", "Submarino, sobre el cabezal en el lecho marino", "Aproximadamente 400 a 12,000 pies"], ["Buque de perforación", "Flota sobre un casco de barco", "Posicionamiento dinámico (algunos anclados)", "Submarino, sobre el cabezal en el lecho marino", "Hasta unos 15,000 pies"]]}
+      standards={["api4f"]}
+      standardsNote={"Las unidades móviles costa afuera — barcazas, jack-ups, semisumergibles y buques de perforación — además se construyen según el Código MODU de la OMI y las clasifica una sociedad de clasificación."}
+    />
+  </section>
+
+  <section class="block">
     <div class="section-eyebrow">Selección</div>
     <h2 class="section-title">Qué Decide Realmente <span>el Taladro</span></h2>
     <p style="color:var(--fog);max-width:740px;margin-bottom:24px;">La selección de taladro no es una preferencia. Cuatro restricciones la reducen a una o dos opciones realistas antes de que nadie considere el costo.</p>
@@ -254,13 +243,6 @@ const techArticleJsonLd = techArticleSchema({
   <section class="block">
     <div class="two-col">
       <div class="prose">
-        <h2 id="faq">Preguntas Frecuentes</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
 
         <h2 id="reuse">Reutiliza el diagrama</h2>
         <DiagramEmbed

@@ -4,25 +4,8 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
 import { techArticleSchema } from '../../../lib/techarticle.js';
+import KeyFacts from '../../../components/KeyFacts.astro';
 
-const faq = [
-  {
-    q: '¿Para qué se usa un empacador?',
-    a: 'Un empacador crea un sello mecánico hermético a la presión entre el exterior de una sarta de tubería y el interior del revestimiento, aislando el anular arriba de él del anular debajo. A diferencia de un tapón puente, no bloquea el orificio mismo — la tubería de producción (o un ensamblaje sellante insertado en su receptáculo pulido) pasa directamente a través, así que el fluido puede seguir fluyendo por el centro mientras el anular permanece aislado.',
-  },
-  {
-    q: '¿Cuál es la diferencia entre un empacador permanente y uno recuperable?',
-    a: 'Un empacador permanente está diseñado para quedarse en el pozo y, si alguna vez necesita salir, típicamente se fresa en lugar de sacarse intacto. Un empacador recuperable está construido para liberarse y sacarse a superficie como una unidad completa — usualmente vía rotación a la derecha o izquierda, o un mecanismo de liberación por tiro recto — haciéndolo la opción cuando se espera que un workover necesite mover o remover el empacador.',
-  },
-  {
-    q: '¿Qué es un receptáculo de orificio pulido, y por qué importa?',
-    a: 'Es la sección lisa y de acabado de precisión del orificio justo debajo del elemento sellante en la que un ensamblaje sellante separado (corrido en el fondo de la sarta de tubería) se inserta y sella contra ella. Este diseño de dos piezas permite que la tubería se saque y vuelva a correr sin perturbar el empacador mismo, ya que solo el ensamblaje sellante sale — el empacador, ya asentado, se queda exactamente donde está.',
-  },
-  {
-    q: '¿En qué se diferencia un empacador de un tapón puente?',
-    a: 'Comparten mecanismos de asentamiento muy similares — slips, un elemento sellante, un cono de asentamiento — pero resuelven problemas diferentes. Un tapón puente bloquea completamente el orificio, aislando todo lo que está debajo sin que nada pase a través. Un empacador sella el anular alrededor de una sarta de tubería mientras todavía permite flujo a través de la tubería misma. Si el trabajo necesita que el pozo esté completamente cerrado debajo de un punto, es trabajo de un tapón puente; si el trabajo necesita que la tubería de producción esté aislada del anular mientras sigue produciendo, es trabajo de un empacador.',
-  },
-];
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/packer.astro',
@@ -57,6 +40,12 @@ const techArticleJsonLd = techArticleSchema({
         <p>Un empacador es una herramienta de fondo que crea un sello mecánico hermético a la presión entre el exterior de una sarta de tubería y el interior del revestimiento, aislando el anular arriba del empacador de lo que sea que esté debajo. La distinción crítica con herramientas como un <a href="/es/equipment/bridge-plug">tapón puente</a> es que un empacador no bloquea el orificio mismo — la tubería de producción, o un ensamblaje sellante corrido en el fondo de esa tubería, pasa directamente a través del propio receptáculo pulido del empacador, así que el fluido sigue fluyendo por el centro del pozo mientras el anular a su alrededor permanece sellado.</p>
         <p>Esto hace del empacador la herramienta estándar para aislar una zona productora del resto del anular del pozo, proteger el revestimiento arriba del empacador de fluidos y presión producidos, y establecer completaciones multi-zona donde diferentes intervalos necesitan producirse o tratarse independientemente.</p>
 
+        <KeyFacts
+          lang="es"
+          rows={[["Dónde va", "En la sarta de tubería de producción por encima del intervalo productor, asentado dentro del revestimiento de producción o del liner."], ["Métodos de asentamiento", "Mecánico (peso de la sarta o rotación), hidráulico (presión de tubería contra un tapón o asiento de bola), o herramienta de asentamiento por cable (wireline o línea eléctrica)."], ["Partes principales", "Elemento empacador, cuñas superiores e inferiores, cono, cuerpo, y un receptáculo de sellos (seal bore) o receptáculo pulido (PBR) para el conjunto de sellos."], ["Grados de validación", "Grados de validación de diseño API 11D1 de V0 a V6 — V0 es el más exigente, una prueba con gas sin burbujas permitidas."], ["Materiales", "Acero de baja aleación para servicio estándar; 13Cr y aleaciones de níquel para pozos con CO<sub>2</sub> y amargos; elastómeros como NBR, HNBR, FKM o FEPM según temperatura y fluidos."], ["Se clasifica por", "Presión diferencial a través del elemento (por arriba y por abajo) y temperatura, que juntas forman la envolvente operativa de la herramienta."]]}
+          standards={["api11d1"]}
+        />
+
         <h2 id="permanent-retrievable">Permanente vs. Recuperable</h2>
         <p>Un <strong>empacador permanente</strong> está diseñado para quedarse en el pozo a largo plazo. Si alguna vez genuinamente necesita salir, eso usualmente se hace fresándolo en lugar de sacarlo intacto — está construido para confiabilidad en su lugar, no para remoción repetida. Un <a href="/es/equipment/hydraulic-set-retainer-packer">empacador de retención de asentamiento hidráulico</a> es un diseño permanente común, asentado por presión aplicada en la tubería en lugar de accionamiento mecánico o por cable.</p>
         <p>Un <strong>empacador recuperable</strong> está construido de la forma opuesta: diseñado desde el inicio para liberarse y sacarse a superficie como una unidad completa, típicamente a través de una secuencia de rotación a la derecha o izquierda, o un mecanismo de liberación por tiro recto específico de la herramienta. Los empacadores recuperables son la elección estándar cuando un programa de workover espera que el empacador mismo podría necesitar moverse o sacarse — un empacador permanente que tiene que fresarse en su lugar es una operación más lenta y más destructiva de lo que liberar uno recuperable alguna vez estuvo pensado para ser.</p>
@@ -75,24 +64,17 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="vs-bridge-plug">Empacador vs. Tapón Puente</h2>
         <p>Un empacador y un <a href="/es/equipment/bridge-plug">tapón puente</a> comparten mecanismos internos muy similares — slips, un elemento sellante, un cono de asentamiento — que es por qué es fácil confundirlos a primera vista. La diferencia real está en lo que pasa en el orificio: un tapón puente lo bloquea completamente, aislando todo lo que está debajo sin que nada pueda pasar en absoluto. Un empacador deja el orificio abierto a través de su propio receptáculo pulido, sellando solo el anular alrededor de la tubería o ensamblaje sellante que corra a través de él. Si el trabajo requiere que el pozo esté completamente cerrado debajo de una profundidad dada, eso es trabajo de un tapón puente. Si el trabajo requiere que la tubería de producción esté aislada del anular circundante mientras el pozo sigue produciendo, para eso es un empacador.</p>
 
-        <h2 id="faq">Preguntas Frecuentes</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
       </div>
 
       <div>
         <div class="toc">
           <div class="toc-title">En Esta Página</div>
           <a href="#what-it-is">Qué Es</a>
+          <a href="#key-facts">Datos Clave</a>
           <a href="#permanent-retrievable">Permanente vs. Recuperable</a>
           <a href="#components">Componentes Principales</a>
           <a href="#pbr-seal-assembly">Receptáculo de Orificio Pulido</a>
           <a href="#vs-bridge-plug">vs. Tapón Puente</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div class="note-box mt-24">
           <strong>Solo referencia.</strong> Los mecanismos de asentamiento y clasificaciones de presión/temperatura varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.

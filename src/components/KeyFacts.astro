@@ -1,0 +1,97 @@
+---
+// Compact spec / key-facts table for equipment pages, with a one-line
+// "Standards" reference underneath. Added 2026-10-17 for audit item CQ-5
+// (equipment pages had no specs and no sourced standard).
+//
+// Two rules that matter more than the markup:
+//   - Figures here are generic, widely published typical ranges for
+//     orientation, never design values. The footnote says so on every page.
+//   - `standards` lists only documents that genuinely govern the equipment.
+//     When none does, pass `standardsNote` instead and say so plainly —
+//     an honest "no API product spec" beats a plausible-looking wrong one.
+//
+// `rows` is an array of cells. Without `head`, the first cell of each row is
+// rendered as a row header (<th scope="row">). Cells are author-controlled
+// strings and may contain simple inline HTML (links, <sub>), so they are set
+// with set:html.
+import { CITATIONS } from '../lib/citations.js';
+
+export interface Props {
+  rows: string[][];
+  head?: string[];
+  standards?: (keyof typeof CITATIONS)[];
+  standardsNote?: string;
+  heading?: string;      // may contain inline HTML (e.g. a <span> accent)
+  headingClass?: string; // e.g. 'section-title' outside .prose
+  id?: string;
+  lang?: 'en' | 'es';
+}
+
+const { rows, head, standards = [], standardsNote, heading, headingClass, id = 'key-facts', lang = 'en' } = Astro.props;
+const entries = standards.map((s) => CITATIONS[s][lang]);
+
+const t = lang === 'es'
+  ? {
+      heading: 'Datos clave',
+      standards: 'Normas',
+      foot: 'Rangos típicos publicados, solo como referencia. Los valores de diseño salen de la hoja técnica del fabricante y de la norma vigente.',
+    }
+  : {
+      heading: 'Key Facts',
+      standards: 'Standards',
+      foot: 'Typical published ranges, for orientation only. Design values come from the manufacturer’s data sheet and the current edition of the standard.',
+    };
+---
+<h2 id={id} class={headingClass} set:html={heading ?? t.heading} />
+<div class="table-wrap key-facts">
+  <table>
+    {head && (
+      <thead><tr>{head.map((h) => <th scope="col">{h}</th>)}</tr></thead>
+    )}
+    <tbody>
+      {rows.map((row) => (
+        <tr>
+          {row.map((cell, i) =>
+            !head && i === 0
+              ? <th scope="row" set:html={cell} />
+              : <td set:html={cell} />
+          )}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+{(entries.length > 0 || standardsNote) && (
+  <p class="kf-standards">
+    <strong>{t.standards}:</strong>{' '}
+    {entries.map((e, i) => (
+      <>
+        {i > 0 && ' · '}
+        <a href={e.href} target="_blank" rel="noopener" title={e.note}>{e.label}</a>
+      </>
+    ))}
+    {standardsNote && <>{entries.length > 0 ? ' — ' : ''}<span set:html={standardsNote} /></>}
+  </p>
+)}
+<p class="kf-foot">{t.foot}</p>
+
+<style>
+  .key-facts { margin: 8px 0 12px; border: 1px solid var(--iron); border-radius: 4px; }
+  .key-facts table { font-size: 13.5px; }
+  .key-facts tbody th {
+    width: 34%;
+    min-width: 120px;
+    vertical-align: top;
+    padding: 12px 14px;
+    font-size: 12px;
+    border-bottom: 1px solid rgba(42,51,71,0.5);
+  }
+  .key-facts td { padding: 12px 14px; line-height: 1.6; }
+  /* Global td:first-child styling is for label cells; in a row-headed table
+     the first td is a value, so keep it in body type. */
+  .key-facts tbody th + td {
+    font-family: var(--body); font-weight: 400; font-size: 13.5px; color: var(--mist);
+  }
+  .kf-standards { font-size: 14px !important; margin: 10px 0 4px !important; }
+  .kf-foot { font-size: 12px !important; color: var(--fog) !important; line-height: 1.6 !important; margin-bottom: 22px !important; }
+</style>
