@@ -7,38 +7,21 @@ import { JABIN_PERSON_ID } from '../../../lib/person.js';
 
 const siteUrl = 'https://rigfloorhq.com';
 
-// Mismo @id que la versión en inglés: es la misma persona real, solo cambia
-// el idioma y la URL de la página, no la identidad descrita. Ver
-// src/lib/person.js para el razonamiento completo, y la página en inglés
-// (src/pages/about/jabin-travis.astro) para el patrón que sigue esta.
+// Esta página es un ProfilePage en español que apunta al mismo Person @id que
+// la versión en inglés. El registro Person completo (nombre, cargo,
+// credenciales, url) se declara una sola vez, en
+// src/pages/about/jabin-travis.astro. Antes esta página repetía el Person con
+// el mismo @id pero con otra url y otra descripción, lo que daba propiedades
+// contradictorias a una sola entidad. Ver src/lib/person.js.
 const personLd = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  '@id': JABIN_PERSON_ID,
-  name: 'Jabin Travis',
+  '@type': 'ProfilePage',
+  '@id': `${siteUrl}/es/about/jabin-travis#profilepage`,
   url: `${siteUrl}/es/about/jabin-travis`,
-  jobTitle: 'Drilling Operations Supervisor',
-  description:
-    'Profesional de perforación con 30 años de experiencia en pozos convencionales y horizontales, y en operaciones de workover/completions, en Estados Unidos, Azerbaiyán, Irak, Kuwait, Arabia Saudita, Jordania, los Emiratos Árabes Unidos y Turquía. Tiene las acreditaciones IADC WellSharp en Control de Pozo e IADC DIT en Inspección y Mantenimiento de Equipo de Taladro.',
-  knowsAbout: [
-    'Control de pozo',
-    'Operaciones de perforación',
-    'Inspección y mantenimiento de equipo de taladro',
-    'Perforación horizontal',
-    'Operaciones de workover y completions',
-  ],
-  hasCredential: [
-    {
-      '@type': 'EducationalOccupationalCredential',
-      credentialCategory: 'Acreditación IADC WellSharp',
-      name: 'Control de Pozo (Drilling Operations Supervisor, Surface)',
-    },
-    {
-      '@type': 'EducationalOccupationalCredential',
-      credentialCategory: 'Acreditación IADC DIT',
-      name: 'Inspección y Mantenimiento de Equipo de Taladro',
-    },
-  ],
+  name: 'Jabin Travis, Revisor Técnico',
+  inLanguage: 'es',
+  isPartOf: { '@id': `${siteUrl}/es#website` },
+  mainEntity: { '@id': JABIN_PERSON_ID },
 };
 ---
 <BaseLayout

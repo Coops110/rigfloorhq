@@ -4,6 +4,7 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import NewsletterSignup from '../../../components/NewsletterSignup.astro';
 import { reviewedByJabin } from '../../../lib/person.js';
+import { techArticleSchema } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -16,41 +17,34 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "TechArticle",
-      "headline": "Hoja de Referencia Rápida de Fórmulas de Perforación",
-      "description": "Las fórmulas de perforación que el equipo de piso de perforación realmente necesita: presión hidrostática, peso de lodo de control, MAASP, tolerancia de surgencia, ECD, margen de viaje, factor de flotación y capacidad/desplazamiento, con enlaces para ejecutar cada una con datos reales.",
-      "about": "Fórmulas de perforación y control de pozo",
-      // reviewedBy belongs on WebPage per schema.org, not TechArticle — it
-      // lives on mainEntityOfPage instead. This WebPage node also covers the
-      // WebApplication below, since both describe the same URL.
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://rigfloorhq.com/es/calculators/formulas-cheat-sheet",
-        "reviewedBy": reviewedByJabin()
-      }
-    }
-  ]
-};
+// One primary entity for this URL: a TechArticle. It is a reference sheet,
+// not an app, so the WebApplication block it used to carry alongside (two
+// competing primary entities for one URL) is gone. reviewedBy is a WebPage
+// property in schema.org, so it sits on the page's own WebPage node, which
+// the TechArticle names as mainEntityOfPage. Dates come from git via the same
+// map as the sitemap lastmod (src/lib/techarticle.js).
+const jsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/calculators/formulas-cheat-sheet.astro',
+  path: '/es/calculators/formulas-cheat-sheet',
+  headline: "Hoja de Referencia Rápida de Fórmulas de Perforación",
+  description: "Las fórmulas de perforación que el equipo de piso realmente necesita, con conversiones de unidades, el origen de cada constante y un ejemplo resuelto: presión hidrostática, peso de lodo de control, MAASP, ECD, flotación y capacidad.",
+  lang: 'es',
+  extra: {
+    about: { "@type": "Thing", "name": "Fórmulas de perforación y control de pozo" },
+    mainEntityOfPage: { "@id": "https://rigfloorhq.com/es/calculators/formulas-cheat-sheet#webpage" },
+  },
+});
 
-const webAppLd = {
+const webPageLd = {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "@id": "https://rigfloorhq.com/es/calculators/formulas-cheat-sheet#app",
-  "name": "Hoja de Referencia de Fórmulas de Perforación",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/es/calculators/formulas-cheat-sheet#webpage",
   "url": "https://rigfloorhq.com/es/calculators/formulas-cheat-sheet",
-  "description": "Las fórmulas de perforación que el equipo de piso de perforación realmente necesita: presión hidrostática, peso de lodo de control, MAASP, tolerancia de surgencia, ECD, margen de viaje, factor de flotación y capacidad/desplazamiento. Gratis, sin registro para leer.",
-  "applicationCategory": "UtilitiesApplication",
-  "applicationSubCategory": "Calculadora de ingeniería de perforación",
-  "operatingSystem": "Any (web browser)",
-  "browserRequirements": "Requiere JavaScript",
+  "name": "Hoja de Referencia de Fórmulas de Perforación",
   "inLanguage": "es",
-  "isAccessibleForFree": true,
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+  "isPartOf": { "@id": "https://rigfloorhq.com/es#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/es/calculators/formulas-cheat-sheet#article" },
+  "reviewedBy": reviewedByJabin()
 };
 ---
 <BaseLayout
@@ -60,7 +54,7 @@ const webAppLd = {
   lang="es"
   alternateHref="/calculators/formulas-cheat-sheet"
   jsonLd={jsonLd}
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webPageLd]}
 >
   <Nav slot="nav" lang="es" alternateHref="/calculators/formulas-cheat-sheet" />
   <Footer slot="footer" lang="es" />
@@ -68,7 +62,7 @@ const webAppLd = {
   <div class="page-hero">
     <div class="page-hero-eyebrow">Referencia Rápida</div>
     <h1>Hoja de Fórmulas <span>de Perforación</span></h1>
-    <p class="page-hero-sub">Las ocho fórmulas más usadas en el piso de perforación — control de pozo y matemática básica de sarta — en un solo lugar. Esto es una referencia de qué fórmula aplica y qué datos necesita — para el número real, use la calculadora enlazada con sus propias cifras.</p>
+    <p class="page-hero-sub">Las ocho fórmulas más usadas en el piso de perforación — control de pozo y matemática básica de sarta — en un solo lugar, junto con las conversiones de unidades, las constantes de las que salen y un ejemplo resuelto de principio a fin. Esto es una referencia de qué fórmula aplica y qué datos necesita — para el número real, use la calculadora enlazada con sus propias cifras.</p>
   </div>
 
   <section class="block">
@@ -112,10 +106,22 @@ const webAppLd = {
       <dd class="formula-note">Peso de lodo adicional para cubrir la presión de suabeo durante el viaje. Ejecútala: <a href="/es/calculators/trip-margin">Calculadora de Margen de Viaje</a>.</dd>
     </dl>
 
+    <h2 id="buoyancy" class="mt-24">Flotación y Peso de la Sarta</h2>
+
     <dl class="formula-block">
       <dt class="formula-label">Factor de Flotación</dt>
       <dd class="formula-eq"><code>BF = 1 − (Peso del Fluido (ppg) ÷ 65.5)</code></dd>
       <dd class="formula-note">La fracción del peso al aire de una sarta que realmente cuelga una vez sumergida en fluido. Ejecútala: <a href="/es/calculators/buoyancy">Calculadora de Flotación y Peso Tubular</a>.</dd>
+    </dl>
+
+    <div class="prose">
+      <p>Una nota sobre el 65.5: el acero, a 489.5 lb/ft³, equivale a <strong>65.44 ppg</strong>, no a 65.5. La cifra redondeada es la convención de campo y la diferencia es menor a una décima de porcentaje, pero si un número no cuadra con el libro de conteo del proveedor, este es uno de los lugares donde se esconde la discrepancia.</p>
+    </div>
+
+    <dl class="formula-block">
+      <dt class="formula-label">Punto Neutro</dt>
+      <dd class="formula-eq"><code>WOB máx. (lb) = Peso de lastrabarrenas (lb/ft) × Longitud (ft) × BF</code></dd>
+      <dd class="formula-note">Mantenga el punto neutro dentro de los lastrabarrenas (drill collars). Poner la tubería de perforación en compresión es la forma de comprarse una falla por fatiga. Más sobre grados de tubería y clases de inspección: <a href="/es/equipment/drill-string">página de la sarta de perforación</a>.</dd>
     </dl>
 
     <dl class="formula-block">
@@ -124,8 +130,104 @@ const webAppLd = {
       <dd class="formula-note">Volumen por pie dentro de la tubería, y volumen por pie que la tubería misma desplaza. Ejecútala: <a href="/es/calculators/drill-pipe-tally">Calculadora de Conteo de Tubería de Perforación</a>.</dd>
     </dl>
 
+    <h2 id="conversions" class="mt-24">Conversiones de Peso de Lodo</h2>
+    <div class="prose">
+      <p>El mismo fluido se reporta de cuatro maneras distintas según quién escriba el reporte. Estos factores son exactos, no redondeados.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Desde ppg, operar</th><th>Para obtener</th><th>12.0 ppg equivale a</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>÷ 8.3454</td><td>Gravedad específica (g/cm³)</td><td>1.438</td></tr>
+          <tr><td>÷ 19.25</td><td>psi/ft</td><td>0.6234</td></tr>
+          <tr><td>× 7.4805</td><td>lb/ft³</td><td>89.77</td></tr>
+          <tr><td>× 119.826</td><td>kg/m³</td><td>1,437.9</td></tr>
+          <tr><td>÷ 8.5099</td><td>bar/10 m</td><td>1.410</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p>Note que <strong>19.25 es el recíproco exacto de la constante 0.052</strong>: son la misma conversión escrita de dos formas, algo útil de saber cuando una cifra parece desviada por un factor que no logra ubicar. El <a href="/es/calculators/mud-weight-converter">convertidor de peso de lodo</a> hace las cinco en vivo.</p>
+    </div>
+
+    <h2 id="connections" class="mt-24">Conexiones: Clasificación de Bridas y Torque de Apriete</h2>
+    <div class="prose">
+      <p>No todos los números del piso de perforación son fórmulas: algunos son tablas de consulta, y equivocarse en ellas importa igual. Las conexiones bridadas de un conjunto de BOP llevan una clasificación API 6A/6BX ligada a la clase de presión del propio conjunto; la <a href="/es/calculators/flange-ring-gasket">consulta de bridas y anillos (ring gaskets)</a> va del tamaño del diámetro interior y la presión nominal al anillo correcto, el número de espárragos y su tamaño.</p>
+      <p>La conexión de la barrena a la sarta es un sistema totalmente distinto: una rosca cónica apretada a un torque específico, no una unión bridada con empaque. La <a href="/es/calculators/bit-torque">consulta de rosca de barrena y torque de apriete</a> va del tamaño de la barrena a la conexión roscada, y de ahí al torque Mínimo, Máximo y Máximo Severo para barrenas PDC y tricónicas.</p>
+    </div>
+
+    <h2 id="survey" class="mt-24">Direccional y Registros de Desviación</h2>
+    <div class="prose">
+      <p>Cada profundidad de esta página supone que el conteo de tubería y la referencia del piso de perforación desde la que se mide no se han movido. Cuando la elevación del piso cambia de verdad (otra subestructura, un equipo de workover en una reentrada), concílielo con la <a href="/es/calculators/odf-depth-correction">calculadora de corrección de profundidad por elevación del piso (ODF)</a> antes de confiar en un conteo medido contra ella.</p>
+    </div>
+
+    <dl class="formula-block">
+      <dt class="formula-label">TVD en una Sección de Inclinación Constante</dt>
+      <dd class="formula-eq"><code>ΔTVD (ft) = ΔMD (ft) × cos I</code></dd>
+      <dd class="formula-note">I = inclinación respecto a la vertical. En una sección de construcción de ángulo use curvatura mínima en lugar de esto.</dd>
+    </dl>
+
+    <dl class="formula-block">
+      <dt class="formula-label">Tasa de Construcción</dt>
+      <dd class="formula-eq"><code>Tasa de construcción (°/100 ft) = (I₂ − I₁) × 100 ÷ Longitud del tramo (ft)</code></dd>
+      <dd class="formula-note">Solo cambio de inclinación. No es lo mismo que la severidad de pata de perro salvo que el azimut sea constante.</dd>
+    </dl>
+
+    <dl class="formula-block">
+      <dt class="formula-label">Severidad de Pata de Perro (Dogleg Severity)</dt>
+      <dd class="formula-eq"><code>cos β = cos(I₂ − I₁) − sin I₁ × sin I₂ × (1 − cos(A₂ − A₁))<br />DLS (°/100 ft) = β × 100 ÷ Longitud del tramo (ft)</code></dd>
+      <dd class="formula-note">El ángulo de pata de perro β por curvatura mínima, que tiene en cuenta el cambio de inclinación y de azimut. Si el azimut no cambia, se reduce a la tasa de construcción anterior. En unidades métricas se reporta habitualmente en °/30 m.</dd>
+    </dl>
+    <div class="prose">
+      <p>Los perfiles de pozo, las secciones de construcción y por qué importan los límites de severidad de pata de perro están en la <a href="/es/drilling/directional">página de perforación direccional</a>.</p>
+    </div>
+
+    <h2 id="constants" class="mt-24">Las Constantes, y de Dónde Salen</h2>
+    <div class="prose">
+      <p>Cada constante redondeada de esta página es una conversión de unidades, no un factor de ajuste. Conocer su origen es lo que le permite reconstruirla cuando una cifra parece incorrecta.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Constante</th><th>Valor exacto</th><th>Qué es</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>0.052</td><td>0.0519481</td><td>12 ÷ 231: pulgadas cúbicas por pie de una columna de 1 in², sobre pulgadas cúbicas por galón</td></tr>
+          <tr><td>19.25</td><td>19.25</td><td>Exactamente 1 ÷ 0.0519481. La misma conversión invertida</td></tr>
+          <tr><td>1029.4</td><td>1029.4142</td><td>Volumen de un barril ÷ constante de área, para obtener bbl por pie a partir de pulgadas al cuadrado</td></tr>
+          <tr><td>24.5</td><td>24.5099</td><td>De gpm a ft/min a través de un espacio anular medido en pulgadas</td></tr>
+          <tr><td>0.000243</td><td>0.00024286</td><td>Tres cilindros, por embolada, expresado en barriles</td></tr>
+          <tr><td>8.3454</td><td>8.345404</td><td>Libras por galón de agua dulce: el ancla de la gravedad específica</td></tr>
+          <tr><td>1 bbl</td><td>42 gal = 5.6146 ft³ = 0.159 m³</td><td>9,702 pulgadas cúbicas</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p>En unidades métricas la constante equivalente es 0.0981: <strong>presión (bar) = 0.0981 × densidad (kg/L o g/cm³) × TVD (m)</strong>. Un lodo de 1.438 g/cm³ a 3,048 m da 0.0981 × 1.438 × 3,048 ≈ 430 bar, que son los mismos 6,240 psi del ejemplo de abajo.</p>
+    </div>
+
+    <h2 id="worked" class="mt-24">Un Ejemplo Resuelto, de Principio a Fin</h2>
+    <div class="prose">
+      <p>Un lodo de 12.0 ppg (1.438 g/cm³) a 10,000 ft (3,048 m) de TVD. El pozo tiene una surgencia y se cierra con 400 psi (27.6 bar) en la tubería de perforación, 550 psi (37.9 bar) en el revestimiento y una ganancia de 12 bbl (1.9 m³) en piletas, en un agujero de 8½ in alrededor de tubería de 5 in.</p>
+      <ul>
+        <li><strong>Hidrostática:</strong> 0.052 × 12.0 × 10,000 = <strong>6,240 psi</strong></li>
+        <li><strong>Presión de formación:</strong> 6,240 + 400 = <strong>6,640 psi</strong></li>
+        <li><strong>Peso de lodo de control:</strong> 12.0 + 400 ÷ (0.052 × 10,000) = 12.0 + 0.77 = <strong>12.77 ppg</strong>, se redondea a 12.8 (1.53 g/cm³)</li>
+        <li><strong>Capacidad anular:</strong> (8.5² − 5²) ÷ 1029.4 = (72.25 − 25) ÷ 1029.4 = <strong>0.0459 bbl/ft</strong></li>
+        <li><strong>Altura del influjo:</strong> 12 ÷ 0.0459 = <strong>261 ft</strong></li>
+        <li><strong>Densidad del influjo:</strong> 12.0 − (550 − 400) ÷ (0.052 × 261) = 12.0 − 11.05 = <strong>0.95 ppg</strong>: gas</li>
+      </ul>
+      <p>Esa última línea es la que cambia el turno. Un influjo de 0.95 ppg es gas, el gas migra, y una surgencia de gas cerrada en un pozo que no se está circulando llevará su presión hasta la superficie, la esté vigilando alguien en los manómetros o no. La aritmética tomó un minuto; la conclusión decide lo que pasa en las próximas doce horas.</p>
+    </div>
+
+    <div class="note-box">
+      <strong>Estas son las ecuaciones estándar de campo, no un sustituto de su programa de pozo.</strong> Los procedimientos específicos del equipo, la política de control de pozo de su operador y la norma que rige en su jurisdicción tienen prioridad sobre cualquier cosa de esta página. Verifique el gasto de la bomba midiéndolo, tome las presiones reducidas de circulación en cada turno y verifique el gradiente de fractura contra la prueba de goteo (leak-off test) real, no contra un gradiente supuesto.
+    </div>
+
     <div class="prose mt-24">
-      <p>Para el concepto completo detrás de estas — cómo se relacionan la presión de poro, la presión de fractura y la ventana de peso de lodo — vea la <a href="/pillars/hydrostatic-pressure">página de referencia de presión hidrostática</a>. Para la lista completa de herramientas, vuelva a <a href="/es/calculators">todas las calculadoras de perforación</a>.</p>
+      <p>Para el concepto completo detrás de estas fórmulas (cómo se relacionan la presión de poro, la presión de fractura y la ventana de peso de lodo), vea la <a href="/es/pillars/hydrostatic-pressure">guía de referencia de presión hidrostática</a>. Para la lista completa de herramientas, vuelva a <a href="/es/calculators">todas las calculadoras de perforación</a>.</p>
     </div>
   </section>
 

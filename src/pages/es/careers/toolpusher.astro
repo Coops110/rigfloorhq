@@ -2,26 +2,35 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { articleSchema } from '../../../lib/techarticle.js';
 import { reviewedByJabin } from '../../../lib/person.js';
 
-// No page-level JSON-LD existed here before. Mirrors the same addition on
-// the English equivalent, src/pages/careers/toolpusher.astro.
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Cómo Convertirte en Toolpusher",
-  "description": "La trayectoria de perforador a toolpusher: qué implica realmente el rol, la certificación IADC WellSharp Supervisor que requiere, cronograma realista, y salario.",
-};
+// Article for this career guide. Dates come from git via the same map the
+// sitemap uses, so dateModified always equals this URL's sitemap lastmod;
+// author and publisher are the Organization @id (see src/lib/techarticle.js).
+// reviewedBy is a WebPage property in schema.org, so it sits on this page's
+// WebPage node, which the Article names as its mainEntityOfPage.
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/es/careers/toolpusher.astro',
+  path: '/es/careers/toolpusher',
+  headline: "Cómo Convertirte en Toolpusher",
+  description: "La trayectoria de perforador a toolpusher: qué implica realmente el rol, la certificación IADC WellSharp Supervisor que requiere, y el salario.",
+  lang: 'es',
+  extra: { mainEntityOfPage: { "@id": "https://rigfloorhq.com/es/careers/toolpusher#webpage" } },
+});
 
-// reviewedBy belongs on WebPage per schema.org, not Article — see
-// src/lib/person.js. A separate WebPage node carries it instead of Article.
 const webPageLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   "@id": "https://rigfloorhq.com/es/careers/toolpusher#webpage",
   "url": "https://rigfloorhq.com/es/careers/toolpusher",
+  "name": "Cómo Convertirte en Toolpusher — Trayectoria y Requisitos",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://rigfloorhq.com/es#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/es/careers/toolpusher#article" },
   "reviewedBy": reviewedByJabin(),
 };
+
 ---
 <BaseLayout
   title="Cómo Convertirte en Toolpusher — Trayectoria y Requisitos"

@@ -2,8 +2,22 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { articleSchema } from '../../../lib/techarticle.js';
+
+// Article for this career guide. Dates come from git via the same map the
+// sitemap uses, so dateModified always equals this URL's sitemap lastmod;
+// author and publisher are the Organization @id (see src/lib/techarticle.js).
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/es/careers/company-man.astro',
+  path: '/es/careers/company-man',
+  headline: "¿Qué Hace un Company Man? — Trayectoria y Requisitos",
+  description: "Qué hace realmente un company man, en qué se diferencia de un toolpusher o un OIM, la trayectoria hacia el rol, y cuánto paga.",
+  lang: 'es',
+});
+
 ---
 <BaseLayout
+  jsonLd={jsonLd}
   title="¿Qué Hace un Company Man? — Trayectoria y Requisitos"
   description="Qué hace realmente un company man, en qué se diferencia de un toolpusher o un OIM, la trayectoria hacia el rol, y cuánto paga."
   breadcrumbs={[{ label: 'Carreras', href: '/es/careers' }, { label: 'Company Man', href: '/es/careers/company-man' }]}

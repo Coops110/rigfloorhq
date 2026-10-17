@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { gitDates, ogImageFor } from '../../lib/techarticle.js';
 import SourcesStandards from '../../components/SourcesStandards.astro';
 
 const faq = [
@@ -31,10 +32,10 @@ const jsonLd = {
   "about": "Drilling operations — stuck pipe and fishing",
   "url": "https://rigfloorhq.com/pillars/stuck-pipe-and-fishing-operations",
   "mainEntityOfPage": { "@type": "WebPage", "@id": "https://rigfloorhq.com/pillars/stuck-pipe-and-fishing-operations" },
-  "datePublished": "2026-08-03",
-  "dateModified": "2026-09-28",
+  // Dates from git, the same source as this URL's sitemap lastmod.
+  ...gitDates('src/pages/pillars/stuck-pipe-and-fishing-operations.astro'),
   "inLanguage": "en",
-  "image": "https://rigfloorhq.com/og-default.png",
+  "image": ogImageFor('/pillars/stuck-pipe-and-fishing-operations'),
   "author": { "@id": "https://rigfloorhq.com/#organization" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
@@ -228,6 +229,8 @@ const jsonLd = {
         </tbody>
       </table>
     </div>
+
+    <p style="color:var(--mist);max-width:800px;line-height:1.8;font-size:15px;margin-top:20px;">Milling and washing over both need rotation at the fishing string. On a drilling rig that comes from the top drive or rotary table. On a workover or well-servicing rig, which usually has neither, it comes from a <a href="/equipment/power-swivel" style="color:var(--amber);">power swivel</a>: a hydraulic swivel hung in the blocks that turns the work string while still letting fluid be pumped through it. When the fish is stuck along its length rather than at the top, <a href="/equipment/wash-pipe" style="color:var(--amber);">washpipe run over the fish</a> cuts the fill or cement away from around it before the overshot goes back on.</p>
 
     <div class="note-box mt-24" style="max-width:820px;">
       <strong>Fishing is a time-boxed decision, not an open-ended effort.</strong> Operators normally set an economic limit in advance — a number of days, or a cost — after which the job stops and the alternative is taken. Without that limit, fishing can consume more rig time than drilling a replacement section would have.

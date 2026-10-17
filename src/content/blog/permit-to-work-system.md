@@ -117,6 +117,8 @@ A correct LOTO procedure on an electrical isolation permit includes:
 - A zero-energy verification check performed and documented before hands-on work starts
 - A clear removal sequence, with locks removed only by the person who applied them
 
+On a diesel-electric rig, most of those isolation points trace back to the [rig power generation system](/equipment/power-generation-system): generator breakers, the SCR or VFD house that distributes power to the drawworks, mud pumps and top drive, and the motor control centre. Name the specific breaker or bus on the permit, not just "the generator", or the zero-energy check has nothing precise to verify.
+
 Mechanical stored energy — springs, pressurized accumulators, suspended loads — needs the same rigor as electrical isolation and should never be treated as a lower-tier hazard on the permit.
 
 ## Managing SIMOPS Under the Permit to Work System

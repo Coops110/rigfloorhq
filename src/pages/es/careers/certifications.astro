@@ -2,8 +2,22 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { articleSchema } from '../../../lib/techarticle.js';
+
+// Article for this career guide. Dates come from git via the same map the
+// sitemap uses, so dateModified always equals this URL's sitemap lastmod;
+// author and publisher are the Organization @id (see src/lib/techarticle.js).
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/es/careers/certifications.astro',
+  path: '/es/careers/certifications',
+  headline: "Certificaciones de Taladros Petroleros: BOSIET, IWCF, H2S",
+  description: "Cada certificación requerida para trabajar en un taladro petrolero, explicada: BOSIET, HUET, niveles de control de pozos IWCF, seguridad de H2S, NEBOSH.",
+  lang: 'es',
+});
+
 ---
 <BaseLayout
+  jsonLd={jsonLd}
   title="Certificaciones de Taladros Petroleros: BOSIET, IWCF, H2S"
   description="Cada certificación requerida para trabajar en un taladro petrolero, explicada: BOSIET, HUET, niveles de control de pozos IWCF, seguridad de H2S, NEBOSH."
   breadcrumbs={[{ label: 'Carreras', href: '/es/careers' }, { label: 'Certificaciones', href: '/es/careers/certifications' }]}

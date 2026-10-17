@@ -42,7 +42,7 @@ Nada sobre los datos en tiempo real cambia lo que el perforador está haciendo f
 
 ### En la Dirección Direccional
 
-Los datos MWD en tiempo real son lo que hace posible la perforación direccional y horizontal moderna en absoluto. Un perforador direccional ajusta un motor de fondo o un sistema rotativo direccionable basándose en lecturas de inclinación y azimut que llegan en algo cercano a tiempo real — sin ese flujo de datos, dirigir un pozo hacia un objetivo preciso a miles de pies de distancia simplemente no funciona.
+Los datos MWD en tiempo real son lo que hace posible la perforación direccional y horizontal moderna en absoluto. Un perforador direccional ajusta un motor de fondo (normalmente un [motor de lodo de desplazamiento positivo](/es/equipment/positive-displacement-mud-motor)) o un sistema rotativo direccionable basándose en lecturas de inclinación y azimut que llegan en algo cercano a tiempo real — sin ese flujo de datos, dirigir un pozo hacia un objetivo preciso a miles de pies de distancia simplemente no funciona.
 
 ### En Centros de Operaciones Remotos
 

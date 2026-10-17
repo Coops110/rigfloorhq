@@ -2,17 +2,19 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { articleSchema } from '../../../lib/techarticle.js';
 
-// Article es el tipo de entidad principal correcto aquí, siguiendo el mismo
-// patrón ya establecido en la página de roughneck (Google retiró los
-// resultados enriquecidos de HowTo en 2023, y esto es prosa, no un
-// HowToStep literal).
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Cómo Convertirte en Roustabout: Guía de Inicio",
-  "description": "Guía paso a paso para comenzar una carrera como roustabout en un taladro petrolero sin experiencia previa — el verdadero punto de entrada a la industria.",
-};
+// Article for this career guide. Dates come from git via the same map the
+// sitemap uses, so dateModified always equals this URL's sitemap lastmod;
+// author and publisher are the Organization @id (see src/lib/techarticle.js).
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/es/careers/roustabout.astro',
+  path: '/es/careers/roustabout',
+  headline: "Cómo Convertirte en Roustabout: Guía de Inicio",
+  description: "Guía paso a paso para convertirte en roustabout de taladro petrolero con cero experiencia: requisitos, salario, y cómo conseguir que te contraten.",
+  lang: 'es',
+});
+
 ---
 <BaseLayout
   title="Cómo Convertirte en Roustabout: Guía de Inicio"
@@ -40,7 +42,7 @@ const jsonLd = {
     <div class="two-col">
       <div class="prose">
         <h2 id="que-hace-realmente-un-roustabout">Qué Hace Realmente un Roustabout</h2>
-        <p>Un roustabout (obrero de piso) maneja el trabajo general que mantiene funcionando un taladro: pintar y dar mantenimiento al equipo, limpiar la locación, cargar y descargar suministros, armar y desarmar equipo entre trabajos, y asistir en operaciones de grúa e izaje. No es trabajo glamoroso, pero es el trabajo que te enseña cómo funciona todo un taladro antes de que alguien te confíe tubería bajo tensión.</p>
+        <p>Un ayudante de patio (roustabout) maneja el trabajo general que mantiene funcionando un taladro: pintar y dar mantenimiento al equipo, limpiar la locación, cargar y descargar suministros, armar y desarmar equipo entre trabajos, y asistir en operaciones de grúa e izaje. No es trabajo glamoroso, pero es el trabajo que te enseña cómo funciona todo un taladro antes de que alguien te confíe tubería bajo tensión.</p>
         <p>Toda mano experimentada en el piso de perforación — todo <a href="/es/careers/roughneck">roughneck</a>, encuellador, y perforador — comenzó exactamente aquí. El rol de roustabout existe precisamente porque no tiene barrera de entrada: sin certificaciones, sin experiencia previa, sin habilidad especializada. Lo que exige en su lugar es una ética de trabajo sólida, confiabilidad, y la disposición a aprender observando todo lo que sucede alrededor.</p>
 
         <h2 id="roustabout-vs-roughneck-cual-es-la-diferencia">Roustabout vs. Roughneck — ¿Cuál es la Diferencia?</h2>
@@ -80,7 +82,7 @@ const jsonLd = {
         </ul>
 
         <h2 id="que-sigue-despues">Qué Sigue Después</h2>
-        <p>Después de aproximadamente 1 a 2 años como roustabout, el siguiente paso es <a href="/es/careers/roughneck"><strong>roughneck</strong></a> — pasando al piso de perforación mismo para manejar conexiones de tubería directamente. De ahí, la trayectoria continúa a través de encuellador, asistente de perforador, y eventualmente perforador. Ver la <a href="/es/careers/roughneck">trayectoria completa hacia convertirte en roughneck</a> para lo que realmente implica esa promoción.</p>
+        <p>Después de aproximadamente 1 a 2 años como roustabout, el siguiente paso es <a href="/es/careers/roughneck"><strong>roughneck</strong></a> — pasando al piso de perforación mismo para manejar conexiones de tubería directamente. De ahí, la trayectoria continúa a través de encuellador, asistente de perforador, y eventualmente perforador. Ver la <a href="/es/careers/roughneck">trayectoria completa hacia convertirte en roughneck</a> para lo que realmente implica esa promoción. Más allá de la consola, la escalera de supervisión (toolpusher, y después OIM o gerente de taladro) está explicada en la <a href="/es/pillars/rig-floor-leadership">guía de liderazgo en el piso de perforación</a>.</p>
       </div>
 
       <div>

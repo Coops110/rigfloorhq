@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { gitDates, ogImageFor } from '../../../lib/techarticle.js';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
 
 const faq = [
@@ -37,10 +38,10 @@ const jsonLd = {
       "about": "Presión hidrostática en el fluido de perforación",
       "url": "https://rigfloorhq.com/es/pillars/hydrostatic-pressure",
       "mainEntityOfPage": { "@type": "WebPage", "@id": "https://rigfloorhq.com/es/pillars/hydrostatic-pressure" },
-      "datePublished": "2026-10-01",
-      "dateModified": "2026-10-01",
+      // Dates from git, the same source as this URL's sitemap lastmod.
+      ...gitDates('src/pages/es/pillars/hydrostatic-pressure.astro'),
       "inLanguage": "es",
-      "image": "https://rigfloorhq.com/og-default.png",
+      "image": ogImageFor('/es/pillars/hydrostatic-pressure'),
       "author": { "@id": "https://rigfloorhq.com/#organization" },
       "publisher": { "@id": "https://rigfloorhq.com/#organization" }
     },

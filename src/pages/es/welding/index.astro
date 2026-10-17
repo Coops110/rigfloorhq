@@ -16,7 +16,7 @@ import Footer from '../../../components/Footer.astro';
   <div class="page-hero">
     <div class="page-hero-eyebrow">09 — Oficios</div>
     <h1>Soldadura de <span>Taladro</span></h1>
-    <p class="page-hero-sub">La soldadura es uno de los oficios más críticos en cualquier taladro petrolero. Las fallas estructurales en un entorno costa afuera pueden ser catastróficas — cada soldadura importa.</p>
+    <p class="page-hero-sub">La <strong>soldadura de taladro</strong> es el oficio de unir y reparar acero en un taladro de perforación o en una plataforma costa afuera: desde soldaduras de mantenimiento rutinario en barandales y bastidores de patín (skid) hasta trabajo estructural en el propio mástil, con procesos como SMAW, TIG y FCAW según el trabajo y las condiciones. Las fallas estructurales en un entorno costa afuera pueden ser catastróficas: cada soldadura importa.</p>
   </div>
 
   <section class="block">
@@ -43,7 +43,8 @@ import Footer from '../../../components/Footer.astro';
   <section class="block">
     <div class="two-col">
       <div>
-        <h2 class="section-title" style="font-size:28px;">Certificaciones <span>Clave</span></h2>
+        <h2 class="section-title" style="font-size:28px;">Qué Norma <span>Aplica a Qué</span></h2>
+        <p style="color:var(--fog);font-size:13px;margin-bottom:16px;max-width:520px;">La soldadura en taladros no se rige por una sola norma. Cuál aplica depende de qué se está soldando, no de para quién trabaja, y estar calificado en una no lo califica para otra.</p>
         <div class="card-grid grid-2">
           <div class="card">
             <h3 style="font-size:14px;">API 1104</h3>
@@ -76,15 +77,63 @@ import Footer from '../../../components/Footer.astro';
             <span class="card-icon">🌊</span>
             <h3>Soldadura Submarina</h3>
             <p>Cómo funciona realmente la soldadura hiperbárica y húmeda, cuánto paga, y cómo convertirte en buzo-soldador comercial.</p>
-            <a href="/es/welding/underwater-welding" class="card-link">Leer Más →</a>
+            <a href="/es/welding/underwater-welding" class="card-link">Soldadura Hiperbárica y Soldadura Húmeda →</a>
           </div>
           <div class="card">
             <span class="card-icon">📜</span>
             <h3>Certificaciones y Trayectoria Profesional</h3>
             <p>La progresión completa de soldador junior a inspector CWI, con el salario en cada etapa.</p>
-            <a href="/es/welding/certifications" class="card-link">Leer Más →</a>
+            <a href="/es/welding/certifications" class="card-link">Certificaciones de Soldadura →</a>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">El Trabajo</div>
+    <h2 class="section-title">Cuatro Trabajos <span>Distintos</span></h2>
+    <p style="color:var(--fog);max-width:720px;margin-bottom:24px;">"Soldador de taladro" abarca cuatro trabajos bastante diferentes. Usan procesos que se solapan, pero normas distintas, horarios distintos y, en la práctica, gente distinta: alguien excelente en uno no es automáticamente contratable en otro.</p>
+
+    <div class="card-grid grid-2">
+      <div class="card">
+        <h3>Mantenimiento y Reparación</h3>
+        <p>El día a día: barandales, pasillos, bastidores de patín, soportes agrietados, placas de desgaste gastadas. Normalmente SMAW, normalmente en posiciones incómodas y muchas veces junto a operaciones en marcha, con un permiso de trabajo en caliente vigente. Aquí pasa la mayor parte del tiempo la mayoría de los soldadores de taladro.</p>
+        <span class="card-tag">El Más Común</span>
+      </div>
+      <div class="card">
+        <h3>Estructural</h3>
+        <p>Miembros del mástil, subestructura, pedestales de grúa, acero de plataforma. Se rige por AWS D1.1, se inspecciona en serio y es el trabajo con más probabilidad de ser revisado después, porque una falla aquí no se queda en un solo lugar.</p>
+        <span class="card-tag">AWS D1.1</span>
+      </div>
+      <div class="card">
+        <h3>Tubería y Presión</h3>
+        <p>Líneas de lodo, líneas de estrangulación y de matar (choke y kill), tubería a presión, recipientes. API 1104 o ASME Sección IX según el sistema. La calidad del pase de raíz importa más que la apariencia, y la radiografía encuentra lo que el esmeril esconde.</p>
+        <span class="card-tag">API 1104 / ASME IX</span>
+      </div>
+      <div class="card">
+        <h3>Submarino</h3>
+        <p>Un oficio distinto que casualmente incluye soldar. Primero es buzo comercial y después soldador, trabajando bajo AWS D3.6M. Se trata por separado en la <a href="/es/welding/underwater-welding" style="color:var(--amber);">página de soldadura submarina</a>.</p>
+        <span class="card-tag">AWS D3.6M</span>
+      </div>
+    </div>
+
+    <div class="note-box mt-24" style="max-width:760px;">
+      <strong>La posición importa más que el proceso.</strong> Cualquiera puede correr un cordón plano en un banco. Lo que consigue el empleo es soldar sobre cabeza, en vertical y por detrás de un tubo que no puede ver; por eso las pruebas de calificación se definen por posición (1G a 6G) y no por lo bien que se ve la soldadura en una foto. La <a href="/es/welding/certifications" style="color:var(--amber);">guía de certificaciones de soldadura</a> explica cada posición.
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Condiciones</div>
+    <h2 class="section-title">Cómo Es el Trabajo <span>en Realidad</span></h2>
+    <div class="two-col">
+      <div>
+        <p style="color:var(--mist);line-height:1.8;font-size:15px;">La soldadura de taladro es trabajo a la intemperie sobre una estructura de acero que se mueve. Costa afuera, la cubierta nunca está del todo quieta, y el viento arrastra el gas de protección de un charco de TIG tanto que mucho trabajo submarino y de superficie vuelve al electrodo (stick) solo por esa razón.</p>
+        <p style="color:var(--mist);line-height:1.8;font-size:15px;">Casi todo trabajo requiere un permiso de trabajo en caliente, un vigía de fuego y una prueba de gases antes de encender el arco; el sistema completo se describe en la <a href="/es/blog/permit-to-work-system" style="color:var(--amber);">guía del sistema de permisos de trabajo</a>. En un taladro en operación, el permiso suele ser la restricción de cuándo se puede trabajar, no la soldadura en sí.</p>
+      </div>
+      <div>
+        <p style="color:var(--mist);line-height:1.8;font-size:15px;">Los riesgos son los habituales, concentrados en un espacio pequeño: destello del arco, cromo hexavalente en el humo del acero inoxidable, entrada a espacios confinados, trabajo en caliente junto a sistemas de hidrocarburos y trabajo en altura en el mástil. La protección respiratoria y la sombra correcta del filtro no son opcionales, y se tratan en la <a href="/es/blog/rig-floor-ppe-guide" style="color:var(--amber);">guía de EPP del piso de perforación</a>.</p>
+        <p style="color:var(--mist);line-height:1.8;font-size:15px;">Los horarios siguen al taladro, no al oficio: rotaciones costa afuera en lugar de turnos de día. El salario lo refleja, y está desglosado por puesto en la <a href="/es/careers/salary" style="color:var(--amber);">guía salarial de taladros</a>.</p>
       </div>
     </div>
   </section>

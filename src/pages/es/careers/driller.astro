@@ -2,8 +2,22 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { articleSchema } from '../../../lib/techarticle.js';
+
+// Article for this career guide. Dates come from git via the same map the
+// sitemap uses, so dateModified always equals this URL's sitemap lastmod;
+// author and publisher are the Organization @id (see src/lib/techarticle.js).
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/es/careers/driller.astro',
+  path: '/es/careers/driller',
+  headline: "Cómo Convertirte en Perforador — Trayectoria Profesional",
+  description: "La trayectoria completa de roughneck a perforador: certificaciones IWCF de control de pozos, cronograma, salario.",
+  lang: 'es',
+});
+
 ---
 <BaseLayout
+  jsonLd={jsonLd}
   title="Cómo Convertirte en Perforador — Trayectoria Profesional"
   description="La trayectoria completa de roughneck a perforador: certificaciones IWCF de control de pozos, cronograma, salario."
   breadcrumbs={[{ label: 'Carreras', href: '/es/careers' }, { label: 'Perforador', href: '/es/careers/driller' }]}
@@ -75,7 +89,7 @@ import Footer from '../../../components/Footer.astro';
         <p>Los perforadores direccionales son una especialización separada, dirigiendo la barrena a lo largo de una trayectoria planificada usando motores de fondo y herramientas MWD. Esta trayectoria usualmente pasa por una compañía de servicio (Schlumberger, Halliburton, Baker Hughes) en lugar de un contratista de perforación, y paga significativamente más — $100K–$200K — pero requiere entrenamiento especializado en MWD/LWD en lugar de la progresión tradicional de piso a consola.</p>
 
         <h2 id="que-viene-despues-de-perforador">Qué Viene Después de Perforador</h2>
-        <p>El siguiente paso es <strong>toolpusher</strong>, supervisando múltiples cuadrillas y toda la operación del contratista del taladro, seguido por <strong>OIM (Gerente de Instalación Costa Afuera)</strong> o gerente de taladro para quienes quieren el rol operativo más alto en la instalación.</p>
+        <p>El siguiente paso es <a href="/es/careers/toolpusher"><strong>toolpusher</strong></a>, supervisando múltiples cuadrillas y toda la operación del contratista del taladro, seguido por <a href="/es/careers/oim-rig-manager"><strong>OIM (Gerente de Instalación Costa Afuera)</strong> o gerente de taladro</a> para quienes quieren el rol operativo más alto en la instalación. Qué distingue cada nivel de esa escalera de supervisión, y qué certificación condiciona cada ascenso, está en la <a href="/es/pillars/rig-floor-leadership">guía de liderazgo en el piso de perforación</a>.</p>
       </div>
 
       <div>

@@ -2,8 +2,22 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { articleSchema } from '../../../lib/techarticle.js';
+
+// Article for this career guide. Dates come from git via the same map the
+// sitemap uses, so dateModified always equals this URL's sitemap lastmod;
+// author and publisher are the Organization @id (see src/lib/techarticle.js).
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/es/careers/oim-rig-manager.astro',
+  path: '/es/careers/oim-rig-manager',
+  headline: "Cómo Convertirte en OIM / Gerente de Taladro — Trayectoria",
+  description: "Qué hace realmente un Gerente de Instalación Costa Afuera (OIM) o un gerente de taladro en tierra: la trayectoria desde toolpusher, certificaciones y salario.",
+  lang: 'es',
+});
+
 ---
 <BaseLayout
+  jsonLd={jsonLd}
   title="Cómo Convertirte en OIM / Gerente de Taladro — Trayectoria"
   description="Qué hace realmente un Gerente de Instalación Costa Afuera (OIM) o un gerente de taladro en tierra: la trayectoria desde toolpusher, certificaciones y salario."
   breadcrumbs={[{ label: 'Carreras', href: '/es/careers' }, { label: 'OIM / Gerente de Taladro', href: '/es/careers/oim-rig-manager' }]}

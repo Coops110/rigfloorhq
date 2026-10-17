@@ -2,8 +2,22 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { articleSchema } from '../../lib/techarticle.js';
+
+// Article for this career guide. Dates come from git via the same map the
+// sitemap uses, so dateModified always equals this URL's sitemap lastmod;
+// author and publisher are the Organization @id (see src/lib/techarticle.js).
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/careers/index.astro',
+  path: '/careers',
+  headline: "Oil Rig Jobs & Careers — Roles, Hierarchy, Salary",
+  description: "Complete guide to oil rig careers: every role from roustabout to toolpusher, salary ranges, required certifications, and the full progression path.",
+  lang: 'en',
+});
+
 ---
 <BaseLayout
+  jsonLd={jsonLd}
   title="Oil Rig Jobs & Careers — Roles, Hierarchy, Salary"
   description="Complete guide to oil rig careers: every role from roustabout to toolpusher, salary ranges, required certifications, and the full progression path."
   breadcrumbs={[{ label: 'Careers', href: '/careers' }]}

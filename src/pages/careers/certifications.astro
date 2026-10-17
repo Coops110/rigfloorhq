@@ -2,8 +2,22 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { articleSchema } from '../../lib/techarticle.js';
+
+// Article for this career guide. Dates come from git via the same map the
+// sitemap uses, so dateModified always equals this URL's sitemap lastmod;
+// author and publisher are the Organization @id (see src/lib/techarticle.js).
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/careers/certifications.astro',
+  path: '/careers/certifications',
+  headline: "Oil Rig Certifications Explained — BOSIET, IWCF, H2S, NEBOSH",
+  description: "Every certification required to work on an oil rig, explained: BOSIET, HUET, IWCF well control levels, H2S safety, NEBOSH, and which roles need which certs.",
+  lang: 'en',
+});
+
 ---
 <BaseLayout
+  jsonLd={jsonLd}
   title="Oil Rig Certifications Explained — BOSIET, IWCF, H2S, NEBOSH"
   description="Every certification required to work on an oil rig, explained: BOSIET, HUET, IWCF well control levels, H2S safety, NEBOSH, and which roles need which certs."
   breadcrumbs={[{ label: 'Careers', href: '/careers' }, { label: 'Certifications', href: '/careers/certifications' }]}
