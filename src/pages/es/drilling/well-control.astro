@@ -9,13 +9,13 @@ const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/drilling/well-control.astro',
   path: '/es/drilling/well-control',
   headline: 'Control de Pozos y Surgencias — Reconocimiento, Cierre',
-  description: 'Referencia completa de control de pozos: señales de reconocimiento de surgencias, procedimientos de cierre, el método del perforador vs. wait-and-weight.',
+  description: 'Control de pozos: causas de surgencias, detección al perforar y en viajes, cierre, barreras, los cuatro métodos de matanza y la hoja de matar.',
   lang: 'es',
 });
 ---
 <BaseLayout
   title="Control de Pozos y Surgencias — Reconocimiento, Cierre"
-  description="Referencia completa de control de pozos: señales de reconocimiento de surgencias, procedimientos de cierre, el método del perforador vs. wait-and-weight."
+  description="Control de pozos: causas de surgencias, detección al perforar y en viajes, cierre, barreras, los cuatro métodos de matanza y la hoja de matar."
   extraJsonLd={[techArticleJsonLd]}
   breadcrumbs={[{ label: 'Perforación', href: '/es/drilling' }, { label: 'Control de Pozos', href: '/es/drilling/well-control' }]}
   lang="es"
@@ -79,7 +79,7 @@ const techArticleJsonLd = techArticleSchema({
           </details>
           <details class="acc-item">
             <summary class="acc-header">Paso 5 — Matar el Pozo<span class="acc-arrow">▼</span></summary>
-            <div class="acc-body"><p>Método del Perforador o Wait-and-Weight — ambos son válidos, sigue el procedimiento aprobado de tu empresa. Ver comparación abajo.</p></div>
+            <div class="acc-body"><p>Método del Perforador o Wait-and-Weight — ambos son válidos, sigue el procedimiento aprobado de tu empresa. Ver la comparación abajo, y la <a href="/es/pillars/advanced-well-control-and-hydrostatics" style="color:var(--amber);">guía de métodos para matar un pozo</a> para la secuencia de pasos y para cuándo corresponde el método volumétrico o el bullheading.</p></div>
           </details>
           <details class="acc-item">
             <summary class="acc-header">Paso 6 — Verificar y Reanudar<span class="acc-arrow">▼</span></summary>
@@ -91,8 +91,82 @@ const techArticleJsonLd = techArticleSchema({
   </section>
 
   <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <div class="section-eyebrow">Prevención</div>
+      <h2 id="causas-de-surgencia">Qué Causa una Surgencia</h2>
+      <p>Toda surgencia tiene la misma causa de fondo. En algún punto del agujero descubierto, la presión dentro del pozo cayó por debajo de la presión de poro de una formación permeable, y el fluido pasa de la presión alta a la baja. La columna de lodo es la barrera primaria, así que casi todas las causas son una forma de dejarla más liviana, más corta o menos efectiva. Saber cuál está detrás de una surgencia también dice mucho sobre cómo matarla.</p>
+
+      <h3>Peso de lodo insuficiente</h3>
+      <p>El lodo simplemente está demasiado liviano para la formación. Normalmente es porque el pozo entró a una presión de poro más alta que la planeada, en una zona de transición o en una formación cargada. A veces el lodo se aligeró por dilución, por agregados de agua o por asentamiento de la barita (sag). Las zonas de transición suelen avisar: aumento de la velocidad de penetración, más gas de fondo o de conexión, cambios en los recortes y derrumbes de lutita, más torque y arrastre, y tendencias en el exponente d donde el mud logger lo sigue. Tómalas como motivo para hacer una prueba de flujo y hablar con el ingeniero de perforación, no como curiosidades. Este es el único tipo de surgencia que necesita lodo más pesado para matarse, porque el SIDPP muestra cuánto le falta a la columna.</p>
+
+      <h3>Suaveo (swabbing)</h3>
+      <p>Al sacar tubería se arrastra lodo hacia arriba y baja la presión de fondo mientras la tubería está en movimiento. Si se saca demasiado rápido, con lodo espeso, con poco espacio anular o con un BHA embolado, esa reducción puede dejar la BHP por debajo de la presión de poro y succionar fluido de formación debajo de la barrena. Un influjo por suaveo muchas veces no hace fluir el pozo de inmediato. Se nota primero porque el pozo toma <em>menos</em> llenado del calculado. Las velocidades de viaje, el margen de viaje y los límites de suaveo y de efecto pistón (surge) se fijan según el procedimiento. La <a href="/es/drilling/mud-weight" style="color:var(--amber);">guía de peso de lodo</a> explica de dónde salen las presiones de suaveo y de efecto pistón, y la <a href="/es/calculators/tripping-pressure-effects" style="color:var(--amber);">calculadora de efectos de presión en viajes</a> y la <a href="/es/calculators/trip-margin" style="color:var(--amber);">calculadora de margen de viaje</a> muestran los órdenes de magnitud. Como el peso del lodo normalmente alcanza, una surgencia por suaveo muchas veces se mata volviendo al fondo y circulándola hacia afuera, no densificando.</p>
+
+      <h3>No mantener el pozo lleno</h3>
+      <p>Cada lingada que se saca retira acero del pozo, y el nivel de lodo baja en el volumen de ese acero si no se rellena. Sacar tubería mojada, con la sarta llena de lodo, retira el desplazamiento de extremo cerrado, que es un volumen mucho mayor. Si el pozo no se llena, la columna de lodo se acorta y la presión hidrostática cae en el gradiente del lodo (0.052 × peso del lodo, en psi) por cada pie de nivel perdido. Por eso los viajes se miden con el tanque de viaje y no a ojo.</p>
+
+      <h3>Pérdida de circulación</h3>
+      <p>Cuando se pierde lodo hacia una zona débil o fracturada, el nivel de fluido en el anular puede bajar, y con él la presión hidrostática sobre todas las zonas que están por encima de la pérdida. Un pozo que venía perdiendo puede empezar a fluir desde otra zona, o desde la misma, y pérdida seguida de ganancia es una secuencia clásica que termina en un reventón subterráneo. Durante las pérdidas, mantén el anular lleno con el fluido que indique tu procedimiento, mide lo que entra y mantente listo para cerrar.</p>
+
+      <h3>Lodo cortado por gas</h3>
+      <p>El gas que liberan los recortes, o el gas de conexión y de viaje, se expande al subir, así que el lodo en la línea de flujo puede pesar mucho menos que el lodo que entra. La mayor parte de esa expansión ocurre cerca de superficie, así que por sí solo el lodo cortado por gas normalmente reduce la BHP mucho menos de lo que sugiere el peso en la línea de flujo. Igual es una advertencia. Puede significar que se está perforando una zona de gas con poco o ningún sobrebalance, y en agujero somero la reducción pesa más. Una lectura de lodo cortado por gas es motivo para hacer prueba de flujo, no para suponer que todo está bien. La única forma de distinguir lodo cortado por gas de un influjo es ver si el pozo fluye con las bombas apagadas.</p>
+
+      <h3>Otras causas</h3>
+      <p>Entre las causas menos comunes están el gas somero antes de instalar el BOP, el cemento que pierde soporte hidrostático mientras fragua, y perforar dentro o cerca de un pozo vecino. Cada una se maneja a través del programa del pozo y el documento puente, más que con la práctica rutinaria en el piso.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <div class="section-eyebrow">Viajes</div>
+      <h2 id="deteccion-en-viajes">Detección de Surgencias Durante los Viajes</h2>
+      <p>Una buena parte de las surgencias se toman en los viajes, cuando nadie está perforando y la atención se relaja. Mientras se perfora, una surgencia se ve como más flujo saliendo que entrando. En un viaje no hay bomba funcionando, así que la única medida confiable es el volumen que hace falta para mantener el pozo lleno.</p>
+
+      <h3>Tanque de viaje y hoja de viaje</h3>
+      <p>El tanque de viaje es un tanque pequeño, alto y calibrado que circula a través del pozo. Un barril se ve como varias pulgadas de cambio de nivel, algo que las piletas activas grandes no pueden mostrar. Antes del viaje, calcula el llenado esperado por lingada o por grupo de lingadas (desplazamiento de acero para tubería seca, desplazamiento de extremo cerrado para tubería mojada) y anótalo en la hoja de viaje. A medida que avanza el viaje, registra el llenado real contra ese valor en el intervalo que fije tu procedimiento.</p>
+      <div class="formula-block">
+        <div class="formula-label">Llenado esperado al sacar</div>
+        <div class="formula-eq">Llenado (bbl) = desplazamiento (bbl/pie) × longitud sacada (pies)</div>
+        <div class="formula-note">Tubería seca: desplazamiento de acero. Tubería mojada (sarta con válvula flotadora o tapada, sin píldora): desplazamiento de extremo cerrado. Las tablas de tubería dan los dos valores por diámetro y peso. La <a href="/es/calculators/slug-calculation" style="color:var(--amber);">calculadora de píldora</a> resuelve el bache que permite sacar en seco.</div>
+      </div>
+
+      <h3>Cómo leer el tanque de viaje</h3>
+      <ul>
+        <li><strong>Sacando, el pozo toma menos llenado del calculado:</strong> algo más está ocupando el espacio que dejó el acero. Supón que entró fluido de formación por suaveo hasta demostrar lo contrario.</li>
+        <li><strong>Sacando, el pozo toma más del calculado:</strong> pérdidas. La hidrostática puede estar cayendo en otro punto.</li>
+        <li><strong>Metiendo, regresa más de lo que desplaza la tubería:</strong> el pozo está fluyendo.</li>
+        <li><strong>Metiendo, regresa menos que el desplazamiento:</strong> pérdidas, posiblemente inducidas por el efecto pistón (surge) al bajar demasiado rápido.</li>
+      </ul>
+      <p>Las pruebas de flujo en un viaje se hacen en los puntos que fija tu procedimiento. Los más comunes son antes de levantar del fondo, en la zapata del casing y antes de que el BHA pase por el BOP, además de cada vez que el llenado no cuadra.</p>
+
+      <h3>Si el pozo fluye durante un viaje</h3>
+      <p>Sigue el procedimiento de tu empresa. La secuencia estándar IWCF/IADC es instalar en la sarta la válvula de seguridad de apertura total (FOSV) en posición abierta, cerrarla, luego cerrar el BOP con el método duro o suave que indique tu procedimiento, y registrar SIDPP, SICP y ganancia de pileta. No intentes volver al fondo con el pozo abierto. Con el pozo cerrado fuera del fondo, las opciones son stripping de regreso al fondo, el método volumétrico o el bullheading. Cada una está en la <a href="/es/pillars/advanced-well-control-and-hydrostatics" style="color:var(--amber);">guía de métodos para matar un pozo</a>. Si el llenado no cuadra pero el pozo no fluye, tu procedimiento dirá si hay que volver al fondo y circular el fondo arriba por el choke antes de seguir.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <div class="section-eyebrow">Barreras</div>
+      <h2 id="barreras">El Concepto de Barreras del Pozo</h2>
+      <p>Una barrera de pozo es una envolvente de uno o más elementos que, juntos, impiden que el fluido de formación fluya sin control a superficie o hacia otra zona. Las normas de la industria y las políticas de los operadores, como NORSOK D-010 y los estándares de integridad de pozos con los que trabaja la mayoría de los operadores, exigen al menos <strong>dos barreras independientes y probadas</strong> entre una formación que puede fluir y el medio ambiente mientras se perfora un pozo.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Barrera</th><th>Elementos durante la perforación</th><th>Cómo se verifica</th></tr></thead>
+          <tbody>
+            <tr><td>Primaria</td><td>La columna de lodo: peso correcto y pozo siempre lleno</td><td>Control del peso del lodo, monitoreo de piletas y del tanque de viaje, pruebas de flujo</td></tr>
+            <tr><td>Secundaria</td><td>BOP, cabezal, casing y su cemento, y la resistencia de la formación en la zapata</td><td>Pruebas de presión y de funcionamiento del BOP, pruebas del casing, prueba de goteo (leak-off) o de integridad de la formación</td></tr>
+            <tr><td>Más allá del equipo</td><td>Capacidad de capping o de pozo de alivio, para cuando fallan las dos</td><td>Planes de respuesta a emergencias y de control de la fuente</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:18px;">En el piso importan dos cosas. Primero, una surgencia significa que la barrera primaria falló, y que ahora solo te sostiene la secundaria. El objetivo de la matanza es restablecer la barrera primaria volviendo a poner lodo de matanza en el pozo. Segundo, las barreras tienen que ser <strong>independientes</strong>. Si un solo elemento que falla puede tumbar las dos envolventes a la vez, en realidad no hay dos barreras, y por eso cualquier elemento compartido por ambas requiere atención especial en el programa del pozo. Los intervalos y presiones de prueba del BOP salen de la norma API 53, del regulador que aplique (en aguas federales de EE. UU., 30 CFR 250 Subparte G) y de tu operador. El equipo en sí está en la <a href="/es/equipment/bop" style="color:var(--amber);">página de equipo BOP</a>.</p>
+    </div>
+  </section>
+
+  <section class="block">
     <div class="section-eyebrow">Métodos de Matanza</div>
     <h2 class="section-title">Método del Perforador vs. <span>Wait-and-Weight</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:24px;">Todos los métodos de matanza con circulación trabajan sobre el mismo principio: mantener <strong>constante la presión de fondo</strong>, igual o ligeramente por encima de la presión de formación, ajustando el choke mientras se bombea a un caudal de matanza estable y registrado de antemano. El manómetro de la tubería es la ventana hacia la presión de fondo, porque la sarta tiene lodo de peso conocido y no tiene influjo. Los métodos solo se diferencian en el momento en que entra el lodo de matanza. Los dos métodos estándar con circulación se comparan así:</p>
 
     <div class="table-wrap">
       <table>
@@ -124,13 +198,94 @@ const techArticleJsonLd = techArticleSchema({
       <strong>Verificaciones Diarias de Presión del BOP:</strong> Presión del acumulador: <span class="highlight">3,000 psi</span> · Presión del manifold: <span class="highlight">1,500 psi</span> · Operación anular: <span class="highlight">700–1,500 psi</span> · Suministro de aire a las bombas: <span class="highlight">125 psi</span>. Detalle completo en la <a href="/es/equipment/bop" style="color:var(--amber);">página de equipo BOP</a>, incluyendo el <a href="/es/equipment/well-protector" style="color:var(--amber);">well protector</a> que se ubica debajo de él en un stack submarino.
     </div>
 
-    <p style="color:var(--fog);font-size:14px;margin-top:24px;max-width:700px;">¿Quieres profundizar más? La guía <a href="/es/pillars/advanced-well-control-and-hydrostatics" style="color:var(--amber);">Control de Pozos Avanzado</a> cubre TVD vs MD, ECD, el método volumétrico, perforación de presión controlada, y consideraciones regionales para certificación de nivel supervisor e ingeniero.</p>
+    <h3 class="section-title" style="font-size:24px;margin-top:40px;">Los Cuatro Métodos de Matanza de un Vistazo</h3>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:18px;">Los dos métodos con circulación cubren la mayoría de las surgencias tomadas con la barrena en el fondo o cerca de él. Cuando no se puede circular por la barrena, o el influjo no debe llegar a superficie, corresponde uno de los otros dos.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Método</th><th>Circulaciones</th><th>Normalmente se elige cuando</th><th>Regla de control clave</th></tr></thead>
+        <tbody>
+          <tr><td>Método del Perforador</td><td>Dos</td><td>El lodo de matanza no está listo, el gas está migrando, o lo que más importa es la sencillez</td><td>Mantener la ICP en la primera circulación. Luego la presión del casing, o el programa, hasta la barrena, y la FCP hasta superficie</td></tr>
+          <tr><td>Esperar y Densificar (Wait and Weight)</td><td>Una</td><td>La tolerancia a la surgencia o la MAASP están justas y el lodo de matanza se puede preparar rápido</td><td>La presión de la tubería baja de la ICP a la FCP de superficie a barrena, y luego se mantiene la FCP hasta superficie</td></tr>
+          <tr><td>Volumétrico, luego lubricar y purgar</td><td>Ninguna</td><td>Fuera del fondo, fuera del pozo, sarta tapada o bombas fuera de servicio</td><td>Purgar volúmenes medidos de lodo mientras el gas migra, y luego reemplazar el gas por lodo en superficie</td></tr>
+          <tr><td>Bullheading</td><td>Ninguna (inyección)</td><td>El influjo no debe llegar a superficie, o supera la tolerancia a la surgencia</td><td>Bombear dentro de un programa de presión máxima calculado de antemano, a un caudal mayor que la migración</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="color:var(--fog);font-size:14px;margin-top:20px;max-width:760px;">La secuencia de pasos, el programa de presión de la tubería de ICP a FCP con un ejemplo resuelto, las ventajas y desventajas, y los errores que más se repiten están en la <a href="/es/pillars/advanced-well-control-and-hydrostatics" style="color:var(--amber);">guía de métodos para matar un pozo</a>, escrita a nivel supervisor.</p>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Herramientas</div>
+    <h2 class="section-title" id="calculadoras">Calculadoras de <span>Control de Pozos</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:18px;">Los números de una matanza son sencillos, pero es fácil equivocarse a las 3 de la mañana con la alarma sonando. Cada una de estas calculadoras resuelve una parte del problema. Todas sirven para practicar y para verificar, no para reemplazar la hoja de matar del propio equipo ni el criterio del supervisor.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Calculadora</th><th>Para qué sirve</th></tr></thead>
+        <tbody>
+          <tr><td><a href="/es/calculators/kill-sheet" style="color:var(--amber);">Hoja de matar</a></td><td>KMW, ICP, FCP y el programa de presión de la tubería a partir del SIDPP, la presión SCR, la TVD y los volúmenes de la sarta</td></tr>
+          <tr><td><a href="/es/calculators/kill-sheet-horizontal" style="color:var(--amber);">Hoja de matar horizontal</a></td><td>El programa no lineal para pozos desviados y horizontales, donde una línea recta deja corta la presión de fondo</td></tr>
+          <tr><td><a href="/es/calculators/kick-tolerance" style="color:var(--amber);">Tolerancia a la surgencia</a></td><td>El influjo más grande que el pozo puede tomar y aun así circularse sin fracturar la zapata</td></tr>
+          <tr><td><a href="/es/calculators/maasp" style="color:var(--amber);">MAASP</a></td><td>La presión anular máxima permisible en superficie a partir de la prueba de la zapata y el peso de lodo actual</td></tr>
+          <tr><td><a href="/es/calculators/kick-influx-geometry" style="color:var(--amber);">Geometría del influjo</a></td><td>Altura y gradiente del influjo a partir de la ganancia de pileta y el tamaño del agujero, lo que ayuda a identificar si es gas, petróleo o agua</td></tr>
+          <tr><td><a href="/es/calculators/gas-migration" style="color:var(--amber);">Migración de gas</a></td><td>Velocidad de migración a partir del aumento de las presiones de cierre, y el dato de entrada para el control volumétrico</td></tr>
+          <tr><td><a href="/es/calculators/bullheading" style="color:var(--amber);">Bullheading</a></td><td>Límites de presión en superficie para bombear el influjo de vuelta a la formación</td></tr>
+          <tr><td><a href="/es/calculators/barite-required" style="color:var(--amber);">Barita requerida</a></td><td>Sacos y aumento de volumen para densificar del peso original al peso de lodo de matanza</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <div class="section-eyebrow">La Cuadrilla</div>
+      <h2 id="roles">Quién Hace Qué en un Evento de Control de Pozos</h2>
+      <p>Quién hace qué lo define el cuadro de estaciones del equipo y el documento puente de control de pozos, y se practica en simulacros, no se resuelve el día del evento. El esquema habitual es este:</p>
+      <ul>
+        <li><strong>Perforador:</strong> detecta la surgencia, espacia, apaga las bombas, hace la prueba de flujo y cierra el pozo. En la mayoría de los equipos el perforador está autorizado a cerrar sin pedir permiso antes. Verifica que tu documento puente lo diga, porque cada duda cuesta barriles.</li>
+        <li><strong>Toolpusher:</strong> toma el mando en el piso, revisa la alineación de válvulas y el cierre, y muchas veces opera el choke durante la matanza.</li>
+        <li><strong>Company man:</strong> confirma el método de matanza y los márgenes con los ingenieros del operador, según el documento puente.</li>
+        <li><strong>Encuellador e ingeniero de lodos:</strong> vigilan las piletas y el tanque de viaje, y densifican el lodo de matanza con densidad pareja.</li>
+        <li><strong>Mud logger:</strong> sigue el gas, los volúmenes de piletas y las presiones, y lleva un registro independiente de emboladas, presiones y volúmenes.</li>
+      </ul>
+      <p>Los simulacros de surgencia (de piletas, de viaje y de choke) se hacen con la frecuencia que exigen tu operador y el regulador. Ahí es donde la cuadrilla descubre si la alineación, la comunicación y la hoja de viaje realmente funcionan. El <a href="/es/well-control-quiz" style="color:var(--amber);">cuestionario de control de pozos</a> cubre la parte teórica para candidatos IWCF e IADC WellSharp.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <div class="section-eyebrow">Lectura de Manómetros</div>
+      <h2 id="presiones-de-cierre">Qué Dicen las Presiones de Cierre</h2>
+      <p>Con el pozo cerrado y las presiones estabilizadas, los dos manómetros responden preguntas distintas. El <strong>SIDPP</strong> se lee a través de una sarta llena de lodo limpio, así que mide cuánto le falta a la columna de lodo para igualar la presión de formación, y es el que fija el peso de lodo de matanza. Un SIDPP de cero con SICP positivo normalmente significa que el peso del lodo alcanza y que el influjo entró por suaveo o fue succionado, así que el trabajo es circularlo hacia afuera. El <strong>SICP</strong> se lee a través de un anular que ahora tiene una columna de influjo. Normalmente es más alto que el SIDPP, y la diferencia crece con el tamaño del influjo y con lo liviano que sea. Una diferencia grande con poca ganancia de pileta apunta a gas.</p>
+      <p>Sigue los dos manómetros contra el tiempo. Si siguen subiendo juntos después de estabilizarse, el gas está migrando, y eso se maneja según el procedimiento en vez de esperar. Antes de confiar en cualquiera de los dos números, descarta presión atrapada por el propio cierre. El comportamiento en detalle está en <a href="/es/blog/shut-in-pressure-behavior-explained" style="color:var(--amber);">presión de cierre: qué sucede realmente</a>.</p>
+
+      <h2 id="despues-de-la-matanza">Después de la Matanza</h2>
+      <p>Un pozo con cero en los dos manómetros todavía no está listo para operaciones normales. Antes de abrir el BOP, haz la prueba de flujo y sigue tu procedimiento para el gas que puede quedar atrapado debajo del preventor cerrado. Ese gas puede expandirse con violencia cuando se abre el BOP. Con el pozo abierto, circula y acondiciona el lodo, confirma que el nuevo peso de lodo se sostiene, y recalcula la MAASP y la tolerancia a la surgencia con el lodo de matanza en el pozo, porque las dos cambian cuando el lodo se hace más pesado. Después busca la causa. Una surgencia por una transición de presión significa que el programa de lodos y el diseño de casing pueden necesitar revisión. Una surgencia por suaveo significa que hay que atender las velocidades de viaje, las propiedades del lodo o el procedimiento de viaje. Registra el evento, las presiones y los volúmenes, y comparte las lecciones en la próxima reunión de inicio de turno.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title">Preguntas de <span>Control de Pozos</span></h2>
+    <div class="accordion">
+      <details class="acc-item">
+        <summary class="acc-header">¿Cuál es la causa más común de una surgencia?<span class="acc-arrow">▼</span></summary>
+        <div class="acc-body"><p>Las surgencias tomadas durante los viajes son una parte importante del total, sobre todo por suaveo y por no mantener el pozo lleno. Por eso el tanque de viaje y la hoja de viaje importan tanto como el indicador de flujo mientras se perfora.</p></div>
+      </details>
+      <details class="acc-item">
+        <summary class="acc-header">¿Qué tan grande tiene que ser la ganancia de pileta para cerrar el pozo?<span class="acc-arrow">▼</span></summary>
+        <div class="acc-body"><p>No hay un umbral seguro al que esperar. Cualquier ganancia sin explicación significa parar y hacer prueba de flujo. Una prueba de flujo positiva significa cerrar. Cuanto más pequeño sea el influjo al cerrar, más bajas serán las presiones de casing durante la matanza.</p></div>
+      </details>
+      <details class="acc-item">
+        <summary class="acc-header">¿Qué método de matanza debo usar?<span class="acc-arrow">▼</span></summary>
+        <div class="acc-body"><p>El que indiquen el procedimiento de tu empresa y el documento puente del pozo para esa situación. El Método del Perforador y Esperar y Densificar son los dos estándar. El control volumétrico y el bullheading son para situaciones en las que circular por la barrena no es posible o no es aceptable.</p></div>
+      </details>
+    </div>
   </section>
 
   <section class="block">
     <div class="section-eyebrow">Profundizar</div>
     <h2 class="section-title">Control de Pozos <span>en Detalle</span></h2>
-    <p style="color:var(--fog);max-width:700px;margin-bottom:8px;">Esta página es la referencia rápida. Estas recorren el mismo terreno con más profundidad: detección de surgencias en la práctica, la física detrás de la hoja de matar, y lo que ocurre cuando la tubería deja de moverse.</p>
+    <p style="color:var(--fog);max-width:700px;margin-bottom:8px;">Esta página es la vista general. Estas recorren partes concretas con más profundidad: detección de surgencias en la práctica, la física detrás de la hoja de matar, y lo que ocurre cuando la tubería deja de moverse.</p>
     <div class="related-links">
       <a href="/es/blog/well-control-basics" class="related-link">
         <div class="rl-label">Explicación</div>
@@ -171,6 +326,14 @@ const techArticleJsonLd = techArticleSchema({
       <a href="/es/blog/well-control-curveball-scenarios" class="related-link">
         <div class="rl-label">Casos Límite</div>
         <div class="rl-title">Curvas de Control de Pozos</div>
+      </a>
+      <a href="/es/blog/volumetric-kill-real-story" class="related-link">
+        <div class="rl-label">Relato Real</div>
+        <div class="rl-title">Una Matanza Volumétrica de 48 Horas</div>
+      </a>
+      <a href="/es/pillars/advanced-well-control-and-hydrostatics" class="related-link">
+        <div class="rl-label">Nivel Supervisor</div>
+        <div class="rl-title">Métodos para Matar un Pozo</div>
       </a>
       <a href="/es/well-control-quiz" class="related-link">
         <div class="rl-label">Práctica</div>

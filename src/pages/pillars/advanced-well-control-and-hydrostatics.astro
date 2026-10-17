@@ -7,13 +7,13 @@ import SourcesStandards from '../../components/SourcesStandards.astro';
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Advanced Well Control",
-  "description": "Pressure management reference for supervisors and engineers: TVD vs MD, pressure gradients, ECD, kill methods, and regional well control considerations.",
-  "about": "Well control engineering",
+  "headline": "Well Kill Methods: Advanced Supervisor Guide",
+  "description": "Driller's Method, Wait and Weight, volumetric, lubricate-and-bleed and bullheading: when each is chosen, step sequences, the ICP-to-FCP drillpipe schedule and common mistakes.",
+  "about": "Well control kill methods",
   "url": "https://rigfloorhq.com/pillars/advanced-well-control-and-hydrostatics",
   "mainEntityOfPage": { "@type": "WebPage", "@id": "https://rigfloorhq.com/pillars/advanced-well-control-and-hydrostatics" },
   "datePublished": "2026-07-09",
-  "dateModified": "2026-10-01",
+  "dateModified": "2026-10-17",
   "inLanguage": "en",
   "image": "https://rigfloorhq.com/og-default.png",
   "author": { "@id": "https://rigfloorhq.com/#organization" },
@@ -21,136 +21,320 @@ const jsonLd = {
 };
 ---
 <BaseLayout
-  title="Advanced Well Control & Hydrostatics: Supervisor Guide"
-  description="Mastering pressure management for supervisors and engineers: TVD vs MD, pressure gradients, ECD, Driller's Method vs Wait and Weight, and MPD."
-  breadcrumbs={[{ label: 'Pillars', href: '/pillars' }, { label: 'Advanced Well Control', href: '/pillars/advanced-well-control-and-hydrostatics' }]}
+  title="Well Kill Methods: Advanced Supervisor Guide"
+  description="Driller's Method vs Wait and Weight, volumetric, lubricate-and-bleed and bullheading: when to use each, the ICP-to-FCP schedule and common mistakes."
+  breadcrumbs={[{ label: 'Pillars', href: '/pillars' }, { label: 'Well Kill Methods', href: '/pillars/advanced-well-control-and-hydrostatics' }]}
   jsonLd={jsonLd}
   lang="en"
   alternateHref="/es/pillars/advanced-well-control-and-hydrostatics"
 >
-  {/* alternateHref now points at the real Spanish translation of this page,
-      src/pages/es/pillars/advanced-well-control-and-hydrostatics.astro (added
-      2026-10-15). It previously had no alternateHref at all: an earlier
-      version pointed at /es/drilling/well-control, which reciprocates to
-      /drilling/well-control instead, so the annotation was both ignored by
-      search engines and factually wrong — this page and /drilling/well-control
-      are not translations of one another. That mistake doesn't apply to the
-      current target, which is this page's actual ES counterpart. */}
+  {/* URL kept as advanced-well-control-and-hydrostatics on purpose: the page was
+      refocused on kill methods on 2026-10-17 (audit action item 10), and the
+      hydrostatic basics it used to repeat now live only on
+      /pillars/hydrostatic-pressure. Changing the slug would throw away its
+      links and history for no gain. alternateHref points at the real ES twin. */}
   <Nav slot="nav" lang="en" alternateHref="/es/pillars/advanced-well-control-and-hydrostatics" />
   <Footer slot="footer" lang="en" />
 
   <div class="page-hero">
     <div class="page-hero-eyebrow">Advanced Technical Series</div>
-    <h1>Advanced <span>Well Control</span></h1>
-    <p class="page-hero-sub">Mastering pressure management for supervisors and engineers across the Permian Basin, Gulf Coast, and global offshore operations.</p>
+    <h1>Well Kill <span>Methods</span></h1>
+    <p class="page-hero-sub">The well is shut in and the gauges have stabilised. Now someone has to choose how to get the influx out and kill-weight mud in without breaking down the shoe. This is the supervisor-level reference for that decision.</p>
     <div class="page-meta">
-      <a href="/calculators/kill-sheet" class="btn btn-primary" style="margin-top:8px;">Access Digital Kill Sheets</a>
+      <a href="/calculators/kill-sheet" class="btn btn-primary" style="margin-top:8px;">Open the Kill Sheet Calculator</a>
     </div>
   </div>
 
   <section class="block">
-    <div class="prose" style="max-width:800px;margin:0 auto;text-align:left;">
-      <h2 style="text-align:center;">The Science of Pressure in the Field</h2>
-      <p>From the high-pressure reservoirs of the Delaware Basin to the deepwater challenges of the Gulf of Mexico, advanced well control and hydrostatics form the backbone of drilling safety. This reference covers the technical ground required for personnel moving from Level 2/3 basic certification to Level 4 supervisory and engineering roles — if you need the foundational concept itself first, start with the <a href="/pillars/hydrostatic-pressure">hydrostatic pressure reference page</a>, or <a href="/blog/well-control-basics">well control basics for new crews</a> if what you need is the kick-response fundamentals rather than the advanced math.</p>
-      <p>In the oil and gas sector, a kick isn't just an operational delay — it's a high-stakes physics problem. Managing hydrostatic pressure effectively prevents formation fluids from entering the wellbore, protecting both the crew and the integrity of the rig equipment.</p>
-      <div class="danger-box mt-24">
-        <strong>Reference material, not an operating authority.</strong> This page explains the engineering reasoning behind kill procedures and pressure management — it does not authorize any action on a live well. Real kill mud weight, kill method choice, and MPD parameters belong to your drilling engineer and certified well control supervisor, working from live SIDPP/SICP and pit data, never from a reference page alone.
+    <div class="prose" style="max-width:820px;">
+      <div class="danger-box">
+        <strong>Reference material, not an operating authority.</strong> This page explains how the standard kill methods work and why they are chosen. It does not authorise any action on a live well. The kill method, kill rate, safety margins and pressure limits for your well are set by your company procedure and the well-specific bridging document, and the decision on the day belongs to the certified well control supervisor working from live SIDPP, SICP and pit data.
       </div>
+
+      <h2 id="scope">What This Page Covers</h2>
+      <p>The <a href="/drilling/well-control">well control hub</a> covers kick causes, detection, the barrier concept and the shut-in itself. This page starts where that one stops: a kick has been shut in, SIDPP and SICP have been recorded, and the question is how to kill it. It covers the four families of kill method taught in IWCF and IADC WellSharp courses — the <strong>Driller's Method</strong>, <strong>Wait and Weight</strong>, the <strong>volumetric method with lubricate-and-bleed</strong>, and <strong>bullheading</strong> — plus the principle that ties them together and the mistakes that most often go wrong under pressure.</p>
+      <p>The hydrostatic arithmetic underneath all of it — <strong>P = 0.052 × MW × TVD</strong>, gradients and overbalance — is on the <a href="/pillars/hydrostatic-pressure">hydrostatic pressure reference</a>, with the derivation of the constant in <a href="/blog/hydrostatic-pressure-0052-constant">why 0.052 never changes</a>. It is not repeated here.</p>
     </div>
   </section>
 
   <section class="block">
-    <div class="section-eyebrow">Foundations</div>
-    <h2 class="section-title">Core Hydrostatic <span>Foundations</span></h2>
-    <p style="color:var(--fog);max-width:700px;margin-bottom:24px;">Before moving into complex kill procedures, every driller and engineer must master the governing formula — the primary barrier against blowouts.</p>
+    <div class="prose" style="max-width:820px;">
+      <div class="section-eyebrow">The Governing Principle</div>
+      <h2 id="constant-bhp">Constant Bottomhole Pressure</h2>
+      <p>Every circulating kill method is the same idea carried out in a different order: <strong>keep bottomhole pressure (BHP) constant, at or slightly above formation pressure, from the moment the pump starts until kill mud is back at surface.</strong> If BHP falls below formation pressure, more influx enters. If it rises too far above, the weakest point in the open hole — usually just below the casing shoe — can break down, and a surface kick becomes an underground blowout.</p>
+      <p>You cannot read BHP directly, so you read it through the drill string. The string is full of mud of a known density and contains no influx, so it behaves like a clean pressure gauge running to the bottom of the hole. With the well shut in:</p>
+      <div class="formula-block">
+        <div class="formula-label">Static BHP, read through the drill string</div>
+        <div class="formula-eq">BHP = SIDPP + (0.052 × OMW × TVD)</div>
+        <div class="formula-note">OMW = original mud weight, ppg. TVD = true vertical depth of the bit, ft. Annulus readings (SICP) cannot be used this way, because the annulus contains influx of unknown density and height.</div>
+      </div>
+      <p>Once circulating, the drillpipe gauge also carries the friction loss of pumping at the kill rate, which is why the kill sheet is built around the <strong>slow circulating rate (SCR) pressure</strong> recorded before the kick. The choke is the only thing you adjust. Opening it lowers back-pressure and BHP; closing it raises them. The drillpipe gauge tells you whether the result is right.</p>
 
-    <div class="formula-block" style="max-width:600px;">
-      <div class="formula-label">Hydrostatic Pressure</div>
-      <div class="formula-eq">P = 0.052 × Mud Weight (ppg) × TVD (ft)</div>
-      <div class="formula-note">For where 0.052 actually comes from and why it's identical across mud types, see <a href="/blog/hydrostatic-pressure-0052-constant" style="color:var(--amber);">the full derivation</a>.</div>
+      <h3>Three rules that follow from it</h3>
+      <ul>
+        <li><strong>Start and stop the pump on the casing gauge.</strong> While the pump is coming up to kill rate, or slowing down, the drillpipe reading is changing for reasons that have nothing to do with BHP. Hold casing pressure at its shut-in value by working the choke as the pump comes up, then switch to the drillpipe gauge once the rate is steady. On a floating rig, the casing value held at start-up is reduced by the measured choke line friction, per your procedure.</li>
+        <li><strong>Hold the pump rate constant.</strong> The drillpipe schedule is only valid at the rate whose SCR pressure it was built on. If the rate drifts, the gauge is no longer telling you about BHP.</li>
+        <li><strong>Allow for lag.</strong> A choke adjustment is a pressure pulse that has to travel down the annulus and back up the string before it shows on the drillpipe gauge. The delay grows with depth. Make a small adjustment, wait for it to arrive, then judge it. Chasing the gauge is how BHP ends up swinging both ways.</li>
+      </ul>
+
+      <h3>Depth and geometry inputs</h3>
+      <p>Pressure calculations on the kill sheet use <strong>TVD</strong>; volumes and strokes use <strong>measured depth (MD)</strong>. On a vertical well the two are close enough that the mistake hides. On a deviated or horizontal well, using MD in the kill mud weight formula gives a kill mud that is too light, and using TVD for strokes gives a schedule that finishes before kill mud reaches the bit. The difference is illustrated below, and handled properly in the <a href="/calculators/kill-sheet-horizontal">horizontal kill sheet calculator</a>.</p>
     </div>
 
     <picture>
       <source type="image/avif" srcset="/images/blog/tvd-vs-md.avif" />
       <source type="image/webp" srcset="/images/blog/tvd-vs-md.webp" />
-      <img src="/images/blog/tvd-vs-md.png" width="1640" height="1120" alt="Diagram comparing True Vertical Depth (the straight vertical distance) with Measured Depth (the longer distance along a deviated wellbore path)" style="max-width:820px;width:100%;height:auto;margin:28px 0;border:1px solid var(--iron);border-radius:6px;" />
+      <img src="/images/blog/tvd-vs-md.png" width="1640" height="1120" alt="Diagram comparing True Vertical Depth (the straight vertical distance) with Measured Depth (the longer distance along a deviated wellbore path)" loading="lazy" style="max-width:820px;width:100%;height:auto;margin:28px 0;border:1px solid var(--iron);border-radius:6px;" />
     </picture>
 
-    <div class="card-grid mt-24">
-      <div class="card">
-        <h3>True Vertical Depth (TVD)</h3>
-        <p>Advanced hydrostatics strictly distinguishes Measured Depth (MD) from TVD. In directional and horizontal wells, hydrostatic pressure is generated only by the vertical column of fluid, not the total length of pipe — critical for offshore operators in the Gulf and land-based directional drillers in the Permian.</p>
+    <div class="prose" style="max-width:820px;">
+      <p>Annular friction works in the kill's favour on land, adding a small amount to BHP while circulating, and is usually treated as part of the safety margin. In deep water the choke line is long and narrow, and its friction loss at kill rate can be large. It is measured during SCR recording and handled in the start-up procedure. Equivalent circulating density while drilling, the other place friction matters, is covered in the <a href="/calculators/ecd">ECD calculator</a>.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <div class="section-eyebrow">The Kill Sheet</div>
+      <h2 id="kill-sheet">Kill Mud Weight, ICP, FCP and the Drillpipe Schedule</h2>
+      <p>Three numbers drive every circulating kill. They are standard across IWCF and IADC WellSharp, and they depend on data that has to exist <em>before</em> the kick: SCR pressures at one or more kill rates on each pump, recorded per company procedure (typically each tour, after a mud weight change and after a BHA change), along with string and annular volumes and the pump output.</p>
+    </div>
+
+    <div class="card-grid grid-3 mt-24">
+      <div class="formula-block">
+        <div class="formula-label">Kill Mud Weight</div>
+        <div class="formula-eq">KMW = OMW + SIDPP ÷ (0.052 × TVD)</div>
+        <div class="formula-note">Rounded up per company procedure. Any trip margin or safety margin is added only as your procedure specifies.</div>
       </div>
-      <div class="card">
-        <h3>Pressure Gradients</h3>
-        <p>Standard saltwater gradients sit around 0.465 psi/ft. When formation pressures exceed this — abnormal pressure — hydrostatic management through high-density mud systems becomes necessary. See the <a href="/drilling/mud-weight">mud weight guide</a> for the full breakdown.</p>
+      <div class="formula-block">
+        <div class="formula-label">Initial Circulating Pressure</div>
+        <div class="formula-eq">ICP = SCR pressure + SIDPP</div>
+        <div class="formula-note">Drillpipe pressure at kill rate with original mud in the string.</div>
       </div>
-      <div class="card">
-        <h3>Equivalent Circulating Density</h3>
-        <p>ECD accounts for the added pressure exerted by fluid friction during circulation. In narrow mud weight windows, managing ECD is the difference between maintaining well control and fracturing the formation.</p>
+      <div class="formula-block">
+        <div class="formula-label">Final Circulating Pressure</div>
+        <div class="formula-eq">FCP = SCR pressure × KMW ÷ OMW</div>
+        <div class="formula-note">Drillpipe pressure at kill rate once kill mud reaches the bit. SIDPP is gone because the heavier string now balances the formation.</div>
+      </div>
+    </div>
+
+    <div class="prose" style="max-width:820px;margin-top:28px;">
+      <p>Between ICP and FCP, drillpipe pressure has to fall in step with the kill mud travelling down the string. Each stroke of heavier mud adds a little hydrostatic pressure inside the string, so a little less surface pressure is needed to hold the same BHP. That decline, plotted against strokes pumped, is the <strong>drillpipe pressure schedule</strong>.</p>
+      <p>For a vertical well with a single-size string, the decline is a straight line from ICP at zero strokes to FCP at surface-to-bit strokes. For a tapered string, the line changes slope at each change in pipe size, so it is built section by section. For a deviated or horizontal well, the hydrostatic gain stops growing once kill mud passes the bottom of the build, while friction keeps increasing, so the real curve sits above the straight line. A straight-line schedule on a horizontal well under-holds BHP in the middle of the displacement, which is exactly the mistake the <a href="/calculators/kill-sheet-horizontal">horizontal kill sheet</a> exists to prevent.</p>
+    </div>
+
+    <div class="note-box mt-24" style="max-width:820px;">
+      <strong id="worked-example">Worked example (illustrative numbers):</strong> Shut in at 11,500 ft TVD (vertical) on 11.2 ppg mud, with 420 psi SIDPP. The SCR pressure at the chosen kill rate is 600 psi, and surface-to-bit is 1,100 strokes.<br />
+      KMW = 11.2 + 420 ÷ (0.052 × 11,500) = 11.2 + 0.70 = 11.90 ppg, rounded up to <span class="highlight">12.0 ppg</span>.<br />
+      ICP = 600 + 420 = <span class="highlight">1,020 psi</span>.<br />
+      FCP = 600 × 12.0 ÷ 11.2 = <span class="highlight">643 psi</span>.<br />
+      Drillpipe pressure falls by (1,020 − 643) ÷ 11 = about 34 psi per 100 strokes.
+    </div>
+
+    <div class="table-wrap mt-24" style="max-width:820px;">
+      <table>
+        <thead><tr><th>Strokes pumped</th><th>0</th><th>200</th><th>400</th><th>600</th><th>800</th><th>1,000</th><th>1,100 (bit)</th></tr></thead>
+        <tbody>
+          <tr><td>Drillpipe pressure, psi</td><td>1,020</td><td>951</td><td>883</td><td>814</td><td>746</td><td>677</td><td>643</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose" style="max-width:820px;margin-top:20px;">
+      <p>These values are for this illustration only. Run your own well's numbers through the <a href="/calculators/kill-sheet">kill sheet calculator</a>, and weight-up quantities through the <a href="/calculators/barite-required">barite required calculator</a>. If the observed drillpipe pressure, once the pump is at kill rate with casing pressure held, differs noticeably from the calculated ICP, stop and resolve it before continuing. A common practice is to treat the observed value as the true ICP and recalculate the schedule and FCP from it. Whether you do that is set by your company procedure, and it is not a reason to keep pumping on a schedule you no longer trust.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <div class="section-eyebrow">Method 1</div>
+      <h2 id="drillers-method">The Driller's Method: Two Circulations</h2>
+      <p>The Driller's Method separates the two jobs. The first circulation removes the influx using the mud already in the hole. The second replaces that mud with kill-weight mud. Because nothing has to be mixed before the first circulation, it can start as soon as the shut-in data is recorded and the crew is briefed.</p>
+
+      <h3>When it is chosen</h3>
+      <ul>
+        <li>Kill mud is not ready, or the rig cannot weight up the full volume quickly.</li>
+        <li>Gas is migrating and pressures are climbing while shut in, so getting the influx moving now matters more than saving a circulation.</li>
+        <li>Shorter-handed crews, or wells where simplicity reduces the chance of error. The first circulation has a single constant target.</li>
+        <li>Swabbed kicks once the bit is back on bottom, where SIDPP is zero or near zero because the mud weight is already sufficient, and the job is mainly to circulate the influx out.</li>
+      </ul>
+
+      <h3>Step sequence</h3>
+      <ol>
+        <li><strong>Start up on the casing gauge.</strong> Bring the pump to kill rate while opening the choke to hold casing pressure at SICP (less choke line friction on a floater).</li>
+        <li><strong>Switch to the drillpipe gauge.</strong> At kill rate, read drillpipe pressure and confirm it against calculated ICP.</li>
+        <li><strong>First circulation: hold ICP constant.</strong> With original mud in the string, drillpipe pressure stays at ICP for the full circulation. Casing pressure will rise as gas expands on its way up. That is expected, and you do not chase it.</li>
+        <li><strong>Influx out: shut down on the casing gauge.</strong> Slow the pump while holding casing pressure, then close in. SIDPP and SICP should now both read about the original SIDPP. If SICP is higher, influx remains or pressure is trapped.</li>
+        <li><strong>Second circulation, surface to bit.</strong> Start up again holding casing pressure. While kill mud travels down the string, the annulus holds only clean original mud, so holding <em>casing</em> pressure constant keeps BHP constant. Alternatively, follow the ICP-to-FCP schedule on the drillpipe gauge. Use whichever your procedure specifies.</li>
+        <li><strong>Second circulation, bit to surface.</strong> Once kill mud reaches the bit, hold drillpipe pressure at FCP until kill mud returns at surface. Casing pressure falls toward zero as kill mud fills the annulus.</li>
+        <li><strong>Verify.</strong> Shut down, close in, and confirm zero on both gauges. Then flow check per procedure before opening the BOP.</li>
+      </ol>
+
+      <h3>Strengths and weaknesses</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Strengths</th><th>Weaknesses</th></tr></thead>
+          <tbody>
+            <tr><td>Starts immediately, with no wait for weighting up</td><td>Two circulations means more time under pressure, and more choke and pump wear</td></tr>
+            <tr><td>Fewer calculations. The first circulation is a single constant pressure</td><td>Higher annular pressures while gas is near surface, because the annulus is still original mud</td></tr>
+            <tr><td>Removes the influx early, ending migration problems sooner</td><td>Higher shoe pressure than Wait and Weight in many geometries, which matters when kick tolerance is tight</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
 
   <section class="block">
-    <div class="section-eyebrow">Kill Methods</div>
-    <h2 class="section-title">Secondary Well Control <span>&amp; Kill Methods</span></h2>
-    <p style="color:var(--fog);max-width:700px;margin-bottom:24px;">When primary barriers fail and a kick is detected and <a href="/blog/shut-in-pressure-behavior-explained">shut in</a>, supervisors choose the appropriate circulation method based on well conditions and equipment limits.</p>
+    <div class="prose" style="max-width:820px;">
+      <div class="section-eyebrow">Method 2</div>
+      <h2 id="wait-and-weight">Wait and Weight: One Circulation</h2>
+      <p>Wait and Weight (also called the Engineer's Method) keeps the well shut in while the pits are weighted up to kill mud weight, then removes the influx and kills the well in a single circulation. Kill mud goes down the string while the influx is still coming up the annulus.</p>
 
-    <div class="two-col">
-      <div>
-        <h3 style="font-family:var(--cond);font-weight:700;font-size:19px;text-transform:uppercase;color:var(--white);margin-bottom:10px;">The Driller's Method</h3>
-        <p style="color:var(--fog);font-size:14px;margin-bottom:12px;">Commonly used when the kick is discovered immediately. Involves two complete circulations:</p>
-        <ul style="padding-left:20px;">
-          <li style="color:var(--mist);margin-bottom:8px;">First circulation: remove the influx using original mud weight</li>
-          <li style="color:var(--mist);margin-bottom:8px;">Second circulation: pump kill mud to stabilize the well</li>
-          <li style="color:var(--mist);margin-bottom:8px;">Benefit: allows immediate response without waiting for kill mud to be weighted up</li>
-        </ul>
-      </div>
-      <div>
-        <h3 style="font-family:var(--cond);font-weight:700;font-size:19px;text-transform:uppercase;color:var(--white);margin-bottom:10px;">Wait and Weight Method</h3>
-        <p style="color:var(--fog);font-size:14px;margin-bottom:12px;">Often preferred to minimize pressure on the casing and BOP stack. Requires only one circulation:</p>
-        <ul style="padding-left:20px;">
-          <li style="color:var(--mist);margin-bottom:8px;">Kill mud is prepared before circulation begins</li>
-          <li style="color:var(--mist);margin-bottom:8px;">Influx is circulated out while kill mud is pumped in</li>
-          <li style="color:var(--mist);margin-bottom:8px;">Benefit: reduces total time the well is under pressure and maintains lower shoe pressure</li>
-        </ul>
+      <h3>When it is chosen</h3>
+      <ul>
+        <li>Kick tolerance or MAASP is tight. Kill mud usually starts filling the annulus before the gas reaches the shoe or the surface, which lowers peak pressures there, particularly when the drill string volume is smaller than the open-hole annular volume.</li>
+        <li>The rig can weight up the full kill volume quickly and consistently.</li>
+        <li>Pressures are stable while shut in, so waiting costs little.</li>
+      </ul>
+
+      <h3>Step sequence</h3>
+      <ol>
+        <li><strong>Weight up while shut in.</strong> Mix the full volume to KMW, at a consistent density. Monitor shut-in pressures throughout. If both rise together, gas is migrating and must be managed volumetrically while you wait (see below).</li>
+        <li><strong>Prepare the schedule.</strong> Calculate ICP, FCP and the drillpipe schedule against surface-to-bit strokes, adjusted for tapered or deviated strings.</li>
+        <li><strong>Start up on the casing gauge</strong>, exactly as for the Driller's Method, then switch to drillpipe at kill rate and confirm ICP.</li>
+        <li><strong>Surface to bit: follow the schedule.</strong> Step drillpipe pressure down from ICP to FCP as strokes are pumped.</li>
+        <li><strong>Bit to surface: hold FCP.</strong> Keep drillpipe pressure at FCP until kill mud returns at surface. Casing pressure rises as the gas expands, then falls once gas is out and kill mud fills the annulus.</li>
+        <li><strong>Verify.</strong> Shut down holding casing pressure, check both gauges at zero, and flow check per procedure.</li>
+      </ol>
+
+      <h3>Strengths and weaknesses</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Strengths</th><th>Weaknesses</th></tr></thead>
+          <tbody>
+            <tr><td>Lowest peak casing and shoe pressures in most geometries</td><td>Time spent weighting up, during which gas may migrate</td></tr>
+            <tr><td>One circulation, so less total time circulating under pressure</td><td>A more complex schedule, and more room for arithmetic error</td></tr>
+            <tr><td>Less wear on the choke and surface equipment</td><td>Depends on mixing capacity. If kill mud density varies, the schedule is no longer valid</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
-
-    <p style="color:var(--fog);margin-top:20px;">Both methods circulate at a reduced, pre-set kill rate rather than normal drilling rate, so standpipe pressure has to be recalculated for that slower rate and for the heavier kill mud rather than read off the normal drilling chart — see the <a href="/calculators/pump-pressure-adjustment" style="color:var(--amber);">new pump pressure calculator</a> for that adjustment.</p>
 
     <picture>
       <source type="image/avif" srcset="/images/blog/kill-methods-comparison.avif" />
       <source type="image/webp" srcset="/images/blog/kill-methods-comparison.webp" />
-      <img src="/images/blog/kill-methods-comparison.png" width="1640" height="1040" alt="Side-by-side comparison of the Driller's Method (two circulations) versus the Wait and Weight Method (single circulation) for killing a well" style="max-width:820px;width:100%;height:auto;margin:28px 0;border:1px solid var(--iron);border-radius:6px;" />
+      <img src="/images/blog/kill-methods-comparison.png" width="1640" height="1040" alt="Side-by-side comparison of the Driller's Method (two circulations) versus the Wait and Weight Method (single circulation) for killing a well" loading="lazy" style="max-width:820px;width:100%;height:auto;margin:28px 0;border:1px solid var(--iron);border-radius:6px;" />
     </picture>
 
-    <div class="note-box mt-24" style="max-width:800px;">
-      <strong id="worked-example">Worked example — Kill Mud Weight:</strong> Shut in at 11,500 ft TVD on 11.2 ppg original mud weight with 420 psi SIDPP. KMW = 11.2 + (420 ÷ (0.052 × 11,500)) = 11.2 + (420 ÷ 598) = 11.2 + 0.70 = <span class="highlight">11.90 ppg</span>, rounded up to <span class="highlight">12.0 ppg</span> per IADC WellSharp convention before kill mud is actually mixed. That 0.7 ppg margin is exactly the precision that gets lost doing this math by hand under time pressure — which is why the <a href="/calculators/kill-sheet" style="color:var(--amber);">kill sheet calculator</a> exists.
+    <div class="prose" style="max-width:820px;">
+      <p>Some procedures also describe a <strong>concurrent method</strong>, where mud is weighted up in stages while circulating and the drillpipe schedule is recalculated as each new density reaches the bit. It is harder to run accurately, and it is used only where the operator's procedure provides for it. For the specific points where crews confuse the two main methods — which pressure to hold, and when — see <a href="/blog/drillers-method-wait-and-weight-mixups">Driller's Method and Wait and Weight mix-ups</a>.</p>
     </div>
-
-    <p style="color:var(--fog);margin-top:24px;">For automated calculations, use the <a href="/calculators/kill-sheet" style="color:var(--amber);">kill sheet calculator</a>.</p>
-    <p style="color:var(--fog);margin-top:12px;">These methods look clean on paper. For how they actually play out, see common <a href="/blog/drillers-method-wait-and-weight-mixups" style="color:var(--amber);">Driller's Method vs. Wait and Weight mix-ups</a>, a <a href="/blog/volumetric-kill-real-story" style="color:var(--amber);">volumetric kill from the field</a> when circulation wasn't an option, a set of <a href="/blog/well-control-curveball-scenarios" style="color:var(--amber);">well control curveball scenarios</a> that complicate the textbook sequence, and the <a href="/blog/pit-volumes-maasp-math-mistakes" style="color:var(--amber);">pit volumes and MAASP math mistakes</a> that trip up the numbers behind it.</p>
   </section>
 
   <section class="block">
-    <div class="section-eyebrow">Regional Context</div>
-    <h2 class="section-title">Local Operational <span>Context</span></h2>
-    <p style="color:var(--fog);max-width:700px;margin-bottom:24px;">The same hydrostatic math applies everywhere, but the margin for error it leaves you shrinks or grows depending on where you're drilling.</p>
+    <div class="prose" style="max-width:820px;">
+      <div class="section-eyebrow">Method 3</div>
+      <h2 id="volumetric">The Volumetric Method and Lubricate-and-Bleed</h2>
+      <p>Circulating methods need a path from the pump, through the bit, and up the annulus. When there is no such path, gas still migrates. In a closed well, a rising bubble that cannot expand carries its bottom-of-hole pressure toward the surface, and every gauge and every point in the well climbs with it. The volumetric method is the controlled answer: let the gas rise and expand, and bleed mud in measured volumes so BHP stays inside a working band.</p>
 
-    <div class="two-col">
-      <div>
-        <ul style="padding-left:20px;">
-          <li style="color:var(--mist);margin-bottom:12px;"><strong style="color:var(--white);">The Permian Basin (TX/NM):</strong> narrow windows between pore pressure and fracture gradients in horizontal lateral sections</li>
-          <li style="color:var(--mist);margin-bottom:12px;"><strong style="color:var(--white);">The Gulf Coast:</strong> hydrostatic pressure management in high-temperature environments and complex salt dome formations</li>
-          <li style="color:var(--mist);margin-bottom:12px;"><strong style="color:var(--white);">Offshore Deepwater:</strong> subsea well control, including riser margins and the effect of cold ocean temperatures on mud rheology</li>
-        </ul>
+      <h3>When it is chosen</h3>
+      <ul>
+        <li>The string is out of the hole, or far off bottom above the influx.</li>
+        <li>The bit or string is plugged, or there is a washout high in the string.</li>
+        <li>The pumps or surface equipment cannot circulate.</li>
+        <li>A gas kick is shut in, a Wait and Weight weight-up is under way, and pressures are rising from migration.</li>
+      </ul>
+
+      <h3>The principle in numbers</h3>
+      <p>Every barrel of mud bled from the annulus removes hydrostatic pressure from the well. How much depends on where the gas sits, through the annular capacity there:</p>
+      <div class="formula-block">
+        <div class="formula-label">Hydrostatic loss per barrel bled</div>
+        <div class="formula-eq">psi/bbl = (0.052 × MW) ÷ annular capacity (bbl/ft)</div>
+        <div class="formula-note">Illustration: 11.2 ppg mud around 5 in pipe in 8½ in hole (0.0459 bbl/ft) gives 0.582 ÷ 0.0459 ≈ 12.7 psi per barrel. Use the capacity at the gas, and recalculate when the gas moves into a different annular size.</div>
       </div>
-      <div class="card" style="border:1px solid var(--iron);border-radius:4px;">
-        <h3>Equipment Spotlight: The BOP</h3>
-        <p>The blowout preventer is the final line of defense. Understanding the pressure ratings of rams and annular preventers is a core component of advanced well control. See the full <a href="/equipment/bop" style="color:var(--amber);">BOP components guide</a>.</p>
-      </div>
+
+      <h3>Step sequence (outline)</h3>
+      <ol>
+        <li><strong>Set the limits.</strong> Choose a safety margin and a working pressure range from your procedure, and convert the working range into a bleed volume using psi/bbl.</li>
+        <li><strong>Let casing pressure rise</strong>, without bleeding, by the safety margin plus the working range.</li>
+        <li><strong>Bleed mud at the choke while holding casing pressure constant</strong>, until the bled volume equals the volume for one working range. Measure it in the trip tank or a small calibrated tank, never a large active pit.</li>
+        <li><strong>Shut the choke and let pressure build</strong> again by one working range, then repeat the bleed.</li>
+        <li><strong>Continue until gas reaches the choke.</strong> From that point, bleeding would release gas rather than mud, and the method changes to lubricate-and-bleed.</li>
+      </ol>
+
+      <h3>Lubricate-and-bleed</h3>
+      <p>With gas at surface under the BOP, the job is to replace it with mud without letting BHP fall. Pump a measured volume of mud into the well, usually through the kill line. Allow time for it to fall through the gas. Then bleed <strong>gas only</strong> until casing pressure falls to the value it read before that pump stroke, less the hydrostatic pressure the new mud now adds. Repeat in cycles until the gas is replaced. If mud starts to come at the choke, stop bleeding: the mud has not had time to fall through. The volumes, waiting times and pressure steps come from your procedure.</p>
+
+      <h3>Stripping back to bottom</h3>
+      <p>Where the string is off bottom and the plan is to get back down to circulate, the volumetric method is often combined with stripping through the annular or ram-to-ram, per procedure. The trip tank then has to account for pipe displacement as well as the volumetric bleed volumes, which makes the bookkeeping the main source of error. A field account of a volumetric job lasting two days, and of the disagreement that decided it, is in <a href="/blog/volumetric-kill-real-story">a real volumetric kill</a>. Migration-rate estimates are on the <a href="/calculators/gas-migration">gas migration calculator</a>.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <div class="section-eyebrow">Method 4</div>
+      <h2 id="bullheading">Bullheading</h2>
+      <p>Bullheading does not circulate the influx out. It pumps kill fluid down the string or the annulus, with no return path, and pushes the influx back into the formation. In workover and completion operations it is a routine way to kill a well. In drilling it is a deliberate choice for specific situations, because it accepts pressures that the circulating methods are designed to avoid.</p>
+
+      <h3>When it is chosen</h3>
+      <ul>
+        <li>Bringing the influx to surface is unacceptable, for example a high-H2S kick where the surface gas handling system or the people near it cannot cope.</li>
+        <li>The influx is larger than kick tolerance allows, so circulating it past the shoe would likely break the shoe down.</li>
+        <li>The string is out of the hole and stripping back in is not practical.</li>
+        <li>On completed wells, with a known, injectable reservoir and a defined pressure envelope.</li>
+      </ul>
+
+      <h3>What has to be planned</h3>
+      <ul>
+        <li><strong>A maximum pump pressure schedule</strong>, from the burst ratings of casing or tubing, wellhead and BOP ratings, and formation strength. It is calculated per procedure before the pump starts. The <a href="/calculators/bullheading">bullheading calculator</a> works the surface pressure limits.</li>
+        <li><strong>A pump rate high enough to beat migration.</strong> If gas rises through the fluid faster than fluid is pumped down, the influx is not being displaced.</li>
+        <li><strong>Where the fluid will actually go.</strong> The influx is intended to return to the zone it came from, but fluid takes the weakest path. In open hole that is often just below the shoe, and fracturing there can create an underground blowout.</li>
+        <li><strong>What success looks like</strong> on the pressure chart: pressure rising while the wellbore volume is compressed, then levelling or falling once injection is established.</li>
+      </ul>
+      <p>Bullheading trades the risks of handling the influx at surface for the risk of fracturing downhole. It is a decision for the well control supervisor and the drilling engineer under the bridging document, not a fallback for a kill that is going badly.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Selection</div>
+    <h2 class="section-title" id="choosing">Choosing a <span>Kill Method</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:24px;">Most operators state a default method in their well control manual, and the bridging document can override it for a particular well. The table summarises the usual reasoning, not a rule.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Situation</th><th>Usually favours</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>Kill mud not available or slow to mix</td><td>Driller's Method</td><td>Circulation can start immediately with the mud in the hole</td></tr>
+          <tr><td>Tight kick tolerance or low MAASP, kill mud on hand</td><td>Wait and Weight</td><td>Lower peak shoe and casing pressures in most geometries</td></tr>
+          <tr><td>Gas migrating fast while shut in</td><td>Driller's, or volumetric while waiting</td><td>Gets the influx moving before migration builds pressure</td></tr>
+          <tr><td>Swabbed kick, bit on bottom, SIDPP near zero</td><td>Driller's Method (first circulation)</td><td>Mud weight is sufficient. The job is removing the influx</td></tr>
+          <tr><td>Off bottom, out of hole, plugged string, no pumps</td><td>Volumetric, then lubricate-and-bleed, or stripping</td><td>No circulation path through the bit</td></tr>
+          <tr><td>Influx must not reach surface, or exceeds kick tolerance</td><td>Bullheading</td><td>Returns the influx to the formation, within planned limits</td></tr>
+          <tr><td>Horizontal or highly deviated well</td><td>Either circulating method, with a non-linear schedule</td><td>A straight-line schedule under-holds BHP</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <div class="section-eyebrow">Where Kills Go Wrong</div>
+      <h2 id="mistakes">Common Mistakes</h2>
+      <ul>
+        <li><strong>Holding drillpipe pressure during pump start-up.</strong> The drillpipe reading rises with friction as the pump comes up. Holding it constant by opening the choke drops BHP and lets more influx in. Start up on the casing gauge.</li>
+        <li><strong>Using MD where TVD belongs</strong>, or TVD where MD belongs. TVD goes into pressure and mud weight. MD goes into volumes and strokes.</li>
+        <li><strong>Stale SCR pressures.</strong> SCRs taken before a mud weight change, a BHA change or a long section drilled give a wrong ICP and a wrong FCP. Take them per procedure, and confirm ICP once the pump is at kill rate.</li>
+        <li><strong>Chasing the gauge.</strong> Making a second choke adjustment before the first has reached the drillpipe gauge produces oscillation. Small moves, then wait.</li>
+        <li><strong>Letting the pump rate drift</strong> while still reading the same schedule. The schedule is tied to one rate.</li>
+        <li><strong>Inconsistent kill mud density</strong> in Wait and Weight. Light slugs going downhole mean the schedule no longer represents BHP.</li>
+        <li><strong>Mistaking trapped pressure for formation pressure.</strong> Pressure trapped by a fast shut-in, or left over after a kill, inflates SIDPP and therefore KMW. Your procedure will say how to check for it, usually by bleeding small, measured volumes and watching the response.</li>
+        <li><strong>Opening the choke to protect MAASP</strong> without a decision. Reducing back-pressure to keep casing pressure under MAASP lowers BHP and invites more influx. MAASP is calculated for the mud between the shoe and surface. Once the influx is above the shoe, or kill mud has reached it, its meaning changes. This is a call for the well control supervisor per the bridging document. See the <a href="/calculators/maasp">MAASP calculator</a> and <a href="/blog/pit-volumes-maasp-math-mistakes">pit volume and MAASP math mistakes</a>.</li>
+        <li><strong>Misreading pit gain during the kill.</strong> Gas expansion raises pit level as the bubble nears surface, which is expected. A pit loss while casing pressure falls unexpectedly may mean losses downhole. Keep a pit and stroke log, and investigate any trend you cannot explain.</li>
+        <li><strong>Declaring the well dead too early.</strong> Zero on both gauges is necessary but not sufficient. Flow check, and follow your procedure on checking for gas trapped under the BOP before opening it.</li>
+      </ul>
+      <p>For how these errors combine in practice, see <a href="/blog/well-control-curveball-scenarios">well control curveball scenarios</a> and <a href="/blog/shut-in-pressure-behavior-explained">what shut-in pressures actually do</a>.</p>
+
+      <h2 id="mpd">Kill Methods and Managed Pressure Drilling</h2>
+      <p>On a well drilled with managed pressure drilling (MPD), surface back-pressure is applied all the time, and small influxes may be circulated out on the MPD choke within a pre-agreed <strong>operations matrix</strong>. That matrix, part of the well-specific documentation, sets the influx size and pressure limits at which the crew stops handling the event on the MPD system, shuts in on the BOP, and changes over to conventional well control using the methods above. The MPD system is not a substitute for the BOP. The handover point has to be agreed and drilled before the section starts, not worked out during the event.</p>
     </div>
   </section>
 
@@ -160,35 +344,34 @@ const jsonLd = {
 
     <div class="accordion">
       <details class="acc-item">
-        <summary class="acc-header">How do I calculate Kill Mud Weight (KMW)?<span class="acc-arrow">▼</span></summary>
-        <div class="acc-body"><p>KMW = (SIDPP ÷ (0.052 × TVD)) + Original Mud Weight. See the <a href="/calculators/hydrostatic" style="color:var(--amber);">hydrostatic calculator suite</a> for the full worked calculation.</p></div>
+        <summary class="acc-header">Which kill method is safest, Driller's or Wait and Weight?<span class="acc-arrow">▼</span></summary>
+        <div class="acc-body"><p>Neither is safer in general. Wait and Weight usually gives lower peak shoe and casing pressures. The Driller's Method starts sooner and is simpler to run. Which one fits depends on kick tolerance, kill mud availability, gas migration and your company procedure.</p></div>
       </details>
       <details class="acc-item">
-        <summary class="acc-header">What are the primary warning signs of a kick?<span class="acc-arrow">▼</span></summary>
-        <div class="acc-body"><p>Common indicators include an increase in pit volume, a flow rate increase while drilling, and a decrease in pump pressure. Full breakdown in <a href="/blog/five-warning-signs-of-a-kick" style="color:var(--amber);">five warning signs of a kick</a>.</p></div>
+        <summary class="acc-header">Why does drillpipe pressure fall from ICP to FCP?<span class="acc-arrow">▼</span></summary>
+        <div class="acc-body"><p>As heavier kill mud fills the string, it adds hydrostatic pressure inside the pipe, so less surface pressure is needed to hold the same bottomhole pressure. Once kill mud reaches the bit, SIDPP has been fully replaced by hydrostatic pressure, and only the friction loss at the heavier density remains. That is FCP.</p></div>
       </details>
       <details class="acc-item">
-        <summary class="acc-header">What is the Volumetric Method?<span class="acc-arrow">▼</span></summary>
-        <div class="acc-body"><p>A non-circulative well control technique used when the drill string is off-bottom or pumps have failed. It relies on allowing gas to expand while bleeding off specific volumes of mud at the surface to keep bottomhole pressure constant.</p></div>
+        <summary class="acc-header">When is the volumetric method used instead of circulating?<span class="acc-arrow">▼</span></summary>
+        <div class="acc-body"><p>When there is no circulation path through the bit: the string is out of the hole or far off bottom, the string is plugged, or the pumps are down. It is also used to control migration while kill mud is being mixed for Wait and Weight.</p></div>
       </details>
       <details class="acc-item">
-        <summary class="acc-header">What is Managed Pressure Drilling (MPD)?<span class="acc-arrow">▼</span></summary>
-        <div class="acc-body"><p>An advanced drilling process used to precisely control the annular pressure profile throughout the wellbore, allowing operators to drill wells where the margin between pore pressure and fracture gradient is extremely tight.</p></div>
+        <summary class="acc-header">Does bullheading always push the influx back into the zone it came from?<span class="acc-arrow">▼</span></summary>
+        <div class="acc-body"><p>No. Fluid goes to the weakest point exposed to the pressure, which in open hole is often just below the casing shoe. That is why bullheading is planned against formation strength and equipment limits, and is not used as an improvised fallback.</p></div>
       </details>
     </div>
   </section>
 
   <section class="block">
-    <div class="note-box" style="max-width:800px;margin:0 auto 32px;text-align:center;">
-      <strong>Advance your drilling career.</strong> Whether preparing for IOGP supervisor certification or needing real-time reference in the field, this is your complete technical starting point.
+    <div class="note-box" style="max-width:820px;margin:0 auto 32px;">
+      <strong>Practise the numbers before you need them.</strong> Work a full sheet on the <a href="/calculators/kill-sheet" style="color:var(--amber);">kill sheet calculator</a>, check the influx you could take with the <a href="/calculators/kick-tolerance" style="color:var(--amber);">kick tolerance calculator</a>, and test yourself on the <a href="/well-control-quiz" style="color:var(--amber);">well control quiz</a>. Early detection keeps kills small: <a href="/blog/five-warning-signs-of-a-kick" style="color:var(--amber);">five warning signs of a kick</a> and <a href="/blog/well-control-basics" style="color:var(--amber);">well control basics for new crews</a>.
     </div>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      <a href="/drilling/well-control" class="btn btn-primary">Well Control Procedures</a>
+      <a href="/drilling/well-control" class="btn btn-primary">Well Control Hub</a>
       <a href="/calculators" class="btn btn-outline">All Drilling Calculators</a>
     </div>
-    <p style="text-align:center;margin-top:20px;font-size:13px;color:var(--fog);">Explore the <a href="/glossary" style="color:var(--amber);">full field glossary</a> for oilfield terminology.</p>
+    <p style="text-align:center;margin-top:20px;font-size:13px;color:var(--fog);">BOP stack, rams and pressure checks: <a href="/equipment/bop" style="color:var(--amber);">BOP components guide</a>. Terminology: <a href="/glossary" style="color:var(--amber);">field glossary</a>.</p>
   </section>
 
   <SourcesStandards lang="en" ids={['api53', 'cfr250g', 'iwcf', 'iadcWellsharp']} />
 </BaseLayout>
-

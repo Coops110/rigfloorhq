@@ -9,13 +9,13 @@ const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/drilling/well-control.astro',
   path: '/drilling/well-control',
   headline: 'Well Control & Kicks — Recognition, Shut-In, Kill Procedures',
-  description: "Complete well control reference: kick recognition signs, shut-in procedures, the driller's method vs wait-and-weight, and kill sheet calculations.",
+  description: "Well control reference: kick causes, detection while drilling and tripping, shut-in, well barriers, the four kill methods and kill sheet calculations.",
   lang: 'en',
 });
 ---
 <BaseLayout
   title="Well Control & Kicks — Recognition, Shut-In, Kill Procedures"
-  description="Complete well control reference: kick recognition signs, shut-in procedures, the driller's method vs wait-and-weight, and kill sheet calculations."
+  description="Well control reference: kick causes, detection while drilling and tripping, shut-in, well barriers, the four kill methods and kill sheet calculations."
   extraJsonLd={[techArticleJsonLd]}
   breadcrumbs={[{ label: 'Drilling', href: '/drilling' }, { label: 'Well Control', href: '/drilling/well-control' }]}
   lang="en"
@@ -79,7 +79,7 @@ const techArticleJsonLd = techArticleSchema({
           </details>
           <details class="acc-item">
             <summary class="acc-header">Step 5 — Kill the Well<span class="acc-arrow">▼</span></summary>
-            <div class="acc-body"><p>Driller's Method or Wait-and-Weight — both are valid, follow your company's approved procedure. See comparison below.</p></div>
+            <div class="acc-body"><p>Driller's Method or Wait-and-Weight — both are valid, follow your company's approved procedure. See comparison below, and the <a href="/pillars/advanced-well-control-and-hydrostatics" style="color:var(--amber);">well kill methods guide</a> for step sequences and when volumetric or bullheading applies instead.</p></div>
           </details>
           <details class="acc-item">
             <summary class="acc-header">Step 6 — Verify & Resume<span class="acc-arrow">▼</span></summary>
@@ -91,8 +91,82 @@ const techArticleJsonLd = techArticleSchema({
   </section>
 
   <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <div class="section-eyebrow">Prevention</div>
+      <h2 id="kick-causes">What Causes a Kick</h2>
+      <p>Every kick has the same root cause. Somewhere in the open hole, pressure in the wellbore has fallen below the pore pressure of a permeable formation, and fluid flows from high pressure to low. The mud column is the primary barrier, so nearly every cause is a way of making it lighter, shorter or less effective. Knowing which one is behind a kick also tells you a lot about how to kill it.</p>
+
+      <h3>Insufficient mud weight</h3>
+      <p>The mud is simply too light for the formation. Usually that is because the well has drilled into higher pore pressure than planned, in a transition zone or a charged formation. Sometimes the mud has been made lighter by dilution, by water additions, or by barite settling out (sag). Transition zones tend to give warning: a rising rate of penetration, increasing background or connection gas, changing shale cuttings and cavings, rising torque and drag, and trends in the d-exponent where the mud logger tracks it. Treat these as reasons to flow check and talk to the drilling engineer, not as curiosities. This is the one kick type that needs a heavier mud to kill, because SIDPP shows how far the column has fallen short.</p>
+
+      <h3>Swabbing</h3>
+      <p>Pulling pipe drags mud upward and lowers bottomhole pressure for as long as the pipe is moving. Pull fast enough, with thick mud, tight clearances or a balled-up BHA, and the reduction can bring BHP below pore pressure, drawing formation fluid in below the bit. A swabbed influx often does not make the well flow straight away. It shows up first as the hole taking <em>less</em> fill than calculated. Trip speeds, trip margin and swab/surge limits are set per procedure. The <a href="/drilling/mud-weight" style="color:var(--amber);">mud weight guide</a> explains how swab and surge pressures arise, and the <a href="/calculators/tripping-pressure-effects" style="color:var(--amber);">tripping pressure effects calculator</a> and the <a href="/calculators/trip-margin" style="color:var(--amber);">trip margin calculator</a> show the sizes involved. Because the mud weight is usually adequate, a swabbed kick is often killed by getting back to bottom and circulating it out, not by weighting up.</p>
+
+      <h3>Failing to keep the hole full</h3>
+      <p>Every stand pulled removes steel from the hole, and the mud level drops by the volume of that steel unless the hole is refilled. Pulling wet pipe, with the string full of mud, removes the closed-end displacement, which is a much larger volume. If the hole is not filled, the mud column gets shorter and hydrostatic pressure falls by the mud gradient (0.052 × mud weight, in psi) for every foot of level lost. This is why tripping is measured on the trip tank and not by eye.</p>
+
+      <h3>Lost circulation</h3>
+      <p>When mud is lost to a weak or fractured zone, the fluid level in the annulus can drop, and with it hydrostatic pressure on every zone above the loss. A well that was losing can start flowing from a different zone, or from the same one, and losses followed by a gain is a classic sequence that leads to an underground blowout. During losses, keep the annulus full with the fluid your procedure specifies, measure what goes in, and stay ready to shut in.</p>
+
+      <h3>Gas-cut mud</h3>
+      <p>Gas released from drilled cuttings, or from connection and trip gas, expands as it rises, so mud at the flowline can weigh far less than the mud going in. Most of that expansion happens near surface, so on its own gas-cut mud usually reduces BHP much less than the flowline weight suggests. It is still a warning. It can mean a gas zone is being drilled with little or no overbalance, and in shallow hole the reduction matters more. A gas-cut reading is a reason to flow check, not a reason to assume everything is fine. The only way to tell gas-cut mud from an influx is to watch whether the well flows with the pumps off.</p>
+
+      <h3>Other causes</h3>
+      <p>Less common causes include shallow gas before the BOP is installed, cement losing hydrostatic support while it sets, and drilling into or near an adjacent well. Each of these is managed through the well plan and your bridging document rather than through routine rig-floor practice.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <div class="section-eyebrow">Tripping</div>
+      <h2 id="kick-detection-tripping">Kick Detection While Tripping</h2>
+      <p>A large share of kicks are taken on trips, when no one is drilling and attention drifts. While drilling, a kick shows up as more flow coming out than going in. On a trip there is no pump running, so the only reliable measurement is the volume needed to keep the hole full.</p>
+
+      <h3>Trip tank and trip sheet</h3>
+      <p>The trip tank is a small, tall, calibrated tank that circulates through the hole. A barrel shows up as several inches of level change, which the large active pits cannot show. Before the trip, calculate the fill expected for each stand or group of stands (steel displacement for dry pipe, closed-end displacement for wet pipe) and write it on the trip sheet. As the trip proceeds, record the actual fill against it at the interval your procedure sets.</p>
+      <div class="formula-block">
+        <div class="formula-label">Expected fill when pulling</div>
+        <div class="formula-eq">Fill (bbl) = displacement (bbl/ft) × length pulled (ft)</div>
+        <div class="formula-note">Dry pipe: metal displacement. Wet pipe (float or plugged string, no slug): closed-end displacement. Pipe tables give both per pipe size and weight. The <a href="/calculators/slug-calculation" style="color:var(--amber);">slug calculator</a> works the slug that lets you pull dry.</div>
+      </div>
+
+      <h3>Reading the trip tank</h3>
+      <ul>
+        <li><strong>Pulling out, hole takes less fill than calculated:</strong> something else is filling the space the steel left. Assume formation fluid has been swabbed in until you have shown otherwise.</li>
+        <li><strong>Pulling out, hole takes more than calculated:</strong> losses. Hydrostatic may be falling elsewhere.</li>
+        <li><strong>Running in, more returns than the pipe displaces:</strong> the well is flowing.</li>
+        <li><strong>Running in, fewer returns than displacement:</strong> losses, possibly induced by surge from running too fast.</li>
+      </ul>
+      <p>Flow checks on a trip are made at the points your procedure sets. Common points are before pulling off bottom, at the casing shoe, and before the BHA is pulled through the BOP, plus any time the fill does not match.</p>
+
+      <h3>If the well flows on a trip</h3>
+      <p>Follow your company procedure. The standard IWCF/IADC sequence is to stab the full-opening safety valve (FOSV) in the open position on the string, close it, then shut in the BOP using the hard or soft method your procedure specifies, and record SIDPP, SICP and pit gain. Do not try to run back to bottom with the well open. With the well shut in off bottom, the options are stripping back to bottom, the volumetric method, or bullheading. Each is covered in the <a href="/pillars/advanced-well-control-and-hydrostatics" style="color:var(--amber);">well kill methods guide</a>. If the fill is wrong but the well does not flow, your procedure will say whether to run back to bottom and circulate bottoms up through the choke before continuing.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <div class="section-eyebrow">Barriers</div>
+      <h2 id="barriers">The Well Barrier Concept</h2>
+      <p>A well barrier is an envelope of one or more elements that together stop formation fluid flowing uncontrolled to surface or into another zone. Industry standards and operator policies, such as NORSOK D-010 and the well integrity standards most operators write to, require at least <strong>two independent, tested barriers</strong> between a flowing formation and the environment whenever a well is being drilled.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Barrier</th><th>Elements while drilling</th><th>How it is verified</th></tr></thead>
+          <tbody>
+            <tr><td>Primary</td><td>The mud column: correct weight, hole kept full</td><td>Mud weight checks, pit and trip tank monitoring, flow checks</td></tr>
+            <tr><td>Secondary</td><td>BOP, wellhead, casing and its cement, and the formation strength at the shoe</td><td>BOP pressure and function tests, casing tests, leak-off or formation integrity test</td></tr>
+            <tr><td>Beyond the rig</td><td>Capping or relief-well capability, for when both fail</td><td>Emergency response and source control planning</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:18px;">Two points matter on the rig floor. First, a kick means the primary barrier has failed, and you are now relying on the secondary barrier alone. The purpose of the kill is to restore the primary barrier by putting kill-weight mud back in the hole. Second, the barriers must be <strong>independent</strong>. If one failed element would defeat both envelopes at once, there are not really two barriers, which is why any element shared by both needs particular attention in the well plan. BOP testing intervals and pressures come from API Standard 53, the applicable regulator (in US federal waters, 30 CFR 250 Subpart G) and your operator. The equipment itself is covered on the <a href="/equipment/bop" style="color:var(--amber);">BOP equipment page</a>.</p>
+    </div>
+  </section>
+
+  <section class="block">
     <div class="section-eyebrow">Kill Methods</div>
     <h2 class="section-title">Driller's Method vs <span>Wait-and-Weight</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:24px;">Every circulating kill method works on the same principle: hold <strong>bottomhole pressure constant</strong>, at or slightly above formation pressure, by adjusting the choke while pumping at a steady, pre-recorded kill rate. The drillpipe gauge is the window on bottomhole pressure, because the string contains mud of known weight and no influx. Methods differ only in when the kill-weight mud goes in. The two standard circulating methods compare like this:</p>
 
     <div class="table-wrap">
       <table>
@@ -124,13 +198,94 @@ const techArticleJsonLd = techArticleSchema({
       <strong>BOP Pressure Checks (Daily):</strong> Accumulator pressure: <span class="highlight">3,000 psi</span> · Manifold pressure: <span class="highlight">1,500 psi</span> · Annular operating: <span class="highlight">700–1,500 psi</span> · Air supply to pumps: <span class="highlight">125 psi</span>. Full detail on the <a href="/equipment/bop" style="color:var(--amber);">BOP equipment page</a>, including the <a href="/equipment/well-protector" style="color:var(--amber);">well protector</a> that sits below it on a subsea stack.
     </div>
 
-    <p style="color:var(--fog);font-size:14px;margin-top:24px;max-width:700px;">Ready to go deeper? The <a href="/pillars/advanced-well-control-and-hydrostatics" style="color:var(--amber);">Advanced Well Control guide</a> covers TVD vs MD, ECD, the volumetric method, managed pressure drilling, and regional considerations for supervisor and engineer-level certification.</p>
+    <h3 class="section-title" style="font-size:24px;margin-top:40px;">All Four Kill Methods at a Glance</h3>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:18px;">The two circulating methods cover most kicks taken with the bit on or near bottom. When circulation through the bit is not possible, or the influx must not come to surface, one of the other two applies.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Method</th><th>Circulations</th><th>Usually chosen when</th><th>Key control rule</th></tr></thead>
+        <tbody>
+          <tr><td>Driller's Method</td><td>Two</td><td>Kill mud is not ready, gas is migrating, or simplicity matters most</td><td>Hold ICP for the first circulation. Then casing pressure, or the schedule, to the bit, then FCP to surface</td></tr>
+          <tr><td>Wait and Weight</td><td>One</td><td>Kick tolerance or MAASP is tight and kill mud can be mixed quickly</td><td>Drillpipe pressure steps from ICP to FCP surface-to-bit, then FCP is held to surface</td></tr>
+          <tr><td>Volumetric, then lubricate-and-bleed</td><td>None</td><td>Off bottom, out of the hole, plugged string or pumps down</td><td>Bleed measured mud volumes as gas migrates, then replace gas with mud at surface</td></tr>
+          <tr><td>Bullheading</td><td>None (injection)</td><td>The influx must not reach surface, or it exceeds kick tolerance</td><td>Pump within a pre-calculated maximum pressure schedule, at a rate faster than migration</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="color:var(--fog);font-size:14px;margin-top:20px;max-width:760px;">Step sequences, the ICP-to-FCP drillpipe pressure schedule with a worked example, pros and cons, and the mistakes that most often go wrong are in the <a href="/pillars/advanced-well-control-and-hydrostatics" style="color:var(--amber);">well kill methods guide</a>, written at supervisor level.</p>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Tools</div>
+    <h2 class="section-title" id="calculators">Well Control <span>Calculators</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:18px;">The numbers behind a kill are simple, but they are easy to get wrong at 3 a.m. with the alarm going. Each of these works one part of the problem. All of them are for practice and cross-checking, not a replacement for the rig's own kill sheet and the supervisor's judgement.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Calculator</th><th>Use it for</th></tr></thead>
+        <tbody>
+          <tr><td><a href="/calculators/kill-sheet" style="color:var(--amber);">Kill sheet</a></td><td>KMW, ICP, FCP and the drillpipe pressure schedule from SIDPP, SCR pressure, TVD and string volumes</td></tr>
+          <tr><td><a href="/calculators/kill-sheet-horizontal" style="color:var(--amber);">Horizontal kill sheet</a></td><td>The non-linear schedule for deviated and horizontal wells, where a straight line under-holds bottomhole pressure</td></tr>
+          <tr><td><a href="/calculators/kick-tolerance" style="color:var(--amber);">Kick tolerance</a></td><td>The largest influx the well can take and still be circulated out without breaking down the shoe</td></tr>
+          <tr><td><a href="/calculators/maasp" style="color:var(--amber);">MAASP</a></td><td>Maximum allowable annular surface pressure from the shoe test and current mud weight</td></tr>
+          <tr><td><a href="/calculators/kick-influx-geometry" style="color:var(--amber);">Kick influx geometry</a></td><td>Influx height and gradient from pit gain and hole size, which helps identify gas, oil or water</td></tr>
+          <tr><td><a href="/calculators/gas-migration" style="color:var(--amber);">Gas migration</a></td><td>Migration rate from rising shut-in pressures, and the input to volumetric control</td></tr>
+          <tr><td><a href="/calculators/bullheading" style="color:var(--amber);">Bullheading</a></td><td>Surface pressure limits for pumping the influx back into the formation</td></tr>
+          <tr><td><a href="/calculators/barite-required" style="color:var(--amber);">Barite required</a></td><td>Sacks and volume increase to weight up from original to kill mud weight</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <div class="section-eyebrow">The Crew</div>
+      <h2 id="roles">Who Does What in a Well Control Event</h2>
+      <p>Who does what is set by the rig's station bill and the well control bridging document, and it is practised in drills, not worked out on the day. The usual pattern looks like this:</p>
+      <ul>
+        <li><strong>Driller:</strong> detects the kick, spaces out, stops the pumps, flow checks and shuts in. On most rigs the driller is authorised to shut in without first asking permission. Check that your bridging document says so, because hesitation costs barrels.</li>
+        <li><strong>Toolpusher:</strong> takes charge on the floor, checks the line-up and shut-in, and often runs the choke during the kill.</li>
+        <li><strong>Company representative:</strong> confirms the kill method and the margins with the operator's engineers, under the bridging document.</li>
+        <li><strong>Derrickhand and mud engineer:</strong> monitor the pits and trip tank, and weight up kill mud to a consistent density.</li>
+        <li><strong>Mud logger:</strong> watches gas, pit volumes and pressures, and keeps an independent record of strokes, pressures and volumes.</li>
+      </ul>
+      <p>Kick drills (pit drills, trip drills and choke drills) are run at the frequency your operator and regulator require. They are where the crew finds out whether the line-up, the communication and the trip sheet actually work. The <a href="/well-control-quiz" style="color:var(--amber);">well control quiz</a> covers the theory side for IWCF and IADC WellSharp candidates.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <div class="section-eyebrow">Reading the Gauges</div>
+      <h2 id="shut-in-pressures">What the Shut-In Pressures Tell You</h2>
+      <p>Once the well is shut in and the pressures have stabilised, the two gauges answer different questions. <strong>SIDPP</strong> is read through a string full of clean mud, so it measures how far the mud column falls short of formation pressure, and it sets the kill mud weight. A SIDPP of zero with a positive SICP usually means the mud weight is adequate and the influx was swabbed or drawn in, so the job is to circulate it out. <strong>SICP</strong> is read through an annulus that now holds a column of influx. It is normally higher than SIDPP, and the gap grows with influx size and with how light the influx is. A large gap with a small pit gain points to gas.</p>
+      <p>Watch both gauges against time. If they keep rising together after stabilising, gas is migrating, and that has to be managed per procedure rather than waited out. Before relying on either number, rule out pressure trapped by the shut-in itself. The behaviour in detail is in <a href="/blog/shut-in-pressure-behavior-explained" style="color:var(--amber);">shut-in pressure: what actually happens</a>.</p>
+
+      <h2 id="after-the-kill">After the Kill</h2>
+      <p>A well with zero on both gauges is not yet back to normal operations. Before opening the BOP, flow check, and follow your procedure for gas that may be trapped under the closed preventer. That gas can expand violently once the BOP is opened. Once the well is open, circulate and condition the mud, confirm the new mud weight is holding, and recalculate MAASP and kick tolerance with the kill-weight mud in the hole, because both change when the mud gets heavier. Then find the cause. A kick from a pressure transition means the mud programme and casing plan may need revisiting. A swabbed kick means trip speeds, mud properties or the trip procedure need attention. Record the event, the pressures and the volumes, and share the lessons at the next pre-tour meeting.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title">Well Control <span>Questions</span></h2>
+    <div class="accordion">
+      <details class="acc-item">
+        <summary class="acc-header">What is the most common cause of a kick?<span class="acc-arrow">▼</span></summary>
+        <div class="acc-body"><p>Kicks taken while tripping are a large share of the total, mainly from swabbing and from not keeping the hole full. That is why the trip tank and the trip sheet matter as much as the flow show while drilling.</p></div>
+      </details>
+      <details class="acc-item">
+        <summary class="acc-header">How big a pit gain should trigger a shut-in?<span class="acc-arrow">▼</span></summary>
+        <div class="acc-body"><p>There is no safe threshold to wait for. Any unexplained gain means stop and flow check. A positive flow check means shut in. The smaller the influx when the well is shut in, the lower the casing pressures during the kill.</p></div>
+      </details>
+      <details class="acc-item">
+        <summary class="acc-header">Which kill method should I use?<span class="acc-arrow">▼</span></summary>
+        <div class="acc-body"><p>The one your company procedure and well-specific bridging document specify for the situation. The Driller's Method and Wait and Weight are both standard. Volumetric control and bullheading are for situations where circulating through the bit is not possible or not acceptable.</p></div>
+      </details>
+    </div>
   </section>
 
   <section class="block">
     <div class="section-eyebrow">Go Deeper</div>
     <h2 class="section-title">Well Control <span>In Detail</span></h2>
-    <p style="color:var(--fog);max-width:700px;margin-bottom:8px;">This page is the quick reference. These go through the same ground at working depth — kick detection in practice, the physics behind the kill sheet, and the permit and observation systems that sit around the job.</p>
+    <p style="color:var(--fog);max-width:700px;margin-bottom:8px;">This page is the overview. These go through specific parts of it at working depth — kick detection in practice, the physics behind the kill sheet, and the permit and observation systems that sit around the job.</p>
     <div class="related-links">
       <a href="/blog/well-control-basics" class="related-link">
         <div class="rl-label">Explainer</div>
@@ -166,7 +321,7 @@ const techArticleJsonLd = techArticleSchema({
       </a>
       <a href="/pillars/advanced-well-control-and-hydrostatics" class="related-link">
         <div class="rl-label">Supervisor Level</div>
-        <div class="rl-title">Advanced Well Control</div>
+        <div class="rl-title">Well Kill Methods</div>
       </a>
       <a href="/calculators/kill-sheet" class="related-link">
         <div class="rl-label">Calculator</div>

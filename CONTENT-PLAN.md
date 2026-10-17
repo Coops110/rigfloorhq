@@ -116,10 +116,10 @@ torque-and-drag-early-warning · welcome-to-rigfloorhq *(noindex)*
 
 | Topic | Owned by |
 | --- | --- |
-| Well control procedure, shut-in, kill methods | `/drilling/well-control` |
+| Well control hub: kick causes, trip-tank detection, shut-in, barriers, kill-method overview, calculator index | `/drilling/well-control` |
 | What a kick is, why shut-in works | `/blog/well-control-basics` |
 | Individual kick warning signs | `/blog/five-warning-signs-of-a-kick` |
-| TVD/MD, ECD, volumetric, MPD | the advanced well control pillar |
+| Kill methods in depth: Driller's, Wait and Weight, volumetric/lubricate-and-bleed, bullheading, ICP-to-FCP schedule, TVD/MD on the kill sheet, MPD handover | the advanced well control pillar (now titled Well Kill Methods) |
 | BOP stack, rams, pressure checks | `/equipment/bop` |
 | Hydrostatic maths, swab/surge, mud composition | `/drilling/mud-weight` |
 | Neutral point, pipe grades, inspection class | `/equipment/drill-string` |
