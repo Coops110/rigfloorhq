@@ -4,6 +4,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
 
+import { gitDates, ogImageFor } from '../../lib/techarticle.js';
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
@@ -12,10 +13,10 @@ const jsonLd = {
   "about": "Well control kill methods",
   "url": "https://rigfloorhq.com/pillars/advanced-well-control-and-hydrostatics",
   "mainEntityOfPage": { "@type": "WebPage", "@id": "https://rigfloorhq.com/pillars/advanced-well-control-and-hydrostatics" },
-  "datePublished": "2026-07-09",
-  "dateModified": "2026-10-17",
+  // Dates from git, the same source as this URL's sitemap lastmod.
+  ...gitDates('src/pages/pillars/advanced-well-control-and-hydrostatics.astro'),
   "inLanguage": "en",
-  "image": "https://rigfloorhq.com/og-default.png",
+  "image": ogImageFor('/pillars/advanced-well-control-and-hydrostatics'),
   "author": { "@id": "https://rigfloorhq.com/#organization" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
