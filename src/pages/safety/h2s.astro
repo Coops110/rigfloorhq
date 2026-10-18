@@ -3,11 +3,22 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
+import { techArticleSchema } from '../../lib/techarticle.js';
+
+const jsonLd = techArticleSchema({
+  sourcePath: 'src/pages/safety/h2s.astro',
+  path: '/safety/h2s',
+  headline: "H2S Safety on Oil Rigs — Exposure Limits & Escape Procedures",
+  description: "Hydrogen sulfide (H2S) safety guide for oil rig workers: exposure levels, OSHA and ACGIH limits, detection, personal monitors, SCBA use, and emergency escape procedures.",
+  lang: 'en',
+  extra: { about: "Hydrogen sulfide (H2S) workplace safety" },
+});
 ---
 <BaseLayout
   title="H2S Safety on Oil Rigs — Exposure Limits & Escape Procedures"
   description="Hydrogen sulfide (H2S) safety guide for oil rig workers: exposure levels, detection, personal monitors, SCBA use, and emergency escape procedures."
   breadcrumbs={[{ label: 'Safety', href: '/safety' }, { label: 'H2S Safety', href: '/safety/h2s' }]}
+  jsonLd={jsonLd}
   lang="en"
   alternateHref="/es/safety/h2s"
 >
@@ -32,7 +43,7 @@ import SourcesStandards from '../../components/SourcesStandards.astro';
             <thead><tr><th>Concentration</th><th>Effect</th></tr></thead>
             <tbody>
               <tr><td>0.5–5 ppm</td><td>Noticeable rotten egg odor</td></tr>
-              <tr><td>10–20 ppm</td><td>Eye and respiratory irritation; 10 ppm is NIOSH's recommended exposure limit and a common personal-monitor alarm setpoint. OSHA's own regulated limit is a 20 ppm ceiling, never to be exceeded (29 CFR 1910.1000, Table Z-2) — not an "action level."</td></tr>
+              <tr><td>10–20 ppm</td><td>Eye and respiratory irritation; 10 ppm is NIOSH's recommended exposure limit and a common personal-monitor alarm setpoint. OSHA's regulated limit is a 20 ppm ceiling (29 CFR 1910.1000, Table Z-2), not an "action level" — see the alarm response and the full Table Z-2 figures below.</td></tr>
               <tr><td>50–100 ppm</td><td>Loss of smell (olfactory fatigue) within minutes; serious eye damage risk</td></tr>
               <tr><td>100–150 ppm</td><td>Coughing, loss of smell entirely; immediately dangerous to life and health (IDLH)</td></tr>
               <tr><td>500–700 ppm</td><td>Loss of consciousness within minutes; respiratory failure risk</td></tr>
@@ -48,6 +59,29 @@ import SourcesStandards from '../../components/SourcesStandards.astro';
         <div class="danger-box">
           <strong>Critical safety point:</strong> Never rely on smell alone to judge H₂S concentration. The gas disables your ability to smell it well before it reaches lethal levels. Personal and fixed gas detectors are the only reliable method of monitoring exposure.
         </div>
+
+        <h2 id="alarm-response">What to Do When a Monitor Alarms at 10 ppm</h2>
+        <p>10 ppm is the low-alarm setpoint on most personal H₂S monitors, matching NIOSH's recommended exposure limit — it is a warning to act, not a level to wait out or work through:</p>
+        <ul>
+          <li>Stop the task and move immediately away from the source, crosswind or upwind if outdoors.</li>
+          <li>Check the monitor's trend, not just the instantaneous reading — a number still climbing means the source is still releasing, even if the current reading looks tolerable.</li>
+          <li>Notify your supervisor and any gas-testing personnel before continuing any work in the area.</li>
+          <li>Do not re-enter or resume work until the area is tested clear per the site's H₂S safety plan, not on a personal judgment call that the smell seems to have faded.</li>
+        </ul>
+
+        <h2 id="regulatory-limits">OSHA and ACGIH Limits, in Full</h2>
+        <p>Two separate sets of numbers govern H₂S exposure, and they are not interchangeable:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Source</th><th>Limit</th><th>What it means</th></tr></thead>
+            <tbody>
+              <tr><td>OSHA (29 CFR 1910.1000, Table Z-2)</td><td>20 ppm acceptable ceiling</td><td>Must not be exceeded at any time during an 8-hour shift. This is the enforceable federal limit.</td></tr>
+              <tr><td>OSHA (same table)</td><td>50 ppm acceptable maximum peak, 10 minutes</td><td>A single excursion above the 20 ppm ceiling, up to 50 ppm, is allowed for a maximum of 10 minutes once per 8-hour shift — but only if no other measurable H₂S exposure occurs during that shift. It is a narrow, one-time exception, not a routine working range.</td></tr>
+              <tr><td>ACGIH TLV</td><td>1 ppm TWA / 5 ppm STEL</td><td>The American Conference of Governmental Industrial Hygienists' recommended guideline — far more conservative than OSHA's limit, but not itself a legal requirement in the US unless adopted by a specific jurisdiction or company policy. 1 ppm is the 8-hour time-weighted average; 5 ppm is the short-term (15-minute) exposure limit.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:13px;color:var(--fog);">OSHA's PEL and ACGIH's TLV are two different standards from two different bodies — a workplace that is compliant with OSHA's 20 ppm ceiling is not automatically within ACGIH's far lower 1 ppm TWA recommendation. Company H₂S programs commonly adopt the stricter ACGIH figures as an internal policy even where OSHA's higher limit is the only legal floor.</p>
 
         <h2 id="detection-monitoring">Detection & Monitoring</h2>
         <p>Rigs operating in known or suspected sour gas fields deploy layered detection: fixed gas detection systems throughout the rig (particularly near the wellhead, shakers, and any low-lying or enclosed areas), plus personal H₂S monitors worn by every individual on location. Personal monitors alarm audibly and visually well before concentrations become dangerous, giving workers time to evacuate to a briefing area or don SCBA.</p>
@@ -73,6 +107,8 @@ import SourcesStandards from '../../components/SourcesStandards.astro';
           <div class="toc-title">On This Page</div>
           <a href="#what-makes-hs-so-dangerous">Why H₂S Is So Dangerous</a>
           <a href="#exposure-levels-effects">Exposure Levels</a>
+          <a href="#alarm-response">Alarm Response at 10 ppm</a>
+          <a href="#regulatory-limits">OSHA & ACGIH Limits</a>
           <a href="#detection-monitoring">Detection & Monitoring</a>
           <a href="#emergency-response-equipment">Emergency Equipment</a>
           <a href="#training-requirements">Training Requirements</a>
@@ -89,7 +125,7 @@ import SourcesStandards from '../../components/SourcesStandards.astro';
     </div>
   </section>
 
-  <SourcesStandards lang="en" ids={['oshaH2s', 'nioshH2s']} />
+  <SourcesStandards lang="en" ids={['oshaH2s', 'nioshH2s', 'acgihH2s']} />
 
   <section class="block">
     <p style="font-size:12px;color:var(--fog);max-width:700px;">This page is educational reference material, not a substitute for certified H₂S safety training. In an actual H₂S exposure or well-control emergency, follow your site's emergency response plan and alert your supervisor and gas-testing personnel immediately — do not rely on this page for real-time decisions.</p>

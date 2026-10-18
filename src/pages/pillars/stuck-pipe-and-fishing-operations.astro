@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import { gitDates, ogImageFor } from '../../lib/techarticle.js';
+import { techArticleSchema } from '../../lib/techarticle.js';
 import SourcesStandards from '../../components/SourcesStandards.astro';
 
 const faq = [
@@ -24,21 +24,14 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Stuck Pipe and Fishing Operations",
-  "description": "Why drill pipe gets stuck, how to tell differential sticking from mechanical sticking before acting, and how jarring, back-off and fishing operations recover the hole.",
-  "about": "Drilling operations — stuck pipe and fishing",
-  "url": "https://rigfloorhq.com/pillars/stuck-pipe-and-fishing-operations",
-  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://rigfloorhq.com/pillars/stuck-pipe-and-fishing-operations" },
-  // Dates from git, the same source as this URL's sitemap lastmod.
-  ...gitDates('src/pages/pillars/stuck-pipe-and-fishing-operations.astro'),
-  "inLanguage": "en",
-  "image": ogImageFor('/pillars/stuck-pipe-and-fishing-operations'),
-  "author": { "@id": "https://rigfloorhq.com/#organization" },
-  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
-};
+const jsonLd = techArticleSchema({
+  sourcePath: 'src/pages/pillars/stuck-pipe-and-fishing-operations.astro',
+  path: '/pillars/stuck-pipe-and-fishing-operations',
+  headline: "Stuck Pipe and Fishing Operations",
+  description: "Why drill pipe gets stuck, how to tell differential sticking from mechanical sticking before acting, and how jarring, back-off and fishing operations recover the hole.",
+  lang: 'en',
+  extra: { about: "Drilling operations — stuck pipe and fishing" },
+});
 ---
 <BaseLayout
   title="Stuck Pipe & Fishing Operations: Diagnosis to Recovery"
@@ -207,6 +200,7 @@ const jsonLd = {
       <h3 id="back-off">Back-Off</h3>
       <p>Once the free point is known, the string is separated at a connection just above it. Conventionally this is done by applying left-hand torque and detonating a small string shot at the chosen joint, which jars the connection loose at the moment torque is applied. A <a href="/equipment/reversing-tool">reversing tool</a> is often part of the same fishing assembly, letting debris or cuttings around the fish be circulated back up through the string once the back-off is complete rather than left in the open annulus.</p>
       <p>The result is a clean, known top of fish — a proper connection thread rather than a torn-off end. That distinction decides how straightforward the fishing job is, which is why deliberate back-off is greatly preferred over parting the string by overpull. Running a <a href="/equipment/safety-joint">safety joint</a> above the fishing assembly beforehand builds a deliberate weak point into the string itself, so if the fish can't be freed, the fishing string doesn't become a second stuck object on top of the first.</p>
+      <p>Two more tools round out a typical fishing assembly. A <a href="/equipment/bumper-sub">bumper sub</a> sits directly above the overshot or spear, giving a few feet of free travel so a jar higher in the string can build velocity before striking rather than delivering a cushioned push through the full string's stretch. A <a href="/equipment/fishing-swivel">fishing swivel</a> is run where the load is picked up on wireline or cable rather than drill pipe, letting the fishing string rotate — for washing over or applying torque — without twisting the line carrying it.</p>
     </div>
   </section>
 

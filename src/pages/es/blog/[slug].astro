@@ -34,8 +34,10 @@ const shareImage = post.data.image && isRaster(post.data.image) ? post.data.imag
 const jsonLdImage = shareImage || `/og/es-blog-${post.id}.png`;
 
 // Same pattern as the English template (src/pages/blog/[slug].astro). See
-// its comment for the isJabin vs reviewedByJabin distinction. Same stable
-// Person @id regardless of language, per src/lib/person.js.
+// its comment for the isJabin vs reviewedByJabin distinction, and for why
+// the non-Jabin byline references the real Organization node by @id instead
+// of fabricating a second one. Same stable Person @id regardless of
+// language, per src/lib/person.js.
 const isJabin = post.data.author === 'Jabin Travis';
 const authorEntity = isJabin
   ? {
@@ -44,7 +46,7 @@ const authorEntity = isJabin
       "name": "Jabin Travis",
       "jobTitle": "Drilling Operations Supervisor",
     }
-  : { "@type": "Organization", "name": post.data.author };
+  : { "@id": `${siteUrl}/#organization` };
 
 // Same git-derived dates every Article/TechArticle page uses (src/lib/techarticle.js).
 // See the English route (src/pages/blog/[slug].astro) for the full rationale.

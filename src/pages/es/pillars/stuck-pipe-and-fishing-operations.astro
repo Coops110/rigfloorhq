@@ -2,7 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
-import { gitDates, ogImageFor } from '../../../lib/techarticle.js';
+import { techArticleSchema } from '../../../lib/techarticle.js';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
 
 const faq = [
@@ -24,21 +24,14 @@ const faq = [
   },
 ];
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Pesca y Tubería Pegada",
-  "description": "Por qué se pega la tubería de perforación, cómo distinguir la pega diferencial de la pega mecánica antes de actuar, y cómo el martilleo, el back-off y las operaciones de pesca recuperan el pozo.",
-  "about": "Operaciones de perforación — tubería pegada y pesca",
-  "url": "https://rigfloorhq.com/es/pillars/stuck-pipe-and-fishing-operations",
-  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://rigfloorhq.com/es/pillars/stuck-pipe-and-fishing-operations" },
-  // Dates from git, the same source as this URL's sitemap lastmod.
-  ...gitDates('src/pages/es/pillars/stuck-pipe-and-fishing-operations.astro'),
-  "inLanguage": "es",
-  "image": ogImageFor('/es/pillars/stuck-pipe-and-fishing-operations'),
-  "author": { "@id": "https://rigfloorhq.com/#organization" },
-  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
-};
+const jsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/pillars/stuck-pipe-and-fishing-operations.astro',
+  path: '/es/pillars/stuck-pipe-and-fishing-operations',
+  headline: "Pesca y Tubería Pegada",
+  description: "Por qué se pega la tubería de perforación, cómo distinguir la pega diferencial de la pega mecánica antes de actuar, y cómo el martilleo, el back-off y las operaciones de pesca recuperan el pozo.",
+  lang: 'es',
+  extra: { about: "Operaciones de perforación — tubería pegada y pesca" },
+});
 ---
 <BaseLayout
   title="Pesca y Tubería Pegada: De Diagnóstico a Recuperación"
@@ -207,6 +200,7 @@ const jsonLd = {
       <h3 id="back-off">Back-Off (Desenrosque)</h3>
       <p>Una vez conocido el punto libre, la sarta se separa en una conexión justo arriba de él. Convencionalmente esto se hace aplicando torque a la izquierda y detonando un pequeño cordón detonante (string shot) en la junta elegida, que afloja la conexión en el momento justo en que se aplica el torque. Una <a href="/es/equipment/reversing-tool">herramienta de reversa</a> a menudo forma parte del mismo ensamblaje de pesca, permitiendo que los escombros o recortes alrededor del pescado se circulen de vuelta hacia arriba por dentro de la sarta una vez completado el back-off, en lugar de dejarlos en el anular abierto.</p>
       <p>El resultado es un tope de pescado limpio y conocido — una rosca de conexión real en lugar de un extremo arrancado. Esa distinción decide qué tan directo es el trabajo de pesca, que es por qué se prefiere ampliamente un back-off deliberado sobre partir la sarta por sobretiro. Correr una <a href="/es/equipment/safety-joint">junta de seguridad</a> arriba del ensamblaje de pesca de antemano construye un punto débil deliberado en la sarta misma, así que si el pescado no puede liberarse, la sarta de pesca no se convierte en un segundo objeto pegado encima del primero.</p>
+      <p>Dos herramientas más completan un ensamblaje de pesca típico. Un <a href="/es/equipment/bumper-sub">bumper sub</a> se coloca justo arriba del overshot o la lanza, dando unos pies de recorrido libre para que un jar más arriba en la sarta pueda tomar velocidad antes de golpear, en lugar de entregar un empuje amortiguado por el estiramiento de toda la sarta. Un <a href="/es/equipment/fishing-swivel">fishing swivel</a> se usa cuando la carga se levanta con cable o línea de acero en lugar de tubería de perforación, permitiendo que la sarta de pesca gire — para lavado o para aplicar torque — sin torcer la línea que la sostiene.</p>
     </div>
   </section>
 

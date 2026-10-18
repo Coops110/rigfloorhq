@@ -2,7 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
-import { gitDates, ogImageFor } from '../../../lib/techarticle.js';
+import { techArticleSchema } from '../../../lib/techarticle.js';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
 import { reviewedByJabin } from '../../../lib/person.js';
 
@@ -25,30 +25,28 @@ const faq = [
   },
 ];
 
-const jsonLd = {
+const jsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/pillars/rig-floor-leadership.astro',
+  path: '/es/pillars/rig-floor-leadership',
+  headline: "Liderazgo en el Piso de Perforación: La Escalera Supervisora",
+  description: "La trayectoria de carrera de perforador a toolpusher, OIM/gerente de taladro, y company man — qué distingue a cada nivel, y qué requiere realmente la certificación a nivel supervisor.",
+  lang: 'es',
+  extra: {
+    about: "Progresión de carrera supervisora en un taladro petrolero",
+    mainEntityOfPage: { "@id": "https://rigfloorhq.com/es/pillars/rig-floor-leadership#webpage" },
+  },
+});
+
+const webPageLd = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "TechArticle",
-      "headline": "Liderazgo en el Piso de Perforación: La Escalera Supervisora",
-      "description": "La trayectoria de carrera de perforador a toolpusher, OIM/gerente de taladro, y company man — qué distingue a cada nivel, y qué requiere realmente la certificación a nivel supervisor.",
-      "about": "Progresión de carrera supervisora en un taladro petrolero",
-      "url": "https://rigfloorhq.com/es/pillars/rig-floor-leadership",
-      // reviewedBy belongs on WebPage per schema.org, not TechArticle — it
-      // lives on mainEntityOfPage instead.
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://rigfloorhq.com/es/pillars/rig-floor-leadership",
-        "reviewedBy": reviewedByJabin()
-      },
-      // Dates from git, the same source as this URL's sitemap lastmod.
-      ...gitDates('src/pages/es/pillars/rig-floor-leadership.astro'),
-      "inLanguage": "es",
-      "image": ogImageFor('/es/pillars/rig-floor-leadership'),
-      "author": { "@id": "https://rigfloorhq.com/#organization" },
-      "publisher": { "@id": "https://rigfloorhq.com/#organization" }
-    },
-  ],
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/es/pillars/rig-floor-leadership#webpage",
+  "url": "https://rigfloorhq.com/es/pillars/rig-floor-leadership",
+  "name": "Liderazgo en el Piso de Perforación: La Escalera Supervisora",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/es/pillars/rig-floor-leadership#article" },
+  "reviewedBy": reviewedByJabin(),
 };
 ---
 <BaseLayout
@@ -56,6 +54,7 @@ const jsonLd = {
   description="La trayectoria de perforador a toolpusher a OIM o gerente de taladro a company man — qué hace cada nivel, qué los distingue."
   breadcrumbs={[{ label: 'Guías Pilar', href: '/es/pillars' }, { label: 'Liderazgo en el Piso de Perforación', href: '/es/pillars/rig-floor-leadership' }]}
   jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
   lang="es"
   alternateHref="/pillars/rig-floor-leadership"
 >

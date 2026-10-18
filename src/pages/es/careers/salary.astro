@@ -2,7 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
-import { techArticleSchema } from '../../../lib/techarticle.js';
+import { techArticleSchema, gitDates } from '../../../lib/techarticle.js';
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/careers/salary.astro',
@@ -11,6 +11,34 @@ const techArticleJsonLd = techArticleSchema({
   description: 'Datos salariales reales de 2026 para cada posición en taladros petroleros: roustabout, roughneck, encuellador, perforador, toolpusher, soldador.',
   lang: 'es',
 });
+
+const faq = [
+  {
+    q: '¿Cuál es el trabajo mejor pagado en un taladro petrolero?',
+    a: 'Company man, con $150,000 a más de $300,000 al año — es el representante del propio operador en el sitio y tiene la autoridad final sobre el programa del pozo. OIM/gerente de taladro ($150,000–$280,000+) y toolpusher ($90,000–$180,000) son los roles mejor pagados dentro del contratista de perforación, ya que ambos cargan con la responsabilidad operativa de todo el taladro en lugar de una sola cuadrilla.',
+  },
+  {
+    q: '¿Se necesita experiencia para empezar a trabajar en un taladro petrolero?',
+    a: 'No. Roustabout es el punto de entrada estándar y no requiere experiencia previa en taladros — solo condición física y disposición para aprender. Paga lo menos en el taladro ($38,000–$60,000) precisamente porque no exige certificación ni una habilidad especializada todavía.',
+  },
+  {
+    q: '¿Cuánto más paga costa afuera que en tierra?',
+    a: 'Alrededor de 30–40% más por el mismo rol, más alojamiento y comida gratis durante el turno y una rotación libre extendida (comúnmente 14/14 o 28/28) — ver la comparación costa afuera vs. tierra arriba para el ejemplo completo de roughneck.',
+  },
+  {
+    q: '¿El pago de un taladro petrolero es igual a la tarifa por hora anunciada en una oferta de empleo?',
+    a: 'No directamente. La mayoría de las ofertas anuncian una tarifa por hora contra un turno de 12 horas, y el total anual real depende del horario de rotación (un patrón 14/14 y uno 21/21 con la misma tarifa por hora producen totales anuales muy distintos). Algunos roles también cargan un per diem separado sobre el salario. Siempre compara totales anualizados, nunca solo tarifas por hora.',
+  },
+  {
+    q: '¿Por qué dos personas en el mismo puesto ganan diferente?',
+    a: 'La región y la actividad de la cuenca, el trabajo por contrato de tarifa diaria frente al empleo de planta con beneficios, y en qué punto del ciclo de materias primas se está, mueven la cifra más que el título del puesto — ver Leyendo las Cifras abajo para el desglose completo.',
+  },
+];
+
+const lastUpdated = gitDates('src/pages/es/careers/salary.astro').dateModified;
+const lastUpdatedLabel = lastUpdated
+  ? new Date(lastUpdated).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })
+  : null;
 ---
 <BaseLayout
   title="Guía Salarial de Taladros Petroleros 2026 — Cada Rol"
@@ -27,6 +55,7 @@ const techArticleJsonLd = techArticleSchema({
     <div class="page-hero-eyebrow">Carreras — Compensación</div>
     <h1>Guía Salarial de <span>Taladros Petroleros</span></h1>
     <p class="page-hero-sub">Cuánto paga realmente cada posición en 2026, y por qué costa afuera consistentemente paga más que el rol equivalente en tierra.</p>
+    {lastUpdatedLabel && <p style="color:var(--fog);font-size:13px;margin-top:8px;">Actualizado el {lastUpdatedLabel}</p>}
   </div>
 
   <section class="block">
@@ -65,7 +94,7 @@ const techArticleJsonLd = techArticleSchema({
     </div>
 
     <div class="note-box">
-      <strong>Nota sobre las cifras:</strong> Estas son estimaciones de salario anual del mercado de EE. UU. basadas en datos salariales de la industria de 2025–2026. El pago real varía significativamente según la región, el empleador, el tipo de taladro, y las condiciones del mercado. Las tarifas en el Golfo de México, Mar del Norte, y Medio Oriente tienden a estar en el extremo más alto; las tarifas de taladros terrestres en cuencas más lentas son más bajas.
+      <strong>Nota sobre las cifras:</strong> Esta tabla es una estimación editorial propia de RigFloorHQ — compilada de ofertas de empleo, listados de reclutadores, y discusión salarial de la industria durante 2025–2026, no una sola encuesta con nombre. No está independientemente sourceada como la tabla gubernamental de abajo, que existe exactamente para eso: usarla como la verificación cruzada real y citable contra esta. El pago real varía significativamente según la región, el empleador, el tipo de taladro, y las condiciones del mercado. Las tarifas en el Golfo de México, Mar del Norte, y Medio Oriente tienden a estar en el extremo más alto; las tarifas de taladros terrestres en cuencas más lentas son más bajas.
     </div>
   </section>
 
@@ -100,15 +129,15 @@ const techArticleJsonLd = techArticleSchema({
           <tr><th>Estado</th><th>Salario Medio Anual</th></tr>
         </thead>
         <tbody>
-          <tr><td>Luisiana</td><td>$63,020</td></tr>
-          <tr><td>Dakota del Norte</td><td>$62,300</td></tr>
-          <tr><td>Nuevo México</td><td>$60,510</td></tr>
-          <tr><td>Oklahoma</td><td>$54,200</td></tr>
-          <tr><td>Texas</td><td>$51,570</td></tr>
+          <tr><td>Alaska</td><td>$76,070</td></tr>
+          <tr><td>Pensilvania</td><td>$75,280</td></tr>
+          <tr><td>Dakota del Norte</td><td>$67,850</td></tr>
+          <tr><td>Wyoming</td><td>$61,510</td></tr>
+          <tr><td>Nuevo México</td><td>$59,020</td></tr>
         </tbody>
       </table>
     </div>
-    <p style="color:var(--fog);font-size:13px;max-width:760px;margin-top:10px;">Fuente: BLS OEWS, mayo de 2022 — la encuesta más reciente con un desglose estado por estado publicado para esta ocupación al momento de escribir esto. Son promedios estatales en todos los empleadores del estado, así que un operador o taladro específico será diferente; trata esto como el piso y techo geográfico del que se construyen las cifras nacionales de arriba, no como una cotización para un trabajo específico. El promedio estatal de Texas es más bajo que el de Luisiana y Dakota del Norte a pesar de tener por mucho la mayor cantidad de taladros activos, ya que incluye una mezcla mucho mayor de operaciones pequeñas de baja actividad junto a los taladros de alta intensidad del Pérmico.</p>
+    <p style="color:var(--fog);font-size:13px;max-width:760px;margin-top:10px;">Fuente: BLS OEWS, mayo de 2023 — la encuesta más reciente con un desglose estado por estado publicado para esta ocupación al momento de escribir esto. Son promedios estatales en todos los empleadores del estado, así que un operador o taladro específico será diferente; esto es una muestra de la dispersión real detrás del promedio nacional de $58,330, no un piso y techo literal — otros estados caen tanto arriba como abajo de este rango. Los estados con más taladros activos no son los mismos que pagan más: Texas ($57,400) y Oklahoma ($55,310) quedan por debajo de cada estado en la tabla de arriba a pesar de tener muchos más taladros activos, ya que sus totales incluyen una mezcla mucho mayor de operaciones pequeñas de baja actividad junto a sus cuencas de mayor intensidad.</p>
   </section>
 
   <section class="block" id="offshore-vs-onshore">
@@ -151,6 +180,24 @@ const techArticleJsonLd = techArticleSchema({
     </div>
   </section>
 
+  <section class="block" id="hourly-per-diem">
+    <div class="section-eyebrow">Estructura de Pago</div>
+    <h2 class="section-title">Tarifas por Hora <span>y Per Diem</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:20px;">La mayoría de las cifras arriba son totales anuales, pero el pago del taladro en realidad se construye sobre una tarifa por hora contra un turno de 12 horas, más — para algunos roles — una asignación diaria separada. Convertir el pago anual a una cifra por hora usando un año estándar equivalente a tiempo completo de 2,080 horas da una base aproximada y comparable, pero no es la tarifa de contrato real: los turnos y rotaciones reales corren más o menos horas que esa base, que es exactamente por qué el total anual, no la cifra por hora sola, es lo que realmente llega al banco.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Posición</th><th>Típico Anual</th><th>≈ Por Hora (÷2,080 hrs)</th></tr></thead>
+        <tbody>
+          <tr><td>Roustabout</td><td>$50,000</td><td>≈ $24/hr</td></tr>
+          <tr><td>Roughneck / Floorhand</td><td>$70,000</td><td>≈ $34/hr</td></tr>
+          <tr><td>Encuellador</td><td>$75,000</td><td>≈ $36/hr</td></tr>
+          <tr><td>Perforador</td><td>$95,000</td><td>≈ $46/hr</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="color:var(--fog);max-width:760px;margin-top:16px;">Muchos contratistas terrestres también pagan un <strong>per diem</strong> — una asignación diaria fija, típicamente en el rango de $75–$150, que cubre comida y alojamiento mientras se está lejos de casa — además del salario, separado de la tarifa por hora y usualmente no gravable. Los roles costa afuera generalmente no llevan per diem, porque el alojamiento y comida en la instalación ya se proporciona gratis durante todo el turno, lo cual es parte de por qué la prima de pago costa afuera arriba subestima la brecha real en ingreso disponible.</p>
+  </section>
+
   <section class="block">
     <div class="section-eyebrow">Leyendo las Cifras</div>
     <h2 class="section-title">Por Qué Dos Trabajadores en el Mismo Rol <span>Ganan Diferente</span></h2>
@@ -180,5 +227,18 @@ const techArticleJsonLd = techArticleSchema({
     </div>
 
     <p style="color:var(--fog);font-size:13px;max-width:800px;margin-top:20px;">Estas cifras son rangos indicativos compilados con fines orientativos, no ofertas, cotizaciones ni una guía de lo que paga cualquier empleador específico. Verifica contra las ofertas de empleo actuales y tu propio contrato antes de tomar una decisión financiera.</p>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title">Preguntas <span>Frecuentes</span></h2>
+    <div class="accordion">
+      {faq.map((item) => (
+        <details class="acc-item">
+          <summary class="acc-header">{item.q}<span class="acc-arrow">▼</span></summary>
+          <div class="acc-body"><p>{item.a}</p></div>
+        </details>
+      ))}
+    </div>
   </section>
 </BaseLayout>

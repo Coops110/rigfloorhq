@@ -67,6 +67,18 @@ export const CITATIONS = {
       note: 'Página temática de CDC/NIOSH sobre el sulfuro de hidrógeno, incluidos los límites de exposición recomendados y los controles de peligro.',
     },
   },
+  acgihH2s: {
+    en: {
+      href: 'https://www.acgih.org/hydrogen-sulfide/',
+      label: 'ACGIH — Hydrogen Sulfide',
+      note: "ACGIH's hydrogen sulfide page, source of the TLV-TWA (1 ppm) and TLV-STEL (5 ppm) recommended exposure guidelines — a separate, more conservative standard than OSHA's PEL.",
+    },
+    es: {
+      href: 'https://www.acgih.org/hydrogen-sulfide/',
+      label: 'ACGIH — Sulfuro de Hidrógeno',
+      note: 'Página de ACGIH sobre el sulfuro de hidrógeno, fuente de las guías recomendadas TLV-TWA (1 ppm) y TLV-STEL (5 ppm) — un estándar distinto y más conservador que el PEL de OSHA.',
+    },
+  },
   iwcf: {
     en: {
       href: 'https://www.iwcf.org/',

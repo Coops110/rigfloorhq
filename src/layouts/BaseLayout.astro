@@ -301,7 +301,9 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
     "@id": `${siteUrl}/#organization`,
     "name": "RigFloorHQ",
     "url": siteUrl,
-    "description": "The complete oil and gas field reference for drilling, welding, and well control operations.",
+    "description": lang === 'es'
+      ? "La referencia completa del campo petrolero para operaciones de perforación, soldadura y control de pozos."
+      : "The complete oil and gas field reference for drilling, welding, and well control operations.",
     "logo": {
       "@type": "ImageObject",
       "url": `${siteUrl}/logo-512.png`,

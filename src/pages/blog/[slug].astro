@@ -43,6 +43,10 @@ const jsonLdImage = shareImage || `/og/blog-${post.id}.png`;
 // Both reference the same stable Person @id from src/lib/person.js rather
 // than typing out his name/jobTitle again here, so his full record (bio,
 // credentials) only has to be correct in one place: the profile page itself.
+// The non-Jabin byline ("RigFloorHQ Team") is this same site's own
+// organization, not a separate entity, so it references the one real
+// Organization node (BaseLayout.astro) by @id instead of fabricating a
+// second, disconnected Organization node with only a name string.
 const isJabin = post.data.author === 'Jabin Travis';
 const authorEntity = isJabin
   ? {
@@ -51,7 +55,7 @@ const authorEntity = isJabin
       "name": "Jabin Travis",
       "jobTitle": "Drilling Operations Supervisor",
     }
-  : { "@type": "Organization", "name": post.data.author };
+  : { "@id": `${siteUrl}/#organization` };
 
 // Same git-derived dates every Article/TechArticle page uses (src/lib/techarticle.js):
 // dateModified is the last commit that actually touched this post's own content

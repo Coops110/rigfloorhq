@@ -4,22 +4,15 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
 
-import { gitDates, ogImageFor } from '../../../lib/techarticle.js';
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Métodos para Matar un Pozo: Guía Avanzada",
-  "description": "Método del Perforador, Esperar y Densificar, volumétrico, lubricar y purgar y bullheading: cuándo se elige cada uno, secuencia de pasos, programa de presión de ICP a FCP y errores comunes.",
-  "about": "Métodos de control de pozos",
-  "url": "https://rigfloorhq.com/es/pillars/advanced-well-control-and-hydrostatics",
-  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://rigfloorhq.com/es/pillars/advanced-well-control-and-hydrostatics" },
-  // Dates from git, the same source as this URL's sitemap lastmod.
-  ...gitDates('src/pages/es/pillars/advanced-well-control-and-hydrostatics.astro'),
-  "inLanguage": "es",
-  "image": ogImageFor('/es/pillars/advanced-well-control-and-hydrostatics'),
-  "author": { "@id": "https://rigfloorhq.com/#organization" },
-  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
-};
+import { techArticleSchema } from '../../../lib/techarticle.js';
+const jsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/pillars/advanced-well-control-and-hydrostatics.astro',
+  path: '/es/pillars/advanced-well-control-and-hydrostatics',
+  headline: "Métodos para Matar un Pozo: Guía Avanzada",
+  description: "Método del Perforador, Esperar y Densificar, volumétrico, lubricar y purgar y bullheading: cuándo se elige cada uno, secuencia de pasos, programa de presión de ICP a FCP y errores comunes.",
+  lang: 'es',
+  extra: { about: "Métodos de control de pozos" },
+});
 ---
 <BaseLayout
   title="Métodos para Matar un Pozo: Guía Avanzada"

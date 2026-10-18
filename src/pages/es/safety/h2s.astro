@@ -3,11 +3,22 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
+
+const jsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/safety/h2s.astro',
+  path: '/es/safety/h2s',
+  headline: "Seguridad de H2S en Taladros Petroleros — Límites",
+  description: "Guía de seguridad de sulfuro de hidrógeno (H2S) para trabajadores de taladros petroleros: niveles de exposición, límites de OSHA y ACGIH, detección, monitores personales, uso de SCBA y procedimientos de escape.",
+  lang: 'es',
+  extra: { about: "Seguridad laboral del sulfuro de hidrógeno (H2S)" },
+});
 ---
 <BaseLayout
   title="Seguridad de H2S en Taladros Petroleros — Límites"
   description="Guía de seguridad de sulfuro de hidrógeno (H2S) para trabajadores de taladros petroleros: niveles de exposición, detección, monitores personales."
   breadcrumbs={[{ label: 'Seguridad', href: '/es/safety' }, { label: 'Seguridad de H2S', href: '/es/safety/h2s' }]}
+  jsonLd={jsonLd}
   lang="es"
   alternateHref="/safety/h2s"
 >
@@ -32,7 +43,7 @@ import SourcesStandards from '../../../components/SourcesStandards.astro';
             <thead><tr><th>Concentración</th><th>Efecto</th></tr></thead>
             <tbody>
               <tr><td>0.5–5 ppm</td><td>Olor perceptible a huevo podrido</td></tr>
-              <tr><td>10–20 ppm</td><td>Irritación ocular y respiratoria; 10 ppm es el límite de exposición recomendado por NIOSH y un punto de alarma común en monitores personales. El límite regulado propio de OSHA es un techo (ceiling) de 20 ppm, que nunca debe excederse (29 CFR 1910.1000, Tabla Z-2) — no un "nivel de acción."</td></tr>
+              <tr><td>10–20 ppm</td><td>Irritación ocular y respiratoria; 10 ppm es el límite de exposición recomendado por NIOSH y un punto de alarma común en monitores personales. El límite regulado de OSHA es un techo (ceiling) de 20 ppm (29 CFR 1910.1000, Tabla Z-2), no un "nivel de acción" — ver la respuesta a la alarma y la Tabla Z-2 completa abajo.</td></tr>
               <tr><td>50–100 ppm</td><td>Pérdida del olfato (fatiga olfativa) en minutos; riesgo serio de daño ocular</td></tr>
               <tr><td>100–150 ppm</td><td>Tos, pérdida total del olfato; inmediatamente peligroso para la vida y la salud (IDLH)</td></tr>
               <tr><td>500–700 ppm</td><td>Pérdida de consciencia en minutos; riesgo de falla respiratoria</td></tr>
@@ -48,6 +59,29 @@ import SourcesStandards from '../../../components/SourcesStandards.astro';
         <div class="danger-box">
           <strong>Punto crítico de seguridad:</strong> Nunca confíes únicamente en el olfato para juzgar la concentración de H₂S. El gas desactiva tu capacidad de olerlo mucho antes de que alcance niveles letales. Los detectores de gas personales y fijos son el único método confiable de monitorear la exposición.
         </div>
+
+        <h2 id="respuesta-a-la-alarma">Qué Hacer Cuando un Monitor Alarma a 10 ppm</h2>
+        <p>10 ppm es el punto de alarma baja en la mayoría de los monitores personales de H₂S, coincidiendo con el límite de exposición recomendado por NIOSH — es una advertencia para actuar, no un nivel para esperar o seguir trabajando:</p>
+        <ul>
+          <li>Detén la tarea y muévete inmediatamente lejos de la fuente, en dirección transversal al viento o contra el viento si estás al aire libre.</li>
+          <li>Revisa la tendencia del monitor, no solo la lectura instantánea — un número que sigue subiendo significa que la fuente sigue liberando gas, aunque la lectura actual parezca tolerable.</li>
+          <li>Notifica a tu supervisor y al personal de detección de gas antes de continuar cualquier trabajo en el área.</li>
+          <li>No reingreses ni reanudes el trabajo hasta que el área sea probada y declarada despejada según el plan de seguridad de H₂S del sitio, no por un juicio personal de que el olor pareció desaparecer.</li>
+        </ul>
+
+        <h2 id="limites-regulatorios">Límites de OSHA y ACGIH, Completos</h2>
+        <p>Dos conjuntos de números distintos rigen la exposición al H₂S, y no son intercambiables:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Fuente</th><th>Límite</th><th>Qué significa</th></tr></thead>
+            <tbody>
+              <tr><td>OSHA (29 CFR 1910.1000, Tabla Z-2)</td><td>Techo aceptable de 20 ppm</td><td>No debe excederse en ningún momento durante un turno de 8 horas. Este es el límite federal exigible.</td></tr>
+              <tr><td>OSHA (misma tabla)</td><td>Pico máximo aceptable de 50 ppm, 10 minutos</td><td>Se permite una sola excursión por encima del techo de 20 ppm, hasta 50 ppm, por un máximo de 10 minutos una vez por turno de 8 horas — pero solo si no ocurre ninguna otra exposición medible de H₂S durante ese turno. Es una excepción estrecha y única, no un rango de trabajo rutinario.</td></tr>
+              <tr><td>TLV de ACGIH</td><td>1 ppm TWA / 5 ppm STEL</td><td>La guía recomendada por la Conferencia Americana de Higienistas Industriales Gubernamentales — mucho más conservadora que el límite de OSHA, pero no es en sí misma un requisito legal en EE. UU. a menos que la adopte una jurisdicción o política de empresa específica. 1 ppm es el promedio ponderado en el tiempo de 8 horas; 5 ppm es el límite de exposición a corto plazo (15 minutos).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:13px;color:var(--fog);">El PEL de OSHA y el TLV de ACGIH son dos estándares distintos de dos organismos distintos — un lugar de trabajo que cumple con el techo de 20 ppm de OSHA no está automáticamente dentro de la recomendación mucho más baja de 1 ppm TWA de ACGIH. Los programas de H₂S de las empresas comúnmente adoptan las cifras más estrictas de ACGIH como política interna aunque el límite más alto de OSHA sea el único piso legal.</p>
 
         <h2 id="deteccion-y-monitoreo">Detección y Monitoreo</h2>
         <p>Los taladros que operan en campos de gas amargo conocidos o sospechados despliegan detección por capas: sistemas fijos de detección de gas por todo el taladro (particularmente cerca del cabezal del pozo, zarandas, y cualquier área baja o cerrada), más monitores personales de H₂S usados por cada individuo en el sitio. Los monitores personales alarman audible y visualmente mucho antes de que las concentraciones se vuelvan peligrosas, dando a los trabajadores tiempo para evacuar a un área de reunión o colocarse el SCBA.</p>
@@ -73,6 +107,8 @@ import SourcesStandards from '../../../components/SourcesStandards.astro';
           <div class="toc-title">En Esta Página</div>
           <a href="#que-hace-al-hs-tan-peligroso">Por Qué el H₂S Es Tan Peligroso</a>
           <a href="#niveles-de-exposicion-y-efectos">Niveles de Exposición</a>
+          <a href="#respuesta-a-la-alarma">Respuesta a la Alarma a 10 ppm</a>
+          <a href="#limites-regulatorios">Límites de OSHA y ACGIH</a>
           <a href="#deteccion-y-monitoreo">Detección y Monitoreo</a>
           <a href="#equipo-de-respuesta-a-emergencias">Equipo de Emergencia</a>
           <a href="#requisitos-de-entrenamiento">Requisitos de Entrenamiento</a>
@@ -89,7 +125,7 @@ import SourcesStandards from '../../../components/SourcesStandards.astro';
     </div>
   </section>
 
-  <SourcesStandards lang="es" ids={['oshaH2s', 'nioshH2s']} />
+  <SourcesStandards lang="es" ids={['oshaH2s', 'nioshH2s', 'acgihH2s']} />
 
   <section class="block">
     <p style="font-size:12px;color:var(--fog);max-width:700px;">Esta página es material de referencia educativo, no un sustituto del entrenamiento certificado de seguridad de H₂S. En una exposición real a H₂S o una emergencia de control de pozo, sigue el plan de respuesta a emergencias de tu sitio y avisa de inmediato a tu supervisor y al personal de detección de gas — no te bases en esta página para decisiones en tiempo real.</p>

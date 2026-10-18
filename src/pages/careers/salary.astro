@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import { techArticleSchema } from '../../lib/techarticle.js';
+import { techArticleSchema, gitDates } from '../../lib/techarticle.js';
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/careers/salary.astro',
@@ -11,6 +11,34 @@ const techArticleJsonLd = techArticleSchema({
   description: 'Real 2026 pay for every rig role — roustabout $38k to company man $300k+ — plus onshore vs offshore differences and the certs each step needs.',
   lang: 'en',
 });
+
+const faq = [
+  {
+    q: 'What is the highest-paying job on an oil rig?',
+    a: "Company man, at $150,000 to $300,000-plus a year — he's the operator's own representative on site and holds final authority over the well program. OIM/rig manager ($150,000–$280,000+) and toolpusher ($90,000–$180,000) are the highest-paying drilling-contractor roles, since both carry whole-rig operational responsibility rather than running a single crew.",
+  },
+  {
+    q: 'Do you need experience to start working on an oil rig?',
+    a: 'No. Roustabout is the standard entry point and requires no prior rig experience — just physical fitness and a willingness to learn. It pays the least on the rig ($38,000–$60,000) precisely because it carries no certification requirement and no specialized skill yet.',
+  },
+  {
+    q: 'How much more does offshore pay than onshore?',
+    a: "About 30–40% more for the same role, plus free room and board during the hitch and an extended rotation off (commonly 14/14 or 28/28) — see the offshore vs onshore comparison above for the full roughneck example.",
+  },
+  {
+    q: 'Is oil rig pay the same as the hourly rate advertised in a job posting?',
+    a: "Not directly. Most postings advertise an hourly rate against a 12-hour tour, and the actual annual total depends on the rotation schedule (a 14/14 pattern and a 21/21 pattern at the same hourly rate produce very different yearly totals). Some roles also carry a separate per diem on top of wages. Always compare annualized totals, not hourly rates alone.",
+  },
+  {
+    q: 'Why do two people in the same job make different pay?',
+    a: "Region and basin activity, day-rate contract work versus staff employment with benefits, and where the commodity cycle sits all move the number more than the job title does — see Reading the Numbers below for the full breakdown.",
+  },
+];
+
+const lastUpdated = gitDates('src/pages/careers/salary.astro').dateModified;
+const lastUpdatedLabel = lastUpdated
+  ? new Date(lastUpdated).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+  : null;
 ---
 <BaseLayout
   {/* Title and description are length-budgeted deliberately. BaseLayout appends
@@ -37,6 +65,7 @@ const techArticleJsonLd = techArticleSchema({
     <div class="page-hero-eyebrow">Careers — Compensation</div>
     <h1>Oil Rig <span>Salary Guide</span></h1>
     <p class="page-hero-sub">What every position actually pays in 2026, and why offshore consistently pays more than the equivalent onshore role.</p>
+    {lastUpdatedLabel && <p style="color:var(--fog);font-size:13px;margin-top:8px;">Updated {lastUpdatedLabel}</p>}
   </div>
 
   <section class="block">
@@ -75,7 +104,7 @@ const techArticleJsonLd = techArticleSchema({
     </div>
 
     <div class="note-box">
-      <strong>Note on figures:</strong> These are US-market annual salary estimates based on aggregated 2025–2026 industry salary data. Actual pay varies significantly by region, employer, rig type, and market conditions. Rates in the Gulf of Mexico, North Sea, and Middle East tend to sit at the higher end; land rig rates in slower basins sit lower.
+      <strong>Note on figures:</strong> This table is RigFloorHQ's own editorial estimate — compiled from job postings, recruiter listings, and industry pay discussion through 2025–2026, not a single named survey. It's not independently sourced the way the government table below is, which is exactly why that table exists: use it as the real, citable cross-check against this one. Actual pay varies significantly by region, employer, rig type, and market conditions. Rates in the Gulf of Mexico, North Sea, and Middle East tend to sit at the higher end; land rig rates in slower basins sit lower.
     </div>
   </section>
 
@@ -110,15 +139,15 @@ const techArticleJsonLd = techArticleSchema({
           <tr><th>State</th><th>Annual Mean Wage</th></tr>
         </thead>
         <tbody>
-          <tr><td>Louisiana</td><td>$63,020</td></tr>
-          <tr><td>North Dakota</td><td>$62,300</td></tr>
-          <tr><td>New Mexico</td><td>$60,510</td></tr>
-          <tr><td>Oklahoma</td><td>$54,200</td></tr>
-          <tr><td>Texas</td><td>$51,570</td></tr>
+          <tr><td>Alaska</td><td>$76,070</td></tr>
+          <tr><td>Pennsylvania</td><td>$75,280</td></tr>
+          <tr><td>North Dakota</td><td>$67,850</td></tr>
+          <tr><td>Wyoming</td><td>$61,510</td></tr>
+          <tr><td>New Mexico</td><td>$59,020</td></tr>
         </tbody>
       </table>
     </div>
-    <p style="color:var(--fog);font-size:13px;max-width:760px;margin-top:10px;">Source: <a href="https://www.bls.gov/oes/" style="color:var(--amber);">BLS Occupational Employment and Wage Statistics (OEWS)</a>, May 2022 — the most recent survey with a published state-by-state breakdown for this occupation at time of writing. These are statewide averages across every employer in the state, so a specific operator or rig will differ; treat this as the geographic floor-and-ceiling the national figures above are built from, not a quote for any one job. Texas's statewide average sits lower than Louisiana and North Dakota's despite having by far the most rigs running, since it includes a much larger mix of smaller, lower-activity operations alongside the Permian's high-intensity rigs.</p>
+    <p style="color:var(--fog);font-size:13px;max-width:760px;margin-top:10px;">Source: <a href="https://www.bls.gov/oes/" style="color:var(--amber);">BLS Occupational Employment and Wage Statistics (OEWS)</a>, May 2023 — the most recent survey with a published state-by-state breakdown for this occupation at time of writing. These are statewide averages across every employer in the state, so a specific operator or rig will differ; this is a sample of the real spread behind the $58,330 national mean, not a literal floor and ceiling — other states fall both above and below this range. The states with the most rigs running aren't the same as the states that pay the most: Texas ($57,400) and Oklahoma ($55,310) sit below every state in the table above despite far higher rig counts, since their totals include a much larger mix of smaller, lower-activity operations alongside their highest-intensity basins.</p>
   </section>
 
   <section class="block" id="offshore-vs-onshore">
@@ -161,6 +190,24 @@ const techArticleJsonLd = techArticleSchema({
     </div>
   </section>
 
+  <section class="block" id="hourly-per-diem">
+    <div class="section-eyebrow">Pay Structure</div>
+    <h2 class="section-title">Hourly Rates <span>and Per Diem</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:20px;">Most of the figures above are annual totals, but rig pay is actually built from an hourly rate against a 12-hour tour, plus — for some roles — a separate daily allowance. Converting annual pay to an hourly figure using a standard 2,080-hour full-time-equivalent year gives a rough, comparable baseline, but it is not the actual contract rate: real tours and rotations run more or fewer hours than that baseline, which is exactly why the annual total, not the hourly number alone, is what actually lands in the bank.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Position</th><th>Typical Annual</th><th>≈ Hourly (÷2,080 hrs)</th></tr></thead>
+        <tbody>
+          <tr><td>Roustabout</td><td>$50,000</td><td>≈ $24/hr</td></tr>
+          <tr><td>Roughneck / Floorhand</td><td>$70,000</td><td>≈ $34/hr</td></tr>
+          <tr><td>Derrickhand</td><td>$75,000</td><td>≈ $36/hr</td></tr>
+          <tr><td>Driller</td><td>$95,000</td><td>≈ $46/hr</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="color:var(--fog);max-width:760px;margin-top:16px;">Many land-based contractors also pay a <strong>per diem</strong> — a fixed daily allowance, typically in the $75–$150 range, covering meals and lodging while away from home — on top of wages, separate from the hourly rate and usually non-taxable. Offshore roles generally don't carry a per diem at all, because room and board on the installation is already provided free for the full hitch, which is part of why the headline offshore pay premium in the comparison above understates the real gap in disposable income.</p>
+  </section>
+
   <section class="block">
     <div class="section-eyebrow">Reading the Numbers</div>
     <h2 class="section-title">Why Two Hands in the Same Role <span>Earn Differently</span></h2>
@@ -190,5 +237,18 @@ const techArticleJsonLd = techArticleSchema({
     </div>
 
     <p style="color:var(--fog);font-size:13px;max-width:800px;margin-top:20px;">These figures are indicative ranges compiled for orientation, not offers, quotes or a guide to what any specific employer pays. Verify against current job postings and your own contract before making a financial decision.</p>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+    <div class="accordion">
+      {faq.map((item) => (
+        <details class="acc-item">
+          <summary class="acc-header">{item.q}<span class="acc-arrow">▼</span></summary>
+          <div class="acc-body"><p>{item.a}</p></div>
+        </details>
+      ))}
+    </div>
   </section>
 </BaseLayout>

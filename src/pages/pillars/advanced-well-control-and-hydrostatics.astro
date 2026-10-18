@@ -4,22 +4,15 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
 
-import { gitDates, ogImageFor } from '../../lib/techarticle.js';
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Well Kill Methods: Advanced Supervisor Guide",
-  "description": "Driller's Method, Wait and Weight, volumetric, lubricate-and-bleed and bullheading: when each is chosen, step sequences, the ICP-to-FCP drillpipe schedule and common mistakes.",
-  "about": "Well control kill methods",
-  "url": "https://rigfloorhq.com/pillars/advanced-well-control-and-hydrostatics",
-  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://rigfloorhq.com/pillars/advanced-well-control-and-hydrostatics" },
-  // Dates from git, the same source as this URL's sitemap lastmod.
-  ...gitDates('src/pages/pillars/advanced-well-control-and-hydrostatics.astro'),
-  "inLanguage": "en",
-  "image": ogImageFor('/pillars/advanced-well-control-and-hydrostatics'),
-  "author": { "@id": "https://rigfloorhq.com/#organization" },
-  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
-};
+import { techArticleSchema } from '../../lib/techarticle.js';
+const jsonLd = techArticleSchema({
+  sourcePath: 'src/pages/pillars/advanced-well-control-and-hydrostatics.astro',
+  path: '/pillars/advanced-well-control-and-hydrostatics',
+  headline: "Well Kill Methods: Advanced Supervisor Guide",
+  description: "Driller's Method, Wait and Weight, volumetric, lubricate-and-bleed and bullheading: when each is chosen, step sequences, the ICP-to-FCP drillpipe schedule and common mistakes.",
+  lang: 'en',
+  extra: { about: "Well control kill methods" },
+});
 ---
 <BaseLayout
   title="Well Kill Methods: Advanced Supervisor Guide"
