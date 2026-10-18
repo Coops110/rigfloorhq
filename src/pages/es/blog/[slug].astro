@@ -5,6 +5,7 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import DiagramEmbed from '../../../components/DiagramEmbed.astro';
 import { JABIN_PERSON_ID, reviewedByJabin } from '../../../lib/person.js';
+import { gitDates } from '../../../lib/techarticle.js';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blogEs', ({ data }) => !data.draft);
@@ -45,13 +46,19 @@ const authorEntity = isJabin
     }
   : { "@type": "Organization", "name": post.data.author };
 
+// Same git-derived dates every Article/TechArticle page uses (src/lib/techarticle.js).
+// See the English route (src/pages/blog/[slug].astro) for the full rationale.
+const dates = gitDates(`src/content/blog-es/${post.id}.md`);
+const resolvedModifiedDate = post.data.modifiedDate || dates.dateModified || post.data.publishDate;
+const resolvedPublishedDate = dates.datePublished || post.data.publishDate;
+
 const blogPosting = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": post.data.title,
   "description": post.data.description,
-  "datePublished": post.data.publishDate,
-  "dateModified": post.data.modifiedDate || post.data.publishDate,
+  "datePublished": resolvedPublishedDate,
+  "dateModified": resolvedModifiedDate,
   "author": authorEntity,
   "publisher": { "@id": `${siteUrl}/#organization` },
   "image": `${siteUrl}${jsonLdImage}`,
@@ -77,8 +84,8 @@ const englishEquivalent = `/blog/${post.id}`;
   canonical={`/es/blog/${post.id}`}
   breadcrumbs={[{ label: 'Blog', href: '/es/blog' }, { label: post.data.title, href: `/es/blog/${post.id}` }]}
   articleTag={true}
-  publishDate={post.data.publishDate}
-  modifiedDate={post.data.modifiedDate}
+  publishDate={resolvedPublishedDate}
+  modifiedDate={resolvedModifiedDate}
   jsonLd={jsonLd}
   ogImage={shareImage}
   lang="es"

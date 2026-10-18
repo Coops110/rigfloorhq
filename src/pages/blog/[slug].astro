@@ -5,6 +5,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import DiagramEmbed from '../../components/DiagramEmbed.astro';
 import { JABIN_PERSON_ID, reviewedByJabin } from '../../lib/person.js';
+import { gitDates } from '../../lib/techarticle.js';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -52,13 +53,23 @@ const authorEntity = isJabin
     }
   : { "@type": "Organization", "name": post.data.author };
 
+// Same git-derived dates every Article/TechArticle page uses (src/lib/techarticle.js):
+// dateModified is the last commit that actually touched this post's own content
+// file, not a static frontmatter value that never moves after publishing.
+// modifiedDate frontmatter (when an author sets it) still wins, so an explicit
+// editorial date is never silently overridden; publishDate frontmatter is the
+// fallback when git history can't resolve the file (shallow clone).
+const dates = gitDates(`src/content/blog/${post.id}.md`);
+const resolvedModifiedDate = post.data.modifiedDate || dates.dateModified || post.data.publishDate;
+const resolvedPublishedDate = dates.datePublished || post.data.publishDate;
+
 const blogPosting = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": post.data.title,
   "description": post.data.description,
-  "datePublished": post.data.publishDate,
-  "dateModified": post.data.modifiedDate || post.data.publishDate,
+  "datePublished": resolvedPublishedDate,
+  "dateModified": resolvedModifiedDate,
   "author": authorEntity,
   "publisher": { "@id": `${siteUrl}/#organization` },
   "image": `${siteUrl}${jsonLdImage}`,
@@ -92,8 +103,8 @@ const switcherUrl = hasSpanishVersion ? `/es/blog/${post.id}` : '/es/blog';
   canonical={`/blog/${post.id}`}
   breadcrumbs={[{ label: 'Blog', href: '/blog' }, { label: post.data.title, href: `/blog/${post.id}` }]}
   articleTag={true}
-  publishDate={post.data.publishDate}
-  modifiedDate={post.data.modifiedDate}
+  publishDate={resolvedPublishedDate}
+  modifiedDate={resolvedModifiedDate}
   jsonLd={jsonLd}
   ogImage={shareImage}
   lang="en"
