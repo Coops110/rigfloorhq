@@ -174,16 +174,16 @@
   // from the footer. On the automatic first-visit show we deliberately
   // do NOT move focus: yanking a keyboard user out of the page they just
   // opened is hostile, and nothing here is urgent enough to justify it.
+  // No [hidden] attribute and no forced reflow: the banner is static
+  // hidden markup (CSS visibility:hidden + opacity:0 by default), so
+  // adding/removing .is-visible is all that's needed — the browser
+  // already has a laid-out "before" state to transition from. The
+  // delayed `visibility` transition in the CSS (see ConsentBanner.astro)
+  // keeps it out of the accessibility tree and tab order while hidden,
+  // the same guarantee [hidden] gave.
   function show(view, takeFocus) {
     lastFocused = document.activeElement;
-    banner.hidden = false;
     if (view === 'settings') showSettingsView(); else showMainView();
-    // Force a reflow so the transition still runs from the hidden state,
-    // then reveal synchronously. requestAnimationFrame would be cleaner,
-    // but it is paused while the tab is in the background — a page opened
-    // in a background tab would leave the banner permanently at opacity 0
-    // while still being exposed to assistive tech as an open dialog.
-    void banner.offsetWidth;
     banner.classList.add('is-visible');
     if (takeFocus) {
       var focusTarget = view === 'settings' ? backBtn : acceptBtn;
@@ -193,13 +193,7 @@
 
   function hide() {
     banner.classList.remove('is-visible');
-    var done = function () {
-      banner.hidden = true;
-      banner.removeEventListener('transitionend', done);
-      if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
-    };
-    banner.addEventListener('transitionend', done);
-    setTimeout(done, 400); // fallback if transitions are disabled
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
   }
 
   function choose(choice) {

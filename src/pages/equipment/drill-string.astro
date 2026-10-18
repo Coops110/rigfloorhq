@@ -41,8 +41,13 @@ const techArticleJsonLd = techArticleSchema({
         <DrillStringDiagram lang="en" />
         <ol style="list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;margin:24px 0;">
           <li style="display:flex;gap:16px;padding:14px 16px;background:var(--iron);border-radius:3px;align-items:center;">
-            <span style="font-family:var(--mono);font-size:11px;color:var(--ember);min-width:56px;">TOP</span>
-            <div><strong style="color:var(--white);font-size:14px;">Top Drive</strong><br><span style="font-size:12px;color:var(--fog);">Modern rigs use a top drive motor instead of a kelly and rotary table, so the string can keep rotating while a full 90-ft stand is drilled down, instead of stopping every 30-ft single. See the <a href="/equipment/rotating-system" style="color:var(--amber);">rotating system</a> for how both setups actually work.</span></div>
+            {/* --ember measures 4.26 on --iron (fails AA; the documented 6.47/5.41
+                figures in global.css are only for ink/steel) and --fog measures 4.03
+                on --iron for the same reason documented sitewide at global.css:474 —
+                swap to --amber (5.70 on iron) and --mist (8.81 on iron) here only,
+                the two rows actually sitting on the iron background. */}
+            <span style="font-family:var(--mono);font-size:11px;color:var(--amber);min-width:56px;">TOP</span>
+            <div><strong style="color:var(--white);font-size:14px;">Top Drive</strong><br><span style="font-size:12px;color:var(--mist);">Modern rigs use a top drive motor instead of a kelly and rotary table, so the string can keep rotating while a full 90-ft stand is drilled down, instead of stopping every 30-ft single. See the <a href="/equipment/rotating-system" style="color:var(--amber);">rotating system</a> for how both setups actually work.</span></div>
           </li>
           <li style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
             <div><strong style="color:var(--white);font-size:14px;">Drill Pipe</strong><br><span style="font-size:12px;color:var(--fog);">Main body of the string — 5" OD, 30 ft joints threaded together. Can run thousands of feet deep.</span></div>
@@ -63,8 +68,8 @@ const techArticleJsonLd = techArticleSchema({
             <div><strong style="color:var(--white);font-size:14px;">Stabilizers</strong><br><span style="font-size:12px;color:var(--fog);">Keep the BHA centered in the hole to control trajectory and reduce vibration. See <a href="/equipment/stabilizer" style="color:var(--amber);">string, near-bit &amp; roller-reamer types</a> and the related <a href="/equipment/under-reamer" style="color:var(--amber);">under-reamer</a>, which enlarges hole rather than just centering the string in it.</span></div>
           </li>
           <li style="display:flex;gap:16px;padding:14px 16px;background:var(--iron);border-radius:3px;align-items:center;">
-            <span style="font-family:var(--mono);font-size:11px;color:var(--ember);min-width:56px;">BOTTOM</span>
-            <div><strong style="color:var(--white);font-size:14px;">Drill Bit</strong><br><span style="font-size:12px;color:var(--fog);">Cuts the rock. Type is chosen based on formation hardness — see comparison below.</span></div>
+            <span style="font-family:var(--mono);font-size:11px;color:var(--amber);min-width:56px;">BOTTOM</span>
+            <div><strong style="color:var(--white);font-size:14px;">Drill Bit</strong><br><span style="font-size:12px;color:var(--mist);">Cuts the rock. Type is chosen based on formation hardness — see comparison below.</span></div>
           </li>
         </ol>
 
@@ -77,7 +82,7 @@ const techArticleJsonLd = techArticleSchema({
         />
 
         <h2 id="bit-types">Bit Types</h2>
-        <div class="table-wrap">
+        <div class="table-wrap table-scroll-hint" role="region" aria-labelledby="bit-types" tabindex="0">
           <table>
             <thead><tr><th>Bit Type</th><th>Cutting Action</th><th>Best For</th></tr></thead>
             <tbody>
@@ -102,7 +107,7 @@ const techArticleJsonLd = techArticleSchema({
 
         <h2 id="pipe-grades-and-inspection">Pipe Grades and Inspection Classes</h2>
         <p>Drill pipe is not one product. Grade denotes the minimum yield strength of the tube body, and it determines what the string can be asked to carry:</p>
-        <div class="table-wrap">
+        <div class="table-wrap table-scroll-hint" role="region" aria-labelledby="pipe-grades-and-inspection" tabindex="0">
           <table>
             <thead><tr><th>Grade</th><th>Minimum yield</th><th>Typical use</th></tr></thead>
             <tbody>

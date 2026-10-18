@@ -233,6 +233,14 @@ const terms = [
   { term: "Turno (Tour)", en: "Tour", def: "Un turno en el taladro; en inglés se pronuncia \"tower\". La mayoría de las cuadrillas trabajan turnos de 12 horas, y el reporte diario IADC registra lo ocurrido en cada uno.", href: "/es/careers" },
   { term: "Motorista", en: "Motorman", def: "El trabajador responsable de los motores, generadores y equipos mecánicos del taladro. En taladros terrestres suele ser el paso entre ayudante de piso y encuellador.", href: "/es/careers/roughneck" },
   { term: "Piso del Taladro", en: "Rig Floor", def: "La cubierta de trabajo alrededor de la mesa rotaria donde el perforador y los ayudantes de piso hacen conexiones, sacan y meten tubería y manejan herramientas. También llamado piso de perforación.", href: "/es/careers/roughneck" },
+  { term: "Encuellador", en: "Derrickhand", def: "El miembro de la cuadrilla que trabaja en la plataforma del encuellador, en lo alto de la torre, guiando las paradas de tubería hacia los dedos durante los viajes y manejando el sistema de lodo — el escalón después de ayudante de piso en la mayoría de las cuadrillas." },
+  { term: "Prueba de Fuga (Leak-Off Test)", en: "Leak-Off Test", def: "Bombear fluido al pozo justo después de perforar el zapato de la tubería de revestimiento, subiendo la presión gradualmente hasta que la formación empieza a tomar fluido — el punto donde la presión deja de subir linealmente marca el gradiente de fractura en ese zapato.", href: "/es/drilling/casing" },
+  { term: "Plataforma del Encuellador (Monkeyboard)", en: "Monkeyboard", def: "La plataforma de la torre, típicamente a 90-100 pies de altura, donde trabaja el encuellador durante los viajes de tubería — lo mismo que la Monkey Board, solo la grafía de una palabra." },
+  { term: "Rathole", en: "Rathole", def: "Un hueco revestido y poco profundo en el piso del taladro, separado del hueco de ratón (mousehole), donde se estaciona el kelly o una junta de tubería de perforación fuera del camino entre usos." },
+  { term: "Parada (Stand)", en: "Stand", def: "Dos o tres juntas de tubería de perforación enroscadas juntas y manejadas como una sola unidad durante los viajes — la forma estándar de guardar tubería en la torre en lugar de desarmarla a juntas sueltas cada vez." },
+  { term: "Pasta para Roscas (Pipe Dope)", en: "Pipe Dope", def: "Un compuesto para roscas lleno de partículas metálicas aplicado a las roscas de la unión de la herramienta antes de enroscar, lubricando la conexión y llenando huecos microscópicos para ayudar a que el sello aguante y evitar que la rosca se dañe." },
+  { term: "Piscina Lunar (Moon Pool)", en: "Moon Pool", def: "La abertura en el casco de un buque de perforación u otra embarcación flotante similar por donde pasan la sarta de perforación, los risers y el equipo submarino hacia el fondo marino.", href: "/es/equipment/rig-types" },
+  { term: "Corona (Crown Block)", en: "Crown Block", def: "El conjunto fijo de poleas montado en la parte más alta de la torre por donde pasa la línea de perforación antes de bajar al bloque viajero — la corona nunca se mueve; el bloque viajero sí.", href: "/es/equipment/hoisting-system" },
 ];
 
 // Misma lógica que la versión en inglés, con normalización de acentos antes
@@ -304,19 +312,19 @@ const glossaryLd = {
       ))}
     </nav>
 
-    <dl class="glossary-grid">
-      {letters.map((letter) => (
-        <>
-          <div class="gloss-letter-heading" id={`letter-${letter}`}>{letter}</div>
+    {letters.map((letter) => (
+      <div class="gloss-letter-block">
+        <h2 class="gloss-letter-heading" id={`letter-${letter}`}>{letter}</h2>
+        <dl class="glossary-grid">
           {sortedTerms.filter((t) => t.term[0].toUpperCase() === letter).map((t) => (
             <div class="gloss-item" id={slugify(t.term)}>
               <dt class="gloss-term">{t.href ? <a href={t.href}>{t.term}{isEnglishOnly(t.href) && ' (inglés)'}</a> : t.term}</dt>
               <dd class="gloss-def">{t.en && <span class="gloss-en">Inglés: {t.en}. </span>}{t.def}</dd>
             </div>
           ))}
-        </>
-      ))}
-    </dl>
+        </dl>
+      </div>
+    ))}
   </section>
 
   <section class="block">
@@ -357,8 +365,11 @@ const glossaryLd = {
     .az-nav { top: 60px; }
   }
 
+  .gloss-letter-block {
+    margin-bottom: 4px;
+  }
+
   .gloss-letter-heading {
-    grid-column: 1 / -1;
     font-family: var(--cond);
     font-weight: 700;
     font-size: 20px;
@@ -367,6 +378,7 @@ const glossaryLd = {
     color: var(--amber);
     background: var(--ink);
     padding: 14px 20px 8px;
+    margin: 0;
     border-bottom: 2px solid var(--rust);
     scroll-margin-top: 110px;
   }

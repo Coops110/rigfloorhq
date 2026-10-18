@@ -72,7 +72,6 @@ const t = lang === 'es'
       aria-modal="false"
       aria-labelledby="consent-title"
       aria-describedby="consent-body"
-      hidden
     >
       <div class="consent-inner">
         <div class="consent-view consent-view-main" id="consent-view-main">
@@ -145,6 +144,15 @@ const t = lang === 'es'
 )}
 
 <style>
+  /* Static hidden markup, no [hidden] attribute: the banner is always in
+     the render tree so showing it never needs a forced synchronous reflow
+     (the old approach: unhide, then read offsetWidth to force layout before
+     adding .is-visible so the transition had a "before" state to animate
+     from). visibility transitions on a delay instead — 0s delay going
+     visible, delayed until the fade/slide finishes going hidden — so it's
+     pulled from the accessibility tree and tab order only once it's
+     actually invisible, the same guarantee [hidden] gave, without the
+     layout cost. */
   .consent-banner {
     position: fixed;
     left: 0;
@@ -156,11 +164,16 @@ const t = lang === 'es'
     box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.45);
     border-top: 2px solid var(--rust);
     opacity: 0;
+    visibility: hidden;
     transform: translateY(100%);
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
   }
-  .consent-banner.is-visible { opacity: 1; transform: translateY(0); }
-  .consent-banner[hidden] { display: none; }
+  .consent-banner.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0s;
+  }
 
   .consent-inner {
     max-width: 1200px;

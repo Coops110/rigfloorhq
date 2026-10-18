@@ -41,8 +41,12 @@ const techArticleJsonLd = techArticleSchema({
         <DrillStringDiagram lang="es" />
         <ol style="list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;margin:24px 0;">
           <li style="display:flex;gap:16px;padding:14px 16px;background:var(--iron);border-radius:3px;align-items:center;">
-            <span style="font-family:var(--mono);font-size:11px;color:var(--ember);min-width:56px;">ARRIBA</span>
-            <div><strong style="color:var(--white);font-size:14px;">Top Drive</strong><br><span style="font-size:12px;color:var(--fog);">Los taladros modernos usan un motor top drive en lugar de un kelly y mesa rotaria, de modo que la sarta sigue rotando mientras se perfora una parada completa de 90 pies, en lugar de parar en cada junta sencilla de 30 pies.</span></div>
+            {/* --ember mide 4.26 en --iron (no pasa AA) y --fog mide 4.03 en --iron,
+                por la misma razón documentada en global.css:474 — aquí se usa
+                --amber (5.70) y --mist (8.81) en su lugar, solo en estas dos filas
+                que están sobre el fondo --iron. */}
+            <span style="font-family:var(--mono);font-size:11px;color:var(--amber);min-width:56px;">ARRIBA</span>
+            <div><strong style="color:var(--white);font-size:14px;">Top Drive</strong><br><span style="font-size:12px;color:var(--mist);">Los taladros modernos usan un motor top drive en lugar de un kelly y mesa rotaria, de modo que la sarta sigue rotando mientras se perfora una parada completa de 90 pies, en lugar de parar en cada junta sencilla de 30 pies.</span></div>
           </li>
           <li style="display:flex;gap:16px;padding:14px 16px;background:var(--steel);border-radius:3px;align-items:center;">
             <div><strong style="color:var(--white);font-size:14px;">Tubería de Perforación</strong><br><span style="font-size:12px;color:var(--fog);">Cuerpo principal de la sarta — 5" de diámetro exterior, juntas de 30 pies roscadas entre sí. Puede llegar a miles de pies de profundidad.</span></div>
@@ -63,8 +67,8 @@ const techArticleJsonLd = techArticleSchema({
             <div><strong style="color:var(--white);font-size:14px;">Estabilizadores</strong><br><span style="font-size:12px;color:var(--fog);">Mantienen el BHA centrado en el hoyo para controlar la trayectoria y reducir la vibración. Ver <a href="/es/equipment/stabilizer" style="color:var(--amber);">tipos de sarta, cerca de la barrena y rodillo-escariador</a> y el <a href="/es/equipment/under-reamer" style="color:var(--amber);">escariador bajo restricción</a> relacionado, que ensancha el hoyo en lugar de solo centrar la sarta.</span></div>
           </li>
           <li style="display:flex;gap:16px;padding:14px 16px;background:var(--iron);border-radius:3px;align-items:center;">
-            <span style="font-family:var(--mono);font-size:11px;color:var(--ember);min-width:56px;">ABAJO</span>
-            <div><strong style="color:var(--white);font-size:14px;">Barrena</strong><br><span style="font-size:12px;color:var(--fog);">Corta la roca. El tipo se elige según la dureza de la formación — ver comparación abajo.</span></div>
+            <span style="font-family:var(--mono);font-size:11px;color:var(--amber);min-width:56px;">ABAJO</span>
+            <div><strong style="color:var(--white);font-size:14px;">Barrena</strong><br><span style="font-size:12px;color:var(--mist);">Corta la roca. El tipo se elige según la dureza de la formación — ver comparación abajo.</span></div>
           </li>
         </ol>
 
@@ -77,7 +81,7 @@ const techArticleJsonLd = techArticleSchema({
         />
 
         <h2 id="tipos-de-barrena">Tipos de Barrena</h2>
-        <div class="table-wrap">
+        <div class="table-wrap table-scroll-hint" role="region" aria-labelledby="tipos-de-barrena" tabindex="0">
           <table>
             <thead><tr><th>Tipo de Barrena</th><th>Acción de Corte</th><th>Mejor Para</th></tr></thead>
             <tbody>
@@ -102,7 +106,7 @@ const techArticleJsonLd = techArticleSchema({
 
         <h2 id="grados-de-tuberia-y-clases-de-inspeccion">Grados de Tubería y Clases de Inspección</h2>
         <p>La tubería de perforación no es un solo producto. El grado indica la resistencia mínima de cedencia del cuerpo del tubo, y determina qué se le puede exigir cargar a la sarta:</p>
-        <div class="table-wrap">
+        <div class="table-wrap table-scroll-hint" role="region" aria-labelledby="grados-de-tuberia-y-clases-de-inspeccion" tabindex="0">
           <table>
             <thead><tr><th>Grado</th><th>Cedencia Mínima</th><th>Uso Típico</th></tr></thead>
             <tbody>

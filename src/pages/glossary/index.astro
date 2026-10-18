@@ -224,6 +224,14 @@ const terms = [
   { term: "Tour", def: "A shift on the rig, pronounced \"tower\". Most crews work 12-hour tours, and the tour sheet (IADC daily drilling report) records what happened on each one.", href: "/careers" },
   { term: "Motorman", def: "The crew member responsible for the rig's engines, generators and mechanical equipment. Often the step between floorhand and derrickhand on land rigs.", href: "/careers/roughneck" },
   { term: "Rig Floor", def: "The working deck around the rotary table where the driller and floorhands make connections, trip pipe and handle tools. Also called the drill floor.", href: "/careers/roughneck" },
+  { term: "Derrickhand", def: "The crew member who works the monkey board high in the derrick, guiding pipe stands into the fingers during tripping and managing the mud system — the step up from roughneck on most land and offshore crews." },
+  { term: "Leak-Off Test", def: "Pumping fluid into the well just after a casing shoe is drilled out, raising pressure gradually until the formation takes fluid — the point where pressure stops rising linearly marks the fracture gradient at that shoe.", href: "/drilling/casing" },
+  { term: "Monkeyboard", def: "The derrick platform, typically 90-100 ft up, where the derrickman works during tripping operations — same thing as the Monkey Board, just the one-word spelling." },
+  { term: "Rathole", def: "A cased, shallow hole in the rig floor, separate from the mousehole, where the kelly or a joint of drill pipe is parked and out of the way between uses." },
+  { term: "Stand", def: "Two or three joints of drill pipe made up together and handled as a single unit while tripping — the standard way pipe is racked back in the derrick rather than breaking down to single joints every time." },
+  { term: "Pipe Dope", def: "A metal-particle-filled thread compound applied to tool joint threads before make-up, lubricating the connection and filling microscopic gaps to help the seal hold and prevent galling." },
+  { term: "Moon Pool", def: "The opening through the hull of a drillship or similar floating vessel through which the drill string, risers, and subsea equipment pass down to the seabed.", href: "/equipment/rig-types" },
+  { term: "Crown Block", def: "The fixed set of sheaves mounted at the very top of the derrick that the drilling line runs through before going down to the traveling block — it never moves; the traveling block does.", href: "/equipment/hoisting-system" },
 ];
 
 const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -287,19 +295,19 @@ const glossaryLd = {
       ))}
     </nav>
 
-    <dl class="glossary-grid">
-      {letters.map((letter) => (
-        <>
-          <div class="gloss-letter-heading" id={`letter-${letter}`}>{letter}</div>
+    {letters.map((letter) => (
+      <div class="gloss-letter-block">
+        <h2 class="gloss-letter-heading" id={`letter-${letter}`}>{letter}</h2>
+        <dl class="glossary-grid">
           {sortedTerms.filter((t) => t.term[0].toUpperCase() === letter).map((t) => (
             <div class="gloss-item" id={slugify(t.term)}>
               <dt class="gloss-term">{t.href ? <a href={t.href}>{t.term}</a> : t.term}</dt>
               <dd class="gloss-def">{t.def}</dd>
             </div>
           ))}
-        </>
-      ))}
-    </dl>
+        </dl>
+      </div>
+    ))}
   </section>
 
   <section class="block">
@@ -340,8 +348,11 @@ const glossaryLd = {
     .az-nav { top: 60px; }
   }
 
+  .gloss-letter-block {
+    margin-bottom: 4px;
+  }
+
   .gloss-letter-heading {
-    grid-column: 1 / -1;
     font-family: var(--cond);
     font-weight: 700;
     font-size: 20px;
@@ -350,6 +361,7 @@ const glossaryLd = {
     color: var(--amber);
     background: var(--ink);
     padding: 14px 20px 8px;
+    margin: 0;
     border-bottom: 2px solid var(--rust);
     scroll-margin-top: 110px;
   }
