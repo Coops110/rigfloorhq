@@ -1,6 +1,6 @@
 ---
 title: "La Constante 0.052: Presión Hidrostática Explicada"
-description: "De dónde viene el 0.052 en P = 0.052 × MW × TVD, por qué es un factor de conversión de unidades fijo y no una propiedad del lodo, y qué es lo que más se confunde al respecto."
+description: "De dónde viene el 0.052 en P = 0.052 × MW × TVD, por qué es un factor de conversión fijo y no una propiedad del lodo, y qué más se confunde al respecto."
 publishDate: "2026-10-01"
 author: "RigFloorHQ Team"
 category: "Control de Pozos"

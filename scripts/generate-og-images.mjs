@@ -57,11 +57,13 @@ const EYEBROW = {
     pillars: 'PILLAR GUIDE', calculators: 'CALCULATOR', equipment: 'EQUIPMENT', blog: 'BLOG',
     careers: 'CAREERS', drilling: 'DRILLING', safety: 'SAFETY', welding: 'WELDING',
     glossary: 'GLOSSARY', quiz: 'QUIZ', home: 'OIL & GAS FIELD REFERENCE',
+    about: 'ABOUT', legal: 'LEGAL', links: 'RESOURCES',
   },
   es: {
     pillars: 'GUÍA PILAR', calculators: 'CALCULADORA', equipment: 'EQUIPO', blog: 'BLOG',
     careers: 'CARRERAS', drilling: 'PERFORACIÓN', safety: 'SEGURIDAD', welding: 'SOLDADURA',
     glossary: 'GLOSARIO', quiz: 'CUESTIONARIO', home: 'REFERENCIA DE PETRÓLEO Y GAS',
+    about: 'ACERCA DE', legal: 'LEGAL',
   },
 };
 const EYEBROW_HUB = {
@@ -298,6 +300,13 @@ async function main() {
     all.push(...(await processAstroDir('glossary', 'glossary', lang)));
     all.push(...(await processSinglePage('index.astro', 'home', lang, 'home', 'es')));
     all.push(...(await processSinglePage('well-control-quiz.astro', 'quiz', lang, 'well-control-quiz', 'es-well-control-quiz')));
+    all.push(...(await processSinglePage('about.astro', 'about', lang, 'about', 'es-about')));
+    all.push(...(await processSinglePage('privacy.astro', 'legal', lang, 'privacy', 'es-privacy')));
+    all.push(...(await processSinglePage('terms.astro', 'legal', lang, 'terms', 'es-terms')));
+    all.push(...(await processSinglePage('cookies.astro', 'legal', lang, 'cookies', 'es-cookies')));
+    if (lang === 'en') {
+      all.push(...(await processSinglePage('links.astro', 'links', lang, 'links', 'links')));
+    }
     all.push(...(await processBlog(lang)));
   }
 

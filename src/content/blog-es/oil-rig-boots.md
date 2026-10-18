@@ -1,6 +1,6 @@
 ---
 title: "Botas para Taladros Petroleros: Cómo Elegir el Par Correcto"
-description: "Lo que el trabajo en el taladro exige de una bota de seguridad: etiquetas ASTM F2413 y EN ISO 20345, punta de acero vs. compuesta, protectores metatarsianos, botas sin cordones vs. con cordones, y cuándo reemplazarlas."
+description: "Lo que el trabajo en el taladro exige de una bota de seguridad: etiquetas ASTM F2413, punta de acero vs. compuesta, y cuándo reemplazarlas."
 publishDate: "2026-10-02"
 author: "RigFloorHQ Team"
 category: "Seguridad"

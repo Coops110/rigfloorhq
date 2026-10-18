@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import { readdirSync, readFileSync } from 'node:fs';
+import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { buildGitLastmodMap, sourceCandidates } from './scripts/git-lastmod.mjs';
 import { generateLlmsTxt } from './scripts/generate-llms-txt.mjs';
@@ -16,6 +16,23 @@ const NOINDEX_PATHS = ['/links'];
 
 // Read git history once at config load rather than per URL.
 const lastmodMap = buildGitLastmodMap();
+
+// The EN/ES counterpart path for a given pathname, or null if that
+// counterpart page genuinely doesn't exist (e.g. /links has no ES version).
+// Mirrors BaseLayout's own alternateHref per page, so the sitemap's
+// xhtml:link hreflang alternates agree with what's actually in <head>.
+function counterpartPathname(pathname) {
+  const p = pathname.replace(/^\/+|\/+$/g, '');
+  const counterpart = p === 'es' || p.startsWith('es/')
+    ? p === 'es' ? '' : p.slice(3)
+    : p === ''
+      ? 'es'
+      : `es/${p}`;
+  const exists = sourceCandidates(`/${counterpart}`).some(
+    (candidate) => existsSync(candidate)
+  );
+  return exists ? `/${counterpart}`.replace(/\/$/, '') || '/' : null;
+}
 
 export default defineConfig({
   site: 'https://rigfloorhq.com',
@@ -50,15 +67,35 @@ export default defineConfig({
       // one. Omitting the field is a missing signal; a wrong one is a false
       // claim that Google learns to discount across the whole sitemap.
       serialize(item) {
-        if (!lastmodMap) return item;
         const { pathname } = new URL(item.url);
-        for (const candidate of sourceCandidates(pathname)) {
-          const date = lastmodMap.get(candidate);
-          if (date) {
-            item.lastmod = date;
-            return item;
+
+        if (lastmodMap) {
+          for (const candidate of sourceCandidates(pathname)) {
+            const date = lastmodMap.get(candidate);
+            if (date) {
+              item.lastmod = date;
+              break;
+            }
           }
         }
+
+        // xhtml:link hreflang alternates, same EN/ES pairing already declared
+        // in each page's own <head> (see BaseLayout's alternateHref). Only
+        // added when the counterpart page actually exists on disk.
+        const isEs = pathname.replace(/^\/+|\/+$/g, '').split('/')[0] === 'es';
+        const counterpart = counterpartPathname(pathname);
+        if (counterpart) {
+          const site = 'https://rigfloorhq.com';
+          const selfLang = isEs ? 'es' : 'en';
+          const otherLang = isEs ? 'en' : 'es';
+          const enUrl = isEs ? `${site}${counterpart}` : item.url;
+          item.links = [
+            { url: item.url, lang: selfLang },
+            { url: `${site}${counterpart}`, lang: otherLang },
+            { url: enUrl, lang: 'x-default' },
+          ];
+        }
+
         return item;
       },
     }),
