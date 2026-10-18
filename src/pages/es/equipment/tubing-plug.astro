@@ -5,25 +5,6 @@ import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
 import { techArticleSchema } from '../../../lib/techarticle.js';
 
-const faq = [
-  {
-    q: '¿Para qué se usa un tapón de tubería?',
-    a: 'Un tapón de tubería se asienta en un perfil de niple de asiento a una profundidad elegida para bloquear flujo por la tubería en ese punto. Se usa para probar a presión la sarta de tubería, aislar todo lo debajo de una cierta profundidad durante una intervención, o cerrar temporalmente una zona, y se recupera en cable una vez que ya no se necesita.',
-  },
-  {
-    q: '¿Cómo se asienta y se recupera un tapón de tubería?',
-    a: 'Se corre hacia abajo en cable con una herramienta de asentamiento, que localiza el niple de asiento objetivo por su perfil específico, asienta el mandril de traba del tapón en ese perfil, y se libera. La recuperación funciona al revés: una herramienta de recuperación en cable separada se traba en el tapón y lo jala libre del niple, restaurando flujo a esa profundidad.',
-  },
-  {
-    q: '¿En qué se diferencia un tapón de tubería de un tapón puente?',
-    a: 'Un tapón de tubería es pequeño y se asienta en un perfil específico de niple de asiento maquinado en la tubería misma, recuperado rutinariamente en cable como parte normal de las operaciones del pozo. Un tapón puente se asienta directamente contra el DI del revestimiento usando slips y un elemento sellante, es mucho más robusto, y a menudo está pensado para permanecer en su lugar por un período extendido o permanentemente en lugar de ser una herramienta recuperada rutinariamente.',
-  },
-  {
-    q: '¿Qué causa que un tapón de tubería falle en sostener presión?',
-    a: 'Los escombros o incrustación en el orificio sellante del niple que evitan un sello completo son una causa común, junto con el desgaste en los elementos sellantes propios del tapón por un asentamiento previo o por tiempo pasado en el fondo. Asentar el tapón en un niple cuyo perfil no coincide precisamente con el mandril de traba del tapón también puede evitar un asentamiento seguro y hermético a la presión desde el principio.',
-  },
-];
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/tubing-plug.astro',
   path: '/es/equipment/tubing-plug',
@@ -76,13 +57,6 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="vs-bridge-plug">Tapón de Tubería vs. Tapón Puente</h2>
         <p>Ambos bloquean flujo a una profundidad elegida, pero en escalas y duraciones muy diferentes. Un tapón de tubería es pequeño, se asienta en un perfil específico de niple dentro de la tubería, y se saca y reasenta rutinariamente como parte de operaciones normales. Un <a href="/es/equipment/bridge-plug">tapón puente</a> se asienta directamente contra el DI del revestimiento usando slips y un elemento sellante, es sustancialmente más grande y robusto, y a menudo está pensado para colocación extendida o permanente en lugar de recuperación rutinaria.</p>
 
-        <h2 id="faq">Preguntas Frecuentes</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
       </div>
 
       <div>
@@ -93,7 +67,6 @@ const techArticleJsonLd = techArticleSchema({
           <a href="#setting-retrieving">Asentamiento y Recuperación</a>
           <a href="#failure-modes">Fallas Comunes</a>
           <a href="#vs-bridge-plug">vs. Tapón Puente</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div class="note-box mt-24">
           <strong>Solo referencia.</strong> Los perfiles de mandril de traba y las clasificaciones de presión varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.

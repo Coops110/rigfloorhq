@@ -4,29 +4,7 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
 import { techArticleSchema } from '../../../lib/techarticle.js';
-
-const faq = [
-  {
-    q: '¿Para qué se usa un tapón puente?',
-    a: 'Un tapón puente crea un sello mecánico hermético a la presión dentro del revestimiento o la tubería, aislando todo lo que está debajo de él de todo lo que está arriba. Se corre para abandonar una zona agotada, para proteger una zona inferior mientras se hace un workover o se completa una zona más arriba, para sostener presión durante una prueba de integridad de revestimiento, o como parte del abandono temporal o permanente del pozo.',
-  },
-  {
-    q: '¿Cuál es la diferencia entre un tapón puente perforable y uno recuperable?',
-    a: 'Un tapón puente perforable (de hierro fundido) está hecho de hierro fundido y componentes compuestos específicamente para que pueda molerse con un taladro si la zona de abajo alguna vez necesita volver a accederse — está diseñado para destruirse, no para recuperarse intacto. Un tapón puente recuperable usa un cuerpo de acero y un mecanismo de liberación (típicamente un perfil tipo J-slot o similar) para que pueda engancharse, desasentarse, y sacarse completo del pozo, luego reutilizarse.',
-  },
-  {
-    q: '¿Cómo se asienta un tapón puente en el fondo del pozo?',
-    a: 'Dos métodos de asentamiento cubren la mayoría de los trabajos. El asentamiento a cable corre el tapón en línea eléctrica, primero correlacionado a la profundidad exacta con un registro CCL (localizador de coples de revestimiento), luego se asienta con una herramienta que enciende una carga de pólvora/gas para impulsar los slips y el elemento a su lugar — rápido, y la opción estándar cuando no hay ya tubería o tubería flexible en el pozo. El asentamiento mecánico o hidráulico corre el tapón en una sarta de trabajo, luego lo asienta aplicando peso y rotación, o aplicando presión hidráulica por la sarta, dependiendo de la herramienta.',
-  },
-  {
-    q: '¿Cuál es la diferencia entre un tapón puente y un retenedor de cemento?',
-    a: 'Ambos aíslan una zona, pero un retenedor de cemento tiene una válvula a través de su cuerpo que se abre para dejar bombear cemento a través de ella bajo presión durante un trabajo de squeeze, luego se cierra para sostener presión desde arriba una vez terminado el trabajo. Un tapón puente no tiene ninguna válvula de paso — es un sello mecánico puro, asentado y dejado ahí, sin nada diseñado para bombearse a través de él después.',
-  },
-  {
-    q: '¿Qué causa que falle un tapón puente?',
-    a: 'La falla más común es la extrusión o fuga del elemento una vez que la presión diferencial o la temperatura excede lo que el tapón específico está calificado para soportar. La falla de los slips — el tapón deslizándose en lugar de morder — ocurre más seguido en revestimiento dañado, desgastado, o de diámetro insuficiente. Un tapón recuperable también puede fallar en liberarse limpiamente si su J-slot o mecanismo de asentamiento se ha corroído o dañado desde que fue asentado, y un tapón perforable puede tardar más de lo esperado en molerse si su compuesto no se rompe como su diseño pretende.',
-  },
-];
+import KeyFacts from '../../../components/KeyFacts.astro';
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/bridge-plug.astro',
@@ -60,6 +38,12 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="what-it-is">Qué Es un Tapón Puente</h2>
         <p>Un tapón puente es una herramienta de fondo corrida en línea eléctrica o en una sarta de trabajo y asentada dentro del revestimiento o la tubería para crear un sello mecánico hermético a la presión a través de todo el diámetro interior. Una vez asentado, separa físicamente el pozo en dos secciones aisladas — nada fluye más allá de él en ninguna dirección.</p>
         <p>La herramienta en sí está construida alrededor de un juego de slips que muerden la pared del revestimiento para mantenerla en su lugar bajo presión diferencial, y un elemento sellante de elastómero, comprimido entre dos zapatas de respaldo, que hace el sellado real. Es una herramienta de aislamiento de un solo propósito, no una válvula ni un dispositivo de control de flujo — una vez asentado, la única forma de cambiar lo que ocurre a esa profundidad es recuperarlo (si es un diseño recuperable) o molerlo (si es uno perforable).</p>
+
+        <KeyFacts
+          lang="es"
+          rows={[["Dónde se asienta", "Dentro del revestimiento o la tubería a una profundidad objetivo, aislando todo lo debajo de él de todo lo de arriba."], ["Métodos de asentamiento", "A cable (herramienta pirotécnica, correlacionada por CCL) o accionamiento mecánico/hidráulico en una sarta de trabajo."], ["Tipos", "Perforable (hierro fundido, compuesto) para zonas que puedan necesitar reabrirse; recuperable (acero, liberación J-slot) para reutilizar."], ["Presión/temp (genérico)", "Servicio estándar aproximadamente 5,000–10,000 psi diferencial y hasta 300–350°F; los diseños HP/HT exceden ambos con otra metalurgia y elastómeros."], ["Clasificaciones de validación", "API 11D1 grados de validación de diseño V0 a V6 — V0 es el más estricto, una prueba de gas con cero burbujas permitidas."]]}
+          standards={["api11d1"]}
+        />
       </div>
     </div>
   </section>
@@ -100,13 +84,6 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="vs-cement-retainer">Tapón Puente vs. Retenedor de Cemento</h2>
         <p>Las dos herramientas se confunden porque hacen trabajos de aislamiento de apariencia similar, pero la diferencia mecánica es simple: un <a href="/es/equipment/cement-retainer"><strong>retenedor de cemento</strong></a> tiene una válvula que corre a través de su cuerpo. Esa válvula se abre para dejar bombear cemento a través de ella bajo presión durante un trabajo de cementación por squeeze, luego se cierra después para sostener presión desde arriba una vez terminado el trabajo. Un <strong>tapón puente</strong> no tiene ninguna válvula de paso — es un sello mecánico puro sin nada diseñado para bombearse a través de él una vez asentado. Si el trabajo requiere bombear cemento (o cualquier otra cosa) a través de la herramienta misma, corresponde un retenedor; si es un sello de aislamiento sencillo sin bombeo a través de él después, corresponde un tapón puente.</p>
 
-        <h2 id="faq">Preguntas Frecuentes</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
       </div>
 
       <div>
@@ -119,7 +96,6 @@ const techArticleJsonLd = techArticleSchema({
           <a href="#materials">Materiales y Molienda</a>
           <a href="#failure-modes">Fallas Comunes</a>
           <a href="#vs-cement-retainer">vs. Retenedor de Cemento</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div class="note-box mt-24">
           <strong>Solo referencia.</strong> Las clasificaciones y especificaciones varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.

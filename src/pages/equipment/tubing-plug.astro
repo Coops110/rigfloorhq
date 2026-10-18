@@ -5,25 +5,6 @@ import Footer from '../../components/Footer.astro';
 import ToolGallery from '../../components/ToolGallery.astro';
 import { techArticleSchema } from '../../lib/techarticle.js';
 
-const faq = [
-  {
-    q: 'What is a tubing plug used for?',
-    a: 'A tubing plug is set into a landing nipple profile at a chosen depth to block flow through the tubing at that point. It is used to pressure-test the tubing string, isolate everything below a certain depth during an intervention, or temporarily shut in a zone, and it is retrieved on wireline once it is no longer needed.',
-  },
-  {
-    q: 'How is a tubing plug set and retrieved?',
-    a: 'It is run down on wireline with a setting tool, which locates the target landing nipple by its specific profile, lands the plug\'s lock mandrel into that profile, and releases. Retrieval works in reverse: a separate wireline retrieving tool latches onto the plug and pulls it free of the nipple, restoring flow through that depth.',
-  },
-  {
-    q: 'How does a tubing plug differ from a bridge plug?',
-    a: 'A tubing plug is small and sets into a specific landing nipple profile machined into the tubing itself, routinely retrieved on wireline as a normal part of well operations. A bridge plug sets directly against the casing ID using slips and a packing element, is far more substantial, and is often intended to stay in place for an extended period or permanently rather than being a routine, repeatedly-pulled tool.',
-  },
-  {
-    q: 'What causes a tubing plug to fail to hold pressure?',
-    a: 'Debris or scale on the nipple\'s sealing bore preventing a full seal is a common cause, along with wear on the plug\'s own seal elements from a prior setting or from time spent downhole. Setting the plug in a nipple whose profile doesn\'t precisely match the plug\'s lock mandrel can also prevent a secure, pressure-tight set in the first place.',
-  },
-];
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/tubing-plug.astro',
   path: '/equipment/tubing-plug',
@@ -76,13 +57,6 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="vs-bridge-plug">Tubing Plug vs. Bridge Plug</h2>
         <p>Both block flow at a chosen depth, but at very different scales and for different durations. A tubing plug is small, sets into a specific nipple profile inside the tubing, and is routinely pulled and reset as part of normal operations. A <a href="/equipment/bridge-plug">bridge plug</a> sets directly against the casing ID using slips and a packing element, is substantially larger and more robust, and is often intended for extended or permanent placement rather than routine retrieval.</p>
 
-        <h2 id="faq">Frequently Asked Questions</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
       </div>
 
       <div>
@@ -93,7 +67,6 @@ const techArticleJsonLd = techArticleSchema({
           <a href="#setting-retrieving">Setting &amp; Retrieving</a>
           <a href="#failure-modes">Failure Modes</a>
           <a href="#vs-bridge-plug">vs. Bridge Plug</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div class="note-box mt-24">
           <strong>Reference only.</strong> Lock mandrel profiles and pressure ratings vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.

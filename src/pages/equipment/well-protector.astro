@@ -5,29 +5,6 @@ import Footer from '../../components/Footer.astro';
 import ToolGallery from '../../components/ToolGallery.astro';
 import { techArticleSchema } from '../../lib/techarticle.js';
 
-const faq = [
-  {
-    q: 'What is a well protector used for?',
-    a: 'A well protector is a temporary device installed over or inside a wellhead, tubing hanger, or landing profile to shield its critical sealing surfaces and threads from damage while other equipment and tools are rigged up, run, or pulled during an intervention or workover.',
-  },
-  {
-    q: 'What kind of damage is a well protector actually preventing?',
-    a: 'Dropped tools, slips from running equipment, wireline hardware, or simple rig floor traffic can all nick, scratch, or deform a precision sealing surface or thread profile on a wellhead or hanger — damage that might seem minor but can prevent a proper metal-to-metal or elastomer seal from forming later. A well protector covers and isolates that surface from exactly this kind of incidental contact while the well is open for work.',
-  },
-  {
-    q: 'When is a well protector installed and removed?',
-    a: 'It goes on before intervention work begins — rigging up wireline, coiled tubing, or a workover rig — and comes off once that equipment is rigged down and the critical surface it was protecting needs to be exposed again for its actual function, such as landing a hanger or making a final seal.',
-  },
-  {
-    q: 'What happens if a well protector is skipped?',
-    a: 'Skipping it doesn\'t guarantee damage, but it removes the margin of safety specifically meant to catch the routine mishaps — a dropped slip, a dragged tool — that happen often enough on an active rig floor to justify protecting the one surface that absolutely has to seal correctly once work is done.',
-  },
-  {
-    q: 'Does a well protector do anything besides shield a surface?',
-    a: 'On BOP and wellhead cleaning jobs specifically, yes — it doubles as a debris-collection tool. Run below the wellhead and inside the casing during BOP and wellhead jetting, or after function-testing BOP rams, it acts as a backup catch for debris that circulation didn\'t carry out or that fell back down into the well, and gives a way to confirm the wellbore is actually clear of debris before the job is called done.',
-  },
-];
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/well-protector.astro',
   path: '/equipment/well-protector',
@@ -76,13 +53,6 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="consequence-of-skipping">What Happens If It's Skipped</h2>
         <p>Skipping a well protector doesn't guarantee damage will occur — most jobs go fine without incident regardless. What it removes is the margin of safety specifically built in to catch the routine mishaps that happen often enough on a busy rig floor — a dropped slip, a dragged tool, an unexpected bump — to justify protecting the one surface on the well that absolutely has to seal correctly once the work is done.</p>
 
-        <h2 id="faq">Frequently Asked Questions</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
       </div>
 
       <div>
@@ -93,7 +63,6 @@ const techArticleJsonLd = techArticleSchema({
           <a href="#debris-collection">Debris Collection</a>
           <a href="#when-used">When It's Used</a>
           <a href="#consequence-of-skipping">If It's Skipped</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div class="note-box mt-24">
           <strong>Reference only.</strong> Design and fit vary by wellhead manufacturer and model — always confirm against the actual wellhead's spec sheet before relying on any figure here for a real job.

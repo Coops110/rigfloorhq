@@ -4,25 +4,7 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
 import { techArticleSchema } from '../../../lib/techarticle.js';
-
-const faq = [
-  {
-    q: '¿Qué es un empacador de retención de asentamiento hidráulico?',
-    a: 'Es un empacador de producción permanente, corrido a profundidad y asentado aplicando presión hidráulica por la tubería en lugar de peso mecánico, rotación, o una herramienta de asentamiento por cable. "Retención" describe cómo se completa después — la tubería de producción no se rosca directamente al cuerpo del empacador, se conecta a través de un conjunto de sellos separado que se inserta en el agujero pulido del empacador, el mismo diseño de dos piezas cubierto en la página principal de empacadores.',
-  },
-  {
-    q: '¿Qué agrega la variante de alta especificación resistente a gas amargo sobre una estándar?',
-    a: 'Principalmente dos cosas: el agujero más grande que el diseño del empacador permite para un tamaño de revestimiento dado, y metalurgia y un sistema de elemento sellante clasificados para servicio amargo (H2S) — aleaciones estandarizadas que resisten la corrosión y fragilización que el gas amargo causa en aceros de completación ordinarios, más un elemento sellante construido para resistir ser arrastrado de su sello cuando los fluidos del pozo se mueven. Un empacador de retención estándar está construido para servicio típico, no amargo, donde esas clasificaciones extra no se necesitan.',
-  },
-  {
-    q: '¿En qué se diferencia esto de un retenedor de cemento?',
-    a: 'A pesar del nombre similar, son herramientas no relacionadas. Un retenedor de cemento es una herramienta temporal, de paso, usada para aislar una zona durante un trabajo de cementación forzada — ver la página dedicada de retenedor de cemento. Un empacador de retención de asentamiento hidráulico es un empacador de producción permanente, sin ninguna función de cementación.',
-  },
-  {
-    q: '¿Por qué asentamiento hidráulico en lugar de mecánico o por cable?',
-    a: 'Asentar por presión aplicada en la tubería evita necesitar rotación o peso de tiro directo para accionar el empacador, lo cual importa en pozos donde la sarta de tubería no puede transmitir confiablemente esa fuerza de asentamiento mecánico hasta la profundidad, o donde se prefiere una presión de asentamiento limpia y repetible sobre un disparador mecánico. También mantiene el proceso de asentamiento independiente del acceso por cable, que puede no ser práctico en cada completación.',
-  },
-];
+import KeyFacts from '../../../components/KeyFacts.astro';
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/hydraulic-set-retainer-packer.astro',
@@ -56,6 +38,12 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="what-it-is">Qué Es un Empacador de Retención Hidráulico</h2>
         <p>Un empacador de retención de asentamiento hidráulico es un <a href="/es/equipment/packer">empacador</a> de producción permanente corrido a profundidad en tubería y asentado aplicando presión hidráulica desde superficie, en lugar de rotación mecánica, tiro directo, o una corrida de asentamiento por cable separada. Una vez asentado, permanece en el pozo por toda la vida de la completación — la mitad "retención" del nombre describe cómo se conecta la tubería de producción después: no roscada directamente al cuerpo del empacador, sino a través de un conjunto de sellos separado insertado en el propio agujero pulido del empacador, el mismo diseño de dos piezas descrito en la página principal de empacadores.</p>
 
+        <KeyFacts
+          lang="es"
+          rows={[["Dónde se asienta", "Corrido en tubería y asentado permanentemente como parte de la completación de producción."], ["Método de asentamiento", "Hidráulico — asentado aplicando presión de tubería desde superficie, no rotación mecánica ni cable."], ["Configuraciones", "Estándar, y una versión de alta especificación resistente a gas amargo con agujero más grande y metalurgia resistente a H2S."], ["Tipo de completación", "Dos piezas — la tubería se conecta a través de un conjunto de sellos separado insertado en el agujero pulido del empacador, no roscada directamente al cuerpo."], ["Clasificaciones de validación", "API 11D1 grados de validación de diseño V0 a V6, la misma familia de validación de empacadores/tapones puente."]]}
+          standards={["api11d1"]}
+        />
+
         <h2 id="standard-vs-high-spec">Configuración Estándar vs. Alta Especificación Gas Amargo</h2>
         <p>Esta clase de empacador típicamente viene en dos niveles:</p>
         <ul>
@@ -69,13 +57,6 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="vs-cement-retainer">No Confundir Con un Retenedor de Cemento</h2>
         <p>El nombre se superpone, pero un <a href="/es/equipment/cement-retainer">retenedor de cemento</a> es una herramienta diferente haciendo un trabajo diferente — un dispositivo temporal, de paso, usado para aislar una zona durante un trabajo de cementación forzada, removido o perforado una vez completada la forzada. Un empacador de retención de asentamiento hidráulico no tiene nada que ver con cementación; es un empacador de producción permanente dejado en su lugar como parte de la completación misma. La palabra compartida "retención" describe dos conceptos mecánicos no relacionados en cada herramienta, no una relación familiar entre ellas.</p>
 
-        <h2 id="faq">Preguntas Frecuentes</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
       </div>
 
       <div>
@@ -85,7 +66,6 @@ const techArticleJsonLd = techArticleSchema({
           <a href="#standard-vs-high-spec">Estándar vs. Alta Especificación</a>
           <a href="#setting-method">Método de Asentamiento</a>
           <a href="#vs-cement-retainer">vs. Retenedor de Cemento</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div class="note-box mt-24">
           <strong>Solo referencia.</strong> El tamaño del agujero, la clasificación de presión, y las opciones de metalurgia varían por fabricante y modelo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier cifra de aquí para un trabajo real.

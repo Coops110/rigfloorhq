@@ -4,25 +4,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ToolGallery from '../../components/ToolGallery.astro';
 import { techArticleSchema } from '../../lib/techarticle.js';
-
-const faq = [
-  {
-    q: 'What is a cement retainer used for?',
-    a: 'A cement retainer isolates a zone during a squeeze-cementing job, letting cement be pumped through its body under pressure into the interval below or beside it, then closing to hold that pressure in place once the squeeze is finished. It is the tool that lets a crew squeeze cement into a specific perforated interval without cement free-falling down the rest of the wellbore.',
-  },
-  {
-    q: 'How is a cement retainer set and operated?',
-    a: 'It runs on wireline or a work string, is set at the target depth the same way a bridge plug is (wireline setting tool or mechanical/hydraulic actuation), then a stinger or work string is stabbed into the top of the retainer to open its internal valve. Cement is pumped down through the stinger, through the retainer\'s valve, and out into the isolated zone. Once the squeeze is complete, the valve closes and the stinger is pulled out, leaving the retainer holding pressure from above.',
-  },
-  {
-    q: 'Is a cement retainer drillable or retrievable?',
-    a: 'Both versions exist, the same as a bridge plug. Drillable retainers use cast iron and composite components so they can be milled out if the zone below ever needs to be reopened. Retrievable retainers use a steel body and a release mechanism so the whole assembly can be latched and pulled back out intact once its job is done.',
-  },
-  {
-    q: 'What happens if the valve fails to close after a squeeze job?',
-    a: 'If the valve does not close cleanly, pressure applied from above during the squeeze will not hold, and the job effectively fails to isolate anything — cement or pressure can migrate back up past the retainer. This is why the stinger is typically pulled slowly and pressure is tested against the retainer immediately after release, before assuming the squeeze actually held.',
-  },
-];
+import KeyFacts from '../../components/KeyFacts.astro';
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/cement-retainer.astro',
@@ -57,6 +39,12 @@ const techArticleJsonLd = techArticleSchema({
         <p>A cement retainer is a downhole tool set inside casing or tubing that creates a pressure-tight seal across the bore, the same way a <a href="/equipment/bridge-plug">bridge plug</a> does — except a retainer has a valve running through its body. That valve stays closed under normal conditions, holding pressure from above, but can be opened by stabbing a stinger or work string into the top of the tool, letting cement be pumped straight through it under pressure during a squeeze job.</p>
         <p>Once the squeeze is finished and the stinger is pulled, the valve closes again and the retainer keeps holding pressure — which is exactly what lets a crew squeeze cement into one specific interval without it free-falling down the rest of the open wellbore below.</p>
 
+        <KeyFacts
+          lang="en"
+          rows={[["Where it sits", "Set inside casing or tubing at the target interval for a squeeze-cementing job."], ["Key feature vs. bridge plug", "A valve through the body — opens for a stinger to pump cement through, then closes to hold pressure from above."], ["Setting methods", "Wireline (pyrotechnic setting tool, CCL-correlated) or mechanical/hydraulic on a work string — same as a bridge plug."], ["Types", "Drillable (cast iron, composite) or retrievable (steel, release profile)."], ["Validation grades", "API 11D1 design validation grades V0 to V6, the same family of grades applied to bridge plugs."]]}
+          standards={["api11d1"]}
+        />
+
         <h2 id="when-used">When and Why a Cement Retainer Is Run</h2>
         <ul>
           <li><strong>Squeeze cementing a specific perforated interval</strong> — repairing a channel behind casing, isolating a watered-out or depleted zone, or shutting off an interval producing unwanted fluid.</li>
@@ -84,13 +72,6 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="vs-retainer-packer">Not to Be Confused With a Hydraulic-Set Retainer Packer</h2>
         <p>The "retainer" wording shows up on two completely different tools. This page covers a cement retainer — a temporary, pump-through device used only during a squeeze cementing job. A <a href="/equipment/hydraulic-set-retainer-packer">hydraulic-set retainer packer</a> is an unrelated permanent production packer, left in place for the life of the well, with no cementing function at all. Same word, two different mechanical concepts.</p>
 
-        <h2 id="faq">Frequently Asked Questions</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
       </div>
 
       <div>
@@ -103,7 +84,6 @@ const techArticleJsonLd = techArticleSchema({
           <a href="#failure-modes">Failure Modes</a>
           <a href="#vs-bridge-plug">vs. Bridge Plug</a>
           <a href="#vs-retainer-packer">vs. Retainer Packer</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div class="note-box mt-24">
           <strong>Reference only.</strong> Valve design and setting mechanisms vary by manufacturer and job — always confirm against the actual tool's spec sheet before relying on any detail here for a real job.

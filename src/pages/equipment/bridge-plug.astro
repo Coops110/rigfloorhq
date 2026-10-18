@@ -4,29 +4,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ToolGallery from '../../components/ToolGallery.astro';
 import { techArticleSchema } from '../../lib/techarticle.js';
-
-const faq = [
-  {
-    q: 'What is a bridge plug used for?',
-    a: 'A bridge plug creates a pressure-tight mechanical seal inside casing or tubing, isolating everything below it from everything above it. It is run to abandon a depleted zone, to protect a lower zone while working over or completing a zone higher up, to hold pressure during a casing integrity test, or as part of temporary or permanent well abandonment.',
-  },
-  {
-    q: 'What is the difference between a drillable and a retrievable bridge plug?',
-    a: 'A drillable (cast iron) bridge plug is built from cast iron and composite components specifically so it can be milled out with a rig if the zone below it ever needs to be re-accessed — it is designed to be destroyed, not recovered intact. A retrievable bridge plug uses a steel body and a release mechanism (typically a J-slot or similar profile) so it can be latched, unset, and pulled back out of the well whole, then reused.',
-  },
-  {
-    q: 'How is a bridge plug set downhole?',
-    a: 'Two setting methods cover most jobs. Wireline setting runs the plug on electric line, first correlated to exact depth with a CCL (casing collar locator) run, then set with a tool that ignites a powder/gas charge to drive the slips and element into place — fast, and the standard choice when tubing or coiled tubing isn\'t already in the hole. Mechanical or hydraulic setting runs the plug on a work string, then sets it by applying weight and rotation, or by applying hydraulic pressure through the string, depending on the tool.',
-  },
-  {
-    q: 'What is the difference between a bridge plug and a cement retainer?',
-    a: 'Both isolate a zone, but a cement retainer has a valve through its body that opens to let cement be pumped through it under pressure during a squeeze job, then closes to hold pressure from above once the job is done. A bridge plug has no through-valve at all — it is a pure mechanical seal, set and left, with nothing designed to pump through it afterward.',
-  },
-  {
-    q: 'What causes a bridge plug to fail?',
-    a: 'The most common failure is element extrusion or leakage once differential pressure or temperature exceeds what the specific plug is rated for. Slip failure — the plug sliding rather than biting — happens most often in damaged, worn, or undersized casing. A retrievable plug can also fail to release cleanly if its J-slot or setting mechanism has corroded or been damaged since it was set, and a drillable plug can be slower than expected to mill if its composite doesn\'t break down the way its design intends.',
-  },
-];
+import KeyFacts from '../../components/KeyFacts.astro';
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/bridge-plug.astro',
@@ -60,6 +38,12 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="what-it-is">What a Bridge Plug Is</h2>
         <p>A bridge plug is a downhole tool run on wireline or a work string and set inside casing or tubing to create a pressure-tight mechanical seal across the full bore. Once set, it physically separates the wellbore into two isolated sections — nothing flows past it in either direction.</p>
         <p>The tool itself is built around a set of slips that bite into the casing wall to hold it in place under differential pressure, and an elastomer sealing element, compressed between two backup shoes, that does the actual sealing. It's a single-purpose isolation tool, not a valve or a flow-control device — once it's set, the only way to change what's happening at that depth is to either retrieve it (if it's a retrievable design) or drill it out (if it's a drillable one).</p>
+
+        <KeyFacts
+          lang="en"
+          rows={[["Where it sits", "Set inside casing or tubing at a target depth, isolating everything below it from everything above it."], ["Setting methods", "Wireline (pyrotechnic setting tool, CCL-correlated to depth) or mechanical/hydraulic actuation on a work string."], ["Types", "Drillable (cast iron, composite) for zones that may need reopening; retrievable (steel, J-slot release) for reuse."], ["Pressure/temp (generic)", "Standard service roughly 5,000–10,000 psi differential and up to 300–350°F; HP/HT designs exceed both on different metallurgy and elastomers."], ["Validation grades", "API 11D1 design validation grades V0 to V6 — V0 is the most stringent, a gas test with zero allowed bubbles."]]}
+          standards={["api11d1"]}
+        />
       </div>
     </div>
   </section>
@@ -100,13 +84,6 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="vs-cement-retainer">Bridge Plug vs. Cement Retainer</h2>
         <p>The two tools get confused because they do similar-looking isolation jobs, but the mechanical difference is simple: a <a href="/equipment/cement-retainer"><strong>cement retainer</strong></a> has a valve running through its body. That valve opens to let cement be pumped through it under pressure during a squeeze-cementing job, then closes afterward to hold pressure from above once the job is complete. A <strong>bridge plug</strong> has no through-valve at all — it's a pure mechanical seal with nothing designed to pump through it once it's set. If the job requires pumping cement (or anything else) through the tool itself, it calls for a retainer; if it's a straightforward isolation seal with no pumping through it afterward, it calls for a bridge plug.</p>
 
-        <h2 id="faq">Frequently Asked Questions</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
       </div>
 
       <div>
@@ -119,7 +96,6 @@ const techArticleJsonLd = techArticleSchema({
           <a href="#materials">Materials &amp; Millability</a>
           <a href="#failure-modes">Failure Modes</a>
           <a href="#vs-cement-retainer">vs. Cement Retainer</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div class="note-box mt-24">
           <strong>Reference only.</strong> Ratings and specifications vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.

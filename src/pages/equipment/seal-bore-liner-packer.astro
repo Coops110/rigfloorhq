@@ -4,25 +4,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import ToolGallery from '../../components/ToolGallery.astro';
 import { techArticleSchema } from '../../lib/techarticle.js';
-
-const faq = [
-  {
-    q: 'What is a seal bore liner packer used for?',
-    a: 'A seal bore liner packer provides the pressure seal at the top of a liner, where the liner overlaps the casing string above it, by presenting a smooth, precision-finished seal bore that a tieback or production seal assembly stabs into and seals against from above. It completes the pressure-isolation job that the liner\'s hanging mechanism alone doesn\'t guarantee.',
-  },
-  {
-    q: 'Isn\'t hanging the liner\'s weight the same thing as sealing it?',
-    a: 'No — the two are related but separate functions handled by different parts of the overlap assembly. The liner\'s weight-bearing job is done by the hanger\'s slips, which anchor it mechanically to the casing above. The pressure-sealing job across the overlap is a separate function, provided by the seal bore liner packer (or in some designs, an integrated packer element within the hanger assembly itself).',
-  },
-  {
-    q: 'What stabs into the seal bore?',
-    a: 'A seal assembly or tieback stinger, run on the bottom of the string being connected above — whether that\'s a tieback string extending the liner\'s isolation up to surface, or a production string\'s own seal assembly — lands and seals inside the polished seal bore, completing the pressure barrier across the overlap.',
-  },
-  {
-    q: 'What causes a seal bore liner packer to fail to seal?',
-    a: 'Debris or cement left in the seal bore from the cementing operation can prevent the seal assembly from stabbing in cleanly or sealing fully once landed. Seal element wear on the stabbing assembly itself, rather than the bore, is another common cause, particularly after the seal assembly has been run and pulled more than once.',
-  },
-];
+import KeyFacts from '../../components/KeyFacts.astro';
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/seal-bore-liner-packer.astro',
@@ -56,6 +38,12 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="what-it-is">What a Seal Bore Liner Packer Is</h2>
         <p>A seal bore liner packer sits at the top of a <a href="/equipment/liner-hanger">liner</a>, where the liner overlaps the casing string above it, presenting a smooth, precision-finished internal bore. A separate seal assembly or tieback stinger, run on the string above, stabs into that polished bore and seals against it — completing the pressure barrier across the overlap interval.</p>
 
+        <KeyFacts
+          lang="en"
+          rows={[["Where it sits", "At the top of a liner, at the liner-to-casing overlap."], ["Function", "Provides the pressure seal across the overlap, separate from the liner hanger's weight-bearing job."], ["What seals against it", "A tieback or production seal assembly, stabbed into the polished seal bore from above."], ["Reconnection", "The seal bore is a fixed precision surface, so the stab-in connection can be made and remade multiple times."], ["Validation grades", "API 11D1 design validation grades V0 to V6, the same family covering packers generally."]]}
+          standards={["api11d1"]}
+        />
+
         <h2 id="hanging-vs-sealing">Hanging the Liner's Weight Is a Separate Job</h2>
         <p>It's easy to assume that hanging a liner and sealing it are the same operation, but they're handled separately within the overlap assembly. The liner's weight is carried by the <a href="/equipment/liner-hanger">liner hanger's</a> slips, which bite into the casing above and mechanically anchor the liner in place. The pressure seal across that same overlap is a distinct function — provided either by a dedicated seal bore liner packer like this one, or in some designs by an integrated packer element built into the hanger assembly itself.</p>
 
@@ -72,13 +60,6 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="vs-liner-hanger">Seal Bore Liner Packer vs. Liner Hanger</h2>
         <p>The two work together at the same location but do different jobs. The <a href="/equipment/liner-hanger">liner hanger</a> is what actually supports the liner's weight against the casing above. The seal bore liner packer is what actually stops pressure from communicating across the overlap. A completion can, in principle, hang a liner without a seal bore packer if isolation across the overlap isn't required — but any job that needs that overlap pressure-isolated needs this component specifically.</p>
 
-        <h2 id="faq">Frequently Asked Questions</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
       </div>
 
       <div>
@@ -89,7 +70,6 @@ const techArticleJsonLd = techArticleSchema({
           <a href="#what-stabs-in">What Stabs In</a>
           <a href="#failure-modes">Failure Modes</a>
           <a href="#vs-liner-hanger">vs. Liner Hanger</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div class="note-box mt-24">
           <strong>Reference only.</strong> Seal bore dimensions and pressure ratings vary by manufacturer and model — always confirm against the actual tool's spec sheet before relying on any figure here for a real job.

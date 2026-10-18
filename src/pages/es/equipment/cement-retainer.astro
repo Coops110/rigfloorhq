@@ -4,25 +4,7 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
 import { techArticleSchema } from '../../../lib/techarticle.js';
-
-const faq = [
-  {
-    q: '¿Para qué se usa un retenedor de cemento?',
-    a: 'Un retenedor de cemento aísla una zona durante un trabajo de cementación por squeeze, dejando bombear cemento a través de su cuerpo bajo presión hacia el intervalo debajo o al lado de él, luego cerrándose para sostener esa presión una vez terminado el squeeze. Es la herramienta que permite a una cuadrilla hacer squeeze de cemento en un intervalo perforado (con cañón) específico sin que el cemento caiga libremente por el resto del pozo.',
-  },
-  {
-    q: '¿Cómo se asienta y opera un retenedor de cemento?',
-    a: 'Corre en línea eléctrica o en una sarta de trabajo, se asienta a la profundidad objetivo de la misma forma que un tapón puente (herramienta de asentamiento a cable o accionamiento mecánico/hidráulico), luego se introduce un stinger o sarta de trabajo en la parte superior del retenedor para abrir su válvula interna. El cemento se bombea a través del stinger, a través de la válvula del retenedor, y hacia la zona aislada. Una vez completo el squeeze, la válvula se cierra y el stinger se saca, dejando al retenedor sosteniendo presión desde arriba.',
-  },
-  {
-    q: '¿Un retenedor de cemento es perforable o recuperable?',
-    a: 'Existen ambas versiones, igual que con un tapón puente. Los retenedores perforables usan hierro fundido y componentes compuestos para poder molerse si la zona de abajo alguna vez necesita reabrirse. Los retenedores recuperables usan un cuerpo de acero y un mecanismo de liberación para que todo el ensamblaje pueda engancharse y sacarse intacto una vez terminado su trabajo.',
-  },
-  {
-    q: '¿Qué pasa si la válvula no cierra después de un trabajo de squeeze?',
-    a: 'Si la válvula no cierra limpiamente, la presión aplicada desde arriba durante el squeeze no se sostendrá, y el trabajo efectivamente falla en aislar cualquier cosa — el cemento o la presión pueden migrar de vuelta hacia arriba pasando el retenedor. Por esto el stinger típicamente se saca despacio y se prueba presión contra el retenedor inmediatamente después de liberarlo, antes de asumir que el squeeze realmente se sostuvo.',
-  },
-];
+import KeyFacts from '../../../components/KeyFacts.astro';
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/cement-retainer.astro',
@@ -57,6 +39,12 @@ const techArticleJsonLd = techArticleSchema({
         <p>Un retenedor de cemento es una herramienta de fondo asentada dentro del revestimiento o la tubería que crea un sello hermético a la presión a través del diámetro interior, de la misma forma que lo hace un <a href="/es/equipment/bridge-plug">tapón puente</a> — excepto que un retenedor tiene una válvula que corre a través de su cuerpo. Esa válvula permanece cerrada en condiciones normales, sosteniendo presión desde arriba, pero puede abrirse introduciendo un stinger o sarta de trabajo en la parte superior de la herramienta, dejando bombear cemento directamente a través de ella bajo presión durante un trabajo de squeeze.</p>
         <p>Una vez terminado el squeeze y sacado el stinger, la válvula se cierra de nuevo y el retenedor sigue sosteniendo presión — que es exactamente lo que permite a una cuadrilla hacer squeeze de cemento en un intervalo específico sin que caiga libremente por el resto del pozo abierto debajo.</p>
 
+        <KeyFacts
+          lang="es"
+          rows={[["Dónde se asienta", "Dentro del revestimiento o la tubería en el intervalo objetivo para un trabajo de cementación por squeeze."], ["Rasgo clave vs. tapón puente", "Una válvula a través del cuerpo — se abre para que un stinger bombee cemento a través, luego se cierra para sostener presión desde arriba."], ["Métodos de asentamiento", "A cable (herramienta pirotécnica, correlacionada por CCL) o accionamiento mecánico/hidráulico en sarta de trabajo — igual que un tapón puente."], ["Tipos", "Perforable (hierro fundido, compuesto) o recuperable (acero, perfil de liberación)."], ["Clasificaciones de validación", "API 11D1 grados de validación de diseño V0 a V6, la misma familia de grados aplicada a tapones puente."]]}
+          standards={["api11d1"]}
+        />
+
         <h2 id="when-used">Cuándo y Por Qué Se Corre un Retenedor de Cemento</h2>
         <ul>
           <li><strong>Squeeze de cemento en un intervalo perforado específico</strong> — reparar un canal detrás del revestimiento, aislar una zona con exceso de agua o agotada, o cerrar un intervalo que produce fluido no deseado.</li>
@@ -84,13 +72,6 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="vs-retainer-packer">No Confundir Con un Empacador de Retención Hidráulico</h2>
         <p>La palabra "retención" aparece en dos herramientas completamente diferentes. Esta página cubre un retenedor de cemento — un dispositivo temporal, de paso, usado solo durante un trabajo de cementación forzada. Un <a href="/es/equipment/hydraulic-set-retainer-packer">empacador de retención de asentamiento hidráulico</a> es un empacador de producción permanente no relacionado, dejado en su lugar por toda la vida del pozo, sin ninguna función de cementación. Misma palabra, dos conceptos mecánicos diferentes.</p>
 
-        <h2 id="faq">Preguntas Frecuentes</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
       </div>
 
       <div>
@@ -103,7 +84,6 @@ const techArticleJsonLd = techArticleSchema({
           <a href="#failure-modes">Fallas Comunes</a>
           <a href="#vs-bridge-plug">vs. Tapón Puente</a>
           <a href="#vs-retainer-packer">vs. Empacador de Retención</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div class="note-box mt-24">
           <strong>Solo referencia.</strong> El diseño de la válvula y los mecanismos de asentamiento varían por fabricante y trabajo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier detalle de aquí para un trabajo real.

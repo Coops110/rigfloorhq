@@ -5,25 +5,6 @@ import Footer from '../../components/Footer.astro';
 import ToolGallery from '../../components/ToolGallery.astro';
 import { techArticleSchema } from '../../lib/techarticle.js';
 
-const faq = [
-  {
-    q: 'What is a float sub used for?',
-    a: 'A float sub is a short section run in the drill string or casing string that houses a check valve, letting fluid flow down through it freely but blocking flow back up. It stops mud or cement from U-tubing back up the string once pumps are shut down, and keeps the string from backfilling with wellbore fluid while running in or out of hole.',
-  },
-  {
-    q: 'How is a float sub different from a float shoe or float collar?',
-    a: 'All three do the same basic job — house a check valve — but a float shoe sits at the very bottom of a casing string and guides it into the hole, a float collar sits a joint or two above the shoe as a backup valve, and a float sub is a general-purpose version that can be placed anywhere in a drill string or casing string where a check valve is needed, not just at the bottom of a casing run.',
-  },
-  {
-    q: 'What type of valve does a float sub use?',
-    a: 'The most common design is a flapper valve — a hinged disc that swings open under downward flow and springs shut the moment flow stops or reverses. Some float subs use a spring-loaded ball-and-seat valve instead, which seats under its own spring tension rather than relying on flow direction alone.',
-  },
-  {
-    q: 'What happens if a float valve fails?',
-    a: 'If the valve fails to seat, fluid can flow back up the string once pumps stop — mud or cement U-tubing back into the drill string, or wellbore fluid backflowing into casing before cement sets. On a cementing job specifically, a failed float can let cement flow back into the shoe track or string before it cures, undermining the whole job.',
-  },
-];
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/float-sub.astro',
   path: '/equipment/float-sub',
@@ -79,13 +60,6 @@ const techArticleJsonLd = techArticleSchema({
           <li><strong>Erosion of the seat or flapper</strong> over repeated cycles or from abrasive fluid, degrading the seal over time even if the valve still moves freely.</li>
         </ul>
 
-        <h2 id="faq">Frequently Asked Questions</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
       </div>
 
       <div>
@@ -96,7 +70,6 @@ const techArticleJsonLd = techArticleSchema({
           <a href="#valve-types">Valve Types</a>
           <a href="#vs-shoe-collar">vs. Float Shoe &amp; Collar</a>
           <a href="#failure-modes">Failure Modes</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div class="note-box mt-24">
           <strong>Reference only.</strong> Valve design and placement vary by manufacturer and job — always confirm against the actual tool's spec sheet before relying on any detail here for a real job.

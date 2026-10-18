@@ -5,25 +5,6 @@ import Footer from '../../../components/Footer.astro';
 import ToolGallery from '../../../components/ToolGallery.astro';
 import { techArticleSchema } from '../../../lib/techarticle.js';
 
-const faq = [
-  {
-    q: '¿Para qué se usa un sub flotador?',
-    a: 'Un sub flotador es una sección corta corrida en la sarta de perforación o de revestimiento que aloja una válvula de retención, dejando que el fluido fluya libremente hacia abajo a través de ella pero bloqueando el flujo de regreso hacia arriba. Detiene el lodo o cemento de hacer efecto U de regreso hacia arriba por la sarta una vez que las bombas se apagan, y evita que la sarta se rellene con fluido del pozo mientras se corre dentro o fuera del hoyo.',
-  },
-  {
-    q: '¿En qué se diferencia un sub flotador de una zapata flotadora o un collar flotador?',
-    a: 'Los tres hacen el mismo trabajo básico — alojar una válvula de retención — pero una zapata flotadora va en la parte más baja de una sarta de revestimiento y la guía hacia el pozo, un collar flotador va uno o dos tubos arriba de la zapata como válvula de respaldo, y un sub flotador es una versión de propósito general que puede colocarse en cualquier parte de una sarta de perforación o de revestimiento donde se necesite una válvula de retención, no solo en la parte baja de una corrida de revestimiento.',
-  },
-  {
-    q: '¿Qué tipo de válvula usa un sub flotador?',
-    a: 'El diseño más común es una válvula de charnela (flapper) — un disco articulado que se abre bajo flujo hacia abajo y se cierra de golpe en el momento en que el flujo se detiene o se revierte. Algunos subs flotadores usan en su lugar una válvula de bola y asiento con resorte, que se asienta por su propia tensión de resorte en lugar de depender solo de la dirección del flujo.',
-  },
-  {
-    q: '¿Qué pasa si falla una válvula flotadora?',
-    a: 'Si la válvula no logra asentarse, el fluido puede regresar hacia arriba por la sarta una vez que las bombas se detienen — lodo o cemento haciendo efecto U de vuelta hacia la sarta de perforación, o fluido del pozo entrando por contraflujo al revestimiento antes de que el cemento fragüe. En un trabajo de cementación específicamente, un flotador fallido puede dejar que el cemento regrese hacia la zapata o la sarta antes de curar, comprometiendo todo el trabajo.',
-  },
-];
-
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/float-sub.astro',
   path: '/es/equipment/float-sub',
@@ -79,13 +60,6 @@ const techArticleJsonLd = techArticleSchema({
           <li><strong>Erosión del asiento o la charnela</strong> por ciclos repetidos o fluido abrasivo, degradando el sello con el tiempo incluso si la válvula todavía se mueve libremente.</li>
         </ul>
 
-        <h2 id="faq">Preguntas Frecuentes</h2>
-        {faq.map((item) => (
-          <div style="margin-bottom:18px;">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
-          </div>
-        ))}
       </div>
 
       <div>
@@ -96,7 +70,6 @@ const techArticleJsonLd = techArticleSchema({
           <a href="#valve-types">Tipos de Válvula</a>
           <a href="#vs-shoe-collar">vs. Zapata y Collar</a>
           <a href="#failure-modes">Fallas Comunes</a>
-          <a href="#faq">FAQ</a>
         </div>
         <div class="note-box mt-24">
           <strong>Solo referencia.</strong> El diseño y la colocación de la válvula varían por fabricante y trabajo — siempre confirma contra la hoja de especificaciones real de la herramienta antes de confiar en cualquier detalle de aquí para un trabajo real.
