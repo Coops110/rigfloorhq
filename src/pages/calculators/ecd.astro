@@ -127,6 +127,13 @@ const webAppLd = {
           <dd class="formula-note">Static mud weight plus the friction pressure converted back into an equivalent mud weight over true vertical depth.</dd>
         </dl>
 
+        <div class="note-box">
+          <strong id="worked-example">Worked example:</strong> 12.0 ppg mud, 400 gpm, 10,000 ft TVD and annulus length, through an 8.5 in hole around 5.0 in pipe.<br />
+          V = (24.5 × 400) ÷ (8.5² − 5.0²) = 9,800 ÷ 47.25 = <span class="highlight">207 ft/min</span>.<br />
+          P = (1.4327×10⁻⁷ × 12.0 × 10,000 × 207²) ÷ (8.5 − 5.0) = <span class="highlight">211 psi</span>.<br />
+          ECD = 12.0 + (211 ÷ 0.052 ÷ 10,000) = <span class="highlight">12.41 ppg</span> — 0.41 ppg heavier than static mud weight alone, from friction.
+        </div>
+
         <h3>Where This Fits</h3>
         <p>Static mud weight, the number the <a href="/calculators/hydrostatic">hydrostatic pressure calculator</a> works from, is only the starting point. ECD is the number to check against fracture gradient once pumps are on — the same comparison the <a href="/calculators/mud-weight-window">mud weight window calculator</a> runs between pore and fracture pressure, just against the higher, circulating figure instead of the static one. If a kick has already occurred, the <a href="/calculators/kill-sheet">kill sheet calculator</a> is the next stop, not this one. For the full theory behind the pore pressure/fracture pressure window ECD has to stay inside, see the <a href="/pillars/hydrostatic-pressure">hydrostatic pressure pillar</a>. On a directional or horizontal well, remember measured depth drives velocity and friction along the whole annulus length, but TVD alone still converts that friction back into an equivalent mud weight — the two depths do different jobs in this formula, same as everywhere else on this site.</p>
 

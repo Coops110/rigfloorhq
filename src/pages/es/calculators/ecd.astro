@@ -125,6 +125,13 @@ const webAppLd = {
           <dd class="formula-note">Peso de lodo estático más la presión de fricción convertida de nuevo a un peso de lodo equivalente sobre la profundidad vertical verdadera.</dd>
         </dl>
 
+        <div class="note-box">
+          <strong id="ejemplo-resuelto">Ejemplo resuelto:</strong> Lodo de 12.0 ppg, 400 gpm, 10,000 ft de TVD y de largo de anular, por un hoyo de 8.5 in alrededor de tubería de 5.0 in.<br />
+          V = (24.5 × 400) ÷ (8.5² − 5.0²) = 9,800 ÷ 47.25 = <span class="highlight">207 ft/min</span>.<br />
+          P = (1.4327×10⁻⁷ × 12.0 × 10,000 × 207²) ÷ (8.5 − 5.0) = <span class="highlight">211 psi</span>.<br />
+          ECD = 12.0 + (211 ÷ 0.052 ÷ 10,000) = <span class="highlight">12.41 ppg</span> — 0.41 ppg más pesado que el peso de lodo estático solo, por fricción.
+        </div>
+
         <h3>Dónde Encaja Esto</h3>
         <p>El peso de lodo estático, el número con el que trabaja la <a href="/es/calculators/hydrostatic">calculadora de presión hidrostática</a>, es solo el punto de partida. El ECD es el número que hay que revisar contra el gradiente de fractura una vez que las bombas están encendidas — la misma comparación que hace la <a href="/es/calculators/mud-weight-window">calculadora de ventana de peso de lodo</a> entre presión de poro y fractura, solo que contra la cifra más alta de circulación en lugar de la estática. Si ya ocurrió una entrada, el siguiente paso es la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a>, no esta. En un pozo direccional u horizontal, recuerda que la profundidad medida es la que maneja la velocidad y la fricción a lo largo de todo el anular, pero solo la TVD convierte esa fricción de vuelta a un peso de lodo equivalente — las dos profundidades hacen trabajos distintos en esta fórmula, igual que en el resto de este sitio.</p>
 

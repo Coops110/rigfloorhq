@@ -4,6 +4,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import DiagramEmbed from '../../../components/DiagramEmbed.astro';
+import SourcesStandards from '../../../components/SourcesStandards.astro';
 import { JABIN_PERSON_ID, reviewedByJabin } from '../../../lib/person.js';
 import { gitDates } from '../../../lib/techarticle.js';
 
@@ -128,4 +129,8 @@ const englishEquivalent = `/blog/${post.id}`;
       <strong>¿Quieres más como esto?</strong> Explora todos los artículos en el <a href="/es/blog" style="color:var(--amber);">índice del blog</a>, o regresa a la <a href="/es" style="color:var(--amber);">biblioteca de referencia principal</a>.
     </div>
   </section>
+
+  {post.data.sources.length > 0 && (
+    <SourcesStandards lang="es" ids={post.data.sources} />
+  )}
 </BaseLayout>

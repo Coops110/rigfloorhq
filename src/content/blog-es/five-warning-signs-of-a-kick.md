@@ -5,6 +5,7 @@ publishDate: "2026-07-08"
 author: "RigFloorHQ Team"
 category: "Control de Pozos"
 tags: ["control de pozos", "surgencias", "seguridad", "principiantes"]
+sources: ["iwcf", "iadcWellsharp"]
 ---
 
 La mayoría de las personas imaginan un reventón como el momento en que una situación de control de pozos se vuelve visible — lodo y gas erupcionando sobre el mástil. En realidad, para cuando ves eso, la situación ya ha sido inmanejable por un rato. Toda la disciplina de control de pozos está construida alrededor de detectar una surgencia en su etapa más temprana y silenciosa, mucho antes de que se vea dramática.

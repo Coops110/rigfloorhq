@@ -5,6 +5,7 @@ publishDate: "2026-07-08"
 author: "RigFloorHQ Team"
 category: "Well Control"
 tags: ["well control", "kicks", "safety", "beginners"]
+sources: ["iwcf", "iadcWellsharp"]
 ---
 
 Most people picture a blowout as the moment a well control situation becomes visible — mud and gas erupting over the derrick. In reality, by the time you see that, the situation has already been unmanageable for a while. The entire discipline of well control is built around catching a kick in its earliest, quietest stage, long before it looks dramatic.

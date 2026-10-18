@@ -5,6 +5,7 @@ publishDate: "2026-09-25"
 author: "Jabin Travis"
 category: "Well Control"
 tags: ["well control", "volumetric method", "kill sheet", "real story"]
+sources: ["iwcf", "iadcWellsharp"]
 faq:
   - q: "Is this an official well control procedure?"
     a: "No. This is a real account of one kill, told for what it teaches, not a substitute for IADC/IWCF-accredited training or your own well control procedures."

@@ -103,6 +103,12 @@ const webAppLd = {
           <dd class="formula-note">MAASP in psi, influx height and shoe TVD in feet, mud weight in ppg, kick tolerance in ppg-equivalent.</dd>
         </dl>
 
+        <div class="note-box">
+          <strong id="worked-example">Worked example:</strong> 600 psi MAASP, 12.0 ppg mud, a 150 ft influx height, shoe at 10,000 ft TVD.<br />
+          Hydrostatic loss = 150 × 12.0 × 0.052 = <span class="highlight">93.6 psi</span>.<br />
+          KT = (600 − 93.6) ÷ (0.052 × 10,000) = 506.4 ÷ 520 = <span class="highlight">0.97 ppg-equivalent</span> — a thin margin; not much room before this influx would challenge the shoe.
+        </div>
+
         <h3>Where This Fits</h3>
         <p>Kick tolerance takes the surface-pressure limit from the <a href="/calculators/maasp">MAASP calculator</a> and restates it as the largest ppg-equivalent kick the shoe can absorb before that limit is reached. It runs on a deliberately conservative assumption: it treats the influx as if it had zero hydrostatic gradient at all, the way a pure gas kick behaves — the worst case, not an average one. A real influx with any liquid content carries some gradient and would leave more actual margin than this number shows, but a driller has no way to know what actually came in until it's circulated out and measured, so the reference figure has to assume the lightest, least forgiving fluid rather than guess.</p>
         <p>A small or negative kick tolerance means there is little or no room for error at the current mud weight and casing point — even a modest influx height could put the shoe past its tested limit, which is exactly the scenario this check exists to catch before it happens, not after. The same calculation runs the other direction during well planning too: instead of checking an already-set casing point, planners work backward from a required minimum kick tolerance to decide where the next shoe has to sit. Re-run MAASP first whenever mud weight changes — a stale MAASP carried into this calculator will understate or overstate the real number without any warning. Influx height itself comes from a real kick volume, not a guess — the <a href="/calculators/kick-influx-geometry">kick influx geometry calculator</a> converts a pit-gain reading into that same true vertical height figure. For why TVD rather than the influx's measured depth drives that conversion, see the <a href="/pillars/hydrostatic-pressure">hydrostatic pressure pillar</a>.</p>

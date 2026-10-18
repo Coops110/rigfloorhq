@@ -109,6 +109,12 @@ const webAppLd = {
           <dd class="formula-note">Según la hoja de fórmulas WellSharp / IWCF en unidades de campo. Puede usarse la acumulación de SIDPP o SICP para el lado del ritmo de migración, la que se esté monitoreando.</dd>
         </dl>
 
+        <div class="note-box">
+          <strong id="ejemplo-resuelto">Ejemplo resuelto (los valores por defecto de arriba):</strong> 50 psi de aumento de presión de cierre en la última hora, 10 ppg de lodo.<br />
+          Gradiente de lodo = 10 × 0.052 = 0.52 psi/ft. Ritmo de migración = 50 ÷ 0.52 = <span class="highlight">96 ft/hr</span>.<br />
+          Purgando en pasos de 100 psi contra una capacidad anular de 0.0775 bbl/ft: Volumen a purgar = (100 ÷ 0.52) × 0.0775 = 192.3 × 0.0775 = <span class="highlight">14.9 bbl</span> por paso.
+        </div>
+
         <p>Una vez que tienes un ritmo de migración, revisar si un ritmo de bombeo planeado para bombeo a matar realmente superaría ese ritmo es la última sección de la <a href="/es/calculators/bullheading">calculadora de bombeo a matar</a>. Para las presiones de cierre y el peso de matar en los que se alimenta esto más ampliamente, ver la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a>. La secuencia completa del método volumétrico y de lubricar y purgar, y cuándo se usa cada uno en lugar de circular, está en la <a href="/es/pillars/advanced-well-control-and-hydrostatics">guía de métodos para matar un pozo</a>.</p>
 
         <h2 id="faq">Preguntas Frecuentes</h2>

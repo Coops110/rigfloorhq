@@ -102,6 +102,12 @@ const webAppLd = {
           <dd class="formula-note">Riser Mud Hydrostatic = Mud Weight × 0.052 × (Water Depth + Air Gap). Seawater Hydrostatic = Seawater Gradient × Water Depth only — air gap has no fluid column. Per the WellSharp / IWCF field-units formula sheet.</dd>
         </dl>
 
+        <div class="note-box">
+          <strong id="worked-example">Worked example (the default values above):</strong> 12 ppg mud in the riser, 0.442 psi/ft seawater gradient, 5,000 ft water depth, 75 ft air gap, 15,000 ft well TVD.<br />
+          Riser mud hydrostatic = 12 × 0.052 × (5,000 + 75) = <span class="highlight">3,167 psi</span>. Seawater hydrostatic = 0.442 × 5,000 = <span class="highlight">2,210 psi</span>.<br />
+          RM = [(3,167 − 2,210) ÷ 0.052] ÷ (15,000 − 5,000 − 75) = 18,400 ÷ 9,925 = <span class="highlight">1.85 ppg</span> of margin if the riser were lost and replaced by seawater.
+        </div>
+
         <p>0.442 psi/ft is a common seawater gradient (about 8.5 ppg equivalent); actual local seawater density varies slightly by salinity and temperature. For the hydrostatic math this builds on, see the <a href="/calculators/hydrostatic">hydrostatic pressure calculator</a>; for the subsea BOP stack this margin exists to protect, see the <a href="/equipment/bop">BOP equipment page</a>.</p>
 
         <h2 id="faq">Frequently Asked Questions</h2>

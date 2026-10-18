@@ -5,6 +5,7 @@ publishDate: "2026-07-09"
 author: "RigFloorHQ Team"
 category: "Well Control"
 tags: ["well control", "kicks", "BOP", "shut-in", "kill sheet"]
+sources: ["iwcf", "iadcWellsharp"]
 ---
 
 Well control basics start with one hard truth: the earlier a kick is caught, the more routine the response is. This guide walks through kick detection and BOP procedures the way a good driller would explain them on the rig floor — no shortcuts, no fluff.

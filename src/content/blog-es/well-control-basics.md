@@ -5,6 +5,7 @@ publishDate: "2026-07-09"
 author: "RigFloorHQ Team"
 category: "Control de Pozos"
 tags: ["control de pozos", "surgencias", "BOP", "cierre", "hoja de control de pozo"]
+sources: ["iwcf", "iadcWellsharp"]
 ---
 
 Los fundamentos de control de pozos comienzan con una verdad contundente: mientras más temprano se detecte una surgencia, más rutinaria es la respuesta. Esta guía recorre la detección de surgencias y los procedimientos de BOP de la forma en que un buen perforador los explicaría en el piso de perforación — sin atajos, sin relleno.

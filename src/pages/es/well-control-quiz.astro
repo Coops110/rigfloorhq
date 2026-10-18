@@ -73,7 +73,7 @@ const topics = topicOrder.map((topic) => ({
 const quizLd = {
   "@context": "https://schema.org",
   "@type": ["WebPage", "LearningResource"],
-  "name": "Cuestionario de Control de Pozos: 200 Preguntas de Práctica",
+  "name": "Examen de Práctica de Control de Pozos",
   "url": "https://rigfloorhq.com/es/well-control-quiz",
   "learningResourceType": "Practice quiz",
   "educationalUse": "assessment",
@@ -84,7 +84,7 @@ const quizLd = {
 };
 ---
 <BaseLayout
-  title="Cuestionario de Control de Pozos: 200 Preguntas de Práctica"
+  title="Examen de Práctica de Control de Pozos"
   description="200 preguntas de práctica de control de pozos en 8 temas: presión, señales de advertencia de surgencia, cierre, MAASP, métodos de matanza, submarino y más."
   breadcrumbs={[{ label: 'Cuestionario de Control de Pozos', href: '/es/well-control-quiz' }]}
   jsonLd={quizLd}
@@ -121,6 +121,31 @@ const quizLd = {
     </div>
   </section>
 
+  <section class="block">
+    <div class="section-eyebrow">Vista Previa</div>
+    <h2 class="section-title">Preguntas de <span>Muestra</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:20px;">Tres preguntas reales de cada tema, para que veas en qué te estás metiendo antes de empezar el cuestionario interactivo completo de arriba. Las respuestas no se muestran aquí — toma el cuestionario en vivo para la calificación y las explicaciones.</p>
+    <div class="accordion" style="max-width:820px;">
+      {topics.map((t) => (
+        <details class="acc-item">
+          <summary class="acc-header">{t.icon} {t.name}<span class="acc-arrow">▼</span></summary>
+          <div class="acc-body">
+            {t.questions.slice(0, 3).map((q) => (
+              <div style="margin-bottom:16px;">
+                <p style="color:var(--white);font-weight:600;margin-bottom:6px;">{q.question}</p>
+                <ul style="margin:0;padding-left:20px;color:var(--fog);font-size:13px;line-height:1.7;">
+                  {Object.entries(q.choices).map(([letter, text]) => (
+                    <li>{letter}. {text}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
   {/* Solo datos de preguntas, nada visible como contenido de la página — el
       cuestionario perdería sentido si las respuestas estuvieran a la vista. */}
   {topics.map((t) => (
@@ -131,6 +156,23 @@ const quizLd = {
     <div class="prose">
       <p>Resolver estos cálculos tú mismo primero vale más que leer la explicación en frío — la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> usa las mismas matemáticas que estas preguntas evalúan.</p>
       <p>Para las explicaciones completas detrás de estos temas, ver la <a href="/es/drilling/well-control">referencia de control de pozos</a> y la <a href="/es/pillars/advanced-well-control-and-hydrostatics">guía de Control de Pozos Avanzado</a>. Cada sección arriba se complementa con una lectura más profunda: <a href="/es/blog/well-control-basics">fundamentos de control de pozos para cuadrillas nuevas</a>, <a href="/es/blog/five-warning-signs-of-a-kick">cinco señales de advertencia de una surgencia</a>, <a href="/es/blog/shut-in-pressure-behavior-explained">comportamiento de la presión de cierre</a>, <a href="/es/blog/drillers-method-wait-and-weight-mixups">confusiones de Método del Perforador y Wait and Weight</a>, y <a href="/es/blog/pit-volumes-maasp-math-mistakes">errores de matemáticas de volúmenes de pileta y MAASP</a>.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Certificación</div>
+    <h2 class="section-title">Dónde Encaja en la <span>Escalera IWCF</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:20px;">Este cuestionario cubre teoría y matemáticas de los cuatro niveles de control de pozos de IWCF — no está atado a un solo nivel. Para dónde encaja cada nivel realmente en una carrera de taladro, ver <a href="/es/pillars/rig-floor-leadership" style="color:var(--amber);">Liderazgo en el Piso de Perforación</a> y el desglose completo de <a href="/es/careers/certifications" style="color:var(--amber);">certificaciones</a>.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Nivel</th><th>Para Quién Es</th><th>Qué Cubre</th><th>Renovación</th></tr></thead>
+        <tbody>
+          <tr><td>1 — Conciencia</td><td>Cualquier personal del taladro</td><td>Principios fundamentales de control de pozos y conciencia sobre prevención de reventones</td><td>—</td></tr>
+          <tr><td>2 — Introductorio</td><td>Equipo de operaciones en sitio cuya acción o inacción puede influir en el control de pozos, p. ej. asistente de perforador, encuellador</td><td>Control de pozos básico de perforación y evaluación de control de pozos</td><td>5 años</td></tr>
+          <tr><td>3 — Perforador</td><td>El operador del equipo que tiene que actuar para prevenir o responder a un incidente de control de pozos, p. ej. perforador</td><td>Procedimientos de cierre, detección de surgencias, escenarios de control de pozos con simulador</td><td>2 años</td></tr>
+          <tr><td>4 — Supervisor</td><td>La persona que supervisa que las acciones correctas realmente se lleven a cabo, p. ej. toolpusher, OIM, company man</td><td>Técnica avanzada y toma de decisiones de emergencia bajo presión</td><td>2 años</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
 

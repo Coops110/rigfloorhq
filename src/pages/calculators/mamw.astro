@@ -115,6 +115,12 @@ const webAppLd = {
           <dd class="formula-note">Both mud weights in ppg, shoe TVD in feet, MAASP and LOT/FIT pressure in psi.</dd>
         </dl>
 
+        <div class="note-box">
+          <strong id="worked-example">Worked example:</strong> 9.4 ppg current mud weight, 415 psi LOT/FIT pressure, shoe at 6,108 ft TVD.<br />
+          MAMW = 9.4 + [415 ÷ (0.052 × 6,108)] = 9.4 + 1.31 = <span class="highlight">10.71 ppg</span>.<br />
+          Separately, checking an 11.5 ppg kill mud weight against a 12.54 ppg MAMW at 10,000 ft TVD: New MAASP = (12.54 − 11.5) × 0.052 × 10,000 = <span class="highlight">541 psi</span> of margin still left at that shoe.
+        </div>
+
         <h3>Where This Fits</h3>
         <p>MAMW and <a href="/calculators/maasp">MAASP</a> come from the same LOT/FIT test and describe the identical shoe limit, just in different units — one as an equivalent mud weight, one as a live surface pressure. Once a kick is confirmed and a kill mud weight is chosen on the <a href="/calculators/kill-sheet">kill sheet calculator</a>, the second box here answers the real operational question: is that kill mud weight actually safe for this shoe, and if not, how much surface pressure is left before it isn't? A negative or very small New MAASP means the planned kill mud weight is close to or past the shoe's real limit, which calls for the well control supervisor's attention before pumping starts, not after.</p>
 

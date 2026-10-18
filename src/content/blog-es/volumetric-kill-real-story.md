@@ -5,6 +5,7 @@ publishDate: "2026-09-25"
 author: "Jabin Travis"
 category: "Control de Pozos"
 tags: ["control de pozos", "método volumétrico", "hoja de control de pozo", "relato real"]
+sources: ["iwcf", "iadcWellsharp"]
 faq:
   - q: "¿Es este un procedimiento oficial de control de pozos?"
     a: "No. Este es el relato real de una matanza, contado por lo que enseña, no un sustituto del entrenamiento acreditado por IADC/IWCF ni de tus propios procedimientos de control de pozos."

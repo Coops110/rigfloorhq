@@ -19,6 +19,30 @@ export const CITATIONS = {
       note: 'Sistemas de equipos de control de pozo para la perforación de pozos — requisitos de instalación, prueba e inspección para stacks de BOP, incluido en el catálogo de normas de API.',
     },
   },
+  oshaPpe: {
+    en: {
+      href: 'https://www.osha.gov/personal-protective-equipment/standards',
+      label: 'OSHA — Personal Protective Equipment Standards',
+      note: "OSHA's own index of the 1910 Subpart I general-industry PPE standards (1910.132 general requirements, 1910.133 eye/face, 1910.135 head, 1910.136 foot) and the parallel 1926 construction-phase requirements.",
+    },
+    es: {
+      href: 'https://www.osha.gov/personal-protective-equipment/standards',
+      label: 'OSHA — Normas de Equipo de Protección Personal',
+      note: 'El propio índice de OSHA de las normas de EPP de la Subparte I de la 1910 para industria general (1910.132 requisitos generales, 1910.133 ojos/cara, 1910.135 cabeza, 1910.136 pies) y los requisitos paralelos de la 1926 para fase de construcción.',
+    },
+  },
+  apiRp54: {
+    en: {
+      href: 'https://www.api.org/products-and-services/standards/important-standards-announcements/recommended-practice-54',
+      label: 'API RP 54',
+      note: 'Occupational Safety and Health for Oil and Gas Well Drilling and Servicing Operations — PPE selection tied specifically to well control and rig-floor hazards, not just generic workplace PPE rules.',
+    },
+    es: {
+      href: 'https://www.api.org/products-and-services/standards/important-standards-announcements/recommended-practice-54',
+      label: 'API RP 54',
+      note: 'Seguridad y salud ocupacional para operaciones de perforación y servicio de pozos de petróleo y gas — selección de EPP ligada específicamente a los peligros de control de pozos y del piso de perforación, no solo reglas genéricas de EPP.',
+    },
+  },
   api14a: {
     en: {
       href: 'https://www.api.org/products-and-services/standards/important-standards-announcements/spec14a',

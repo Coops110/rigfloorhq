@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import DiagramEmbed from '../../components/DiagramEmbed.astro';
+import SourcesStandards from '../../components/SourcesStandards.astro';
 import { JABIN_PERSON_ID, reviewedByJabin } from '../../lib/person.js';
 import { gitDates } from '../../lib/techarticle.js';
 
@@ -149,4 +150,8 @@ const switcherUrl = hasSpanishVersion ? `/es/blog/${post.id}` : '/es/blog';
       <strong>Want more like this?</strong> Browse all posts on the <a href="/blog" style="color:var(--amber);">blog index</a>, or head back to the <a href="/" style="color:var(--amber);">main reference library</a>.
     </div>
   </section>
+
+  {post.data.sources.length > 0 && (
+    <SourcesStandards lang="en" ids={post.data.sources} />
+  )}
 </BaseLayout>

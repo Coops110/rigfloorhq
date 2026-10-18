@@ -177,6 +177,15 @@ const webAppLd = {
           <dd class="formula-note">Per the WellSharp / IWCF field-units formula sheet, well completion/workover section.</dd>
         </dl>
 
+        <div class="note-box">
+          <strong id="worked-example">Worked example (the default values above):</strong> 5,500 psi formation pressure, 800 psi SITP, top perfs at 9,000 ft TVD, 9.0 ppg original fluid, 0.75 psi/ft fracture gradient.<br />
+          KFW = [800 ÷ (0.052 × 9,000)] + 9.0 = 1.71 + 9.0 = <span class="highlight">10.71 ppg</span>.<br />
+          FFP = 0.75 × 9,000 = <span class="highlight">6,750 psi</span>. IHP = 5,500 − 800 = 4,700 psi.<br />
+          Max Initial Surface Pressure = 6,750 − 4,700 = <span class="highlight">2,050 psi</span>.<br />
+          Max Final Surface Pressure = 6,750 − (10.71 × 0.052 × 9,000) = 6,750 − 5,012 = <span class="highlight">1,738 psi</span> — the tighter of the two, confirming the FAQ's point that the final ceiling is usually the real constraint.<br />
+          Volume to bullhead (5 + 40 + 8 + 3 bbl) = <span class="highlight">56 bbl</span>. At 30 ft/hr migration against 0.0155 bbl/ft tubing capacity and 0.12 bbl/stroke pump output, the minimum rate to stay ahead of the gas is only <span class="highlight">≈0.06 SPM</span> — far below any real pump rate, exactly the "usually reassuring" case the FAQ describes.
+        </div>
+
         <h2 id="brine">A Real Wrinkle: Brine Weight Changes With Temperature</h2>
         <p>Kill fluid weight above assumes the fluid stays the density it was mixed and measured at — true for drilling mud over most of a job, but heavy completion brines (calcium bromide, zinc bromide, and similar) lose noticeably more density per degree as they warm up going downhole. A brine weighed at surface temperature is not the same weight by the time it reaches a hot bottomhole, and the gap is large enough to matter against the tight surface-pressure margins above.</p>
         <dl class="formula-block">

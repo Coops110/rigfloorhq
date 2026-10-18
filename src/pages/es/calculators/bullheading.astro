@@ -175,6 +175,15 @@ const webAppLd = {
           <dd class="formula-note">Según la hoja de fórmulas WellSharp / IWCF en unidades de campo, sección de terminación/reacondicionamiento de pozos.</dd>
         </dl>
 
+        <div class="note-box">
+          <strong id="ejemplo-resuelto">Ejemplo resuelto (los valores por defecto de arriba):</strong> 5,500 psi de presión de formación, 800 psi de SITP, topes de perforaciones a 9,000 ft de TVD, 9.0 ppg de fluido original, gradiente de fractura de 0.75 psi/ft.<br />
+          KFW = [800 ÷ (0.052 × 9,000)] + 9.0 = 1.71 + 9.0 = <span class="highlight">10.71 ppg</span>.<br />
+          FFP = 0.75 × 9,000 = <span class="highlight">6,750 psi</span>. IHP = 5,500 − 800 = 4,700 psi.<br />
+          Presión Máxima Inicial de Superficie = 6,750 − 4,700 = <span class="highlight">2,050 psi</span>.<br />
+          Presión Máxima Final de Superficie = 6,750 − (10.71 × 0.052 × 9,000) = 6,750 − 5,012 = <span class="highlight">1,738 psi</span> — la más estrecha de las dos, confirmando lo que dice el FAQ sobre que el límite final suele ser la restricción real.<br />
+          Volumen a bombear (5 + 40 + 8 + 3 bbl) = <span class="highlight">56 bbl</span>. Con una migración de 30 ft/hr contra una capacidad de tubería de 0.0155 bbl/ft y una salida de bomba de 0.12 bbl/stroke, la tasa mínima para adelantarse al gas es solo <span class="highlight">≈0.06 SPM</span> — muy por debajo de cualquier tasa real de bombeo, justo el caso "usualmente tranquilizador" que describe el FAQ.
+        </div>
+
         <h2 id="brine">Una Complicación Real: El Peso de la Salmuera Cambia con la Temperatura</h2>
         <p>El peso de fluido de matar de arriba asume que el fluido mantiene la densidad con la que fue mezclado y medido — cierto para el lodo de perforación en la mayoría de un trabajo, pero las salmueras pesadas de terminación (bromuro de calcio, bromuro de zinc, y similares) pierden notablemente más densidad por grado al calentarse yendo hacia el fondo. Una salmuera pesada a temperatura de superficie no tiene el mismo peso para cuando llega a un fondo de pozo caliente, y la diferencia es lo suficientemente grande como para importar contra los márgenes ajustados de presión de superficie de arriba.</p>
         <dl class="formula-block">

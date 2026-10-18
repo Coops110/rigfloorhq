@@ -40,6 +40,13 @@ const blogSchema = z.object({
     alt: z.string(),
     title: z.string(),
   })).default([]),
+  // Keys into src/lib/citations.js's CITATIONS map, rendered as a visible
+  // Sources & Standards block (src/components/SourcesStandards.astro) —
+  // the same citation-gap fix already shipped on the well-control, H2S,
+  // pillar and pressure-calculator pages. Optional and per-post on purpose:
+  // only posts that actually discuss a named standard get the block: a
+  // math-derivation post like "why 0.052 never changes" cites nothing.
+  sources: z.array(z.string()).default([]),
 });
 
 const blog = defineCollection({

@@ -103,6 +103,12 @@ const webAppLd = {
           <dd class="formula-note">MAASP en psi, altura de surgencia y TVD de zapata en pies, peso de lodo en ppg, tolerancia a la surgencia en ppg-equivalente.</dd>
         </dl>
 
+        <div class="note-box">
+          <strong id="ejemplo-resuelto">Ejemplo resuelto:</strong> 600 psi de MAASP, 12.0 ppg de lodo, una altura de entrada de 150 ft, zapata a 10,000 ft de TVD.<br />
+          Pérdida hidrostática = 150 × 12.0 × 0.052 = <span class="highlight">93.6 psi</span>.<br />
+          KT = (600 − 93.6) ÷ (0.052 × 10,000) = 506.4 ÷ 520 = <span class="highlight">0.97 ppg-equivalente</span> — un margen delgado; no queda mucho espacio antes de que esta entrada desafíe la zapata.
+        </div>
+
         <h3>Dónde Encaja Esto</h3>
         <p>La tolerancia a la surgencia toma el límite de presión de superficie de la <a href="/es/calculators/maasp">calculadora de MAASP</a> y lo expresa como la surgencia máxima equivalente en ppg que la zapata puede absorber antes de alcanzar ese límite. Funciona con un supuesto deliberadamente conservador: trata la entrada como si tuviera gradiente hidrostático cero, tal como se comporta una surgencia de gas puro — el peor caso, no un promedio. Una entrada real con cualquier contenido líquido lleva algo de gradiente y dejaría más margen real del que muestra este número, pero un perforador no tiene forma de saber qué entró realmente hasta que se circula y se mide, así que la cifra de referencia debe asumir el fluido más ligero y menos indulgente en lugar de adivinar.</p>
         <p>Una tolerancia a la surgencia pequeña o negativa significa que hay poco o ningún margen de error al peso de lodo y punto de asentamiento actuales — incluso una altura de surgencia modesta podría llevar a la zapata más allá de su límite probado, que es exactamente el escenario que esta verificación existe para detectar antes de que ocurra, no después. El mismo cálculo funciona en la otra dirección durante la planificación del pozo: en lugar de revisar un punto de asentamiento ya fijado, los planificadores trabajan hacia atrás desde una tolerancia mínima requerida para decidir dónde debe ir la siguiente zapata. Vuelve a calcular el MAASP primero cada vez que cambie el peso de lodo — un MAASP desactualizado llevado a esta calculadora subestimará o sobreestimará el número real sin ninguna advertencia.</p>

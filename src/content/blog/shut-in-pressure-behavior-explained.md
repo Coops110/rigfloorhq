@@ -5,6 +5,7 @@ publishDate: "2026-09-21"
 author: "RigFloorHQ Team"
 category: "Well Control"
 tags: ["well control", "shut-in", "SIDPP", "SICP", "training"]
+sources: ["iwcf", "iadcWellsharp"]
 faq:
   - q: "Are these official IWCF or IADC exam questions?"
     a: "The subject matter follows standard IWCF/IADC well control theory, but this post isn't affiliated with either body and isn't a substitute for accredited certification. Treat it as a study aid, not exam material."

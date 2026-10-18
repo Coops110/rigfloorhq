@@ -103,6 +103,12 @@ const webAppLd = {
           <dd class="formula-note">LOT/FIT pressure in psi, both mud weights in ppg, shoe TVD in feet, MAASP in psi.</dd>
         </dl>
 
+        <div class="note-box">
+          <strong id="worked-example">Worked example:</strong> LOT/FIT recorded 415 psi at 10.5 ppg mud, shoe at 6,108 ft TVD. Current mud weight in use is 9.1 ppg.<br />
+          Margin = 10.5 − 9.1 = <span class="highlight">1.4 ppg</span>.<br />
+          MAASP = 415 + (1.4 × 0.052 × 6,108) = 415 + 445 = <span class="highlight">860 psi</span>.
+        </div>
+
         <h3>Where This Fits</h3>
         <p>MAASP isn't a fixed number for the well — it moves every time mud weight changes, which is why it needs recalculating whenever mud is weighted up or down, not recorded once after the LOT/FIT and forgotten. The test itself, run right after drilling out the shoe, finds the pressure the formation just below it can take before breaking down or taking losses, at whatever mud weight was in the hole that day. Everything after that test is really asking one question: how much surface pressure is left before that same formation, at today's mud weight, hits that original limit? Feed in the LOT/FIT pressure, LOT/FIT mud weight, and shoe TVD from the completed test alongside whatever mud weight is currently in use, and this calculator answers exactly that.</p>
         <p>MAASP is the live number a kick tolerance figure is built on — a small MAASP means a small kick before the shoe is at risk, which is exactly what the <a href="/calculators/kick-tolerance">kick tolerance calculator</a> works out next. It's also one of two ways well control programs express the same limit: MAASP states it as a surface pressure in psi, while <a href="/calculators/mamw">Maximum Allowable Mud Weight</a> restates the identical limit as an equivalent mud weight — same shoe, same test, just two different units for the same ceiling. If a kick is already underway and mud is being weighted up to kill it, check the new MAASP against actual shut-in casing pressure on the <a href="/calculators/kill-sheet">kill sheet calculator</a> rather than assuming today's figure still holds once mud weight changes. For the hydrostatic theory the LOT/FIT test and this ceiling are built on, see the <a href="/pillars/hydrostatic-pressure">hydrostatic pressure pillar</a>. For worked MAASP and pit-volume problems where this reasoning commonly gets misapplied, see <a href="/blog/pit-volumes-maasp-math-mistakes">pit volumes and MAASP math mistakes</a>.</p>

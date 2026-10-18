@@ -5,6 +5,7 @@ publishDate: "2026-07-08"
 author: "RigFloorHQ Team"
 category: "Safety"
 tags: ["PPE", "safety", "OSHA", "ANSI", "rig floor"]
+sources: ["oshaPpe", "apiRp54"]
 ---
 
 Hand and finger injuries historically account for nearly half of all recordable incidents in the oil and gas industry, and that single statistic explains why this guide exists. This is a reference for the crews who actually stand on the floor, not a compliance binder that never leaves an office.

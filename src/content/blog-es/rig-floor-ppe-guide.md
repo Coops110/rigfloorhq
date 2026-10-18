@@ -5,6 +5,7 @@ publishDate: "2026-07-08"
 author: "RigFloorHQ Team"
 category: "Seguridad"
 tags: ["EPP", "seguridad", "OSHA", "ANSI", "piso de perforación"]
+sources: ["oshaPpe", "apiRp54"]
 ---
 
 Las lesiones de mano y dedos históricamente representan casi la mitad de todos los incidentes registrables en la industria petrolera y de gas, y esa sola estadística explica por qué existe esta guía. Esta es una referencia para las cuadrillas que realmente están de pie en el piso, no un manual de cumplimiento que nunca sale de una oficina.

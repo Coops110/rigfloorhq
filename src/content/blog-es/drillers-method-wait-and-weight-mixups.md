@@ -5,6 +5,7 @@ publishDate: "2026-09-21"
 author: "RigFloorHQ Team"
 category: "Control de Pozos"
 tags: ["control de pozos", "hoja de control de pozo", "método del perforador", "wait and weight", "entrenamiento"]
+sources: ["iwcf", "iadcWellsharp"]
 faq:
   - q: "¿Son estas preguntas oficiales de examen IWCF o IADC?"
     a: "El tema sigue la teoría estándar de control de pozos de IWCF/IADC, pero esta publicación no está afiliada a ninguno de los dos organismos y no sustituye una certificación acreditada. Trátala como material de estudio, no como material de examen."

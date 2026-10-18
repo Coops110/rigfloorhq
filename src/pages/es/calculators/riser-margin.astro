@@ -102,6 +102,12 @@ const webAppLd = {
           <dd class="formula-note">Hidrostática del Lodo en Riser = Peso de Lodo × 0.052 × (Profundidad de Agua + Espacio de Aire). Hidrostática de Agua de Mar = Gradiente de Agua de Mar × Profundidad de Agua solamente — el espacio de aire no tiene columna de fluido. Según la hoja de fórmulas WellSharp / IWCF en unidades de campo.</dd>
         </dl>
 
+        <div class="note-box">
+          <strong id="ejemplo-resuelto">Ejemplo resuelto (los valores por defecto de arriba):</strong> 12 ppg de lodo en el riser, gradiente de agua de mar de 0.442 psi/ft, 5,000 ft de profundidad de agua, 75 ft de espacio de aire, 15,000 ft de TVD del pozo.<br />
+          Hidrostática del lodo en el riser = 12 × 0.052 × (5,000 + 75) = <span class="highlight">3,167 psi</span>. Hidrostática del agua de mar = 0.442 × 5,000 = <span class="highlight">2,210 psi</span>.<br />
+          RM = [(3,167 − 2,210) ÷ 0.052] ÷ (15,000 − 5,000 − 75) = 18,400 ÷ 9,925 = <span class="highlight">1.85 ppg</span> de margen si se perdiera el riser y fuera reemplazado por agua de mar.
+        </div>
+
         <p>0.442 psi/ft es un gradiente común de agua de mar (equivalente a unos 8.5 ppg); la densidad real del agua de mar local varía ligeramente según salinidad y temperatura. Para la matemática hidrostática en la que se basa esto, ver la <a href="/es/calculators/hydrostatic">calculadora de presión hidrostática</a>; para la pila de BOP submarina que este margen existe para proteger, ver la <a href="/es/equipment/bop">página de equipo BOP</a>.</p>
 
         <h2 id="faq">Preguntas Frecuentes</h2>

@@ -73,7 +73,7 @@ const topics = topicOrder.map((topic) => ({
 const quizLd = {
   "@context": "https://schema.org",
   "@type": ["WebPage", "LearningResource"],
-  "name": "Well Control Quiz: 200 Practice Questions",
+  "name": "Well Control Practice Test",
   "url": "https://rigfloorhq.com/well-control-quiz",
   "learningResourceType": "Practice quiz",
   "educationalUse": "assessment",
@@ -84,7 +84,7 @@ const quizLd = {
 };
 ---
 <BaseLayout
-  title="Well Control Quiz: 200 Practice Questions"
+  title="Well Control Practice Test"
   description="200 well control practice questions across 8 topics: pressure, kick warning signs, shut-in, MAASP, kill methods, subsea, and more — take each live."
   breadcrumbs={[{ label: 'Well Control Quiz', href: '/well-control-quiz' }]}
   jsonLd={quizLd}
@@ -121,6 +121,31 @@ const quizLd = {
     </div>
   </section>
 
+  <section class="block">
+    <div class="section-eyebrow">Preview</div>
+    <h2 class="section-title">Sample <span>Questions</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:20px;">Three real questions from each topic, so you can see what you're actually getting into before starting the full interactive quiz above. Answers aren't shown here — take the live quiz for scoring and explanations.</p>
+    <div class="accordion" style="max-width:820px;">
+      {topics.map((t) => (
+        <details class="acc-item">
+          <summary class="acc-header">{t.icon} {t.name}<span class="acc-arrow">▼</span></summary>
+          <div class="acc-body">
+            {t.questions.slice(0, 3).map((q) => (
+              <div style="margin-bottom:16px;">
+                <p style="color:var(--white);font-weight:600;margin-bottom:6px;">{q.question}</p>
+                <ul style="margin:0;padding-left:20px;color:var(--fog);font-size:13px;line-height:1.7;">
+                  {Object.entries(q.choices).map(([letter, text]) => (
+                    <li>{letter}. {text}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
   {/* Question data only, nothing visible or readable as page content — the
       quiz would be pointless if the answers sat in plain view on the page
       itself. Rendered per-topic so the picker above can load one topic at a
@@ -133,6 +158,23 @@ const quizLd = {
     <div class="prose">
       <p>Working these calculations out yourself first is worth more than reading the explanation cold — the <a href="/calculators/kill-sheet">kill sheet calculator</a> and <a href="/calculators/formulas-cheat-sheet">drilling formulas cheat sheet</a> run the same math these questions test.</p>
       <p>For the full explanations behind these topics, see the <a href="/drilling/well-control">well control reference</a> and the <a href="/pillars/advanced-well-control-and-hydrostatics">Advanced Well Control guide</a>. Each section above pairs with a deeper read: <a href="/blog/well-control-basics">well control basics for new crews</a>, <a href="/blog/five-warning-signs-of-a-kick">five warning signs of a kick</a>, <a href="/blog/shut-in-pressure-behavior-explained">shut-in pressure behavior</a>, <a href="/blog/drillers-method-wait-and-weight-mixups">Driller's Method and Wait and Weight mix-ups</a>, <a href="/blog/volumetric-kill-real-story">a real volumetric kill</a>, <a href="/blog/well-control-curveball-scenarios">well control curveball scenarios</a>, and <a href="/blog/pit-volumes-maasp-math-mistakes">pit volumes and MAASP math mistakes</a>.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Certification</div>
+    <h2 class="section-title">Where This Sits in the <span>IWCF Ladder</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:20px;">This quiz covers theory and math across all four IWCF well control tiers — it isn't tied to one level. For where each tier actually fits in a rig career, see <a href="/pillars/rig-floor-leadership" style="color:var(--amber);">Rig Floor Leadership</a> and the full <a href="/careers/certifications" style="color:var(--amber);">certifications breakdown</a>.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Level</th><th>Who It's For</th><th>What It Covers</th><th>Renewal</th></tr></thead>
+        <tbody>
+          <tr><td>1 — Awareness</td><td>Any rig personnel</td><td>Foundational well control principles and blowout prevention awareness</td><td>—</td></tr>
+          <tr><td>2 — Introductory</td><td>Well-site operations team whose action or inaction can influence well control, e.g. assistant driller, derrickhand</td><td>Basic drilling well control and well control assessment</td><td>5 years</td></tr>
+          <tr><td>3 — Driller</td><td>The equipment operator who has to act to prevent or respond to a well control incident, e.g. driller</td><td>Shut-in procedures, kick detection, simulator-based well control scenarios</td><td>2 years</td></tr>
+          <tr><td>4 — Supervisor</td><td>The person with oversight that the correct actions are actually carried out, e.g. toolpusher, OIM, company man</td><td>Advanced technique and emergency decision-making under pressure</td><td>2 years</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
