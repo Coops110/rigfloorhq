@@ -6,8 +6,8 @@ import SourcesStandards from '../../components/SourcesStandards.astro';
 
 import { techArticleSchema } from '../../lib/techarticle.js';
 const jsonLd = techArticleSchema({
-  sourcePath: 'src/pages/pillars/advanced-well-control-and-hydrostatics.astro',
-  path: '/pillars/advanced-well-control-and-hydrostatics',
+  sourcePath: 'src/pages/pillars/well-kill-methods.astro',
+  path: '/pillars/well-kill-methods',
   headline: "Well Kill Methods: Advanced Supervisor Guide",
   description: "Driller's Method, Wait and Weight, volumetric, lubricate-and-bleed and bullheading: when each is chosen, step sequences, the ICP-to-FCP drillpipe schedule and common mistakes.",
   lang: 'en',
@@ -17,17 +17,20 @@ const jsonLd = techArticleSchema({
 <BaseLayout
   title="Well Kill Methods: Advanced Supervisor Guide"
   description="Driller's Method vs Wait and Weight, volumetric, lubricate-and-bleed and bullheading: when to use each, the ICP-to-FCP schedule and common mistakes."
-  breadcrumbs={[{ label: 'Pillars', href: '/pillars' }, { label: 'Well Kill Methods', href: '/pillars/advanced-well-control-and-hydrostatics' }]}
+  breadcrumbs={[{ label: 'Pillars', href: '/pillars' }, { label: 'Well Kill Methods', href: '/pillars/well-kill-methods' }]}
   jsonLd={jsonLd}
   lang="en"
-  alternateHref="/es/pillars/advanced-well-control-and-hydrostatics"
+  alternateHref="/es/pillars/well-kill-methods"
 >
-  {/* URL kept as advanced-well-control-and-hydrostatics on purpose: the page was
-      refocused on kill methods on 2026-10-17 (audit action item 10), and the
-      hydrostatic basics it used to repeat now live only on
-      /pillars/hydrostatic-pressure. Changing the slug would throw away its
-      links and history for no gain. alternateHref points at the real ES twin. */}
-  <Nav slot="nav" lang="en" alternateHref="/es/pillars/advanced-well-control-and-hydrostatics" />
+  {/* Renamed from its original slug on 2026-10-19 (SEO audit CA-02): the
+      page was refocused on kill methods on 2026-10-17, and
+      the hydrostatic basics it used to repeat now live only on
+      /pillars/hydrostatic-pressure, leaving the old slug contradicting the
+      H1, index card and sitewide anchor text. Done as a real 301 (EN+ES) with
+      a full sitewide inlink sweep in the same deploy, so link equity
+      consolidates onto this URL rather than being discarded — see vercel.json.
+      alternateHref points at the real ES twin. */}
+  <Nav slot="nav" lang="en" alternateHref="/es/pillars/well-kill-methods" />
   <Footer slot="footer" lang="en" />
 
   <div class="page-hero">

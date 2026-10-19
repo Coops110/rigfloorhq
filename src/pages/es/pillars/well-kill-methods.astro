@@ -6,8 +6,8 @@ import SourcesStandards from '../../../components/SourcesStandards.astro';
 
 import { techArticleSchema } from '../../../lib/techarticle.js';
 const jsonLd = techArticleSchema({
-  sourcePath: 'src/pages/es/pillars/advanced-well-control-and-hydrostatics.astro',
-  path: '/es/pillars/advanced-well-control-and-hydrostatics',
+  sourcePath: 'src/pages/es/pillars/well-kill-methods.astro',
+  path: '/es/pillars/well-kill-methods',
   headline: "Métodos para Matar un Pozo: Guía Avanzada",
   description: "Método del Perforador, Esperar y Densificar, volumétrico, lubricar y purgar y bullheading: cuándo se elige cada uno, secuencia de pasos, programa de presión de ICP a FCP y errores comunes.",
   lang: 'es',
@@ -17,16 +17,21 @@ const jsonLd = techArticleSchema({
 <BaseLayout
   title="Métodos para Matar un Pozo: Guía Avanzada"
   description="Método del Perforador vs. Esperar y Densificar, volumétrico, lubricar y purgar y bullheading: cuándo usar cada uno, el programa de ICP a FCP y errores."
-  breadcrumbs={[{ label: 'Guías Pilar', href: '/es/pillars' }, { label: 'Métodos para Matar un Pozo', href: '/es/pillars/advanced-well-control-and-hydrostatics' }]}
+  breadcrumbs={[{ label: 'Guías Pilar', href: '/es/pillars' }, { label: 'Métodos para Matar un Pozo', href: '/es/pillars/well-kill-methods' }]}
   jsonLd={jsonLd}
   lang="es"
-  alternateHref="/pillars/advanced-well-control-and-hydrostatics"
+  alternateHref="/pillars/well-kill-methods"
 >
-  {/* La URL se mantiene a propósito: la página se reenfocó en métodos de
-      matanza el 2026-10-17 (acción 10 de la auditoría) y los fundamentos
-      hidrostáticos que repetía ahora viven solo en /es/pillars/hydrostatic-pressure.
-      alternateHref apunta al gemelo real en inglés. */}
-  <Nav slot="nav" lang="es" alternateHref="/pillars/advanced-well-control-and-hydrostatics" />
+  {/* Renombrada desde su slug original el 2026-10-19 (auditoría SEO CA-02):
+      la página se reenfocó en métodos de matanza el
+      2026-10-17, y los fundamentos hidrostáticos que repetía ahora viven solo
+      en /es/pillars/hydrostatic-pressure, dejando la URL vieja en contradicción
+      con el H1, la tarjeta del índice y el texto de anclaje del sitio. Se hizo
+      como un 301 real (EN+ES) con una actualización completa de los enlaces
+      internos en el mismo deploy, para que el equity de enlaces se consolide
+      en esta URL en vez de perderse — ver vercel.json. alternateHref apunta
+      al gemelo real en inglés. */}
+  <Nav slot="nav" lang="es" alternateHref="/pillars/well-kill-methods" />
   <Footer slot="footer" lang="es" />
 
   <div class="page-hero">

@@ -13,6 +13,16 @@
       "permanent": true
     },
     {
+      "source": "/pillars/advanced-well-control-and-hydrostatics",
+      "destination": "/pillars/well-kill-methods",
+      "permanent": true
+    },
+    {
+      "source": "/es/pillars/advanced-well-control-and-hydrostatics",
+      "destination": "/es/pillars/well-kill-methods",
+      "permanent": true
+    },
+    {
       "source": "/blog/rig-floor-ppe-guide-personal-protective-equipment-for-drilling-operations.html",
       "destination": "/blog/rig-floor-ppe-guide",
       "permanent": true
