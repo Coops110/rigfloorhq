@@ -4,6 +4,7 @@ description: "A torque figure means nothing on its own. What matters is the gap 
 publishDate: "2026-08-03"
 author: "RigFloorHQ Team"
 reviewedByJabin: true
+reviewedDate: "2026-10-15"
 category: "Drilling"
 tags: ["torque and drag", "friction factor", "stuck pipe", "hole cleaning", "hookload", "drilling data"]
 diagrams:

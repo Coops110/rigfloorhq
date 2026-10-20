@@ -15,6 +15,10 @@ const blogSchema = z.object({
   // with his own firsthand posts) authored by him directly, in which case
   // this flag is unnecessary: he's already the author entity.
   reviewedByJabin: z.boolean().default(false),
+  // Real date reviewedByJabin was set true for this post (check git blame),
+  // not today's date or a deploy timestamp. Emitted as lastReviewed
+  // alongside reviewedBy in this post's JSON-LD.
+  reviewedDate: z.string().optional(),
   category: z.string().default('Industry'),
   tags: z.array(z.string()).default([]),
   draft: z.boolean().default(false),

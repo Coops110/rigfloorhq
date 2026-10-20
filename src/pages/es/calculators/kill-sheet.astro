@@ -4,6 +4,7 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import NewsletterSignup from '../../../components/NewsletterSignup.astro';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
+import { reviewedByJabin } from '../../../lib/person.js';
 
 const faq = [
   {
@@ -40,11 +41,22 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+// reviewedBy belongs on WebPage per schema.org, not on WebApplication -- see
+// src/lib/person.js. Mirrors the EN page's real review and date.
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/es/calculators/kill-sheet#webpage",
+  "url": "https://rigfloorhq.com/es/calculators/kill-sheet",
+  "reviewedBy": reviewedByJabin(),
+  "lastReviewed": "2026-10-15"
+};
 ---
 <BaseLayout
   title="Calculadora de Hoja de Control: KMW, ICP, FCP y Programa"
   description="Calculadora gratuita de hoja de control de pozo: peso de lodo de matanza, ICP, FCP, emboladas a la barrena, fondo hacia arriba, y el programa de presión."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Hoja de Control de Pozo', href: '/es/calculators/kill-sheet' }]}
   lang="es"
   alternateHref="/calculators/kill-sheet"
@@ -56,6 +68,7 @@ const webAppLd = {
     <div class="page-hero-eyebrow">Calculadora</div>
     <h1>Calculadora de <span>Hoja de Control</span></h1>
     <p class="page-hero-sub">Úsala después de cerrar el pozo por una surgencia para calcular el peso de lodo de matanza, las presiones de circulación, las emboladas, y el programa completo de reducción de presión de tubería — la misma matemática central enseñada en la certificación de control de pozos de IWCF e IADC.</p>
+    <p style="font-size:13px;color:var(--fog);margin-top:8px;">Revisado para verificar su precisión por <a href="/es/about/jabin-travis" style="color:var(--amber);">Jabin Travis</a>, perforador certificado IADC WellSharp.</p>
   </div>
 
   <section class="block">

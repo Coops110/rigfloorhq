@@ -3,7 +3,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import { articleSchema } from '../../lib/techarticle.js';
-import { reviewedByJabin } from '../../lib/person.js';
 
 const jsonLd = articleSchema({
   sourcePath: 'src/pages/careers/rotation-schedules.astro',
@@ -23,7 +22,6 @@ const webPageLd = {
   "inLanguage": "en",
   "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
   "mainEntity": { "@id": "https://rigfloorhq.com/careers/rotation-schedules#article" },
-  "reviewedBy": reviewedByJabin(),
 };
 
 const webAppLd = {

@@ -3,24 +3,42 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import { articleSchema } from '../../../lib/techarticle.js';
+import { reviewedByJabin } from '../../../lib/person.js';
 
 // Article for this career guide. Dates come from git via the same map the
 // sitemap uses, so dateModified always equals this URL's sitemap lastmod;
 // author and publisher are the Organization @id (see src/lib/techarticle.js).
+// reviewedBy is a WebPage property in schema.org, so it sits on this page's
+// WebPage node, which the Article names as its mainEntityOfPage. Mirrors the
+// EN page (src/pages/careers/roughneck.astro) -- same real review, same date.
 const jsonLd = articleSchema({
   sourcePath: 'src/pages/es/careers/roughneck.astro',
   path: '/es/careers/roughneck',
   headline: "Trabajo de Roughneck: Funciones, Salario y Ascenso",
   description: "Qué hace un roughneck (ayudante de piso): conexiones y viajes, turnos y rotaciones, salario, certificaciones y el camino a encuellador y perforador.",
   lang: 'es',
+  extra: { mainEntityOfPage: { "@id": "https://rigfloorhq.com/es/careers/roughneck#webpage" } },
 });
 
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/es/careers/roughneck#webpage",
+  "url": "https://rigfloorhq.com/es/careers/roughneck",
+  "name": "Trabajo de Roughneck: Funciones, Salario y Ascenso",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://rigfloorhq.com/es#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/es/careers/roughneck#article" },
+  "reviewedBy": reviewedByJabin(),
+  "lastReviewed": "2026-10-15",
+};
 ---
 <BaseLayout
   title="Roughneck: Funciones, Salario y Ascenso"
   description="Qué hace un roughneck (ayudante de piso): conexiones y viajes, turnos y rotaciones, salario, certificaciones y el camino a encuellador y perforador."
   breadcrumbs={[{ label: 'Carreras', href: '/es/careers' }, { label: 'Roughneck', href: '/es/careers/roughneck' }]}
   jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
   lang="es"
   alternateHref="/careers/roughneck"
 >
@@ -51,6 +69,17 @@ const jsonLd = articleSchema({
 
         <h2 id="la-realidad-fisica">La Realidad Física</h2>
         <p>Este trabajo no es para todos. Trabajarás turnos de 12 horas, a menudo durante la noche, en clima extremo — calor desértico en el Permian, frío glacial en Dakota del Norte, humedad costa afuera en el Golfo. Levantarás equipo pesado repetidamente. Las caídas, puntos de pellizco, y objetos caídos son peligros reales, por lo cual la cultura de seguridad en un taladro se toma extremadamente en serio — no como una formalidad.</p>
+
+        <h2 id="lo-que-las-manos-nuevas-hacen-mal">Lo Que las Manos Nuevas Hacen Mal Primero</h2>
+        <p>Jabin Travis, el perforador con 30 años de experiencia que <a href="/es/about/jabin-travis">revisa nuestro contenido crítico de seguridad</a>, señala dos errores que ve constantemente en cuadrillas nuevas:</p>
+        <ul>
+          <li>
+            <strong>Leer mal la capacidad del aparejo.</strong> Un anillo de izaje o eslabón maestro marcado con una capacidad — digamos, 7 toneladas — está clasificado para <em>ese número, en total</em>, sin importar cuántas patas de eslinga estén conectadas. Las manos nuevas a menudo asumen que una eslinga de 4 patas multiplica la capacidad (7 × 4 = 28 toneladas); no es así. Siempre lee el máximo marcado en el anillo mismo, no un número que calcules a partir de la cantidad de patas.
+          </li>
+          <li>
+            <strong>No saber dónde mantener las manos.</strong> Alrededor de tubería en movimiento, llaves y aparejos, la colocación de las manos es algo que las manos experimentadas hacen casi sin pensar — y algo que a las manos nuevas genuinamente hay que enseñarles, no dejar que lo descubran solas. Saber dónde están tus manos, y mantenerlas lejos de los puntos de pellizco, es un hábito que hay que construir deliberadamente en las primeras semanas en el piso.
+          </li>
+        </ul>
 
         <h2 id="que-sigue-despues">Siguiente Escalón: Encuellador</h2>
         <p>Después de 1 a 3 años como roughneck, el siguiente paso es <a href="/es/careers/derrickhand"><strong>encuellador</strong></a> (también llamado derrickman) — trabajando desde el <a href="/es/glossary#plataforma-del-encuellador-monkeyboard">monkey board</a> en lo alto del mástil, guiando las paradas de tubería hacia los dedos durante los viajes, y asumiendo responsabilidad por el sistema de lodo en lugar de solo el piso. Es un escalón real en pago y en confianza: los encuelladores típicamente ganan <span class="highlight">$55,000–$90,000/año</span>, contra $45,000–$70,000 de un roughneck, y suele ser el punto donde una mano comienza el entrenamiento de control de pozos <strong>IWCF Nivel 2</strong> — la primera barrera formal de certificación en el camino hacia perforador.</p>

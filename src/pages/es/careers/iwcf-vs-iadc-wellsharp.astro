@@ -3,7 +3,6 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import { articleSchema } from '../../../lib/techarticle.js';
-import { reviewedByJabin } from '../../../lib/person.js';
 
 const jsonLd = articleSchema({
   sourcePath: 'src/pages/es/careers/iwcf-vs-iadc-wellsharp.astro',
@@ -21,9 +20,8 @@ const webPageLd = {
   "url": "https://rigfloorhq.com/es/careers/iwcf-vs-iadc-wellsharp",
   "name": "IWCF vs IADC WellSharp: Qué Certificación de Control de Pozos Necesitas",
   "inLanguage": "es",
-  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "isPartOf": { "@id": "https://rigfloorhq.com/es#website" },
   "mainEntity": { "@id": "https://rigfloorhq.com/es/careers/iwcf-vs-iadc-wellsharp#article" },
-  "reviewedBy": reviewedByJabin(),
 };
 ---
 <BaseLayout

@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { reviewedByJabin } from '../../../lib/person.js';
 
 const faq = [
   {
@@ -34,13 +35,22 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/es/calculators/mud-weight-window#webpage",
+  "url": "https://rigfloorhq.com/es/calculators/mud-weight-window",
+  "reviewedBy": reviewedByJabin(),
+  "lastReviewed": "2026-10-15"
+};
 ---
 <BaseLayout
   title="Calculadora de Ventana de Peso de Lodo"
   description="Calcula y visualiza tu ventana de peso de lodo entre presión de poro y gradiente de fractura, con análisis de margen en psi y ppg."
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Ventana de Peso de Lodo', href: '/es/calculators/mud-weight-window' }]}
   lang="es"
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   alternateHref="/calculators/mud-weight-window"
 >
   <Nav slot="nav" lang="es" alternateHref="/calculators/mud-weight-window" />
@@ -50,6 +60,7 @@ const webAppLd = {
     <div class="page-hero-eyebrow">Calculadora</div>
     <h1>Calculadora de Ventana de <span>Peso de Lodo</span></h1>
     <p class="page-hero-sub">Visualiza qué tan amplia — o estrecha — es tu ventana segura de perforación a una profundidad dada, y ve tu peso de lodo actual graficado dentro de ella.</p>
+    <p style="font-size:13px;color:var(--fog);margin-top:8px;">Revisado para verificar su precisión por <a href="/es/about/jabin-travis" style="color:var(--amber);">Jabin Travis</a>, perforador certificado IADC WellSharp.</p>
   </div>
 
   <section class="block">

@@ -3,6 +3,8 @@ title: "Limpieza del Pozo en Pozos de Alto Ángulo: Por Qué se Forman"
 description: "Por encima de unos 50 grados, los recortes dejan de ser transportados y comienzan a asentarse en camas. Por qué cambia el problema."
 publishDate: "2026-08-03"
 author: "RigFloorHQ Team"
+reviewedByJabin: true
+reviewedDate: "2026-10-15"
 category: "Perforación"
 tags: ["limpieza del pozo", "camas de recortes", "alto ángulo", "perforación direccional", "pega de tubería", "ECD"]
 diagrams:
@@ -23,6 +25,8 @@ faq:
   - q: "¿Puede una limpieza deficiente provocar una surgencia?"
     a: "No directamente, pero eleva la densidad equivalente de circulación, lo que puede fracturar la formación y causar pérdidas. Perder lodo hacia la formación reduce la presión hidrostática, lo que puede permitir un influjo. La conexión es indirecta pero real."
 ---
+
+*Revisado para verificar su precisión por [Jabin Travis](/es/about/jabin-travis), perforador certificado por IADC WellSharp.*
 
 La limpieza del pozo suena a tarea de mantenimiento y resulta ser la razón por la que un pozo se pegó. En un pozo vertical se resuelve prácticamente sola. A partir de unos 50 grados deja de ser automática, y la diferencia no es de grado: cambia el mecanismo por completo.
 

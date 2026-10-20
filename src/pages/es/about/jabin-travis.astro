@@ -3,16 +3,20 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import { SITE } from '../../../lib/site.js';
-import { JABIN_PERSON_ID } from '../../../lib/person.js';
+import { reviewedByJabin } from '../../../lib/person.js';
 
 const siteUrl = 'https://rigfloorhq.com';
 
 // Esta página es un ProfilePage en español que apunta al mismo Person @id que
 // la versión en inglés. El registro Person completo (nombre, cargo,
 // credenciales, url) se declara una sola vez, en
-// src/pages/about/jabin-travis.astro. Antes esta página repetía el Person con
-// el mismo @id pero con otra url y otra descripción, lo que daba propiedades
-// contradictorias a una sola entidad. Ver src/lib/person.js.
+// src/pages/about/jabin-travis.astro. Antes esta página solo tenía una
+// referencia @id desnuda sin ningún nodo Person en este mismo documento --
+// una referencia colgante desde el punto de vista de este documento, ya que
+// cada página HTML se analiza por separado. reviewedByJabin() ya devuelve el
+// mismo stub Person ligero (name/url/jobTitle) que usa el resto del sitio
+// bajo el mismo @id estable, así que se reutiliza aquí en lugar de declarar
+// un segundo Person con propiedades distintas. Ver src/lib/person.js.
 const personLd = {
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
@@ -21,7 +25,7 @@ const personLd = {
   name: 'Jabin Travis, Revisor Técnico',
   inLanguage: 'es',
   isPartOf: { '@id': `${siteUrl}/es#website` },
-  mainEntity: { '@id': JABIN_PERSON_ID },
+  mainEntity: reviewedByJabin(),
 };
 ---
 <BaseLayout

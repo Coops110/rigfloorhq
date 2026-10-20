@@ -3,6 +3,8 @@ title: "Torque y Arrastre como Alerta Temprana: La Tendencia"
 description: "Una cifra de torque no significa nada por sí sola. Lo que importa es la diferencia entre lo que el modelo predijo y lo que la sarta realmente hizo."
 publishDate: "2026-08-03"
 author: "RigFloorHQ Team"
+reviewedByJabin: true
+reviewedDate: "2026-10-15"
 category: "Perforación"
 tags: ["torque y arrastre", "factor de fricción", "pega de tubería", "limpieza del pozo", "peso al gancho", "datos de perforación"]
 diagrams:
@@ -23,6 +25,8 @@ faq:
   - q: "¿Con cuánta antelación avisa una tendencia de torque y arrastre?"
     a: "La divergencia respecto a la línea modelada suele aparecer varias conexiones antes de que el valor absoluto resulte llamativo. Esa diferencia es la ventana de aviso útil, y por eso la comparación contra un modelo calibrado importa más que vigilar una cifra bruta frente a un umbral mental."
 ---
+
+*Revisado para verificar su precisión por [Jabin Travis](/es/about/jabin-travis), perforador certificado por IADC WellSharp.*
 
 El torque y el arrastre son la alerta temprana más constantemente disponible en un taladro, y de las más constantemente mal leídas. El error es casi siempre el mismo: mirar el número en lugar de la diferencia.
 

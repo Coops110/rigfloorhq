@@ -20,11 +20,28 @@ const siteUrl = 'https://rigfloorhq.com';
 export const JABIN_PERSON_ID = `${siteUrl}/about/jabin-travis#person`;
 
 /**
- * A reviewedBy reference pointing at Jabin's stable Person @id. Use as a
- * sibling field next to author/publisher in a page's existing JSON-LD,
- * same @id-reference pattern this site already uses for the Organization,
- * e.g. `author: { "@id": \`${siteUrl}/#organization\` }` in techarticle.js.
+ * A reviewedBy reference to Jabin, inlined rather than a bare @id. A bare
+ * {"@id": ...} pointing at a Person defined only on a different URL is a
+ * dangling reference from the point of view of the page it's on -- each
+ * HTML document's JSON-LD is parsed on its own, so an @id with no matching
+ * node in that same document doesn't resolve. Inlining name/url/jobTitle
+ * here keeps every citing page self-contained while the @id stays the same
+ * stable identifier everywhere, so it's still unambiguously the same real
+ * person; the full bio/credentials record still lives only on
+ * src/pages/about/jabin-travis.astro.
+ *
+ * Callers must also add their own `lastReviewed` property as a sibling of
+ * `reviewedBy` on the WebPage/Article node (not here -- it belongs to the
+ * content being reviewed, not to the reviewer), set to the real date
+ * reviewedBy was actually added for that specific page (check git blame),
+ * never today's date or a deploy timestamp.
  */
 export function reviewedByJabin() {
-  return { '@id': JABIN_PERSON_ID };
+  return {
+    '@type': 'Person',
+    '@id': JABIN_PERSON_ID,
+    name: 'Jabin Travis',
+    url: `${siteUrl}/about/jabin-travis`,
+    jobTitle: 'Drilling Operations Supervisor',
+  };
 }

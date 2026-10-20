@@ -3,7 +3,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import { articleSchema } from '../../lib/techarticle.js';
-import { reviewedByJabin } from '../../lib/person.js';
 
 // Article for this career guide. Dates come from git via the same map the
 // sitemap uses, so dateModified always equals this URL's sitemap lastmod;
@@ -28,7 +27,6 @@ const webPageLd = {
   "inLanguage": "en",
   "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
   "mainEntity": { "@id": "https://rigfloorhq.com/careers/roustabout#article" },
-  "reviewedBy": reviewedByJabin(),
 };
 
 ---

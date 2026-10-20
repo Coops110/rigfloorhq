@@ -87,7 +87,7 @@ const blogPosting = {
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": postUrl,
-    ...(post.data.reviewedByJabin ? { "reviewedBy": reviewedByJabin() } : {}),
+    ...(post.data.reviewedByJabin ? { "reviewedBy": reviewedByJabin(), "lastReviewed": post.data.reviewedDate } : {}),
   },
 };
 

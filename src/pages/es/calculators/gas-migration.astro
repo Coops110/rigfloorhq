@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { reviewedByJabin } from '../../../lib/person.js';
 
 const faq = [
   {
@@ -38,11 +39,20 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/es/calculators/gas-migration#webpage",
+  "url": "https://rigfloorhq.com/es/calculators/gas-migration",
+  "reviewedBy": reviewedByJabin(),
+  "lastReviewed": "2026-10-15"
+};
 ---
 <BaseLayout
   title="Calculadora de Migración de Gas: Ritmo y Volumen de Purga"
   description="Calculadora de migración de gas: ritmo de migración en ft/hr desde la presión de cierre, y el volumen de purga para mantener estable la presión de fondo."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Migración de Gas', href: '/es/calculators/gas-migration' }]}
   lang="es"
   alternateHref="/calculators/gas-migration"
@@ -54,6 +64,7 @@ const webAppLd = {
     <div class="page-hero-eyebrow">Calculadora</div>
     <h1>Calculadora de <span>Migración de Gas</span></h1>
     <p class="page-hero-sub">Ritmo de migración desde una acumulación de presión de cierre, y el volumen de purga del método volumétrico que mantiene estable la presión de fondo mientras migra el gas.</p>
+    <p style="font-size:13px;color:var(--fog);margin-top:8px;">Revisado para verificar su precisión por <a href="/es/about/jabin-travis" style="color:var(--amber);">Jabin Travis</a>, perforador certificado IADC WellSharp.</p>
   </div>
 
   <section class="block">
