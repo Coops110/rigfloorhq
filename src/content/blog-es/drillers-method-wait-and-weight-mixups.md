@@ -1,5 +1,5 @@
 ---
-title: "Método del Perforador y Wait and Weight: 20 Preguntas de Examen"
+title: "Método del Perforador vs Wait and Weight: 20 Preguntas"
 description: "20 preguntas resueltas sobre dónde el Método del Perforador, Wait and Weight y el Método Volumétrico se confunden — qué presión mantener constante."
 publishDate: "2026-09-21"
 author: "RigFloorHQ Team"
