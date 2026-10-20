@@ -134,7 +134,7 @@ If you're building or advancing a career on the rig floor, understanding where w
 
 Well control also doesn't exist in isolation from the rest of rig operations. Drill string integrity, covered on the [drill string components page](/equipment/drill-string), affects everything from shear ram function to pressure transmission during a kill. Structural repairs on rig floor equipment, including BOP stack components and choke manifolds, often require welding work performed to strict pressure-vessel standards — covered in the [welding fundamentals section](/welding).
 
-For a broader look at how well control fits into the full drilling sequence, from spud to total depth, the [drilling operations overview](/drilling) and [rig equipment overview](/equipment) provide the surrounding context. And if you're comparing tools before your next well, the full [drilling calculators suite](/calculators) covers hydrostatic pressure, kill sheets, and mud weight windows in one place. Once the basics here are solid, the [Advanced Well Control guide](/pillars/well-kill-methods) picks up where this leaves off, and [shut-in pressure behavior](/blog/shut-in-pressure-behavior-explained) goes deeper on what the gauges actually do once the well is closed in.
+For a broader look at how well control fits into the full drilling sequence, from spud to total depth, the [drilling operations overview](/drilling) and [rig equipment overview](/equipment) provide the surrounding context. And if you're comparing tools before your next well, the full [drilling calculators suite](/calculators) covers hydrostatic pressure, kill sheets, and mud weight windows in one place. Once the basics here are solid, the [Well Kill Methods guide](/pillars/well-kill-methods) picks up where this leaves off, and [shut-in pressure behavior](/blog/shut-in-pressure-behavior-explained) goes deeper on what the gauges actually do once the well is closed in.
 
 ## Common Misconceptions
 
@@ -226,7 +226,7 @@ Hard shut-in closes the BOP against a closed choke, then opens the choke line HC
 
 ### Is the Driller's Method or Wait and Weight Method better for well control?
 
-Neither method is universally better — the choice depends on rig capability, mud mixing capacity, and formation sensitivity. Driller's Method uses two circulations with original mud first, while Wait and Weight kills the well in one circulation using pre-weighted kill mud.
+Neither is universally better — it depends on rig capability, mud mixing capacity, and formation sensitivity. See the full [Driller's Method vs Wait and Weight comparison](/pillars/well-kill-methods#choosing), including a worked example through both methods.
 
 ### How often should BOP equipment be tested?
 

@@ -1,6 +1,6 @@
 ---
-title: "Método del Perforador y Wait and Weight: Confusiones Comunes"
-description: "Dónde el Método del Perforador, Wait and Weight y el Método Volumétrico se confunden — qué presión mantener constante."
+title: "Método del Perforador y Wait and Weight: 20 Preguntas de Examen"
+description: "20 preguntas resueltas sobre dónde el Método del Perforador, Wait and Weight y el Método Volumétrico se confunden — qué presión mantener constante."
 publishDate: "2026-09-21"
 author: "RigFloorHQ Team"
 category: "Control de Pozos"
@@ -95,4 +95,4 @@ Bombeando lodo de matanza hasta la barrena mientras se mantiene plana la presió
 
 ---
 
-La [calculadora de hoja de control de pozo](/es/calculators/kill-sheet) y la [calculadora de hoja de control horizontal](/es/calculators/kill-sheet-horizontal) construyen estos mismos programas de presión, y la [calculadora de bombeo a matar](/es/calculators/bullheading) cubre un método alternativo relacionado. Varios de los escenarios anteriores asumen un pozo ya correctamente cerrado — ver [comportamiento de la presión de cierre](/es/blog/shut-in-pressure-behavior-explained) para lo que sucede antes de esta etapa. Para el procedimiento completo paso a paso en el que viven estas confusiones, ver [control de pozos](/es/drilling/well-control), o la comparación a nivel supervisor en la [guía de métodos de matanza de Control de Pozos Avanzado](/es/pillars/well-kill-methods).
+La [calculadora de hoja de control de pozo](/es/calculators/kill-sheet) y la [calculadora de hoja de control horizontal](/es/calculators/kill-sheet-horizontal) construyen estos mismos programas de presión, y la [calculadora de bombeo a matar](/es/calculators/bullheading) cubre un método alternativo relacionado. Varios de los escenarios anteriores asumen un pozo ya correctamente cerrado — ver [comportamiento de la presión de cierre](/es/blog/shut-in-pressure-behavior-explained) para lo que sucede antes de esta etapa. Para el procedimiento completo paso a paso en el que viven estas confusiones, ver [control de pozos](/es/drilling/well-control), o la comparación a nivel supervisor en la [guía de Métodos para Matar un Pozo](/es/pillars/well-kill-methods).

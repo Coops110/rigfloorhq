@@ -173,41 +173,12 @@ const techArticleJsonLd = techArticleSchema({
 
   <section class="block">
     <div class="section-eyebrow">Kill Methods</div>
-    <h2 class="section-title">Driller's Method vs <span>Wait-and-Weight</span></h2>
-    <p style="color:var(--fog);max-width:760px;margin-bottom:24px;">Every circulating kill method works on the same principle: hold <strong>bottomhole pressure constant</strong>, at or slightly above formation pressure, by adjusting the choke while pumping at a steady, pre-recorded kill rate. The drillpipe gauge is the window on bottomhole pressure, because the string contains mud of known weight and no influx. Methods differ only in when the kill-weight mud goes in. The two standard circulating methods compare like this:</p>
-
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Method</th><th>Process</th><th>Advantage</th><th>Disadvantage</th></tr></thead>
-        <tbody>
-          <tr>
-            <td>Driller's Method</td>
-            <td>Circulate the kick out first at original mud weight, holding drillpipe pressure at ICP once the pump is at kill rate, then weight up and circulate kill mud to surface in a second circulation.</td>
-            <td>Can begin immediately — no time spent mixing kill mud first</td>
-            <td>Two full circulations required; more time on well overall</td>
-          </tr>
-          <tr>
-            <td>Wait-and-Weight (Engineer's Method)</td>
-            <td>Prepare kill-weight mud first, then circulate the well in a single stage using the weighted mud.</td>
-            <td>Single circulation — often faster overall, less annular pressure exposure</td>
-            <td>Requires time to mix sufficient kill mud volume before starting</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p style="color:var(--fog);font-size:13px;margin-top:20px;max-width:700px;">Both methods are industry-accepted and taught in IWCF/IADC well control certification. Which one is used depends on company policy, kick severity, and available kill mud on location. Use the <a href="/calculators/kill-sheet" style="color:var(--amber);">kill sheet calculator</a> to run the actual numbers for either method, or the <a href="/calculators/formulas-cheat-sheet" style="color:var(--amber);">drilling formulas cheat sheet</a> if you are working them out on paper. A third option, bullheading, skips circulating the influx out entirely and instead pumps kill fluid straight down against the formation — a real technique for a plugged string or when circulating isn't possible, with its own surface pressure limits worked out on the <a href="/calculators/bullheading" style="color:var(--amber);">bullheading calculator</a>.</p>
-
-    <div class="note-box mt-24">
-      <strong id="worked-example">Worked example — Kill Mud Weight:</strong> Shut in at 10,000 ft TVD on 10.0 ppg original mud weight with 300 psi SIDPP. KMW = 10.0 + (300 ÷ (0.052 × 10,000)) = 10.0 + (300 ÷ 520) = 10.0 + 0.58 = <span class="highlight">10.58 ppg</span>, which rounds up to <span class="highlight">10.6 ppg</span> per IADC WellSharp convention. Run the same numbers through the <a href="/calculators/kill-sheet" style="color:var(--amber);">kill sheet calculator</a> and you'll get the identical figure.
-    </div>
+    <h2 class="section-title" id="kill-methods-glance">Kill Methods <span>at a Glance</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:18px;">Every circulating kill method holds <strong>bottomhole pressure constant</strong> by adjusting the choke while pumping at a steady, pre-recorded kill rate — methods differ only in when the kill-weight mud goes in. The two circulating methods below cover most kicks taken with the bit on or near bottom; when circulation through the bit isn't possible, or the influx must not reach surface, one of the other two applies.</p>
 
     <div class="note-box mt-24">
       <strong>BOP Pressure Checks (Daily):</strong> Accumulator pressure: <span class="highlight">3,000 psi</span> · Manifold pressure: <span class="highlight">1,500 psi</span> · Annular operating: <span class="highlight">700–1,500 psi</span> · Air supply to pumps: <span class="highlight">125 psi</span>. Full detail on the <a href="/equipment/bop" style="color:var(--amber);">BOP equipment page</a>, including the <a href="/equipment/well-protector" style="color:var(--amber);">well protector</a> that sits below it on a subsea stack.
     </div>
-
-    <h3 class="section-title" style="font-size:24px;margin-top:40px;">All Four Kill Methods at a Glance</h3>
-    <p style="color:var(--fog);max-width:760px;margin-bottom:18px;">The two circulating methods cover most kicks taken with the bit on or near bottom. When circulation through the bit is not possible, or the influx must not come to surface, one of the other two applies.</p>
     <div class="table-wrap">
       <table>
         <thead><tr><th>Method</th><th>Circulations</th><th>Usually chosen when</th><th>Key control rule</th></tr></thead>
@@ -305,7 +276,7 @@ const techArticleJsonLd = techArticleSchema({
       </a>
       <a href="/blog/drillers-method-wait-and-weight-mixups" class="related-link">
         <div class="rl-label">Kill Methods</div>
-        <div class="rl-title">Driller's Method &amp; Wait and Weight: Common Mix-Ups</div>
+        <div class="rl-title">Driller's Method &amp; Wait and Weight: 20 Exam Questions</div>
       </a>
       <a href="/blog/shut-in-pressure-behavior-explained" class="related-link">
         <div class="rl-label">Pressure Behavior</div>

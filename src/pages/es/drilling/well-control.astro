@@ -173,41 +173,12 @@ const techArticleJsonLd = techArticleSchema({
 
   <section class="block">
     <div class="section-eyebrow">Métodos de Matanza</div>
-    <h2 class="section-title">Método del Perforador vs. <span>Wait-and-Weight</span></h2>
-    <p style="color:var(--fog);max-width:760px;margin-bottom:24px;">Todos los métodos de matanza con circulación trabajan sobre el mismo principio: mantener <strong>constante la presión de fondo</strong>, igual o ligeramente por encima de la presión de formación, ajustando el choke mientras se bombea a un caudal de matanza estable y registrado de antemano. El manómetro de la tubería es la ventana hacia la presión de fondo, porque la sarta tiene lodo de peso conocido y no tiene influjo. Los métodos solo se diferencian en el momento en que entra el lodo de matanza. Los dos métodos estándar con circulación se comparan así:</p>
-
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Método</th><th>Proceso</th><th>Ventaja</th><th>Desventaja</th></tr></thead>
-        <tbody>
-          <tr>
-            <td>Método del Perforador</td>
-            <td>Circula la surgencia primero con el peso de lodo original, manteniendo la presión de tubería de perforación en la ICP una vez que la bomba está a la velocidad de matanza; luego aumenta el peso y circula lodo de matar hasta superficie en una segunda circulación.</td>
-            <td>Puede comenzar de inmediato — sin tiempo dedicado a mezclar lodo de matanza primero</td>
-            <td>Se requieren dos circulaciones completas; más tiempo total en el pozo</td>
-          </tr>
-          <tr>
-            <td>Wait-and-Weight (Método del Ingeniero)</td>
-            <td>Prepara el lodo con peso de matanza primero, luego circula el pozo en una sola etapa usando el lodo ya pesado.</td>
-            <td>Una sola circulación — a menudo más rápido en general, menor exposición a presión anular</td>
-            <td>Requiere tiempo para mezclar suficiente volumen de lodo de matanza antes de comenzar</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p style="color:var(--fog);font-size:13px;margin-top:20px;max-width:700px;">Ambos métodos son aceptados por la industria y enseñados en la certificación de control de pozos de IWCF/IADC. Cuál se usa depende de la política de la empresa, la severidad de la surgencia, y el lodo de matanza disponible en el sitio. Usa la <a href="/es/calculators/kill-sheet" style="color:var(--amber);">calculadora de hoja de control de pozo</a> para calcular los números reales de cualquiera de los dos métodos. Una tercera opción, el bullheading, se salta por completo la circulación de la entrada hacia afuera y en su lugar bombea fluido de matanza directamente hacia abajo contra la formación — una técnica real para una sarta taponada o cuando circular no es posible, con sus propios límites de presión de superficie calculados en la <a href="/es/calculators/bullheading" style="color:var(--amber);">calculadora de bullheading</a>.</p>
-
-    <div class="note-box mt-24">
-      <strong id="ejemplo-resuelto">Ejemplo resuelto — Peso de Lodo de Matanza:</strong> Cierre a 10,000 pies TVD con 10.0 ppg de peso de lodo original y 300 psi de SIDPP. KMW = 10.0 + (300 ÷ (0.052 × 10,000)) = 10.0 + (300 ÷ 520) = 10.0 + 0.58 = <span class="highlight">10.58 ppg</span>, que se redondea hacia arriba a <span class="highlight">10.6 ppg</span> según la convención de IADC WellSharp. Corre los mismos números en la <a href="/es/calculators/kill-sheet" style="color:var(--amber);">calculadora de hoja de control de pozo</a> y obtendrás la misma cifra.
-    </div>
+    <h2 class="section-title" id="metodos-de-un-vistazo">Métodos de Matanza <span>de un Vistazo</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:18px;">Todos los métodos de matanza con circulación mantienen <strong>constante la presión de fondo</strong> ajustando el choke mientras se bombea a un caudal de matanza estable y registrado de antemano — los métodos solo se diferencian en el momento en que entra el lodo de matanza. Los dos métodos con circulación de abajo cubren la mayoría de las surgencias tomadas con la barrena en el fondo o cerca de él; cuando no se puede circular por la barrena, o el influjo no debe llegar a superficie, corresponde uno de los otros dos.</p>
 
     <div class="note-box mt-24">
       <strong>Verificaciones Diarias de Presión del BOP:</strong> Presión del acumulador: <span class="highlight">3,000 psi</span> · Presión del manifold: <span class="highlight">1,500 psi</span> · Operación anular: <span class="highlight">700–1,500 psi</span> · Suministro de aire a las bombas: <span class="highlight">125 psi</span>. Detalle completo en la <a href="/es/equipment/bop" style="color:var(--amber);">página de equipo BOP</a>, incluyendo el <a href="/es/equipment/well-protector" style="color:var(--amber);">well protector</a> que se ubica debajo de él en un stack submarino.
     </div>
-
-    <h3 class="section-title" style="font-size:24px;margin-top:40px;">Los Cuatro Métodos de Matanza de un Vistazo</h3>
-    <p style="color:var(--fog);max-width:760px;margin-bottom:18px;">Los dos métodos con circulación cubren la mayoría de las surgencias tomadas con la barrena en el fondo o cerca de él. Cuando no se puede circular por la barrena, o el influjo no debe llegar a superficie, corresponde uno de los otros dos.</p>
     <div class="table-wrap">
       <table>
         <thead><tr><th>Método</th><th>Circulaciones</th><th>Normalmente se elige cuando</th><th>Regla de control clave</th></tr></thead>

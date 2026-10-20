@@ -1,6 +1,6 @@
 ---
-title: "Driller's Method and Wait and Weight: Common Mix-Ups"
-description: "Where the Driller's Method, Wait and Weight, and Volumetric Method get confused with each other — which pressure to hold constant."
+title: "Driller's Method and Wait and Weight: 20 Exam Questions"
+description: "20 worked questions on where the Driller's Method, Wait and Weight, and Volumetric Method get confused with each other — which pressure to hold constant."
 publishDate: "2026-09-21"
 author: "RigFloorHQ Team"
 category: "Well Control"
@@ -95,4 +95,4 @@ Pumping kill mud to the bit while holding drill pipe pressure flat, without adju
 
 ---
 
-The [kill sheet calculator](/calculators/kill-sheet) and [horizontal kill sheet calculator](/calculators/kill-sheet-horizontal) build these exact pressure schedules, and the [bullheading calculator](/calculators/bullheading) covers a related alternative method. Several of the scenarios above assume a well already correctly shut in — see [shut-in pressure behavior](/blog/shut-in-pressure-behavior-explained) for what happens before this stage. For the full step-by-step procedure these mix-ups sit inside, see [well control](/drilling/well-control), or the supervisor-level comparison on the [Advanced Well Control kill methods guide](/pillars/well-kill-methods). For what it looks like when neither circulating method is available, see [a real volumetric kill](/blog/volumetric-kill-real-story).
+The [kill sheet calculator](/calculators/kill-sheet) and [horizontal kill sheet calculator](/calculators/kill-sheet-horizontal) build these exact pressure schedules, and the [bullheading calculator](/calculators/bullheading) covers a related alternative method. Several of the scenarios above assume a well already correctly shut in — see [shut-in pressure behavior](/blog/shut-in-pressure-behavior-explained) for what happens before this stage. For the full step-by-step procedure these mix-ups sit inside, see [well control](/drilling/well-control), or the supervisor-level comparison on the [Well Kill Methods guide](/pillars/well-kill-methods). For what it looks like when neither circulating method is available, see [a real volumetric kill](/blog/volumetric-kill-real-story).

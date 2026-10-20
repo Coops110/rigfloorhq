@@ -294,7 +294,7 @@ const jsonLd = techArticleSchema({
 
   <section class="block">
     <div class="section-eyebrow">Selección</div>
-    <h2 class="section-title" id="como-elegir">Cómo Elegir el <span>Método</span></h2>
+    <h2 class="section-title" id="como-elegir">Método del Perforador vs Wait and Weight: <span>Comparación Directa</span></h2>
     <p style="color:var(--fog);max-width:760px;margin-bottom:24px;">La mayoría de los operadores fija un método por defecto en su manual de control de pozos, y el documento puente puede cambiarlo para un pozo en particular. La tabla resume el razonamiento habitual, no una regla.</p>
 
     <div class="table-wrap">
@@ -310,6 +310,20 @@ const jsonLd = techArticleSchema({
           <tr><td>Pozo horizontal o muy desviado</td><td>Cualquiera de los métodos con circulación, con programa no lineal</td><td>Un programa en línea recta deja la BHP corta</td></tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="prose" style="max-width:820px;margin-top:28px;">
+      <p>La diferencia práctica entre los dos métodos es el tiempo circulando bajo presión, y qué tan alto sube la presión del casing mientras el gas sigue en el anular. Llevar la misma surgencia del ejemplo resuelto anterior por ambos métodos lo muestra claramente.</p>
+    </div>
+
+    <div class="note-box mt-24" style="max-width:820px;">
+      <strong>Comparación resuelta (números ilustrativos, misma surgencia que arriba):</strong> Mismo pozo — 11,500 pies TVD, lodo original de 11.2 ppg, SIDPP de 420 psi, 1,100 emboladas de superficie a barrena — con un volumen anular de 1,000 emboladas de barrena a superficie, y un caudal de matanza de 30 emboladas/min.
+      <br /><br />
+      <strong>Método del Perforador, dos circulaciones completas:</strong> (1,100 + 1,000) × 2 = <span class="highlight">4,200 emboladas</span>, unos <span class="highlight">140 minutos</span> al caudal de matanza. La presión del casing sube durante la primera circulación mientras el gas se expande contra el lodo original que aún llena el anular, con un pico cerca de la zapata de alrededor de <span class="highlight">1,250 psi</span> antes de caer cuando el lodo de matanza llena el anular en la segunda circulación.
+      <br /><br />
+      <strong>Esperar y Densificar, una circulación completa:</strong> 1,100 + 1,000 = <span class="highlight">2,100 emboladas</span>, unos <span class="highlight">70 minutos</span>. El lodo de matanza empieza a llenar el anular de inmediato, así que el pico de presión en la zapata se mantiene más bajo, alrededor de <span class="highlight">980 psi</span> en este caso, a costa del tiempo de densificación con el pozo cerrado.
+      <br /><br />
+      Algunos procedimientos combinan ambos con un <strong>enfoque de circular y densificar (concurrente)</strong> — ver la nota sobre el método concurrente más arriba — subiendo el peso del lodo por etapas mientras se circula en lugar de comprometerse con un extremo.
     </div>
   </section>
 

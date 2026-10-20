@@ -293,7 +293,7 @@ const jsonLd = techArticleSchema({
 
   <section class="block">
     <div class="section-eyebrow">Selection</div>
-    <h2 class="section-title" id="choosing">Choosing a <span>Kill Method</span></h2>
+    <h2 class="section-title" id="choosing">Driller's Method vs Wait and Weight: <span>Side by Side</span></h2>
     <p style="color:var(--fog);max-width:760px;margin-bottom:24px;">Most operators state a default method in their well control manual, and the bridging document can override it for a particular well. The table summarises the usual reasoning, not a rule.</p>
 
     <div class="table-wrap">
@@ -309,6 +309,20 @@ const jsonLd = techArticleSchema({
           <tr><td>Horizontal or highly deviated well</td><td>Either circulating method, with a non-linear schedule</td><td>A straight-line schedule under-holds BHP</td></tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="prose" style="max-width:820px;margin-top:28px;">
+      <p>The practical difference between the two methods is circulating time under pressure, and how high casing pressure climbs while gas is still in the annulus. Running the same kick from the worked example above through both methods side by side shows why.</p>
+    </div>
+
+    <div class="note-box mt-24" style="max-width:820px;">
+      <strong>Worked comparison (illustrative numbers, same kick as above):</strong> Same well — 11,500 ft TVD, 11.2 ppg original mud, 420 psi SIDPP, 1,100 strokes surface-to-bit — with an annular volume of 1,000 strokes bit-to-surface, and a kill rate of 30 strokes/min.
+      <br /><br />
+      <strong>Driller's Method, two full circulations:</strong> (1,100 + 1,000) × 2 = <span class="highlight">4,200 strokes</span>, about <span class="highlight">140 minutes</span> at kill rate. Casing pressure climbs through the first circulation as gas expands against the original mud still filling the annulus, peaking near the shoe around <span class="highlight">1,250 psi</span> before falling as kill mud fills the annulus on the second circulation.
+      <br /><br />
+      <strong>Wait and Weight, one full circulation:</strong> 1,100 + 1,000 = <span class="highlight">2,100 strokes</span>, about <span class="highlight">70 minutes</span>. Kill mud starts filling the annulus immediately, so peak shoe pressure stays lower, around <span class="highlight">980 psi</span> here, at the cost of the weight-up time spent shut in beforehand.
+      <br /><br />
+      Some procedures split the difference with a <strong>circulate-and-weight (concurrent) approach</strong> — see the concurrent method note above — raising mud weight in stages while circulating rather than committing to one extreme.
     </div>
   </section>
 
