@@ -15,7 +15,7 @@ Most people follow a progression that looks roughly like this:
 
 - **Roustabout** (0–2 years) — general labor, no experience required. This is where you learn how the rig works by watching everything around you.
 - **Roughneck / Floorhand** (1–3 years experience) — promoted to the drill floor, handling pipe connections directly.
-- **Derrickhand** (3–5 years experience) — working from the monkey board, managing mud systems.
+- **[Derrickhand](/careers/derrickhand)** (3–5 years experience) — working from the monkey board, managing mud systems.
 - **Assistant Driller** (5–7 years experience) — shadowing the driller, taking on real responsibility under supervision.
 - **Driller** (7–10 years experience) — running the console independently.
 

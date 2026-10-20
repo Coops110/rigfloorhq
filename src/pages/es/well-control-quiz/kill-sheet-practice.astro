@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import { articleSchema } from '../../../lib/techarticle.js';
+import { reviewedByJabin } from '../../../lib/person.js';
+import SourcesStandards from '../../../components/SourcesStandards.astro';
+
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/es/well-control-quiz/kill-sheet-practice.astro',
+  path: '/es/well-control-quiz/kill-sheet-practice',
+  headline: "Problemas de Práctica de Hoja de Control de Pozo: 4 Escenarios Resueltos",
+  description: "Cuatro problemas completos de hoja de control de pozo con datos de cierre dados, resueltos paso a paso hasta el peso de lodo de control, ICP y FCP, con el error de redondeo común que cada uno está diseñado para atrapar.",
+  lang: 'es',
+  extra: { mainEntityOfPage: { "@id": "https://rigfloorhq.com/es/well-control-quiz/kill-sheet-practice#webpage" } },
+});
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/es/well-control-quiz/kill-sheet-practice#webpage",
+  "url": "https://rigfloorhq.com/es/well-control-quiz/kill-sheet-practice",
+  "name": "Problemas de Práctica de Hoja de Control de Pozo: 4 Escenarios Resueltos",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/es/well-control-quiz/kill-sheet-practice#article" },
+  "reviewedBy": reviewedByJabin(),
+};
+---
+<BaseLayout
+  title="Problemas de Práctica de Hoja de Control de Pozo: 4 Escenarios Resueltos"
+  description="Cuatro problemas completos de hoja de control de pozo con datos de cierre dados, resueltos paso a paso hasta el peso de lodo de control, ICP y FCP, con el error de redondeo común que cada uno está diseñado para atrapar."
+  breadcrumbs={[{ label: 'Examen de Control de Pozos', href: '/es/well-control-quiz' }, { label: 'Práctica de Hoja de Control', href: '/es/well-control-quiz/kill-sheet-practice' }]}
+  jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
+  lang="es"
+  alternateHref="/well-control-quiz/kill-sheet-practice"
+>
+  <Nav slot="nav" lang="es" alternateHref="/well-control-quiz/kill-sheet-practice" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Examen de Control de Pozos</div>
+    <h1>Problemas de Práctica <span>de Hoja de Control</span></h1>
+    <p class="page-hero-sub">Cuatro escenarios reales de cierre, resueltos a mano desde datos dados hasta el peso de lodo de control, ICP y FCP. Resuelve cada uno tú mismo antes de abrir la respuesta — ahí es donde realmente se fija la matemática.</p>
+  </div>
+
+  <section class="block">
+    <div class="prose" style="max-width:860px;">
+      <h2 id="como-usar-esta-pagina">Cómo Usar Esta Página</h2>
+      <p>Cada problema abajo da exactamente lo que un perforador tiene a mano en el momento en que se cierra un pozo: SIDPP, presión de circulación lenta (SCR), peso de lodo original, y TVD. Calcula tú mismo primero el peso de lodo de control (KMW), la presión de circulación inicial (ICP) y la presión de circulación final (FCP), usando las mismas fórmulas que la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> — luego abre la respuesta para revisar tu trabajo y ver exactamente dónde se habría colado el error común en ese problema.</p>
+
+      <div class="note-box">
+        <strong>Fórmulas usadas en toda la página:</strong> KMW = OMW + [SIDPP ÷ (0.052 × TVD)], redondeado hacia <strong>arriba</strong> a la décima de ppg más cercana. ICP = SIDPP + SCR. FCP = SCR × (KMW ÷ OMW). Ver la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> para la derivación completa y el programa de golpes para matar que alimentan estos números.
+      </div>
+
+      <h2 id="problema-1">Problema 1</h2>
+      <p>TVD: 8,000 ft. Peso de Lodo Original: 9.5 ppg. SIDPP: 200 psi. SCR: 400 psi.<br />Encuentra KMW, ICP y FCP.</p>
+      <div class="accordion" style="margin:16px 0;">
+        <details class="acc-item">
+          <summary class="acc-header">Mostrar Respuesta Resuelta<span class="acc-arrow">▼</span></summary>
+          <div class="acc-body">
+            <p>KMW = 9.5 + [200 ÷ (0.052 × 8,000)] = 9.5 + (200 ÷ 416) = 9.5 + 0.48 = 9.98, redondeado hacia <strong>arriba</strong> a <span class="highlight">10.0 ppg</span>.</p>
+            <p>ICP = 200 + 400 = <span class="highlight">600 psi</span>.</p>
+            <p>FCP = 400 × (10.0 ÷ 9.5) = 400 × 1.0526 = <span class="highlight">421 psi</span>.</p>
+            <p><strong>Error común que esto atrapa:</strong> redondear KMW a 9.9 ppg porque 9.98 parece estar cerca de 10.0 de cualquier forma — la convención siempre redondea hacia arriba sin importar qué tan cerca esté la cifra cruda, ya que un peso de lodo de control que sea aunque sea ligeramente liviano derrota todo el propósito de la matanza.</p>
+          </div>
+        </details>
+      </div>
+
+      <h2 id="problema-2">Problema 2</h2>
+      <p>TVD: 12,500 ft. Peso de Lodo Original: 11.2 ppg. SIDPP: 450 psi. SCR: 520 psi.<br />Encuentra KMW, ICP y FCP.</p>
+      <div class="accordion" style="margin:16px 0;">
+        <details class="acc-item">
+          <summary class="acc-header">Mostrar Respuesta Resuelta<span class="acc-arrow">▼</span></summary>
+          <div class="acc-body">
+            <p>KMW = 11.2 + [450 ÷ (0.052 × 12,500)] = 11.2 + (450 ÷ 650) = 11.2 + 0.69 = 11.89, redondeado hacia arriba a <span class="highlight">11.9 ppg</span>.</p>
+            <p>ICP = 450 + 520 = <span class="highlight">970 psi</span>.</p>
+            <p>FCP = 520 × (11.9 ÷ 11.2) = 520 × 1.0625 = <span class="highlight">553 psi</span>.</p>
+            <p><strong>Error común que esto atrapa:</strong> usar el KMW crudo sin redondear (11.89) dentro de la fórmula de FCP en lugar del 11.9 ppg redondeado. El valor redondeado es el que realmente va a las piletas de lodo, así que es el valor redondeado — no el cálculo crudo — el que tiene que pasar a FCP.</p>
+          </div>
+        </details>
+      </div>
+
+      <h2 id="problema-3">Problema 3</h2>
+      <p>TVD: 9,200 ft. Peso de Lodo Original: 10.0 ppg. SIDPP: 300 psi. SCR: 480 psi. Volumen total de la sarta: 95 bbl. Volumen anular total: 310 bbl. Salida de bomba: 0.117 bbl/golpe.<br />Encuentra KMW, ICP, FCP, golpes a la barrena, golpes de fondo arriba, y golpes totales para matar.</p>
+      <div class="accordion" style="margin:16px 0;">
+        <details class="acc-item">
+          <summary class="acc-header">Mostrar Respuesta Resuelta<span class="acc-arrow">▼</span></summary>
+          <div class="acc-body">
+            <p>KMW = 10.0 + [300 ÷ (0.052 × 9,200)] = 10.0 + (300 ÷ 478.4) = 10.0 + 0.63 = 10.63, redondeado hacia arriba a <span class="highlight">10.7 ppg</span>.</p>
+            <p>ICP = 300 + 480 = <span class="highlight">780 psi</span>. FCP = 480 × (10.7 ÷ 10.0) = <span class="highlight">514 psi</span>.</p>
+            <p>Golpes a la barrena = 95 ÷ 0.117 = <span class="highlight">812 golpes</span>. Fondo arriba = 310 ÷ 0.117 = <span class="highlight">2,650 golpes</span>. Golpes totales para matar = 812 + 2,650 = <span class="highlight">3,462 golpes</span>.</p>
+            <p><strong>Error común que esto atrapa:</strong> sumar el volumen de la sarta y el volumen anular antes de dividir por la salida de la bomba, en lugar de convertir cada uno a golpes por separado primero. Golpes a la barrena y golpes de fondo arriba responden dos preguntas diferentes (cuándo llega el lodo de control a la barrena, versus cuándo ha circulado completamente hacia afuera) y tienen que calcularse como dos conteos de golpes separados, no un volumen combinado.</p>
+          </div>
+        </details>
+      </div>
+
+      <h2 id="problema-4">Problema 4</h2>
+      <p>TVD: 15,000 ft. Peso de Lodo Original: 12.4 ppg. SIDPP: 180 psi. SCR: 610 psi.<br />Encuentra KMW, ICP y FCP.</p>
+      <div class="accordion" style="margin:16px 0;">
+        <details class="acc-item">
+          <summary class="acc-header">Mostrar Respuesta Resuelta<span class="acc-arrow">▼</span></summary>
+          <div class="acc-body">
+            <p>KMW = 12.4 + [180 ÷ (0.052 × 15,000)] = 12.4 + (180 ÷ 780) = 12.4 + 0.23 = 12.63, redondeado hacia arriba a <span class="highlight">12.7 ppg</span>.</p>
+            <p>ICP = 180 + 610 = <span class="highlight">790 psi</span>.</p>
+            <p>FCP = 610 × (12.7 ÷ 12.4) = 610 × 1.0242 = <span class="highlight">625 psi</span>.</p>
+            <p><strong>Error común que esto atrapa:</strong> redondear 12.63 hacia abajo a 12.6 ppg porque el decimal está debajo de .65 — "redondear hacia arriba a la décima más cercana" significa redondear hacia arriba a la siguiente décima cada vez que hay cualquier resto fraccionario, no redondear a la décima más cercana. 12.63 redondea hacia arriba a 12.7, igual que lo haría 12.61.</p>
+          </div>
+        </details>
+      </div>
+
+      <h2 id="revisa-tus-propios-numeros">Revisa Tus Propios Números</h2>
+      <p>Una vez que estos cuatro se sientan sencillos, corre tus propios números — un pozo en el que realmente estés trabajando, o valores del material de entrenamiento de tu empresa — a través de la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> para revisar tu trabajo a mano al instante, incluyendo el programa completo de presión de diez pasos desde ICP hasta FCP. Para la teoría detrás de por qué estas fórmulas funcionan de esta manera, ver el <a href="/es/drilling/well-control">centro de procedimientos de control de pozos</a>, y para la comparación a nivel supervisor de qué pasa después de establecer el KMW — Método del Perforador, Wait and Weight, y cuándo se usa cada uno realmente — ver la <a href="/es/pillars/well-kill-methods">guía de Métodos para Matar un Pozo</a>. El <a href="/es/well-control-quiz">examen de control de pozos</a> más amplio cubre el lado conceptual de los cuatro niveles de IWCF/WellSharp si quieres práctica de opción múltiple junto a estos problemas resueltos.</p>
+    </div>
+  </section>
+
+  <SourcesStandards lang="es" ids={['api53', 'cfr250g', 'iwcf', 'iadcWellsharp']} />
+</BaseLayout>

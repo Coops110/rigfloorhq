@@ -133,6 +133,10 @@ import Footer from '../../../components/Footer.astro';
           <td><a href="/es/calculators/maasp">MAASP</a></td>
         </tr>
         <tr>
+          <td>Acabas de correr una prueba de goteo o FIT y necesitas convertirla a EMW o gradiente de fractura</td>
+          <td><a href="/es/calculators/leak-off-test">Prueba de Goteo y FIT</a></td>
+        </tr>
+        <tr>
           <td>Necesitas saber qué tan grande puede ser una surgencia antes de poner en riesgo la zapata</td>
           <td><a href="/es/calculators/kick-tolerance">Tolerancia a la Surgencia</a></td>
         </tr>
@@ -270,6 +274,13 @@ import Footer from '../../../components/Footer.astro';
         <p>Presión máxima permisible en superficie del anular en la zapata a partir de tu prueba LOT/FIT y peso de lodo actual.</p>
         <p class="card-formula"><strong>Fórmula:</strong> MAASP = Presión LOT/FIT + [(MW LOT/FIT − MW Actual) × 0.052 × TVD de Zapata]</p>
         <a href="/es/calculators/maasp" class="card-link">Abrir Calculadora →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">💧</span>
+        <h3>Calculadora de Prueba de Goteo y FIT</h3>
+        <p>Convierte una presión de prueba de goteo en EMW y gradiente de fractura, o trabaja hacia atrás a una presión objetivo de FIT.</p>
+        <p class="card-formula"><strong>Fórmula:</strong> EMW = MW en la Prueba + [Presión LOT ÷ (0.052 × TVD de Zapata)]</p>
+        <a href="/es/calculators/leak-off-test" class="card-link">Abrir Calculadora →</a>
       </div>
       <div class="card">
         <span class="card-icon">🎚</span>
@@ -447,7 +458,8 @@ import Footer from '../../../components/Footer.astro';
           { "@type": "ListItem", "position": 15, "name": "Adiciones de Hoja de Control Horizontal", "url": "https://rigfloorhq.com/es/calculators/kill-sheet-horizontal" },
           { "@type": "ListItem", "position": 16, "name": "Calculadora de ECD", "url": "https://rigfloorhq.com/es/calculators/ecd" },
           { "@type": "ListItem", "position": 17, "name": "Calculadora de MAASP", "url": "https://rigfloorhq.com/es/calculators/maasp" },
-          { "@type": "ListItem", "position": 18, "name": "Calculadora de Tolerancia a la Surgencia", "url": "https://rigfloorhq.com/es/calculators/kick-tolerance" }
+          { "@type": "ListItem", "position": 18, "name": "Calculadora de Tolerancia a la Surgencia", "url": "https://rigfloorhq.com/es/calculators/kick-tolerance" },
+          { "@type": "ListItem", "position": 19, "name": "Calculadora de Prueba de Goteo y FIT", "url": "https://rigfloorhq.com/es/calculators/leak-off-test" }
         ]
       }
     ]

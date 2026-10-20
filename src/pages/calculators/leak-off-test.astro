@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import SourcesStandards from '../../components/SourcesStandards.astro';
+
+const faq = [
+  {
+    q: 'What is the difference between EMW and fracture gradient here?',
+    a: 'They are the same limit in two different units. EMW at leak-off is in ppg — directly comparable to a mud weight. Fracture gradient is in psi/ft — directly comparable to a pore pressure gradient. Both describe the exact same breakdown point at the shoe; pick whichever unit the rest of your well program already uses.',
+  },
+  {
+    q: 'Why does the FIT target-pressure box use a different formula direction?',
+    a: 'The top box works forward from a completed test: you already have the pressure you pumped to, and you are solving for what EMW that pressure represents. The FIT box works backward: you already know the EMW you want to prove (your planned mud weight plus a safety margin), and you are solving for what surface pressure to stop pumping at once you hit it — without ever finding the actual leak-off point.',
+  },
+  {
+    q: 'Why does this calculator not plot the pressure-vs-volume curve itself?',
+    a: 'Identifying the actual leak-off point requires watching where the live pressure-vs-volume plot stops being a straight line while the test is running on the rig — that judgment call happens in real time with real gauge data, not after the fact from a single number. This calculator takes the pressure you already identified as the leak-off (or FIT target) point and converts it into the EMW and gradient figures the rest of your well control math uses.',
+  },
+];
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/calculators/leak-off-test#app",
+  "name": "Leak-Off Test (LOT) & FIT Calculator",
+  "url": "https://rigfloorhq.com/calculators/leak-off-test",
+  "description": "Convert a leak-off test pressure into equivalent mud weight and fracture gradient, or work backward from a target EMW to find the pressure to stop a formation integrity test at.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Drilling engineering calculator",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
+---
+<BaseLayout
+  title="Leak-Off Test (LOT) & FIT Calculator"
+  description="Convert a leak-off test pressure into equivalent mud weight and fracture gradient, or work backward from a target EMW to find the pressure to stop a formation integrity test at."
+  extraJsonLd={[webAppLd]}
+  breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Leak-Off Test', href: '/calculators/leak-off-test' }]}
+  lang="en"
+  alternateHref="/es/calculators/leak-off-test"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/calculators/leak-off-test" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculator</div>
+    <h1>Leak-Off Test <span>&amp; FIT Calculator</span></h1>
+    <p class="page-hero-sub">Convert a completed LOT into equivalent mud weight and fracture gradient, or work backward from a target EMW to find the surface pressure to stop a formation integrity test at.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Leak-Off Test → EMW &amp; Fracture Gradient</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="lot-pressure">LOT Surface Pressure (psi)</label>
+              <input type="number" id="lot-pressure" value="415" step="1">
+            </div>
+            <div class="input-group">
+              <label for="lot-mw">Mud Weight at Test (ppg)</label>
+              <input type="number" id="lot-mw" value="10.5" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="lot-tvd">Shoe TVD (ft)</label>
+              <input type="number" id="lot-tvd" value="6108" step="1">
+            </div>
+          </div>
+          <div class="calc-output visible" aria-live="polite" style="margin-top:16px;">
+            <div class="output-line headline"><span class="output-label">Equivalent Mud Weight at Leak-Off</span><span class="output-value" id="out-emw">—</span></div>
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Fracture Gradient</span><span class="output-value" id="out-fg">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🎯 FIT Target Pressure</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="fit-target-emw">Target EMW to Prove (ppg)</label>
+              <input type="number" id="fit-target-emw" value="11.0" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="fit-mw">Current Mud Weight (ppg)</label>
+              <input type="number" id="fit-mw" value="9.5" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="fit-tvd">Shoe TVD (ft)</label>
+              <input type="number" id="fit-tvd" value="6108" step="1">
+            </div>
+          </div>
+          <div class="calc-output visible" aria-live="polite" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Pump to Surface Pressure</span><span class="output-value" id="out-fit-pressure">—</span></div>
+          </div>
+        </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>This is a reference tool, not an operational authority.</strong> The real leak-off point is identified live on the rig from the actual pressure-versus-volume plot, by the person running the test under your company's approved procedure. Use this calculator to convert a result you've already recorded, not to plan or run the test itself.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>The Formulas Used</h2>
+        <dl class="formula-block">
+          <dt class="formula-label">Equivalent Mud Weight at Leak-Off</dt>
+          <dd class="formula-eq"><code>EMW = Mud Weight at Test + [LOT Pressure ÷ (0.052 × Shoe TVD)]</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Fracture Gradient</dt>
+          <dd class="formula-eq"><code>FG = [LOT Pressure + (Mud Weight × 0.052 × Shoe TVD)] ÷ Shoe TVD</code></dd>
+          <dd class="formula-note">Mud weights in ppg, pressure in psi, shoe TVD in feet, fracture gradient in psi/ft.</dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">FIT Target Pressure (reverse direction)</dt>
+          <dd class="formula-eq"><code>Target Pressure = (Target EMW − Current Mud Weight) × 0.052 × Shoe TVD</code></dd>
+        </dl>
+
+        <div class="note-box">
+          <strong id="worked-example">Worked example (the default values above):</strong> LOT recorded 415 psi with 10.5 ppg mud in the hole, shoe at 6,108 ft TVD.<br />
+          EMW = 10.5 + [415 ÷ (0.052 × 6,108)] = 10.5 + 1.31 = <span class="highlight">11.81 ppg</span>.<br />
+          Fracture Gradient = [415 + (10.5 × 0.052 × 6,108)] ÷ 6,108 = <span class="highlight">0.614 psi/ft</span>.<br />
+          For the FIT box: to prove 11.0 ppg EMW with 9.5 ppg mud currently in the hole at the same shoe depth, pump to (11.0 − 9.5) × 0.052 × 6,108 = <span class="highlight">2,382 psi</span> and stop — well short of the full 11.81 ppg leak-off point the shoe actually has in reserve.
+        </div>
+
+        <h2 id="lot-vs-fit">LOT vs FIT: Why the Test Direction Differs</h2>
+        <p>A leak-off test runs all the way to the formation's actual breakdown point, plotting pressure against pumped volume until the curve stops rising in a straight line — that deviation point is the leak-off pressure, and it's the true ceiling the shoe can hold. A formation integrity test deliberately stops short of that, pumping only to a target pressure that proves the formation can handle a specific planned mud weight without ever finding where it would actually break down. Both feed the same downstream math once a number is in hand, but an FIT gives you a proof point, not the shoe's real limit — treat an FIT result as "good enough for the planned mud weight," not as the actual fracture gradient.</p>
+
+        <h2 id="where-it-feeds">Where This Result Feeds Next</h2>
+        <p>The EMW and fracture gradient from this page are exactly the "LOT/FIT" inputs used across the rest of the well control calculators: the <a href="/calculators/maasp">MAASP calculator</a> and <a href="/calculators/mamw">MAMW calculator</a> both convert this same test result into a live surface-pressure or mud-weight ceiling at today's mud weight, and the <a href="/calculators/mud-weight-window">mud weight window calculator</a> uses the fracture gradient side of it directly. From there, <a href="/calculators/kick-tolerance">kick tolerance</a> builds on MAASP to size the largest influx the well can still take. See the <a href="/drilling/leak-off-test">full leak-off test procedure page</a> for how the test itself is actually run on the rig floor, and the <a href="/pillars/hydrostatic-pressure">hydrostatic pressure pillar</a> for the underlying theory.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p set:html={item.a} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <SourcesStandards lang="en" ids={['api53', 'cfr250g', 'iwcf', 'iadcWellsharp']} />
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script is:inline src="/scripts/calculators/leak-off-test.js" defer></script>

@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import { articleSchema } from '../../../lib/techarticle.js';
+import { reviewedByJabin } from '../../../lib/person.js';
+
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/es/drilling/leak-off-test.astro',
+  path: '/es/drilling/leak-off-test',
+  headline: "Prueba de Goteo y FIT: Procedimiento y Qué Significa el Resultado",
+  description: "Cómo se corre realmente una prueba de goteo y una prueba de integridad de formación después de perforar bajo una zapata de revestimiento, el procedimiento paso a paso, y cómo el resultado se convierte en MAASP, MAMW y tolerancia a la surgencia.",
+  lang: 'es',
+  extra: { mainEntityOfPage: { "@id": "https://rigfloorhq.com/es/drilling/leak-off-test#webpage" } },
+});
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/es/drilling/leak-off-test#webpage",
+  "url": "https://rigfloorhq.com/es/drilling/leak-off-test",
+  "name": "Prueba de Goteo y FIT: Procedimiento y Qué Significa el Resultado",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/es/drilling/leak-off-test#article" },
+  "reviewedBy": reviewedByJabin(),
+};
+---
+<BaseLayout
+  title="Prueba de Goteo y FIT: Procedimiento y Qué Significa el Resultado"
+  description="Cómo se corre realmente una prueba de goteo y una prueba de integridad de formación después de perforar bajo una zapata de revestimiento, el procedimiento paso a paso, y cómo el resultado se convierte en MAASP, MAMW y tolerancia a la surgencia."
+  breadcrumbs={[{ label: 'Perforación', href: '/es/drilling' }, { label: 'Prueba de Goteo', href: '/es/drilling/leak-off-test' }]}
+  jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
+  lang="es"
+  alternateHref="/drilling/leak-off-test"
+>
+  <Nav slot="nav" lang="es" alternateHref="/drilling/leak-off-test" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Control de Pozos</div>
+    <h1>Prueba de Goteo <span>y FIT</span></h1>
+    <p class="page-hero-sub">Corrida justo después de perforar bajo una zapata de revestimiento nueva, esta es la prueba que define qué tan fuerte se puede exigir esa zapata por el resto de la sección del pozo — todo límite de presión de superficie río abajo se remonta a este único número.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="por-que-se-corre">Por Qué Se Corre</h2>
+        <p>Una vez que una sarta de revestimiento está cementada y la zapata está perforada, la formación abierta justo debajo es el punto más débil de todo el pozo por el resto de esa sección — toda la sarta arriba es acero y cemento, pero la roca debajo de la zapata es exactamente lo que era antes de que alguien perforara a través de ella. La <a href="/es/pillars/hydrostatic-pressure">ventana de peso de lodo</a> para la siguiente sección está limitada arriba por lo que esa formación realmente puede soportar antes de romperse, y una prueba de goteo es cómo se mide ese techo directamente en lugar de asumirlo a partir de un gradiente de un pozo vecino.</p>
+
+        <h2 id="procedimiento-lot">Procedimiento de Prueba de Goteo</h2>
+        <ol>
+          <li><strong>Perfora bajo la zapata y un pequeño rathole.</strong> Típicamente 10-20 ft de formación nueva debajo del shoe track, suficiente hoyo abierto para exponer roca fresca sin perforar tanto que la prueba termine leyendo un intervalo distinto al de la zapata misma.</li>
+          <li><strong>Cierra el pozo</strong> y arma una unidad de cementación o bomba del taladro capaz de medir volúmenes pequeños y precisos.</li>
+          <li><strong>Bombea en incrementos pequeños</strong> — comúnmente de 0.25 a 0.5 bbl a la vez — registrando la presión de standpipe después de que cada incremento se estabiliza.</li>
+          <li><strong>Grafica presión contra volumen acumulado bombeado.</strong> Los primeros incrementos trazan una línea recta mientras el pozo y la formación se comprimen elásticamente. El punto de goteo es donde esa línea se desvía de la recta — la formación ha empezado a tomar fluido en lugar de solo comprimirse.</li>
+          <li><strong>Registra la presión de goteo</strong> en ese punto de desviación, luego para de bombear. Continuar más allá de este punto arriesga una fractura descontrolada en lugar de un resultado de prueba limpio y repetible.</li>
+          <li><strong>Desfoga y registra el volumen devuelto</strong> para confirmar que la formación no tomó una cantidad inesperada de fluido, luego reanuda las operaciones de perforación.</li>
+        </ol>
+        <p>Toda la prueba típicamente toma bastante menos de una hora, pero los incrementos pequeños y controlados importan — bombear demasiado rápido difumina exactamente dónde ocurre la desviación real en la curva, y todo el valor de la prueba está en identificar ese punto con precisión.</p>
+
+        <h2 id="procedimiento-fit">Procedimiento de Prueba de Integridad de Formación (FIT)</h2>
+        <p>Un FIT corre la misma configuración idéntica — cerrar el pozo, bombear en incrementos pequeños, observar la presión — pero se detiene en una presión objetivo predeterminada en lugar de continuar hasta un punto real de goteo. Ese objetivo se elige para probar que la zapata puede soportar el peso de lodo que el programa de perforación de la siguiente sección realmente planea usar, más un margen de seguridad, sin encontrar nunca cuánto más podría realmente soportar la formación. Un FIT es más rápido y de menor riesgo que un LOT completo, pero responde una pregunta más estrecha: "es este peso de lodo planeado específico seguro", no "cuál es el límite real de esta zapata". Usa la caja de FIT de la <a href="/es/calculators/leak-off-test">calculadora de prueba de goteo</a> para calcular la presión objetivo a la que bombear para un peso de lodo planeado dado antes de correr uno.</p>
+
+        <h2 id="cual-se-corre">Cuál Prueba Se Corre, y Cuándo</h2>
+        <p>El programa del pozo especifica qué prueba se requiere en cada zapata, y esa decisión usualmente se toma mucho antes de que el taladro llegue a esa profundidad. Un LOT completo es más común en pozos exploratorios y zapatas críticas donde el límite real de fractura genuinamente no se conoce a partir de datos cercanos. Un FIT es más común en pozos de desarrollo en una cuenca con suficiente historial de pozos vecinos como para que el gradiente de fractura ya se entienda bien, donde la prueba realmente solo confirma que la zapata de este pozo específico coincide con el patrón esperado en lugar de descubrir información nueva.</p>
+
+        <h2 id="leyendo-el-resultado">Leyendo el Resultado</h2>
+        <p>La salida cruda de cualquiera de las dos pruebas es una sola presión de superficie, emparejada con el peso de lodo que estaba en el pozo en ese momento — por sí sola, ese número no significa mucho operacionalmente. Convertido en un peso de lodo equivalente o un gradiente de fractura, se convierte en la línea base sobre la que se construye todo cálculo posterior de control de pozos para esa sección: <a href="/es/calculators/maasp">MAASP</a> y <a href="/es/calculators/mamw">MAMW</a> ambos lo replantean como un techo de presión de superficie o peso de lodo en vivo al peso de lodo que esté en uso más adelante en la sección, y <a href="/es/calculators/kick-tolerance">tolerancia a la surgencia</a> construye sobre el MAASP desde ahí para dimensionar el influjo más grande que el pozo aún puede tomar de forma segura. La <a href="/es/calculators/leak-off-test">calculadora de prueba de goteo</a> corre la conversión de EMW y gradiente de fractura directamente a partir de un resultado de prueba registrado.</p>
+
+        <div class="note-box">
+          <strong>Una prueba, una zapata, una sección de pozo.</strong> Un resultado de LOT o FIT solo es válido para la zapata específica debajo de la cual se corrió — perforar hacia una nueva sarta de revestimiento significa una zapata nueva y una prueba nueva antes de que ese techo pueda confiarse de nuevo. Llevar un número viejo de LOT/FIT más allá de un nuevo punto de revestimiento es uno de los atajos más peligrosos en la planificación de pozos, no una aproximación razonable.
+        </div>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#por-que-se-corre">Por Qué Se Corre</a>
+          <a href="#procedimiento-lot">Procedimiento de LOT</a>
+          <a href="#procedimiento-fit">Procedimiento de FIT</a>
+          <a href="#cual-se-corre">Cuál Prueba, y Cuándo</a>
+          <a href="#leyendo-el-resultado">Leyendo el Resultado</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/calculators/leak-off-test" class="card-link">→ Calculadora de Prueba de Goteo y FIT</a><br><br>
+          <a href="/es/calculators/maasp" class="card-link">→ Calculadora de MAASP</a><br><br>
+          <a href="/es/calculators/mamw" class="card-link">→ Calculadora de MAMW</a><br><br>
+          <a href="/es/calculators/mud-weight-window" class="card-link">→ Calculadora de Ventana de Peso de Lodo</a><br><br>
+          <a href="/es/pillars/hydrostatic-pressure" class="card-link">→ Pilar de Presión Hidrostática</a><br><br>
+          <a href="/es/drilling/well-control" class="card-link">→ Centro de Procedimientos de Control de Pozos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

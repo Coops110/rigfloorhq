@@ -65,7 +65,7 @@ Una vez que se confirma una surgencia, la cuadrilla ejecuta una secuencia de cie
 
 **El cierre duro** cierra el BOP contra un choke ya cerrado. Luego se abre la válvula HCR de la línea de choke para leer la presión de casing en el panel del choke, pero el choke ajustable permanece cerrado. Esto atrapa la presión más rápido, minimizando el volumen de entrada, pero produce un pico de presión más agudo que algunos operadores quieren evitar en formaciones más débiles.
 
-**El cierre suave** abre la válvula HCR de la línea de choke con el choke abierto, cierra el BOP y luego cierra el choke, suavizando la entrada a la presión de cierre más gradualmente. Este es a menudo el método preferido donde la integridad de la formación o la resistencia del zapato de revestimiento son una preocupación.
+**El cierre suave** abre la válvula HCR de la línea de choke con el choke abierto, cierra el BOP y luego cierra el choke, suavizando la entrada a la presión de cierre más gradualmente. Este es a menudo el método preferido donde la integridad de la formación o la resistencia del zapato de revestimiento son una preocupación. Ver los [procedimientos completos paso a paso para ambos](/es/drilling/shut-in-procedures) para la secuencia completa y qué formaciones empujan hacia cada uno.
 
 Sin importar el método, una vez cerrado, la cuadrilla registra la Presión de Tubería con Pozo Cerrado (SIDPP), la Presión de Revestimiento con Pozo Cerrado (SICP), y la ganancia de pileta. Estos números alimentan directamente los cálculos de matanza — pásalos por la [calculadora de hoja de control de pozo](/es/calculators/kill-sheet) una vez que el SIDPP esté confirmado.
 

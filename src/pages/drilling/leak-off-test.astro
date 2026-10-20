@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { articleSchema } from '../../lib/techarticle.js';
+import { reviewedByJabin } from '../../lib/person.js';
+
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/drilling/leak-off-test.astro',
+  path: '/drilling/leak-off-test',
+  headline: "Leak-Off Test and FIT: Procedure and What the Result Means",
+  description: "How a leak-off test and formation integrity test are actually run after drilling out a casing shoe, the step-by-step procedure, and how the result becomes MAASP, MAMW and kick tolerance.",
+  lang: 'en',
+  extra: { mainEntityOfPage: { "@id": "https://rigfloorhq.com/drilling/leak-off-test#webpage" } },
+});
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/drilling/leak-off-test#webpage",
+  "url": "https://rigfloorhq.com/drilling/leak-off-test",
+  "name": "Leak-Off Test and FIT: Procedure and What the Result Means",
+  "inLanguage": "en",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/drilling/leak-off-test#article" },
+  "reviewedBy": reviewedByJabin(),
+};
+---
+<BaseLayout
+  title="Leak-Off Test and FIT: Procedure and What the Result Means"
+  description="How a leak-off test and formation integrity test are actually run after drilling out a casing shoe, the step-by-step procedure, and how the result becomes MAASP, MAMW and kick tolerance."
+  breadcrumbs={[{ label: 'Drilling', href: '/drilling' }, { label: 'Leak-Off Test', href: '/drilling/leak-off-test' }]}
+  jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
+  lang="en"
+  alternateHref="/es/drilling/leak-off-test"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/drilling/leak-off-test" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Well Control</div>
+    <h1>Leak-Off Test <span>and FIT</span></h1>
+    <p class="page-hero-sub">Run right after drilling out a fresh casing shoe, this is the test that defines how hard that shoe can be pushed for the rest of the hole section — every surface-pressure limit downstream traces back to this one number.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="why-its-run">Why It's Run</h2>
+        <p>Once a casing string is cemented and the shoe is drilled out, the open formation directly below it is the weakest point in the entire wellbore for the rest of that hole section — every string above it is steel and cement, but the rock below the shoe is exactly what it was before anyone drilled through it. The <a href="/pillars/hydrostatic-pressure">mud weight window</a> for the next section is bounded above by whatever that formation can actually take before it breaks down, and a leak-off test is how that ceiling gets measured directly rather than assumed from an offset-well gradient.</p>
+
+        <h2 id="lot-procedure">Leak-Off Test Procedure</h2>
+        <ol>
+          <li><strong>Drill out the shoe and a short rathole.</strong> Typically 10-20 ft of new formation below the shoe track, enough open hole to expose fresh rock without drilling so far that the test starts reading a different interval than the shoe itself.</li>
+          <li><strong>Shut in the well</strong> and rig up a cement unit or rig pump capable of metering small, precise volumes.</li>
+          <li><strong>Pump in small increments</strong> — commonly 0.25 to 0.5 bbl at a time — recording standpipe pressure after each increment once it stabilizes.</li>
+          <li><strong>Plot pressure against cumulative volume pumped.</strong> Early increments trace a straight line as the wellbore and formation compress elastically. The leak-off point is where that line bends away from straight — the formation has started taking fluid rather than just compressing.</li>
+          <li><strong>Record the leak-off pressure</strong> at that bend, then stop pumping. Continuing past this point risks an uncontrolled fracture rather than a clean, repeatable test result.</li>
+          <li><strong>Bleed back and record the volume returned</strong> to confirm the formation didn't take an unexpected amount of fluid, then resume drilling operations.</li>
+        </ol>
+        <p>The whole test typically takes well under an hour, but the small, controlled increments matter — pumping too fast blurs exactly where the real bend in the curve happens, and the entire value of the test is in identifying that point precisely.</p>
+
+        <h2 id="fit-procedure">Formation Integrity Test (FIT) Procedure</h2>
+        <p>An FIT runs the identical setup — shut in, pump in small increments, watch pressure — but stops at a predetermined target pressure instead of continuing to an actual leak-off point. That target is chosen to prove the shoe can hold whatever mud weight the next section's drilling program actually plans to use, plus a safety margin, without ever finding out how much further the formation could really take. An FIT is faster and lower-risk than a full LOT, but it answers a narrower question: "is this specific planned mud weight safe," not "what is this shoe's actual limit." Use the <a href="/calculators/leak-off-test">leak-off test calculator</a>'s FIT box to work out the target pressure to pump to for a given planned mud weight before running one.</p>
+
+        <h2 id="which-one">Which Test Gets Run, and When</h2>
+        <p>The well program specifies which test is required at each shoe, and that decision is usually made well before the rig ever reaches that depth. A full LOT is more common on exploration wells and critical shoes where the actual fracture limit genuinely isn't known from nearby data. An FIT is more common on development wells in a basin with enough offset well history that the fracture gradient is already well understood, where the test is really just confirming that this specific well's shoe matches the expected pattern rather than discovering new information.</p>
+
+        <h2 id="reading-the-result">Reading the Result</h2>
+        <p>The raw output of either test is a single surface pressure, paired with the mud weight that was in the hole at the time — on its own, that number doesn't mean much operationally. Converted into an equivalent mud weight or fracture gradient, it becomes the baseline every subsequent well control calculation for that hole section is built on: <a href="/calculators/maasp">MAASP</a> and <a href="/calculators/mamw">MAMW</a> both restate it as a live surface-pressure or mud-weight ceiling at whatever mud weight is in use later in the section, and <a href="/calculators/kick-tolerance">kick tolerance</a> builds on MAASP from there to size the largest influx the well can still safely take. The <a href="/calculators/leak-off-test">leak-off test calculator</a> runs the EMW and fracture-gradient conversion directly from a recorded test result.</p>
+
+        <div class="note-box">
+          <strong>One test, one shoe, one hole section.</strong> A LOT or FIT result is only valid for the specific shoe it was run below — drilling into a new casing string means a fresh shoe and a fresh test before that ceiling can be trusted again. Carrying an old LOT/FIT number forward past a new casing point is one of the more dangerous shortcuts in well planning, not a reasonable approximation.
+        </div>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#why-its-run">Why It's Run</a>
+          <a href="#lot-procedure">LOT Procedure</a>
+          <a href="#fit-procedure">FIT Procedure</a>
+          <a href="#which-one">Which Test, and When</a>
+          <a href="#reading-the-result">Reading the Result</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/calculators/leak-off-test" class="card-link">→ Leak-Off Test &amp; FIT Calculator</a><br><br>
+          <a href="/calculators/maasp" class="card-link">→ MAASP Calculator</a><br><br>
+          <a href="/calculators/mamw" class="card-link">→ MAMW Calculator</a><br><br>
+          <a href="/calculators/mud-weight-window" class="card-link">→ Mud Weight Window Calculator</a><br><br>
+          <a href="/pillars/hydrostatic-pressure" class="card-link">→ Hydrostatic Pressure Pillar</a><br><br>
+          <a href="/drilling/well-control" class="card-link">→ Well Control Procedures Hub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import { articleSchema } from '../../../lib/techarticle.js';
+import { reviewedByJabin } from '../../../lib/person.js';
+
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/es/careers/iwcf-vs-iadc-wellsharp.astro',
+  path: '/es/careers/iwcf-vs-iadc-wellsharp',
+  headline: "IWCF vs IADC WellSharp: Qué Certificación de Control de Pozos Necesitas",
+  description: "Cómo se comparan realmente IWCF e IADC WellSharp — estructura de niveles, cuál es probable que requiera tu contratista, y qué significan los niveles desde encuellador hasta toolpusher.",
+  lang: 'es',
+  extra: { mainEntityOfPage: { "@id": "https://rigfloorhq.com/es/careers/iwcf-vs-iadc-wellsharp#webpage" } },
+});
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/es/careers/iwcf-vs-iadc-wellsharp#webpage",
+  "url": "https://rigfloorhq.com/es/careers/iwcf-vs-iadc-wellsharp",
+  "name": "IWCF vs IADC WellSharp: Qué Certificación de Control de Pozos Necesitas",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/es/careers/iwcf-vs-iadc-wellsharp#article" },
+  "reviewedBy": reviewedByJabin(),
+};
+---
+<BaseLayout
+  title="IWCF vs IADC WellSharp: Qué Certificación de Control de Pozos Necesitas"
+  description="Cómo se comparan realmente IWCF e IADC WellSharp — estructura de niveles, cuál es probable que requiera tu contratista, y qué significan los niveles desde encuellador hasta toolpusher."
+  breadcrumbs={[{ label: 'Carreras', href: '/es/careers' }, { label: 'IWCF vs IADC WellSharp', href: '/es/careers/iwcf-vs-iadc-wellsharp' }]}
+  jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
+  lang="es"
+  alternateHref="/careers/iwcf-vs-iadc-wellsharp"
+>
+  <Nav slot="nav" lang="es" alternateHref="/careers/iwcf-vs-iadc-wellsharp" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Certificaciones</div>
+    <h1>IWCF vs <span>IADC WellSharp</span></h1>
+    <p class="page-hero-sub">Dos organismos de certificación, la misma escalera por niveles, y casi todos los operadores aceptan cualquiera de los dos. La pregunta real no es cuál es "mejor" — es cuál usa ya tu contratista.</p>
+    <div class="page-meta">
+      <span class="page-meta-item">Organismos: <strong>IWCF e IADC WellSharp</strong></span>
+      <span class="page-meta-item">Estructura: <strong>4 niveles, ambos esquemas</strong></span>
+      <span class="page-meta-item">Renovación: <strong>2-5 años según el nivel</strong></span>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="mismo-trabajo-nombre-distinto">Mismo Trabajo, Nombre Distinto</h2>
+        <p>El International Well Control Forum (IWCF) e IADC WellSharp son los dos organismos de certificación de control de pozos globalmente reconocidos, y casi todos los operadores requieren uno de los dos antes de dejar que alguien se siente en la consola o asuma un rol supervisor de control de pozos. Ninguno es específico de una región o tipo de operador en la práctica — ambos aparecen en taladros del Golfo de México, el Mar del Norte, el Medio Oriente y donde sea que se perfore. La respuesta honesta a "cuál debería sacar" casi siempre es "el que use tu contratista", porque los dos están construidos para ser funcionalmente intercambiables en cada nivel.</p>
+        <p>La estructura de niveles de IWCF se alinea con las recomendaciones de IOGP y se nombra por número — Nivel 2, Nivel 3, Nivel 4. IADC WellSharp usa nombres de rol para los mismos niveles en lugar de números. Los dos se corresponden directamente entre sí, y la mayor parte de la industria los escribe uno junto al otro exactamente por esa razón:</p>
+
+        <h2 id="el-mapa-de-niveles">El Mapa de Niveles</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>IWCF</th><th>IADC WellSharp</th><th>Quién lo necesita</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Nivel 2</td><td>WellSharp (nivel introductorio/piso de perforación)</td><td><a href="/es/careers/derrickhand">Encuellador</a> y asistente de perforador, la primera certificación real de control de pozos que completa la mayoría de las cuadrillas</td></tr>
+              <tr><td>Nivel 3</td><td>WellSharp Driller</td><td><a href="/es/careers/driller">Perforador</a> — requerido para correr la consola de forma independiente</td></tr>
+              <tr><td>Nivel 4</td><td>WellSharp Supervisor</td><td>Toolpusher, OIM y company man — toma de decisiones de control de pozos a nivel supervisor, no solo ejecución</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>El nivel de entrada / WellSharp introductorio no lleva un título único y fijo como sí lo hacen Nivel 3 y Nivel 4 — los contratistas varían en cómo lo llaman exactamente y cuándo lo requieren — pero el contenido es el mismo en ambos organismos a ese nivel: reconocimiento de surgencias y lo básico de un cierre, no toma de decisiones independiente en la hoja de matanza. Ver la <a href="/es/careers/certifications">guía completa de certificaciones</a> para cómo encajan los cuatro niveles dentro del panorama más amplio de credenciales junto a BOSIET y los exámenes médicos costa afuera.</p>
+
+        <h2 id="que-cubre-cada-uno">Qué Cubre Realmente Cada Curso</h2>
+        <p>Ambos esquemas enseñan el mismo material central porque certifican el mismo trabajo: reconocimiento de surgencias, procedimiento de cierre — incluyendo la decisión de <a href="/es/drilling/shut-in-procedures">cierre duro vs cierre suave</a> — y métodos para matar el pozo una vez confirmada una surgencia. El <a href="/es/pillars/well-kill-methods">Método del Perforador, Wait and Weight, el método volumétrico y bullheading</a> son material estándar tanto en los cursos de IWCF como de IADC WellSharp a partir del nivel Nivel 3 / Driller. Los niveles de supervisor en ambos esquemas agregan el lado de gestión: aprobar procedimientos de matanza, coordinar múltiples operaciones simultáneas, y las decisiones de juicio que un perforador ejecuta pero no tiene autoridad para originar.</p>
+
+        <h2 id="realmente-importa-cual">¿Realmente Importa Cuál Tengas?</h2>
+        <p>Para casi todos los operadores, no. Ambos organismos son reconocidos en toda la industria, y un perforador con IWCF Nivel 3 no está en desventaja frente a uno con WellSharp Driller al postularse a un contratista que estandariza en el otro esquema — la certificación demuestra la misma competencia de cualquier forma. El factor práctico que sí importa es cuál usa ya tu empleador actual u objetivo para el entrenamiento, ya que eso determina dónde tomarás el curso y bajo qué ciclo de renovación quedas. Si estás comenzando tu carrera y tu contratista no ha especificado, vale la pena preguntar directamente en lugar de adivinar — cambiar de organismo después no es un problema, pero pagar un curso que tu empleador no reembolsará porque estandariza en el otro sí es un costo evitable.</p>
+        <p>Los ciclos de renovación siguen el nivel, no el organismo: el nivel de entrada corre en un ciclo más largo (alrededor de 5 años), mientras que la certificación de nivel Driller y Supervisor se renueva por examen cada 2 años en ambos esquemas. Ver la tabla de renovación completa en el <a href="/es/well-control-quiz">examen de práctica de control de pozos</a>. Ningún organismo exime del requisito de renovación por experiencia o antigüedad.</p>
+
+        <div class="note-box">
+          <strong>Elige el que use tu taladro, no el que tenga mejor reconocimiento de nombre.</strong> No existe una clasificación independiente donde un organismo se considere más riguroso o más respetado que el otro en un nivel dado — están construidos para ser equivalentes, y los operadores escriben los requisitos como "IWCF Nivel 3 o IADC WellSharp Driller" precisamente porque no les importa cuál de los dos tenga un candidato.
+        </div>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#mismo-trabajo-nombre-distinto">Mismo Trabajo, Nombre Distinto</a>
+          <a href="#el-mapa-de-niveles">El Mapa de Niveles</a>
+          <a href="#que-cubre-cada-uno">Qué Cubre Cada Curso</a>
+          <a href="#realmente-importa-cual">¿Realmente Importa Cuál?</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/careers/certifications" class="card-link">→ Guía Completa de Certificaciones</a><br><br>
+          <a href="/es/careers/driller" class="card-link">→ Cómo Convertirte en Perforador</a><br><br>
+          <a href="/es/pillars/rig-floor-leadership" class="card-link">→ Liderazgo en el Piso de Perforación</a><br><br>
+          <a href="/es/well-control-quiz" class="card-link">→ Examen de Práctica de Control de Pozos</a><br><br>
+          <a href="/es/drilling/well-control" class="card-link">→ Centro de Procedimientos de Control de Pozos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

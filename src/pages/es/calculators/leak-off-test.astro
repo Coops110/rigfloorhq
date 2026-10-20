@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import SourcesStandards from '../../../components/SourcesStandards.astro';
+
+const faq = [
+  {
+    q: '¿Cuál es la diferencia entre EMW y gradiente de fractura aquí?',
+    a: 'Son el mismo límite en dos unidades distintas. El EMW al punto de goteo está en ppg — directamente comparable a un peso de lodo. El gradiente de fractura está en psi/ft — directamente comparable a un gradiente de presión de poro. Ambos describen exactamente el mismo punto de ruptura en la zapata; elige la unidad que ya use el resto de tu programa de pozo.',
+  },
+  {
+    q: '¿Por qué la caja de presión objetivo de FIT usa una dirección de fórmula distinta?',
+    a: 'La caja de arriba trabaja hacia adelante desde una prueba completada: ya tienes la presión a la que bombeaste, y estás resolviendo qué EMW representa esa presión. La caja de FIT trabaja hacia atrás: ya sabes el EMW que quieres probar (tu peso de lodo planeado más un margen de seguridad), y estás resolviendo a qué presión de superficie parar de bombear una vez que la alcances — sin encontrar nunca el punto real de goteo.',
+  },
+  {
+    q: '¿Por qué esta calculadora no grafica la curva de presión contra volumen?',
+    a: 'Identificar el punto real de goteo requiere observar dónde el gráfico en vivo de presión contra volumen deja de ser una línea recta mientras la prueba corre en el taladro — ese juicio ocurre en tiempo real con datos de manómetro reales, no después con un solo número. Esta calculadora toma la presión que ya identificaste como el punto de goteo (o el objetivo de FIT) y la convierte en las cifras de EMW y gradiente que usa el resto de tu matemática de control de pozos.',
+  },
+];
+
+const webAppLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://rigfloorhq.com/es/calculators/leak-off-test#app",
+  "name": "Calculadora de Prueba de Goteo (LOT) y FIT",
+  "url": "https://rigfloorhq.com/es/calculators/leak-off-test",
+  "description": "Convierte una presión de prueba de goteo en peso de lodo equivalente y gradiente de fractura, o trabaja hacia atrás desde un EMW objetivo para encontrar la presión a la que parar una prueba de integridad de formación.",
+  "applicationCategory": "UtilitiesApplication",
+  "applicationSubCategory": "Calculadora de ingeniería de perforación",
+  "operatingSystem": "Any (web browser)",
+  "browserRequirements": "Requires JavaScript",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" }
+};
+---
+<BaseLayout
+  title="Calculadora de Prueba de Goteo (LOT) y FIT"
+  description="Convierte una presión de prueba de goteo en peso de lodo equivalente y gradiente de fractura, o trabaja hacia atrás desde un EMW objetivo para encontrar la presión a la que parar una prueba de integridad de formación."
+  extraJsonLd={[webAppLd]}
+  breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Prueba de Goteo', href: '/es/calculators/leak-off-test' }]}
+  lang="es"
+  alternateHref="/calculators/leak-off-test"
+>
+  <Nav slot="nav" lang="es" alternateHref="/calculators/leak-off-test" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Calculadora</div>
+    <h1>Prueba de Goteo <span>y Calculadora de FIT</span></h1>
+    <p class="page-hero-sub">Convierte un LOT completado en peso de lodo equivalente y gradiente de fractura, o trabaja hacia atrás desde un EMW objetivo para encontrar la presión de superficie a la que parar una prueba de integridad de formación.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div>
+        <div class="calc-box">
+          <div class="calc-title">🧭 Prueba de Goteo → EMW y Gradiente de Fractura</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="lot-pressure">Presión de Superficie del LOT (psi)</label>
+              <input type="number" id="lot-pressure" value="415" step="1">
+            </div>
+            <div class="input-group">
+              <label for="lot-mw">Peso de Lodo en la Prueba (ppg)</label>
+              <input type="number" id="lot-mw" value="10.5" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="lot-tvd">TVD de Zapata (ft)</label>
+              <input type="number" id="lot-tvd" value="6108" step="1">
+            </div>
+          </div>
+          <div class="calc-output visible" aria-live="polite" style="margin-top:16px;">
+            <div class="output-line headline"><span class="output-label">Peso de Lodo Equivalente al Goteo</span><span class="output-value" id="out-emw">—</span></div>
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Gradiente de Fractura</span><span class="output-value" id="out-fg">—</span></div>
+          </div>
+        </div>
+
+        <div class="calc-box mt-24">
+          <div class="calc-title">🎯 Presión Objetivo de FIT</div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="fit-target-emw">EMW Objetivo a Probar (ppg)</label>
+              <input type="number" id="fit-target-emw" value="11.0" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="fit-mw">Peso de Lodo Actual (ppg)</label>
+              <input type="number" id="fit-mw" value="9.5" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="fit-tvd">TVD de Zapata (ft)</label>
+              <input type="number" id="fit-tvd" value="6108" step="1">
+            </div>
+          </div>
+          <div class="calc-output visible" aria-live="polite" style="margin-top:16px;">
+            <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Bombear a Presión de Superficie</span><span class="output-value" id="out-fit-pressure">—</span></div>
+          </div>
+        </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>Esta es una herramienta de referencia, no una autoridad operacional.</strong> El punto real de goteo se identifica en vivo en el taladro a partir del gráfico real de presión contra volumen, por la persona que corre la prueba bajo el procedimiento aprobado de tu compañía. Usa esta calculadora para convertir un resultado que ya registraste, no para planear o correr la prueba en sí.
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2>Las Fórmulas Usadas</h2>
+        <dl class="formula-block">
+          <dt class="formula-label">Peso de Lodo Equivalente al Goteo</dt>
+          <dd class="formula-eq"><code>EMW = Peso de Lodo en la Prueba + [Presión LOT ÷ (0.052 × TVD de Zapata)]</code></dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Gradiente de Fractura</dt>
+          <dd class="formula-eq"><code>FG = [Presión LOT + (Peso de Lodo × 0.052 × TVD de Zapata)] ÷ TVD de Zapata</code></dd>
+          <dd class="formula-note">Pesos de lodo en ppg, presión en psi, TVD de zapata en pies, gradiente de fractura en psi/ft.</dd>
+        </dl>
+        <dl class="formula-block">
+          <dt class="formula-label">Presión Objetivo de FIT (dirección inversa)</dt>
+          <dd class="formula-eq"><code>Presión Objetivo = (EMW Objetivo − Peso de Lodo Actual) × 0.052 × TVD de Zapata</code></dd>
+        </dl>
+
+        <div class="note-box">
+          <strong id="ejemplo-resuelto">Ejemplo resuelto (los valores por defecto de arriba):</strong> LOT registró 415 psi con 10.5 ppg de lodo en el pozo, zapata a 6,108 ft de TVD.<br />
+          EMW = 10.5 + [415 ÷ (0.052 × 6,108)] = 10.5 + 1.31 = <span class="highlight">11.81 ppg</span>.<br />
+          Gradiente de Fractura = [415 + (10.5 × 0.052 × 6,108)] ÷ 6,108 = <span class="highlight">0.614 psi/ft</span>.<br />
+          Para la caja de FIT: para probar 11.0 ppg de EMW con 9.5 ppg de lodo actualmente en el pozo a la misma profundidad de zapata, bombea a (11.0 − 9.5) × 0.052 × 6,108 = <span class="highlight">2,382 psi</span> y detente — muy por debajo de los 11.81 ppg completos que la zapata realmente tiene en reserva en el punto de goteo.
+        </div>
+
+        <h2 id="lot-vs-fit">LOT vs FIT: Por Qué Difiere la Dirección de la Prueba</h2>
+        <p>Una prueba de goteo corre hasta el punto real de ruptura de la formación, graficando presión contra volumen bombeado hasta que la curva deja de subir en línea recta — ese punto de desviación es la presión de goteo, y es el verdadero techo que la zapata puede soportar. Una prueba de integridad de formación se detiene deliberadamente antes de eso, bombeando solo hasta una presión objetivo que prueba que la formación puede soportar un peso de lodo planeado específico sin encontrar nunca dónde realmente rompería. Ambas alimentan la misma matemática río abajo una vez que se tiene un número, pero un FIT da un punto de prueba, no el límite real de la zapata — trata un resultado de FIT como "suficientemente bueno para el peso de lodo planeado", no como el gradiente de fractura real.</p>
+
+        <h2 id="donde-alimenta">Dónde Alimenta Este Resultado Después</h2>
+        <p>El EMW y el gradiente de fractura de esta página son exactamente las entradas "LOT/FIT" usadas en el resto de las calculadoras de control de pozos: la <a href="/es/calculators/maasp">calculadora de MAASP</a> y la <a href="/es/calculators/mamw">calculadora de MAMW</a> convierten este mismo resultado de prueba en un techo de presión de superficie o peso de lodo en vivo al peso de lodo de hoy, y la <a href="/es/calculators/mud-weight-window">calculadora de ventana de peso de lodo</a> usa el lado del gradiente de fractura directamente. De ahí, <a href="/es/calculators/kick-tolerance">tolerancia a la surgencia</a> construye sobre el MAASP para dimensionar el influjo más grande que el pozo aún puede tomar. Ver la <a href="/es/drilling/leak-off-test">página completa del procedimiento de prueba de goteo</a> para cómo se corre realmente la prueba en el piso de perforación, y el <a href="/es/pillars/hydrostatic-pressure">pilar de presión hidrostática</a> para la teoría subyacente.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p set:html={item.a} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <SourcesStandards lang="es" ids={['api53', 'cfr250g', 'iwcf', 'iadcWellsharp']} />
+</BaseLayout>
+
+<style>
+  .output-line.headline .output-value { color: var(--amber); font-size: 18px; }
+</style>
+
+<script is:inline src="/scripts/calculators/leak-off-test.js" defer></script>

@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import KeyFacts from '../../../components/KeyFacts.astro';
+import { techArticleSchema } from '../../../lib/techarticle.js';
+
+const techArticleJsonLd = techArticleSchema({
+  sourcePath: 'src/pages/es/equipment/rig-floor-tools.astro',
+  path: '/es/equipment/rig-floor-tools',
+  headline: "Herramientas Manuales del Piso de Perforación: Llaves, Cuñas, Elevadores y Spinner",
+  description: "Las herramientas manuales centrales usadas para armar y desarmar conexiones de tubería de perforación en el piso del taladro — llaves, iron roughneck, cuñas, elevadores, y la llave de giro — qué hace cada una y cómo trabajan juntas.",
+  lang: 'es',
+});
+---
+<BaseLayout
+  extraJsonLd={[techArticleJsonLd]}
+  title="Herramientas Manuales del Piso de Perforación: Llaves, Cuñas, Elevadores y Spinner"
+  description="Las herramientas manuales centrales usadas para armar y desarmar conexiones de tubería de perforación en el piso del taladro — llaves, iron roughneck, cuñas, elevadores, y la llave de giro — qué hace cada una y cómo trabajan juntas."
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Herramientas del Piso', href: '/es/equipment/rig-floor-tools' }]}
+  lang="es"
+  alternateHref="/equipment/rig-floor-tools"
+>
+  <Nav slot="nav" lang="es" alternateHref="/equipment/rig-floor-tools" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Equipo — Piso de Perforación</div>
+    <h1>Herramientas Manuales <span>del Piso de Perforación</span></h1>
+    <p class="page-hero-sub">Cada conexión armada o desarmada en el piso de perforación pasa por el mismo puñado de herramientas. Esto es lo que hace cada una, y cómo las usa realmente una cuadrilla de roughnecks juntas para correr tubería.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="para-que-sirven">Para Qué Sirven</h2>
+        <p>Correr una sarta dentro o fuera del pozo significa armar o desarmar una conexión roscada en cada parada, cientos de veces durante la vida de un pozo. Las herramientas de esta página son las que usa una cuadrilla de <a href="/es/careers/roughneck">roughneck</a> para sujetar, girar, aplicar torque, y sostener la tubería de forma segura a través de ese ciclo — ninguna hace algo por sí sola; trabajan en una secuencia fija cada vez que se maneja una conexión.</p>
+
+        <KeyFacts
+          lang="es"
+          rows={[["Herramientas centrales", "Llaves (o iron roughneck), cuñas, elevadores, llave de giro o kelly spinner."], ["Trabajo principal", "Sujetar, girar, aplicar torque y sostener la tubería durante cada conexión armada o desarmada."], ["Quién las opera", "La cuadrilla del piso de perforación (roughnecks), bajo la dirección del perforador desde la consola."], ["Manual vs mecanizado", "Las llaves y cuñas manuales son la configuración tradicional; un iron roughneck mecaniza el armado/desarmado y se ha vuelto estándar en la mayoría de los taladros modernos."]]}
+        />
+
+        <h2 id="llaves">Llaves (Tongs)</h2>
+        <p>Las llaves sujetan el cuerpo de la tubería y aplican el torque rotacional que arma o desarma una conexión roscada. Los pisos de perforación tradicionales usan dos juegos — un par de llaves manuales, una sosteniendo fija la junta inferior mientras la otra aplica torque a la junta superior — operadas a mano con la cuadrilla tirando de una línea de llave llamada cathead para apalancamiento. Este es trabajo físicamente exigente y repetitivo, y es una de las razones principales por las que los primeros meses de un roughneck son tanto sobre desarrollar la fuerza y técnica específicas que requiere este trabajo como sobre aprender el equipo en sí.</p>
+        <p>Un <strong>iron roughneck</strong> mecaniza el mismo trabajo: una unidad única accionada hidráulicamente que gira la tubería y luego aplica torque preciso y medido al valor exacto que requiere la conexión, sin que un miembro de la cuadrilla tenga que tirar físicamente de las líneas de llave. Se ha vuelto el estándar en la mayoría de los taladros modernos en tierra y costa afuera porque es más rápido y más seguro a la vez — el torque se aplica consistentemente a especificación en lugar de al tacto, y saca las manos del área de mayor riesgo de punto de pellizco en el piso durante el armado y desarmado.</p>
+
+        <h2 id="cunas">Cuñas (Slips)</h2>
+        <p>Las cuñas son insertos dentados en forma de cuña que se asientan en la mesa rotaria (o en una araña de casing/tubing para esas sartas) y sujetan el cuerpo de la tubería para sostener todo el peso de la sarta colgando en el pozo una vez que se libera de los elevadores. Funcionan puramente por acción de cuña: el peso de la sarta tirando hacia abajo empuja los segmentos cónicos de la cuña más apretados contra la tubería, lo que significa que el agarre se vuelve más fuerte exactamente cuando se necesita, bajo carga — no es algo que pueda aflojarse por sí solo a mitad de una conexión.</p>
+        <p>Las cuñas se dimensionan al diámetro y peso específico de la tubería que se corre, de la misma forma en que un <a href="/es/equipment/bop#arietes">ariete de tubería</a> se dimensiona a un diámetro de tubería. Una cuña mal emparejada no asentará correctamente o no soportará la carga para la que está clasificada, lo cual es un peligro de manejo serio en lugar de un inconveniente menor.</p>
+
+        <h2 id="elevadores">Elevadores</h2>
+        <p>Los elevadores son el conjunto de sujeción articulado que se traba alrededor de la tubería justo debajo del resalte de una junta (el hombro más grueso en cada extremo de tubería) y se conecta hacia arriba al bloque viajero vía bridas, permitiendo que el sistema de izaje levante y baje toda la sarta. Donde las cuñas sostienen la sarta estacionaria en la mesa rotaria, los elevadores son los que realmente la mueven — subiendo una parada nueva a posición para armar, o bajando la sarta para asentarla de vuelta en las cuñas una vez que se desarma una conexión.</p>
+        <p>El intercambio entre los dos es el ritmo central de viajar tubería: los elevadores bajan la sarta hasta que su peso se transfiere a las cuñas, se desarma o arma la conexión, luego los elevadores traban la siguiente junta y el ciclo se repite. Cada viaje dentro o fuera del pozo es esta misma secuencia, corrida tantas veces como lo requiera la longitud de la sarta.</p>
+
+        <h2 id="llave-de-giro">Llave de Giro y Kelly Spinner</h2>
+        <p>Antes de que las llaves puedan aplicar torque real, una conexión tiene que girarse primero hasta un ajuste apretado a mano — enroscando la junta lo suficiente para que la llave luego pueda aplicar el torque final y medido sin cruzar la rosca. Una <strong>llave de giro</strong> (o un power tong puesto en modo de giro en taladros modernos) hace este giro rápido accionado hidráulicamente, reemplazando el método más antiguo de girar la tubería a mano con una llave de cadena.</p>
+        <p>Un <strong>kelly spinner</strong> es una herramienta relacionada pero distinta que se encuentra en taladros que todavía usan un kelly y mesa rotaria convencionales en lugar de un top drive — se monta en la parte superior del kelly mismo y gira el kelly hacia la conexión debajo de él. En un <a href="/es/equipment/rotating-system">taladro con top drive</a>, el propio motor del top drive realiza esta función directamente, que es una de varias razones por las que los taladros con top drive necesitan menos herramientas de piso separadas que un taladro de kelly convencional.</p>
+
+        <h2 id="como-trabajan-juntas">Cómo Trabajan Juntas: Armando una Conexión</h2>
+        <ol>
+          <li><strong>Los elevadores bajan la parada nueva</strong> hacia la mesa rotaria, alineando el extremo pin con el extremo caja de la junta estacionaria debajo.</li>
+          <li><strong>La llave de giro o la función de giro del iron roughneck se engancha</strong>, enroscando la conexión apretada a mano sin cruzar la rosca.</li>
+          <li><strong>Las llaves (o la función de torque del iron roughneck) aplican el torque final de armado</strong> al valor exacto especificado para esa conexión — un torque insuficiente arriesga que la junta se afloje en el fondo, un torque excesivo arriesga dañar las roscas.</li>
+          <li><strong>Se asientan las cuñas</strong> alrededor de la sarta ya conectada, transfiriendo su peso fuera de los elevadores.</li>
+          <li><strong>Los elevadores se liberan y suben</strong> para recoger la siguiente parada, y el ciclo se repite.</li>
+        </ol>
+        <p>Desarmar una conexión mientras se viaja fuera del pozo corre la secuencia idéntica en reversa. Cada una de estas herramientas existe porque una conexión tiene que ser sujetada, girada, torqueada, y sostenida como cuatro trabajos mecánicos genuinamente separados — ninguna herramienta sola en el piso hace más de uno de ellos.</p>
+
+        <div class="note-box">
+          <strong>Solo referencia.</strong> Las especificaciones de torque, clasificaciones de cuñas, y capacidades de elevadores varían por fabricante, tamaño de tubería, y tipo de conexión — siempre confirma contra la tabla de torque real de tu taladro y las hojas de especificación de equipo antes de confiar en cualquier cifra para un trabajo real.
+        </div>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#para-que-sirven">Para Qué Sirven</a>
+          <a href="#llaves">Llaves</a>
+          <a href="#cunas">Cuñas</a>
+          <a href="#elevadores">Elevadores</a>
+          <a href="#llave-de-giro">Llave de Giro y Kelly Spinner</a>
+          <a href="#como-trabajan-juntas">Cómo Trabajan Juntas</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/careers/roughneck" class="card-link">→ Cómo Convertirte en Roughneck</a><br><br>
+          <a href="/es/equipment/rotating-system" class="card-link">→ Sistema Rotatorio (Top Drive)</a><br><br>
+          <a href="/es/equipment/drill-string" class="card-link">→ Componentes de la Sarta de Perforación</a><br><br>
+          <a href="/es/equipment/bop" class="card-link">→ Guía de Equipo BOP</a><br><br>
+          <a href="/es/drilling/rig-move-plan" class="card-link">→ Plan de Movimiento de Taladro</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

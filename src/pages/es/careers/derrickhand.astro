@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import { articleSchema } from '../../../lib/techarticle.js';
+import { reviewedByJabin } from '../../../lib/person.js';
+
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/es/careers/derrickhand.astro',
+  path: '/es/careers/derrickhand',
+  headline: "¿Qué Hace un Encuellador? Trabajo, Pago y Cómo Llegar",
+  description: "Qué hace realmente un encuellador en la plataforma del mástil, cuánto paga, la barrera de certificación IWCF Nivel 2, y la trayectoria real de promoción desde roughneck.",
+  lang: 'es',
+  extra: { mainEntityOfPage: { "@id": "https://rigfloorhq.com/es/careers/derrickhand#webpage" } },
+});
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/es/careers/derrickhand#webpage",
+  "url": "https://rigfloorhq.com/es/careers/derrickhand",
+  "name": "¿Qué Hace un Encuellador? Trabajo, Pago y Cómo Llegar",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/es/careers/derrickhand#article" },
+  "reviewedBy": reviewedByJabin(),
+};
+---
+<BaseLayout
+  title="¿Qué Hace un Encuellador? Trabajo, Pago y Cómo Llegar"
+  description="Qué hace realmente un encuellador en la plataforma del mástil, cuánto paga, la barrera de certificación IWCF Nivel 2, y la trayectoria real de promoción desde roughneck."
+  breadcrumbs={[{ label: 'Carreras', href: '/es/careers' }, { label: 'Encuellador', href: '/es/careers/derrickhand' }]}
+  jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
+  lang="es"
+  alternateHref="/careers/derrickhand"
+>
+  <Nav slot="nav" lang="es" alternateHref="/careers/derrickhand" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Carreras — Nivel Medio</div>
+    <h1>¿Qué Hace un <span>Encuellador</span>?</h1>
+    <p class="page-hero-sub">Una promoción que se gana, no se solicita. Esto es lo que el trabajo realmente implica en la plataforma del mástil, cuánto paga, y la barrera de certificación que se abre una vez que estás en el puesto.</p>
+    <div class="page-meta">
+      <span class="page-meta-item">Pago: <strong>$55K–$90K/año</strong></span>
+      <span class="page-meta-item">Tiempo en el Puesto: <strong>2–4 años</strong></span>
+      <span class="page-meta-item">Entrada: <strong>Promoción desde Roughneck</strong></span>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="que-hace-un-encuellador">Qué Hace Realmente un Encuellador</h2>
+        <p>Un encuellador (también llamado derrickman) trabaja desde la <a href="/es/glossary#plataforma-del-encuellador-monkeyboard">plataforma del encuellador</a> — una plataforma a mitad del mástil, típicamente entre 30 y 90 pies sobre el piso del taladro según el largo de las paradas. Durante los viajes de tubería, el encuellador guía la parte superior de cada parada hacia los dedos del portamechas mientras se almacena, y la saca de nuevo cuando la sarta vuelve al pozo. Es trabajo físicamente exigente y genuinamente peligroso en altura, y es el primer puesto en el piso de perforación donde un solo error — una parada mal asegurada, una señal tardía al perforador — puede lastimar a la cuadrilla abajo tan fácilmente como a ti.</p>
+        <p>La segunda mitad del trabajo ocurre en el suelo: el encuellador es responsable del <strong>sistema de lodo</strong>. Eso significa mantener las propiedades del lodo (peso, viscosidad, pH) dentro del rango que especifican el ingeniero de lodos y el programa de perforación, operar los zarandas y el equipo de control de sólidos, y mezclar aditivos según se indique. En taladros sin un ingeniero de lodos dedicado en el sitio tiempo completo, el juicio propio del encuellador en las piletas de lodo suele ser lo único que separa un turno normal de una surgencia que nadie vio venir.</p>
+
+        <h2 id="encuellador-vs-roughneck">Encuellador vs Roughneck — Qué Cambia</h2>
+        <p>Un <a href="/es/careers/roughneck"><strong>roughneck</strong></a> trabaja directamente en el piso del taladro: haciendo y deshaciendo conexiones con llaves y el iron roughneck, manejando las cuñas, y el trabajo físico de correr tubería dentro y fuera del pozo. Un encuellador no hace casi nada de eso directamente — la promoción te mueve <em>hacia arriba</em>, a la plataforma del mástil, y <em>hacia afuera</em>, a las piletas de lodo, lejos del trabajo diario de conexiones de la cuadrilla de piso. Es un intercambio de un tipo de riesgo físico (lesiones por aplastamiento y puntos de pellizco en el piso) por otro (riesgo de caída en altura), más un aumento real de responsabilidad: los errores en el sistema de lodo aparecen en los datos de detección de surgencias, no solo en una conexión perdida.</p>
+
+        <h2 id="como-se-llega-aqui">Cómo Se Llega Realmente Aquí</h2>
+        <p>No hay un proceso de contratación separado para esto, ni una convocatoria externa. Es una promoción otorgada en el mismo taladro o con el mismo contratista, basada en 1 a 3 años como roughneck con un historial de seguridad limpio y competencia demostrada manejando el piso. Ver la <a href="/es/careers/roughneck">trayectoria completa hacia convertirte en roughneck</a> para el escalón anterior a este.</p>
+        <p>Lo que realmente hace que un toolpusher te elija para la plataforma del mástil sobre otro roughneck con antigüedad similar: un historial de detectar problemas antes de que se conviertan en incidentes, comodidad trabajando en altura durante simulacros o armado del taladro, y — cada vez más — ya estar a medio camino del entrenamiento de control de pozos <strong>IWCF Nivel 2</strong> en lugar de esperar a que te digan que empieces. La trayectoria completa desde roustabout hasta esta etapa está en <a href="/es/blog/roustabout-to-driller-timeline">de roustabout a perforador: la trayectoria realista</a>.</p>
+
+        <div class="note-box">
+          <strong>La barrera del IWCF Nivel 2:</strong> Encuellador suele ser donde empieza la certificación formal de control de pozos. Tanto IWCF como IADC WellSharp estructuran sus programas según el nivel de responsabilidad en el piso de perforación, y el Nivel 2 (entrenamiento de nivel Perforador, tomado temprano) es la primera certificación real que completa la mayoría de las manos — no porque sea obligatoria para ostentar el título de encuellador en sí, sino porque es la señal más clara para un toolpusher de que ya estás construyendo hacia asistente de perforador. Ver la <a href="/es/careers/certifications">guía completa de certificaciones</a> para cómo se escalonan los niveles de IWCF, y <a href="/es/careers/iwcf-vs-iadc-wellsharp">IWCF vs IADC WellSharp</a> si tu contratista no te ha dicho cuál esquema usa.
+        </div>
+
+        <h2 id="cuanto-vas-a-ganar">Cuánto Vas a Ganar Realmente</h2>
+        <p>Los encuelladores típicamente ganan <span class="highlight">$55,000–$90,000/año</span>, un escalón real por encima de los $45,000–$70,000 de un roughneck. La ocupación más amplia de la Oficina de Estadísticas Laborales de EE.UU. (BLS), "Derrick Operators, Oil and Gas", reporta un salario medio anual nacional de <strong>$74,890</strong>, cómodamente dentro de ese rango. Los puestos de encuellador offshore pagan hacia el tope de la banda y por encima, consistente con la prima offshore general cubierta en la <a href="/es/careers/salary">guía completa de salarios</a>. Fuente: <a href="https://www.bls.gov/oes/2023/may/oes475011.htm" style="color:var(--amber);">BLS Occupational Employment and Wage Statistics (OEWS), mayo 2023</a>.</p>
+
+        <h2 id="los-riesgos-reales">Los Riesgos Reales de Este Trabajo</h2>
+        <ul>
+          <li><strong>Caída desde altura.</strong> La plataforma del mástil es todo el puesto de trabajo del encuellador. Un arnés de seguridad adecuado, enganchado al punto de anclaje correcto, y un sistema personal de detención de caídas son innegociables — este no es un puesto donde "tendré cuidado" sea sustituto aceptable del equipo.</li>
+          <li><strong>Golpe por objeto durante los viajes.</strong> Una parada balanceándose camino al portamechas, o una herramienta caída desde la plataforma misma, puede lesionar seriamente a la cuadrilla de piso debajo. La comunicación con el perforador — señales claras, no apresurar una conexión — importa más aquí que en casi cualquier otro lugar del taladro.</li>
+          <li><strong>Exposición química del sistema de lodo.</strong> Los aditivos, la sosa cáustica, y el polvo de barita requieren la misma disciplina de EPP que cualquier manejo de químicos industriales: guantes, protección ocular, y protección respiratoria al mezclar. Ver la <a href="/es/blog/rig-floor-ppe-guide">guía de EPP del piso de perforación</a> para los detalles.</li>
+        </ul>
+
+        <h2 id="que-sigue-despues">Qué Sigue Después</h2>
+        <p>Después de 2 a 4 años como encuellador, el siguiente paso es <strong>asistente de perforador</strong> — acompañando directamente al perforador y asumiendo responsabilidad real en la consola bajo supervisión, típicamente a los 5 a 7 años de una carrera que empezó como roustabout. Desde ahí, la trayectoria continúa hacia perforador. Ver la <a href="/es/careers/driller">trayectoria completa hacia convertirte en perforador</a> para lo que realmente requiere esa transición, y la <a href="/es/pillars/rig-floor-leadership">guía de liderazgo en el piso de perforación</a> para la escalera de supervisión más allá.</p>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#que-hace-un-encuellador">Qué Hace un Encuellador</a>
+          <a href="#encuellador-vs-roughneck">Encuellador vs Roughneck</a>
+          <a href="#como-se-llega-aqui">Cómo Se Llega Aquí</a>
+          <a href="#cuanto-vas-a-ganar">Pago Esperado</a>
+          <a href="#los-riesgos-reales">Los Riesgos Reales</a>
+          <a href="#que-sigue-despues">Qué Sigue Después</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Cómo Llegar Aquí</h3>
+          <p style="margin-bottom:12px;">✅ 1–3 años como roughneck<br>✅ Historial de seguridad limpio<br>✅ Comodidad trabajando en altura<br>⬜ IWCF Nivel 2 (construye hacia el siguiente escalón)<br>⬜ BOSIET (offshore, ya obtenido desde roustabout)</p>
+          <a href="/es/careers/certifications" class="card-link">Guía Completa de Certificaciones →</a>
+        </div>
+
+        <div class="card" style="margin-top:1px;border:1px solid var(--iron);border-radius:0 0 4px 4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/careers/roughneck" class="card-link">→ Cómo Convertirte en Roughneck</a><br><br>
+          <a href="/es/careers/driller" class="card-link">→ Cómo Convertirte en Perforador</a><br><br>
+          <a href="/es/blog/roustabout-to-driller-timeline" class="card-link">→ De Roustabout a Perforador: Trayectoria Realista</a><br><br>
+          <a href="/es/careers/salary" class="card-link">→ Guía Completa de Salarios</a><br><br>
+          <a href="/es/pillars/rig-floor-leadership" class="card-link">→ Guía de Liderazgo en el Piso de Perforación</a><br><br>
+          <a href="/es/glossary#plataforma-del-encuellador-monkeyboard" class="card-link">→ Glosario de Campo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

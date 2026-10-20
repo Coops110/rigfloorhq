@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { articleSchema } from '../../lib/techarticle.js';
+import { reviewedByJabin } from '../../lib/person.js';
+
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/drilling/shut-in-procedures.astro',
+  path: '/drilling/shut-in-procedures',
+  headline: "Hard Shut-In vs Soft Shut-In: Step-by-Step Procedures",
+  description: "The real step sequence for hard and soft shut-in, which preventer each one typically closes first, and why a company picks one over the other for a given well.",
+  lang: 'en',
+  extra: { mainEntityOfPage: { "@id": "https://rigfloorhq.com/drilling/shut-in-procedures#webpage" } },
+});
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/drilling/shut-in-procedures#webpage",
+  "url": "https://rigfloorhq.com/drilling/shut-in-procedures",
+  "name": "Hard Shut-In vs Soft Shut-In: Step-by-Step Procedures",
+  "inLanguage": "en",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/drilling/shut-in-procedures#article" },
+  "reviewedBy": reviewedByJabin(),
+};
+---
+<BaseLayout
+  title="Hard Shut-In vs Soft Shut-In: Step-by-Step Procedures"
+  description="The real step sequence for hard and soft shut-in, which preventer each one typically closes first, and why a company picks one over the other for a given well."
+  breadcrumbs={[{ label: 'Drilling', href: '/drilling' }, { label: 'Shut-In Procedures', href: '/drilling/shut-in-procedures' }]}
+  jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
+  lang="en"
+  alternateHref="/es/drilling/shut-in-procedures"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/drilling/shut-in-procedures" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Well Control</div>
+    <h1>Hard Shut-In vs <span>Soft Shut-In</span></h1>
+    <p class="page-hero-sub">Both put the same BOP stack between the crew and the kick. The difference is the order you close things in, and how fast pressure is allowed to build while you do it.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="the-core-difference">The Core Difference</h2>
+        <p>Every shut-in on a well control event ends the same way: the BOP closed, the choke line HCR valve open, and pressure reading on the choke panel instead of climbing unmonitored in a sealed wellbore. What separates hard and soft shut-in is the order those two things happen in, and therefore how much the well is allowed to flow before it's fully sealed.</p>
+
+        <h2 id="hard-shut-in">Hard Shut-In</h2>
+        <p>The choke stays closed throughout. With the adjustable choke already shut, the crew closes the BOP — annular or ram, per the well's bridging document — then opens the choke line HCR valve so casing pressure reads on the choke panel; the choke itself never opens. The well goes from flowing to fully sealed in one motion, which traps pressure fastest and minimizes the volume of influx that gets into the wellbore before the stack takes over.</p>
+        <h3>Step sequence</h3>
+        <ol>
+          <li><strong>Confirm the choke is closed.</strong> On most rigs this is the resting state during normal drilling, so there's often nothing to do here but verify it.</li>
+          <li><strong>Close the BOP.</strong> Annular or ram, per the bridging document for this well — pick up the kelly or top drive clear of the tool joint first if procedure requires it, to close on pipe body rather than a connection.</li>
+          <li><strong>Open the choke line HCR valve.</strong> Casing pressure now reads on the choke panel with the choke itself still shut.</li>
+          <li><strong>Record SIDPP, SICP and pit gain</strong> the moment both gauges stabilize, and notify the toolpusher and company man immediately.</li>
+        </ol>
+        <p>The trade-off is a sharper pressure spike at the moment of closure, since nothing bleeds off during the sequence. On a formation with a narrow margin between pore pressure and fracture pressure, that spike itself can be the thing that breaks down the shoe — which is exactly the case soft shut-in exists for.</p>
+
+        <h2 id="soft-shut-in">Soft Shut-In</h2>
+        <p>The choke line HCR valve opens first, with the choke itself still open, before the BOP closes. Casing pressure is already reading on the choke panel by the time the stack seals, so the crew can start closing the choke gradually right away rather than absorbing one sudden jump. The BOP closes, then the choke closes — easing pressure buildup in smaller steps for formations where the hard shut-in's sharper spike is itself a real risk.</p>
+        <h3>Step sequence</h3>
+        <ol>
+          <li><strong>Open the choke line HCR valve</strong> with the adjustable choke still open. Casing pressure begins reading on the choke panel immediately.</li>
+          <li><strong>Close the BOP.</strong> Annular or ram, per the bridging document, same as hard shut-in.</li>
+          <li><strong>Close the choke gradually</strong>, watching casing pressure climb in controlled steps rather than one jump.</li>
+          <li><strong>Record SIDPP, SICP and pit gain</strong> once both gauges stabilize fully closed, and notify the toolpusher and company man immediately.</li>
+        </ol>
+        <p>The cost is time and influx volume: the well keeps flowing, in a controlled way, for longer than a hard shut-in allows. On a well with a healthy kick tolerance that cost is a reasonable trade for the lower peak pressure; on a well already running tight to its limits, the extra volume taken on during a slower closure can matter more than the softer spike saves.</p>
+
+        <h2 id="which-one-and-why">Which One, and Why</h2>
+        <p>The well's bridging document sets the default, and it's chosen well before anyone's actually shutting in: a shoe test result close to the planned mud weight, a narrow kick tolerance, or a known weak zone pushes toward soft shut-in despite the extra flow time. A wide margin between pore and fracture pressure, or a well control manual that defaults to hard shut-in as standard practice, means there's little reason to trade speed for a softer spike you don't need to avoid. Neither method is inherently safer in the abstract — the right one is whichever the bridging document already worked out for this specific well, not a judgment call made in the moment a kick is confirmed.</p>
+        <p>Both preventer types — the <a href="/equipment/bop#annular">annular</a> and the <a href="/equipment/bop#rams">ram preventers</a> — can close first in either method; which one the bridging document specifies for a given well depends on string position and connection status at the moment of the kick, not on hard vs soft shut-in as a rule. See the full <a href="/equipment/bop">BOP equipment page</a> for what each preventer type actually does and why a stack carries more than one.</p>
+
+        <h2 id="what-happens-right-after">What Happens Right After Either One</h2>
+        <p>Both procedures end in the same place: SIDPP, SICP and pit gain recorded, toolpusher and company man notified, and a decision made on which kill method to run. See <a href="/drilling/well-control">kick recognition and the full shut-in procedure</a> for what comes immediately before a shut-in, and the <a href="/pillars/well-kill-methods">Driller's Method vs Wait and Weight comparison</a> for what happens once the well is sealed and it's time to actually kill it.</p>
+
+        <div class="note-box">
+          <strong>Neither sequence changes once started.</strong> A crew that opens the choke line HCR valve expecting a soft shut-in, then panics and slams the choke shut mid-sequence, gets the worst of both: the pressure spike of a hard shut-in without the speed advantage of starting that way. Pick the method the bridging document specifies, and run the sequence all the way through.
+        </div>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#the-core-difference">The Core Difference</a>
+          <a href="#hard-shut-in">Hard Shut-In</a>
+          <a href="#soft-shut-in">Soft Shut-In</a>
+          <a href="#which-one-and-why">Which One, and Why</a>
+          <a href="#what-happens-right-after">What Happens Right After</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/drilling/well-control" class="card-link">→ Well Control Procedures Hub</a><br><br>
+          <a href="/blog/well-control-basics" class="card-link">→ Well Control Basics</a><br><br>
+          <a href="/blog/five-warning-signs-of-a-kick" class="card-link">→ Five Warning Signs of a Kick</a><br><br>
+          <a href="/blog/shut-in-pressure-behavior-explained" class="card-link">→ Shut-In Pressure Behavior</a><br><br>
+          <a href="/equipment/bop" class="card-link">→ BOP Equipment Guide</a><br><br>
+          <a href="/pillars/well-kill-methods" class="card-link">→ Well Kill Methods Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import { articleSchema } from '../../../lib/techarticle.js';
+import { reviewedByJabin } from '../../../lib/person.js';
+
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/es/careers/offshore-vs-land-rig-jobs.astro',
+  path: '/es/careers/offshore-vs-land-rig-jobs',
+  headline: "Costa Afuera vs Taladros en Tierra: Qué Camino Elegir",
+  description: "Cómo difieren realmente las carreras costa afuera y en tierra más allá del salario — barrera de entrada, certificaciones, rotación y estilo de vida, equipo, perfil de seguridad, y qué tan fácil se transfiere la experiencia entre ambas.",
+  lang: 'es',
+  extra: { mainEntityOfPage: { "@id": "https://rigfloorhq.com/es/careers/offshore-vs-land-rig-jobs#webpage" } },
+});
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/es/careers/offshore-vs-land-rig-jobs#webpage",
+  "url": "https://rigfloorhq.com/es/careers/offshore-vs-land-rig-jobs",
+  "name": "Costa Afuera vs Taladros en Tierra: Qué Camino Elegir",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/es/careers/offshore-vs-land-rig-jobs#article" },
+  "reviewedBy": reviewedByJabin(),
+};
+
+const faq = [
+  {
+    q: "¿Es más difícil conseguir un trabajo costa afuera que uno en tierra?",
+    a: "Sí, casi siempre, especialmente como primer trabajo en un taladro. Los roles costa afuera requieren BOSIET antes de que un contratista siquiera programe un cambio de cuadrilla, lo cual es un costo y compromiso de horario real antes de haber ganado un dólar, y las cuadrillas costa afuera son más pequeñas en relación con el número de solicitantes que la fuerza laboral de taladros en tierra, que opera continuamente a través de muchos más taladros activos en un momento dado. La mayoría de las personas entran a la industria en tierra y se mudan costa afuera después, una vez que ya tienen experiencia en el piso de perforación y pueden saltar directo a un rol de encuellador o vía perforador en lugar de empezar de cero como roustabout.",
+  },
+  {
+    q: "¿La experiencia se transfiere entre roles costa afuera y en tierra?",
+    a: "Las habilidades centrales de control de pozos y piso de perforación se transfieren por completo — una surgencia es una surgencia y un BOP es un BOP ya sea en un jack-up o en una plataforma del desierto. Lo que no se transfiere automáticamente son las certificaciones específicas costa afuera (BOSIET, entrenamiento específico de supervivencia y respuesta a emergencias) y la comodidad con el aislamiento y el transporte en helicóptero o barco, que es tanto un filtro de estilo de vida como una brecha de habilidades. Alguien que se muda de tierra a costa afuera usualmente necesita agregar certificaciones; alguien que se muda de costa afuera a tierra usualmente solo necesita ajustarse a una rotación diferente y ya no tener alojamiento y comida gratis incluidos en el trabajo.",
+  },
+  {
+    q: "¿Qué camino tiene mejores perspectivas de carrera a largo plazo?",
+    a: "Ambos llevan al mismo techo — toolpusher, OIM, company man, y más allá están disponibles desde cualquier punto de partida, y la escalera de certificación (IWCF o IADC WellSharp) es idéntica sin importar dónde la obtengas. La diferencia real es volumen y estabilidad: la actividad de perforación en tierra sigue la actividad de la cuenca en tierra y puede acelerarse o desacelerarse más rápido, mientras que los programas costa afuera se comprometen a planes de desarrollo de varios años y tienden a ofrecer más estabilidad de horario una vez que entras, al costo de una puerta mucho más estrecha para llegar ahí.",
+  },
+];
+---
+<BaseLayout
+  title="Costa Afuera vs Taladros en Tierra: Qué Camino Elegir"
+  description="Cómo difieren realmente las carreras costa afuera y en tierra más allá del salario — barrera de entrada, certificaciones, rotación y estilo de vida, equipo, perfil de seguridad, y qué tan fácil se transfiere la experiencia entre ambas."
+  breadcrumbs={[{ label: 'Carreras', href: '/es/careers' }, { label: 'Costa Afuera vs Tierra', href: '/es/careers/offshore-vs-land-rig-jobs' }]}
+  jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
+  lang="es"
+  alternateHref="/careers/offshore-vs-land-rig-jobs"
+>
+  <Nav slot="nav" lang="es" alternateHref="/careers/offshore-vs-land-rig-jobs" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Carreras</div>
+    <h1>Costa Afuera vs <span>Taladros en Tierra</span></h1>
+    <p class="page-hero-sub">La brecha salarial acapara toda la atención, pero no es la decisión real. La barrera de entrada, el estilo de vida, el equipo, y qué tan fácil puedes cambiar de camino después importan tanto como el cheque de pago.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="la-decision-real">La Brecha Salarial No Es la Decisión Real</h2>
+        <p>Los roles costa afuera pagan aproximadamente 30-40% más que el equivalente en tierra — ver la <a href="/es/careers/salary#offshore-vs-onshore">comparación completa de pago</a> para las cifras reales por rol. Esa prima está bien establecida y es fácil de encontrar; lo que es más difícil de encontrar es una mirada honesta a todo lo demás que difiere, porque los dos caminos genuinamente son trabajos distintos usando los mismos títulos. Esta página cubre las partes que la comparación de pago no cubre: qué tan difícil es entrar a cada uno, cómo se ve realmente el ambiente de trabajo y el equipo, y qué tan fácil puedes cambiar de opinión después.</p>
+
+        <h2 id="como-entrar">Cómo Entrar: Barrera de Entrada</h2>
+        <p>Los trabajos de taladro en tierra tienen la barrera de entrada más baja por un margen amplio. Una posición de roustabout típicamente no requiere certificaciones más allá de una orientación básica de seguridad, y los taladros en tierra operan continuamente a través de muchas más ubicaciones activas en un momento dado que las instalaciones costa afuera — más posiciones abiertas, más contratistas contratando, y un camino más rápido desde la solicitud hasta el primer día en el sitio. Ver <a href="/es/careers/roustabout">cómo convertirte en roustabout</a> para exactamente cómo se ve ese primer paso.</p>
+        <p>Los roles costa afuera requieren BOSIET (Entrenamiento Básico de Inducción de Seguridad Costa Afuera y Emergencias) antes de que un contratista te programe para un cambio de cuadrilla — un costo y compromiso de tiempo real antes de que te hayan contratado, mucho menos pagado. Las cuadrillas costa afuera también son más pequeñas en relación con el grupo de solicitantes, y la mayoría de la contratación costa afuera favorece candidatos que ya tienen experiencia en el piso de perforación en tierra en lugar de verdaderos principiantes. El camino práctico para la mayoría de las personas es tierra primero, costa afuera después, no costa afuera desde el primer día. Ver la guía completa de <a href="/es/careers/certifications">certificaciones</a> para lo que realmente cubre el BOSIET y cómo encaja junto a IWCF o IADC WellSharp.</p>
+
+        <h2 id="el-trabajo-en-si">El Trabajo en Sí: Equipo y Ambiente</h2>
+        <p>Un taladro en tierra y una instalación costa afuera pueden correr exactamente el mismo programa de perforación, pero el hardware y el ambiente a su alrededor son genuinamente diferentes. Los taladros en tierra van desde unidades portátiles pequeñas que arman y desarman entre pozos en días, hasta taladros de plataforma grandes que caminan entre múltiples cabezales de pozo sin desarmar por completo — ver la <a href="/es/equipment/rig-types">comparación completa de tipos de taladro</a> para cómo varían los taladros en tierra en movilidad y capacidad de profundidad.</p>
+        <p>Las instalaciones costa afuera se dividen en tipos fijos (taladros de plataforma, de pie sobre una estructura en hasta aproximadamente 1,500 ft de agua) y tipos flotantes (semisumergibles y buques perforadores, que mantienen posición con anclas o posicionamiento dinámico en lugar de descansar en el lecho marino, en profundidades de agua de hasta 12,000-15,000 ft). Los taladros flotantes agregan toda una capa de equipo y procedimiento que las cuadrillas en tierra nunca tocan — stacks de BOP subacuáticos en el cabezal de pozo en el lecho marino en lugar de un stack de superficie debajo del piso de perforación, sistemas de riser conectando el taladro al cabezal de pozo a través de agua abierta, y sistemas de mantenimiento de posición de los que depende la instalación para mantenerse en posición. Ver la guía de <a href="/es/equipment/rig-types">tipos de taladro</a> para el desglose completo de lo que separa un jack-up de un semisumergible de un buque perforador.</p>
+
+        <h2 id="estilo-de-vida-y-rotacion">Estilo de Vida y Rotación</h2>
+        <p>Las cuadrillas en tierra cerca de su base pueden trabajar con traslado diario o una rotación corta; las cuadrillas en tierra trabajando una cuenca más lejana típicamente corren 14/14. Las cuadrillas costa afuera corren rotaciones más largas por necesidad — comúnmente 14/14, 21/21 o 28/28 — porque llegar y salir de una instalación significa un vuelo o barco en lugar de manejar, y el horario está construido para que ese viaje valga la pena. Ver la guía completa de <a href="/es/careers/rotation-schedules">horarios de rotación y calculadora</a> para cómo se convierte exactamente cada patrón en días libres reales y pago anual.</p>
+        <p>El aislamiento también es cualitativamente diferente. Un miembro de cuadrilla en tierra fuera de turno usualmente puede salir del sitio; un trabajador costa afuera está en la instalación durante todo el hitch sin opción de salir hasta que termine la rotación, a cambio de alojamiento y comida gratis y el tiempo libre extendido descrito arriba.</p>
+
+        <h2 id="perfil-de-seguridad">Perfil de Seguridad</h2>
+        <p>Ambos ambientes conllevan riesgo real, pero los peligros específicos difieren. El trabajo costa afuera agrega transporte en helicóptero o barco, condiciones marinas (clima y estado del mar afectando la instalación misma), y alojamiento en espacios confinados durante semanas seguidas — además de los mismos peligros de perforación presentes en cualquier taladro. Las operaciones en tierra evitan los riesgos específicamente marinos pero pueden involucrar más exposición a la logística de ubicaciones remotas, transporte por carretera hacia y desde el sitio, y — dependiendo de la cuenca — extremos climáticos que una instalación fija costa afuera está construida para manejar mejor. El riesgo de control de pozos en sí (surgencias, prevención de reventones, procedimiento de cierre) es idéntico en principio en ambos ambientes; ver el <a href="/es/drilling/well-control">centro de procedimientos de control de pozos</a> para los fundamentos compartidos que ningún camino se salta.</p>
+
+        <div class="note-box">
+          <strong>La mayoría de las carreras tocan ambos eventualmente.</strong> Una gran parte de las manos experimentadas trabajan en tierra temprano por la entrada más rápida y el grupo de contratación más amplio, y luego se mudan costa afuera una vez que tienen experiencia en el piso de perforación y quieren la prima de pago y la estructura de horario que viene con eso. Trata esto como una secuencia para planear en lugar de una sola elección permanente.
+        </div>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#la-decision-real">La Brecha Salarial No Es la Decisión</a>
+          <a href="#como-entrar">Cómo Entrar: Barrera de Entrada</a>
+          <a href="#el-trabajo-en-si">El Trabajo en Sí</a>
+          <a href="#estilo-de-vida-y-rotacion">Estilo de Vida y Rotación</a>
+          <a href="#perfil-de-seguridad">Perfil de Seguridad</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/careers/salary" class="card-link">→ Guía Completa de Pago: Costa Afuera vs Tierra</a><br><br>
+          <a href="/es/careers/rotation-schedules" class="card-link">→ Guía y Calculadora de Horarios de Rotación</a><br><br>
+          <a href="/es/equipment/rig-types" class="card-link">→ Los Seis Tipos de Taladro Comparados</a><br><br>
+          <a href="/es/careers/certifications" class="card-link">→ Guía Completa de Certificaciones</a><br><br>
+          <a href="/es/careers/roustabout" class="card-link">→ Cómo Convertirte en Roustabout</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <h2 id="faq">Preguntas Frecuentes</h2>
+      {faq.map((item) => (
+        <div style="margin-bottom:18px;">
+          <h3>{item.q}</h3>
+          <p>{item.a}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

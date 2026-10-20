@@ -15,7 +15,7 @@ La mayoría de las personas siguen una progresión que se ve más o menos así:
 
 - **Roustabout** (0–2 años) — trabajo general, no se requiere experiencia. Aquí es donde aprendes cómo funciona el taladro observando todo a tu alrededor.
 - **Roughneck / Floorhand** (1–3 años de experiencia) — promovido al piso de perforación, manejando conexiones de tubería directamente.
-- **Encuellador (Derrickhand)** (3–5 años de experiencia) — trabajando desde el monkey board, manejando sistemas de lodo.
+- **[Encuellador (Derrickhand)](/es/careers/derrickhand)** (3–5 años de experiencia) — trabajando desde el monkey board, manejando sistemas de lodo.
 - **Asistente de Perforador** (5–7 años de experiencia) — acompañando al perforador, asumiendo responsabilidad real bajo supervisión.
 - **Perforador** (7–10 años de experiencia) — manejando la consola de forma independiente.
 

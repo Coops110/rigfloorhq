@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { articleSchema } from '../../lib/techarticle.js';
+import { reviewedByJabin } from '../../lib/person.js';
+
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/careers/offshore-vs-land-rig-jobs.astro',
+  path: '/careers/offshore-vs-land-rig-jobs',
+  headline: "Offshore vs Land Rig Jobs: Which Path Should You Choose",
+  description: "How offshore and land rig careers actually differ beyond pay — entry barrier, certifications, rotation and lifestyle, equipment, safety profile, and how easily experience transfers between the two.",
+  lang: 'en',
+  extra: { mainEntityOfPage: { "@id": "https://rigfloorhq.com/careers/offshore-vs-land-rig-jobs#webpage" } },
+});
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/careers/offshore-vs-land-rig-jobs#webpage",
+  "url": "https://rigfloorhq.com/careers/offshore-vs-land-rig-jobs",
+  "name": "Offshore vs Land Rig Jobs: Which Path Should You Choose",
+  "inLanguage": "en",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/careers/offshore-vs-land-rig-jobs#article" },
+  "reviewedBy": reviewedByJabin(),
+};
+
+const faq = [
+  {
+    q: "Is it harder to get an offshore job than a land job?",
+    a: "Yes, almost always, especially as a first rig job. Offshore roles require BOSIET before a contractor will even schedule a crew change, which is a real upfront cost and scheduling commitment before you've earned a dollar, and offshore crews are smaller relative to the number of applicants than the land rig workforce, which runs continuously across far more active rigs at any given time. Most people enter the industry onshore and move offshore later, once they already have rig-floor experience and can skip straight into a derrickhand or driller-track role instead of starting over at roustabout.",
+  },
+  {
+    q: "Can experience transfer between offshore and land roles?",
+    a: "The core well control and rig floor skills transfer completely — a kick is a kick and a BOP is a BOP whether you're on a jack-up or a desert pad. What doesn't transfer automatically is the offshore-specific certifications (BOSIET, specific survival and emergency response training) and the comfort with isolation and helicopter or boat transport, which is as much a lifestyle filter as a skills gap. Someone moving from land to offshore usually needs to add certifications; someone moving offshore to land usually just needs to adjust to a different rotation and no longer having free room and board baked into the job.",
+  },
+  {
+    q: "Which path has better long-term career prospects?",
+    a: "Both lead to the same ceiling — toolpusher, OIM, company man, and beyond are available from either starting point, and the certification ladder (IWCF or IADC WellSharp) is identical regardless of where you earn it. The real difference is volume and stability: land drilling activity tracks onshore basin activity and can ramp up or down faster, while offshore programs commit to multi-year development plans and tend to offer more schedule stability once you're in, at the cost of a much narrower door to get there.",
+  },
+];
+---
+<BaseLayout
+  title="Offshore vs Land Rig Jobs: Which Path Should You Choose"
+  description="How offshore and land rig careers actually differ beyond pay — entry barrier, certifications, rotation and lifestyle, equipment, safety profile, and how easily experience transfers between the two."
+  breadcrumbs={[{ label: 'Careers', href: '/careers' }, { label: 'Offshore vs Land', href: '/careers/offshore-vs-land-rig-jobs' }]}
+  jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
+  lang="en"
+  alternateHref="/es/careers/offshore-vs-land-rig-jobs"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/careers/offshore-vs-land-rig-jobs" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Careers</div>
+    <h1>Offshore vs <span>Land Rig Jobs</span></h1>
+    <p class="page-hero-sub">The pay gap gets all the attention, but it's not the real decision. Entry barrier, lifestyle, equipment, and how easily you can switch paths later matter just as much as the paycheck.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="the-real-decision">The Pay Gap Isn't the Real Decision</h2>
+        <p>Offshore roles pay roughly 30-40% more than the onshore equivalent — see the <a href="/careers/salary#offshore-vs-onshore">full pay comparison</a> for the actual numbers by role. That premium is well established and easy to find; what's harder to find is an honest look at everything else that differs, because the two paths genuinely are different jobs wearing the same job titles. This page covers the parts the pay comparison doesn't: how hard each is to break into, what the work environment and equipment actually look like, and how easily you can change your mind later.</p>
+
+        <h2 id="getting-in">Getting In: Entry Barrier</h2>
+        <p>Land rig jobs have the lower barrier to entry by a wide margin. A roustabout position typically requires no certifications beyond basic safety orientation, and land rigs operate continuously across far more active locations at any given time than offshore installations do — more open positions, more contractors hiring, and a faster path from application to first day on location. See <a href="/careers/roustabout">how to become a roustabout</a> for exactly what that first step looks like.</p>
+        <p>Offshore roles require BOSIET (Basic Offshore Safety Induction & Emergency Training) before a contractor will schedule you for a crew change — a real cost and time commitment before you've been hired, let alone paid. Offshore crews are also smaller relative to the applicant pool, and most offshore hiring favors candidates who already have rig floor experience onshore rather than true first-time entrants. The practical path for most people is land first, offshore later, not offshore from day one. See the full <a href="/careers/certifications">certifications guide</a> for what BOSIET actually covers and how it fits alongside IWCF or IADC WellSharp.</p>
+
+        <h2 id="the-work-itself">The Work Itself: Equipment and Environment</h2>
+        <p>A land rig and an offshore installation can run the exact same drilling program, but the hardware and the environment around it are genuinely different. Land rigs range from small portable units that rig up and down between wells in days, to large pad rigs that walk between multiple wellheads without fully rigging down — see the <a href="/equipment/rig-types">full rig types comparison</a> for how land rigs themselves vary by mobility and depth rating.</p>
+        <p>Offshore installations fall into fixed types (platform rigs, standing on a structure in up to roughly 1,500 ft of water) and floating types (semi-submersibles and drillships, which hold position on moorings or dynamic positioning rather than resting on the seabed, in water depths up to 12,000-15,000 ft). Floating rigs add an entire layer of equipment and procedure land crews never touch — subsea BOP stacks on the seabed wellhead instead of a surface stack below the rig floor, riser systems connecting the rig to the wellhead through open water, and station-keeping systems the installation depends on to stay in position at all. See the <a href="/equipment/rig-types">rig types guide</a> for the full breakdown of what separates a jack-up from a semi-sub from a drillship.</p>
+
+        <h2 id="lifestyle-and-rotation">Lifestyle and Rotation</h2>
+        <p>Land crews near their home base can work a daily commute or a short rotation; land crews working a farther basin typically run 14/14. Offshore crews run longer rotations by necessity — commonly 14/14, 21/21 or 28/28 — because getting to and from an installation means a flight or boat rather than a drive, and the schedule is built to make that trip worth it. See the full <a href="/careers/rotation-schedules">rotation schedules guide and calculator</a> for exactly how each pattern converts into real days off and annual pay.</p>
+        <p>The isolation is also qualitatively different. A land crew member off-tour can usually leave the location; an offshore worker is on the installation for the entire hitch with no option to leave until the rotation ends, in exchange for free room and board and the extended time off described above.</p>
+
+        <h2 id="safety-profile">Safety Profile</h2>
+        <p>Both environments carry real risk, but the specific hazards differ. Offshore work adds helicopter or boat transport, marine conditions (weather and sea state affecting the installation itself), and confined-space living quarters for weeks at a stretch — on top of the same drilling hazards present on any rig. Land operations avoid the marine-specific risks but can involve more exposure to remote-location logistics, road transport to and from site, and — depending on the basin — weather extremes a fixed offshore installation is built to handle better. Well control risk itself (kicks, blowout prevention, shut-in procedure) is identical in principle across both environments; see the <a href="/drilling/well-control">well control procedures hub</a> for the shared fundamentals neither path gets a pass on.</p>
+
+        <div class="note-box">
+          <strong>Most careers touch both eventually.</strong> A large share of experienced hands work onshore early for the faster entry and broader hiring pool, then move offshore once they have rig floor experience and want the pay premium and schedule structure that comes with it. Treat this as a sequence to plan around rather than a single permanent choice.
+        </div>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#the-real-decision">The Pay Gap Isn't the Decision</a>
+          <a href="#getting-in">Getting In: Entry Barrier</a>
+          <a href="#the-work-itself">The Work Itself</a>
+          <a href="#lifestyle-and-rotation">Lifestyle and Rotation</a>
+          <a href="#safety-profile">Safety Profile</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/careers/salary" class="card-link">→ Full Pay Guide: Offshore vs Onshore</a><br><br>
+          <a href="/careers/rotation-schedules" class="card-link">→ Rotation Schedules Guide &amp; Calculator</a><br><br>
+          <a href="/equipment/rig-types" class="card-link">→ The Six Rig Types Compared</a><br><br>
+          <a href="/careers/certifications" class="card-link">→ Full Certifications Guide</a><br><br>
+          <a href="/careers/roustabout" class="card-link">→ How to Become a Roustabout</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <h2 id="faq">Frequently Asked Questions</h2>
+      {faq.map((item) => (
+        <div style="margin-bottom:18px;">
+          <h3>{item.q}</h3>
+          <p>{item.a}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

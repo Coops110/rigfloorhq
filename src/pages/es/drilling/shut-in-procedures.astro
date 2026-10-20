@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import { articleSchema } from '../../../lib/techarticle.js';
+import { reviewedByJabin } from '../../../lib/person.js';
+
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/es/drilling/shut-in-procedures.astro',
+  path: '/es/drilling/shut-in-procedures',
+  headline: "Cierre Duro vs Cierre Suave: Procedimientos Paso a Paso",
+  description: "La secuencia real de pasos para el cierre duro y el cierre suave, qué preventor cierra primero en cada uno, y por qué una empresa elige uno sobre el otro para un pozo dado.",
+  lang: 'es',
+  extra: { mainEntityOfPage: { "@id": "https://rigfloorhq.com/es/drilling/shut-in-procedures#webpage" } },
+});
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/es/drilling/shut-in-procedures#webpage",
+  "url": "https://rigfloorhq.com/es/drilling/shut-in-procedures",
+  "name": "Cierre Duro vs Cierre Suave: Procedimientos Paso a Paso",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/es/drilling/shut-in-procedures#article" },
+  "reviewedBy": reviewedByJabin(),
+};
+---
+<BaseLayout
+  title="Cierre Duro vs Cierre Suave: Procedimientos Paso a Paso"
+  description="La secuencia real de pasos para el cierre duro y el cierre suave, qué preventor cierra primero en cada uno, y por qué una empresa elige uno sobre el otro para un pozo dado."
+  breadcrumbs={[{ label: 'Perforación', href: '/es/drilling' }, { label: 'Procedimientos de Cierre', href: '/es/drilling/shut-in-procedures' }]}
+  jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
+  lang="es"
+  alternateHref="/drilling/shut-in-procedures"
+>
+  <Nav slot="nav" lang="es" alternateHref="/drilling/shut-in-procedures" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Control de Pozos</div>
+    <h1>Cierre Duro vs <span>Cierre Suave</span></h1>
+    <p class="page-hero-sub">Ambos ponen el mismo stack de BOP entre la cuadrilla y la surgencia. La diferencia es el orden en que se cierran las cosas, y qué tan rápido se permite que suba la presión mientras lo haces.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="la-diferencia-central">La Diferencia Central</h2>
+        <p>Todo cierre en un evento de control de pozos termina igual: el BOP cerrado, la válvula HCR de la línea de choke abierta, y la presión leyéndose en el panel de choke en lugar de subir sin control en un pozo sellado. Lo que separa el cierre duro del suave es el orden en que ocurren esas dos cosas, y por lo tanto cuánto se le permite fluir al pozo antes de quedar completamente sellado.</p>
+
+        <h2 id="cierre-duro">Cierre Duro</h2>
+        <p>El choke permanece cerrado todo el tiempo. Con el choke ajustable ya cerrado, la cuadrilla cierra el BOP — anular o ariete, según el documento puente del pozo — luego abre la válvula HCR de la línea de choke para que la presión del casing se lea en el panel de choke; el choke mismo nunca se abre. El pozo pasa de fluir a estar completamente sellado en un solo movimiento, lo que atrapa la presión más rápido y minimiza el volumen de influjo que entra al pozo antes de que el stack tome control.</p>
+        <h3>Secuencia de pasos</h3>
+        <ol>
+          <li><strong>Confirma que el choke está cerrado.</strong> En la mayoría de los taladros este es el estado de reposo durante la perforación normal, así que a menudo no hay nada que hacer aquí más que verificarlo.</li>
+          <li><strong>Cierra el BOP.</strong> Anular o ariete, según el documento puente de este pozo — sube la kelly o el top drive lejos de la conexión primero si el procedimiento lo requiere, para cerrar sobre el cuerpo de la tubería en lugar de una conexión.</li>
+          <li><strong>Abre la válvula HCR de la línea de choke.</strong> La presión del casing ahora se lee en el panel de choke con el choke mismo todavía cerrado.</li>
+          <li><strong>Registra SIDPP, SICP y la ganancia de pileta</strong> en el momento en que ambos manómetros se estabilicen, y notifica al toolpusher y al company man de inmediato.</li>
+        </ol>
+        <p>El costo es un pico de presión más agudo en el momento del cierre, ya que nada se alivia durante la secuencia. En una formación con un margen estrecho entre la presión de poro y la de fractura, ese pico en sí mismo puede ser lo que rompe la zapata — que es exactamente el caso para el que existe el cierre suave.</p>
+
+        <h2 id="cierre-suave">Cierre Suave</h2>
+        <p>La válvula HCR de la línea de choke se abre primero, con el choke mismo todavía abierto, antes de que el BOP se cierre. La presión del casing ya se está leyendo en el panel de choke para cuando el stack sella, así que la cuadrilla puede empezar a cerrar el choke gradualmente de inmediato en lugar de absorber un salto repentino. El BOP se cierra, luego el choke se cierra — suavizando la acumulación de presión en pasos más pequeños para formaciones donde el pico más agudo del cierre duro es en sí un riesgo real.</p>
+        <h3>Secuencia de pasos</h3>
+        <ol>
+          <li><strong>Abre la válvula HCR de la línea de choke</strong> con el choke ajustable todavía abierto. La presión del casing empieza a leerse en el panel de choke de inmediato.</li>
+          <li><strong>Cierra el BOP.</strong> Anular o ariete, según el documento puente, igual que en el cierre duro.</li>
+          <li><strong>Cierra el choke gradualmente</strong>, observando la presión del casing subir en pasos controlados en lugar de un solo salto.</li>
+          <li><strong>Registra SIDPP, SICP y la ganancia de pileta</strong> una vez que ambos manómetros se estabilicen completamente cerrados, y notifica al toolpusher y al company man de inmediato.</li>
+        </ol>
+        <p>El costo es tiempo y volumen de influjo: el pozo sigue fluyendo, de manera controlada, por más tiempo del que permite un cierre duro. En un pozo con una tolerancia a la surgencia saludable, ese costo es un intercambio razonable por la presión pico más baja; en un pozo que ya opera justo en sus límites, el volumen extra que entra durante un cierre más lento puede importar más de lo que ahorra el pico más suave.</p>
+
+        <h2 id="cual-y-por-que">Cuál, y Por Qué</h2>
+        <p>El documento puente del pozo fija el método por defecto, y se elige mucho antes de que alguien esté realmente cerrando el pozo: un resultado de prueba de zapata cercano al peso de lodo planeado, una tolerancia a la surgencia estrecha, o una zona débil conocida empuja hacia el cierre suave a pesar del tiempo extra de flujo. Un margen amplio entre la presión de poro y de fractura, o un manual de control de pozos que use el cierre duro como práctica estándar por defecto, significa que hay poca razón para cambiar velocidad por un pico más suave que no necesitas evitar. Ningún método es inherentemente más seguro en abstracto — el correcto es el que el documento puente ya determinó para este pozo específico, no una decisión tomada en el momento en que se confirma una surgencia.</p>
+        <p>Ambos tipos de preventor — el <a href="/es/equipment/bop#anular">anular</a> y los <a href="/es/equipment/bop#arietes">preventores de ariete</a> — pueden cerrar primero en cualquiera de los dos métodos; cuál especifica el documento puente para un pozo dado depende de la posición de la sarta y el estado de la conexión en el momento de la surgencia, no de si es cierre duro o suave como regla. Ver la <a href="/es/equipment/bop">página completa de equipo BOP</a> para lo que hace realmente cada tipo de preventor y por qué un stack lleva más de uno.</p>
+
+        <h2 id="que-pasa-justo-despues">Qué Pasa Justo Después de Cualquiera de los Dos</h2>
+        <p>Ambos procedimientos terminan en el mismo lugar: SIDPP, SICP y ganancia de pileta registrados, toolpusher y company man notificados, y una decisión tomada sobre qué método de matanza usar. Ver <a href="/es/drilling/well-control">reconocimiento de surgencias y el procedimiento completo de cierre</a> para lo que pasa justo antes de un cierre, y la <a href="/es/pillars/well-kill-methods">comparación entre el Método del Perforador y Wait and Weight</a> para lo que pasa una vez que el pozo está sellado y es hora de matarlo realmente.</p>
+
+        <div class="note-box">
+          <strong>Ninguna secuencia cambia una vez iniciada.</strong> Una cuadrilla que abre la válvula HCR de la línea de choke esperando un cierre suave, y luego entra en pánico y cierra el choke de golpe a mitad de la secuencia, obtiene lo peor de ambos: el pico de presión de un cierre duro sin la ventaja de velocidad de haber empezado así. Elige el método que especifica el documento puente, y corre la secuencia hasta el final.
+        </div>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#la-diferencia-central">La Diferencia Central</a>
+          <a href="#cierre-duro">Cierre Duro</a>
+          <a href="#cierre-suave">Cierre Suave</a>
+          <a href="#cual-y-por-que">Cuál, y Por Qué</a>
+          <a href="#que-pasa-justo-despues">Qué Pasa Justo Después</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Lectura Relacionada</h3>
+          <a href="/es/drilling/well-control" class="card-link">→ Centro de Procedimientos de Control de Pozos</a><br><br>
+          <a href="/es/blog/well-control-basics" class="card-link">→ Fundamentos de Control de Pozos</a><br><br>
+          <a href="/es/blog/five-warning-signs-of-a-kick" class="card-link">→ Cinco Señales de Advertencia de una Surgencia</a><br><br>
+          <a href="/es/blog/shut-in-pressure-behavior-explained" class="card-link">→ Comportamiento de la Presión de Cierre</a><br><br>
+          <a href="/es/equipment/bop" class="card-link">→ Guía de Equipo BOP</a><br><br>
+          <a href="/es/pillars/well-kill-methods" class="card-link">→ Guía de Métodos para Matar un Pozo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

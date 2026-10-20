@@ -141,6 +141,10 @@ import Footer from '../../components/Footer.astro';
           <td><a href="/calculators/maasp">MAASP</a></td>
         </tr>
         <tr>
+          <td>You just ran a leak-off test or FIT and need it converted to EMW or fracture gradient</td>
+          <td><a href="/calculators/leak-off-test">Leak-Off Test &amp; FIT</a></td>
+        </tr>
+        <tr>
           <td>You need to know how big a kick the shoe can take before it's at risk</td>
           <td><a href="/calculators/kick-tolerance">Kick Tolerance</a></td>
         </tr>
@@ -281,6 +285,13 @@ import Footer from '../../components/Footer.astro';
         <p>Maximum allowable annular surface pressure at the casing shoe from your LOT/FIT test and current mud weight.</p>
         <p class="card-formula"><strong>Formula:</strong> MAASP = LOT/FIT Pressure + [(LOT/FIT MW − Current MW) × 0.052 × Shoe TVD]</p>
         <a href="/calculators/maasp" class="card-link">Open Calculator →</a>
+      </div>
+      <div class="card">
+        <span class="card-icon">💧</span>
+        <h3>Leak-Off Test &amp; FIT Calculator</h3>
+        <p>Convert a leak-off test pressure into EMW and fracture gradient, or work backward to a FIT target pressure.</p>
+        <p class="card-formula"><strong>Formula:</strong> EMW = MW at Test + [LOT Pressure ÷ (0.052 × Shoe TVD)]</p>
+        <a href="/calculators/leak-off-test" class="card-link">Open Calculator →</a>
       </div>
       <div class="card">
         <span class="card-icon">🎚</span>
@@ -458,7 +469,8 @@ import Footer from '../../components/Footer.astro';
           { "@type": "ListItem", "position": 15, "name": "Horizontal Kill Sheet Additions", "url": "https://rigfloorhq.com/calculators/kill-sheet-horizontal" },
           { "@type": "ListItem", "position": 16, "name": "ECD Calculator", "url": "https://rigfloorhq.com/calculators/ecd" },
           { "@type": "ListItem", "position": 17, "name": "MAASP Calculator", "url": "https://rigfloorhq.com/calculators/maasp" },
-          { "@type": "ListItem", "position": 18, "name": "Kick Tolerance Calculator", "url": "https://rigfloorhq.com/calculators/kick-tolerance" }
+          { "@type": "ListItem", "position": 18, "name": "Kick Tolerance Calculator", "url": "https://rigfloorhq.com/calculators/kick-tolerance" },
+          { "@type": "ListItem", "position": 19, "name": "Leak-Off Test & FIT Calculator", "url": "https://rigfloorhq.com/calculators/leak-off-test" }
         ]
       }
     ]

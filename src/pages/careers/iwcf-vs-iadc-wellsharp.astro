@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { articleSchema } from '../../lib/techarticle.js';
+import { reviewedByJabin } from '../../lib/person.js';
+
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/careers/iwcf-vs-iadc-wellsharp.astro',
+  path: '/careers/iwcf-vs-iadc-wellsharp',
+  headline: "IWCF vs IADC WellSharp: Which Well Control Certification Do You Need",
+  description: "How IWCF and IADC WellSharp actually compare — level structure, which one your contractor is likely to require, and what the tiers mean for derrickhand through toolpusher roles.",
+  lang: 'en',
+  extra: { mainEntityOfPage: { "@id": "https://rigfloorhq.com/careers/iwcf-vs-iadc-wellsharp#webpage" } },
+});
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/careers/iwcf-vs-iadc-wellsharp#webpage",
+  "url": "https://rigfloorhq.com/careers/iwcf-vs-iadc-wellsharp",
+  "name": "IWCF vs IADC WellSharp: Which Well Control Certification Do You Need",
+  "inLanguage": "en",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/careers/iwcf-vs-iadc-wellsharp#article" },
+  "reviewedBy": reviewedByJabin(),
+};
+---
+<BaseLayout
+  title="IWCF vs IADC WellSharp: Which Well Control Certification Do You Need"
+  description="How IWCF and IADC WellSharp actually compare — level structure, which one your contractor is likely to require, and what the tiers mean for derrickhand through toolpusher roles."
+  breadcrumbs={[{ label: 'Careers', href: '/careers' }, { label: 'IWCF vs IADC WellSharp', href: '/careers/iwcf-vs-iadc-wellsharp' }]}
+  jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
+  lang="en"
+  alternateHref="/es/careers/iwcf-vs-iadc-wellsharp"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/careers/iwcf-vs-iadc-wellsharp" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Certifications</div>
+    <h1>IWCF vs <span>IADC WellSharp</span></h1>
+    <p class="page-hero-sub">Two certification bodies, the same tiered ladder, and almost every operator will accept either one. The real question isn't which is "better" — it's which one your contractor already runs.</p>
+    <div class="page-meta">
+      <span class="page-meta-item">Bodies: <strong>IWCF</strong> and <strong>IADC WellSharp</strong></span>
+      <span class="page-meta-item">Structure: <strong>4 tiers, both schemes</strong></span>
+      <span class="page-meta-item">Renewal: <strong>2-5 years by tier</strong></span>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="same-job-different-name">Same Job, Different Name</h2>
+        <p>The International Well Control Forum (IWCF) and IADC WellSharp are the two globally recognized well control certification bodies, and nearly every operator requires one of them before letting someone onto the console or into a supervisory well control role. Neither one is specific to a region or an operator type in practice — both show up on rigs in the Gulf of Mexico, the North Sea, the Middle East and everywhere else drilling happens. The honest answer to "which one should I get" is almost always "whichever one your contractor runs training through," because the two are built to be functionally interchangeable at every tier.</p>
+        <p>IWCF's level structure aligns with IOGP recommendations and is named by number — Level 2, Level 3, Level 4. IADC WellSharp uses role names for the same tiers instead of numbers. The two map directly onto each other, and most of the industry writes them side by side for exactly that reason:</p>
+
+        <h2 id="the-tier-map">The Tier Map</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>IWCF</th><th>IADC WellSharp</th><th>Who needs it</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Level 2</td><td>WellSharp (introductory/rig floor tier)</td><td><a href="/careers/derrickhand">Derrickhand</a> and assistant driller, first real well control certification most hands complete</td></tr>
+              <tr><td>Level 3</td><td>WellSharp Driller</td><td><a href="/careers/driller">Driller</a> — required to run the console independently</td></tr>
+              <tr><td>Level 4</td><td>WellSharp Supervisor</td><td>Toolpusher, OIM and company man — supervisory well control decision-making, not just execution</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Level 2 / entry-tier WellSharp doesn't carry a single fixed title the way Level 3 and Level 4 do — contractors vary in exactly what they call it and when they require it — but the content is the same across both bodies at that tier: kick recognition and the basics of a shut-in, not independent kill-sheet decision-making. See the <a href="/careers/certifications">full certifications guide</a> for how all four tiers fit into the broader credential picture alongside BOSIET and offshore medicals.</p>
+
+        <h2 id="what-each-covers">What Each Course Actually Covers</h2>
+        <p>Both schemes teach the same core material because they're certifying the same job: kick recognition, shut-in procedure — including the <a href="/drilling/shut-in-procedures">hard vs soft shut-in</a> decision — and well kill methods once a kick is confirmed. The <a href="/pillars/well-kill-methods">Driller's Method, Wait and Weight, volumetric and bullheading methods</a> are standard material in both IWCF and IADC WellSharp coursework at Level 3 / Driller tier and above. Supervisor-level tiers in both schemes add the management side: approving kill procedures, coordinating multiple simultaneous operations, and the judgment calls a driller executes but doesn't have the authority to originate.</p>
+
+        <h2 id="does-it-matter-which-one">Does It Actually Matter Which One You Hold</h2>
+        <p>For almost every operator, no. Both bodies are recognized industry-wide, and a driller holding IWCF Level 3 is not disadvantaged against one holding WellSharp Driller when applying to a contractor that happens to standardize on the other scheme — the certification proves the same competency either way. The practical factor that actually matters is which one your current or target employer already runs training through, since that determines where you'll sit the course and on whose renewal cycle. If you're early in your career and your contractor hasn't specified, it's worth asking directly rather than guessing — switching bodies later isn't a problem, but paying for a course your employer won't reimburse because they standardize on the other one is an avoidable cost.</p>
+        <p>Renewal cycles follow the tier, not the body: the entry-level tier runs on a longer cycle (around 5 years), while Driller and Supervisor-level certification is renewed by exam every 2 years in both schemes. See the <a href="/well-control-quiz">well control quiz</a>'s tier breakdown for the full renewal table. Neither body waives the renewal requirement based on experience or seniority.</p>
+
+        <div class="note-box">
+          <strong>Pick the one your rig uses, not the one with the better name recognition.</strong> There's no independent ranking where one body is considered more rigorous or more respected than the other at a given tier — they're built to be equivalent, and operators write requirements as "IWCF Level 3 or IADC WellSharp Driller" specifically because they don't care which one a candidate holds.
+        </div>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#same-job-different-name">Same Job, Different Name</a>
+          <a href="#the-tier-map">The Tier Map</a>
+          <a href="#what-each-covers">What Each Course Covers</a>
+          <a href="#does-it-matter-which-one">Does It Matter Which One</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Related Reading</h3>
+          <a href="/careers/certifications" class="card-link">→ Full Certifications Guide</a><br><br>
+          <a href="/careers/driller" class="card-link">→ How to Become a Driller</a><br><br>
+          <a href="/pillars/rig-floor-leadership" class="card-link">→ Rig Floor Leadership</a><br><br>
+          <a href="/well-control-quiz" class="card-link">→ Well Control Practice Quiz</a><br><br>
+          <a href="/drilling/well-control" class="card-link">→ Well Control Procedures Hub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

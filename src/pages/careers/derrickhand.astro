@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { articleSchema } from '../../lib/techarticle.js';
+import { reviewedByJabin } from '../../lib/person.js';
+
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/careers/derrickhand.astro',
+  path: '/careers/derrickhand',
+  headline: "What Does a Derrickhand Do? Job, Pay and How to Get There",
+  description: "What a derrickhand actually does on the monkey board, how much it pays, the IWCF Level 2 certification gate, and the real promotion path from roughneck.",
+  lang: 'en',
+  extra: { mainEntityOfPage: { "@id": "https://rigfloorhq.com/careers/derrickhand#webpage" } },
+});
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/careers/derrickhand#webpage",
+  "url": "https://rigfloorhq.com/careers/derrickhand",
+  "name": "What Does a Derrickhand Do? Job, Pay and How to Get There",
+  "inLanguage": "en",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/careers/derrickhand#article" },
+  "reviewedBy": reviewedByJabin(),
+};
+---
+<BaseLayout
+  title="What Does a Derrickhand Do? Job, Pay and How to Get There"
+  description="What a derrickhand actually does on the monkey board, how much it pays, the IWCF Level 2 certification gate, and the real promotion path from roughneck."
+  breadcrumbs={[{ label: 'Careers', href: '/careers' }, { label: 'Derrickhand', href: '/careers/derrickhand' }]}
+  jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
+  lang="en"
+  alternateHref="/es/careers/derrickhand"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/careers/derrickhand" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Careers — Mid-Level</div>
+    <h1>What Does a <span>Derrickhand</span> Do?</h1>
+    <p class="page-hero-sub">The promotion earned, not applied for. Here's what the job actually involves on the monkey board, what it pays, and the certification gate that opens once you're in it.</p>
+    <div class="page-meta">
+      <span class="page-meta-item">Pay: <strong>$55K–$90K/yr</strong></span>
+      <span class="page-meta-item">Time in Role: <strong>2–4 years</strong></span>
+      <span class="page-meta-item">Entry: <strong>Promotion from Roughneck</strong></span>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="what-a-derrickhand-actually-does">What a Derrickhand Actually Does</h2>
+        <p>A derrickhand (also called a derrickman) works from the <a href="/glossary#monkey-board">monkey board</a> — a platform partway up the derrick, typically 30–90 feet above the rig floor depending on stand length. During tripping, the derrickhand guides the top of each pipe stand into the fingerboard as it's racked back, and pulls it back out as the string goes back in the hole. It's physically demanding, genuinely dangerous work at height, and it's the first rig-floor role where a single mistake — a stand not properly latched, a late signal to the driller — can hurt the crew below as easily as it hurts you.</p>
+        <p>The second half of the job happens on the ground: the derrickhand owns the <strong>mud system</strong>. That means maintaining mud properties (weight, viscosity, pH) within the range the mud engineer and drilling program specify, running the shale shakers and solids-control equipment, and mixing additives as directed. On rigs without a dedicated mud engineer on location full-time, the derrickhand's own judgment on the mud pits is often the only thing standing between a normal shift and a kick nobody saw coming.</p>
+
+        <h2 id="derrickhand-vs-roughneck">Derrickhand vs Roughneck — What Changes</h2>
+        <p>A <a href="/careers/roughneck"><strong>roughneck</strong></a> works the rig floor itself: making and breaking connections with tongs and the iron roughneck, handling slips, and the physical work of running pipe in and out of the hole. A derrickhand does almost none of that directly — the promotion moves you <em>up</em> to the monkey board and <em>out</em> to the mud pits, away from the floor crew's day-to-day connection work. It's a trade of one kind of physical risk (crushing and pinch-point injuries on the floor) for another (fall risk at height), plus a real increase in responsibility: mud system mistakes show up in kick-detection data, not just in a missed connection.</p>
+
+        <h2 id="how-you-get-here">How You Actually Get Here</h2>
+        <p>There's no separate job posting for this one and no outside hiring process. It's a promotion made on the same rig or with the same contractor, based on 1–3 years as a roughneck with a clean safety record and demonstrated competence handling the floor. See the full <a href="/careers/roughneck">path to becoming a roughneck</a> for the rung below this one.</p>
+        <p>What actually gets a toolpusher to pick you for the monkey board over another roughneck with similar tenure: a record of catching problems before they're called out, comfort working at height during drills or rig-up, and — increasingly — showing up already partway through <strong>IWCF Level 2</strong> well control training rather than waiting to be told to start it. The timeline from roustabout through this stage is covered in full in <a href="/blog/roustabout-to-driller-timeline">roustabout to driller: the realistic timeline</a>.</p>
+
+        <div class="note-box">
+          <strong>The IWCF Level 2 gate:</strong> Derrickhand is usually where formal well control certification starts. IWCF and IADC WellSharp both structure their programs around rig-floor responsibility level, and Level 2 (Driller level training, taken early) is the first real certification most hands complete — not because it's required to hold the derrickhand title itself, but because it's the clearest signal to a toolpusher that you're already building toward assistant driller. See the <a href="/careers/certifications">full certifications guide</a> for how the IWCF levels stack, and <a href="/careers/iwcf-vs-iadc-wellsharp">IWCF vs IADC WellSharp</a> if your contractor hasn't told you which scheme they use.
+        </div>
+
+        <h2 id="what-youll-actually-be-paid">What You'll Actually Be Paid</h2>
+        <p>Derrickhands typically earn <span class="highlight">$55,000–$90,000/year</span>, a real step up from a roughneck's $45,000–$70,000. The U.S. Bureau of Labor Statistics' broader "Derrick Operators, Oil and Gas" occupation code reports a national mean annual wage of <strong>$74,890</strong>, sitting comfortably inside that range. Offshore derrickhand roles pay toward the top of the band and above it, consistent with the general offshore premium covered on the <a href="/careers/salary">full salary guide</a>. Source: <a href="https://www.bls.gov/oes/2023/may/oes475011.htm" style="color:var(--amber);">BLS Occupational Employment and Wage Statistics (OEWS), May 2023</a>.</p>
+
+        <h2 id="the-real-hazards">The Real Hazards of This Job</h2>
+        <ul>
+          <li><strong>Fall from height.</strong> The monkey board is the derrickhand's whole workstation. A proper safety harness, tied off to the correct anchor point, and a personal fall-arrest system are non-negotiable — this is not a role where "I'll just be careful" is an acceptable substitute for the equipment.</li>
+          <li><strong>Struck-by during tripping.</strong> A stand swinging on its way into the fingerboard, or a dropped tool from the board itself, can seriously injure the floor crew below. Communication with the driller — clear signals, no rushing a connection — matters more here than almost anywhere else on the rig.</li>
+          <li><strong>Mud system chemical exposure.</strong> Additives, caustic soda, and barite dust require the same PPE discipline as any industrial chemical handling role: gloves, eye protection, and respiratory protection when mixing. See the <a href="/blog/rig-floor-ppe-guide">rig floor PPE guide</a> for the specifics.</li>
+        </ul>
+
+        <h2 id="what-comes-next">What Comes Next</h2>
+        <p>After 2–4 years as a derrickhand, the next step is <strong>assistant driller</strong> — shadowing the driller directly and taking on real console responsibility under supervision, typically 5–7 years into a career that started as a roustabout. From there, the path continues to driller itself. See the full <a href="/careers/driller">path to becoming a driller</a> for what that transition actually requires, and the <a href="/pillars/rig-floor-leadership">rig floor leadership guide</a> for the supervisory ladder beyond it.</p>
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-a-derrickhand-actually-does">What a Derrickhand Does</a>
+          <a href="#derrickhand-vs-roughneck">Derrickhand vs Roughneck</a>
+          <a href="#how-you-get-here">How You Get Here</a>
+          <a href="#what-youll-actually-be-paid">Expected Pay</a>
+          <a href="#the-real-hazards">The Real Hazards</a>
+          <a href="#what-comes-next">What Comes Next</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Getting Here</h3>
+          <p style="margin-bottom:12px;">✅ 1–3 years as roughneck<br>✅ Clean safety record<br>✅ Comfort working at height<br>⬜ IWCF Level 2 (builds toward next rung)<br>⬜ BOSIET (offshore, already held from roustabout)</p>
+          <a href="/careers/certifications" class="card-link">Full Certification Guide →</a>
+        </div>
+
+        <div class="card" style="margin-top:1px;border:1px solid var(--iron);border-radius:0 0 4px 4px;">
+          <h3>Related Reading</h3>
+          <a href="/careers/roughneck" class="card-link">→ How to Become a Roughneck</a><br><br>
+          <a href="/careers/driller" class="card-link">→ How to Become a Driller</a><br><br>
+          <a href="/blog/roustabout-to-driller-timeline" class="card-link">→ Roustabout to Driller: Realistic Timeline</a><br><br>
+          <a href="/careers/salary" class="card-link">→ Full Salary Guide</a><br><br>
+          <a href="/pillars/rig-floor-leadership" class="card-link">→ Rig Floor Leadership Guide</a><br><br>
+          <a href="/glossary#monkey-board" class="card-link">→ Field Glossary</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
