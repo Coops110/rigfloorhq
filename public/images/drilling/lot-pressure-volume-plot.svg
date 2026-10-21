@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" role="img" aria-labelledby="lotTitle lotDesc">
+  <title id="lotTitle">Leak-off test pressure-versus-volume plot</title>
+  <desc id="lotDesc">A schematic chart of surface pressure against cumulative volume pumped during a leak-off test. Early increments trace a straight line as the wellbore and formation compress elastically. The line bends away from straight at the leak-off point, where the formation starts taking fluid rather than just compressing — that bend is recorded as the leak-off pressure and pumping stops there. A dashed continuation shows what would happen if pumping continued past that point: an uncontrolled fracture, which a real test never runs long enough to reach. A separate marker shows where a formation integrity test (FIT) stops instead, at a lower target pressure, well before the actual leak-off point.</desc>
+
+  <rect width="920" height="480" fill="#0e0f11"/>
+
+  <!-- plot frame -->
+  <line x1="100" y1="50" x2="100" y2="380" stroke="#2a3347" stroke-width="2"/>
+  <line x1="100" y1="380" x2="840" y2="380" stroke="#2a3347" stroke-width="2"/>
+
+  <!-- gridlines -->
+  <g stroke="#1c2130" stroke-width="1">
+    <line x1="100" y1="320" x2="840" y2="320"/>
+    <line x1="100" y1="260" x2="840" y2="260"/>
+    <line x1="100" y1="200" x2="840" y2="200"/>
+    <line x1="100" y1="140" x2="840" y2="140"/>
+    <line x1="100" y1="80"  x2="840" y2="80"/>
+  </g>
+
+  <!-- axis labels -->
+  <text x="26" y="215" fill="#8892a4" font-family="monospace" font-size="12" transform="rotate(-90 40 215)">SURFACE PRESSURE</text>
+  <text x="400" y="414" fill="#8892a4" font-family="monospace" font-size="12">CUMULATIVE VOLUME PUMPED →</text>
+  <text x="400" y="432" fill="#8892a4" font-family="monospace" font-size="10.5">(small increments, commonly 0.25–0.5 bbl at a time)</text>
+
+  <!-- elastic straight-line section (0 to leak-off point) -->
+  <path d="M100 380 L430 190" stroke="#e8a020" stroke-width="3" fill="none"/>
+  <text x="150" y="330" fill="#e8a020" font-family="monospace" font-size="11">ELASTIC COMPRESSION — STRAIGHT LINE</text>
+
+  <!-- FIT stop marker, well before leak-off -->
+  <circle cx="330" cy="248" r="6" fill="#22c55e"/>
+  <line x1="330" y1="248" x2="330" y2="420" stroke="#22c55e" stroke-width="1.4" stroke-dasharray="4 5"/>
+  <text x="248" y="440" fill="#22c55e" font-family="monospace" font-size="11">FIT STOP POINT</text>
+  <text x="222" y="456" fill="#8892a4" font-family="monospace" font-size="10">(proves a target EMW, not the real limit)</text>
+
+  <!-- leak-off point marker -->
+  <circle cx="430" cy="190" r="7" fill="#c94a1f"/>
+  <text x="444" y="178" fill="#c94a1f" font-family="monospace" font-size="12">LEAK-OFF POINT</text>
+  <text x="444" y="196" fill="#8892a4" font-family="monospace" font-size="10.5">line bends — pump stops here</text>
+
+  <!-- real test: bent, lower-slope section after leak-off (a few more small increments to confirm the bend, then stop) -->
+  <path d="M430 190 L500 160 L545 142" stroke="#f07038" stroke-width="3" fill="none"/>
+
+  <!-- dashed hypothetical continuation if overpumped -->
+  <path d="M545 142 L610 118 L660 104" stroke="#8892a4" stroke-width="2" stroke-dasharray="6 6" fill="none"/>
+  <text x="575" y="92" fill="#8892a4" font-family="monospace" font-size="11">IF OVERPUMPED — NOT DONE IN PRACTICE</text>
+  <circle cx="660" cy="104" r="6" fill="#ef4444"/>
+  <text x="672" y="100" fill="#ef4444" font-family="monospace" font-size="11">UNCONTROLLED FRACTURE</text>
+
+  <!-- footer note -->
+  <text x="100" y="466" fill="#d1d8e4" font-family="sans-serif" font-size="13.5">Schematic shape of a real LOT — not plotted from a specific recorded test.</text>
+</svg>

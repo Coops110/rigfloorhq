@@ -334,6 +334,30 @@ export const CITATIONS = {
       note: "Equipo de colgadores de liner — colgadores, empacadores de tope de liner, receptáculos de tie-back y herramientas de corrida.",
     },
   },
+  api59: {
+    en: {
+      href: 'https://www.api.org/products-and-services/standards',
+      label: 'API RP 59',
+      note: 'Recommended Practice for Well Control Operations — the companion practice to API Std 53, covering both surface BOP installations and subsea BOP installations with long choke and kill lines.',
+    },
+    es: {
+      href: 'https://www.api.org/products-and-services/standards',
+      label: 'API RP 59',
+      note: 'Práctica recomendada para operaciones de control de pozo — la práctica complementaria a API Std 53, que cubre tanto instalaciones de BOP superficiales como instalaciones de BOP submarinas con líneas largas de choke y kill.',
+    },
+  },
+  bls: {
+    en: {
+      href: 'https://www.bls.gov/oes/2023/may/oes475011.htm',
+      label: 'BLS OEWS — Derrick Operators, Oil and Gas',
+      note: "The U.S. Bureau of Labor Statistics' Occupational Employment and Wage Statistics survey, the independently verifiable government cross-check used alongside this site's own editorial pay estimates.",
+    },
+    es: {
+      href: 'https://www.bls.gov/oes/2023/may/oes475011.htm',
+      label: 'BLS OEWS — Operadores de Torre, Petróleo y Gas',
+      note: 'La encuesta de Estadísticas de Empleo y Salarios Ocupacionales de la Oficina de Estadísticas Laborales de EE. UU., el contraste gubernamental independientemente verificable usado junto con las estimaciones editoriales propias de este sitio.',
+    },
+  },
   api500: {
     en: {
       href: "https://www.api.org/products-and-services/standards",

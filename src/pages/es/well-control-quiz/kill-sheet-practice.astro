@@ -5,6 +5,25 @@ import Footer from '../../../components/Footer.astro';
 import { articleSchema } from '../../../lib/techarticle.js';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
 
+const faq = [
+  {
+    q: "¿Las hojas de control son diferentes en un pozo submarino (taladro flotante) comparado con un stack de superficie?",
+    a: "Las fórmulas de KMW/ICP/FCP en esta página son idénticas en ambos casos — la matemática hidrostática no cambia según dónde se asiente el BOP. Lo que cambia es una corrección extra: en un flotante, la presión del lado de casing que se mantiene durante el arranque de la bomba se reduce por la fricción de línea de choke medida, específica de la configuración de línea de choke y riser de ese pozo, según el procedimiento propio del taladro, ya que la línea de choke larga entre el stack submarino y el taladro agrega una presión de fricción que una línea corta de stack de superficie no tiene. Ver la <a href=\"/es/pillars/well-kill-methods\">guía del Método del Perforador vs Esperar y Densificar</a> para exactamente dónde aplica esa corrección en la secuencia de pasos.",
+  },
+  {
+    q: "¿IWCF o IADC publican sus propias hojas de fórmulas oficiales para hojas de control?",
+    a: "Sí — IWCF publica sus propias hojas de fórmulas cubriendo los sistemas de unidades Field (psi/ppg/ft), SI (bar/SG/m) y KGM, disponibles directamente en iwcf.org, y son la referencia contra la que se construye un examen real de IWCF. Las fórmulas en esta página coinciden con esa misma matemática subyacente; trabajar estos cuatro problemas a mano es buena preparación de examen, pero siempre verifica el sistema de unidades y la hoja de fórmulas de tu examen específico contra la versión actual publicada por IWCF o IADC, en lugar de confiar en cualquier resumen de terceros, incluido este.",
+  },
+  {
+    q: "¿Por qué FCP usa el KMW redondeado en lugar del valor calculado crudo?",
+    a: "Porque el KMW redondeado es el peso de lodo real que se mezcla en las piletas y se bombea al fondo — el número crudo sin redondear de la fórmula nunca existe físicamente en el pozo. FCP tiene que reflejar el comportamiento de presión del lodo que realmente está circulando, así que se calcula a partir de la misma cifra redondeada que el ingeniero de lodos realmente mezcla, no del decimal intermedio. El Problema 2 arriba está construido específicamente alrededor de este error.",
+  },
+  {
+    q: "¿Cuál es la forma más rápida de mejorar en esto sin solo memorizar respuestas?",
+    a: "Trabaja cada problema con lápiz y papel primero, usando solo la caja de fórmulas, antes de revisar la respuesta resuelta — el valor de la práctica aquí está en construir el hábito de llevar el número correcto de decimales a través de cada paso y redondear solo donde la convención lo indica, no en reconocer un problema que ya viste antes. Una vez que los cuatro problemas en unidades de campo se sientan automáticos, prueba el Problema 5 en unidades SI abajo; cambiar de sistema de unidades es una buena prueba de si realmente entiendes la estructura de la fórmula o solo memorizaste una versión de ella.",
+  },
+];
+
 const jsonLd = articleSchema({
   sourcePath: 'src/pages/es/well-control-quiz/kill-sheet-practice.astro',
   path: '/es/well-control-quiz/kill-sheet-practice',
@@ -108,8 +127,31 @@ const webPageLd = {
         </details>
       </div>
 
+      <h2 id="problema-5-si">Problema 5 — Unidades SI</h2>
+      <p>Cada problema arriba usa unidades de campo (ppg, psi, ft) con la constante 0.052. La misma matemática funciona en unidades SI (SG, bar, m) usando la constante métrica <strong>0.0981</strong> en cambio — la misma constante establecida en la derivación SI/SG del <a href="/es/pillars/hydrostatic-pressure">pilar de presión hidrostática</a>. Las fórmulas se replantean directamente: KMW = OMW + [SIDPP ÷ (0.0981 × TVD)], redondeado hacia <strong>arriba</strong> a la centésima de SG más cercana. ICP = SIDPP + SCR. FCP = SCR × (KMW ÷ OMW), todo en bar.</p>
+      <p>TVD: 2,500 m. Peso de Lodo Original: 1.15 SG. SIDPP: 14 bar. SCR: 28 bar.<br />Encuentra KMW, ICP y FCP en unidades SI.</p>
+      <div class="accordion" style="margin:16px 0;">
+        <details class="acc-item">
+          <summary class="acc-header">Mostrar Respuesta Resuelta<span class="acc-arrow">▼</span></summary>
+          <div class="acc-body">
+            <p>KMW = 1.15 + [14 ÷ (0.0981 × 2,500)] = 1.15 + (14 ÷ 245.25) = 1.15 + 0.057 = 1.207, redondeado hacia <strong>arriba</strong> a <span class="highlight">1.21 SG</span>.</p>
+            <p>ICP = 14 + 28 = <span class="highlight">42 bar</span>.</p>
+            <p>FCP = 28 × (1.21 ÷ 1.15) = 28 × 1.0522 = <span class="highlight">29.5 bar</span>.</p>
+            <p><strong>Error común que esto atrapa:</strong> reutilizar la convención de redondeo de unidades de campo (décima más cercana) en un valor SI en lugar de una precisión apropiada para SG, o mezclar por accidente una constante de unidades de campo (0.052) en un cálculo SI — tanto la constante como la precisión de redondeo tienen que coincidir con el sistema de unidades en el que realmente estás trabajando, de principio a fin.</p>
+          </div>
+        </details>
+      </div>
+
       <h2 id="revisa-tus-propios-numeros">Revisa Tus Propios Números</h2>
-      <p>Una vez que estos cuatro se sientan sencillos, corre tus propios números — un pozo en el que realmente estés trabajando, o valores del material de entrenamiento de tu empresa — a través de la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> para revisar tu trabajo a mano al instante, incluyendo el programa completo de presión de diez pasos desde ICP hasta FCP. Para la teoría detrás de por qué estas fórmulas funcionan de esta manera, ver el <a href="/es/drilling/well-control">centro de procedimientos de control de pozos</a>, y para la comparación a nivel supervisor de qué pasa después de establecer el KMW — Método del Perforador, Esperar y Densificar, y cuándo se usa cada uno realmente — ver la <a href="/es/pillars/well-kill-methods">guía de Métodos para Matar un Pozo</a>. El <a href="/es/well-control-quiz">examen de control de pozos</a> más amplio cubre el lado conceptual de los cuatro niveles de IWCF/WellSharp si quieres práctica de opción múltiple junto a estos problemas resueltos.</p>
+      <p>Una vez que estos cinco se sientan sencillos, corre tus propios números — un pozo en el que realmente estés trabajando, o valores del material de entrenamiento de tu empresa — a través de la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> para revisar tu trabajo a mano al instante, incluyendo el programa completo de presión de diez pasos desde ICP hasta FCP. Para la teoría detrás de por qué estas fórmulas funcionan de esta manera, ver el <a href="/es/drilling/well-control">centro de procedimientos de control de pozos</a>, y para la comparación a nivel supervisor de qué pasa después de establecer el KMW — Método del Perforador, Esperar y Densificar, y cuándo se usa cada uno realmente — ver la <a href="/es/pillars/well-kill-methods">guía de Métodos para Matar un Pozo</a>. El <a href="/es/well-control-quiz">examen de control de pozos</a> más amplio cubre el lado conceptual de los cuatro niveles de IWCF/WellSharp si quieres práctica de opción múltiple junto a estos problemas resueltos.</p>
+
+      <h2 id="faq">Preguntas Frecuentes</h2>
+      {faq.map((item) => (
+        <div style="margin-bottom:18px;">
+          <h3>{item.q}</h3>
+          <p set:html={item.a} />
+        </div>
+      ))}
     </div>
   </section>
 

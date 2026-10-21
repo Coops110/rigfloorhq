@@ -6,6 +6,25 @@ import KeyFacts from '../../../components/KeyFacts.astro';
 import { techArticleSchema } from '../../../lib/techarticle.js';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
 
+const faq = [
+  {
+    q: "¿Qué es una abrazadera de seguridad, y cuándo se usa?",
+    a: "Una abrazadera de seguridad (safety clamp) es una abrazadera mecánica que se coloca alrededor del cuerpo de la tubería justo debajo de una junta, actuando como respaldo que detiene la sarta de caer si los elevadores o la araña pierden su agarre inesperadamente. No carga peso durante la operación normal — las llaves, cuñas y elevadores hacen el trabajo real descrito en esta página — pero es práctica estándar en muchos taladros durante momentos específicos de mayor riesgo, como manejar una sola junta en el catwalk o correr casing, donde una caída no planeada tiene una consecuencia peor que el paso extra de colocar la abrazadera.",
+  },
+  {
+    q: "¿Cuál es la diferencia real entre llaves manuales y un iron roughneck?",
+    a: "Las llaves manuales dependen de que la cuadrilla aplique torque tirando de una línea de llave enrollada en el cathead, con un segundo juego de llaves sosteniendo fija la junta inferior — el valor de torque depende de la técnica y el tacto de la cuadrilla. Un iron roughneck es una sola unidad hidráulica que gira la conexión y luego aplica un valor de torque preciso y preestablecido automáticamente, eliminando tanto el tirón manual como la decisión sobre cuánto torque realmente se aplicó. El trabajo mecánico es idéntico en ambos casos; lo que cambia es la consistencia y dónde están las manos de la cuadrilla durante el momento de mayor riesgo de pellizco del ciclo.",
+  },
+  {
+    q: "¿Cuáles son los diferentes tipos de elevadores, y por qué importa cuál hay en el taladro?",
+    a: "Los tipos comunes son elevadores de puerta lateral (side-door, se abren por el lado, el tipo de propósito general más común), elevadores de traba central (center-latch, traban al frente al centro, usados a menudo en sartas más grandes o pesadas), elevadores tipo cuña (slip-type, sujetan el cuerpo de la tubería directamente con cuñas internas en lugar de trabar debajo de un resalte de junta, usados donde la geometría de la conexión no se presta a una traba estándar), y elevadores de junta sencilla (single-joint, dimensionados para manejar una junta a la vez en lugar de una parada completa, usados en el catwalk o para operaciones especializadas de junta sencilla). Cada uno está clasificado y dimensionado para un rango específico de tubería y carga — usar el tipo de elevador equivocado para la sarta en mano es un peligro de manejo real, no solo un desajuste de conveniencia.",
+  },
+  {
+    q: "¿Por qué las cuñas tienen que dimensionarse al diámetro exacto de la tubería en lugar de un rango general?",
+    a: "Una cuña sujeta por acción de cuña — los segmentos cónicos muerden más fuerte mientras el peso de la sarta tira hacia abajo — y ese mecanismo solo funciona correctamente cuando los segmentos coinciden de cerca con el diámetro exterior real de la tubería. Una cuña dimensionada demasiado grande no asentará ni mordera correctamente; una demasiado pequeña puede dañar el cuerpo de la tubería o no soportar la carga clasificada. Es la misma disciplina de dimensionamiento que requieren los <a href=\"/es/equipment/bop#arietes\">arietes de tubería de un stack de BOP</a> por la misma razón subyacente — un agarre mecánico construido alrededor de un diámetro específico no funciona como un ajuste holgado para un tamaño cercano.",
+  },
+];
+
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/rig-floor-tools.astro',
   path: '/es/equipment/rig-floor-tools',
@@ -35,7 +54,7 @@ const techArticleJsonLd = techArticleSchema({
     <div class="two-col">
       <div class="prose">
         <h2 id="para-que-sirven">Para Qué Sirven</h2>
-        <p>Correr una sarta dentro o fuera del pozo significa armar o desarmar una conexión roscada en cada parada, cientos de veces durante la vida de un pozo. Las herramientas de esta página son las que usa una cuadrilla de <a href="/es/careers/roughneck">roughneck</a> para sujetar, girar, aplicar torque, y sostener la tubería de forma segura a través de ese ciclo — ninguna hace algo por sí sola; trabajan en una secuencia fija cada vez que se maneja una conexión.</p>
+        <p>Las herramientas del piso de perforación son las herramientas manuales y unidades mecanizadas que usa una cuadrilla para sujetar, girar, aplicar torque y sostener la tubería de perforación cada vez que se arma o desarma una conexión mientras se corre una sarta dentro o fuera del pozo. Correr una sarta dentro o fuera del pozo significa armar o desarmar una conexión roscada en cada parada, cientos de veces durante la vida de un pozo. Las herramientas de esta página son las que usa una cuadrilla de <a href="/es/careers/roughneck">roughneck</a> para sujetar, girar, aplicar torque, y sostener la tubería de forma segura a través de ese ciclo — ninguna hace algo por sí sola; trabajan en una secuencia fija cada vez que se maneja una conexión.</p>
 
         <KeyFacts
           lang="es"
@@ -53,6 +72,20 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="elevadores">Elevadores</h2>
         <p>Los elevadores son el conjunto de sujeción articulado que se traba alrededor de la tubería justo debajo del resalte de una junta (el hombro más grueso en cada extremo de tubería) y se conecta hacia arriba al bloque viajero vía bridas, permitiendo que el sistema de izaje levante y baje toda la sarta. Donde las cuñas sostienen la sarta estacionaria en la mesa rotaria, los elevadores son los que realmente la mueven — subiendo una parada nueva a posición para armar, o bajando la sarta para asentarla de vuelta en las cuñas una vez que se desarma una conexión.</p>
         <p>El intercambio entre los dos es el ritmo central de viajar tubería: los elevadores bajan la sarta hasta que su peso se transfiere a las cuñas, se desarma o arma la conexión, luego los elevadores traban la siguiente junta y el ciclo se repite. Cada viaje dentro o fuera del pozo es esta misma secuencia, corrida tantas veces como lo requiera la longitud de la sarta.</p>
+        <p>Los elevadores vienen en varios tipos distintos, emparejados a la sarta y al trabajo en lugar de ser intercambiables:</p>
+        <ul>
+          <li><strong>Elevadores de puerta lateral (side-door)</strong> se abren por el lado para trabar alrededor de la tubería — el tipo de propósito general más común en una sarta de tubería de perforación.</li>
+          <li><strong>Elevadores de traba central (center-latch)</strong> traban al frente al centro del cuerpo en cambio, un diseño más adecuado para sartas más grandes o pesadas donde la geometría de bisagra de un side-door es menos práctica.</li>
+          <li><strong>Elevadores tipo cuña (slip-type)</strong> sujetan el cuerpo de la tubería directamente con segmentos de cuña internos en lugar de trabar debajo del resalte de una junta, usados donde la geometría de la conexión no se presta a una traba estándar — en tubing o ciertas sartas de workover, por ejemplo.</li>
+          <li><strong>Elevadores de junta sencilla (single-joint)</strong> están dimensionados para manejar una junta a la vez en lugar de una parada multi-junta completa, usados en el catwalk o para manejo especializado de junta sencilla en lugar de operaciones principales de viaje.</li>
+        </ul>
+        <p>Igual que las cuñas, cada tipo de elevador está clasificado y dimensionado para un rango específico de tubería y carga — usar el tipo equivocado para la sarta en mano es un peligro de manejo, no una compensación de conveniencia.</p>
+
+        <h2 id="abrazaderas-de-seguridad">Abrazaderas de Seguridad</h2>
+        <p>Una abrazadera de seguridad es una abrazadera mecánica colocada alrededor del cuerpo de la tubería justo debajo de una junta, sin cargar peso durante la operación normal pero lista para detener la sarta de caer si los elevadores o una araña pierden su agarre inesperadamente. Es un respaldo, no una herramienta principal — las llaves, cuñas y elevadores hacen el trabajo real de sujetar, girar y sostener descrito arriba — pero es práctica estándar en muchos taladros en momentos específicos de mayor riesgo: manejar una sola junta en el catwalk, correr casing, o cualquier operación donde una caída no planeada tiene una consecuencia peor que lo que cuesta el paso extra de colocar la abrazadera. Trata una abrazadera de seguridad como un seguro barato contra un modo de falla específico, no como equipo redundante que ralentiza el trabajo sin razón.</p>
+
+        <h2 id="cunas-de-potencia-iron-roughneck">Cuñas de Potencia e Iron Roughneck</h2>
+        <p>Las <strong>cuñas de potencia (power slips)</strong> son cuñas accionadas hidráulicamente que se colocan y liberan automáticamente en lugar de requerir que un miembro de la cuadrilla coloque y retire físicamente las cuñas manuales a mano en la mesa rotaria. Sacan otro par de manos de la zona de punto de pellizco alrededor de la mesa rotaria durante cada ciclo de conexión, la misma lógica de seguridad detrás de la mecanización de las llaves por el iron roughneck. En un taladro moderno equipado con ambos, cuñas de potencia e iron roughneck, una conexión puede armarse o desarmarse con las manos de la cuadrilla lejos de los componentes rotatorios y de sujeción durante casi todo el ciclo — las llaves y cuñas manuales todavía existen y todavía funcionan con el mismo principio mecánico descrito arriba, pero la tendencia en taladros de construcción nueva es mecanizar cada parte de este ciclo que no requiera estrictamente una mano humana sobre la tubería.</p>
 
         <h2 id="llave-de-giro">Llave de Giro y Kelly Spinner</h2>
         <p>Antes de que las llaves puedan aplicar torque real, una conexión tiene que girarse primero hasta un ajuste apretado a mano — enroscando la junta lo suficiente para que la llave luego pueda aplicar el torque final y medido sin cruzar la rosca. Una <strong>llave de giro</strong> (o un power tong puesto en modo de giro en taladros modernos) hace este giro rápido accionado hidráulicamente, reemplazando el método más antiguo de girar la tubería a mano con una llave de cadena.</p>
@@ -81,8 +114,11 @@ const techArticleJsonLd = techArticleSchema({
           <a href="#llaves">Llaves</a>
           <a href="#cunas">Cuñas</a>
           <a href="#elevadores">Elevadores</a>
+          <a href="#abrazaderas-de-seguridad">Abrazaderas de Seguridad</a>
+          <a href="#cunas-de-potencia-iron-roughneck">Cuñas de Potencia e Iron Roughneck</a>
           <a href="#llave-de-giro">Llave de Giro y Kelly Spinner</a>
           <a href="#como-trabajan-juntas">Cómo Trabajan Juntas</a>
+          <a href="#faq">Preguntas Frecuentes</a>
         </div>
 
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
@@ -94,6 +130,18 @@ const techArticleJsonLd = techArticleSchema({
           <a href="/es/drilling/rig-move-plan" class="card-link">→ Plan de Movimiento de Taladro</a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <h2 id="faq">Preguntas Frecuentes</h2>
+      {faq.map((item) => (
+        <div style="margin-bottom:18px;">
+          <h3>{item.q}</h3>
+          <p set:html={item.a} />
+        </div>
+      ))}
     </div>
   </section>
 

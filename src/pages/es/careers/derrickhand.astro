@@ -3,6 +3,26 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import { articleSchema } from '../../../lib/techarticle.js';
+import SourcesStandards from '../../../components/SourcesStandards.astro';
+
+const faq = [
+  {
+    q: "¿Un encuellador es lo mismo que un 'DFO' en una convocatoria?",
+    a: "Sí. \"Drilling Fluid Operator\" (DFO, operador de fluido de perforación) es el título formal que varios contratistas y agencias usan para exactamente el mismo puesto — trabajo en la plataforma del mástil durante los viajes de tubería, más responsabilidad diaria del sistema de lodo. Si una convocatoria lista funciones de DFO (propiedades del lodo, zarandas, control de sólidos) junto con trabajo en la plataforma del mástil o en el mástil, es el puesto de encuellador con otro nombre, no un puesto distinto.",
+  },
+  {
+    q: "¿Los encuelladores también trabajan en taladros de workover, o solo en taladros de perforación?",
+    a: "El puesto existe en taladros de workover, pero el equipo y el título cambian. El encuellador de un taladro de workover típicamente trabaja desde una plataforma de tubería en lugar de la plataforma del mástil de un taladro de perforación, almacenando juntas de tubería en una canasta de varillas o en un rack de tubería en lugar de un portamechas, ya que las sartas de workover suelen usar tubing o tubería de menor diámetro en lugar de paradas completas de tubería de perforación. La habilidad central — guiar tubería en altura durante los viajes — se traslada directamente; el rack específico no.",
+  },
+  {
+    q: "¿Cuánto gana un encuellador por hora?",
+    a: "Las convocatorias a menudo cotizan el pago del encuellador por hora en lugar de como salario anual. Convertido a la misma base equivalente de 2,080 horas FTE que usa la <a href=\"/es/careers/salary#hourly-per-diem\">guía de salarios</a> para comparar, el rango de $55,000-$90,000 anuales equivale aproximadamente a $26-$43/hora, alrededor de $36/hora en el punto típico de $75,000 — aunque el contrato real se paga contra un turno de 12 horas en una rotación, no una semana estándar de 40 horas, así que esa cifra FTE es una herramienta de comparación, no la tarifa literal en un recibo de pago.",
+  },
+  {
+    q: "¿Se necesita certificación IWCF para ser encuellador, o solo para ser promovido desde ahí?",
+    a: "Ninguna de las dos, estrictamente — no se requiere ninguna certificación para ostentar el título de encuellador en sí. En la práctica, la mayoría de las manos ya están cursando IWCF Nivel 2 (o el nivel equivalente WellSharp Introductory) para cuando son promovidas a este puesto, porque es la señal más clara para un toolpusher de que alguien está construyendo hacia asistente de perforador. Ver <a href=\"/es/careers/iwcf-vs-iadc-wellsharp\">IWCF vs IADC WellSharp</a> para cómo se alinean los niveles de los dos organismos de certificación.",
+  },
+];
 
 const jsonLd = articleSchema({
   sourcePath: 'src/pages/es/careers/derrickhand.astro',
@@ -51,8 +71,13 @@ const webPageLd = {
     <div class="two-col">
       <div class="prose">
         <h2 id="que-hace-un-encuellador">Qué Hace Realmente un Encuellador</h2>
-        <p>Un encuellador (también llamado derrickman) trabaja desde la <a href="/es/glossary#plataforma-del-encuellador-monkeyboard">plataforma del encuellador</a> — una plataforma a mitad del mástil, típicamente entre 30 y 90 pies sobre el piso del taladro según el largo de las paradas. Durante los viajes de tubería, el encuellador guía la parte superior de cada parada hacia los dedos del portamechas mientras se almacena, y la saca de nuevo cuando la sarta vuelve al pozo. Es trabajo físicamente exigente y genuinamente peligroso en altura, y es el primer puesto en el piso de perforación donde un solo error — una parada mal asegurada, una señal tardía al perforador — puede lastimar a la cuadrilla abajo tan fácilmente como a ti.</p>
+        <p>Un encuellador es la cuadrilla del piso de perforación que trabaja desde la plataforma del mástil durante los viajes de tubería y administra el sistema de lodo entre viajes — la promoción que se gana después de roughneck, no un puesto que se solicita por separado. Un encuellador (también llamado derrickman) trabaja desde la <a href="/es/glossary#plataforma-del-encuellador-monkeyboard">plataforma del encuellador</a> — una plataforma a mitad del mástil, típicamente entre 30 y 90 pies sobre el piso del taladro según el largo de las paradas. Durante los viajes de tubería, el encuellador guía la parte superior de cada parada hacia los dedos del portamechas mientras se almacena, y la saca de nuevo cuando la sarta vuelve al pozo. Es trabajo físicamente exigente y genuinamente peligroso en altura, y es el primer puesto en el piso de perforación donde un solo error — una parada mal asegurada, una señal tardía al perforador — puede lastimar a la cuadrilla abajo tan fácilmente como a ti.</p>
         <p>La segunda mitad del trabajo ocurre en el suelo: el encuellador es responsable del <strong>sistema de lodo</strong>. Eso significa mantener las propiedades del lodo (peso, viscosidad, pH) dentro del rango que especifican el ingeniero de lodos y el programa de perforación, operar los zarandas y el equipo de control de sólidos, y mezclar aditivos según se indique. En taladros sin un ingeniero de lodos dedicado en el sitio tiempo completo, el juicio propio del encuellador en las piletas de lodo suele ser lo único que separa un turno normal de una surgencia que nadie vio venir.</p>
+
+        <h2 id="tambien-llamado-dfo">También Llamado "DFO," y la Variante de Workover</h2>
+        <p>Varios contratistas y agencias publican este mismo puesto bajo el título <strong>Drilling Fluid Operator (DFO)</strong> en lugar de encuellador — las mismas funciones en la plataforma del mástil, la misma responsabilidad del sistema de lodo, distinta etiqueta en la convocatoria. Vale la pena reconocer el alias específicamente porque un candidato que busca "encuellador" por sí solo se perderá una parte real de las vacantes que usan DFO en su lugar.</p>
+        <p>El puesto también existe en <strong>taladros de workover</strong>, dando servicio a un pozo que ya produce en lugar de perforar uno nuevo, pero el equipo cambia con él. El derrickman de un taladro de workover típicamente trabaja desde una <strong>plataforma de tubería</strong> en lugar de la plataforma del mástil de un taladro de perforación, y almacena juntas de tubing en una <strong>canasta de varillas</strong> o rack de tubería en lugar de un portamechas, ya que las sartas de workover suelen usar tubing o tubería de menor diámetro en lugar de paradas completas de tubería de perforación. La habilidad de trabajar en altura y el juicio que exige se trasladan directamente entre ambos; el rack específico no.</p>
+        <p>Un título con el que a veces se confunde este puesto pero no lo es: <strong>motorman</strong>, la cuadrilla responsable de los motores, generadores y equipo mecánico del taladro, y — en muchos taladros terrestres — el escalón real entre floorhand y encuellador en lugar de un sinónimo de este. Ver la <a href="/es/careers/roughneck">guía de roughneck</a> para dónde se ubica motorman en esa progresión en los taladros que usan el título.</p>
 
         <h2 id="encuellador-vs-roughneck">Encuellador vs Roughneck — Qué Cambia</h2>
         <p>Un <a href="/es/careers/roughneck"><strong>roughneck</strong></a> trabaja directamente en el piso del taladro: haciendo y deshaciendo conexiones con llaves y el iron roughneck, manejando las cuñas, y el trabajo físico de correr tubería dentro y fuera del pozo. Un encuellador no hace casi nada de eso directamente — la promoción te mueve <em>hacia arriba</em>, a la plataforma del mástil, y <em>hacia afuera</em>, a las piletas de lodo, lejos del trabajo diario de conexiones de la cuadrilla de piso. Es un intercambio de un tipo de riesgo físico (lesiones por aplastamiento y puntos de pellizco en el piso) por otro (riesgo de caída en altura), más un aumento real de responsabilidad: los errores en el sistema de lodo aparecen en los datos de detección de surgencias, no solo en una conexión perdida.</p>
@@ -67,6 +92,7 @@ const webPageLd = {
 
         <h2 id="cuanto-vas-a-ganar">Cuánto Vas a Ganar Realmente</h2>
         <p>Los encuelladores típicamente ganan <span class="highlight">$55,000–$90,000/año</span>, un escalón real por encima de los $45,000–$70,000 de un roughneck. La ocupación más amplia de la Oficina de Estadísticas Laborales de EE.UU. (BLS), "Derrick Operators, Oil and Gas", reporta un salario medio anual nacional de <strong>$74,890</strong>, cómodamente dentro de ese rango. Los puestos de encuellador offshore pagan hacia el tope de la banda y por encima, consistente con la prima offshore general cubierta en la <a href="/es/careers/salary">guía completa de salarios</a>. Fuente: <a href="https://www.bls.gov/oes/2023/may/oes475011.htm" style="color:var(--amber);">BLS Occupational Employment and Wage Statistics (OEWS), mayo 2023</a>.</p>
+        <p>Las convocatorias para este puesto frecuentemente anuncian una tarifa por hora en lugar de una cifra anual. Convertido a la misma base equivalente de 2,080 horas FTE que usa la <a href="/es/careers/salary#hourly-per-diem">tabla por hora de la guía de salarios</a>, el rango de $55,000-$90,000 equivale aproximadamente a <strong>$26-$43/hora</strong>, alrededor de $36/hora en el punto típico de $75,000 — aunque el contrato real se paga contra un turno de 12 horas en rotación, no una semana estándar de 40 horas, así que esa cifra FTE es una herramienta de comparación, no la tarifa literal en un recibo de pago. Ver la <a href="/es/careers/rotation-schedules">guía y calculadora de rotaciones</a> para convertir una tarifa por hora y rotación específicas en un total anual real.</p>
 
         <h2 id="los-riesgos-reales">Los Riesgos Reales de Este Trabajo</h2>
         <ul>
@@ -83,11 +109,13 @@ const webPageLd = {
         <div class="toc">
           <div class="toc-title">En Esta Página</div>
           <a href="#que-hace-un-encuellador">Qué Hace un Encuellador</a>
+          <a href="#tambien-llamado-dfo">También Llamado "DFO"</a>
           <a href="#encuellador-vs-roughneck">Encuellador vs Roughneck</a>
           <a href="#como-se-llega-aqui">Cómo Se Llega Aquí</a>
           <a href="#cuanto-vas-a-ganar">Pago Esperado</a>
           <a href="#los-riesgos-reales">Los Riesgos Reales</a>
           <a href="#que-sigue-despues">Qué Sigue Después</a>
+          <a href="#faq">Preguntas Frecuentes</a>
         </div>
 
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
@@ -108,4 +136,18 @@ const webPageLd = {
       </div>
     </div>
   </section>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <h2 id="faq">Preguntas Frecuentes</h2>
+      {faq.map((item) => (
+        <div style="margin-bottom:18px;">
+          <h3>{item.q}</h3>
+          <p set:html={item.a} />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <SourcesStandards lang="es" ids={['bls', 'iwcf', 'iadcWellsharp']} />
 </BaseLayout>

@@ -6,6 +6,25 @@ import KeyFacts from '../../components/KeyFacts.astro';
 import { techArticleSchema } from '../../lib/techarticle.js';
 import SourcesStandards from '../../components/SourcesStandards.astro';
 
+const faq = [
+  {
+    q: "What is a safety clamp, and when is it used?",
+    a: "A safety clamp is a mechanical clamp fitted around the pipe body just below a tool joint, acting as a backup that stops the string from dropping if the elevators or the spider lose their grip unexpectedly. It carries no load during normal operation — tongs, slips and elevators do the actual work described on this page — but it's standard practice on many rigs during specific higher-risk moments, such as handling a single joint on the catwalk or running casing, where an unplanned drop has a worse consequence than the extra step of setting the clamp costs.",
+  },
+  {
+    q: "What's the real difference between manual tongs and an iron roughneck?",
+    a: "Manual tongs rely on the crew to apply torque by pulling a tong line wrapped around the cathead, with a second set of tongs holding the lower joint stationary — the torque value depends on crew technique and feel. An iron roughneck is a single hydraulic unit that spins the connection up and then applies a precise, pre-set torque value automatically, removing both the manual pulling and the judgment call about how much torque was actually applied. The mechanical job is identical either way; what changes is consistency and where crew members' hands are during the highest pinch-point moment of the cycle.",
+  },
+  {
+    q: "What are the different elevator types, and why does it matter which one's on the rig?",
+    a: "The common types are side-door elevators (hinge open from the side, the most common general-purpose type), center-latch elevators (latch at the front center, often used on larger or heavier strings), slip-type elevators (grip the pipe body directly with internal slips rather than latching below a tool joint upset, used where the connection geometry doesn't suit a standard latch), and single-joint elevators (sized for handling one joint at a time rather than a full stand, used on the catwalk or for specialty single-joint operations). Each is rated and sized for a specific pipe range and load — running the wrong elevator type for the string on hand is a real handling hazard, not just a mismatch in convenience.",
+  },
+  {
+    q: "Why do slips have to be sized to the exact pipe diameter rather than a general range?",
+    a: "A slip grips through wedging action — the tapered segments bite harder as the string's weight pulls down — and that mechanism only works correctly when the segments match the pipe's actual outside diameter closely. A slip sized too large won't seat and bite correctly; one sized too small can damage the pipe body or fail to support the rated load. It's the same sizing discipline the <a href=\"/equipment/bop#rams\">pipe rams on a BOP stack</a> require for the same underlying reason — a mechanical grip built around one specific diameter doesn't work as a loose fit for a nearby size.",
+  },
+];
+
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/rig-floor-tools.astro',
   path: '/equipment/rig-floor-tools',
@@ -35,7 +54,7 @@ const techArticleJsonLd = techArticleSchema({
     <div class="two-col">
       <div class="prose">
         <h2 id="what-theyre-for">What They're For</h2>
-        <p>Running a string in or out of the hole means making up or breaking out a threaded connection every single stand, hundreds of times over the life of a well. The tools on this page are what a <a href="/careers/roughneck">roughneck</a> crew uses to grip, spin, torque, and support pipe safely through that cycle — none of them do anything on their own; they work in a fixed sequence every time a connection is handled.</p>
+        <p>Rig floor tools are the hand tools and mechanized units a crew uses to grip, spin, torque and support drill pipe every time a connection is made up or broken out while running a string in or out of the hole. Running a string in or out of the hole means making up or breaking out a threaded connection every single stand, hundreds of times over the life of a well. The tools on this page are what a <a href="/careers/roughneck">roughneck</a> crew uses to grip, spin, torque, and support pipe safely through that cycle — none of them do anything on their own; they work in a fixed sequence every time a connection is handled.</p>
 
         <KeyFacts
           lang="en"
@@ -53,6 +72,20 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="elevators">Elevators</h2>
         <p>Elevators are the hinged, clamping assembly that latches around the pipe just below a tool joint's upset (the thicker shoulder at each pipe end) and connects up to the traveling block via bails, letting the hoisting system lift and lower the entire string. Where slips hold the string stationary in the rotary table, elevators are what actually move it — raising a new stand into position to make up, or lowering the string to set it back in the slips once a connection is broken.</p>
         <p>The handoff between the two is the core rhythm of tripping pipe: elevators lower the string until its weight transfers onto the slips, the connection gets broken or made up, then the elevators latch the next joint and the cycle repeats. Every trip in or out of the hole is this same sequence, run however many times the string is long.</p>
+        <p>Elevators come in several distinct types, matched to the string and the job rather than interchangeable:</p>
+        <ul>
+          <li><strong>Side-door elevators</strong> hinge open from the side to latch around the pipe — the most common general-purpose type on a drill pipe string.</li>
+          <li><strong>Center-latch elevators</strong> latch at the front center of the body instead, a design more commonly suited to larger or heavier strings where a side-door's hinge geometry is less practical.</li>
+          <li><strong>Slip-type elevators</strong> grip the pipe body directly with internal slip segments rather than latching below a tool joint's upset, used where the connection geometry doesn't suit a standard latch — on tubing or certain workover strings, for example.</li>
+          <li><strong>Single-joint elevators</strong> are sized to handle one joint at a time rather than a full multi-joint stand, used on the catwalk or for specialty single-joint handling rather than main tripping operations.</li>
+        </ul>
+        <p>Like slips, every elevator type is rated and sized to a specific pipe range and load — running the wrong type for the string on hand is a handling hazard, not a convenience trade-off.</p>
+
+        <h2 id="safety-clamps">Safety Clamps</h2>
+        <p>A safety clamp is a mechanical clamp fitted around the pipe body just below a tool joint, carrying no load during normal operation but ready to stop the string from dropping if the elevators or a spider lose their grip unexpectedly. It's a backup, not a primary tool — tongs, slips and elevators do the actual gripping, spinning and supporting work described above — but it's standard practice on many rigs at specific higher-risk moments: handling a single joint on the catwalk, running casing, or any operation where an unplanned drop has a worse consequence than the extra step of setting the clamp costs. Treat a safety clamp as cheap insurance against a specific failure mode, not as redundant equipment that slows the job down for no reason.</p>
+
+        <h2 id="power-slips-iron-roughneck">Power Slips and the Iron Roughneck</h2>
+        <p><strong>Power slips</strong> are hydraulically actuated slips that set and release automatically rather than requiring a crew member to physically set and knock out manual slips by hand at the rotary table. They remove one more set of hands from the pinch-point zone around the rotary table during every connection cycle, the same safety logic behind the iron roughneck's mechanization of tongs. On a modern rig equipped with both power slips and an iron roughneck, a connection can be made up or broken out with the crew's hands clear of the rotating and gripping components for almost the entire cycle — manual tongs and manual slips both still exist and both still work the same mechanical principle described above, but the trend on new-build rigs is toward mechanizing every part of this cycle that doesn't strictly require a human hand on the pipe.</p>
 
         <h2 id="spinning-wrench">Spinning Wrench and Kelly Spinner</h2>
         <p>Before tongs can apply real torque, a connection has to be spun together by hand-tight engagement first — threading the joint far enough that the tong can then apply the final, measured torque without cross-threading. A <strong>spinning wrench</strong> (or power tong set to spin mode on modern rigs) does this fast, hydraulically powered spin-up, replacing the older method of spinning pipe by hand with a chain tong.</p>
@@ -81,8 +114,11 @@ const techArticleJsonLd = techArticleSchema({
           <a href="#tongs">Tongs</a>
           <a href="#slips">Slips</a>
           <a href="#elevators">Elevators</a>
+          <a href="#safety-clamps">Safety Clamps</a>
+          <a href="#power-slips-iron-roughneck">Power Slips &amp; Iron Roughneck</a>
           <a href="#spinning-wrench">Spinning Wrench &amp; Kelly Spinner</a>
           <a href="#how-they-work-together">How They Work Together</a>
+          <a href="#faq">FAQ</a>
         </div>
 
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
@@ -94,6 +130,18 @@ const techArticleJsonLd = techArticleSchema({
           <a href="/drilling/rig-move-plan" class="card-link">→ Rig Move Plan</a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <h2 id="faq">Frequently Asked Questions</h2>
+      {faq.map((item) => (
+        <div style="margin-bottom:18px;">
+          <h3>{item.q}</h3>
+          <p set:html={item.a} />
+        </div>
+      ))}
     </div>
   </section>
 

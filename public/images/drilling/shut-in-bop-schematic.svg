@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560" role="img" aria-labelledby="sibopTitle sibopDesc">
+  <title id="sibopTitle">Surface BOP stack and choke line during a shut-in</title>
+  <desc id="sibopDesc">A labeled cross-section of a surface blowout preventer stack during a shut-in: drill pipe running through the bore, the annular preventer at the top of the stack, upper pipe rams below it, and blind/shear rams at the bottom. A choke line branches off above the rams, running through the HCR valve to the adjustable choke and on to the choke manifold, where casing pressure is read on a gauge. A kill line mirrors the choke line on the opposite side of the stack, running to the rig pumps. The rig floor and wellhead are labeled at the top and bottom of the stack.</desc>
+
+  <rect width="920" height="560" fill="#0e0f11"/>
+
+  <!-- rig floor line -->
+  <line x1="60" y1="70" x2="860" y2="70" stroke="#2a3347" stroke-width="2"/>
+  <text x="70" y="52" fill="#8892a4" font-family="monospace" font-size="12">RIG FLOOR</text>
+
+  <!-- drill pipe through the stack -->
+  <rect x="438" y="70" width="24" height="430" fill="#1c2130" stroke="#2a3347" stroke-width="1.5"/>
+  <text x="390" y="500" fill="#8892a4" font-family="monospace" font-size="11">DRILL PIPE</text>
+
+  <!-- BOP stack body -->
+  <!-- annular preventer -->
+  <rect x="360" y="90" width="200" height="60" rx="6" fill="#1c2130" stroke="#f07038" stroke-width="2.5"/>
+  <text x="572" y="113" fill="#f07038" font-family="monospace" font-size="13">ANNULAR PREVENTER</text>
+  <text x="572" y="130" fill="#8892a4" font-family="monospace" font-size="10.5">closes around any shape in the bore</text>
+
+  <!-- upper pipe rams -->
+  <rect x="360" y="160" width="200" height="55" rx="6" fill="#1c2130" stroke="#e8a020" stroke-width="2.5"/>
+  <text x="572" y="183" fill="#e8a020" font-family="monospace" font-size="13">UPPER PIPE RAMS</text>
+  <text x="572" y="200" fill="#8892a4" font-family="monospace" font-size="10.5">close on pipe body, sized to one OD</text>
+
+  <!-- choke line branch (right side) -->
+  <path d="M560 185 L660 185 L660 230" stroke="#8892a4" stroke-width="3" fill="none"/>
+  <rect x="640" y="230" width="40" height="26" fill="#1c2130" stroke="#22c55e" stroke-width="2"/>
+  <text x="690" y="248" fill="#22c55e" font-family="monospace" font-size="12">HCR VALVE</text>
+  <path d="M660 256 L660 300" stroke="#8892a4" stroke-width="3" fill="none"/>
+  <rect x="640" y="300" width="40" height="26" fill="#1c2130" stroke="#e8a020" stroke-width="2"/>
+  <text x="690" y="318" fill="#e8a020" font-family="monospace" font-size="12">ADJUSTABLE CHOKE</text>
+  <path d="M660 326 L660 360 L760 360" stroke="#8892a4" stroke-width="3" fill="none"/>
+  <rect x="760" y="336" width="110" height="48" rx="4" fill="#1c2130" stroke="#2a3347" stroke-width="1.5"/>
+  <text x="772" y="356" fill="#d1d8e4" font-family="monospace" font-size="11">CHOKE MANIFOLD</text>
+  <text x="772" y="372" fill="#8892a4" font-family="monospace" font-size="10.5">casing pressure gauge</text>
+  <text x="596" y="178" fill="#8892a4" font-family="monospace" font-size="10.5">CHOKE LINE</text>
+
+  <!-- kill line branch (left side, mirrored, to rig pumps) -->
+  <path d="M360 185 L260 185 L260 230" stroke="#8892a4" stroke-width="3" fill="none"/>
+  <rect x="220" y="230" width="40" height="26" fill="#1c2130" stroke="#2a3347" stroke-width="2"/>
+  <text x="140" y="248" fill="#8892a4" font-family="monospace" font-size="12">KILL LINE</text>
+  <path d="M240 256 L240 300" stroke="#8892a4" stroke-width="3" fill="none"/>
+  <rect x="150" y="300" width="130" height="36" rx="4" fill="#1c2130" stroke="#2a3347" stroke-width="1.5"/>
+  <text x="162" y="322" fill="#d1d8e4" font-family="monospace" font-size="11">TO RIG PUMPS</text>
+
+  <!-- blind/shear rams -->
+  <rect x="360" y="230" width="200" height="55" rx="6" fill="#1c2130" stroke="#ef4444" stroke-width="2.5"/>
+  <text x="572" y="253" fill="#ef4444" font-family="monospace" font-size="13">BLIND / SHEAR RAMS</text>
+  <text x="572" y="270" fill="#8892a4" font-family="monospace" font-size="10.5">seals empty bore, or shears pipe</text>
+
+  <!-- wellhead -->
+  <rect x="400" y="300" width="120" height="30" fill="#1c2130" stroke="#2a3347" stroke-width="1.5"/>
+  <text x="432" y="320" fill="#d1d8e4" font-family="monospace" font-size="12">WELLHEAD</text>
+  <line x1="438" y1="330" x2="438" y2="500" stroke="#2a3347" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <line x1="462" y1="330" x2="462" y2="500" stroke="#2a3347" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <text x="400" y="520" fill="#8892a4" font-family="monospace" font-size="11">CASING / WELLBORE BELOW</text>
+
+  <!-- footer -->
+  <text x="60" y="548" fill="#d1d8e4" font-family="sans-serif" font-size="13.5">Hard shut-in: choke stays closed throughout. Soft shut-in: choke opens first, then closes gradually once the stack is sealed.</text>
+</svg>

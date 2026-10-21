@@ -3,8 +3,26 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import { articleSchema } from '../../lib/techarticle.js';
-import { reviewedByJabin } from '../../lib/person.js';
 import SourcesStandards from '../../components/SourcesStandards.astro';
+
+const faq = [
+  {
+    q: "What's a typical leak-off pressure, and does it vary much?",
+    a: "There's no single typical number — leak-off pressure depends entirely on the formation at that specific shoe, the mud weight in the hole during the test, and shoe depth, so a shallow, weak-formation shoe and a deep, competent-rock shoe can show very different results even using the same test procedure. The worked example on the <a href=\"/calculators/leak-off-test\">leak-off test calculator</a> (415 psi at 6,108 ft TVD with 10.5 ppg mud, giving 11.81 ppg EMW) is representative of the kind of number a test produces, not a benchmark to expect at a different shoe.",
+  },
+  {
+    q: "What happens if the formation leaks off before the planned mud weight is reached?",
+    a: "The shoe can't support the planned program as written, and the well plan needs to change before drilling continues past that point. Options typically include running a lighter mud weight than planned for the next section (accepting a narrower margin against pore pressure), setting an additional casing string earlier than planned to isolate the weak zone, or in some cases a remedial cement job to strengthen the formation near the shoe. Which option applies is an engineering decision specific to that well, not something a general guide can resolve — but the test did exactly its job by catching the problem at surface instead of downhole during drilling.",
+  },
+  {
+    q: "What is an XLOT, and when is it run instead of a standard LOT?",
+    a: "An extended leak-off test (XLOT) continues through multiple pumping cycles past the first leak-off point, rather than stopping at the first bend in the pressure-volume curve. Repeating the cycle lets the test estimate the formation's minimum in-situ horizontal stress, not just the pressure at which it starts taking fluid — a geomechanics input used for wellbore stability and fracture modeling beyond the simple operational ceiling a standard LOT provides. It's run selectively, on wells where that extra geomechanical data is worth the added rig time, not as a routine replacement for a standard LOT.",
+  },
+  {
+    q: "Does a leak-off test get repeated later in the same hole section?",
+    a: "No — one LOT or FIT result is valid for the shoe it was run below, for the life of that hole section, and isn't re-run partway through drilling it. It only gets repeated when a new casing string is set and a new shoe is drilled out, which is a fresh formation and therefore a fresh test, not a check on the same shoe. See the note on this page's procedure section: carrying an old result forward past a new casing point is a real hazard, not a reasonable shortcut.",
+  },
+];
 
 const jsonLd = articleSchema({
   sourcePath: 'src/pages/drilling/leak-off-test.astro',
@@ -24,7 +42,6 @@ const webPageLd = {
   "inLanguage": "en",
   "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
   "mainEntity": { "@id": "https://rigfloorhq.com/drilling/leak-off-test#article" },
-  "reviewedBy": reviewedByJabin(),
 };
 ---
 <BaseLayout
@@ -49,7 +66,15 @@ const webPageLd = {
     <div class="two-col">
       <div class="prose">
         <h2 id="why-its-run">Why It's Run</h2>
-        <p>Once a casing string is cemented and the shoe is drilled out, the open formation directly below it is the weakest point in the entire wellbore for the rest of that hole section — every string above it is steel and cement, but the rock below the shoe is exactly what it was before anyone drilled through it. The <a href="/pillars/hydrostatic-pressure">mud weight window</a> for the next section is bounded above by whatever that formation can actually take before it breaks down, and a leak-off test is how that ceiling gets measured directly rather than assumed from an offset-well gradient.</p>
+        <p>A leak-off test (LOT) pumps a fresh casing shoe to the point where the formation below it starts taking fluid, to measure directly the maximum pressure that shoe can hold for the rest of that hole section. Once a casing string is cemented and the shoe is drilled out, the open formation directly below it is the weakest point in the entire wellbore for the rest of that hole section — every string above it is steel and cement, but the rock below the shoe is exactly what it was before anyone drilled through it. The <a href="/pillars/hydrostatic-pressure">mud weight window</a> for the next section is bounded above by whatever that formation can actually take before it breaks down, and a leak-off test is how that ceiling gets measured directly rather than assumed from an offset-well gradient.</p>
+
+        <h2 id="before-the-test">Before the Test: Pre-Test Checklist</h2>
+        <ul>
+          <li><strong>Pressure gauges checked and calibrated.</strong> The entire test result depends on reading small pressure changes accurately — a gauge that's out of calibration produces a leak-off point that's wrong by however much the gauge is off, with no way to catch the error from the data alone.</li>
+          <li><strong>Pump rate set to a controlled 0.25-0.5 bbl/min</strong> (or the slower, metered increments the procedure below uses), not the rig's normal circulating rate. A LOT is never run at drilling-rate pump speed.</li>
+          <li><strong>An offset-well fracture gradient estimate in hand</strong>, where available, so the crew has a rough expectation of where the leak-off point should fall and can recognize a result that's sharply out of line with nearby wells before assuming the new number is simply correct.</li>
+          <li><strong>Well shut in and surface lines rigged for small, metered volumes</strong> — a cement unit or a rig pump capable of precise low-rate pumping, not the mud pumps used for normal circulation.</li>
+        </ul>
 
         <h2 id="lot-procedure">Leak-Off Test Procedure</h2>
         <ol>
@@ -61,6 +86,17 @@ const webPageLd = {
           <li><strong>Bleed back and record the volume returned</strong> to confirm the formation didn't take an unexpected amount of fluid, then resume drilling operations.</li>
         </ol>
         <p>The whole test typically takes well under an hour, but the small, controlled increments matter — pumping too fast blurs exactly where the real bend in the curve happens, and the entire value of the test is in identifying that point precisely.</p>
+
+        <figure style="margin:24px 0;">
+          <img src="/images/drilling/lot-pressure-volume-plot.svg" width="920" height="480" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="A schematic chart of surface pressure against cumulative volume pumped during a leak-off test. Early increments trace a straight line as the wellbore and formation compress elastically. The line bends away from straight at the leak-off point, where the formation starts taking fluid rather than just compressing — that bend is recorded as the leak-off pressure and pumping stops there. A dashed continuation shows what would happen if pumping continued past that point: an uncontrolled fracture, which a real test never runs long enough to reach. A separate marker shows where a formation integrity test stops instead, at a lower target pressure, well before the actual leak-off point." />
+          <figcaption style="color:var(--fog);font-size:12.5px;margin-top:8px;">The shape every real LOT plot follows: a straight elastic section, a bend at leak-off, and a test that stops right there. An FIT stops even earlier, at a target pressure rather than the true limit.</figcaption>
+        </figure>
+
+        <h2 id="worked-example">Worked Example</h2>
+        <p>A LOT recorded <strong>415 psi</strong> on the standpipe gauge with <strong>10.5 ppg</strong> mud in the hole, shoe at <strong>6,108 ft TVD</strong>. Converting to equivalent mud weight: EMW = 10.5 + [415 ÷ (0.052 × 6,108)] = 10.5 + 1.31 = <span class="highlight">11.81 ppg</span>. That's the ceiling for this shoe — the heaviest mud weight the formation can support before it starts taking fluid, expressed in the same units as the mud program. The same result as a fracture gradient: FG = [415 + (10.5 × 0.052 × 6,108)] ÷ 6,108 = <span class="highlight">0.614 psi/ft</span>. Run your own recorded LOT or FIT pressure through the <a href="/calculators/leak-off-test">leak-off test calculator</a> for the full EMW and fracture-gradient conversion, including the reverse FIT-target direction.</p>
+
+        <h2 id="xlot">XLOT: The Extended Leak-Off Test</h2>
+        <p>An extended leak-off test (XLOT) continues through multiple pumping cycles past the point a standard LOT stops at, instead of recording one leak-off point and bleeding back immediately. Repeating the pump-and-bleed cycle several times lets the test estimate the formation's minimum in-situ horizontal stress — a geomechanics input used for wellbore stability modeling and fracture design beyond the simple pressure ceiling a standard LOT or FIT provides for day-to-day well control math. It's run selectively, on wells where that extra geomechanical data justifies the added rig time and risk of the repeated cycles, not as a routine substitute for the standard test above.</p>
 
         <h2 id="fit-procedure">Formation Integrity Test (FIT) Procedure</h2>
         <p>An FIT runs the identical setup — shut in, pump in small increments, watch pressure — but stops at a predetermined target pressure instead of continuing to an actual leak-off point. That target is chosen to prove the shoe can hold whatever mud weight the next section's drilling program actually plans to use, plus a safety margin, without ever finding out how much further the formation could really take. An FIT is faster and lower-risk than a full LOT, but it answers a narrower question: "is this specific planned mud weight safe," not "what is this shoe's actual limit." Use the <a href="/calculators/leak-off-test">leak-off test calculator</a>'s FIT box to work out the target pressure to pump to for a given planned mud weight before running one.</p>
@@ -80,10 +116,14 @@ const webPageLd = {
         <div class="toc">
           <div class="toc-title">On This Page</div>
           <a href="#why-its-run">Why It's Run</a>
+          <a href="#before-the-test">Pre-Test Checklist</a>
           <a href="#lot-procedure">LOT Procedure</a>
+          <a href="#worked-example">Worked Example</a>
+          <a href="#xlot">XLOT</a>
           <a href="#fit-procedure">FIT Procedure</a>
           <a href="#which-one">Which Test, and When</a>
           <a href="#reading-the-result">Reading the Result</a>
+          <a href="#faq">FAQ</a>
         </div>
 
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
@@ -96,6 +136,18 @@ const webPageLd = {
           <a href="/drilling/well-control" class="card-link">→ Well Control Procedures Hub</a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <h2 id="faq">Frequently Asked Questions</h2>
+      {faq.map((item) => (
+        <div style="margin-bottom:18px;">
+          <h3>{item.q}</h3>
+          <p set:html={item.a} />
+        </div>
+      ))}
     </div>
   </section>
 

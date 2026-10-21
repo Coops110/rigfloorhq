@@ -5,6 +5,25 @@ import Footer from '../../../components/Footer.astro';
 import { articleSchema } from '../../../lib/techarticle.js';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
 
+const faq = [
+  {
+    q: "¿Qué método de cierre se considera el estándar de la industria?",
+    a: "El cierre duro es el método que la mayoría del material de entrenamiento y referencia de control de pozos trata como el estándar, ya que atrapa la presión más rápido y toma el menor volumen de influjo antes de que el stack quede sellado. El cierre suave es la excepción deliberada, usada específicamente donde un margen estrecho entre la presión de poro y la de fractura hace que el pico de presión más agudo del método duro sea el riesgo mayor. El documento puente de un pozo especifica cuál aplica antes de que alguien esté realmente cerrando el pozo — ver <a href=\"#cual-y-por-que\">Cuál, y Por Qué</a> arriba para qué determina esa decisión.",
+  },
+  {
+    q: "¿Qué cambia en un cierre en un taladro flotante o submarino?",
+    a: "La elección central entre cierre duro y suave, y la secuencia de pasos de cada uno, se mantiene igual. Lo que cambia es el equipo por el que corren las líneas de choke y kill: el stack de BOP de un taladro flotante se asienta en el cabezal de pozo en el lecho marino en lugar de debajo del piso de perforación, así que las líneas de choke y kill corren todo el largo del riser antes de llegar al stack, y una falla en el riser o en el conector marino en cualquier punto puede forzar una desconexión de emergencia que una instalación fija de superficie nunca tiene que planear. Ver <a href=\"#flotante-submarino\">Cierre en Taladros Flotantes y Submarinos</a> abajo para el procedimiento de hang-off que maneja exactamente este caso.",
+  },
+  {
+    q: "¿Qué tan más grande es la surgencia en un cierre suave comparado con un cierre duro?",
+    a: "No hay un múltiplo fijo único — depende de cuánto tarda en cerrar el choke y de la tasa de flujo real de la surgencia, que varían de pozo a pozo. Lo que es cierto en todos los casos es la dirección: el cierre suave mantiene el pozo fluyendo, de manera controlada, durante una ventana más larga que el cierre casi instantáneo del cierre duro, así que la ganancia de pileta y el SICP registrados en un cierre suave se esperan más altos de lo que habría producido un cierre duro en la misma surgencia. Ese es el intercambio explícito que pesa el documento puente al especificar un método sobre el otro para un pozo dado.",
+  },
+  {
+    q: "¿Por qué el choke permanece cerrado durante todo un cierre duro en lugar de abrirse en algún punto?",
+    a: "Porque abrirlo en cualquier punto de la secuencia es justo lo que define un cierre suave en cambio — el estado del choke al momento del cierre es la única variable que distingue los dos métodos. Mantenerlo cerrado todo el tiempo significa que la presión del casing solo empieza a leerse en el panel de choke una vez que la válvula HCR se abre después de que el BOP ya está sellado, produciendo el sello más rápido posible y el pico de presión más agudo, que es todo el punto de elegir el cierre duro para un pozo con un margen saludable de sobra.",
+  },
+];
+
 const jsonLd = articleSchema({
   sourcePath: 'src/pages/es/drilling/shut-in-procedures.astro',
   path: '/es/drilling/shut-in-procedures',
@@ -47,7 +66,25 @@ const webPageLd = {
     <div class="two-col">
       <div class="prose">
         <h2 id="la-diferencia-central">La Diferencia Central</h2>
-        <p>Todo cierre en un evento de control de pozos termina igual: el BOP cerrado, la válvula HCR de la línea de choke abierta, y la presión leyéndose en el panel de choke en lugar de subir sin control en un pozo sellado. Lo que separa el cierre duro del suave es el orden en que ocurren esas dos cosas, y por lo tanto cuánto se le permite fluir al pozo antes de quedar completamente sellado.</p>
+        <p>El cierre duro y el cierre suave son las dos secuencias para cerrar un pozo ante una surgencia, y toda la diferencia entre ellos es el orden en que cierran el choke y el BOP. Todo cierre en un evento de control de pozos termina igual: el BOP cerrado, la válvula HCR de la línea de choke abierta, y la presión leyéndose en el panel de choke en lugar de subir sin control en un pozo sellado. Lo que separa el cierre duro del suave es el orden en que ocurren esas dos cosas, y por lo tanto cuánto se le permite fluir al pozo antes de quedar completamente sellado.</p>
+
+        <figure style="margin:24px 0;">
+          <img src="/images/drilling/shut-in-bop-schematic.svg" width="920" height="560" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Una sección transversal etiquetada de un stack de preventores de reventones de superficie durante un cierre: tubería de perforación atravesando el pozo, el preventor anular en la parte superior del stack, arietes de tubería superiores debajo, y arietes ciegos/de corte en la parte inferior. Una línea de choke se ramifica arriba de los arietes, pasando por la válvula HCR hacia el choke ajustable y hacia el manifold de choke, donde la presión del casing se lee en un manómetro. Una línea de kill refleja la línea de choke en el lado opuesto del stack, corriendo hacia las bombas del taladro." />
+          <figcaption style="color:var(--fog);font-size:12.5px;margin-top:8px;">El mismo stack, la misma línea de choke y la misma válvula HCR que cierran ambos procedimientos abajo — solo cambia el orden.</figcaption>
+        </figure>
+
+        <h2 id="tabla-comparativa">Duro vs Suave, Lado a Lado</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Factor</th><th>Cierre Duro</th><th>Cierre Suave</th></tr></thead>
+            <tbody>
+              <tr><td>Velocidad al sello completo</td><td>La más rápida — un solo movimiento, el choke nunca se abre</td><td>Más lenta — la línea de choke se abre primero, luego el BOP, luego el choke se cierra gradualmente</td></tr>
+              <tr><td>Tamaño de surgencia que se toma</td><td>El más pequeño — el pozo se sella antes de que pueda entrar mucho más</td><td>Mayor — el pozo sigue fluyendo, de manera controlada, durante la secuencia más lenta</td></tr>
+              <tr><td>Control de presión al cierre</td><td>Pico más agudo — nada se alivia durante la secuencia</td><td>Más suave — la presión del casing ya se lee antes de que el stack selle por completo, así que el choke cierra en pasos</td></tr>
+              <tr><td>Cuándo se usa</td><td>Por defecto donde hay un margen saludable entre presión de poro y de fractura</td><td>Por defecto donde un margen estrecho (un LOT/FIT reciente cercano al peso de lodo planeado) hace que el pico de presión sea el riesgo mayor</td></tr>
+            </tbody>
+          </table>
+        </div>
 
         <h2 id="cierre-duro">Cierre Duro</h2>
         <p>El choke permanece cerrado todo el tiempo. Con el choke ajustable ya cerrado, la cuadrilla cierra el BOP — anular o ariete, según el documento puente del pozo — luego abre la válvula HCR de la línea de choke para que la presión del casing se lea en el panel de choke; el choke mismo nunca se abre. El pozo pasa de fluir a estar completamente sellado en un solo movimiento, lo que atrapa la presión más rápido y minimiza el volumen de influjo que entra al pozo antes de que el stack tome control.</p>
@@ -77,6 +114,10 @@ const webPageLd = {
         <p>El documento puente del pozo fija el método por defecto, y se elige mucho antes de que alguien esté realmente cerrando el pozo: un resultado de prueba de zapata cercano al peso de lodo planeado, una tolerancia a la surgencia estrecha, o una zona débil conocida empuja hacia el cierre suave a pesar del tiempo extra de flujo. Un margen amplio entre la presión de poro y de fractura, o un manual de control de pozos que use el cierre duro como práctica estándar por defecto, significa que hay poca razón para cambiar velocidad por un pico más suave que no necesitas evitar. Ningún método es inherentemente más seguro en abstracto — el correcto es el que el documento puente ya determinó para este pozo específico, no una decisión tomada en el momento en que se confirma una surgencia.</p>
         <p>Ambos tipos de preventor — el <a href="/es/equipment/bop#anular">anular</a> y los <a href="/es/equipment/bop#arietes">preventores de ariete</a> — pueden cerrar primero en cualquiera de los dos métodos; cuál especifica el documento puente para un pozo dado depende de la posición de la sarta y el estado de la conexión en el momento de la surgencia, no de si es cierre duro o suave como regla. Ver la <a href="/es/equipment/bop">página completa de equipo BOP</a> para lo que hace realmente cada tipo de preventor y por qué un stack lleva más de uno.</p>
 
+        <h2 id="flotante-submarino">Cierre en Taladros Flotantes y Submarinos</h2>
+        <p>La elección entre duro y suave y la secuencia de pasos de arriba aplican igual en un taladro flotante — lo que cambia es el equipo por el que corren las líneas de choke y kill. En una instalación fija de superficie, el stack de BOP se asienta debajo del piso de perforación y las líneas de choke/kill corren una distancia corta hasta el manifold de choke. En un semisumergible o buque perforador, el stack de BOP se asienta en el cabezal de pozo en el lecho marino en cambio, y las líneas de choke y kill corren todo el largo del riser marino que conecta el taladro con el stack antes de llegar al manifold de choke en el taladro mismo — ver la <a href="/es/equipment/bop">guía completa de equipo BOP</a> para cómo difiere la configuración de un stack submarino de uno de superficie.</p>
+        <p>Ese largo adicional de riser es también el punto de falla adicional que una instalación fija nunca tiene que planear. Si el riser o el conector del paquete de riser marino inferior se compromete — por un drive-off, un drift-off, o clima severo que empuja al taladro fuera de posición — la cuadrilla ejecuta un <strong>hang-off</strong>: la sarta de perforación se asienta en la rampa de hang-off o en un ariete de tubería con el anular u otro ariete cerrado arriba, el riser se desconecta en el paquete de riser marino inferior, y el pozo queda cerrado en el stack submarino mismo mientras el taladro se mueve fuera de posición. API RP 59 — la práctica recomendada que cubre las operaciones de control de pozos, escrita como complemento a la norma de equipo BOP ya citada en esta página — separa explícitamente su guía en instalaciones de BOP de superficie e instalaciones de BOP submarinas con líneas largas de choke y kill exactamente por esta razón: el principio operativo no cambia, pero el equipo y los procedimientos de desconexión de emergencia genuinamente sí.</p>
+
         <h2 id="que-pasa-justo-despues">Qué Pasa Justo Después de Cualquiera de los Dos</h2>
         <p>Ambos procedimientos terminan en el mismo lugar: SIDPP, SICP y ganancia de pileta registrados, toolpusher y company man notificados, y una decisión tomada sobre qué método de matanza usar. Ver <a href="/es/drilling/well-control">reconocimiento de surgencias y el procedimiento completo de cierre</a> para lo que pasa justo antes de un cierre, y la <a href="/es/pillars/well-kill-methods">comparación entre el Método del Perforador y Esperar y Densificar</a> para lo que pasa una vez que el pozo está sellado y es hora de matarlo realmente.</p>
 
@@ -89,10 +130,13 @@ const webPageLd = {
         <div class="toc">
           <div class="toc-title">En Esta Página</div>
           <a href="#la-diferencia-central">La Diferencia Central</a>
+          <a href="#tabla-comparativa">Duro vs Suave, Lado a Lado</a>
           <a href="#cierre-duro">Cierre Duro</a>
           <a href="#cierre-suave">Cierre Suave</a>
           <a href="#cual-y-por-que">Cuál, y Por Qué</a>
+          <a href="#flotante-submarino">Flotantes y Submarinos</a>
           <a href="#que-pasa-justo-despues">Qué Pasa Justo Después</a>
+          <a href="#faq">Preguntas Frecuentes</a>
         </div>
 
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
@@ -108,5 +152,17 @@ const webPageLd = {
     </div>
   </section>
 
-  <SourcesStandards lang="es" ids={['api53', 'cfr250g']} />
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <h2 id="faq">Preguntas Frecuentes</h2>
+      {faq.map((item) => (
+        <div style="margin-bottom:18px;">
+          <h3>{item.q}</h3>
+          <p set:html={item.a} />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <SourcesStandards lang="es" ids={['api53', 'api59', 'cfr250g']} />
 </BaseLayout>

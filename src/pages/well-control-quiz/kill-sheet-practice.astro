@@ -5,6 +5,25 @@ import Footer from '../../components/Footer.astro';
 import { articleSchema } from '../../lib/techarticle.js';
 import SourcesStandards from '../../components/SourcesStandards.astro';
 
+const faq = [
+  {
+    q: "Are kill sheets different on a subsea (floating rig) well compared with a surface stack?",
+    a: "The KMW/ICP/FCP formulas on this page are identical either way — the hydrostatic math doesn't change based on where the BOP sits. What changes is one extra correction: on a floater, the casing-side pressure held during pump start-up is reduced by the measured choke line friction specific to that well's choke line and riser configuration, per the rig's own procedure, since the long choke line between the subsea stack and the rig adds a friction pressure a surface stack's short line doesn't have. See the <a href=\"/pillars/well-kill-methods\">Driller's Method vs Wait and Weight guide</a> for exactly where that correction applies in the step sequence.",
+  },
+  {
+    q: "Do IWCF or IADC publish their own official kill sheet formula sheets?",
+    a: "Yes — IWCF publishes its own formula sheets covering Field (psi/ppg/ft), SI (bar/SG/m) and KGM unit systems, available directly from iwcf.org, and they're the reference an actual IWCF exam is built against. The formulas on this page match that same underlying math; working through these four problems by hand is good exam preparation, but always check your specific exam's unit system and formula sheet against IWCF's or IADC's own current published version rather than relying on any third-party summary, including this one.",
+  },
+  {
+    q: "Why does FCP use the rounded KMW instead of the raw calculated value?",
+    a: "Because the rounded KMW is the actual mud weight that gets mixed in the pits and pumped downhole — the raw, unrounded number from the formula never physically exists in the well. FCP has to reflect the pressure behavior of the mud that's really circulating, so it's calculated from the same rounded figure the mud engineer actually mixes to, not the intermediate decimal. Problem 2 above is built specifically around this mistake.",
+  },
+  {
+    q: "What's the fastest way to get faster at these without just memorizing answers?",
+    a: "Work every problem with a pen and paper first, using only the formula box, before checking the worked answer — the value of practice here is building the habit of carrying the right number of decimal places through each step and rounding only where the convention says to, not recognizing a problem you've seen before. Once the four field-unit problems feel automatic, try Problem 5 in SI units below; switching unit systems is a good test of whether you actually understand the formula structure or just memorized one version of it.",
+  },
+];
+
 const jsonLd = articleSchema({
   sourcePath: 'src/pages/well-control-quiz/kill-sheet-practice.astro',
   path: '/well-control-quiz/kill-sheet-practice',
@@ -108,8 +127,31 @@ const webPageLd = {
         </details>
       </div>
 
+      <h2 id="problem-5-si">Problem 5 — SI Units</h2>
+      <p>Every problem above uses Field units (ppg, psi, ft) with the 0.052 constant. The same math works in SI units (SG, bar, m) using the metric constant <strong>0.0981</strong> instead — the same constant established on the <a href="/pillars/hydrostatic-pressure">hydrostatic pressure pillar</a>'s SI/SG derivation. The formulas restate directly: KMW = OMW + [SIDPP ÷ (0.0981 × TVD)], rounded <strong>up</strong> to the nearest 0.01 SG. ICP = SIDPP + SCR. FCP = SCR × (KMW ÷ OMW), all in bar.</p>
+      <p>TVD: 2,500 m. Original Mud Weight: 1.15 SG. SIDPP: 14 bar. SCR: 28 bar.<br />Find KMW, ICP and FCP in SI units.</p>
+      <div class="accordion" style="margin:16px 0;">
+        <details class="acc-item">
+          <summary class="acc-header">Show Worked Answer<span class="acc-arrow">▼</span></summary>
+          <div class="acc-body">
+            <p>KMW = 1.15 + [14 ÷ (0.0981 × 2,500)] = 1.15 + (14 ÷ 245.25) = 1.15 + 0.057 = 1.207, rounded <strong>up</strong> to <span class="highlight">1.21 SG</span>.</p>
+            <p>ICP = 14 + 28 = <span class="highlight">42 bar</span>.</p>
+            <p>FCP = 28 × (1.21 ÷ 1.15) = 28 × 1.0522 = <span class="highlight">29.5 bar</span>.</p>
+            <p><strong>Common mistake this catches:</strong> reusing the Field-unit rounding convention (nearest 0.1) on an SI value instead of a precision appropriate to SG, or mixing a Field-unit constant (0.052) into an SI calculation by accident — the constant and the rounding precision both have to match the unit system you're actually working in, start to finish.</p>
+          </div>
+        </details>
+      </div>
+
       <h2 id="check-your-own">Check Your Own Numbers</h2>
-      <p>Once these four feel straightforward, run your own numbers — a well you're actually working, or values from your company's training material — through the <a href="/calculators/kill-sheet">kill sheet calculator</a> to check your by-hand work instantly, including the full ten-step pressure schedule from ICP down to FCP. For the theory behind why these formulas work the way they do, see the <a href="/drilling/well-control">well control procedures hub</a>, and for the supervisor-level comparison of what happens after KMW is set — Driller's Method, Wait and Weight, and when each is actually used — see the <a href="/pillars/well-kill-methods">Well Kill Methods guide</a>. The broader <a href="/well-control-quiz">well control quiz</a> covers the conceptual side of all four IWCF/WellSharp tiers if you want multiple-choice practice alongside these worked problems.</p>
+      <p>Once these five feel straightforward, run your own numbers — a well you're actually working, or values from your company's training material — through the <a href="/calculators/kill-sheet">kill sheet calculator</a> to check your by-hand work instantly, including the full ten-step pressure schedule from ICP down to FCP. For the theory behind why these formulas work the way they do, see the <a href="/drilling/well-control">well control procedures hub</a>, and for the supervisor-level comparison of what happens after KMW is set — Driller's Method, Wait and Weight, and when each is actually used — see the <a href="/pillars/well-kill-methods">Well Kill Methods guide</a>. The broader <a href="/well-control-quiz">well control quiz</a> covers the conceptual side of all four IWCF/WellSharp tiers if you want multiple-choice practice alongside these worked problems.</p>
+
+      <h2 id="faq">Frequently Asked Questions</h2>
+      {faq.map((item) => (
+        <div style="margin-bottom:18px;">
+          <h3>{item.q}</h3>
+          <p set:html={item.a} />
+        </div>
+      ))}
     </div>
   </section>
 

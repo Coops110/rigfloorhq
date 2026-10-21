@@ -5,6 +5,25 @@ import Footer from '../../components/Footer.astro';
 import { articleSchema } from '../../lib/techarticle.js';
 import SourcesStandards from '../../components/SourcesStandards.astro';
 
+const faq = [
+  {
+    q: "Which shut-in method is considered the industry default?",
+    a: "Hard shut-in is the method most well control training and reference material treats as the default, since it traps pressure fastest and takes on the least influx volume before the stack is sealed. Soft shut-in is the deliberate exception, used specifically where a narrow margin between pore pressure and fracture pressure makes the hard method's sharper pressure spike the bigger risk. A well's bridging document specifies which one applies before anyone is actually shutting in — see <a href=\"#which-one-and-why\">Which One, and Why</a> above for what drives that call.",
+  },
+  {
+    q: "What changes for a shut-in on a floating or subsea rig?",
+    a: "The core choice between hard and soft shut-in, and the step sequence for each, stays the same. What's different is the hardware the choke and kill lines run through: a floating rig's BOP stack sits on the seabed wellhead rather than below the rig floor, so the choke and kill lines run the length of the riser before reaching the stack, and a riser or marine connector failure at any point can force an emergency disconnect that a fixed surface installation never has to plan around. See <a href=\"#floating-subsea\">Floating and Subsea Shut-In</a> below for the hang-off procedure that handles exactly this case.",
+  },
+  {
+    q: "How much bigger is the kick on a soft shut-in compared with a hard shut-in?",
+    a: "There's no single fixed multiple — it depends on how long the choke takes to close and the kick's actual flow rate, which vary well to well. What's true in every case is the direction: soft shut-in keeps the well flowing, in a controlled way, for a longer window than hard shut-in's near-instant closure, so the recorded pit gain and SICP from a soft shut-in are expected to run higher than a hard shut-in would have produced on the identical kick. That's the explicit trade the bridging document is weighing when it specifies one method over the other for a given well.",
+  },
+  {
+    q: "Why does the choke stay closed throughout a hard shut-in instead of opening at some point?",
+    a: "Because opening it at any point during the sequence is what defines a soft shut-in instead — the choke's state at closure is the one variable that distinguishes the two methods. Keeping it shut the whole time means casing pressure only starts reading on the choke panel once the HCR valve opens after the BOP is already sealed, producing the fastest possible seal and the sharpest pressure spike, which is the entire point of choosing hard shut-in for a well with a healthy margin to spare.",
+  },
+];
+
 const jsonLd = articleSchema({
   sourcePath: 'src/pages/drilling/shut-in-procedures.astro',
   path: '/drilling/shut-in-procedures',
@@ -47,7 +66,25 @@ const webPageLd = {
     <div class="two-col">
       <div class="prose">
         <h2 id="the-core-difference">The Core Difference</h2>
-        <p>Every shut-in on a well control event ends the same way: the BOP closed, the choke line HCR valve open, and pressure reading on the choke panel instead of climbing unmonitored in a sealed wellbore. What separates hard and soft shut-in is the order those two things happen in, and therefore how much the well is allowed to flow before it's fully sealed.</p>
+        <p>Hard and soft shut-in are the two sequences for closing a well in on a kick, and the entire difference between them is the order the choke and the BOP close in. Every shut-in on a well control event ends the same way: the BOP closed, the choke line HCR valve open, and pressure reading on the choke panel instead of climbing unmonitored in a sealed wellbore. What separates hard and soft shut-in is the order those two things happen in, and therefore how much the well is allowed to flow before it's fully sealed.</p>
+
+        <figure style="margin:24px 0;">
+          <img src="/images/drilling/shut-in-bop-schematic.svg" width="920" height="560" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="A labeled cross-section of a surface blowout preventer stack during a shut-in: drill pipe running through the bore, the annular preventer at the top of the stack, upper pipe rams below it, and blind/shear rams at the bottom. A choke line branches off above the rams, running through the HCR valve to the adjustable choke and on to the choke manifold, where casing pressure is read on a gauge. A kill line mirrors the choke line on the opposite side of the stack, running to the rig pumps." />
+          <figcaption style="color:var(--fog);font-size:12.5px;margin-top:8px;">The same stack, choke line and HCR valve both procedures below close through — only the order changes.</figcaption>
+        </figure>
+
+        <h2 id="comparison-table">Hard vs Soft, Side by Side</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Factor</th><th>Hard Shut-In</th><th>Soft Shut-In</th></tr></thead>
+            <tbody>
+              <tr><td>Speed to full seal</td><td>Fastest — one motion, choke never opens</td><td>Slower — choke line opens first, then the BOP, then the choke closes gradually</td></tr>
+              <tr><td>Influx (kick) size taken on</td><td>Smallest — well is sealed before much more can flow in</td><td>Larger — well keeps flowing, in a controlled way, during the slower sequence</td></tr>
+              <tr><td>Pressure control at closure</td><td>Sharpest spike — nothing bleeds off during the sequence</td><td>Smoother — casing pressure already reading before the stack fully seals, so the choke closes in steps</td></tr>
+              <tr><td>When it's used</td><td>Default where there's a healthy margin between pore and fracture pressure</td><td>Default where a narrow margin (a recent LOT/FIT close to planned mud weight) makes the pressure spike itself the bigger risk</td></tr>
+            </tbody>
+          </table>
+        </div>
 
         <h2 id="hard-shut-in">Hard Shut-In</h2>
         <p>The choke stays closed throughout. With the adjustable choke already shut, the crew closes the BOP — annular or ram, per the well's bridging document — then opens the choke line HCR valve so casing pressure reads on the choke panel; the choke itself never opens. The well goes from flowing to fully sealed in one motion, which traps pressure fastest and minimizes the volume of influx that gets into the wellbore before the stack takes over.</p>
@@ -77,6 +114,10 @@ const webPageLd = {
         <p>The well's bridging document sets the default, and it's chosen well before anyone's actually shutting in: a shoe test result close to the planned mud weight, a narrow kick tolerance, or a known weak zone pushes toward soft shut-in despite the extra flow time. A wide margin between pore and fracture pressure, or a well control manual that defaults to hard shut-in as standard practice, means there's little reason to trade speed for a softer spike you don't need to avoid. Neither method is inherently safer in the abstract — the right one is whichever the bridging document already worked out for this specific well, not a judgment call made in the moment a kick is confirmed.</p>
         <p>Both preventer types — the <a href="/equipment/bop#annular">annular</a> and the <a href="/equipment/bop#rams">ram preventers</a> — can close first in either method; which one the bridging document specifies for a given well depends on string position and connection status at the moment of the kick, not on hard vs soft shut-in as a rule. See the full <a href="/equipment/bop">BOP equipment page</a> for what each preventer type actually does and why a stack carries more than one.</p>
 
+        <h2 id="floating-subsea">Floating and Subsea Shut-In</h2>
+        <p>The hard-vs-soft choice and step sequence above apply the same way on a floating rig — what changes is the hardware the choke and kill lines run through. On a fixed surface installation, the BOP stack sits below the rig floor and the choke/kill lines run a short distance to the choke manifold. On a semi-submersible or drillship, the BOP stack sits on the seabed wellhead instead, and the choke and kill lines run the full length of the marine riser connecting the rig to the stack before reaching the choke manifold on the rig itself — see <a href="/equipment/bop">the full BOP equipment guide</a> for how a subsea stack's configuration differs from a surface one.</p>
+        <p>That added length of riser is also the added failure point a fixed installation never has to plan around. If the riser or the lower marine riser package's connector is compromised — from a drive-off, a drift-off, or severe weather forcing the rig off location — the crew executes a <strong>hang-off</strong>: the drill string is set in the hang-off ramp or a pipe ram with the annular or another ram closed above it, the riser is disconnected at the lower marine riser package, and the well is left shut in on the subsea stack itself while the rig moves off location. API RP 59 — the recommended practice covering well control operations, written as a companion to the BOP equipment standard already cited on this page — explicitly separates its guidance into surface BOP installations and subsea BOP installations with long choke and kill lines for exactly this reason: the operating principle doesn't change, but the equipment and emergency-disconnect procedures genuinely do.</p>
+
         <h2 id="what-happens-right-after">What Happens Right After Either One</h2>
         <p>Both procedures end in the same place: SIDPP, SICP and pit gain recorded, toolpusher and company man notified, and a decision made on which kill method to run. See <a href="/drilling/well-control">kick recognition and the full shut-in procedure</a> for what comes immediately before a shut-in, and the <a href="/pillars/well-kill-methods">Driller's Method vs Wait and Weight comparison</a> for what happens once the well is sealed and it's time to actually kill it.</p>
 
@@ -89,10 +130,13 @@ const webPageLd = {
         <div class="toc">
           <div class="toc-title">On This Page</div>
           <a href="#the-core-difference">The Core Difference</a>
+          <a href="#comparison-table">Hard vs Soft, Side by Side</a>
           <a href="#hard-shut-in">Hard Shut-In</a>
           <a href="#soft-shut-in">Soft Shut-In</a>
           <a href="#which-one-and-why">Which One, and Why</a>
+          <a href="#floating-subsea">Floating and Subsea Shut-In</a>
           <a href="#what-happens-right-after">What Happens Right After</a>
+          <a href="#faq">FAQ</a>
         </div>
 
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
@@ -108,5 +152,17 @@ const webPageLd = {
     </div>
   </section>
 
-  <SourcesStandards lang="en" ids={['api53', 'cfr250g']} />
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <h2 id="faq">Frequently Asked Questions</h2>
+      {faq.map((item) => (
+        <div style="margin-bottom:18px;">
+          <h3>{item.q}</h3>
+          <p set:html={item.a} />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <SourcesStandards lang="en" ids={['api53', 'api59', 'cfr250g']} />
 </BaseLayout>

@@ -3,8 +3,26 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import { articleSchema } from '../../../lib/techarticle.js';
-import { reviewedByJabin } from '../../../lib/person.js';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
+
+const faq = [
+  {
+    q: "¿Cuál es una presión de goteo típica, y varía mucho?",
+    a: "No hay un número típico único — la presión de goteo depende completamente de la formación en esa zapata específica, el peso de lodo en el pozo durante la prueba, y la profundidad de la zapata, así que una zapata somera de formación débil y una zapata profunda de roca competente pueden mostrar resultados muy distintos incluso usando el mismo procedimiento de prueba. El ejemplo resuelto en la <a href=\"/es/calculators/leak-off-test\">calculadora de prueba de goteo</a> (415 psi a 6,108 ft TVD con lodo de 10.5 ppg, dando 11.81 ppg EMW) es representativo del tipo de número que produce una prueba, no un referente a esperar en una zapata distinta.",
+  },
+  {
+    q: "¿Qué pasa si la formación gotea antes de alcanzar el peso de lodo planeado?",
+    a: "La zapata no puede soportar el programa planeado tal como está escrito, y el plan del pozo necesita cambiar antes de continuar perforando más allá de ese punto. Las opciones típicamente incluyen correr un peso de lodo más ligero que el planeado para la siguiente sección (aceptando un margen más estrecho contra la presión de poro), asentar una sarta de revestimiento adicional antes de lo planeado para aislar la zona débil, o en algunos casos un trabajo de cementación remedial para fortalecer la formación cerca de la zapata. Cuál opción aplica es una decisión de ingeniería específica de ese pozo, no algo que una guía general pueda resolver — pero la prueba hizo exactamente su trabajo al detectar el problema en superficie en lugar de en el fondo del pozo durante la perforación.",
+  },
+  {
+    q: "¿Qué es un XLOT, y cuándo se corre en lugar de un LOT estándar?",
+    a: "Una prueba de goteo extendida (XLOT) continúa a través de múltiples ciclos de bombeo más allá del primer punto de goteo, en lugar de detenerse en la primera desviación de la curva presión-volumen. Repetir el ciclo permite que la prueba estime el esfuerzo horizontal mínimo in-situ de la formación, no solo la presión a la que empieza a tomar fluido — un dato de geomecánica usado para modelado de estabilidad del pozo y de fractura, más allá del simple techo operativo que da un LOT estándar. Se corre selectivamente, en pozos donde ese dato geomecánico extra justifica el tiempo adicional de taladro, no como reemplazo rutinario de un LOT estándar.",
+  },
+  {
+    q: "¿Se repite una prueba de goteo más adelante en la misma sección del pozo?",
+    a: "No — un resultado de LOT o FIT es válido para la zapata debajo de la cual se corrió, durante toda la vida de esa sección del pozo, y no se vuelve a correr a mitad de la perforación de esa sección. Solo se repite cuando se asienta una nueva sarta de revestimiento y se perfora una nueva zapata, lo cual es una formación nueva y por lo tanto una prueba nueva, no una verificación de la misma zapata. Ver la nota en la sección de procedimiento de esta página: llevar un resultado viejo más allá de un nuevo punto de revestimiento es un peligro real, no un atajo razonable.",
+  },
+];
 
 const jsonLd = articleSchema({
   sourcePath: 'src/pages/es/drilling/leak-off-test.astro',
@@ -24,7 +42,6 @@ const webPageLd = {
   "inLanguage": "es",
   "isPartOf": { "@id": "https://rigfloorhq.com/es#website" },
   "mainEntity": { "@id": "https://rigfloorhq.com/es/drilling/leak-off-test#article" },
-  "reviewedBy": reviewedByJabin(),
 };
 ---
 <BaseLayout
@@ -49,7 +66,15 @@ const webPageLd = {
     <div class="two-col">
       <div class="prose">
         <h2 id="por-que-se-corre">Por Qué Se Corre</h2>
-        <p>Una vez que una sarta de revestimiento está cementada y la zapata está perforada, la formación abierta justo debajo es el punto más débil de todo el pozo por el resto de esa sección — toda la sarta arriba es acero y cemento, pero la roca debajo de la zapata es exactamente lo que era antes de que alguien perforara a través de ella. La <a href="/es/pillars/hydrostatic-pressure">ventana de peso de lodo</a> para la siguiente sección está limitada arriba por lo que esa formación realmente puede soportar antes de romperse, y una prueba de goteo es cómo se mide ese techo directamente en lugar de asumirlo a partir de un gradiente de un pozo vecino.</p>
+        <p>Una prueba de goteo (LOT) bombea una zapata de revestimiento recién perforada hasta el punto en que la formación debajo empieza a tomar fluido, para medir directamente la presión máxima que esa zapata puede soportar durante el resto de esa sección del pozo. Una vez que una sarta de revestimiento está cementada y la zapata está perforada, la formación abierta justo debajo es el punto más débil de todo el pozo por el resto de esa sección — toda la sarta arriba es acero y cemento, pero la roca debajo de la zapata es exactamente lo que era antes de que alguien perforara a través de ella. La <a href="/es/pillars/hydrostatic-pressure">ventana de peso de lodo</a> para la siguiente sección está limitada arriba por lo que esa formación realmente puede soportar antes de romperse, y una prueba de goteo es cómo se mide ese techo directamente en lugar de asumirlo a partir de un gradiente de un pozo vecino.</p>
+
+        <h2 id="antes-de-la-prueba">Antes de la Prueba: Lista de Verificación</h2>
+        <ul>
+          <li><strong>Manómetros verificados y calibrados.</strong> Todo el resultado de la prueba depende de leer cambios pequeños de presión con precisión — un manómetro descalibrado produce un punto de goteo equivocado por el mismo margen que el manómetro esté mal, sin forma de detectar el error solo a partir de los datos.</li>
+          <li><strong>Tasa de bombeo fijada en un rango controlado de 0.25-0.5 bbl/min</strong> (o los incrementos más lentos y medidos que usa el procedimiento abajo), no la tasa de circulación normal del taladro. Un LOT nunca se corre a la velocidad de bombeo de perforación.</li>
+          <li><strong>Una estimación del gradiente de fractura de un pozo vecino en mano</strong>, cuando esté disponible, para que la cuadrilla tenga una expectativa aproximada de dónde debería caer el punto de goteo y pueda reconocer un resultado muy fuera de línea antes de asumir que el número nuevo simplemente es correcto.</li>
+          <li><strong>Pozo cerrado y líneas de superficie armadas para volúmenes pequeños y medidos</strong> — una unidad de cementación o una bomba del taladro capaz de bombeo preciso a baja tasa, no las bombas de lodo usadas para circulación normal.</li>
+        </ul>
 
         <h2 id="procedimiento-lot">Procedimiento de Prueba de Goteo</h2>
         <ol>
@@ -61,6 +86,17 @@ const webPageLd = {
           <li><strong>Desfoga y registra el volumen devuelto</strong> para confirmar que la formación no tomó una cantidad inesperada de fluido, luego reanuda las operaciones de perforación.</li>
         </ol>
         <p>Toda la prueba típicamente toma bastante menos de una hora, pero los incrementos pequeños y controlados importan — bombear demasiado rápido difumina exactamente dónde ocurre la desviación real en la curva, y todo el valor de la prueba está en identificar ese punto con precisión.</p>
+
+        <figure style="margin:24px 0;">
+          <img src="/images/drilling/lot-pressure-volume-plot.svg" width="920" height="480" loading="lazy" decoding="async" style="max-width:100%;height:auto;" alt="Un gráfico esquemático de presión de superficie contra volumen acumulado bombeado durante una prueba de goteo. Los primeros incrementos trazan una línea recta mientras el pozo y la formación se comprimen elásticamente. La línea se desvía de la recta en el punto de goteo, donde la formación empieza a tomar fluido en lugar de solo comprimirse — esa desviación se registra como la presión de goteo y el bombeo se detiene ahí. Una continuación punteada muestra qué pasaría si el bombeo continuara más allá de ese punto: una fractura descontrolada, que una prueba real nunca llega a alcanzar. Un marcador separado muestra dónde se detiene en cambio una prueba de integridad de formación, en una presión objetivo menor, bien antes del punto real de goteo." />
+          <figcaption style="color:var(--fog);font-size:12.5px;margin-top:8px;">La forma que sigue todo LOT real: una sección elástica recta, una desviación en el goteo, y una prueba que se detiene justo ahí. Un FIT se detiene incluso antes, en una presión objetivo en lugar del límite real.</figcaption>
+        </figure>
+
+        <h2 id="ejemplo-resuelto">Ejemplo Resuelto</h2>
+        <p>Un LOT registró <strong>415 psi</strong> en el manómetro de standpipe con lodo de <strong>10.5 ppg</strong> en el pozo, zapata a <strong>6,108 ft TVD</strong>. Convirtiendo a peso de lodo equivalente: EMW = 10.5 + [415 ÷ (0.052 × 6,108)] = 10.5 + 1.31 = <span class="highlight">11.81 ppg</span>. Ese es el techo para esta zapata — el peso de lodo más pesado que la formación puede soportar antes de empezar a tomar fluido, expresado en las mismas unidades que el programa de lodo. El mismo resultado como gradiente de fractura: FG = [415 + (10.5 × 0.052 × 6,108)] ÷ 6,108 = <span class="highlight">0.614 psi/ft</span>. Corre tu propia presión registrada de LOT o FIT en la <a href="/es/calculators/leak-off-test">calculadora de prueba de goteo</a> para la conversión completa de EMW y gradiente de fractura, incluyendo la dirección inversa del objetivo FIT.</p>
+
+        <h2 id="xlot">XLOT: La Prueba de Goteo Extendida</h2>
+        <p>Una prueba de goteo extendida (XLOT) continúa a través de múltiples ciclos de bombeo más allá del punto donde se detiene un LOT estándar, en lugar de registrar un punto de goteo y desfogar inmediatamente. Repetir el ciclo de bombeo y desfogue varias veces permite que la prueba estime el esfuerzo horizontal mínimo in-situ de la formación — un dato de geomecánica usado para modelado de estabilidad del pozo y diseño de fractura, más allá del simple techo de presión que da un LOT o FIT estándar para la matemática diaria de control de pozos. Se corre selectivamente, en pozos donde ese dato geomecánico extra justifica el tiempo adicional de taladro y el riesgo de los ciclos repetidos, no como sustituto rutinario de la prueba estándar arriba.</p>
 
         <h2 id="procedimiento-fit">Procedimiento de Prueba de Integridad de Formación (FIT)</h2>
         <p>Un FIT corre la misma configuración idéntica — cerrar el pozo, bombear en incrementos pequeños, observar la presión — pero se detiene en una presión objetivo predeterminada en lugar de continuar hasta un punto real de goteo. Ese objetivo se elige para probar que la zapata puede soportar el peso de lodo que el programa de perforación de la siguiente sección realmente planea usar, más un margen de seguridad, sin encontrar nunca cuánto más podría realmente soportar la formación. Un FIT es más rápido y de menor riesgo que un LOT completo, pero responde una pregunta más estrecha: "es este peso de lodo planeado específico seguro", no "cuál es el límite real de esta zapata". Usa la caja de FIT de la <a href="/es/calculators/leak-off-test">calculadora de prueba de goteo</a> para calcular la presión objetivo a la que bombear para un peso de lodo planeado dado antes de correr uno.</p>
@@ -80,10 +116,14 @@ const webPageLd = {
         <div class="toc">
           <div class="toc-title">En Esta Página</div>
           <a href="#por-que-se-corre">Por Qué Se Corre</a>
+          <a href="#antes-de-la-prueba">Lista de Verificación</a>
           <a href="#procedimiento-lot">Procedimiento de LOT</a>
+          <a href="#ejemplo-resuelto">Ejemplo Resuelto</a>
+          <a href="#xlot">XLOT</a>
           <a href="#procedimiento-fit">Procedimiento de FIT</a>
           <a href="#cual-se-corre">Cuál Prueba, y Cuándo</a>
           <a href="#leyendo-el-resultado">Leyendo el Resultado</a>
+          <a href="#faq">Preguntas Frecuentes</a>
         </div>
 
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
@@ -96,6 +136,18 @@ const webPageLd = {
           <a href="/es/drilling/well-control" class="card-link">→ Centro de Procedimientos de Control de Pozos</a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <h2 id="faq">Preguntas Frecuentes</h2>
+      {faq.map((item) => (
+        <div style="margin-bottom:18px;">
+          <h3>{item.q}</h3>
+          <p set:html={item.a} />
+        </div>
+      ))}
     </div>
   </section>
 

@@ -5,6 +5,25 @@ import Footer from '../../components/Footer.astro';
 import { articleSchema } from '../../lib/techarticle.js';
 import SourcesStandards from '../../components/SourcesStandards.astro';
 
+const faq = [
+  {
+    q: "Will a US contractor accept IWCF if their training program is built around WellSharp, or vice versa?",
+    a: "Almost always, yes. Most operator and contractor well control requirements are written as \"IWCF Level 3 or IADC WellSharp Driller\" (or the equivalent pairing at whichever tier), precisely because the two are treated as interchangeable. The exception is logistical, not a recognition problem: if your current employer runs its in-house or contracted training exclusively through one body, you'll sit that body's course on their schedule regardless of which one you already hold, since that's about where training is delivered, not which certificate is valid.",
+  },
+  {
+    q: "What is the WellSharp Engineer tier, and does IWCF have an equivalent?",
+    a: "WellSharp Engineer is a specialist tier aimed at drilling and well engineers who design well programs and kill procedures rather than execute them on the console — distinct from Supervisor, which is aimed at toolpushers, OIMs and company men making real-time operational calls. IWCF doesn't publish a numbered level that maps directly onto Engineer; IWCF's ladder (Levels 1-4) is built around rig-floor and supervisory operating roles, not a separate engineering-design track, which is the one place the two schemes genuinely diverge rather than just using different names for the same thing.",
+  },
+  {
+    q: "How much does IWCF or WellSharp training cost, and who pays for it?",
+    a: "Cost varies by training provider, country and whether the course runs in person or partly online, and neither body publishes a single official price — any specific figure quoted online is one provider's rate, not an industry standard. In practice, most contractors fund the certification their crews need for their current role, the same way they fund BOSIET and other required tickets; see the <a href=\"/careers/certifications\">certifications guide</a>'s section on what to pay for yourself versus what to wait for an employer to cover.",
+  },
+  {
+    q: "Can one person hold both IWCF and IADC WellSharp certifications at the same time?",
+    a: "Yes, and it's common for hands who've moved between contractors that standardize on different bodies. Holding both doesn't grant any extra privilege over holding just one at the matching tier — but it does mean never having to turn down a role, or pay for an unplanned course, solely because a new employer runs training through the other scheme.",
+  },
+];
+
 const jsonLd = articleSchema({
   sourcePath: 'src/pages/careers/iwcf-vs-iadc-wellsharp.astro',
   path: '/careers/iwcf-vs-iadc-wellsharp',
@@ -43,7 +62,7 @@ const webPageLd = {
     <p class="page-hero-sub">Two certification bodies, the same tiered ladder, and almost every operator will accept either one. The real question isn't which is "better" — it's which one your contractor already runs.</p>
     <div class="page-meta">
       <span class="page-meta-item">Bodies: <strong>IWCF</strong> and <strong>IADC WellSharp</strong></span>
-      <span class="page-meta-item">Structure: <strong>4 tiers, both schemes</strong></span>
+      <span class="page-meta-item">Structure: <strong>4 tiers each, not a perfect 1:1 map</strong></span>
       <span class="page-meta-item">Renewal: <strong>2-5 years by tier</strong></span>
     </div>
   </div>
@@ -52,30 +71,37 @@ const webPageLd = {
     <div class="two-col">
       <div class="prose">
         <h2 id="same-job-different-name">Same Job, Different Name</h2>
-        <p>The International Well Control Forum (IWCF) and IADC WellSharp are the two globally recognized well control certification bodies, and nearly every operator requires one of them before letting someone onto the console or into a supervisory well control role. Neither one is specific to a region or an operator type in practice — both show up on rigs in the Gulf of Mexico, the North Sea, the Middle East and everywhere else drilling happens. The honest answer to "which one should I get" is almost always "whichever one your contractor runs training through," because the two are built to be functionally interchangeable at every tier.</p>
-        <p>IWCF's level structure aligns with IOGP recommendations and is named by number — Level 2, Level 3, Level 4. IADC WellSharp uses role names for the same tiers instead of numbers. The two map directly onto each other, and most of the industry writes them side by side for exactly that reason:</p>
+        <p>IWCF and IADC WellSharp are the two globally recognized well control certification bodies, and the fastest way to understand either one is this: they certify the same operating competence — kick recognition, shut-in, and well kill decision-making — at matching levels of rig-floor responsibility, under two different naming schemes. The International Well Control Forum (IWCF) and IADC WellSharp are both accepted industry-wide, and nearly every operator requires one of them before letting someone onto the console or into a supervisory well control role. Neither one is specific to a region or an operator type in practice — both show up on rigs in the Gulf of Mexico, the North Sea, the Middle East and everywhere else drilling happens. The honest answer to "which one should I get" is almost always "whichever one your contractor runs training through," because the two are built to be functionally interchangeable at every tier that overlaps.</p>
+        <p>IWCF's level structure aligns with IOGP Report 476 recommendations and is named by number — Level 1 through Level 4. IADC WellSharp uses role names instead of numbers — Introductory, Driller, Supervisor, Engineer. Three of the four tiers on each side map onto each other directly; the fourth tier on each side is where the two schemes genuinely diverge rather than just using different labels, covered below the table.</p>
 
         <h2 id="the-tier-map">The Tier Map</h2>
         <div class="table-wrap">
           <table>
             <thead>
-              <tr><th>IWCF</th><th>IADC WellSharp</th><th>Who needs it</th></tr>
+              <tr><th>IWCF</th><th>IADC WellSharp</th><th>Who needs it</th><th>Validity</th></tr>
             </thead>
             <tbody>
-              <tr><td>Level 2</td><td>WellSharp (introductory/rig floor tier)</td><td><a href="/careers/derrickhand">Derrickhand</a> and assistant driller, first real well control certification most hands complete</td></tr>
-              <tr><td>Level 3</td><td>WellSharp Driller</td><td><a href="/careers/driller">Driller</a> — required to run the console independently</td></tr>
-              <tr><td>Level 4</td><td>WellSharp Supervisor</td><td>Toolpusher, OIM and company man — supervisory well control decision-making, not just execution</td></tr>
+              <tr><td>Level 1</td><td>No direct equivalent</td><td>New entrants, students — a free well control awareness course, not a rig-floor operating certification</td><td>No renewal (awareness only)</td></tr>
+              <tr><td>Level 2</td><td>Introductory</td><td><a href="/careers/derrickhand">Derrickhand</a> and assistant driller, first real well control certification most hands complete</td><td>5 years</td></tr>
+              <tr><td>Level 3</td><td>Driller</td><td><a href="/careers/driller">Driller</a> — required to run the console independently</td><td>2 years</td></tr>
+              <tr><td>Level 4</td><td>Supervisor</td><td>Toolpusher, OIM and company man — supervisory well control decision-making, not just execution</td><td>2 years</td></tr>
+              <tr><td>No direct equivalent</td><td>Engineer</td><td>Drilling and well engineers who design kill procedures and well programs, rather than execute them live</td><td>2 years</td></tr>
             </tbody>
           </table>
         </div>
-        <p>Level 2 / entry-tier WellSharp doesn't carry a single fixed title the way Level 3 and Level 4 do — contractors vary in exactly what they call it and when they require it — but the content is the same across both bodies at that tier: kick recognition and the basics of a shut-in, not independent kill-sheet decision-making. See the <a href="/careers/certifications">full certifications guide</a> for how all four tiers fit into the broader credential picture alongside BOSIET and offshore medicals.</p>
+        <p>That's the honest reconciliation of "how many tiers" each scheme actually has: four each, but not the same four. IWCF's extra tier at the bottom is <strong>Level 1 Well Control Awareness</strong> — a free, roughly two-day online course IWCF introduced following IOGP's post-Macondo Report 476 recommendations, aimed at new entrants and students rather than certifying anyone to operate. It has no WellSharp equivalent because it isn't a rig-floor operating credential at all. WellSharp's extra tier at the top is <strong>Engineer</strong>, aimed at the design side of well control rather than the operating side — IWCF doesn't publish a numbered level for that function. Levels/tiers 2 through 4 are where the real 1:1 map that most of the industry writes side by side actually holds.</p>
+        <p>Level 2 / Introductory doesn't carry a single fixed job title the way Level 3/Driller and Level 4/Supervisor do — contractors vary in exactly what they call it and when they require it — but the content is the same across both bodies at that tier: kick recognition and the basics of a shut-in, not independent kill-sheet decision-making. See the <a href="/careers/certifications">full certifications guide</a> for how these tiers fit into the broader credential picture alongside BOSIET and offshore medicals.</p>
+
+        <h2 id="course-length">Course Length: Hours, Not Just Tiers</h2>
+        <p>Course length is one of the clearer practical differences, even where the tiers line up. IADC publishes WellSharp course lengths directly: the Introductory course runs roughly 16 hours plus a separate IADC-administered assessment, while Driller, Supervisor and Engineer courses each run in the 24-29 hour range depending on whether the course covers Surface Stack, Subsea Stack, or both combined (an optional Workover supplement adds further hours on top). IWCF doesn't publish a single universal hours figure the way IADC does — course length varies more by training provider — but IWCF Level 2 commonly runs 4-5 days including assessment, broadly comparable ballpark to WellSharp's combined-track courses once provider-specific scheduling is accounted for. Confirm the exact hours and Surface/Subsea scope directly with whichever provider your contractor uses, since both bodies accredit multiple training centers rather than running a single standardized classroom.</p>
+        <p>Surface vs Subsea matters for Driller, Supervisor and Engineer tiers in both schemes: a Surface Stack course covers a conventional land or platform BOP configuration, Subsea Stack adds the choke-and-kill-line and riser considerations specific to a floating rig's seafloor stack (see the <a href="/careers/offshore-vs-land-rig-jobs">offshore vs land comparison</a> for why that distinction exists), and a combined course covers both in one sitting. Confirm which track a specific job requires before booking — a Surface-only certification doesn't cover someone moving to a floating offshore rig.</p>
 
         <h2 id="what-each-covers">What Each Course Actually Covers</h2>
         <p>Both schemes teach the same core material because they're certifying the same job: kick recognition, shut-in procedure — including the <a href="/drilling/shut-in-procedures">hard vs soft shut-in</a> decision — and well kill methods once a kick is confirmed. The <a href="/pillars/well-kill-methods">Driller's Method, Wait and Weight, volumetric and bullheading methods</a> are standard material in both IWCF and IADC WellSharp coursework at Level 3 / Driller tier and above. Supervisor-level tiers in both schemes add the management side: approving kill procedures, coordinating multiple simultaneous operations, and the judgment calls a driller executes but doesn't have the authority to originate.</p>
 
         <h2 id="does-it-matter-which-one">Does It Actually Matter Which One You Hold</h2>
         <p>For almost every operator, no. Both bodies are recognized industry-wide, and a driller holding IWCF Level 3 is not disadvantaged against one holding WellSharp Driller when applying to a contractor that happens to standardize on the other scheme — the certification proves the same competency either way. The practical factor that actually matters is which one your current or target employer already runs training through, since that determines where you'll sit the course and on whose renewal cycle. If you're early in your career and your contractor hasn't specified, it's worth asking directly rather than guessing — switching bodies later isn't a problem, but paying for a course your employer won't reimburse because they standardize on the other one is an avoidable cost.</p>
-        <p>Renewal cycles follow the tier, not the body: the entry-level tier runs on a longer cycle (around 5 years), while Driller and Supervisor-level certification is renewed by exam every 2 years in both schemes. See the <a href="/well-control-quiz">well control quiz</a>'s tier breakdown for the full renewal table. Neither body waives the renewal requirement based on experience or seniority.</p>
+        <p>Renewal cycles follow the tier, not the body, and both bodies publish the same figures: IWCF's own FAQ confirms Level 2 runs on a 5-year validity, while Level 3 and Level 4 are renewed by exam every 2 years — IADC's matching WellSharp tiers run on the same cycle. See the <a href="/well-control-quiz">well control quiz</a>'s tier breakdown for the full renewal table. Neither body waives the renewal requirement based on experience or seniority.</p>
 
         <div class="note-box">
           <strong>Pick the one your rig uses, not the one with the better name recognition.</strong> There's no independent ranking where one body is considered more rigorous or more respected than the other at a given tier — they're built to be equivalent, and operators write requirements as "IWCF Level 3 or IADC WellSharp Driller" specifically because they don't care which one a candidate holds.
@@ -87,8 +113,10 @@ const webPageLd = {
           <div class="toc-title">On This Page</div>
           <a href="#same-job-different-name">Same Job, Different Name</a>
           <a href="#the-tier-map">The Tier Map</a>
+          <a href="#course-length">Course Length: Hours</a>
           <a href="#what-each-covers">What Each Course Covers</a>
           <a href="#does-it-matter-which-one">Does It Matter Which One</a>
+          <a href="#faq">FAQ</a>
         </div>
 
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
@@ -100,6 +128,18 @@ const webPageLd = {
           <a href="/drilling/well-control" class="card-link">→ Well Control Procedures Hub</a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="prose" style="max-width:820px;">
+      <h2 id="faq">Frequently Asked Questions</h2>
+      {faq.map((item) => (
+        <div style="margin-bottom:18px;">
+          <h3>{item.q}</h3>
+          <p set:html={item.a} />
+        </div>
+      ))}
     </div>
   </section>
 
