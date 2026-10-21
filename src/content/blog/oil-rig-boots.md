@@ -5,6 +5,7 @@ publishDate: "2026-10-02"
 author: "RigFloorHQ Team"
 category: "Safety"
 tags: ["PPE", "safety boots", "footwear", "ASTM F2413", "rig floor"]
+sources: ["astmF2413", "isoSafetyFootwear"]
 faq:
   - q: "What boots are required on an oil rig?"
     a: "At minimum, a safety-toe boot certified to ASTM F2413 in North America or EN ISO 20345 (S3 is the usual rig requirement) in the UK, Europe, the Middle East and much of Africa. Many operators also require oil-resistant, slip-resistant outsoles, and some specify metatarsal guards or electrical hazard soles for particular jobs. The operator's or drilling contractor's PPE policy is the final word."

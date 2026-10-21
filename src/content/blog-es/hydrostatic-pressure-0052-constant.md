@@ -5,6 +5,7 @@ publishDate: "2026-10-01"
 author: "RigFloorHQ Team"
 category: "Control de Pozos"
 tags: ["presión hidrostática", "control de pozos", "peso de lodo", "fórmulas"]
+sources: ["iwcf", "iadcWellsharp"]
 faq:
   - q: "¿La constante 0.052 cambia para lodo base aceite, lodo sintético, o salmuera?"
     a: "No. 0.052 es un factor de conversión de unidades — solo convierte libras por galón a psi por pie. Es idéntico para lodo base agua, lodo base aceite, sistemas sintéticos, y salmuera. Lo que cambia entre esos fluidos es el peso de lodo en sí (ppg), no la constante que va delante de él."

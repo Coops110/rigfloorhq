@@ -5,6 +5,7 @@ publishDate: "2026-07-23"
 author: "RigFloorHQ Team"
 category: "Safety"
 tags: ["permit to work", "PTW", "hot work", "confined space", "LOTO", "SIMOPS"]
+sources: ["hseHsg250"]
 ---
 
 UK Health and Safety Executive research into chemical industry accidents found that around a third were maintenance-related — and the largest single cause was a failure or deficiency in permit-to-work systems. That finding is the foundation of the HSE's permit-to-work guidance (HSG250), and it should tell any rig supervisor why the PTW system is not paperwork for paperwork's sake. It is the last administrative control standing between a routine maintenance task and a fatality.

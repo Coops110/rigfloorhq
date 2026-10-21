@@ -370,4 +370,40 @@ export const CITATIONS = {
       note: "Clasificación de áreas para instalaciones eléctricas en instalaciones petroleras (Clase I, División 1 y 2) — la clasificación que decide dónde puede ubicarse el equipo eléctrico del taladro.",
     },
   },
+  astmF2413: {
+    en: {
+      href: "https://www.astm.org/f2413-18.html",
+      label: "ASTM F2413",
+      note: "Standard Specification for Performance Requirements for Protective (Safety) Toe Cap Footwear — the North American impact/compression test safety boots are rated against.",
+    },
+    es: {
+      href: "https://www.astm.org/f2413-18.html",
+      label: "ASTM F2413",
+      note: "Especificación estándar de requisitos de desempeño para calzado de protección con puntera de seguridad — la prueba norteamericana de impacto/compresión contra la que se clasifican las botas de seguridad.",
+    },
+  },
+  isoSafetyFootwear: {
+    en: {
+      href: "https://www.iso.org/standard/73222.html",
+      label: "ISO 20345",
+      note: "Personal protective equipment — Safety footwear — the EN/ISO standard (S3 is the usual rig requirement) used across the UK, Europe, the Middle East and much of Africa in place of ASTM F2413.",
+    },
+    es: {
+      href: "https://www.iso.org/standard/73222.html",
+      label: "ISO 20345",
+      note: "Equipo de protección personal — Calzado de seguridad — la norma EN/ISO (S3 es el requisito habitual en taladros) usada en el Reino Unido, Europa, Medio Oriente y gran parte de África en lugar de ASTM F2413.",
+    },
+  },
+  hseHsg250: {
+    en: {
+      href: "https://www.hse.gov.uk/pubns/books/hsg250.htm",
+      label: "HSE HSG250",
+      note: "Guidance on Permit-to-Work Systems: A Guide for the Petroleum, Chemical and Allied Industries — the UK Health and Safety Executive's own guidance behind the permit-to-work system, including the research finding that permit failures were the largest single cause of maintenance-related incidents.",
+    },
+    es: {
+      href: "https://www.hse.gov.uk/pubns/books/hsg250.htm",
+      label: "HSE HSG250",
+      note: "Guía sobre sistemas de permiso de trabajo: una guía para las industrias del petróleo, química y afines — la guía propia del Health and Safety Executive del Reino Unido detrás del sistema de permiso de trabajo, incluido el hallazgo de que las fallas del sistema de permisos eran la causa individual más frecuente de incidentes relacionados con mantenimiento.",
+    },
+  },
 };

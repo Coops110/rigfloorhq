@@ -5,6 +5,7 @@ publishDate: "2026-10-01"
 author: "RigFloorHQ Team"
 category: "Well Control"
 tags: ["hydrostatic pressure", "well control", "mud weight", "formulas"]
+sources: ["iwcf", "iadcWellsharp"]
 faq:
   - q: "Does the 0.052 constant change for oil-based mud, synthetic mud, or brine?"
     a: "No. 0.052 is a unit conversion factor — it only ever converts pounds per gallon into psi per foot. It's identical for water-based mud, oil-based mud, synthetic mud, and brine. What changes between those fluids is the mud weight itself (ppg), not the constant standing in front of it."

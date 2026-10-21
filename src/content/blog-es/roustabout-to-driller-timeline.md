@@ -5,6 +5,7 @@ publishDate: "2026-07-09"
 author: "RigFloorHQ Team"
 category: "Carreras"
 tags: ["carreras", "perforador", "roustabout", "progresión profesional"]
+sources: ["iwcf", "iadcWellsharp"]
 ---
 
 "¿Cuánto tiempo hasta que sea perforador?" es una de las preguntas más comunes de cualquiera que está comenzando en un piso de perforación, y la respuesta honesta es: depende más de ti que de la industria. Aun así, hay un rango realista, y vale la pena entender tanto el cronograma típico como qué es lo que realmente te hace avanzar más rápido o más lento.

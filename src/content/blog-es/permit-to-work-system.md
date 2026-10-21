@@ -5,6 +5,7 @@ publishDate: "2026-07-23"
 author: "RigFloorHQ Team"
 category: "Seguridad"
 tags: ["permiso de trabajo", "PTW", "trabajo en caliente", "espacio confinado", "LOTO", "SIMOPS"]
+sources: ["hseHsg250"]
 ---
 
 Investigaciones del Health and Safety Executive (HSE) del Reino Unido sobre accidentes en la industria química encontraron que alrededor de un tercio estaban relacionados con mantenimiento — y la causa individual más grande fue una falla o deficiencia en los sistemas de permisos de trabajo. Ese hallazgo es la base de la guía de permisos de trabajo del HSE (HSG250), y debería decirle a cualquier supervisor de taladro por qué el sistema PTW no es papeleo por papeleo. Es el último control administrativo entre una tarea rutinaria de mantenimiento y una fatalidad.

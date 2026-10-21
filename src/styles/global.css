@@ -419,8 +419,12 @@ a.card { display: block; text-decoration: none; color: inherit; cursor: pointer;
   text-transform: uppercase; color: var(--white); letter-spacing: 0.03em; margin-bottom: 8px;
 }
 .card p { font-size: 13px; color: var(--fog); line-height: 1.65; }
+/* inline-flex + min-height gives every card-link (including the stacked
+   "Related Reading" lists separated by <br><br>) a real 44px-tall tap target
+   without inflating the visible 12px text — same technique as .breadcrumb a. */
 .card .card-link {
-  display: inline-block; margin-top: 12px; font-family: var(--mono); font-size: 12px;
+  display: inline-flex; align-items: center; min-height: 44px; padding: 4px 0;
+  margin-top: 12px; font-family: var(--mono); font-size: 12px;
   color: var(--amber); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase;
 }
 .card:hover .card-link { text-decoration: underline; }
@@ -573,11 +577,13 @@ td:first-child { font-family: var(--cond); font-weight: 700; font-size: 14px; co
 .number-stepper-btn:active { background: var(--rust); color: var(--white); }
 @media (max-width: 639px) {
   .number-stepper-btns { display: flex; }
-  /* Taller row so each stacked stepper button (flex: 1, two per column)
-     clears the 24px minimum target size — at the input's unmodified
-     padding each half landed at ~19-20px. */
-  .number-stepper input[type="number"] { padding: 15px 14px; }
-  .number-stepper-btn { min-height: 24px; }
+  /* Each stacked button gets the full 44px target size, not just the 24px
+     minimum — which means the input's own height has to grow to match
+     (2 x 44px), or the two-button column would tower over a short input.
+     line-height is pinned explicitly so the math (33+33+20+2border=88) is
+     exact rather than relying on the font's default line-height. */
+  .number-stepper input[type="number"] { padding: 33px 14px; line-height: 20px; }
+  .number-stepper-btn { min-height: 44px; }
 }
 .newsletter-input {
   background: var(--steel); border: 1px solid var(--iron); color: var(--white); font-family: var(--mono);

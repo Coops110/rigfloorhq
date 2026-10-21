@@ -5,6 +5,7 @@ publishDate: "2026-07-09"
 author: "RigFloorHQ Team"
 category: "Careers"
 tags: ["careers", "driller", "roustabout", "career progression"]
+sources: ["iwcf", "iadcWellsharp"]
 ---
 
 "How long until I'm a driller?" is one of the most common questions from anyone starting out on a rig floor, and the honest answer is: it depends more on you than on the industry. Still, there's a realistic range, and it's worth understanding both the typical timeline and what actually moves you through it faster or slower.

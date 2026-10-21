@@ -5,6 +5,7 @@ publishDate: "2026-08-03"
 author: "RigFloorHQ Team"
 category: "Drilling"
 tags: ["drilling jars", "stuck pipe", "jarring", "accelerator", "drill string", "fatigue"]
+sources: ["api7g"]
 diagrams:
   - src: "/images/blog/drilling-jar-cycle.svg"
     alt: "Three stages of drilling jar operation. First, steady overpull alone: tension rises smoothly to a plateau below the sticking force and nothing moves. Second, cocking: overpull stretches the drill pipe above the jar like a loaded spring while a detent holds the jar closed. Third, firing: the detent releases, the stored stretch snaps a hammer section up into an anvil, and a short high force shock travels down to the stuck point."

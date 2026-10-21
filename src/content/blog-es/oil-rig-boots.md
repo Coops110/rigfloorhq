@@ -5,6 +5,7 @@ publishDate: "2026-10-02"
 author: "RigFloorHQ Team"
 category: "Seguridad"
 tags: ["EPP", "botas de seguridad", "calzado", "ASTM F2413", "piso de perforación"]
+sources: ["astmF2413", "isoSafetyFootwear"]
 faq:
   - q: "¿Qué botas se requieren en un taladro petrolero?"
     a: "Como mínimo, una bota de punta de seguridad certificada ASTM F2413 en Norteamérica o EN ISO 20345 (S3 es el requisito usual de taladro) en el Reino Unido, Europa, Medio Oriente y gran parte de África. Muchos operadores también requieren suelas resistentes al aceite y antideslizantes, y algunos especifican protectores metatarsianos o suelas de peligro eléctrico para tareas particulares. La política de EPP del operador o del contratista de perforación es la última palabra."
