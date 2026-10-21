@@ -65,14 +65,14 @@ const webPageLd = {
   <section class="block">
     <div class="prose" style="max-width:860px;">
       <h2 id="como-usar-esta-pagina">Cómo Usar Esta Página</h2>
-      <p>Cada problema abajo da exactamente lo que un perforador tiene a mano en el momento en que se cierra un pozo: SIDPP, presión de circulación lenta (SCR), peso de lodo original, y TVD. Calcula tú mismo primero el peso de lodo de control (KMW), la presión de circulación inicial (ICP) y la presión de circulación final (FCP), usando las mismas fórmulas que la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> — luego abre la respuesta para revisar tu trabajo y ver exactamente dónde se habría colado el error común en ese problema.</p>
+      <p>Cada problema abajo da exactamente lo que un perforador tiene a mano en el momento en que se cierra un pozo: SIDPP, presión SCR (la presión de tubería registrada al caudal de circulación lenta antes de la surgencia), peso de lodo original, y TVD. Calcula tú mismo primero el peso de lodo de control (KMW), la presión de circulación inicial (ICP) y la presión de circulación final (FCP), usando las mismas fórmulas que la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> — luego abre la respuesta para revisar tu trabajo y ver exactamente dónde se habría colado el error común en ese problema.</p>
 
       <div class="note-box">
-        <strong>Fórmulas usadas en toda la página:</strong> KMW = OMW + [SIDPP ÷ (0.052 × TVD)], redondeado hacia <strong>arriba</strong> a la décima de ppg más cercana. ICP = SIDPP + SCR. FCP = SCR × (KMW ÷ OMW). Ver la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> para la derivación completa y el programa de golpes para matar que alimentan estos números.
+        <strong>Fórmulas usadas en toda la página:</strong> KMW = OMW + [SIDPP ÷ (0.052 × TVD)], redondeado hacia <strong>arriba</strong> a la décima de ppg más cercana. ICP = SIDPP + presión SCR. FCP = presión SCR × (KMW ÷ OMW). Ver la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> para la derivación completa y el programa de golpes para matar que alimentan estos números.
       </div>
 
       <h2 id="problema-1">Problema 1</h2>
-      <p>TVD: 8,000 ft. Peso de Lodo Original: 9.5 ppg. SIDPP: 200 psi. SCR: 400 psi.<br />Encuentra KMW, ICP y FCP.</p>
+      <p>TVD: 8,000 ft. Peso de Lodo Original: 9.5 ppg. SIDPP: 200 psi. Presión SCR: 400 psi.<br />Encuentra KMW, ICP y FCP.</p>
       <div class="accordion" style="margin:16px 0;">
         <details class="acc-item">
           <summary class="acc-header">Mostrar Respuesta Resuelta<span class="acc-arrow">▼</span></summary>
@@ -86,7 +86,7 @@ const webPageLd = {
       </div>
 
       <h2 id="problema-2">Problema 2</h2>
-      <p>TVD: 12,500 ft. Peso de Lodo Original: 11.2 ppg. SIDPP: 450 psi. SCR: 520 psi.<br />Encuentra KMW, ICP y FCP.</p>
+      <p>TVD: 12,500 ft. Peso de Lodo Original: 11.2 ppg. SIDPP: 450 psi. Presión SCR: 520 psi.<br />Encuentra KMW, ICP y FCP.</p>
       <div class="accordion" style="margin:16px 0;">
         <details class="acc-item">
           <summary class="acc-header">Mostrar Respuesta Resuelta<span class="acc-arrow">▼</span></summary>
@@ -100,7 +100,7 @@ const webPageLd = {
       </div>
 
       <h2 id="problema-3">Problema 3</h2>
-      <p>TVD: 9,200 ft. Peso de Lodo Original: 10.0 ppg. SIDPP: 300 psi. SCR: 480 psi. Volumen total de la sarta: 95 bbl. Volumen anular total: 310 bbl. Salida de bomba: 0.117 bbl/golpe.<br />Encuentra KMW, ICP, FCP, golpes a la barrena, golpes de fondo arriba, y golpes totales para matar.</p>
+      <p>TVD: 9,200 ft. Peso de Lodo Original: 10.0 ppg. SIDPP: 300 psi. Presión SCR: 480 psi. Volumen total de la sarta: 95 bbl. Volumen anular total: 310 bbl. Salida de bomba: 0.117 bbl/golpe.<br />Encuentra KMW, ICP, FCP, golpes a la barrena, golpes de fondo arriba, y golpes totales para matar.</p>
       <div class="accordion" style="margin:16px 0;">
         <details class="acc-item">
           <summary class="acc-header">Mostrar Respuesta Resuelta<span class="acc-arrow">▼</span></summary>
@@ -108,13 +108,13 @@ const webPageLd = {
             <p>KMW = 10.0 + [300 ÷ (0.052 × 9,200)] = 10.0 + (300 ÷ 478.4) = 10.0 + 0.63 = 10.63, redondeado hacia arriba a <span class="highlight">10.7 ppg</span>.</p>
             <p>ICP = 300 + 480 = <span class="highlight">780 psi</span>. FCP = 480 × (10.7 ÷ 10.0) = <span class="highlight">514 psi</span>.</p>
             <p>Golpes a la barrena = 95 ÷ 0.117 = <span class="highlight">812 golpes</span>. Fondo arriba = 310 ÷ 0.117 = <span class="highlight">2,650 golpes</span>. Golpes totales para matar = 812 + 2,650 = <span class="highlight">3,462 golpes</span>.</p>
-            <p><strong>Error común que esto atrapa:</strong> sumar el volumen de la sarta y el volumen anular antes de dividir por la salida de la bomba, en lugar de convertir cada uno a golpes por separado primero. Golpes a la barrena y golpes de fondo arriba responden dos preguntas diferentes (cuándo llega el lodo de control a la barrena, versus cuándo ha circulado completamente hacia afuera) y tienen que calcularse como dos conteos de golpes separados, no un volumen combinado.</p>
+            <p><strong>Error común que esto atrapa:</strong> sumar el volumen de la sarta y el volumen anular antes de dividir por la salida de la bomba. El total de golpes combinado sale igual de cualquier forma — el costo real es perder los dos puntos de control en el camino. Golpes a la barrena y golpes de fondo arriba responden dos preguntas diferentes (cuándo llega el lodo de control a la barrena, versus cuándo ha circulado completamente hacia afuera), y el perforador necesita ambos números por separado durante la matanza, no solo el total combinado al final.</p>
           </div>
         </details>
       </div>
 
       <h2 id="problema-4">Problema 4</h2>
-      <p>TVD: 15,000 ft. Peso de Lodo Original: 12.4 ppg. SIDPP: 180 psi. SCR: 610 psi.<br />Encuentra KMW, ICP y FCP.</p>
+      <p>TVD: 15,000 ft. Peso de Lodo Original: 12.4 ppg. SIDPP: 180 psi. Presión SCR: 610 psi.<br />Encuentra KMW, ICP y FCP.</p>
       <div class="accordion" style="margin:16px 0;">
         <details class="acc-item">
           <summary class="acc-header">Mostrar Respuesta Resuelta<span class="acc-arrow">▼</span></summary>
@@ -128,8 +128,8 @@ const webPageLd = {
       </div>
 
       <h2 id="problema-5-si">Problema 5 — Unidades SI</h2>
-      <p>Cada problema arriba usa unidades de campo (ppg, psi, ft) con la constante 0.052. La misma matemática funciona en unidades SI (SG, bar, m) usando la constante métrica <strong>0.0981</strong> en cambio — la misma constante establecida en la derivación SI/SG del <a href="/es/pillars/hydrostatic-pressure">pilar de presión hidrostática</a>. Las fórmulas se replantean directamente: KMW = OMW + [SIDPP ÷ (0.0981 × TVD)], redondeado hacia <strong>arriba</strong> a la centésima de SG más cercana. ICP = SIDPP + SCR. FCP = SCR × (KMW ÷ OMW), todo en bar.</p>
-      <p>TVD: 2,500 m. Peso de Lodo Original: 1.15 SG. SIDPP: 14 bar. SCR: 28 bar.<br />Encuentra KMW, ICP y FCP en unidades SI.</p>
+      <p>Cada problema arriba usa unidades de campo (ppg, psi, ft) con la constante 0.052. La misma matemática funciona en unidades SI (SG, bar, m) usando la constante métrica <strong>0.0981</strong> en cambio — la misma constante establecida en la derivación SI/SG del <a href="/es/pillars/hydrostatic-pressure">pilar de presión hidrostática</a>. Las fórmulas se replantean directamente: KMW = OMW + [SIDPP ÷ (0.0981 × TVD)], redondeado hacia <strong>arriba</strong> a la centésima de SG más cercana. ICP = SIDPP + presión SCR. FCP = presión SCR × (KMW ÷ OMW), todo en bar.</p>
+      <p>TVD: 2,500 m. Peso de Lodo Original: 1.15 SG. SIDPP: 14 bar. Presión SCR: 28 bar.<br />Encuentra KMW, ICP y FCP en unidades SI.</p>
       <div class="accordion" style="margin:16px 0;">
         <details class="acc-item">
           <summary class="acc-header">Mostrar Respuesta Resuelta<span class="acc-arrow">▼</span></summary>
