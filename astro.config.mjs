@@ -69,6 +69,14 @@ export default defineConfig({
       serialize(item) {
         const { pathname } = new URL(item.url);
 
+        // trailingSlash: 'never' strips the slash from every path, but the
+        // root URL has no path segment to strip it from — it collapses to
+        // the bare origin, which doesn't match the homepage's own canonical
+        // tag (https://rigfloorhq.com/). Restore it here, just for root.
+        if (pathname === '/' && !item.url.endsWith('/')) {
+          item.url = `${item.url}/`;
+        }
+
         if (lastmodMap) {
           for (const candidate of sourceCandidates(pathname)) {
             const date = lastmodMap.get(candidate);
