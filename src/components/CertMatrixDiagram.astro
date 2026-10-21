@@ -1,0 +1,160 @@
+---
+// Certification-by-role matrix for the core drilling-ladder roles, as a real
+// visual grid rather than only the table already on careers/certifications.astro.
+// Same inline-SVG pattern as the other diagram components. Added 2026-10-21
+// for the Claude SEO audit's "no content image" finding.
+//
+// Deliberately scoped to the 6 roles that share the same 3 requirement
+// columns (BOSIET, IWCF/WellSharp level, offshore medical). HSE Officer, Rig
+// Welder and Underwater Welder sit on a genuinely different certification
+// track (NEBOSH/OSHA, AWS/API, ADCI) — folding them into this grid would
+// read as "doesn't need BOSIET/IWCF" rather than "different track entirely",
+// which is the exact kind of misleading-by-omission the audit is checking
+// for elsewhere on this site. Full detail for those three stays in the
+// existing table on careers/certifications.astro, not duplicated here.
+export interface Props {
+  lang?: 'en' | 'es';
+}
+const { lang = 'en' } = Astro.props;
+
+const t = lang === 'es'
+  ? {
+      title: 'Matriz de certificación por rol en la escalera principal de perforación',
+      desc: 'Una cuadrícula que muestra qué certificación requiere cada rol en la escalera principal del piso de perforación, en tres columnas: BOSIET, nivel de IWCF o IADC WellSharp, y examen médico costa afuera. Roustabout y roughneck solo requieren BOSIET (costa afuera). Derrickhand agrega IWCF Nivel 2. Perforador asistente agrega el examen médico. Perforador requiere IWCF Nivel 3. Toolpusher requiere IWCF Nivel 4, el nivel de supervisor. Los roles especializados como HSE, soldador de taladro y soldador subacuático siguen una pista de certificación distinta (NEBOSH/OSHA, AWS/API, ADCI) y no están incluidos en esta cuadrícula — ver la tabla completa en la página para esos roles.',
+      colHeaders: ['BOSIET', 'IWCF / WellSharp', 'Examen Médico'],
+      rows: [
+        ['Roustabout', '✓ (costa afuera)', '—', '—'],
+        ['Roughneck', '✓ (costa afuera)', '—', '—'],
+        ['Derrickhand', '✓', 'Nivel 2', '—'],
+        ['Perforador Asistente', '✓', 'Nivel 2', '✓'],
+        ['Perforador', '✓', 'Nivel 3', '✓'],
+        ['Toolpusher', '✓', 'Nivel 4', '✓'],
+      ],
+      caption: 'Escalera principal de perforación solamente. HSE, soldador de taladro y soldador subacuático siguen una pista de certificación distinta — ver la tabla completa en la página.',
+    }
+  : {
+      title: 'Certification-by-role matrix for the core drilling ladder',
+      desc: "A grid showing which certification each role on the core rig-floor ladder requires, across three columns: BOSIET, IWCF or IADC WellSharp level, and offshore medical. Roustabout and roughneck only require BOSIET (offshore only). Derrickhand adds IWCF Level 2. Assistant driller adds the offshore medical. Driller requires IWCF Level 3. Toolpusher requires IWCF Level 4, the supervisor level. Specialist roles like HSE, rig welder and underwater welder follow a genuinely different certification track (NEBOSH/OSHA, AWS/API, ADCI) and aren't included in this grid — see the full table on the page for those roles.",
+      colHeaders: ['BOSIET', 'IWCF / WellSharp', 'Offshore Medical'],
+      rows: [
+        ['Roustabout', '✓ (offshore only)', '—', '—'],
+        ['Roughneck', '✓ (offshore)', '—', '—'],
+        ['Derrickhand', '✓', 'Level 2', '—'],
+        ['Assistant Driller', '✓', 'Level 2', '✓'],
+        ['Driller', '✓', 'Level 3', '✓'],
+        ['Toolpusher', '✓', 'Level 4', '✓'],
+      ],
+      caption: 'Core drilling ladder only. HSE, rig welder and underwater welder follow a genuinely different certification track — see the full table on the page.',
+    };
+
+const rowH = 46;
+const headerH = 50;
+const roleColW = 190;
+const dataColW = 120;
+const startX = 20;
+const startY = 20;
+const totalW = roleColW + dataColW * 3;
+const totalH = headerH + rowH * t.rows.length;
+---
+<figure class="certmx-figure">
+  <svg class="certmx-svg" viewBox={`0 0 ${totalW + 40} ${totalH + 40}`} role="img" aria-labelledby={`certmx-title-${lang} certmx-desc-${lang}`} xmlns="http://www.w3.org/2000/svg">
+    <title id={`certmx-title-${lang}`}>{t.title}</title>
+    <desc id={`certmx-desc-${lang}`}>{t.desc}</desc>
+
+    <rect class="certmx-bg" x="0" y="0" width={totalW + 40} height={totalH + 40} rx="6" />
+
+    {/* header row */}
+    <rect class="certmx-header" x={startX} y={startY} width={roleColW} height={headerH} />
+    {t.colHeaders.map((h, i) => (
+      <rect class="certmx-header" x={startX + roleColW + i * dataColW} y={startY} width={dataColW} height={headerH} />
+    ))}
+    {t.colHeaders.map((h, i) => (
+      <text class="certmx-headertext" x={startX + roleColW + i * dataColW + dataColW / 2} y={startY + headerH / 2 + 5}>{h}</text>
+    ))}
+
+    {/* data rows */}
+    {t.rows.map((row, ri) => (
+      <g>
+        <rect class="certmx-rolecell" x={startX} y={startY + headerH + ri * rowH} width={roleColW} height={rowH} />
+        <text class="certmx-roletext" x={startX + 14} y={startY + headerH + ri * rowH + rowH / 2 + 5}>{row[0]}</text>
+        {row.slice(1).map((val, ci) => (
+          <g>
+            <rect class="certmx-cell" x={startX + roleColW + ci * dataColW} y={startY + headerH + ri * rowH} width={dataColW} height={rowH} />
+            <text class={val === '—' ? 'certmx-dash' : 'certmx-check'} x={startX + roleColW + ci * dataColW + dataColW / 2} y={startY + headerH + ri * rowH + rowH / 2 + 5}>{val}</text>
+          </g>
+        ))}
+      </g>
+    ))}
+
+    {/* grid lines */}
+    <rect class="certmx-outline" x={startX} y={startY} width={totalW} height={totalH} />
+  </svg>
+  <figcaption class="certmx-caption">{t.caption}</figcaption>
+</figure>
+
+<style>
+  .certmx-figure {
+    margin: 24px 0 28px;
+    max-width: 640px;
+  }
+  .certmx-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--iron);
+    border-radius: 6px;
+  }
+  .certmx-bg {
+    fill: var(--ink);
+  }
+  .certmx-header {
+    fill: var(--steel);
+    stroke: var(--iron);
+    stroke-width: 1;
+  }
+  .certmx-headertext {
+    fill: var(--amber);
+    font-family: var(--cond);
+    font-weight: 700;
+    font-size: 15px;
+    text-anchor: middle;
+  }
+  .certmx-rolecell {
+    fill: var(--steel);
+    stroke: var(--iron);
+    stroke-width: 1;
+  }
+  .certmx-roletext {
+    fill: var(--white);
+    font-family: var(--body);
+    font-size: 14px;
+  }
+  .certmx-cell {
+    fill: var(--ink);
+    stroke: var(--iron);
+    stroke-width: 1;
+  }
+  .certmx-check {
+    fill: var(--mist);
+    font-family: var(--body);
+    font-size: 13px;
+    text-anchor: middle;
+  }
+  .certmx-dash {
+    fill: var(--fog);
+    font-family: var(--body);
+    font-size: 14px;
+    text-anchor: middle;
+  }
+  .certmx-outline {
+    fill: none;
+    stroke: var(--iron);
+    stroke-width: 1.5;
+  }
+  .certmx-caption {
+    color: var(--fog);
+    font-size: 13px;
+    margin-top: 8px;
+    text-align: center;
+  }
+</style>

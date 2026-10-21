@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import NewsletterSignup from '../../components/NewsletterSignup.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
 import { reviewedByJabin } from '../../lib/person.js';
+import WellProfileDiagram from '../../components/WellProfileDiagram.astro';
 
 const faq = [
   {
@@ -194,6 +195,8 @@ const webPageLd = {
 
       <div class="prose">
         <h2>The Formulas Used</h2>
+        <p>SIDPP and SICP, the two inputs above, are two separate surface gauge readings taken at the same moment on the same shut-in well — not the same number under two names. The diagram below shows where each one physically comes from before the formulas below turn them into KMW, ICP and FCP.</p>
+        <WellProfileDiagram lang="en" />
         <dl class="formula-block">
           <dt class="formula-label">Kill Mud Weight</dt>
           <dd class="formula-eq"><code>KMW = OMW + (SIDPP ÷ (0.052 × TVD))</code></dd>

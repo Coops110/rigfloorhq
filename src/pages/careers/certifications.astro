@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import { articleSchema } from '../../lib/techarticle.js';
+import CertMatrixDiagram from '../../components/CertMatrixDiagram.astro';
 
 // Article for this career guide. Dates come from git via the same map the
 // sitemap uses, so dateModified always equals this URL's sitemap lastmod;
@@ -82,6 +83,7 @@ const jsonLd = articleSchema({
   <section class="block">
     <div class="section-eyebrow">By Role</div>
     <h2 class="section-title">What You Need, <span>By Position</span></h2>
+    <CertMatrixDiagram lang="en" />
     <div class="table-wrap">
       <table>
         <thead><tr><th>Role</th><th>Required Certifications</th></tr></thead>

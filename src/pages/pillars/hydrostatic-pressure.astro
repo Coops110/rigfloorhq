@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import { techArticleSchema } from '../../lib/techarticle.js';
 import { authorChrisCooper } from '../../lib/person.js';
 import SourcesStandards from '../../components/SourcesStandards.astro';
+import MdVsTvdDiagram from '../../components/MdVsTvdDiagram.astro';
 
 const faq = [
   {
@@ -121,13 +122,17 @@ const webPageLd = {
       </div>
       <div class="card">
         <h3>True Vertical Depth (ft)</h3>
-        <p>Not measured depth. In a vertical well the two are the same; in a deviated or horizontal well they diverge sharply, and only the vertical height of the column generates pressure — see the TVD vs. MD breakdown on the <a href="/pillars/well-kill-methods">Well Kill Methods reference</a>.</p>
+        <p>Not measured depth. In a vertical well the two are the same; in a deviated or horizontal well they diverge sharply, and only the vertical height of the column generates pressure — see the diagram below.</p>
       </div>
       <div class="card">
         <h3>Run the Numbers</h3>
         <p>The <a href="/calculators/hydrostatic">hydrostatic pressure calculator</a> runs this formula live and compares your result against pore and fracture pressure automatically, so you don't have to do the comparison by hand. Need to convert between ppg, sg, or psi/ft first, or want every related formula in one place? Use the <a href="/calculators/mud-weight-converter">mud weight converter</a> or the <a href="/calculators/formulas-cheat-sheet">drilling formulas cheat sheet</a>.</p>
       </div>
     </div>
+
+    <h3 style="margin-top:28px;">Why MD and TVD Aren't the Same Number</h3>
+    <p class="mt-8" style="max-width:760px;">The diagram below shows why: the dashed line is TVD, measured straight down from surface. The solid curved path is MD, the actual length of pipe run down the hole, including the build section after the kickoff point. In a vertical well the two paths overlap exactly. The moment a well deviates, MD pulls ahead of TVD — and the hydrostatic pressure formula only cares about the dashed line.</p>
+    <MdVsTvdDiagram lang="en" />
   </section>
 
   <section class="block">

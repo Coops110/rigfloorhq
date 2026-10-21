@@ -1,0 +1,150 @@
+---
+// MD vs. TVD schematic for a deviated well: the straight vertical TVD
+// measurement against the actual drilled MD path from surface through a
+// kickoff point to a displaced bottomhole target. Inline SVG for the same
+// reasons as DrillStringDiagram.astro — real translatable text, crisp at
+// any size, site colour tokens. Added 2026-10-21 for the Claude SEO audit's
+// "no content image" finding on the hydrostatic pressure pillar, where MD
+// vs TVD is the single concept the whole page's formula depends on.
+// Not to scale — a real well's lateral displacement varies hugely by plan.
+export interface Props {
+  lang?: 'en' | 'es';
+}
+const { lang = 'en' } = Astro.props;
+
+const t = lang === 'es'
+  ? {
+      title: 'Diagrama de MD contra TVD en un pozo desviado',
+      desc: 'Vista lateral de un pozo desde la superficie hasta un objetivo desplazado horizontalmente. Una línea vertical punteada mide la Profundidad Vertical Verdadera (TVD): la altura real de la columna de fluido, medida en línea recta desde la superficie. La trayectoria curva sólida sigue la Profundidad Medida (MD): la longitud real de tubería bajada por el pozo, incluyendo la sección de construcción de ángulo después del punto de inicio de desviación (KOP). En un pozo vertical, MD y TVD son el mismo número. En este pozo desviado, MD es mayor que TVD porque la tubería recorre una distancia más larga en diagonal para llegar al mismo objetivo en profundidad. La presión hidrostática depende de TVD, no de MD.',
+      surface: 'Superficie',
+      kop: 'Punto de Inicio de Desviación (KOP)',
+      target: 'Objetivo / Fondo del Pozo',
+      tvdLabel: 'TVD',
+      tvdNote: 'Altura vertical real — esto es lo que impulsa la presión hidrostática',
+      mdLabel: 'MD',
+      mdNote: 'Longitud real de tubería bajada por el pozo — siempre ≥ TVD',
+      caption: 'En un pozo desviado, la Profundidad Medida (MD, la trayectoria curva) es mayor que la Profundidad Vertical Verdadera (TVD, la línea recta). La fórmula de presión hidrostática usa TVD. No está a escala.',
+    }
+  : {
+      title: 'MD vs. TVD diagram for a deviated well',
+      desc: 'Side view of a well from surface to a horizontally displaced target. A dashed vertical line measures True Vertical Depth (TVD): the real height of the fluid column, measured in a straight line from surface. The solid curved path follows Measured Depth (MD): the actual length of pipe run down the hole, including the build section after the kickoff point (KOP). In a vertical well, MD and TVD are the same number. In this deviated well, MD is greater than TVD because the pipe travels a longer diagonal distance to reach the same depth target. Hydrostatic pressure depends on TVD, not MD.',
+      surface: 'Surface',
+      kop: 'Kickoff Point (KOP)',
+      target: 'Target / Bottom of Hole',
+      tvdLabel: 'TVD',
+      tvdNote: 'Real vertical height — this is what drives hydrostatic pressure',
+      mdLabel: 'MD',
+      mdNote: 'Real pipe length run down the hole — always ≥ TVD',
+      caption: 'In a deviated well, Measured Depth (MD, the curved path) is greater than True Vertical Depth (TVD, the straight line). The hydrostatic pressure formula uses TVD. Not to scale.',
+    };
+---
+<figure class="mdtvd-figure">
+  <svg class="mdtvd-svg" viewBox="0 0 560 520" role="img" aria-labelledby={`mdtvd-title-${lang} mdtvd-desc-${lang}`} xmlns="http://www.w3.org/2000/svg">
+    <title id={`mdtvd-title-${lang}`}>{t.title}</title>
+    <desc id={`mdtvd-desc-${lang}`}>{t.desc}</desc>
+
+    <rect class="mdtvd-bg" x="0" y="0" width="560" height="520" rx="6" />
+
+    {/* surface line */}
+    <line class="mdtvd-surface" x1="40" y1="60" x2="520" y2="60" />
+    <text class="mdtvd-label" x="44" y="46">{t.surface}</text>
+
+    {/* TVD: straight dashed vertical line from surface to target depth */}
+    <line class="mdtvd-tvd" x1="150" y1="60" x2="150" y2="460" />
+
+    {/* MD: solid curved wellbore path, surface -> KOP -> displaced target */}
+    <path class="mdtvd-md" d="M 150 60 L 150 240 C 150 320, 220 380, 380 460" fill="none" />
+
+    {/* kickoff point marker */}
+    <circle class="mdtvd-point" cx="150" cy="240" r="6" />
+    <text class="mdtvd-label" x="162" y="236">{t.kop}</text>
+
+    {/* target marker */}
+    <circle class="mdtvd-point" cx="380" cy="460" r="6" />
+    <text class="mdtvd-label mdtvd-label-end" x="376" y="484">{t.target}</text>
+
+    {/* TVD bracket + label, offset to the left of the dashed line */}
+    <line class="mdtvd-bracket" x1="110" y1="60" x2="110" y2="460" />
+    <line class="mdtvd-tick" x1="104" y1="60" x2="116" y2="60" />
+    <line class="mdtvd-tick" x1="104" y1="460" x2="116" y2="460" />
+    <text class="mdtvd-bigLabel" x="92" y="265" transform="rotate(-90 92 265)">{t.tvdLabel}</text>
+
+    {/* MD label along the curved path, near its midpoint */}
+    <text class="mdtvd-bigLabel" x="300" y="330">{t.mdLabel}</text>
+
+    {/* bottom notes */}
+    <text class="mdtvd-note" x="40" y="495">{t.tvdNote}</text>
+    <text class="mdtvd-note mdtvd-note-end" x="520" y="495" text-anchor="end">{t.mdNote}</text>
+  </svg>
+  <figcaption class="mdtvd-caption">{t.caption}</figcaption>
+</figure>
+
+<style>
+  .mdtvd-figure {
+    margin: 24px 0 28px;
+    max-width: 580px;
+  }
+  .mdtvd-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--iron);
+    border-radius: 6px;
+  }
+  .mdtvd-bg {
+    fill: var(--ink);
+  }
+  .mdtvd-surface {
+    stroke: var(--iron);
+    stroke-width: 2;
+  }
+  .mdtvd-tvd {
+    stroke: var(--amber);
+    stroke-width: 3;
+    stroke-dasharray: 8 6;
+    fill: none;
+  }
+  .mdtvd-md {
+    stroke: var(--mist);
+    stroke-width: 4;
+    fill: none;
+  }
+  .mdtvd-point {
+    fill: var(--white);
+    stroke: var(--ink);
+    stroke-width: 1.5;
+  }
+  .mdtvd-bracket {
+    stroke: var(--fog);
+    stroke-width: 1.5;
+  }
+  .mdtvd-tick {
+    stroke: var(--fog);
+    stroke-width: 1.5;
+  }
+  .mdtvd-label {
+    fill: var(--white);
+    font-family: var(--body);
+    font-size: 15px;
+  }
+  .mdtvd-label-end {
+    text-anchor: end;
+  }
+  .mdtvd-bigLabel {
+    fill: var(--amber);
+    font-family: var(--cond);
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .mdtvd-note {
+    fill: var(--fog);
+    font-family: var(--body);
+    font-size: 13px;
+  }
+  .mdtvd-caption {
+    color: var(--fog);
+    font-size: 13px;
+    margin-top: 8px;
+    text-align: center;
+  }
+</style>

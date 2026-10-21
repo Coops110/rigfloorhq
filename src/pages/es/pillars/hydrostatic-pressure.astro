@@ -5,6 +5,7 @@ import Footer from '../../../components/Footer.astro';
 import { techArticleSchema } from '../../../lib/techarticle.js';
 import { authorChrisCooper } from '../../../lib/person.js';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
+import MdVsTvdDiagram from '../../../components/MdVsTvdDiagram.astro';
 
 const faq = [
   {
@@ -121,13 +122,17 @@ const webPageLd = {
       </div>
       <div class="card">
         <h3>Profundidad Vertical Verdadera (ft)</h3>
-        <p>No la profundidad medida. En un pozo vertical ambas son iguales; en un pozo desviado u horizontal divergen marcadamente, y solo la altura vertical de la columna genera presión — ver el desglose de TVD vs. MD en la referencia de <a href="/es/pillars/well-kill-methods">Métodos para Matar un Pozo</a>.</p>
+        <p>No la profundidad medida. En un pozo vertical ambas son iguales; en un pozo desviado u horizontal divergen marcadamente, y solo la altura vertical de la columna genera presión — ver el diagrama abajo.</p>
       </div>
       <div class="card">
         <h3>Corre los Números</h3>
         <p>La <a href="/es/calculators/hydrostatic">calculadora de presión hidrostática</a> ejecuta esta fórmula en vivo y compara tu resultado contra la presión de poro y de fractura automáticamente, para que no tengas que hacer la comparación a mano. ¿Quieres todas las fórmulas relacionadas en un solo lugar? Usa la <a href="/es/calculators/formulas-cheat-sheet">hoja de referencia de fórmulas de perforación</a>.</p>
       </div>
     </div>
+
+    <h3 style="margin-top:28px;">Por Qué MD y TVD No Son el Mismo Número</h3>
+    <p class="mt-8" style="max-width:760px;">El diagrama abajo muestra por qué: la línea punteada es TVD, medida en línea recta desde la superficie. La trayectoria curva sólida es MD, la longitud real de tubería bajada por el pozo, incluyendo la sección de construcción después del punto de inicio de desviación. En un pozo vertical ambas trayectorias se superponen exactamente. En el momento en que un pozo se desvía, MD se adelanta a TVD — y la fórmula de presión hidrostática solo le importa la línea punteada.</p>
+    <MdVsTvdDiagram lang="es" />
   </section>
 
   <section class="block">

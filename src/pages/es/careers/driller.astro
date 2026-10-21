@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import { articleSchema } from '../../../lib/techarticle.js';
+import CareerLadderDiagram from '../../../components/CareerLadderDiagram.astro';
 
 // Article for this career guide. Dates come from git via the same map the
 // sitemap uses, so dateModified always equals this URL's sitemap lastmod;
@@ -89,7 +90,8 @@ const jsonLd = articleSchema({
         <p>Los perforadores direccionales son una especialización separada, dirigiendo la barrena a lo largo de una trayectoria planificada usando motores de fondo y herramientas MWD. Esta trayectoria usualmente pasa por una compañía de servicio (Schlumberger, Halliburton, Baker Hughes) en lugar de un contratista de perforación, y paga significativamente más — $100K–$200K — pero requiere entrenamiento especializado en MWD/LWD en lugar de la progresión tradicional de piso a consola.</p>
 
         <h2 id="que-viene-despues-de-perforador">Qué Viene Después de Perforador</h2>
-        <p>El siguiente paso es <a href="/es/careers/toolpusher"><strong>toolpusher</strong></a>, supervisando múltiples cuadrillas y toda la operación del contratista del taladro, seguido por <a href="/es/careers/oim-rig-manager"><strong>OIM (Gerente de Instalación Costa Afuera)</strong> o gerente de taladro</a> para quienes quieren el rol operativo más alto en la instalación. Qué distingue cada nivel de esa escalera de supervisión, y qué certificación condiciona cada ascenso, está en la <a href="/es/pillars/rig-floor-leadership">guía de liderazgo en el piso de perforación</a>.</p>
+        <p>El siguiente paso es <a href="/es/careers/toolpusher"><strong>toolpusher</strong></a>, supervisando múltiples cuadrillas y toda la operación del contratista del taladro, seguido por <a href="/es/careers/oim-rig-manager"><strong>OIM (Gerente de Instalación Costa Afuera)</strong> o gerente de taladro</a> para quienes quieren el rol operativo más alto en la instalación. El diagrama abajo muestra el panorama completo, incluyendo dónde encaja el rol de <a href="/es/careers/company-man">company man</a> del lado del operador — no es el siguiente escalón en esta misma escalera, es un rol senior paralelo en un empleador distinto. Detalle completo en la <a href="/es/pillars/rig-floor-leadership">guía de liderazgo en el piso de perforación</a>.</p>
+        <CareerLadderDiagram lang="es" />
       </div>
 
       <div>

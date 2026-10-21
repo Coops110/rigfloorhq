@@ -5,6 +5,7 @@ import Footer from '../../../components/Footer.astro';
 import NewsletterSignup from '../../../components/NewsletterSignup.astro';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
 import { reviewedByJabin } from '../../../lib/person.js';
+import WellProfileDiagram from '../../../components/WellProfileDiagram.astro';
 
 const faq = [
   {
@@ -194,6 +195,8 @@ const webPageLd = {
 
       <div class="prose">
         <h2>Las Fórmulas Usadas</h2>
+        <p>SIDPP y SICP, las dos entradas de arriba, son dos lecturas de manómetro de superficie independientes tomadas en el mismo momento en el mismo pozo cerrado — no el mismo número bajo dos nombres. El diagrama abajo muestra de dónde viene físicamente cada una antes de que las fórmulas abajo las conviertan en KMW, ICP y FCP.</p>
+        <WellProfileDiagram lang="es" />
         <dl class="formula-block">
           <dt class="formula-label">Peso de Lodo de Matanza</dt>
           <dd class="formula-eq"><code>KMW = OMW + (SIDPP ÷ (0.052 × TVD))</code></dd>

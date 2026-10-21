@@ -1,0 +1,161 @@
+---
+// Well profile during shut-in, showing what SIDPP and SICP actually are:
+// two separate surface gauge readings, one on the drill pipe side and one
+// on the casing side of the same shut-in well, at the same moment. These
+// two numbers are the real-world inputs the kill sheet formulas (KMW, ICP,
+// FCP) run on — this diagram exists so a reader can see where those numbers
+// physically come from before plugging them into the calculator above it.
+// Same inline-SVG pattern as the other diagram components. Added
+// 2026-10-21 for the Claude SEO audit's "no content image" finding on
+// calculators/kill-sheet.astro.
+export interface Props {
+  lang?: 'en' | 'es';
+}
+const { lang = 'en' } = Astro.props;
+
+const t = lang === 'es'
+  ? {
+      title: 'Perfil del pozo durante un cierre, mostrando SIDPP y SICP',
+      desc: 'Sección transversal de un pozo cerrado, con la sarta de perforación dentro del revestimiento. Dos manómetros de superficie separados: uno en la tubería de perforación lee SIDPP (presión de cierre en tubería), y otro en el espacio anular/revestimiento lee SICP (presión de cierre en el revestimiento). Ambas lecturas se toman al mismo tiempo, en el mismo pozo cerrado. Debajo, una zona de influjo marca dónde el fluido de formación entró al pozo, causando la surgencia que se está cerrando. Estas dos lecturas de presión, junto con el peso de lodo original y la TVD, son las entradas reales que alimentan las fórmulas de la hoja de control (KMW, ICP, FCP).',
+      sidpp: 'SIDPP',
+      sidppNote: 'Presión de Cierre en Tubería de Perforación',
+      sicp: 'SICP',
+      sicpNote: 'Presión de Cierre en el Revestimiento',
+      drillpipe: 'Tubería de Perforación',
+      annulus: 'Espacio Anular',
+      influx: 'Zona de Influjo (Surgencia)',
+      caption: 'SIDPP y SICP son dos lecturas de manómetro independientes en el mismo pozo cerrado, no la misma medición en dos nombres. Ambas alimentan directamente las fórmulas de la hoja de control.',
+    }
+  : {
+      title: 'Well profile during shut-in, showing SIDPP and SICP',
+      desc: "Cross-section of a shut-in well, with the drill string inside the casing. Two separate surface gauges: one on the drill pipe reads SIDPP (Shut-In Drill Pipe Pressure), and one on the annulus/casing side reads SICP (Shut-In Casing Pressure). Both readings are taken at the same time, on the same shut-in well. Below, an influx zone marks where formation fluid entered the wellbore, causing the kick being shut in on. These two pressure readings, along with the original mud weight and TVD, are the real inputs that feed the kill sheet formulas (KMW, ICP, FCP).",
+      sidpp: 'SIDPP',
+      sidppNote: 'Shut-In Drill Pipe Pressure',
+      sicp: 'SICP',
+      sicpNote: 'Shut-In Casing Pressure',
+      drillpipe: 'Drill Pipe',
+      annulus: 'Annulus',
+      influx: 'Influx Zone (Kick)',
+      caption: "SIDPP and SICP are two independent gauge readings on the same shut-in well, not the same measurement under two names. Both feed directly into the kill sheet formulas.",
+    };
+---
+<figure class="wellp-figure">
+  <svg class="wellp-svg" viewBox="0 0 560 480" role="img" aria-labelledby={`wellp-title-${lang} wellp-desc-${lang}`} xmlns="http://www.w3.org/2000/svg">
+    <title id={`wellp-title-${lang}`}>{t.title}</title>
+    <desc id={`wellp-desc-${lang}`}>{t.desc}</desc>
+
+    <rect class="wellp-bg" x="0" y="0" width="560" height="480" rx="6" />
+
+    {/* surface line */}
+    <line class="wellp-surface" x1="60" y1="70" x2="500" y2="70" />
+
+    {/* casing / annulus walls */}
+    <line class="wellp-wall" x1="200" y1="70" x2="200" y2="420" />
+    <line class="wellp-wall" x1="360" y1="70" x2="360" y2="420" />
+
+    {/* drill pipe inside the casing */}
+    <rect class="wellp-pipe" x="265" y="70" width="30" height="330" />
+
+    {/* SIDPP gauge on the drill pipe side */}
+    <circle class="wellp-gauge" cx="280" cy="45" r="22" />
+    <text class="wellp-gaugetext" x="280" y="50">{t.sidpp}</text>
+    <line class="wellp-leader" x1="280" y1="67" x2="280" y2="90" />
+
+    {/* SICP gauge on the annulus/casing side */}
+    <circle class="wellp-gauge wellp-gauge-casing" cx="430" cy="45" r="22" />
+    <text class="wellp-gaugetext" x="430" y="50">{t.sicp}</text>
+    <line class="wellp-leader wellp-leader-casing" x1="430" y1="67" x2="340" y2="90" />
+
+    {/* gauge note labels */}
+    <text class="wellp-note" x="280" y="100" text-anchor="middle">{t.sidppNote}</text>
+    <text class="wellp-note wellp-note-casing" x="430" y="112" text-anchor="middle">{t.sicpNote}</text>
+
+    {/* region labels */}
+    <text class="wellp-regionlabel" x="280" y="250" transform="rotate(-90 280 250)">{t.drillpipe}</text>
+    <text class="wellp-regionlabel" x="228" y="250" transform="rotate(-90 228 250)">{t.annulus}</text>
+
+    {/* influx zone at the bottom */}
+    <rect class="wellp-influx" x="200" y="400" width="160" height="20" />
+    <text class="wellp-note" x="280" y="444" text-anchor="middle">{t.influx}</text>
+  </svg>
+  <figcaption class="wellp-caption">{t.caption}</figcaption>
+</figure>
+
+<style>
+  .wellp-figure {
+    margin: 24px 0 28px;
+    max-width: 560px;
+  }
+  .wellp-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--iron);
+    border-radius: 6px;
+  }
+  .wellp-bg {
+    fill: var(--ink);
+  }
+  .wellp-surface {
+    stroke: var(--iron);
+    stroke-width: 2;
+  }
+  .wellp-wall {
+    stroke: var(--iron);
+    stroke-width: 3;
+  }
+  .wellp-pipe {
+    fill: var(--steel);
+    stroke: var(--mist);
+    stroke-width: 1.5;
+  }
+  .wellp-gauge {
+    fill: var(--steel);
+    stroke: var(--amber);
+    stroke-width: 2;
+  }
+  .wellp-gauge-casing {
+    stroke: var(--ember);
+  }
+  .wellp-gaugetext {
+    fill: var(--white);
+    font-family: var(--cond);
+    font-weight: 700;
+    font-size: 13px;
+    text-anchor: middle;
+  }
+  .wellp-leader {
+    stroke: var(--amber);
+    stroke-width: 1.5;
+  }
+  .wellp-leader-casing {
+    stroke: var(--ember);
+  }
+  .wellp-note {
+    fill: var(--fog);
+    font-family: var(--body);
+    font-size: 11px;
+  }
+  .wellp-note-casing {
+    fill: var(--ember);
+  }
+  .wellp-regionlabel {
+    fill: var(--fog);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-anchor: middle;
+  }
+  .wellp-influx {
+    fill: rgba(239,68,68,0.18);
+    stroke: var(--danger);
+    stroke-width: 1.5;
+    stroke-dasharray: 4 3;
+  }
+  .wellp-caption {
+    color: var(--fog);
+    font-size: 13px;
+    margin-top: 8px;
+    text-align: center;
+  }
+</style>

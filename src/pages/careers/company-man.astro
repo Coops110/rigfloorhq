@@ -4,6 +4,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import { articleSchema } from '../../lib/techarticle.js';
 import { authorChrisCooper } from '../../lib/person.js';
+import CareerLadderDiagram from '../../components/CareerLadderDiagram.astro';
 
 // Article for this career guide. Dates come from git via the same map the
 // sitemap uses, so dateModified always equals this URL's sitemap lastmod.
@@ -73,6 +74,7 @@ const faq = [
           <li><strong>Company Man</strong> — works for the operator, owns the well program and the final decision on it.</li>
         </ul>
         <p>A toolpusher can tell the company man a procedure is unsafe or impractical for the rig to execute. The company man can tell the toolpusher the well program requires it anyway. Neither outranks the other in the usual sense — they represent different interests that have to be reconciled on every well, which is exactly why clear communication between these roles is treated as a core professional skill, not a soft one.</p>
+        <CareerLadderDiagram lang="en" />
 
         <h2 id="how-people-get-here">How People Get Here</h2>
         <p>Unlike the driller-to-toolpusher-to-OIM ladder, there's no single standard path into a company man role. Two real routes exist side by side:</p>

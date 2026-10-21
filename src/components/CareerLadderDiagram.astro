@@ -1,0 +1,151 @@
+---
+// Full rig-floor career ladder, roustabout through company man, as a real
+// visual rather than only the text career-path steps already on
+// careers/driller.astro and careers/company-man.astro. Same inline-SVG
+// pattern as DrillStringDiagram.astro / MdVsTvdDiagram.astro. Added
+// 2026-10-21 for the Claude SEO audit's "no content image" finding.
+//
+// Deliberately drawn as two separate tracks, not one single-file ladder:
+// roustabout through OIM is one continuous promotion path inside the
+// drilling contractor. Company man is NOT the next rung above OIM — it's a
+// parallel, senior-level role at a different employer (the operator), which
+// is the single most-confused fact on this whole site (see the FAQ on
+// careers/company-man.astro and pillars/rig-floor-leadership.astro). Drawing
+// it as rung 8 on the same ladder would visually repeat that exact mistake.
+export interface Props {
+  lang?: 'en' | 'es';
+}
+const { lang = 'en' } = Astro.props;
+
+const t = lang === 'es'
+  ? {
+      title: 'Escalera de carrera en el piso de perforación, de roustabout a company man',
+      desc: 'Dos pistas separadas, no una sola escalera. La pista del contratista de perforación sube de roustabout a roughneck, derrickhand, perforador asistente, perforador, toolpusher y OIM / gerente de taladro — un camino continuo de ascenso dentro del mismo empleador. El company man aparece a un lado, al mismo nivel senior que toolpusher y OIM, no como el siguiente escalón por encima de ellos: trabaja para el operador (la compañía petrolera), un empleador distinto, y las dos pistas se conectan con una línea punteada que muestra que trabajan lado a lado en el mismo pozo, no que una reporta a la otra.',
+      contractorTrack: 'Contratista de Perforación',
+      operatorTrack: 'Operador',
+      sideBySide: 'Trabajan lado a lado — empleadores distintos, no jerarquía',
+      rungs: ['Roustabout', 'Roughneck', 'Derrickhand', 'Perforador Asistente', 'Perforador', 'Toolpusher', 'OIM / Gerente de Taladro'],
+      companyMan: 'Company Man',
+      caption: 'La pista del contratista (roustabout a OIM) es un solo camino de ascenso. El company man trabaja para el operador, a un nivel senior comparable a toolpusher/OIM, no por encima de ellos en la misma escalera.',
+    }
+  : {
+      title: 'Rig floor career ladder, roustabout through company man',
+      desc: 'Two separate tracks, not one ladder. The drilling-contractor track climbs from roustabout to roughneck, derrickhand, assistant driller, driller, toolpusher, and OIM / rig manager — one continuous promotion path inside the same employer. Company man sits off to the side, at the same senior level as toolpusher and OIM, not as the next rung above them: works for the operator (the oil company), a different employer, and the two tracks connect with a dashed line showing they work side by side on the same well, not that one reports to the other.',
+      contractorTrack: 'Drilling Contractor',
+      operatorTrack: 'Operator',
+      sideBySide: 'Work side by side — different employers, not a hierarchy',
+      rungs: ['Roustabout', 'Roughneck', 'Derrickhand', 'Assistant Driller', 'Driller', 'Toolpusher', 'OIM / Rig Manager'],
+      companyMan: 'Company Man',
+      caption: "The contractor track (roustabout to OIM) is one continuous promotion path. Company man works for the operator, at a senior level comparable to toolpusher/OIM — not above them on the same ladder.",
+    };
+
+const rungHeight = 56;
+const rungGap = 10;
+const startY = 430;
+const rungYs = t.rungs.map((_, i) => startY - i * (rungHeight + rungGap));
+const topRungY = rungYs[rungYs.length - 1];
+---
+<figure class="ladder-figure">
+  <svg class="ladder-svg" viewBox="0 0 560 500" role="img" aria-labelledby={`ladder-title-${lang} ladder-desc-${lang}`} xmlns="http://www.w3.org/2000/svg">
+    <title id={`ladder-title-${lang}`}>{t.title}</title>
+    <desc id={`ladder-desc-${lang}`}>{t.desc}</desc>
+
+    <defs>
+      <marker id="ladder-arrowhead" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto">
+        <path class="ladder-arrowhead-path" d="M 0 0 L 8 0 L 4 7 Z" />
+      </marker>
+    </defs>
+
+    <rect class="ladder-bg" x="0" y="0" width="560" height="500" rx="6" />
+
+    <text class="ladder-tracklabel" x="180" y="22">{t.contractorTrack}</text>
+    <text class="ladder-tracklabel ladder-tracklabel-op" x="460" y="22">{t.operatorTrack}</text>
+
+    {/* contractor-track rungs, bottom to top, with connecting arrows */}
+    {t.rungs.map((label, i) => (
+      <g>
+        <rect class="ladder-rung" x="40" y={rungYs[i]} width="280" height={rungHeight} rx="6" />
+        <text class="ladder-rungtext" x="180" y={rungYs[i] + rungHeight / 2 + 5}>{label}</text>
+        {i < t.rungs.length - 1 && (
+          <line class="ladder-arrow" x1="180" y1={rungYs[i]} x2="180" y2={rungYs[i + 1] + rungHeight} />
+        )}
+      </g>
+    ))}
+
+    {/* company man box, offset to the right at the same height as toolpusher/OIM */}
+    <rect class="ladder-rung ladder-rung-op" x="380" y={rungYs[rungYs.length - 2] - 10} width="140" height={rungHeight * 2 + rungGap + 20} rx="6" />
+    <text class="ladder-rungtext" x="450" y={rungYs[rungYs.length - 2] - 10 + (rungHeight * 2 + rungGap + 20) / 2 + 5}>{t.companyMan}</text>
+
+    {/* dashed connector showing "side by side", not "reports to" */}
+    <line class="ladder-sidebyside" x1="320" y1={topRungY + rungHeight / 2} x2="380" y2={rungYs[rungYs.length - 2] - 10 + (rungHeight * 2 + rungGap + 20) / 2} />
+
+    <text class="ladder-note" x="280" y="468" text-anchor="middle">{t.sideBySide}</text>
+  </svg>
+  <figcaption class="ladder-caption">{t.caption}</figcaption>
+</figure>
+
+<style>
+  .ladder-figure {
+    margin: 24px 0 28px;
+    max-width: 580px;
+  }
+  .ladder-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--iron);
+    border-radius: 6px;
+  }
+  .ladder-bg {
+    fill: var(--ink);
+  }
+  .ladder-tracklabel {
+    fill: var(--fog);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .ladder-tracklabel-op {
+    fill: var(--ember);
+  }
+  .ladder-rung {
+    fill: var(--steel);
+    stroke: var(--iron);
+    stroke-width: 1.5;
+  }
+  .ladder-rung-op {
+    fill: rgba(240,112,56,0.14);
+    stroke: var(--ember);
+  }
+  .ladder-rungtext {
+    fill: var(--white);
+    font-family: var(--body);
+    font-size: 15px;
+    text-anchor: middle;
+  }
+  .ladder-arrow {
+    stroke: var(--amber);
+    stroke-width: 2;
+    marker-end: url(#ladder-arrowhead);
+  }
+  .ladder-arrowhead-path {
+    fill: var(--amber);
+  }
+  .ladder-sidebyside {
+    stroke: var(--fog);
+    stroke-width: 1.5;
+    stroke-dasharray: 5 4;
+  }
+  .ladder-note {
+    fill: var(--fog);
+    font-family: var(--body);
+    font-size: 12px;
+  }
+  .ladder-caption {
+    color: var(--fog);
+    font-size: 13px;
+    margin-top: 8px;
+    text-align: center;
+  }
+</style>
