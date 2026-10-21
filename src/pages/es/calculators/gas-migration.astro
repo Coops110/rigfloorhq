@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import VideoEmbed from '../../../components/VideoEmbed.astro';
 import { reviewedByJabin } from '../../../lib/person.js';
 
 const faq = [
@@ -127,6 +128,18 @@ const webPageLd = {
         </div>
 
         <p>Una vez que tienes un ritmo de migración, revisar si un ritmo de bombeo planeado para bombeo a matar realmente superaría ese ritmo es la última sección de la <a href="/es/calculators/bullheading">calculadora de bombeo a matar</a>. Para las presiones de cierre y el peso de matar en los que se alimenta esto más ampliamente, ver la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a>. La secuencia completa del método volumétrico y de lubricar y purgar, y cuándo se usa cada uno en lugar de circular, está en la <a href="/es/pillars/well-kill-methods">guía de métodos para matar un pozo</a>.</p>
+
+        <h2>Video: Por Qué Sube la Presión de Cierre Sin Bombas Corriendo</h2>
+        <p style="color:var(--fog);font-size:13px;">Video en inglés del canal de YouTube de RigFloorHQ.</p>
+        <VideoEmbed
+          videoId="6dfbuSstZ7A"
+          title="Why does shut-in pressure climb with no pumps running?"
+          description="Nothing's pumping and the pressure is still climbing. That's gas migration, and there's a real math behind how fast and how much to bleed. Free calculator, runs in your browser — rigfloorhq.com/calculators/gas-migration"
+          uploadDate="2026-10-19T06:04:31-07:00"
+          duration="PT0M36S"
+          thumbnailUrl="https://i.ytimg.com/vi/6dfbuSstZ7A/hqdefault.jpg"
+          lang="es"
+        />
 
         <h2 id="faq">Preguntas Frecuentes</h2>
         {faq.map((item) => (

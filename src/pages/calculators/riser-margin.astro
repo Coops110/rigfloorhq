@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
 
 const faq = [
   {
@@ -109,6 +110,17 @@ const webAppLd = {
         </div>
 
         <p>0.442 psi/ft is a common seawater gradient (about 8.5 ppg equivalent); actual local seawater density varies slightly by salinity and temperature. For the hydrostatic math this builds on, see the <a href="/calculators/hydrostatic">hydrostatic pressure calculator</a>; for the subsea BOP stack this margin exists to protect, see the <a href="/equipment/bop">BOP equipment page</a>.</p>
+
+        <h2>Watch: What Happens If the Riser Disconnects?</h2>
+        <VideoEmbed
+          videoId="YNplDm-l2Rg"
+          title="What happens to well control if the riser disconnects?"
+          description="If the riser disconnects, does the well stay overbalanced or does it flow? Riser margin is the real number behind that answer. Free calculator, runs in your browser — rigfloorhq.com/calculators/riser-margin"
+          uploadDate="2026-10-20T06:04:19-07:00"
+          duration="PT0M35S"
+          thumbnailUrl="https://i.ytimg.com/vi/YNplDm-l2Rg/hqdefault.jpg"
+          lang="en"
+        />
 
         <h2 id="faq">Frequently Asked Questions</h2>
         {faq.map((item) => (

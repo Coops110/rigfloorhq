@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
 import { reviewedByJabin } from '../../lib/person.js';
 
 const faq = [
@@ -130,6 +131,17 @@ const webPageLd = {
         </div>
 
         <p>Once you have a migration rate, checking whether a planned bullhead pump rate would actually outpace it is the <a href="/calculators/bullheading">bullheading calculator</a>'s last section. For the shut-in pressures and kill weight this feeds into more broadly, see the <a href="/calculators/kill-sheet">kill sheet calculator</a>. The full step sequence for the volumetric method and lubricate-and-bleed, and when each is used instead of circulating, is in the <a href="/pillars/well-kill-methods">well kill methods guide</a>.</p>
+
+        <h2>Watch: Why Shut-In Pressure Climbs With No Pumps Running</h2>
+        <VideoEmbed
+          videoId="6dfbuSstZ7A"
+          title="Why does shut-in pressure climb with no pumps running?"
+          description="Nothing's pumping and the pressure is still climbing. That's gas migration, and there's a real math behind how fast and how much to bleed. Free calculator, runs in your browser — rigfloorhq.com/calculators/gas-migration"
+          uploadDate="2026-10-19T06:04:31-07:00"
+          duration="PT0M36S"
+          thumbnailUrl="https://i.ytimg.com/vi/6dfbuSstZ7A/hqdefault.jpg"
+          lang="en"
+        />
 
         <h2 id="faq">Frequently Asked Questions</h2>
         {faq.map((item) => (

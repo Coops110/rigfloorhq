@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import VideoEmbed from '../../../components/VideoEmbed.astro';
 
 const faq = [
   {
@@ -119,6 +120,18 @@ const webAppLd = {
         </dl>
 
         <p>Para el caso simple de extremo abierto aplicado a la cifra de tonelada-milla de una sarta completa, ver la <a href="/es/calculators/ton-mile">calculadora de tonelada-milla</a>. El punto neutro y dónde mantener los lastrabarrenas en compresión están en la <a href="/es/calculators/formulas-cheat-sheet#buoyancy">hoja de fórmulas de perforación</a>.</p>
+
+        <h2>Video: Por Qué la Misma Tubería Pesa Dos Cantidades Distintas</h2>
+        <p style="color:var(--fog);font-size:13px;">Video en inglés del canal de YouTube de RigFloorHQ.</p>
+        <VideoEmbed
+          videoId="DbnH4G8ZZow"
+          title="Why does the same pipe weigh two different amounts?"
+          description="Open-ended or closed-ended changes your buoyed pipe weight by pounds per foot, not ounces. Same pipe, same mud, two real numbers. Free calculator, runs in your browser — rigfloorhq.com/calculators/buoyancy"
+          uploadDate="2026-10-20T01:04:19-07:00"
+          duration="PT0M33S"
+          thumbnailUrl="https://i.ytimg.com/vi/DbnH4G8ZZow/hqdefault.jpg"
+          lang="es"
+        />
 
         <h2 id="faq">Preguntas Frecuentes</h2>
         {faq.map((item) => (

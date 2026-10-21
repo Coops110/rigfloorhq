@@ -1,0 +1,108 @@
+---
+// Click-to-load YouTube Short embed. No iframe (and no YouTube JS) loads
+// until a real click/keypress, so a page carrying one of these never pays
+// YouTube's load cost for a visitor who never plays it — same reasoning as
+// ToolGallery's click-through images, applied to video.
+//
+// Real video metadata only: title/description/uploadDate/duration are all
+// pulled from the actual published YouTube Short (verified live, not
+// invented), so the VideoObject below is a true statement, not a filled-in
+// template.
+export interface Props {
+  videoId: string;
+  title: string;
+  description: string;
+  uploadDate: string;
+  duration: string;
+  thumbnailUrl: string;
+  lang?: 'en' | 'es';
+}
+const { videoId, title, description, uploadDate, duration, thumbnailUrl, lang = 'en' } = Astro.props;
+
+const watchUrl = `https://www.youtube.com/shorts/${videoId}`;
+const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+const playLabel = lang === 'es' ? `Reproducir video: ${title}` : `Play video: ${title}`;
+const watchLabel = lang === 'es' ? 'Ver en YouTube' : 'Watch on YouTube';
+
+const videoObjectLd = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  name: title,
+  description,
+  thumbnailUrl,
+  uploadDate,
+  duration,
+  contentUrl: watchUrl,
+  embedUrl,
+  publisher: { '@id': 'https://rigfloorhq.com/#organization' },
+};
+---
+<div
+  class="video-embed-facade"
+  data-video-id={videoId}
+  role="button"
+  tabindex="0"
+  aria-label={playLabel}
+  style={`background-image:url('${thumbnailUrl}')`}
+>
+  <span class="video-embed-play" aria-hidden="true">▶</span>
+  <span class="video-embed-badge">{watchLabel}</span>
+</div>
+
+<style>
+  .video-embed-facade {
+    position: relative;
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 9 / 16;
+    margin: 20px auto;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--steel, #1c2130);
+    border: 1px solid var(--iron, #2a3347);
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .video-embed-play {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+  .video-embed-badge {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 4px 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .video-embed-iframe {
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 9 / 16;
+    display: block;
+    margin: 20px auto;
+    border: none;
+    border-radius: 6px;
+  }
+</style>
+
+<script is:inline src="/scripts/video-embed.js" defer></script>
+
+<script type="application/ld+json" set:html={JSON.stringify(videoObjectLd)} />

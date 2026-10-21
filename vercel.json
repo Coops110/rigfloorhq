@@ -99,7 +99,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-vsqpZLGrisMaElu7SUdUsEb5tPqyySOafGzvqcwi90Y=' 'sha256-zBXAj3xYmIuhWuiClzeJz6vHUg8jVKrYqRwyFVhe+PY=' 'sha256-CAy8X8yXpAkXCoBVIuNiRbwuK1h4jVQqlQJ3CH3XO+g='; connect-src 'self' https://www.google-analytics.com https://analytics.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; form-action 'self' https://buttondown.com; object-src 'none'; base-uri 'none'; frame-ancestors 'self'"
+          "value": "default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-vsqpZLGrisMaElu7SUdUsEb5tPqyySOafGzvqcwi90Y=' 'sha256-zBXAj3xYmIuhWuiClzeJz6vHUg8jVKrYqRwyFVhe+PY=' 'sha256-CAy8X8yXpAkXCoBVIuNiRbwuK1h4jVQqlQJ3CH3XO+g='; connect-src 'self' https://www.google-analytics.com https://analytics.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src https://www.youtube.com; form-action 'self' https://buttondown.com; object-src 'none'; base-uri 'none'; frame-ancestors 'self'"
         },
         {
           "key": "Permissions-Policy",

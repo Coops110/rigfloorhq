@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import VideoEmbed from '../../../components/VideoEmbed.astro';
 import NewsletterSignup from '../../../components/NewsletterSignup.astro';
 
 const faq = [
@@ -136,6 +137,18 @@ const webAppLd = {
         <p>El peso de lodo estático, el número con el que trabaja la <a href="/es/calculators/hydrostatic">calculadora de presión hidrostática</a>, es solo el punto de partida. El ECD es el número que hay que revisar contra el gradiente de fractura una vez que las bombas están encendidas — la misma comparación que hace la <a href="/es/calculators/mud-weight-window">calculadora de ventana de peso de lodo</a> entre presión de poro y fractura, solo que contra la cifra más alta de circulación en lugar de la estática. Si ya ocurrió una entrada, el siguiente paso es la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a>, no esta. En un pozo direccional u horizontal, recuerda que la profundidad medida es la que maneja la velocidad y la fricción a lo largo de todo el anular, pero solo la TVD convierte esa fricción de vuelta a un peso de lodo equivalente — las dos profundidades hacen trabajos distintos en esta fórmula, igual que en el resto de este sitio.</p>
 
         <p>Esta es una estimación de una sola sección, tratando el anular como un espacio uniforme. Una sarta real con tubería de perforación, heavy weight y lastrabarrenas en distintos tamaños de hoyo y revestimiento tiene una velocidad y pérdida de fricción diferente en cada sección, por lo cual un programa de hidráulica completo hecho por un ingeniero de lodos no va a coincidir exactamente con este número — usa esto para entender la forma del problema, no para reemplazar ese programa.</p>
+
+        <h2>Video: Qué Es la Densidad Equivalente de Circulación</h2>
+        <p style="color:var(--fog);font-size:13px;">Video en inglés del canal de YouTube de RigFloorHQ.</p>
+        <VideoEmbed
+          videoId="z6yDcxNSHkY"
+          title="What is Equivalent Circulating Density?"
+          description="Your mud weight number is only half the story. ECD is what the well actually feels once pumps are on, and it's always higher, never lower. Free calculator, runs in your browser — rigfloorhq.com/calculators/ecd"
+          uploadDate="2026-10-19T01:06:23-07:00"
+          duration="PT0M41S"
+          thumbnailUrl="https://i.ytimg.com/vi/z6yDcxNSHkY/hqdefault.jpg"
+          lang="es"
+        />
 
         <h2 id="faq">Preguntas Frecuentes</h2>
         {faq.map((item) => (

@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
 
 const faq = [
   {
@@ -119,6 +120,17 @@ const webAppLd = {
         </dl>
 
         <p>For the simple open-ended case applied to a full drill string's ton-mile figure, see the <a href="/calculators/ton-mile">ton-mile calculator</a>. Neutral point and where to keep drill collars in compression are on the <a href="/calculators/formulas-cheat-sheet#buoyancy">drilling formulas cheat sheet</a>.</p>
+
+        <h2>Watch: Why the Same Pipe Weighs Two Different Amounts</h2>
+        <VideoEmbed
+          videoId="DbnH4G8ZZow"
+          title="Why does the same pipe weigh two different amounts?"
+          description="Open-ended or closed-ended changes your buoyed pipe weight by pounds per foot, not ounces. Same pipe, same mud, two real numbers. Free calculator, runs in your browser — rigfloorhq.com/calculators/buoyancy"
+          uploadDate="2026-10-20T01:04:19-07:00"
+          duration="PT0M33S"
+          thumbnailUrl="https://i.ytimg.com/vi/DbnH4G8ZZow/hqdefault.jpg"
+          lang="en"
+        />
 
         <h2 id="faq">Frequently Asked Questions</h2>
         {faq.map((item) => (

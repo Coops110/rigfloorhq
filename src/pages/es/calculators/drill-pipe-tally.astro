@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import VideoEmbed from '../../../components/VideoEmbed.astro';
 
 const faq = [
   {
@@ -137,6 +138,18 @@ const webAppLd = {
         <p>Esta calculadora maneja una sección uniforme de tubería — un solo DE/DI/peso a lo largo de la sarta. Una sarta de perforación real usualmente combina tubería de perforación con un BHA o lastrabarrenas más corto y pesado cerca de la barrena, que tienen su propio DE y DI y necesitan su propio paso por las mismas fórmulas. La <a href="/es/calculators/lag-and-volume">calculadora de retraso y volumen</a> ya maneja una sarta de dos secciones (tubería de perforación más BHA) si esa división importa para lo que estás calculando.</p>
         <p>La capacidad y el desplazamiento aquí vienen de una sección transversal circular completa. Un tanque horizontal acostado de lado trabaja con una forma relacionada pero distinta — un segmento circular que cambia con la altura de llenado en vez de un diámetro constante — ver la <a href="/es/calculators/horizontal-tank-capacity">calculadora de capacidad de tanque horizontal</a> para esa geometría.</p>
         <p>Para las constantes con números resueltos, ve la <a href="/es/calculators/formulas-cheat-sheet">hoja de referencia de fórmulas de perforación</a>.</p>
+
+        <h2>Video: Por Qué la Cuenta Real Gana al Contador de Profundidad</h2>
+        <p style="color:var(--fog);font-size:13px;">Video en inglés del canal de YouTube de RigFloorHQ.</p>
+        <VideoEmbed
+          videoId="62hfGITVEOk"
+          title="Your depth counter can drift. The tally can't."
+          description="Your tally is the real depth, not the counter. Free calculator: capacity, displacement, and a full running tally table from OD, ID, and joint count. rigfloorhq.com/calculators/drill-pipe-tally"
+          uploadDate="2026-10-19T20:03:04-07:00"
+          duration="PT0M38S"
+          thumbnailUrl="https://i.ytimg.com/vi/62hfGITVEOk/hqdefault.jpg"
+          lang="es"
+        />
 
         <h2 id="faq">Preguntas Frecuentes</h2>
         {faq.map((item) => (

@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
 
 const faq = [
   {
@@ -160,6 +161,17 @@ const webAppLd = {
         </dl>
 
         <p>Buoyancy factor here uses the same 65.5 constant as the <a href="/calculators/formulas-cheat-sheet">drilling formulas cheat sheet</a>'s buoyancy section — see that page if a figure needs reconciling to more decimal places.</p>
+
+        <h2>Watch: One Trip, 45 Ton-Miles of Wear</h2>
+        <VideoEmbed
+          videoId="Z2-OjIqilNQ"
+          title="One trip, 45 ton-miles of wear"
+          description="One 500-foot round trip just cost your drilling line 45 ton-miles. Free calculator tracks drilling, coring, short-trip, and casing ton-miles separately. rigfloorhq.com/calculators/ton-mile"
+          uploadDate="2026-10-18T20:03:01-07:00"
+          duration="PT0M41S"
+          thumbnailUrl="https://i.ytimg.com/vi/Z2-OjIqilNQ/hqdefault.jpg"
+          lang="en"
+        />
 
         <h2 id="faq">Frequently Asked Questions</h2>
         {faq.map((item) => (
