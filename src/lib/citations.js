@@ -67,6 +67,18 @@ export const CITATIONS = {
       note: 'Normas de BSEE sobre operaciones y equipos de pozo para la plataforma continental exterior de EE. UU., incluidos los requisitos de control de pozo y equipos BOP.',
     },
   },
+  cfr250h: {
+    en: {
+      href: 'https://www.ecfr.gov/current/title-30/chapter-II/subchapter-B/part-250/subpart-H',
+      label: '30 CFR 250 Subpart H (§250.814)',
+      note: "BSEE's oil and gas production safety system rules for the US Outer Continental Shelf — §250.814 specifically covers the design, installation and operation of subsurface safety valves, which is a production/completion requirement rather than a well-control (Subpart G) one.",
+    },
+    es: {
+      href: 'https://www.ecfr.gov/current/title-30/chapter-II/subchapter-B/part-250/subpart-H',
+      label: '30 CFR 250 Subparte H (§250.814)',
+      note: 'Normas de BSEE sobre sistemas de seguridad de producción de petróleo y gas para la plataforma continental exterior de EE. UU. — el §250.814 cubre específicamente el diseño, instalación y operación de válvulas de seguridad subsuperficiales, un requisito de producción/terminación y no de control de pozo (Subparte G).',
+    },
+  },
   oshaH2s: {
     en: {
       href: 'https://www.osha.gov/hydrogen-sulfide',
