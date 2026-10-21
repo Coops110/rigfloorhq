@@ -230,6 +230,17 @@
   // straight into settings since that's what the footer link is for.
   window.rigFloorHQOpenConsent = function () { show('settings', true); };
 
-  if (!read() && probablyNeedsBanner()) show('main', false);
+  // probablyNeedsBanner()'s Intl.DateTimeFormat() branch alone costs
+  // 100-200ms on a throttled CPU (see its own comment) -- real US visitors
+  // never hit that branch (their UTC offset is outside the checked band),
+  // but a lab runner whose own system clock happens to sit inside that
+  // band (e.g. a UTC test host) hits it on every single audit, showing up
+  // as one long task alongside the listener setup above. Deferred to its
+  // own macrotask so it can't extend whatever task is already running,
+  // and so the accept/reject/settings buttons above are clickable
+  // immediately rather than waiting on a timezone-database lookup first.
+  setTimeout(function () {
+    if (!read() && probablyNeedsBanner()) show('main', false);
+  }, 0);
   } // end runConsentBanner
 })();
