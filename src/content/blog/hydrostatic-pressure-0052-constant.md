@@ -2,7 +2,7 @@
 title: "Hydrostatic Pressure Math: The 0.052 Constant Explained"
 description: "Where the 0.052 in P = 0.052 × MW × TVD comes from, why it's a fixed unit conversion and not a property of mud, and what people usually get wrong about it."
 publishDate: "2026-10-01"
-author: "RigFloorHQ Team"
+author: "Chris Cooper"
 category: "Well Control"
 tags: ["hydrostatic pressure", "well control", "mud weight", "formulas"]
 sources: ["iwcf", "iadcWellsharp"]

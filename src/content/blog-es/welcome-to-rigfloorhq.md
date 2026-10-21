@@ -2,7 +2,7 @@
 title: "Bienvenido a RigFloorHQ: Referencia de Campo Completa"
 description: "Por qué construimos RigFloorHQ, qué hay en él hoy, y qué viene después para cualquiera que trabaje en o esté entrando a la industria petrolera y de gas."
 publishDate: "2026-07-07"
-author: "RigFloorHQ Team"
+author: "Chris Cooper"
 category: "Anuncios"
 tags: ["anuncio", "noticias del sitio"]
 # Anuncio del sitio, no material de referencia. Ver la nota en la versión en

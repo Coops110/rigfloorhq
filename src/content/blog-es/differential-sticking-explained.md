@@ -2,7 +2,7 @@
 title: "Pega Diferencial: Las Tres Condiciones y Cómo Evitarla"
 description: "La pega diferencial necesita sobrebalance, una formación permeable y una sarta estática. Elimine cualquiera de las tres y no puede ocurrir."
 publishDate: "2026-08-03"
-author: "RigFloorHQ Team"
+author: "Chris Cooper"
 category: "Perforación"
 tags: ["pega diferencial", "pega de tubería", "sobrebalance", "revoque", "portamechas", "píldora liberadora"]
 image: "/images/blog/differential-sticking.svg"

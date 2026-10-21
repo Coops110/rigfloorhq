@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE } from '../../lib/site.js';
+import { CHRIS_PERSON_ID } from '../../lib/person.js';
+
+const siteUrl = 'https://rigfloorhq.com';
+
+// The canonical Person record for Chris Cooper, RigFloorHQ's founder.
+// Mirrors src/pages/about/jabin-travis.astro's pattern: this page is the one
+// place his name and role are typed out in full, every other reference
+// points at CHRIS_PERSON_ID (src/lib/person.js) instead of re-typing it.
+const person = {
+  '@type': 'Person',
+  '@id': CHRIS_PERSON_ID,
+  name: 'Chris Cooper',
+  url: `${siteUrl}/about/chris-cooper`,
+  jobTitle: 'Founder',
+  description:
+    'Founder and operator of RigFloorHQ, an independent oil and gas drilling reference site. Writes and maintains the site\'s calculators, career guides and reference material, with safety-critical content checked for technical accuracy by Jabin Travis, a working drilling professional.',
+};
+
+const personLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ProfilePage',
+      '@id': `${siteUrl}/about/chris-cooper#profilepage`,
+      url: `${siteUrl}/about/chris-cooper`,
+      name: 'Chris Cooper, Founder of RigFloorHQ',
+      inLanguage: 'en',
+      isPartOf: { '@id': `${siteUrl}/#website` },
+      mainEntity: { '@id': CHRIS_PERSON_ID },
+    },
+    person,
+  ],
+};
+---
+<BaseLayout
+  title="Chris Cooper, Founder of RigFloorHQ"
+  description="Chris Cooper founded and runs RigFloorHQ, an independent oil and gas drilling reference site. See who's behind the site and how it's put together."
+  breadcrumbs={[{ label: 'About', href: '/about' }, { label: 'Chris Cooper', href: '/about/chris-cooper' }]}
+  jsonLd={personLd}
+  lang="en"
+  alternateHref="/es/about/chris-cooper"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/about/chris-cooper" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">About: Founder</div>
+    <h1>Chris <span>Cooper</span></h1>
+    <p class="page-hero-sub">Founder and operator of RigFloorHQ, an independent oil and gas drilling reference site.</p>
+  </div>
+
+  <section class="block">
+    <div class="prose">
+      <h2>Background</h2>
+      <p>
+        Chris Cooper founded and runs RigFloorHQ as an independent site — it is not owned
+        by a drilling contractor, an operator, an equipment manufacturer, a training
+        provider or a recruitment agency. He writes and maintains the site's blog posts,
+        calculators and career guides.
+      </p>
+      <p>
+        RigFloorHQ is not a one-man claim to field expertise: safety-critical material —
+        well control, H2S, shut-in procedures and the related calculators — is checked for
+        real-world accuracy by <a href="/about/jabin-travis">Jabin Travis</a>, a drilling
+        professional with 30 years of field experience. See
+        <a href="/about#reviewed-by-a-working-driller">how that review process fits into
+        the site's broader approach to safety-critical material</a> on the main About page.
+      </p>
+
+      <h2>Role at RigFloorHQ</h2>
+      <p>
+        Chris is responsible for the site as a whole: what gets published, how it's
+        structured, and making sure safety-critical pages go through Jabin's technical
+        review before they're treated as reliable. He is the named author on posts and
+        reference pages that don't carry a different byline.
+      </p>
+
+      <h2>Corrections</h2>
+      <p>
+        If something on the site is wrong, out of date, or misleading, email
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a> with the page and what's off.
+        See the main <a href="/about">About page</a> for the site's full approach to
+        corrections and safety-critical material.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -2,7 +2,7 @@
 title: "Differential Sticking: Causes and How to Free Pipe"
 description: "Differential sticking needs overbalance, a permeable formation and a stationary string. Remove any one and it cannot happen. Why the force grows with time."
 publishDate: "2026-08-03"
-author: "RigFloorHQ Team"
+author: "Chris Cooper"
 category: "Drilling"
 tags: ["differential sticking", "stuck pipe", "overbalance", "filter cake", "drill collars", "spotting fluid"]
 image: "/images/blog/differential-sticking.svg"

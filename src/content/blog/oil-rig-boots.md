@@ -2,7 +2,7 @@
 title: "Oil Rig Boots: How to Choose the Right Pair"
 description: "What rig work demands from a safety boot: ASTM F2413 and EN ISO 20345 labels, steel vs composite toe, met guards, pull-on vs lace-up, and when to replace."
 publishDate: "2026-10-02"
-author: "RigFloorHQ Team"
+author: "Chris Cooper"
 category: "Safety"
 tags: ["PPE", "safety boots", "footwear", "ASTM F2413", "rig floor"]
 sources: ["astmF2413", "isoSafetyFootwear"]

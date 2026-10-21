@@ -2,7 +2,7 @@
 title: "Well Control Curveballs: Scenarios Worth a Second Look"
 description: "Worked pressure problems and edge-case well control scenarios — mud gas separators, PWD readings, BOP testing, subsea panel behavior."
 publishDate: "2026-09-21"
-author: "RigFloorHQ Team"
+author: "Chris Cooper"
 category: "Well Control"
 tags: ["well control", "kill sheet", "training"]
 sources: ["iwcf", "iadcWellsharp"]

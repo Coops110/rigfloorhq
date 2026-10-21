@@ -2,7 +2,7 @@
 title: "Driller's Method and Wait and Weight: 20 Exam Questions"
 description: "20 worked questions on where the Driller's Method, Wait and Weight, and Volumetric Method get confused with each other — which pressure to hold constant."
 publishDate: "2026-09-21"
-author: "RigFloorHQ Team"
+author: "Chris Cooper"
 category: "Well Control"
 tags: ["well control", "kill sheet", "driller's method", "wait and weight", "training"]
 sources: ["iwcf", "iadcWellsharp"]

@@ -2,7 +2,7 @@
 title: "What Is a Kick? Well Control Explained for New Rig Crews"
 description: "What a kick actually is, why hydrostatic pressure fails, how a flow check confirms an influx, and why hard and soft shut-in exist."
 publishDate: "2026-07-09"
-author: "RigFloorHQ Team"
+author: "Chris Cooper"
 category: "Well Control"
 tags: ["well control", "kicks", "BOP", "shut-in", "kill sheet"]
 sources: ["iwcf", "iadcWellsharp"]

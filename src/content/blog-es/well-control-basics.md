@@ -2,7 +2,7 @@
 title: "¿Qué es una Surgencia? Control de Pozos Explicado"
 description: "Qué es una surgencia, por qué falla la presión hidrostática, cómo un chequeo de flujo confirma un influjo, y por qué existen el cierre duro y el cierre suave."
 publishDate: "2026-07-09"
-author: "RigFloorHQ Team"
+author: "Chris Cooper"
 category: "Control de Pozos"
 tags: ["control de pozos", "surgencias", "BOP", "cierre", "hoja de control de pozo"]
 sources: ["iwcf", "iadcWellsharp"]

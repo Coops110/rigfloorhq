@@ -2,7 +2,7 @@
 title: "Pit Volumes and MAASP: Where the Math Gets Misread"
 description: "Kick tolerance, MAASP, ballooning, and pit-volume reasoning that sounds right but isn't — and the correct logic behind each answer."
 publishDate: "2026-09-21"
-author: "RigFloorHQ Team"
+author: "Chris Cooper"
 category: "Well Control"
 tags: ["well control", "MAASP", "kick tolerance", "training"]
 sources: ["iwcf", "iadcWellsharp"]

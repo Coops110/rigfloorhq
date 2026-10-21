@@ -2,7 +2,7 @@
 title: "Torque y Arrastre como Alerta Temprana: La Tendencia"
 description: "Una cifra de torque no significa nada por sí sola. Lo que importa es la diferencia entre lo que el modelo predijo y lo que la sarta realmente hizo."
 publishDate: "2026-08-03"
-author: "RigFloorHQ Team"
+author: "Chris Cooper"
 reviewedByJabin: true
 reviewedDate: "2026-10-15"
 category: "Perforación"

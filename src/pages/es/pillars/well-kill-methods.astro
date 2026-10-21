@@ -5,6 +5,7 @@ import Footer from '../../../components/Footer.astro';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
 
 import { techArticleSchema } from '../../../lib/techarticle.js';
+import { authorChrisCooper } from '../../../lib/person.js';
 const jsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/pillars/well-kill-methods.astro',
   path: '/es/pillars/well-kill-methods',
@@ -14,6 +15,7 @@ const jsonLd = techArticleSchema({
   extra: {
     about: { "@type": "Thing", "name": "Métodos de control de pozos" },
     mainEntityOfPage: { "@id": "https://rigfloorhq.com/es/pillars/well-kill-methods#webpage" },
+    author: authorChrisCooper(),
   },
 });
 
@@ -54,6 +56,7 @@ const webPageLd = {
     <h1>Métodos para <span>Matar un Pozo</span></h1>
     <p class="page-hero-sub">El pozo está cerrado y los manómetros ya se estabilizaron. Ahora alguien tiene que decidir cómo sacar el influjo y meter lodo de matanza sin romper la zapata. Esta es la referencia de nivel supervisor para esa decisión.</p>
     <div class="page-meta">
+      <span class="page-meta-item">Por <strong><a href="/es/about/chris-cooper">Chris Cooper</a></strong></span>
       <a href="/es/calculators/kill-sheet" class="btn btn-primary" style="margin-top:8px;">Abrir la Calculadora de Hoja de Matar</a>
     </div>
   </div>

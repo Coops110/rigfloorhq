@@ -2,7 +2,7 @@
 title: "Roustabout to Driller: What the Timeline Looks Like"
 description: "A realistic look at how long it takes to progress from an entry-level rig job to running the console, and what determines your pace versus average."
 publishDate: "2026-07-09"
-author: "RigFloorHQ Team"
+author: "Chris Cooper"
 category: "Careers"
 tags: ["careers", "driller", "roustabout", "career progression"]
 sources: ["iwcf", "iadcWellsharp"]

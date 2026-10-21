@@ -5,7 +5,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import DiagramEmbed from '../../components/DiagramEmbed.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
-import { JABIN_PERSON_ID, reviewedByJabin } from '../../lib/person.js';
+import { JABIN_PERSON_ID, reviewedByJabin, authorChrisCooper } from '../../lib/person.js';
 import { gitDates } from '../../lib/techarticle.js';
 
 export async function getStaticPaths() {
@@ -44,10 +44,9 @@ const jsonLdImage = shareImage || `/og/blog-${post.id}.png`;
 // Both reference the same stable Person @id from src/lib/person.js rather
 // than typing out his name/jobTitle again here, so his full record (bio,
 // credentials) only has to be correct in one place: the profile page itself.
-// The non-Jabin byline ("RigFloorHQ Team") is this same site's own
-// organization, not a separate entity, so it references the one real
-// Organization node (BaseLayout.astro) by @id instead of fabricating a
-// second, disconnected Organization node with only a name string.
+// Every other post is written by Chris Cooper, the site's founder — real
+// Person entity via authorChrisCooper(), not the bare Organization @id this
+// used to fall back to.
 const isJabin = post.data.author === 'Jabin Travis';
 const authorEntity = isJabin
   ? {
@@ -56,7 +55,7 @@ const authorEntity = isJabin
       "name": "Jabin Travis",
       "jobTitle": "Drilling Operations Supervisor",
     }
-  : { "@id": `${siteUrl}/#organization` };
+  : authorChrisCooper();
 
 // Same git-derived dates every Article/TechArticle page uses (src/lib/techarticle.js):
 // dateModified is the last commit that actually touched this post's own content
@@ -124,7 +123,7 @@ const switcherUrl = hasSpanishVersion ? `/es/blog/${post.id}` : '/es/blog';
     <h1>{post.data.title}</h1>
     <p class="page-hero-sub">{post.data.description}</p>
     <div class="page-meta">
-      <span class="page-meta-item">By <strong>{post.data.author}</strong></span>
+      <span class="page-meta-item">By <strong><a href={isJabin ? '/about/jabin-travis' : '/about/chris-cooper'}>{post.data.author}</a></strong></span>
       <span class="page-meta-item">{formatDate(post.data.publishDate)}</span>
       {post.data.tags.length > 0 && (
         <span class="page-meta-item">{post.data.tags.join(' · ')}</span>

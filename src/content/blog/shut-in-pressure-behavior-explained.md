@@ -2,7 +2,7 @@
 title: "Shut-In Pressure Behavior: What Actually Happens"
 description: "How SIDPP, SICP, and bottom hole pressure behave during shut-in and migration, plus the pressure definitions — ECD, porosity, abnormal pressure."
 publishDate: "2026-09-21"
-author: "RigFloorHQ Team"
+author: "Chris Cooper"
 category: "Well Control"
 tags: ["well control", "shut-in", "SIDPP", "SICP", "training"]
 sources: ["iwcf", "iadcWellsharp"]

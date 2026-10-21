@@ -45,3 +45,22 @@ export function reviewedByJabin() {
     jobTitle: 'Drilling Operations Supervisor',
   };
 }
+
+// Chris Cooper, RigFloorHQ's founder and the site's real author entity —
+// same pattern as JABIN_PERSON_ID above. Full bio lives on
+// src/pages/about/chris-cooper.astro; everywhere else references this @id.
+// No `sameAs` yet: unlike Jabin's credentials, Chris hasn't supplied a real
+// LinkedIn/GitHub profile to link, so none is fabricated here. Add one only
+// once he gives a real URL.
+export const CHRIS_PERSON_ID = `${siteUrl}/about/chris-cooper#person`;
+
+/** Author reference to Chris Cooper, inlined for the same reason reviewedByJabin() is. */
+export function authorChrisCooper() {
+  return {
+    '@type': 'Person',
+    '@id': CHRIS_PERSON_ID,
+    name: 'Chris Cooper',
+    url: `${siteUrl}/about/chris-cooper`,
+    jobTitle: 'Founder',
+  };
+}

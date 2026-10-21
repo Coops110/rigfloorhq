@@ -2,7 +2,7 @@
 title: "Comportamiento de la Presión de Cierre: Qué Sucede Realmente"
 description: "Cómo se comportan la SIDPP, SICP y la presión de fondo durante el cierre y la migración, más las definiciones de presión — ECD, porosidad, presión anormal."
 publishDate: "2026-09-21"
-author: "RigFloorHQ Team"
+author: "Chris Cooper"
 category: "Control de Pozos"
 tags: ["control de pozos", "cierre", "SIDPP", "SICP", "entrenamiento"]
 sources: ["iwcf", "iadcWellsharp"]

@@ -2,7 +2,7 @@
 title: "De Roustabout a Perforador: Cómo Se Ve Realmente"
 description: "Una mirada realista a cuánto tiempo toma progresar de un trabajo de nivel inicial en un taladro a manejar la consola."
 publishDate: "2026-07-09"
-author: "RigFloorHQ Team"
+author: "Chris Cooper"
 category: "Carreras"
 tags: ["carreras", "perforador", "roustabout", "progresión profesional"]
 sources: ["iwcf", "iadcWellsharp"]

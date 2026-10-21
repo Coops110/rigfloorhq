@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
 
 import { techArticleSchema } from '../../lib/techarticle.js';
+import { authorChrisCooper } from '../../lib/person.js';
 const jsonLd = techArticleSchema({
   sourcePath: 'src/pages/pillars/well-kill-methods.astro',
   path: '/pillars/well-kill-methods',
@@ -14,6 +15,7 @@ const jsonLd = techArticleSchema({
   extra: {
     about: { "@type": "Thing", "name": "Well control kill methods", "sameAs": "https://en.wikipedia.org/wiki/Well_control" },
     mainEntityOfPage: { "@id": "https://rigfloorhq.com/pillars/well-kill-methods#webpage" },
+    author: authorChrisCooper(),
   },
 });
 
@@ -53,6 +55,7 @@ const webPageLd = {
     <h1>Well Kill <span>Methods</span></h1>
     <p class="page-hero-sub">The well is shut in and the gauges have stabilised. Now someone has to choose how to get the influx out and kill-weight mud in without breaking down the shoe. This is the supervisor-level reference for that decision.</p>
     <div class="page-meta">
+      <span class="page-meta-item">By <strong><a href="/about/chris-cooper">Chris Cooper</a></strong></span>
       <a href="/calculators/kill-sheet" class="btn btn-primary" style="margin-top:8px;">Open the Kill Sheet Calculator</a>
     </div>
   </div>

@@ -2,7 +2,7 @@
 title: "Limpieza del Pozo en Pozos de Alto Ángulo: Por Qué se Forman"
 description: "Por encima de unos 50 grados, los recortes dejan de ser transportados y comienzan a asentarse en camas. Por qué cambia el problema."
 publishDate: "2026-08-03"
-author: "RigFloorHQ Team"
+author: "Chris Cooper"
 reviewedByJabin: true
 reviewedDate: "2026-10-15"
 category: "Perforación"

@@ -2,7 +2,7 @@
 title: "Permit to Work System on Drilling Rigs: A Complete Guide"
 description: "How the PTW system works on a rig in practice: hot work, confined space, electrical isolation and LOTO, SIMOPS."
 publishDate: "2026-07-23"
-author: "RigFloorHQ Team"
+author: "Chris Cooper"
 category: "Safety"
 tags: ["permit to work", "PTW", "hot work", "confined space", "LOTO", "SIMOPS"]
 sources: ["hseHsg250"]

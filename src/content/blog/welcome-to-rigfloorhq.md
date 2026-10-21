@@ -2,7 +2,7 @@
 title: "Welcome to RigFloorHQ: A Complete Field Reference"
 description: "Why we built RigFloorHQ, what's in it today, and what's coming next for anyone working in or entering the oil and gas drilling industry."
 publishDate: "2026-07-07"
-author: "RigFloorHQ Team"
+author: "Chris Cooper"
 category: "Announcements"
 tags: ["announcement", "site news"]
 # Site announcement, not reference material. Stays published and linkable for

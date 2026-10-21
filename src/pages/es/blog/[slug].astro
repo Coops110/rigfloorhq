@@ -5,7 +5,7 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import DiagramEmbed from '../../../components/DiagramEmbed.astro';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
-import { JABIN_PERSON_ID, reviewedByJabin } from '../../../lib/person.js';
+import { JABIN_PERSON_ID, reviewedByJabin, authorChrisCooper } from '../../../lib/person.js';
 import { gitDates } from '../../../lib/techarticle.js';
 
 export async function getStaticPaths() {
@@ -47,7 +47,7 @@ const authorEntity = isJabin
       "name": "Jabin Travis",
       "jobTitle": "Drilling Operations Supervisor",
     }
-  : { "@id": `${siteUrl}/#organization` };
+  : authorChrisCooper();
 
 // Same git-derived dates every Article/TechArticle page uses (src/lib/techarticle.js).
 // See the English route (src/pages/blog/[slug].astro) for the full rationale.
@@ -103,7 +103,7 @@ const englishEquivalent = `/blog/${post.id}`;
     <h1>{post.data.title}</h1>
     <p class="page-hero-sub">{post.data.description}</p>
     <div class="page-meta">
-      <span class="page-meta-item">Por <strong>{post.data.author}</strong></span>
+      <span class="page-meta-item">Por <strong><a href={isJabin ? '/es/about/jabin-travis' : '/es/about/chris-cooper'}>{post.data.author}</a></strong></span>
       <span class="page-meta-item">{formatDate(post.data.publishDate)}</span>
       {post.data.tags.length > 0 && (
         <span class="page-meta-item">{post.data.tags.join(' · ')}</span>

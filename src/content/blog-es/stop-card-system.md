@@ -2,7 +2,7 @@
 title: "Sistema de Tarjetas STOP: Cómo Funcionan las Tarjetas"
 description: "Cómo funcionan realmente las tarjetas STOP en un taladro de perforación: qué observar, cómo escribir una tarjeta que valga la pena revisar."
 publishDate: "2026-07-23"
-author: "RigFloorHQ Team"
+author: "Chris Cooper"
 category: "Seguridad"
 tags: ["tarjetas STOP", "seguridad basada en comportamiento", "reporte de casi accidentes", "HSE", "piso de perforación"]
 ---

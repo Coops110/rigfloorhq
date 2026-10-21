@@ -2,7 +2,7 @@
 title: "STOP Card System: How to Write One That Works"
 description: "What a STOP card is, what makes an observation worth reviewing, and why the review cycle — not the monthly card count — decides if the program is real."
 publishDate: "2026-07-23"
-author: "RigFloorHQ Team"
+author: "Chris Cooper"
 category: "Safety"
 tags: ["STOP cards", "behavior-based safety", "near-miss reporting", "HSE", "rig floor"]
 ---

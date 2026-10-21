@@ -2,7 +2,7 @@
 title: "Volúmenes de Pileta y MAASP: Dónde se Malinterpretan"
 description: "Razonamiento sobre tolerancia a la surgencia, MAASP, ballooning y volúmenes de pileta que suena correcto pero no lo es."
 publishDate: "2026-09-21"
-author: "RigFloorHQ Team"
+author: "Chris Cooper"
 category: "Control de Pozos"
 tags: ["control de pozos", "MAASP", "tolerancia a la surgencia", "entrenamiento"]
 sources: ["iwcf", "iadcWellsharp"]

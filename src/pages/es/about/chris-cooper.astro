@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import { SITE } from '../../../lib/site.js';
+import { authorChrisCooper } from '../../../lib/person.js';
+
+const siteUrl = 'https://rigfloorhq.com';
+
+// Página ProfilePage en español que apunta al mismo Person @id que la
+// versión en inglés (src/pages/about/chris-cooper.astro). Mismo patrón que
+// es/about/jabin-travis.astro: el registro Person completo se declara una
+// sola vez en inglés; esta página reutiliza authorChrisCooper() en lugar de
+// declarar un segundo Person con propiedades distintas.
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  '@id': `${siteUrl}/es/about/chris-cooper#profilepage`,
+  url: `${siteUrl}/es/about/chris-cooper`,
+  name: 'Chris Cooper, Fundador de RigFloorHQ',
+  inLanguage: 'es',
+  isPartOf: { '@id': `${siteUrl}/es#website` },
+  mainEntity: authorChrisCooper(),
+};
+---
+<BaseLayout
+  title="Chris Cooper, Fundador de RigFloorHQ"
+  description="Chris Cooper fundó y dirige RigFloorHQ, un sitio de referencia independiente sobre perforación de petróleo y gas. Conoce quién está detrás del sitio."
+  breadcrumbs={[{ label: 'Acerca de', href: '/es/about' }, { label: 'Chris Cooper', href: '/es/about/chris-cooper' }]}
+  jsonLd={personLd}
+  lang="es"
+  alternateHref="/about/chris-cooper"
+>
+  <Nav slot="nav" lang="es" alternateHref="/about/chris-cooper" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Acerca de: Fundador</div>
+    <h1>Chris <span>Cooper</span></h1>
+    <p class="page-hero-sub">Fundador y operador de RigFloorHQ, un sitio de referencia independiente sobre perforación de petróleo y gas.</p>
+  </div>
+
+  <section class="block">
+    <div class="prose">
+      <h2>Trayectoria</h2>
+      <p>
+        Chris Cooper fundó y dirige RigFloorHQ como un sitio independiente — no es
+        propiedad de un contratista de perforación, un operador, un fabricante de
+        equipos, un proveedor de capacitación ni una agencia de reclutamiento. Escribe y
+        mantiene los artículos del blog, las calculadoras y las guías de carrera del
+        sitio.
+      </p>
+      <p>
+        RigFloorHQ no depende solo de su propia experiencia de campo: el material crítico
+        de seguridad — control de pozo, H2S, procedimientos de cierre y las calculadoras
+        relacionadas — es verificado por precisión real por
+        <a href="/es/about/jabin-travis">Jabin Travis</a>, un profesional de perforación
+        con 30 años de experiencia de campo. Ver
+        <a href="/about#reviewed-by-a-working-driller">cómo encaja ese proceso de revisión
+        en el enfoque general del sitio hacia el material crítico de seguridad
+        (inglés)</a> en la página principal de Acerca de.
+      </p>
+
+      <h2>Papel en RigFloorHQ</h2>
+      <p>
+        Chris es responsable del sitio en su totalidad: qué se publica, cómo está
+        estructurado, y de asegurar que las páginas críticas de seguridad pasen por la
+        revisión técnica de Jabin antes de considerarse confiables. Es el autor nombrado
+        en los artículos y páginas de referencia que no llevan otra firma.
+      </p>
+
+      <h2>Correcciones</h2>
+      <p>
+        Si algo en el sitio está mal, desactualizado o es engañoso, escribe a
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a> indicando la página y qué está
+        mal. Ver la <a href="/about">página principal de Acerca de (inglés)</a> para el
+        enfoque completo del sitio hacia correcciones y material crítico de seguridad.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
