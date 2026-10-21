@@ -99,7 +99,12 @@ export function generateLlmsTxt(outDir, logger) {
   const enBlogCount = blog.length;
   const esBlogCount = esBlog.length;
 
-  const calcCount = calculators.length;
+  // formulas-cheat-sheet is a reference sheet, not an interactive calculator
+  // (its WebApplication schema was removed for the same reason) — it still
+  // belongs in the Calculators listing below, just not in this count, which
+  // is why the live site said "35 calculators" when the real figure is 34
+  // (the 2026-10-20 audit's finding).
+  const calcCount = calculators.filter((p) => p.path !== '/calculators/formulas-cheat-sheet').length;
   const equipCount = equipment.length;
 
   const header = `# RigFloorHQ
