@@ -12,7 +12,37 @@
  * Footer or global.css does not touch any page's lastmod, which is the point:
  * a font swap or a heading-level fix is not a content change, and stamping all
  * 83 URLs as modified would recreate exactly the problem this avoids.
+ *
+ * Within-file scoping (added 2026-10-21): "this file was in the commit" is
+ * still too coarse on its own. A sitewide pass (e.g. "build 8 new pages")
+ * genuinely rewrites some files and, as a real side effect, makes a 2-line
+ * incidental touch to a handful of unrelated ones (an added anchor ID, a
+ * stray-reference cleanup). Both get the same commit timestamp under plain
+ * --name-only, which is exactly the "57 URLs including untouched pages share
+ * one deploy-shaped date" pattern a 2026-10-20 audit flagged as looking like
+ * fake-freshness stamping. --numstat gives the real insertions+deletions for
+ * that file in that specific commit, so a per-file size threshold
+ * (SIGNIFICANT_CHANGE_LINES) separates "this page actually changed" from
+ * "this file was incidentally in a commit about something else" at the
+ * correct granularity — per file, not per commit. A file with no edit ever
+ * reaching the threshold still gets the newest commit's date rather than
+ * none at all; cumulative small edits are still real history, just not
+ * individually a reason to claim "updated today."
  */
+
+// INSERTIONS (not insertions+deletions) a single commit must make to one
+// file before that commit counts as a real content update to that file for
+// dateModified/lastmod purposes. Insertions-only, not total churn, because a
+// sitewide dead-schema-removal pass is almost pure deletion (one real
+// instance: 116 files, 7 insertions, 1261 deletions sitewide) -- removing old
+// cruft is not "this page has fresh content," and a line-count-of-churn
+// threshold alone would wrongly call a 30-line deletion significant. New
+// prose, a new card, a new cited-sources block, or a rewritten paragraph are
+// all insertion-heavy; a stray-reference fix, an anchor ID, a schema
+// property or an href repoint are 1-4 insertions. Deliberately not applied
+// to datePublished below -- a file's first commit is definitionally its real
+// creation and is never the thing being filtered out here.
+const SIGNIFICANT_INSERTIONS = 6;
 
 import { execSync } from 'node:child_process';
 
@@ -60,9 +90,11 @@ export function buildGitDatesMap() {
   if (cachedDates !== undefined) return cachedDates;
   let log;
   try {
-    // %x00 writes a NUL byte, which cannot occur in a path, so it reliably
-    // marks the date lines apart from the --name-only file lines.
-    log = git('git log --pretty=format:%x00%cI --name-only --no-renames');
+    // %x00 writes a NUL byte, which cannot occur in a path, marking each
+    // commit's date line apart from its --numstat file lines. --numstat
+    // (instead of --name-only) adds per-file insertions/deletions counts,
+    // needed for the significance threshold below.
+    log = git('git log --numstat --pretty=format:%x00%cI --no-renames');
   } catch {
     console.warn('[sitemap] git history unavailable — building without lastmod');
     cachedDates = null;
@@ -80,6 +112,10 @@ export function buildGitDatesMap() {
     console.warn('[sitemap] shallow clone — pages older than the fetch depth will have no lastmod, and schema datePublished is omitted');
   }
 
+  // newestAny / oldestAny: unfiltered, same semantics as the old modified/
+  // published. newestSignificant: newest commit where this file's own
+  // numstat line met SIGNIFICANT_CHANGE_LINES, tracked separately so a run
+  // of small incidental touches can't suppress an earlier real update.
   const map = new Map();
   let date = null;
   for (const line of log.split('\n')) {
@@ -87,16 +123,37 @@ export function buildGitDatesMap() {
       date = line.slice(1).trim();
       continue;
     }
-    const file = line.trim();
-    if (!file || !date) continue;
-    const entry = map.get(file);
-    // Newest commit first: the first sighting is the last modification, and
-    // every later sighting is older, so it keeps overwriting `published`.
-    if (!entry) map.set(file, { modified: date, published: shallow ? null : date });
-    else if (!shallow) entry.published = date;
+    if (!line.trim() || !date) continue;
+    // Numstat line: "insertions\tdeletions\tpath". Binary files report "-"
+    // for both counts -- treated as always significant, since there's no
+    // line count to threshold against and a binary asset swap is a real
+    // change to the file regardless.
+    const m = line.match(/^(\d+|-)\t(\d+|-)\t(.+)$/);
+    if (!m) continue;
+    const [, insRaw, delRaw, file] = m;
+    const significant = insRaw === '-' || delRaw === '-'
+      ? true
+      : Number(insRaw) >= SIGNIFICANT_INSERTIONS;
+
+    let entry = map.get(file);
+    if (!entry) {
+      entry = { newestAny: date, oldestAny: shallow ? null : date, newestSignificant: significant ? date : null };
+      map.set(file, entry);
+    } else {
+      if (!shallow) entry.oldestAny = date;
+      if (significant && !entry.newestSignificant) entry.newestSignificant = date;
+    }
   }
-  cachedDates = map;
-  return map;
+
+  const out = new Map();
+  for (const [file, entry] of map) {
+    out.set(file, {
+      modified: entry.newestSignificant || entry.newestAny,
+      published: entry.oldestAny,
+    });
+  }
+  cachedDates = out;
+  return out;
 }
 
 /**
