@@ -50,7 +50,7 @@ const jsonLd = techArticleSchema({
 
   <div class="page-hero">
     <div class="page-hero-eyebrow">Referencia Fundamental</div>
-    <h1>Presión <span>Hidrostática</span></h1>
+    <h1>Fórmula de Presión <span>Hidrostática</span></h1>
     <p class="page-hero-sub">El concepto más determinante en control de pozos: la presión que una columna de fluido de perforación ejerce por el simple hecho de estar en el pozo, y por qué todo — desde la selección del peso de lodo hasta la detección de surgencias — vuelve a ella.</p>
     <div class="page-meta">
       <a href="/es/calculators/hydrostatic" class="btn btn-primary" style="margin-top:8px;">Abrir la Calculadora de Presión Hidrostática</a>
@@ -76,7 +76,19 @@ const jsonLd = techArticleSchema({
       <div class="formula-note">0.052 es una constante fija de conversión de unidades — es idéntica para cualquier tipo de lodo. Ver <a href="/es/blog/hydrostatic-pressure-0052-constant" style="color:var(--amber);">por qué nunca cambia</a> para la derivación completa desde primeros principios.</div>
     </div>
 
-    <div class="note-box" style="max-width:640px;">
+    <div class="prose mt-24" style="max-width:820px;">
+      <h3 id="rho-g-h">De P = ρgh a 0.052: la Forma SI/SG</h3>
+      <p>0.052 y sus equivalentes en otros sistemas vienen de la misma física, solo que a través de distintas unidades. El punto de partida universal para la presión de un fluido es <strong>P = ρgh</strong> — densidad por gravedad por altura — física básica, sin ningún supuesto específico de la industria petrolera.</p>
+      <p>En unidades SI, expresando la densidad como <strong>gravedad específica (SG)</strong> relativa al agua (ρ = SG × 1,000 kg/m³) y g = 9.81 m/s²:</p>
+      <div class="formula-block" style="max-width:640px;">
+        <div class="formula-label">Presión Hidrostática, Forma SI / SG</div>
+        <div class="formula-eq">P (Pa) = SG × 1,000 × 9.81 × h (m) = 9,810 × SG × h</div>
+        <div class="formula-note">Divide entre 100,000 para leer la presión en bar en lugar de pascales: P (bar) = 0.0981 × SG × profundidad (m) — la constante métrica usada en <a href="/es/blog/hydrostatic-pressure-0052-constant" style="color:var(--amber);">por qué 0.052 nunca cambia</a>.</div>
+      </div>
+      <p>El propio 0.052 viene de la misma relación P = ρgh, solo que a través de unidades de campo estadounidenses (libras por galón y pies) en lugar de SI — una conversión de unidades, no una fórmula distinta. La derivación completa, paso a paso, de esa conversión específica está en <a href="/es/blog/hydrostatic-pressure-0052-constant" style="color:var(--amber);">por qué 0.052 nunca cambia</a>. Sin importar qué sistema de unidades use la documentación de un pozo, la física subyacente — y el resultado, una vez convertido — es la misma.</p>
+    </div>
+
+    <div class="note-box mt-24" style="max-width:640px;">
       <strong id="ejemplo-resuelto">Ejemplo resuelto:</strong> Lodo de 10.5 ppg a 10,000 pies TVD: P = 0.052 × 10.5 × 10,000 = <span class="highlight">5,460 psi</span>. Baja a 9.0 ppg a la misma profundidad y la columna genera solo 0.052 × 9.0 × 10,000 = <span class="highlight">4,680 psi</span> — un cambio de 780 psi por solo 1.5 ppg de peso de lodo, que es exactamente el margen sobre el que anda montada una surgencia cuando la presión hidrostática queda por debajo de la presión de poro.
     </div>
 
@@ -97,18 +109,6 @@ const jsonLd = techArticleSchema({
         <h3>Corre los Números</h3>
         <p>La <a href="/es/calculators/hydrostatic">calculadora de presión hidrostática</a> ejecuta esta fórmula en vivo y compara tu resultado contra la presión de poro y de fractura automáticamente, para que no tengas que hacer la comparación a mano. ¿Quieres todas las fórmulas relacionadas en un solo lugar? Usa la <a href="/es/calculators/formulas-cheat-sheet">hoja de referencia de fórmulas de perforación</a>.</p>
       </div>
-    </div>
-
-    <div class="prose mt-24" style="max-width:820px;">
-      <h3 id="rho-g-h">De P = ρgh a 0.052: la Forma SI/SG</h3>
-      <p>0.052 y sus equivalentes en otros sistemas vienen de la misma física, solo que a través de distintas unidades. El punto de partida universal para la presión de un fluido es <strong>P = ρgh</strong> — densidad por gravedad por altura — física básica, sin ningún supuesto específico de la industria petrolera.</p>
-      <p>En unidades SI, expresando la densidad como <strong>gravedad específica (SG)</strong> relativa al agua (ρ = SG × 1,000 kg/m³) y g = 9.81 m/s²:</p>
-      <div class="formula-block" style="max-width:640px;">
-        <div class="formula-label">Presión Hidrostática, Forma SI / SG</div>
-        <div class="formula-eq">P (Pa) = SG × 1,000 × 9.81 × h (m) = 9,810 × SG × h</div>
-        <div class="formula-note">Divide entre 100,000 para leer la presión en bar en lugar de pascales: P (bar) = 0.0981 × SG × profundidad (m) — la constante métrica usada en <a href="/es/blog/hydrostatic-pressure-0052-constant" style="color:var(--amber);">por qué 0.052 nunca cambia</a>.</div>
-      </div>
-      <p>El propio 0.052 viene de la misma relación P = ρgh, solo que a través de unidades de campo estadounidenses (libras por galón y pies) en lugar de SI — una conversión de unidades, no una fórmula distinta. La derivación completa, paso a paso, de esa conversión específica está en <a href="/es/blog/hydrostatic-pressure-0052-constant" style="color:var(--amber);">por qué 0.052 nunca cambia</a>. Sin importar qué sistema de unidades use la documentación de un pozo, la física subyacente — y el resultado, una vez convertido — es la misma.</p>
     </div>
   </section>
 

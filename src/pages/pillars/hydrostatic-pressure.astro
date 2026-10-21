@@ -50,7 +50,7 @@ const jsonLd = techArticleSchema({
 
   <div class="page-hero">
     <div class="page-hero-eyebrow">Core Reference</div>
-    <h1>Hydrostatic <span>Pressure</span></h1>
+    <h1>Hydrostatic Pressure <span>Formula</span></h1>
     <p class="page-hero-sub">The single most load-bearing concept in well control: the pressure a column of drilling fluid exerts just by sitting in the hole, and why everything from mud weight selection to kick detection comes back to it.</p>
     <div class="page-meta">
       <a href="/calculators/hydrostatic" class="btn btn-primary" style="margin-top:8px;">Open the Hydrostatic Pressure Calculator</a>
@@ -76,7 +76,19 @@ const jsonLd = techArticleSchema({
       <div class="formula-note">0.052 is a fixed unit-conversion constant — it's identical for every mud type. See <a href="/blog/hydrostatic-pressure-0052-constant" style="color:var(--amber);">why it never changes</a> for the full derivation from first principles.</div>
     </div>
 
-    <div class="note-box" style="max-width:640px;">
+    <div class="prose mt-24" style="max-width:820px;">
+      <h3 id="rho-g-h">From P = ρgh to 0.052: the SI/SG Form</h3>
+      <p>0.052 and its field cousins all come from the same physics, just carried through different unit systems. The universal starting point for fluid pressure is <strong>P = ρgh</strong> — density times gravity times height — straight from first-year physics, no oilfield-specific assumption anywhere in it.</p>
+      <p>In SI units, with density expressed as <strong>specific gravity (SG)</strong> relative to water (ρ = SG × 1,000 kg/m³) and g = 9.81 m/s²:</p>
+      <div class="formula-block" style="max-width:640px;">
+        <div class="formula-label">Hydrostatic Pressure, SI / SG Form</div>
+        <div class="formula-eq">P (Pa) = SG × 1,000 × 9.81 × h (m) = 9,810 × SG × h</div>
+        <div class="formula-note">Divide by 100,000 to read pressure in bar instead of pascals: P (bar) = 0.0981 × SG × depth (m) — the metric constant used in <a href="/blog/hydrostatic-pressure-0052-constant" style="color:var(--amber);">why 0.052 never changes</a>.</div>
+      </div>
+      <p>0.052 itself comes from the same P = ρgh relationship, just carried through U.S. field units (pounds per gallon and feet) instead of SI — a gallon-and-foot unit conversion, not a different formula. The full step-by-step of that specific conversion is worked in <a href="/blog/hydrostatic-pressure-0052-constant" style="color:var(--amber);">why 0.052 never changes</a>. Whichever unit system a well's documentation uses, the underlying physics — and the answer, once converted — is the same.</p>
+    </div>
+
+    <div class="note-box mt-24" style="max-width:640px;">
       <strong id="worked-example">Worked example:</strong> 10.5 ppg mud at 10,000 ft TVD: P = 0.052 × 10.5 × 10,000 = <span class="highlight">5,460 psi</span>. Drop to 9.0 ppg at the same depth and the column generates only 0.052 × 9.0 × 10,000 = <span class="highlight">4,680 psi</span> — a 780 psi swing from 1.5 ppg of mud weight alone, which is exactly the kind of margin a kick is riding on when hydrostatic pressure falls short of pore pressure.
     </div>
 
@@ -97,18 +109,6 @@ const jsonLd = techArticleSchema({
         <h3>Run the Numbers</h3>
         <p>The <a href="/calculators/hydrostatic">hydrostatic pressure calculator</a> runs this formula live and compares your result against pore and fracture pressure automatically, so you don't have to do the comparison by hand. Need to convert between ppg, sg, or psi/ft first, or want every related formula in one place? Use the <a href="/calculators/mud-weight-converter">mud weight converter</a> or the <a href="/calculators/formulas-cheat-sheet">drilling formulas cheat sheet</a>.</p>
       </div>
-    </div>
-
-    <div class="prose mt-24" style="max-width:820px;">
-      <h3 id="rho-g-h">From P = ρgh to 0.052: the SI/SG Form</h3>
-      <p>0.052 and its field cousins all come from the same physics, just carried through different unit systems. The universal starting point for fluid pressure is <strong>P = ρgh</strong> — density times gravity times height — straight from first-year physics, no oilfield-specific assumption anywhere in it.</p>
-      <p>In SI units, with density expressed as <strong>specific gravity (SG)</strong> relative to water (ρ = SG × 1,000 kg/m³) and g = 9.81 m/s²:</p>
-      <div class="formula-block" style="max-width:640px;">
-        <div class="formula-label">Hydrostatic Pressure, SI / SG Form</div>
-        <div class="formula-eq">P (Pa) = SG × 1,000 × 9.81 × h (m) = 9,810 × SG × h</div>
-        <div class="formula-note">Divide by 100,000 to read pressure in bar instead of pascals: P (bar) = 0.0981 × SG × depth (m) — the metric constant used in <a href="/blog/hydrostatic-pressure-0052-constant" style="color:var(--amber);">why 0.052 never changes</a>.</div>
-      </div>
-      <p>0.052 itself comes from the same P = ρgh relationship, just carried through U.S. field units (pounds per gallon and feet) instead of SI — a gallon-and-foot unit conversion, not a different formula. The full step-by-step of that specific conversion is worked in <a href="/blog/hydrostatic-pressure-0052-constant" style="color:var(--amber);">why 0.052 never changes</a>. Whichever unit system a well's documentation uses, the underlying physics — and the answer, once converted — is the same.</p>
     </div>
   </section>
 
