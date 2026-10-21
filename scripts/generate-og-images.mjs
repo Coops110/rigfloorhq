@@ -300,6 +300,13 @@ async function main() {
     all.push(...(await processAstroDir('glossary', 'glossary', lang)));
     all.push(...(await processSinglePage('index.astro', 'home', lang, 'home', 'es')));
     all.push(...(await processSinglePage('well-control-quiz.astro', 'quiz', lang, 'well-control-quiz', 'es-well-control-quiz')));
+    all.push(...(await processSinglePage(
+      path.join('well-control-quiz', 'kill-sheet-practice.astro'),
+      'quiz',
+      lang,
+      'well-control-quiz-kill-sheet-practice',
+      'es-well-control-quiz-kill-sheet-practice',
+    )));
     all.push(...(await processSinglePage('about.astro', 'about', lang, 'about', 'es-about')));
     all.push(...(await processSinglePage('privacy.astro', 'legal', lang, 'privacy', 'es-privacy')));
     all.push(...(await processSinglePage('terms.astro', 'legal', lang, 'terms', 'es-terms')));
