@@ -34,14 +34,29 @@ const jsonLd = techArticleSchema({
   headline: "Fórmula de Presión Hidrostática para la Perforación",
   description: "Qué es la presión hidrostática, la fórmula que la rige, cómo se relaciona con la presión de poro y de fractura y la ventana de peso de lodo, y por qué la TVD — no la profundidad medida — es lo que realmente la determina.",
   lang: 'es',
-  extra: { about: "Presión hidrostática en el fluido de perforación" },
+  extra: {
+    about: { "@type": "Thing", "name": "Presión hidrostática en el fluido de perforación", "sameAs": "https://es.wikipedia.org/wiki/Hidrost%C3%A1tica" },
+    mainEntityOfPage: { "@id": "https://rigfloorhq.com/es/pillars/hydrostatic-pressure#webpage" },
+  },
 });
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/es/pillars/hydrostatic-pressure#webpage",
+  "url": "https://rigfloorhq.com/es/pillars/hydrostatic-pressure",
+  "name": "Fórmula de Presión Hidrostática para la Perforación",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://rigfloorhq.com/es#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/es/pillars/hydrostatic-pressure#article" },
+};
 ---
 <BaseLayout
   title="Fórmula de Presión Hidrostática para la Perforación"
   description="Qué es realmente la presión hidrostática, la fórmula P = 0.052 × MW × TVD, y cómo se relaciona con la presión de poro y de fractura a cualquier profundidad."
   breadcrumbs={[{ label: 'Guías Pilar', href: '/es/pillars' }, { label: 'Presión Hidrostática', href: '/es/pillars/hydrostatic-pressure' }]}
   jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
   lang="es"
   alternateHref="/pillars/hydrostatic-pressure"
 >

@@ -30,14 +30,29 @@ const jsonLd = techArticleSchema({
   headline: "Stuck Pipe and Fishing Operations",
   description: "Why drill pipe gets stuck, how to tell differential sticking from mechanical sticking before acting, and how jarring, back-off and fishing operations recover the hole.",
   lang: 'en',
-  extra: { about: "Drilling operations — stuck pipe and fishing" },
+  extra: {
+    about: { "@type": "Thing", "name": "Drilling operations — stuck pipe and fishing" },
+    mainEntityOfPage: { "@id": "https://rigfloorhq.com/pillars/stuck-pipe-and-fishing-operations#webpage" },
+  },
 });
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/pillars/stuck-pipe-and-fishing-operations#webpage",
+  "url": "https://rigfloorhq.com/pillars/stuck-pipe-and-fishing-operations",
+  "name": "Stuck Pipe and Fishing Operations",
+  "inLanguage": "en",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/pillars/stuck-pipe-and-fishing-operations#article" },
+};
 ---
 <BaseLayout
   title="Stuck Pipe & Fishing Operations: Diagnosis to Recovery"
   description="Why pipe sticks, how to tell differential from mechanical sticking before you act, and what happens next: jarring, free point and back-off, fishing tools."
   breadcrumbs={[{ label: 'Pillars', href: '/pillars' }, { label: 'Stuck Pipe & Fishing Operations', href: '/pillars/stuck-pipe-and-fishing-operations' }]}
   jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
   lang="en"
   alternateHref="/es/pillars/stuck-pipe-and-fishing-operations"
 >

@@ -35,7 +35,7 @@ const jsonLd = techArticleSchema({
   description: "The career path from driller through toolpusher, OIM/rig manager, and company man — what distinguishes each tier, and what supervisory-level certification actually requires.",
   lang: 'en',
   extra: {
-    about: "Oil rig supervisory career progression",
+    about: { "@type": "Thing", "name": "Oil rig supervisory career progression" },
     mainEntityOfPage: { "@id": "https://rigfloorhq.com/pillars/rig-floor-leadership#webpage" },
   },
 });

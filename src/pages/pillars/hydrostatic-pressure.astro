@@ -34,14 +34,29 @@ const jsonLd = techArticleSchema({
   headline: "Hydrostatic Pressure Formula for Drilling",
   description: "What hydrostatic pressure is, the formula behind it, how it relates to pore and fracture pressure and the mud weight window, and why TVD — not measured depth — is what actually drives it.",
   lang: 'en',
-  extra: { about: "Hydrostatic pressure in drilling fluid" },
+  extra: {
+    about: { "@type": "Thing", "name": "Hydrostatic pressure in drilling fluid", "sameAs": "https://en.wikipedia.org/wiki/Hydrostatics" },
+    mainEntityOfPage: { "@id": "https://rigfloorhq.com/pillars/hydrostatic-pressure#webpage" },
+  },
 });
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/pillars/hydrostatic-pressure#webpage",
+  "url": "https://rigfloorhq.com/pillars/hydrostatic-pressure",
+  "name": "Hydrostatic Pressure Formula for Drilling",
+  "inLanguage": "en",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/pillars/hydrostatic-pressure#article" },
+};
 ---
 <BaseLayout
   title="Hydrostatic Pressure Formula for Drilling"
   description="What hydrostatic pressure actually is, the P = 0.052 × MW × TVD formula, how it relates to pore and fracture pressure, and why TVD — not measured depth."
   breadcrumbs={[{ label: 'Pillars', href: '/pillars' }, { label: 'Hydrostatic Pressure', href: '/pillars/hydrostatic-pressure' }]}
   jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
   lang="en"
   alternateHref="/es/pillars/hydrostatic-pressure"
 >

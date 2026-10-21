@@ -30,14 +30,29 @@ const jsonLd = techArticleSchema({
   headline: "Pesca y Tubería Pegada",
   description: "Por qué se pega la tubería de perforación, cómo distinguir la pega diferencial de la pega mecánica antes de actuar, y cómo el martilleo, el back-off y las operaciones de pesca recuperan el pozo.",
   lang: 'es',
-  extra: { about: "Operaciones de perforación — tubería pegada y pesca" },
+  extra: {
+    about: { "@type": "Thing", "name": "Operaciones de perforación — tubería pegada y pesca" },
+    mainEntityOfPage: { "@id": "https://rigfloorhq.com/es/pillars/stuck-pipe-and-fishing-operations#webpage" },
+  },
 });
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/es/pillars/stuck-pipe-and-fishing-operations#webpage",
+  "url": "https://rigfloorhq.com/es/pillars/stuck-pipe-and-fishing-operations",
+  "name": "Pesca y Tubería Pegada",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://rigfloorhq.com/es#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/es/pillars/stuck-pipe-and-fishing-operations#article" },
+};
 ---
 <BaseLayout
   title="Pesca y Tubería Pegada: De Diagnóstico a Recuperación"
   description="Por qué se pega la tubería, cómo distinguir la pega diferencial de la mecánica antes de actuar, y qué herramientas de pesca siguen después."
   breadcrumbs={[{ label: 'Guías Pilar', href: '/es/pillars' }, { label: 'Pesca y Tubería Pegada', href: '/es/pillars/stuck-pipe-and-fishing-operations' }]}
   jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
   lang="es"
   alternateHref="/pillars/stuck-pipe-and-fishing-operations"
 >

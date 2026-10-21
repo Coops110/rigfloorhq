@@ -11,14 +11,29 @@ const jsonLd = techArticleSchema({
   headline: "Métodos para Matar un Pozo: Guía Avanzada",
   description: "Método del Perforador, Esperar y Densificar, volumétrico, lubricar y purgar y bullheading: cuándo se elige cada uno, secuencia de pasos, programa de presión de ICP a FCP y errores comunes.",
   lang: 'es',
-  extra: { about: "Métodos de control de pozos" },
+  extra: {
+    about: { "@type": "Thing", "name": "Métodos de control de pozos" },
+    mainEntityOfPage: { "@id": "https://rigfloorhq.com/es/pillars/well-kill-methods#webpage" },
+  },
 });
+
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/es/pillars/well-kill-methods#webpage",
+  "url": "https://rigfloorhq.com/es/pillars/well-kill-methods",
+  "name": "Métodos para Matar un Pozo: Guía Avanzada",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://rigfloorhq.com/es#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/es/pillars/well-kill-methods#article" },
+};
 ---
 <BaseLayout
   title="Métodos para Matar un Pozo: Guía Avanzada"
   description="Método del Perforador vs. Esperar y Densificar, volumétrico, lubricar y purgar y bullheading: cuándo usar cada uno, el programa de ICP a FCP y errores."
   breadcrumbs={[{ label: 'Guías Pilar', href: '/es/pillars' }, { label: 'Métodos para Matar un Pozo', href: '/es/pillars/well-kill-methods' }]}
   jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
   lang="es"
   alternateHref="/pillars/well-kill-methods"
 >
