@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import { articleSchema } from '../../../lib/techarticle.js';
+import RotationScheduleDiagram from '../../../components/RotationScheduleDiagram.astro';
 
 const jsonLd = articleSchema({
   sourcePath: 'src/pages/es/careers/rotation-schedules.astro',
@@ -131,6 +132,7 @@ const faq = [
       <div class="prose">
         <h2 id="que-significan-los-numeros">Qué Significan Realmente los Números</h2>
         <p>Un horario de rotación se escribe con dos números: días en, luego días fuera. 14/14 significa 14 días en el sitio trabajando, luego 14 días en casa. El período de trabajo se llama "hitch" — algunas empresas cuentan el día de viaje hacia y desde el sitio como parte del hitch, otras no, lo cual vale la pena confirmar antes de comparar dos ofertas que se ven idénticas en papel. Cada día trabajado durante un hitch suele ser un turno completo de 12 horas, no un turno estándar de 8 horas, que es la base que usan tanto esta calculadora como la <a href="/es/careers/salary">guía de salarios</a>.</p>
+        <RotationScheduleDiagram lang="es" />
 
         <h2 id="patrones-comunes">Los Patrones Comunes</h2>
         <div class="table-wrap">

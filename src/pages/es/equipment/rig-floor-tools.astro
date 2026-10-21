@@ -5,6 +5,7 @@ import Footer from '../../../components/Footer.astro';
 import KeyFacts from '../../../components/KeyFacts.astro';
 import { techArticleSchema } from '../../../lib/techarticle.js';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
+import RigFloorToolsDiagram from '../../../components/RigFloorToolsDiagram.astro';
 
 const faq = [
   {
@@ -55,6 +56,7 @@ const techArticleJsonLd = techArticleSchema({
       <div class="prose">
         <h2 id="para-que-sirven">Para Qué Sirven</h2>
         <p>Las herramientas del piso de perforación son las herramientas manuales y unidades mecanizadas que usa una cuadrilla para sujetar, girar, aplicar torque y sostener la tubería de perforación cada vez que se arma o desarma una conexión mientras se corre una sarta dentro o fuera del pozo. Correr una sarta dentro o fuera del pozo significa armar o desarmar una conexión roscada en cada parada, cientos de veces durante la vida de un pozo. Las herramientas de esta página son las que usa una cuadrilla de <a href="/es/careers/roughneck">roughneck</a> para sujetar, girar, aplicar torque, y sostener la tubería de forma segura a través de ese ciclo — ninguna hace algo por sí sola; trabajan en una secuencia fija cada vez que se maneja una conexión.</p>
+        <RigFloorToolsDiagram lang="es" />
 
         <KeyFacts
           lang="es"

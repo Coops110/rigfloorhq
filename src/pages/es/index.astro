@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import RigAnatomyDiagram from '../../components/RigAnatomyDiagram.astro';
 
 const faq = [
   {
@@ -106,6 +107,13 @@ const jsonLd = {
         </details>
       ))}
     </div>
+  </section>
+
+  <section class="block">
+    <div class="section-eyebrow">Equipo</div>
+    <h2 class="section-title">Anatomía de <span>un Taladro de Perforación</span></h2>
+    <p style="max-width:760px;color:var(--mist);">Todo taladro de perforación funciona con los mismos seis sistemas principales, sin importar cómo se vea por fuera. Cada uno abajo es su propia guía completa en la <a href="/es/equipment" style="color:var(--amber);">biblioteca de equipo</a>.</p>
+    <RigAnatomyDiagram lang="es" />
   </section>
 
   <section class="block">

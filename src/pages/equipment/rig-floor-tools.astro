@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import KeyFacts from '../../components/KeyFacts.astro';
 import { techArticleSchema } from '../../lib/techarticle.js';
 import SourcesStandards from '../../components/SourcesStandards.astro';
+import RigFloorToolsDiagram from '../../components/RigFloorToolsDiagram.astro';
 
 const faq = [
   {
@@ -55,6 +56,7 @@ const techArticleJsonLd = techArticleSchema({
       <div class="prose">
         <h2 id="what-theyre-for">What They're For</h2>
         <p>Rig floor tools are the hand tools and mechanized units a crew uses to grip, spin, torque and support drill pipe every time a connection is made up or broken out while running a string in or out of the hole. Running a string in or out of the hole means making up or breaking out a threaded connection every single stand, hundreds of times over the life of a well. The tools on this page are what a <a href="/careers/roughneck">roughneck</a> crew uses to grip, spin, torque, and support pipe safely through that cycle — none of them do anything on their own; they work in a fixed sequence every time a connection is handled.</p>
+        <RigFloorToolsDiagram lang="en" />
 
         <KeyFacts
           lang="en"

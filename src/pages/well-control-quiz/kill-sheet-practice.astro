@@ -4,6 +4,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import { articleSchema } from '../../lib/techarticle.js';
 import SourcesStandards from '../../components/SourcesStandards.astro';
+import WellProfileDiagram from '../../components/WellProfileDiagram.astro';
 
 const faq = [
   {
@@ -66,6 +67,7 @@ const webPageLd = {
     <div class="prose" style="max-width:860px;">
       <h2 id="how-to-use-this">How to Use This Page</h2>
       <p>Each problem below gives you exactly what a driller has on hand the moment a well is shut in: SIDPP, SCR pressure (the standpipe pressure recorded at the slow circulating rate before the kick), original mud weight, and TVD. Work out kill mud weight (KMW), initial circulating pressure (ICP) and final circulating pressure (FCP) yourself first, using the same formulas as the <a href="/calculators/kill-sheet">kill sheet calculator</a> — then open the answer to check your work and see exactly where the common mistake on that problem would have crept in.</p>
+      <WellProfileDiagram lang="en" />
 
       <div class="note-box">
         <strong>Formulas used throughout:</strong> KMW = OMW + [SIDPP ÷ (0.052 × TVD)], rounded <strong>up</strong> to the nearest 0.1 ppg. ICP = SIDPP + SCR pressure. FCP = SCR pressure × (KMW ÷ OMW). See the <a href="/calculators/kill-sheet">kill sheet calculator</a> for the full derivation and the strokes-to-kill schedule these numbers feed into.

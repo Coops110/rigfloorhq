@@ -4,6 +4,7 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import { articleSchema } from '../../../lib/techarticle.js';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
+import OffshoreVsLandPayDiagram from '../../../components/OffshoreVsLandPayDiagram.astro';
 
 const jsonLd = articleSchema({
   sourcePath: 'src/pages/es/careers/offshore-vs-land-rig-jobs.astro',
@@ -65,6 +66,7 @@ const faq = [
         <p>Los trabajos costa afuera y en tierra cubren la misma escalera de roles — de roustabout a toolpusher y más allá — pero difieren lo suficiente en pago, rotación, barrera de entrada y vida diaria como para que elegir entre ambos sea una decisión real, no solo una comparación de pago. Los roles costa afuera pagan aproximadamente 30-40% más que el equivalente en tierra — ver la <a href="/es/careers/salary#offshore-vs-onshore">comparación completa de pago</a> para las cifras reales por rol. Esa prima está bien establecida y es fácil de encontrar; lo que es más difícil de encontrar es una mirada honesta a todo lo demás que difiere, porque los dos caminos genuinamente son trabajos distintos usando los mismos títulos. Esta página cubre las partes que la comparación de pago no cubre: qué tan difícil es entrar a cada uno, cómo se ve realmente el ambiente de trabajo y el equipo, y qué tan fácil puedes cambiar de opinión después.</p>
 
         <h2 id="lado-a-lado">Lado a Lado</h2>
+        <OffshoreVsLandPayDiagram lang="es" />
         <div class="table-wrap">
           <table>
             <thead><tr><th>Factor</th><th>Tierra</th><th>Costa Afuera</th></tr></thead>

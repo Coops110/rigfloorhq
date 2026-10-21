@@ -1,0 +1,201 @@
+---
+// Homepage content image: a labeled rig silhouette covering the real
+// "Every Rig's Six Systems" categories already built as their own pages on
+// /equipment (hoisting, rotating, fluid circulation, pressure control/BOP,
+// power generation, mud pit) — doubles as a visual map into that hub rather
+// than a decorative stock image. Same inline-SVG pattern as the other
+// diagram components. Added 2026-10-21 for the Claude SEO audit's "no
+// content image" finding on the homepage specifically.
+export interface Props {
+  lang?: 'en' | 'es';
+}
+const { lang = 'en' } = Astro.props;
+
+const t = lang === 'es'
+  ? {
+      title: 'Anatomía de un taladro de perforación: los seis sistemas principales',
+      desc: 'Silueta lateral de un taladro de perforación terrestre, con los seis sistemas principales etiquetados: el sistema de izaje (derrick, bloque viajero, malacate) arriba; el sistema rotatorio (mesa rotaria, sarta de perforación) en el piso de perforación; el sistema de circulación de fluidos (bombas de lodo, líneas) a un lado; el sistema de control de presión (preventores de reventones) debajo del piso; el sistema de generación de energía (motores, generadores) en la subestructura; y el sistema de fosas de lodo (fosas, zarandas) adyacente al taladro.',
+      derrick: 'Sistema de Izaje',
+      rotary: 'Sistema Rotatorio',
+      circulation: 'Sistema de Circulación de Fluidos',
+      bop: 'Control de Presión (BOP)',
+      power: 'Generación de Energía',
+      mudpit: 'Sistema de Fosas de Lodo',
+      caption: 'Los seis sistemas principales de un taladro de perforación — cada uno es su propia guía completa en la biblioteca de equipo.',
+    }
+  : {
+      title: 'Drilling rig anatomy: the six core systems',
+      desc: "Side-view silhouette of a land drilling rig, with the six core systems labeled: the hoisting system (derrick, traveling block, drawworks) at the top; the rotating system (rotary table, drill string) at the rig floor; the fluid circulation system (mud pumps, lines) off to the side; the pressure control system (blowout preventers) below the floor; the power generation system (engines, generators) in the substructure; and the mud pit system (pits, shakers) adjacent to the rig.",
+      derrick: 'Hoisting System',
+      rotary: 'Rotating System',
+      circulation: 'Fluid Circulation System',
+      bop: 'Pressure Control (BOP)',
+      power: 'Power Generation',
+      mudpit: 'Mud Pit System',
+      caption: "A drilling rig's six core systems — each one is its own full guide in the equipment library.",
+    };
+
+const links = {
+  derrick: '/equipment/hoisting-system',
+  rotary: '/equipment/rotating-system',
+  circulation: '/equipment/fluid-circulation-system',
+  bop: '/equipment/bop',
+  power: '/equipment/power-generation-system',
+  mudpit: '/equipment/mud-pit-system',
+};
+const prefix = lang === 'es' ? '/es' : '';
+---
+<figure class="riganat-figure">
+  <svg class="riganat-svg" viewBox="0 0 600 460" role="img" aria-labelledby={`riganat-title-${lang} riganat-desc-${lang}`} xmlns="http://www.w3.org/2000/svg">
+    <title id={`riganat-title-${lang}`}>{t.title}</title>
+    <desc id={`riganat-desc-${lang}`}>{t.desc}</desc>
+
+    <rect class="riganat-bg" x="0" y="0" width="600" height="460" rx="6" />
+    <line class="riganat-ground" x1="20" y1="400" x2="580" y2="400" />
+
+    {/* derrick legs */}
+    <line class="riganat-leg" x1="200" y1="340" x2="250" y2="40" />
+    <line class="riganat-leg" x1="340" y1="340" x2="290" y2="40" />
+    <line class="riganat-brace" x1="210" y1="260" x2="330" y2="260" />
+    <line class="riganat-brace" x1="222" y1="180" x2="318" y2="180" />
+    <line class="riganat-brace" x1="234" y1="100" x2="306" y2="100" />
+
+    {/* traveling block + hook near top of derrick */}
+    <rect class="riganat-block" x="248" y="60" width="44" height="22" rx="3" />
+
+    {/* rig floor substructure */}
+    <rect class="riganat-sub" x="150" y="340" width="300" height="60" rx="3" />
+    <text class="riganat-floortext" x="300" y="375" text-anchor="middle">{t.power}</text>
+
+    {/* rotary table at floor level */}
+    <rect class="riganat-rotary" x="240" y="325" width="120" height="18" rx="3" />
+
+    {/* BOP stack below the floor */}
+    <rect class="riganat-bop" x="270" y="400" width="60" height="40" rx="3" />
+
+    {/* mud pumps / circulation system off to one side */}
+    <rect class="riganat-equip" x="440" y="330" width="110" height="50" rx="3" />
+
+    {/* mud pits adjacent */}
+    <rect class="riganat-pit" x="40" y="355" width="120" height="30" rx="3" />
+
+    {/* leader lines + labels */}
+    <line class="riganat-leader" x1="270" y1="70" x2="420" y2="70" />
+    <text class="riganat-label" x="426" y="74">{t.derrick}</text>
+
+    <line class="riganat-leader" x1="300" y1="334" x2="420" y2="300" />
+    <text class="riganat-label" x="426" y="304">{t.rotary}</text>
+
+    <line class="riganat-leader" x1="495" y1="330" x2="495" y2="300" />
+    <text class="riganat-label" x="426" y="298">{t.circulation}</text>
+
+    <line class="riganat-leader" x1="300" y1="420" x2="180" y2="440" />
+    <text class="riganat-label" x="60" y="444">{t.bop}</text>
+
+    <line class="riganat-leader" x1="100" y1="355" x2="100" y2="320" />
+    <text class="riganat-label" x="40" y="316">{t.mudpit}</text>
+  </svg>
+  <figcaption class="riganat-caption">{t.caption}</figcaption>
+  <div class="riganat-links">
+    <a href={`${prefix}${links.derrick}`}>{t.derrick}</a>
+    <a href={`${prefix}${links.rotary}`}>{t.rotary}</a>
+    <a href={`${prefix}${links.circulation}`}>{t.circulation}</a>
+    <a href={`${prefix}${links.bop}`}>{t.bop}</a>
+    <a href={`${prefix}${links.power}`}>{t.power}</a>
+    <a href={`${prefix}${links.mudpit}`}>{t.mudpit}</a>
+  </div>
+</figure>
+
+<style>
+  .riganat-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    justify-content: center;
+    margin-top: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+  .riganat-links a {
+    color: var(--amber);
+  }
+</style>
+
+<style>
+  .riganat-figure {
+    margin: 24px 0 28px;
+    max-width: 620px;
+  }
+  .riganat-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--iron);
+    border-radius: 6px;
+  }
+  .riganat-bg {
+    fill: var(--ink);
+  }
+  .riganat-ground {
+    stroke: var(--iron);
+    stroke-width: 2;
+  }
+  .riganat-leg {
+    stroke: var(--iron);
+    stroke-width: 4;
+  }
+  .riganat-brace {
+    stroke: var(--iron);
+    stroke-width: 2;
+  }
+  .riganat-block {
+    fill: var(--steel);
+    stroke: var(--mist);
+    stroke-width: 1.5;
+  }
+  .riganat-sub {
+    fill: var(--steel);
+    stroke: var(--iron);
+    stroke-width: 1.5;
+  }
+  .riganat-floortext {
+    fill: var(--fog);
+    font-family: var(--body);
+    font-size: 12px;
+  }
+  .riganat-rotary {
+    fill: rgba(34,197,94,0.2);
+    stroke: var(--safe);
+    stroke-width: 1.5;
+  }
+  .riganat-bop {
+    fill: rgba(239,68,68,0.18);
+    stroke: var(--danger);
+    stroke-width: 1.5;
+  }
+  .riganat-equip {
+    fill: rgba(111,179,224,0.18);
+    stroke: var(--mist);
+    stroke-width: 1.5;
+  }
+  .riganat-pit {
+    fill: rgba(232,160,32,0.14);
+    stroke: var(--amber);
+    stroke-width: 1.5;
+  }
+  .riganat-leader {
+    stroke: var(--fog);
+    stroke-width: 1;
+  }
+  .riganat-label {
+    fill: var(--white);
+    font-family: var(--body);
+    font-size: 13px;
+  }
+  .riganat-caption {
+    color: var(--fog);
+    font-size: 13px;
+    margin-top: 8px;
+    text-align: center;
+  }
+</style>

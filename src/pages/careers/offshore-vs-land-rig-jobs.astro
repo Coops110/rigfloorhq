@@ -4,6 +4,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import { articleSchema } from '../../lib/techarticle.js';
 import SourcesStandards from '../../components/SourcesStandards.astro';
+import OffshoreVsLandPayDiagram from '../../components/OffshoreVsLandPayDiagram.astro';
 
 const jsonLd = articleSchema({
   sourcePath: 'src/pages/careers/offshore-vs-land-rig-jobs.astro',
@@ -65,6 +66,7 @@ const faq = [
         <p>Offshore and land rig jobs cover the same ladder of roles — roustabout through toolpusher and beyond — but differ enough in pay, rotation, entry barrier, and daily life that choosing between them is a real decision, not just a pay comparison. Offshore roles pay roughly 30-40% more than the onshore equivalent — see the <a href="/careers/salary#offshore-vs-onshore">full pay comparison</a> for the actual numbers by role. That premium is well established and easy to find; what's harder to find is an honest look at everything else that differs, because the two paths genuinely are different jobs wearing the same job titles. This page covers the parts the pay comparison doesn't: how hard each is to break into, what the work environment and equipment actually look like, and how easily you can change your mind later.</p>
 
         <h2 id="side-by-side">Side by Side</h2>
+        <OffshoreVsLandPayDiagram lang="en" />
         <div class="table-wrap">
           <table>
             <thead><tr><th>Factor</th><th>Land</th><th>Offshore</th></tr></thead>

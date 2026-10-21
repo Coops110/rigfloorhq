@@ -4,6 +4,7 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import { articleSchema } from '../../../lib/techarticle.js';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
+import WellProfileDiagram from '../../../components/WellProfileDiagram.astro';
 
 const faq = [
   {
@@ -66,6 +67,7 @@ const webPageLd = {
     <div class="prose" style="max-width:860px;">
       <h2 id="como-usar-esta-pagina">Cómo Usar Esta Página</h2>
       <p>Cada problema abajo da exactamente lo que un perforador tiene a mano en el momento en que se cierra un pozo: SIDPP, presión SCR (la presión de tubería registrada al caudal de circulación lenta antes de la surgencia), peso de lodo original, y TVD. Calcula tú mismo primero el peso de lodo de control (KMW), la presión de circulación inicial (ICP) y la presión de circulación final (FCP), usando las mismas fórmulas que la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> — luego abre la respuesta para revisar tu trabajo y ver exactamente dónde se habría colado el error común en ese problema.</p>
+      <WellProfileDiagram lang="es" />
 
       <div class="note-box">
         <strong>Fórmulas usadas en toda la página:</strong> KMW = OMW + [SIDPP ÷ (0.052 × TVD)], redondeado hacia <strong>arriba</strong> a la décima de ppg más cercana. ICP = SIDPP + presión SCR. FCP = presión SCR × (KMW ÷ OMW). Ver la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> para la derivación completa y el programa de golpes para matar que alimentan estos números.

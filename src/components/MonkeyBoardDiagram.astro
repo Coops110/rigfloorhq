@@ -1,0 +1,156 @@
+---
+// Shows where a derrickhand actually works relative to a roughneck, the
+// single fact the page's own "Derrickhand vs Roughneck" section explains in
+// prose: the monkey board sits 30-90 ft above the rig floor, not at floor
+// level. Same inline-SVG pattern as the other diagram components. Added
+// 2026-10-21 for the "none of the 9 pages added 10-20 has an image" audit
+// finding.
+export interface Props {
+  lang?: 'en' | 'es';
+}
+const { lang = 'en' } = Astro.props;
+
+const t = lang === 'es'
+  ? {
+      title: 'Posición del derrickhand en el monkey board frente al roughneck en el piso',
+      desc: 'Vista lateral del derrick (mástil) de un taladro de perforación. El piso de perforación está en la base. El monkey board es una plataforma a un lado del derrick, típicamente entre 30 y 90 pies por encima del piso de perforación, dependiendo de la longitud de las paradas de tubería. El derrickhand trabaja desde el monkey board, guiando la tubería hacia el fingerboard durante los viajes. El roughneck trabaja directamente en el piso de perforación, manejando tenazas, cuñas y conexiones.',
+      derrick: 'Derrick',
+      monkeyBoard: 'Monkey Board',
+      derrickhandLabel: 'Derrickhand',
+      rigFloor: 'Piso de Perforación',
+      roughneckLabel: 'Roughneck',
+      heightNote: '30–90 pies arriba del piso, según la longitud de las paradas',
+      caption: 'El derrickhand trabaja en altura, en el monkey board; el roughneck trabaja directamente en el piso de perforación. No está a escala.',
+    }
+  : {
+      title: 'Derrickhand on the monkey board vs. roughneck on the rig floor',
+      desc: "Side view of a drilling rig's derrick (mast). The rig floor sits at the base. The monkey board is a platform on one side of the derrick, typically 30 to 90 feet above the rig floor depending on stand length. The derrickhand works from the monkey board, guiding pipe into the fingerboard during trips. The roughneck works directly on the rig floor, handling tongs, slips and connections.",
+      derrick: 'Derrick',
+      monkeyBoard: 'Monkey Board',
+      derrickhandLabel: 'Derrickhand',
+      rigFloor: 'Rig Floor',
+      roughneckLabel: 'Roughneck',
+      heightNote: '30–90 ft above the floor, depending on stand length',
+      caption: "The derrickhand works at height, on the monkey board; the roughneck works directly on the rig floor. Not to scale.",
+    };
+---
+<figure class="monkey-figure">
+  <svg class="monkey-svg" viewBox="0 0 400 480" role="img" aria-labelledby={`monkey-title-${lang} monkey-desc-${lang}`} xmlns="http://www.w3.org/2000/svg">
+    <title id={`monkey-title-${lang}`}>{t.title}</title>
+    <desc id={`monkey-desc-${lang}`}>{t.desc}</desc>
+
+    <rect class="monkey-bg" x="0" y="0" width="400" height="480" rx="6" />
+
+    {/* derrick legs, tapering up */}
+    <line class="monkey-leg" x1="130" y1="420" x2="180" y2="40" />
+    <line class="monkey-leg" x1="270" y1="420" x2="220" y2="40" />
+    {/* cross braces */}
+    <line class="monkey-brace" x1="140" y1="340" x2="260" y2="340" />
+    <line class="monkey-brace" x1="150" y1="260" x2="250" y2="260" />
+    <line class="monkey-brace" x1="160" y1="180" x2="240" y2="180" />
+    <text class="monkey-label" x="200" y="30" text-anchor="middle">{t.derrick}</text>
+
+    {/* rig floor */}
+    <line class="monkey-floor" x1="40" y1="420" x2="360" y2="420" />
+    <text class="monkey-floorlabel" x="55" y="414">{t.rigFloor}</text>
+
+    {/* monkey board platform, partway up */}
+    <rect class="monkey-platform" x="240" y="252" width="60" height="10" />
+    <circle class="monkey-person" cx="270" cy="238" r="10" />
+    <text class="monkey-nametag" x="270" y="222" text-anchor="middle">{t.derrickhandLabel}</text>
+    <text class="monkey-boardlabel" x="306" y="260">{t.monkeyBoard}</text>
+
+    {/* height bracket from floor to monkey board */}
+    <line class="monkey-bracket" x1="330" y1="257" x2="330" y2="420" />
+    <line class="monkey-tick" x1="324" y1="257" x2="336" y2="257" />
+    <line class="monkey-tick" x1="324" y1="420" x2="336" y2="420" />
+    <text class="monkey-heightnote" x="340" y="340" transform="rotate(-90 340 340)">{t.heightNote}</text>
+
+    {/* roughneck at floor level */}
+    <circle class="monkey-person" cx="100" cy="402" r="10" />
+    <text class="monkey-nametag" x="100" y="386" text-anchor="middle">{t.roughneckLabel}</text>
+  </svg>
+  <figcaption class="monkey-caption">{t.caption}</figcaption>
+</figure>
+
+<style>
+  .monkey-figure {
+    margin: 24px 0 28px;
+    max-width: 400px;
+  }
+  .monkey-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--iron);
+    border-radius: 6px;
+  }
+  .monkey-bg {
+    fill: var(--ink);
+  }
+  .monkey-leg {
+    stroke: var(--iron);
+    stroke-width: 4;
+  }
+  .monkey-brace {
+    stroke: var(--iron);
+    stroke-width: 2;
+  }
+  .monkey-label {
+    fill: var(--fog);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .monkey-floor {
+    stroke: var(--fog);
+    stroke-width: 2;
+    stroke-dasharray: 6 4;
+  }
+  .monkey-floorlabel {
+    fill: var(--fog);
+    font-family: var(--mono);
+    font-size: 13px;
+  }
+  .monkey-platform {
+    fill: var(--steel);
+    stroke: var(--mist);
+    stroke-width: 1.5;
+  }
+  .monkey-person {
+    fill: var(--amber);
+    stroke: var(--ink);
+    stroke-width: 1.5;
+  }
+  .monkey-nametag {
+    fill: var(--white);
+    font-family: var(--body);
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .monkey-boardlabel {
+    fill: var(--mist);
+    font-family: var(--body);
+    font-size: 12px;
+  }
+  .monkey-bracket {
+    stroke: var(--fog);
+    stroke-width: 1.5;
+  }
+  .monkey-tick {
+    stroke: var(--fog);
+    stroke-width: 1.5;
+  }
+  .monkey-heightnote {
+    fill: var(--fog);
+    font-family: var(--body);
+    font-size: 11px;
+  }
+  .monkey-caption {
+    color: var(--fog);
+    font-size: 13px;
+    margin-top: 8px;
+    text-align: center;
+  }
+</style>

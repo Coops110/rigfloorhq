@@ -1,0 +1,140 @@
+---
+// IWCF-to-WellSharp tier equivalency chart, visualizing the real table
+// already on careers/iwcf-vs-iadc-wellsharp.astro ("The Tier Map"). Drawn
+// as two columns with connecting lines so the real shape of the mapping is
+// visible at a glance: Levels/tiers 2-4 line up 1:1, but IWCF's Level 1 and
+// WellSharp's Engineer tier each have no equivalent on the other side —
+// it's not a clean four-way match, which is the whole point of the page
+// this sits on. Same inline-SVG pattern as the other diagram components.
+// Added 2026-10-21 for the "none of the 9 pages added 10-20 has an image"
+// audit finding.
+export interface Props {
+  lang?: 'en' | 'es';
+}
+const { lang = 'en' } = Astro.props;
+
+const t = lang === 'es'
+  ? {
+      title: 'Mapa de equivalencia de niveles entre IWCF y IADC WellSharp',
+      desc: 'Dos columnas conectadas por líneas: IWCF Nivel 1 (concientización, sin equivalente) no tiene conexión; Nivel 2 conecta con Introductorio; Nivel 3 conecta con Perforador; Nivel 4 conecta con Supervisor; y WellSharp Ingeniero (lado de diseño) no tiene equivalente en IWCF. Solo los niveles 2 a 4 tienen una correspondencia real 1 a 1 que la mayoría de la industria escribe lado a lado en los requisitos.',
+      iwcfHeader: 'IWCF',
+      wsHeader: 'IADC WellSharp',
+      iwcf: ['Nivel 1', 'Nivel 2', 'Nivel 3', 'Nivel 4'],
+      ws: ['— (sin equivalente)', 'Introductorio', 'Perforador', 'Supervisor', 'Ingeniero'],
+      noMatchIwcf: 'Solo concientización — sin equivalente',
+      noMatchWs: 'Lado de diseño — sin equivalente',
+      caption: 'Solo los niveles/tiers 2-4 se corresponden 1 a 1. El Nivel 1 de IWCF (concientización) y el nivel Ingeniero de WellSharp (diseño) no tienen equivalente en el otro esquema.',
+    }
+  : {
+      title: 'IWCF to IADC WellSharp tier equivalency chart',
+      desc: "Two columns connected by lines: IWCF Level 1 (awareness-only, no equivalent) has no connection; Level 2 connects to Introductory; Level 3 connects to Driller; Level 4 connects to Supervisor; and WellSharp Engineer (the design side) has no equivalent on the IWCF side. Only levels 2 through 4 have a real 1:1 correspondence that most of the industry writes side by side in requirements.",
+      iwcfHeader: 'IWCF',
+      wsHeader: 'IADC WellSharp',
+      iwcf: ['Level 1', 'Level 2', 'Level 3', 'Level 4'],
+      ws: ['— (no equivalent)', 'Introductory', 'Driller', 'Supervisor', 'Engineer'],
+      noMatchIwcf: 'Awareness only — no equivalent',
+      noMatchWs: 'Design side — no equivalent',
+      caption: "Only levels/tiers 2-4 have a real 1:1 match. IWCF's Level 1 (awareness) and WellSharp's Engineer tier (design) each have no equivalent on the other side.",
+    };
+
+// [iwcf row y, ws row y] pairs that connect; iwcf Level 1 (row 0) connects
+// to nothing, ws Engineer (row 4) connects to nothing.
+const rowH = 56;
+const startY = 70;
+const iwcfYs = t.iwcf.map((_, i) => startY + i * rowH);
+const wsYs = t.ws.map((_, i) => startY + i * rowH);
+---
+<figure class="tiermap-figure">
+  <svg class="tiermap-svg" viewBox="0 0 560 420" role="img" aria-labelledby={`tiermap-title-${lang} tiermap-desc-${lang}`} xmlns="http://www.w3.org/2000/svg">
+    <title id={`tiermap-title-${lang}`}>{t.title}</title>
+    <desc id={`tiermap-desc-${lang}`}>{t.desc}</desc>
+
+    <rect class="tiermap-bg" x="0" y="0" width="560" height="420" rx="6" />
+
+    <text class="tiermap-colheader" x="130" y="34" text-anchor="middle">{t.iwcfHeader}</text>
+    <text class="tiermap-colheader" x="430" y="34" text-anchor="middle">{t.wsHeader}</text>
+
+    {/* IWCF column boxes */}
+    {t.iwcf.map((label, i) => (
+      <rect class={i === 0 ? 'tiermap-box tiermap-box-nomatch' : 'tiermap-box'} x="40" y={iwcfYs[i]} width="180" height="42" rx="5" />
+    ))}
+    {t.iwcf.map((label, i) => (
+      <text class="tiermap-boxtext" x="130" y={iwcfYs[i] + 26}>{label}</text>
+    ))}
+
+    {/* WellSharp column boxes */}
+    {t.ws.map((label, i) => (
+      <rect class={i === 4 ? 'tiermap-box tiermap-box-nomatch' : 'tiermap-box'} x="340" y={wsYs[i]} width="180" height="42" rx="5" />
+    ))}
+    {t.ws.map((label, i) => (
+      <text class={i === 0 ? 'tiermap-boxtext tiermap-boxtext-dim' : 'tiermap-boxtext'} x="430" y={wsYs[i] + 26}>{label}</text>
+    ))}
+
+    {/* connecting lines: iwcf[1]->ws[1], iwcf[2]->ws[2], iwcf[3]->ws[3] */}
+    <line class="tiermap-connector" x1="220" y1={iwcfYs[1] + 21} x2="340" y2={wsYs[1] + 21} />
+    <line class="tiermap-connector" x1="220" y1={iwcfYs[2] + 21} x2="340" y2={wsYs[2] + 21} />
+    <line class="tiermap-connector" x1="220" y1={iwcfYs[3] + 21} x2="340" y2={wsYs[3] + 21} />
+
+    <text class="tiermap-note" x="130" y={iwcfYs[0] + 42 + 16} text-anchor="middle">{t.noMatchIwcf}</text>
+    <text class="tiermap-note" x="430" y={wsYs[4] + 42 + 16} text-anchor="middle">{t.noMatchWs}</text>
+  </svg>
+  <figcaption class="tiermap-caption">{t.caption}</figcaption>
+</figure>
+
+<style>
+  .tiermap-figure {
+    margin: 24px 0 28px;
+    max-width: 580px;
+  }
+  .tiermap-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--iron);
+    border-radius: 6px;
+  }
+  .tiermap-bg {
+    fill: var(--ink);
+  }
+  .tiermap-colheader {
+    fill: var(--amber);
+    font-family: var(--cond);
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .tiermap-box {
+    fill: var(--steel);
+    stroke: var(--iron);
+    stroke-width: 1.5;
+  }
+  .tiermap-box-nomatch {
+    fill: var(--ink);
+    stroke: var(--fog);
+    stroke-width: 1.5;
+    stroke-dasharray: 4 3;
+  }
+  .tiermap-boxtext {
+    fill: var(--white);
+    font-family: var(--body);
+    font-size: 14px;
+    text-anchor: middle;
+  }
+  .tiermap-boxtext-dim {
+    fill: var(--fog);
+  }
+  .tiermap-connector {
+    stroke: var(--amber);
+    stroke-width: 2;
+  }
+  .tiermap-note {
+    fill: var(--fog);
+    font-family: var(--body);
+    font-size: 11px;
+  }
+  .tiermap-caption {
+    color: var(--fog);
+    font-size: 13px;
+    margin-top: 8px;
+    text-align: center;
+  }
+</style>

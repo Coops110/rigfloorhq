@@ -4,6 +4,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import { articleSchema } from '../../lib/techarticle.js';
 import SourcesStandards from '../../components/SourcesStandards.astro';
+import TierMapDiagram from '../../components/TierMapDiagram.astro';
 
 const faq = [
   {
@@ -75,6 +76,7 @@ const webPageLd = {
         <p>IWCF's level structure aligns with IOGP Report 476 recommendations and is named by number — Level 1 through Level 4. IADC WellSharp uses role names instead of numbers — Introductory, Driller, Supervisor, Engineer. Three of the four tiers on each side map onto each other directly; the fourth tier on each side is where the two schemes genuinely diverge rather than just using different labels, covered below the table.</p>
 
         <h2 id="the-tier-map">The Tier Map</h2>
+        <TierMapDiagram lang="en" />
         <div class="table-wrap">
           <table>
             <thead>

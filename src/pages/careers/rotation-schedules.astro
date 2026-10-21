@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import { articleSchema } from '../../lib/techarticle.js';
+import RotationScheduleDiagram from '../../components/RotationScheduleDiagram.astro';
 
 const jsonLd = articleSchema({
   sourcePath: 'src/pages/careers/rotation-schedules.astro',
@@ -131,6 +132,7 @@ const faq = [
       <div class="prose">
         <h2 id="what-the-numbers-mean">What the Numbers Actually Mean</h2>
         <p>A rotation schedule is written as two numbers: days on, then days off. 14/14 means 14 days on location working, then 14 days at home. The on-period is called a "hitch" — some companies count the travel day to and from location as part of the hitch, others don't, which is worth confirming before comparing two offers that look identical on paper. Every day worked during a hitch is typically a full 12-hour tour, not a standard 8-hour shift, which is the baseline this calculator and the <a href="/careers/salary">salary guide</a> both use.</p>
+        <RotationScheduleDiagram lang="en" />
 
         <h2 id="common-patterns">The Common Patterns</h2>
         <div class="table-wrap">

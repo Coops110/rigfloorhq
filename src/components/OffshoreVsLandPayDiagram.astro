@@ -1,0 +1,129 @@
+---
+// Real pay-comparison bar chart for the roughneck example already stated in
+// the page's own "Side by Side" table: ~$70,000/yr land vs $91,000-$98,000/yr
+// offshore (+30-40%). A visual anchor for the one number the page itself
+// says "gets all the attention" — not a new claim, the same editorial
+// estimate already on the page, just drawn rather than only tabled. Same
+// inline-SVG pattern as the other diagram components. Added 2026-10-21 for
+// the "none of the 9 pages added 10-20 has an image" audit finding.
+export interface Props {
+  lang?: 'en' | 'es';
+}
+const { lang = 'en' } = Astro.props;
+
+const t = lang === 'es'
+  ? {
+      title: 'Comparación de pago: roughneck en tierra vs costa afuera',
+      desc: 'Gráfico de barras comparando el pago anual tipico de un roughneck en tierra (aproximadamente $70,000/año) contra costa afuera ($91,000 a $98,000/año), una prima de 30 a 40%. Estas son estimaciones editoriales de RigFloorHQ, las mismas cifras ya en la tabla de esta página, no un nuevo número.',
+      land: 'Tierra',
+      offshore: 'Costa Afuera',
+      landVal: '~$70,000/año',
+      offshoreVal: '$91,000–$98,000/año',
+      premium: '+30–40% de prima',
+      caption: 'Ejemplo de roughneck. Estimaciones editoriales de RigFloorHQ — ver la tabla completa arriba y la guía salarial para la metodología.',
+    }
+  : {
+      title: 'Pay comparison: land vs offshore roughneck',
+      desc: "Bar chart comparing typical annual pay for a roughneck onshore (roughly $70,000/year) against offshore ($91,000 to $98,000/year), a 30-40% premium. These are RigFloorHQ's own editorial estimates, the same figures already in this page's table, not a new number.",
+      land: 'Land',
+      offshore: 'Offshore',
+      landVal: '~$70,000/yr',
+      offshoreVal: '$91,000–$98,000/yr',
+      premium: '+30–40% premium',
+      caption: "Roughneck example. RigFloorHQ's own editorial estimates — see the full table above and the salary guide for methodology.",
+    };
+
+// Bar heights scaled against a $100k ceiling for the chart area.
+const chartTop = 50;
+const chartBottom = 260;
+const chartH = chartBottom - chartTop;
+const scale = (val: number) => (val / 100000) * chartH;
+const landH = scale(70000);
+const offshoreLowH = scale(91000);
+const offshoreHighH = scale(98000);
+---
+<figure class="payvs-figure">
+  <svg class="payvs-svg" viewBox="0 0 400 320" role="img" aria-labelledby={`payvs-title-${lang} payvs-desc-${lang}`} xmlns="http://www.w3.org/2000/svg">
+    <title id={`payvs-title-${lang}`}>{t.title}</title>
+    <desc id={`payvs-desc-${lang}`}>{t.desc}</desc>
+
+    <rect class="payvs-bg" x="0" y="0" width="400" height="320" rx="6" />
+
+    {/* baseline */}
+    <line class="payvs-baseline" x1="40" y1={chartBottom} x2="360" y2={chartBottom} />
+
+    {/* land bar */}
+    <rect class="payvs-bar payvs-bar-land" x="100" y={chartBottom - landH} width="70" height={landH} />
+    <text class="payvs-vallabel" x="135" y={chartBottom - landH - 10}>{t.landVal}</text>
+    <text class="payvs-collabel" x="135" y={chartBottom + 24}>{t.land}</text>
+
+    {/* offshore bar, drawn as a range from low to high */}
+    <rect class="payvs-bar payvs-bar-offshore" x="230" y={chartBottom - offshoreHighH} width="70" height={offshoreHighH} />
+    <rect class="payvs-bar payvs-bar-offshore-hi" x="230" y={chartBottom - offshoreHighH} width="70" height={offshoreHighH - offshoreLowH} />
+    <text class="payvs-vallabel" x="265" y={chartBottom - offshoreHighH - 10}>{t.offshoreVal}</text>
+    <text class="payvs-collabel" x="265" y={chartBottom + 24}>{t.offshore}</text>
+
+    <text class="payvs-premium" x="265" y={chartBottom - offshoreLowH - (offshoreHighH - offshoreLowH) / 2 - 2} text-anchor="middle">{t.premium}</text>
+  </svg>
+  <figcaption class="payvs-caption">{t.caption}</figcaption>
+</figure>
+
+<style>
+  .payvs-figure {
+    margin: 24px 0 28px;
+    max-width: 400px;
+  }
+  .payvs-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--iron);
+    border-radius: 6px;
+  }
+  .payvs-bg {
+    fill: var(--ink);
+  }
+  .payvs-baseline {
+    stroke: var(--iron);
+    stroke-width: 2;
+  }
+  .payvs-bar {
+    stroke: var(--iron);
+    stroke-width: 1;
+  }
+  .payvs-bar-land {
+    fill: var(--steel);
+  }
+  .payvs-bar-offshore {
+    fill: var(--steel);
+  }
+  .payvs-bar-offshore-hi {
+    fill: var(--amber);
+    opacity: 0.85;
+  }
+  .payvs-vallabel {
+    fill: var(--white);
+    font-family: var(--cond);
+    font-weight: 700;
+    font-size: 14px;
+    text-anchor: middle;
+  }
+  .payvs-collabel {
+    fill: var(--fog);
+    font-family: var(--body);
+    font-size: 14px;
+    text-anchor: middle;
+  }
+  .payvs-premium {
+    fill: var(--ink);
+    font-family: var(--cond);
+    font-weight: 700;
+    font-size: 11px;
+  }
+  .payvs-caption {
+    color: var(--fog);
+    font-size: 13px;
+    margin-top: 8px;
+    text-align: center;
+  }
+</style>

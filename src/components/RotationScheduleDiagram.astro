@@ -1,0 +1,141 @@
+---
+// Visual timeline of the two most common rotation patterns named on this
+// page (14/14 and 28/28), showing on-location vs at-home blocks as a real
+// calendar strip rather than only the days-on/days-off prose already there.
+// Deliberately shows both patterns stacked so the page's own point — a
+// longer rotation buys bigger uninterrupted time off, not more annual pay,
+// since both work the same on/off fraction of the year — is visible at a
+// glance rather than only asserted in text. Same inline-SVG pattern as the
+// other diagram components. Added 2026-10-21 for the "none of the 9 pages
+// added 10-20 has an image" audit finding.
+export interface Props {
+  lang?: 'en' | 'es';
+}
+const { lang = 'en' } = Astro.props;
+
+const t = lang === 'es'
+  ? {
+      title: 'Cronograma visual de los patrones de rotación 14/14 y 28/28',
+      desc: 'Dos franjas horizontales de 56 días cada una. La franja superior muestra el patrón 14/14: 14 días en la locación trabajando, luego 14 días en casa, repetido dos veces. La franja inferior muestra el patrón 28/28: 28 días en la locación, luego 28 días en casa, una sola vez en el mismo período de 56 días. Ambos patrones trabajan exactamente la mitad de los días — la misma fracción del año — así que al mismo salario por hora producen el mismo total anual. Lo que cambia es la forma del tiempo libre: el patrón 28/28 da bloques ininterrumpidos más largos en lugar de ciclos más cortos y frecuentes.',
+      pattern1414: '14/14',
+      pattern2828: '28/28',
+      onLocation: 'En la Locación',
+      atHome: 'En Casa',
+      sameDays: 'Mismos 56 días totales · misma fracción trabajada · mismo total anual al mismo salario',
+      caption: '14/14 y 28/28 trabajan exactamente la mitad del año cada uno — la diferencia real es el tamaño del bloque de tiempo libre, no la paga.',
+    }
+  : {
+      title: 'Visual timeline of the 14/14 and 28/28 rotation patterns',
+      desc: "Two horizontal strips, each 56 days long. The top strip shows the 14/14 pattern: 14 days on location working, then 14 days at home, repeated twice. The bottom strip shows the 28/28 pattern: 28 days on location, then 28 days at home, once across the same 56-day window. Both patterns work exactly half the days — the same fraction of the year — so at the same hourly rate they produce the same annual total. What changes is the shape of the time off: the 28/28 pattern gives bigger uninterrupted blocks instead of shorter, more frequent cycles.",
+      pattern1414: '14/14',
+      pattern2828: '28/28',
+      onLocation: 'On Location',
+      atHome: 'At Home',
+      sameDays: 'Same 56 total days · same fraction worked · same annual total at the same rate',
+      caption: "14/14 and 28/28 each work exactly half the year — the real difference is the size of the time-off block, not the pay.",
+    };
+
+const cellW = 9;
+const barY1 = 90;
+const barY2 = 200;
+const barH = 50;
+const startX = 30;
+// 14/14 pattern across 56 days: on,on,off,off (14 each)
+const blocks1414 = [
+  { on: true, days: 14 }, { on: false, days: 14 },
+  { on: true, days: 14 }, { on: false, days: 14 },
+];
+// 28/28 pattern across 56 days: on,off (28 each)
+const blocks2828 = [
+  { on: true, days: 28 }, { on: false, days: 28 },
+];
+
+function blocksToRects(blocks: { on: boolean; days: number }[], y: number) {
+  let x = startX;
+  const rects = [];
+  for (const b of blocks) {
+    const w = b.days * cellW;
+    rects.push({ x, w, on: b.on });
+    x += w;
+  }
+  return rects;
+}
+const rects1414 = blocksToRects(blocks1414, barY1);
+const rects2828 = blocksToRects(blocks2828, barY2);
+---
+<figure class="rota-figure">
+  <svg class="rota-svg" viewBox="0 0 560 290" role="img" aria-labelledby={`rota-title-${lang} rota-desc-${lang}`} xmlns="http://www.w3.org/2000/svg">
+    <title id={`rota-title-${lang}`}>{t.title}</title>
+    <desc id={`rota-desc-${lang}`}>{t.desc}</desc>
+
+    <rect class="rota-bg" x="0" y="0" width="560" height="290" rx="6" />
+
+    <text class="rota-rowlabel" x={startX} y={barY1 - 12}>{t.pattern1414}</text>
+    {rects1414.map((r) => (
+      <rect class={r.on ? 'rota-cell rota-cell-on' : 'rota-cell rota-cell-off'} x={r.x} y={barY1} width={r.w} height={barH} />
+    ))}
+
+    <text class="rota-rowlabel" x={startX} y={barY2 - 12}>{t.pattern2828}</text>
+    {rects2828.map((r) => (
+      <rect class={r.on ? 'rota-cell rota-cell-on' : 'rota-cell rota-cell-off'} x={r.x} y={barY2} width={r.w} height={barH} />
+    ))}
+
+    {/* legend */}
+    <rect class="rota-cell rota-cell-on" x="30" y="255" width="18" height="14" />
+    <text class="rota-legendtext" x="54" y="266">{t.onLocation}</text>
+    <rect class="rota-cell rota-cell-off" x="200" y="255" width="18" height="14" />
+    <text class="rota-legendtext" x="224" y="266">{t.atHome}</text>
+
+    <text class="rota-note" x="280" y="40" text-anchor="middle">{t.sameDays}</text>
+  </svg>
+  <figcaption class="rota-caption">{t.caption}</figcaption>
+</figure>
+
+<style>
+  .rota-figure {
+    margin: 24px 0 28px;
+    max-width: 580px;
+  }
+  .rota-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--iron);
+    border-radius: 6px;
+  }
+  .rota-bg {
+    fill: var(--ink);
+  }
+  .rota-rowlabel {
+    fill: var(--white);
+    font-family: var(--cond);
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .rota-cell {
+    stroke: var(--ink);
+    stroke-width: 1;
+  }
+  .rota-cell-on {
+    fill: var(--amber);
+  }
+  .rota-cell-off {
+    fill: var(--steel);
+  }
+  .rota-legendtext {
+    fill: var(--fog);
+    font-family: var(--body);
+    font-size: 13px;
+  }
+  .rota-note {
+    fill: var(--fog);
+    font-family: var(--body);
+    font-size: 11px;
+  }
+  .rota-caption {
+    color: var(--fog);
+    font-size: 13px;
+    margin-top: 8px;
+    text-align: center;
+  }
+</style>
