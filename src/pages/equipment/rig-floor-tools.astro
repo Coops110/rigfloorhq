@@ -4,6 +4,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import KeyFacts from '../../components/KeyFacts.astro';
 import { techArticleSchema } from '../../lib/techarticle.js';
+import SourcesStandards from '../../components/SourcesStandards.astro';
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/rig-floor-tools.astro',
@@ -95,4 +96,6 @@ const techArticleJsonLd = techArticleSchema({
       </div>
     </div>
   </section>
+
+  <SourcesStandards lang="en" ids={['api7k', 'api8c']} />
 </BaseLayout>

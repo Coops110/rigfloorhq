@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import { articleSchema } from '../../../lib/techarticle.js';
+import SourcesStandards from '../../../components/SourcesStandards.astro';
 
 const jsonLd = articleSchema({
   sourcePath: 'src/pages/es/careers/iwcf-vs-iadc-wellsharp.astro',
@@ -101,4 +102,6 @@ const webPageLd = {
       </div>
     </div>
   </section>
+
+  <SourcesStandards lang="es" ids={['iwcf', 'iadcWellsharp']} />
 </BaseLayout>

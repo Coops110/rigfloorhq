@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import { articleSchema } from '../../lib/techarticle.js';
+import SourcesStandards from '../../components/SourcesStandards.astro';
 
 const jsonLd = articleSchema({
   sourcePath: 'src/pages/drilling/shut-in-procedures.astro',
@@ -106,4 +107,6 @@ const webPageLd = {
       </div>
     </div>
   </section>
+
+  <SourcesStandards lang="en" ids={['api53', 'cfr250g']} />
 </BaseLayout>
