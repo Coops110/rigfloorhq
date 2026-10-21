@@ -3,23 +3,42 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import { articleSchema } from '../../../lib/techarticle.js';
+import { authorChrisCooper } from '../../../lib/person.js';
 
 // Article for this career guide. Dates come from git via the same map the
-// sitemap uses, so dateModified always equals this URL's sitemap lastmod;
-// author and publisher are the Organization @id (see src/lib/techarticle.js).
+// sitemap uses, so dateModified always equals this URL's sitemap lastmod.
 const jsonLd = articleSchema({
   sourcePath: 'src/pages/es/careers/company-man.astro',
   path: '/es/careers/company-man',
   headline: "¿Qué Hace un Company Man? — Trayectoria y Requisitos",
-  description: "Qué hace realmente un company man, en qué se diferencia de un toolpusher o un OIM, la trayectoria hacia el rol, y cuánto paga.",
+  description: "Qué hace realmente un company man, en qué se diferencia de un toolpusher o un OIM, la trayectoria hacia el rol, cuánto paga realmente como consultor por tarifa diaria, y cómo conseguir el puesto.",
   lang: 'es',
+  extra: { author: authorChrisCooper() },
 });
 
+const faq = [
+  {
+    q: '¿Un company man es empleado de la compañía petrolera?',
+    a: "Usualmente no de forma directa. La mayoría trabaja como consultores independientes de tarifa diaria, colocados con el operador a través de una agencia especializada de personal, no como empleados asalariados del operador — aunque un número menor son empleados directos del operador con estructura de salario más bono.",
+  },
+  {
+    q: '¿Cuánto gana realmente un company man al año?',
+    a: "Depende mucho de los días facturables, no de un salario fijo, ya que la mayoría son consultores de tarifa diaria. Con una tarifa publicada de $900-$1,900/día según experiencia y 180-220 días facturables al año, eso equivale a aproximadamente $162,500-$417,500 anuales — ver la sección de ingresos arriba para el desglose con fuente.",
+  },
+  {
+    q: '¿Qué experiencia necesitas para convertirte en company man?',
+    a: "Los operadores típicamente requieren 10-15+ años de experiencia real en operaciones de perforación o ingeniería antes de entregarle a alguien la autoridad única sobre un programa de pozo, más la certificación de control de pozos IWCF Nivel 4 / IADC WellSharp Supervisor — muy por encima de lo requerido para un rol de toolpusher del lado del contratista.",
+  },
+  {
+    q: '¿Se puede ser company man sin un título de ingeniería?',
+    a: "Sí, a través de la ruta desde el campo — perforadores y toolpushers experimentados que se pasan al lado del operador basándose en experiencia real de pozo, no en un título. La ruta de ingeniería es la otra vía común, no la única.",
+  },
+];
 ---
 <BaseLayout
   jsonLd={jsonLd}
   title="¿Qué Hace un Company Man? — Trayectoria y Requisitos"
-  description="Qué hace realmente un company man, en qué se diferencia de un toolpusher o un OIM, la trayectoria hacia el rol, y cuánto paga."
+  description="Qué hace realmente un company man, en qué se diferencia de un toolpusher o un OIM, la trayectoria hacia el rol, cuánto paga realmente como consultor por tarifa diaria, y cómo conseguir el puesto."
   breadcrumbs={[{ label: 'Carreras', href: '/es/careers' }, { label: 'Company Man', href: '/es/careers/company-man' }]}
   lang="es"
   alternateHref="/careers/company-man"
@@ -32,7 +51,8 @@ const jsonLd = articleSchema({
     <h1>¿Qué Hace un <span>Company Man</span>?</h1>
     <p class="page-hero-sub">El representante del operador en la locación, con la última palabra sobre el programa del pozo. Una trayectoria profesional genuinamente distinta de los roles supervisores del contratista de perforación con los que constantemente se confunde.</p>
     <div class="page-meta">
-      <span class="page-meta-item">Salario: <strong>$150K–$300K+/año</strong></span>
+      <span class="page-meta-item">Por <strong><a href="/es/about/chris-cooper">Chris Cooper</a></strong></span>
+      <span class="page-meta-item">Salario: <strong>$900–$1,900/día como consultor (~$162K–$417K/año)</strong></span>
       <span class="page-meta-item">Cronograma: <strong>15+ años, a menudo vía ingeniería</strong></span>
       <span class="page-meta-item">Empleador: <strong>El Operador, No el Contratista</strong></span>
     </div>
@@ -68,8 +88,38 @@ const jsonLd = articleSchema({
         </div>
         <p>Ambas rutas convergen en el mismo requisito central: suficiente experiencia real de pozo, de cualquiera de los dos lados de la cerca, para tomar las decisiones a nivel de programa que realmente se sostienen cuando algo sale mal a 2,000 pies bajo tierra.</p>
 
-        <h2 id="que-certificacion-se-requiere">Qué Certificación Se Requiere</h2>
-        <p>Los company men necesitan la misma competencia de control de pozos que un toolpusher o un OIM (<strong>IWCF Nivel 4 / IADC WellSharp Supervisor</strong>), ya que aprobar procedimientos de control de pozos es una parte central del rol. Ver la escalera completa en <a href="/es/pillars/rig-floor-leadership">Liderazgo en el Piso de Perforación</a> y el desglose de certificaciones en <a href="/es/careers/certifications">certificaciones</a>.</p>
+        <h2 id="ingresos">Ingresos: el Modelo de Consultor por Tarifa Diaria</h2>
+        <p>La mayoría de los company men no son empleados asalariados del operador — trabajan como consultores independientes de tarifa diaria, colocados con un operador a través de una agencia especializada de personal de perforación en lugar de ser contratados directamente. Esa estructura de contratista independiente, no el título del puesto, es lo que produce el amplio rango salarial de esta página: el ingreso es la tarifa diaria multiplicada por los días facturables reales trabajados, no un salario anual fijo, y viene con beneficios mínimos o nulos ya que el consultor no es empleado ni del operador ni de la agencia que lo coloca.</p>
+        <p>Las tarifas diarias publicadas van de aproximadamente <strong>$900 a $1,900 al día</strong> según el nivel de experiencia — consultores de nivel inicial suelen ver $900-$1,150/día, nivel medio $1,200-$1,500/día, y consultores senior $1,600-$1,900/día. Anualizado contra 180-220 días facturables realistas al año, eso equivale a aproximadamente <strong>$162,500-$417,500</strong>, que es por qué el rango al inicio de este artículo es tan amplio. Un número menor de company men son empleados directos del operador en lugar de consultores de tarifa diaria, típicamente con una estructura de salario más bono similar a la de un ingeniero de perforación interno; esa vía cambia el potencial alcista de la tarifa diaria por un ingreso más estable y beneficios reales.</p>
+        <p style="color:var(--fog);font-size:13px;max-width:760px;margin-top:10px;">Fuente: <a href="https://www.rigzone.com/insights/salary-1/how-much-does-a-drilling-consultant-earn-annually-51" style="color:var(--amber);">Rigzone, "How much does a drilling consultant earn annually?" (inglés)</a>. Las tarifas varían según la cuenca, la complejidad del pozo y el ciclo de las materias primas — ver la nota de la <a href="/es/careers/salary">guía salarial</a> sobre por qué cada rango publicado aquí es una fotografía del momento, no una tarifa fija.</p>
+
+        <h2 id="que-requieren-los-operadores">Qué Requieren los Operadores</h2>
+        <p>Debido a que el company man tiene la autoridad final sobre el programa del pozo sin nadie por encima en la locación para verificar ese juicio en el momento, los operadores evalúan este rol de forma distinta a un puesto supervisor del lado del contratista:</p>
+        <ul>
+          <li><strong>Experiencia profunda a nivel de programa</strong> — típicamente 10-15+ años en operaciones de perforación o ingeniería antes de que un operador entregue a alguien la autoridad única sobre un programa de pozo, muy por encima del umbral de experiencia de campo para un toolpusher del lado del contratista.</li>
+          <li><strong>Competencia de control de pozos IWCF Nivel 4 / IADC WellSharp Supervisor</strong>, el mismo estándar que un toolpusher o un OIM, ya que aprobar procedimientos de control de pozos en tiempo real es una parte central del rol. Ver la escalera completa en <a href="/es/pillars/rig-floor-leadership">Liderazgo en el Piso de Perforación</a> y el desglose de certificaciones en <a href="/es/careers/certifications">certificaciones</a>.</li>
+          <li><strong>Un historial limpio de HSE e incidentes.</strong> Los operadores verifican referencias de pozos anteriores directamente, no solo un currículum, ya que una mala decisión sobre un programa de pozo es responsabilidad del operador, no de la agencia de personal.</li>
+          <li><strong>Seguro de contratista independiente</strong> — los consultores de tarifa diaria típicamente llevan su propia cobertura de responsabilidad profesional, ya que no están cubiertos bajo las pólizas de empleados ni del operador ni del contratista de perforación.</li>
+          <li><strong>Sin plazo garantizado.</strong> Una asignación de consultoría por tarifa diaria se renueva pozo por pozo, o se termina, según el desempeño — no existe protección de antigüedad equivalente a un empleo asalariado.</li>
+        </ul>
+
+        <h2 id="como-se-contrata-a-un-company-man">Cómo Se Contrata a un Company Man</h2>
+        <p>La contratación pasa por un canal distinto al camino habitual de ascenso interno de perforador a toolpusher a OIM:</p>
+        <ul>
+          <li><strong>A través de una agencia de personal de consultores de perforación.</strong> La mayoría de los company men de tarifa diaria son colocados por una agencia especializada que mantiene una base de consultores experimentados y los contrata con operadores pozo por pozo — la agencia, no el operador, es a quien un consultor aplica y quien le paga.</li>
+          <li><strong>Contratación directa del operador, para la vía de empleado asalariado.</strong> Los operadores que contratan a un company man como puesto asalariado reclutan de la misma forma que contratan a otro personal de ingeniería u operaciones — directamente, a través del propio proceso de RH del operador, usualmente desde su grupo de ingeniería u operaciones de perforación.</li>
+        </ul>
+        <p>Ambas rutas siguen requiriendo la formación desde el campo o de ingeniería cubierta arriba — la agencia o el operador están evaluando el mismo juicio y experiencia de cualquier forma, solo contratando a través de una estructura distinta.</p>
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        <div class="accordion">
+          {faq.map((item) => (
+            <details class="acc-item">
+              <summary class="acc-header">{item.q}<span class="acc-arrow">▼</span></summary>
+              <div class="acc-body"><p>{item.a}</p></div>
+            </details>
+          ))}
+        </div>
       </div>
 
       <div>
@@ -78,7 +128,10 @@ const jsonLd = articleSchema({
           <a href="#que-hace-un-company-man">Qué Hace el Rol</a>
           <a href="#company-man-vs-toolpusher-vs-oim">vs. Toolpusher vs. OIM</a>
           <a href="#como-se-llega-a-este-rol">Cómo Se Llega Aquí</a>
-          <a href="#que-certificacion-se-requiere">Certificación Requerida</a>
+          <a href="#ingresos">Ingresos: Tarifa Diaria</a>
+          <a href="#que-requieren-los-operadores">Qué Requieren los Operadores</a>
+          <a href="#como-se-contrata-a-un-company-man">Cómo Se Contrata</a>
+          <a href="#faq">Preguntas Frecuentes</a>
         </div>
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
           <h3>Lectura Relacionada</h3>

@@ -3,23 +3,42 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import { articleSchema } from '../../lib/techarticle.js';
+import { authorChrisCooper } from '../../lib/person.js';
 
 // Article for this career guide. Dates come from git via the same map the
-// sitemap uses, so dateModified always equals this URL's sitemap lastmod;
-// author and publisher are the Organization @id (see src/lib/techarticle.js).
+// sitemap uses, so dateModified always equals this URL's sitemap lastmod.
 const jsonLd = articleSchema({
   sourcePath: 'src/pages/careers/company-man.astro',
   path: '/careers/company-man',
   headline: "What Does a Company Man Do? — Career Path & Requirements",
-  description: "What a company man actually does, how the role differs from a toolpusher or OIM, the path into it, and what it pays.",
+  description: "What a company man actually does, how the role differs from a toolpusher or OIM, the path into it, what it actually pays as a day-rate consultant, and how to get hired.",
   lang: 'en',
+  extra: { author: authorChrisCooper() },
 });
 
+const faq = [
+  {
+    q: 'Is a company man an employee of the oil company?',
+    a: "Usually not directly. Most work as independent day-rate consultants placed with the operator through a specialty staffing agency, not as salaried operator staff — though a smaller number are direct operator employees on a salary-plus-bonus structure.",
+  },
+  {
+    q: 'How much does a company man actually make per year?',
+    a: "It depends heavily on billable days, not a fixed salary, since most are day-rate consultants. At a published $900-$1,900/day range across experience levels and 180-220 billable days a year, that works out to roughly $162,500-$417,500 annually — see the earnings section above for the sourced breakdown.",
+  },
+  {
+    q: 'What experience do you need to become a company man?',
+    a: "Operators typically require 10-15+ years of real drilling operations or engineering experience before handing someone sole authority over a well program, plus IWCF Level 4 / IADC WellSharp Supervisor well control certification — well beyond what's required for a contractor-side toolpusher role.",
+  },
+  {
+    q: 'Can you become a company man without an engineering degree?',
+    a: "Yes, via the field-up route — experienced drillers and toolpushers who move to the operator side on the strength of real well experience, not a degree. The engineering route is the other common path, not the only one.",
+  },
+];
 ---
 <BaseLayout
   jsonLd={jsonLd}
   title="What Does a Company Man Do? — Career Path & Requirements"
-  description="What a company man actually does, how the role differs from a toolpusher or OIM, the path into it, and what it pays."
+  description="What a company man actually does, how the role differs from a toolpusher or OIM, the path into it, what it actually pays as a day-rate consultant, and how to get hired."
   breadcrumbs={[{ label: 'Careers', href: '/careers' }, { label: 'Company Man', href: '/careers/company-man' }]}
   lang="en"
   alternateHref="/es/careers/company-man"
@@ -32,7 +51,8 @@ const jsonLd = articleSchema({
     <h1>What Does a <span>Company Man</span> Do?</h1>
     <p class="page-hero-sub">The operator's representative on location, with final say over the well program. A genuinely different career track from the drilling-contractor supervisory roles it's constantly confused with.</p>
     <div class="page-meta">
-      <span class="page-meta-item">Pay: <strong>$150K–$300K+/yr</strong></span>
+      <span class="page-meta-item">By <strong><a href="/about/chris-cooper">Chris Cooper</a></strong></span>
+      <span class="page-meta-item">Pay: <strong>$900–$1,900/day as a consultant (~$162K–$417K/yr)</strong></span>
       <span class="page-meta-item">Timeline: <strong>15+ years, often via engineering</strong></span>
       <span class="page-meta-item">Employer: <strong>The Operator, Not the Contractor</strong></span>
     </div>
@@ -68,8 +88,38 @@ const jsonLd = articleSchema({
         </div>
         <p>Both routes converge on the same core requirement: enough real well experience, from either side of the fence, to make the program-level calls that actually hold up when something goes wrong 2,000 feet underground.</p>
 
-        <h2 id="what-certification-is-required">What Certification Is Required</h2>
-        <p>Company men need the same well control competency as a toolpusher or OIM — <strong>IWCF Level 4 / IADC WellSharp Supervisor</strong> — since approving well control procedures is squarely part of the role. See the full ladder at <a href="/pillars/rig-floor-leadership">Rig Floor Leadership</a> and the certification breakdown at <a href="/careers/certifications">certifications</a>.</p>
+        <h2 id="earnings">Earnings: the Day-Rate Consultant Model</h2>
+        <p>Most company men aren't salaried operator employees — they work as independent day-rate consultants, placed with an operator through a specialty drilling-consultant staffing agency rather than hired directly. That 1099-contractor structure, not the job title, is what produces the wide pay range on this page: income is the day rate multiplied by actual billable days worked, not a fixed annual salary, and it comes with minimal or no benefits since the consultant is not an employee of either the operator or the agency placing them.</p>
+        <p>Published day rates run roughly <strong>$900–$1,900 a day</strong> across experience levels — entry-level consultants typically see $900–$1,150/day, mid-career $1,200–$1,500/day, and senior consultants $1,600–$1,900/day. Annualized against a realistic 180–220 billable days a year, that works out to roughly <strong>$162,500–$417,500</strong>, which is why this page's own range at the top of the article runs as wide as it does. A smaller number of company men are direct operator staff employees instead of day-rate contractors, typically on a salary-plus-bonus structure similar to an in-house drilling engineer; that path trades the day-rate upside for steadier income and real benefits.</p>
+        <p style="color:var(--fog);font-size:13px;max-width:760px;margin-top:10px;">Source: <a href="https://www.rigzone.com/insights/salary-1/how-much-does-a-drilling-consultant-earn-annually-51" style="color:var(--amber);">Rigzone, "How much does a drilling consultant earn annually?"</a>. Day rates vary by basin, well complexity and the commodity cycle — see the <a href="/careers/salary">salary guide</a>'s note on why every published range here is a snapshot, not a rate card.</p>
+
+        <h2 id="what-operators-require">What Operators Require</h2>
+        <p>Because the company man carries final authority over the well program with no one above them on location to check that judgment in the moment, operators screen for this role differently than for a contractor-side supervisory job:</p>
+        <ul>
+          <li><strong>Deep, program-level experience</strong> — typically 10-15+ years in drilling operations or engineering before an operator will hand someone sole authority over a well program, well beyond the field-experience threshold for a contractor-side toolpusher.</li>
+          <li><strong>IWCF Level 4 / IADC WellSharp Supervisor</strong> well control competency, the same bar as a toolpusher or OIM, since approving well control procedures in real time is squarely part of the role. See the full ladder at <a href="/pillars/rig-floor-leadership">Rig Floor Leadership</a> and the certification breakdown at <a href="/careers/certifications">certifications</a>.</li>
+          <li><strong>A clean HSE and incident record.</strong> Operators check references from prior wells directly, not just a resume, since a bad call on a well program is the operator's liability, not the staffing agency's.</li>
+          <li><strong>Independent-contractor insurance</strong> — day-rate consultants typically carry their own professional liability coverage, since they are not covered under either the operator's or the drilling contractor's employee policies.</li>
+          <li><strong>No guaranteed term.</strong> A day-rate consulting assignment is renewed well by well, or dropped, based on performance — there is no tenure protection equivalent to staff employment.</li>
+        </ul>
+
+        <h2 id="how-company-men-get-hired">How Company Men Get Hired</h2>
+        <p>Hiring runs through a different channel than the driller-to-toolpusher-to-OIM ladder's usual promote-from-within path:</p>
+        <ul>
+          <li><strong>Through a drilling-consultant staffing agency.</strong> Most day-rate company men are placed by a specialty agency that maintains a roster of experienced consultants and contracts them out to operators well by well — the agency, not the operator, is who a consultant applies to and is paid through.</li>
+          <li><strong>Direct operator hire, for the staff-employee path.</strong> Operators hiring a company man as a salaried staff position recruit the same way they hire other engineering or operations staff — directly, through the operator's own HR process, usually from within their engineering or drilling-operations group.</li>
+        </ul>
+        <p>Both routes still require the field-up or engineering background covered above — the agency or operator is screening for the same judgment and experience either way, just hiring for it through a different structure.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        <div class="accordion">
+          {faq.map((item) => (
+            <details class="acc-item">
+              <summary class="acc-header">{item.q}<span class="acc-arrow">▼</span></summary>
+              <div class="acc-body"><p>{item.a}</p></div>
+            </details>
+          ))}
+        </div>
       </div>
 
       <div>
@@ -78,7 +128,10 @@ const jsonLd = articleSchema({
           <a href="#what-a-company-man-does">What the Role Does</a>
           <a href="#company-man-vs-toolpusher-vs-oim">vs. Toolpusher vs. OIM</a>
           <a href="#how-people-get-here">How People Get Here</a>
-          <a href="#what-certification-is-required">Required Certification</a>
+          <a href="#earnings">Earnings: Day-Rate Model</a>
+          <a href="#what-operators-require">What Operators Require</a>
+          <a href="#how-company-men-get-hired">How You Get Hired</a>
+          <a href="#faq">FAQ</a>
         </div>
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
           <h3>Related Reading</h3>
