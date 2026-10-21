@@ -91,8 +91,8 @@ export function generateLlmsTxt(outDir, logger) {
   const safety = en.filter((p) => p.path.startsWith('/safety/'));
   const pillars = en.filter((p) => p.path.startsWith('/pillars/'));
   const glossary = en.filter((p) => p.path === '/glossary');
-  const quiz = en.filter((p) => p.path === '/well-control-quiz');
-  const about = en.filter((p) => p.path === '/about');
+  const quiz = en.filter((p) => p.path === '/well-control-quiz' || p.path.startsWith('/well-control-quiz/'));
+  const about = en.filter((p) => p.path === '/about' || p.path.startsWith('/about/'));
   const blog = en.filter((p) => p.path.startsWith('/blog/'));
 
   const esBlog = es.filter((p) => p.path.startsWith('/es/blog/'));
