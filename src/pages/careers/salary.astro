@@ -31,7 +31,7 @@ const faq = [
   },
   {
     q: 'Why do two people in the same job make different pay?',
-    a: "Region and basin activity, day-rate contract work versus staff employment with benefits, and where the commodity cycle sits all move the number more than the job title does — see Reading the Numbers below for the full breakdown.",
+    a: 'Region and basin activity, day-rate contract work versus staff employment with benefits, and where the commodity cycle sits all move the number more than the job title does — see <a href="#reading-the-numbers" style="color:var(--amber);">Reading the Numbers</a> below for the full breakdown.',
   },
 ];
 
@@ -105,6 +105,7 @@ const lastUpdatedLabel = lastUpdated
 
     <div class="note-box">
       <strong>Note on figures:</strong> This table is RigFloorHQ's own editorial estimate — compiled from job postings, recruiter listings, and industry pay discussion through 2025–2026, not a single named survey. It's not independently sourced the way the government table below is, which is exactly why that table exists: use it as the real, citable cross-check against this one. Actual pay varies significantly by region, employer, rig type, and market conditions. Rates in the Gulf of Mexico, North Sea, and Middle East tend to sit at the higher end; land rig rates in slower basins sit lower.
+      {lastUpdatedLabel && <span style="display:block;margin-top:10px;font-size:12px;color:var(--fog);">This table was last reviewed and edited {lastUpdatedLabel}.</span>}
     </div>
   </section>
 
@@ -147,7 +148,7 @@ const lastUpdatedLabel = lastUpdated
         </tbody>
       </table>
     </div>
-    <p style="color:var(--fog);font-size:13px;max-width:760px;margin-top:10px;">Source: <a href="https://www.bls.gov/oes/2023/may/oes475011.htm" style="color:var(--amber);">BLS Occupational Employment and Wage Statistics (OEWS), May 2023</a>, the last year BLS published this occupation's state wages in its standalone per-occupation summary format. BLS's newer annual state releases (through May 2025) exist only as full-occupation spreadsheets we have not cross-checked line by line against this table, so this remains the most recent state breakdown we can verify and cite directly. These are statewide averages across every employer in the state, so a specific operator or rig will differ; this is a sample of the real spread behind the $58,330 national mean, not a literal floor and ceiling (other states fall both above and below this range). The states with the most rigs running aren't the same as the states that pay the most: Texas ($57,400) and Oklahoma ($55,310) sit below every state in the table above despite far higher rig counts, since their totals include a much larger mix of smaller, lower-activity operations alongside their highest-intensity basins.</p>
+    <p style="color:var(--fog);font-size:13px;max-width:760px;margin-top:10px;">Source: <a href="https://www.bls.gov/oes/2023/may/oes475011.htm" style="color:var(--amber);">BLS Occupational Employment and Wage Statistics (OEWS), May 2023</a>, the last year BLS published this occupation's state wages in its standalone per-occupation summary format. BLS's newer annual state releases (through May 2025) exist only as full-occupation spreadsheets we have not cross-checked line by line against this table, so this remains the most recent state breakdown we can verify and cite directly. These are statewide averages across every employer in the state, so a specific operator or rig will differ; this is a sample of the real spread behind the $58,330 May 2023 national mean for this occupation (since revised to $74,890 in the May 2024 release cited above — the two numbers are different years, not a contradiction), not a literal floor and ceiling (other states fall both above and below this range). The states with the most rigs running aren't the same as the states that pay the most: Texas ($57,400) and Oklahoma ($55,310) sit below every state in the table above despite far higher rig counts, since their totals include a much larger mix of smaller, lower-activity operations alongside their highest-intensity basins.</p>
 
     <div class="note-box mt-24">
       <strong>Methodology — why two different BLS releases appear on this page.</strong> The national wage table above cites BLS's May 2024 Monthly Labor Review article, the most current release that reports this data. The state breakdown directly below it cites the older May 2023 OEWS release instead, because that's the last year BLS published this occupation's state-level wages in the standalone per-occupation format this table draws from — newer state data exists only as full-occupation spreadsheets not yet cross-checked against this table line by line. Same occupation, two different BLS products, each cited to the most current release that actually covers what that specific table claims. The editorial pay-range table at the top of this page is separate again: it's RigFloorHQ's own estimate from job postings and recruiter listings, not BLS data, which is exactly why the two BLS tables exist as an independent cross-check against it.
@@ -171,7 +172,7 @@ const lastUpdatedLabel = lastUpdated
       </div>
 
       <div>
-        <h3 style="font-family:var(--cond);font-weight:700;font-size:18px;text-transform:uppercase;color:var(--white);letter-spacing:0.04em;margin-bottom:16px;">Example: Roughneck Pay Comparison</h3>
+        <h3 id="roughneck-pay-comparison" style="font-family:var(--cond);font-weight:700;font-size:18px;text-transform:uppercase;color:var(--white);letter-spacing:0.04em;margin-bottom:16px;">Example: Roughneck Pay Comparison</h3>
         <div style="display:flex;flex-direction:column;gap:1px;background:var(--iron);border:1px solid var(--iron);">
           <div style="background:var(--steel);padding:18px 20px;display:flex;justify-content:space-between;">
             <span style="font-size:13px;color:var(--fog);">Onshore Roughneck</span>
@@ -214,7 +215,7 @@ const lastUpdatedLabel = lastUpdated
     <p style="color:var(--fog);max-width:760px;margin-top:16px;">Many land-based contractors also pay a <strong>per diem</strong> — a fixed daily allowance, typically in the $75–$150 range, covering meals and lodging while away from home — on top of wages, separate from the hourly rate and usually non-taxable. Offshore roles generally don't carry a per diem at all, because room and board on the installation is already provided free for the full hitch, which is part of why the headline offshore pay premium in the comparison above understates the real gap in disposable income.</p>
   </section>
 
-  <section class="block">
+  <section class="block" id="reading-the-numbers">
     <div class="section-eyebrow">Reading the Numbers</div>
     <h2 class="section-title">Why Two Hands in the Same Role <span>Earn Differently</span></h2>
     <p style="color:var(--fog);max-width:740px;margin-bottom:24px;">Published ranges hide most of what determines an actual payslip. Four factors move the figure more than job title does.</p>
