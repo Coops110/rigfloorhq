@@ -11,7 +11,7 @@ const posts = (await getCollection('blog')).filter((p) => !p.data.draft);
 const postsEs = (await getCollection('blogEs')).filter((p) => !p.data.draft);
 ---
 <BaseLayout
-  title="Acerca de RigFloorHQ"
+  title="Acerca de RigFloorHQ — Quiénes Somos y Cómo Trabajamos"
   description="Qué es RigFloorHQ, quién lo gestiona, cómo tratamos el material crítico para la seguridad y cómo avisarnos cuando algo está mal."
   breadcrumbs={[{ label: 'Acerca de', href: '/es/about' }]}
   lang="es"
