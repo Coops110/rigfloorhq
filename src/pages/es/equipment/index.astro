@@ -2,11 +2,86 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+
+// Same sync caveat as the English hub (src/pages/equipment/index.astro):
+// hand-extracted from the card grid below, update both if a card changes.
+const equipmentItems = [
+  { href: '/equipment/rig-types', title: 'Tipos de Taladros de Perforación' },
+  { href: '/equipment/drill-string', title: 'La Sarta de Perforación' },
+  { href: '/equipment/bop', title: 'Preventores de Reventones' },
+  { href: '/equipment/accumulator', title: 'Prueba Funcional y Simulacro del Acumulador' },
+  { href: '/equipment/bridge-plug', title: 'Tapón Puente' },
+  { href: '/equipment/casing-cutter', title: 'Cortador de Revestimiento' },
+  { href: '/equipment/cement-retainer', title: 'Retenedor de Cemento' },
+  { href: '/equipment/crossover-sub', title: 'Sub de Cruce' },
+  { href: '/equipment/float-sub', title: 'Sub Flotador' },
+  { href: '/equipment/under-reamer', title: 'Escariador Bajo Restricción' },
+  { href: '/equipment/stabilizer', title: 'Estabilizador' },
+  { href: '/equipment/reversing-tool', title: 'Herramienta de Reversa' },
+  { href: '/equipment/hydraulic-jar', title: 'Martillo Hidráulico' },
+  { href: '/equipment/section-mill', title: 'Fresa de Sección' },
+  { href: '/equipment/window-mill', title: 'Fresa de Ventana' },
+  { href: '/equipment/safety-joint', title: 'Junta de Seguridad' },
+  { href: '/equipment/mwd-tool', title: 'Herramienta MWD' },
+  { href: '/equipment/packer', title: 'Empacador' },
+  { href: '/equipment/whipstock', title: 'Whipstock' },
+  { href: '/equipment/liner-hanger', title: 'Colgador de Liner' },
+  { href: '/equipment/sliding-sleeve', title: 'Camisa Deslizante' },
+  { href: '/equipment/burr-mill', title: 'Fresa de Rebaba' },
+  { href: '/equipment/nmdc-pony-nmdc', title: 'NMDC / Pony NMDC' },
+  { href: '/equipment/lifting-sub', title: 'Sub de Izaje' },
+  { href: '/equipment/pup-joint', title: 'Junta Pup' },
+  { href: '/equipment/positive-displacement-mud-motor', title: 'Motor de Lodo de Desplazamiento Positivo' },
+  { href: '/equipment/scssv', title: 'Válvula SCSSV' },
+  { href: '/equipment/gas-lift-mandrel', title: 'Mandril de Levantamiento por Gas' },
+  { href: '/equipment/blast-joint', title: 'Junta de Impacto' },
+  { href: '/equipment/tcp-gun', title: 'Cañón TCP' },
+  { href: '/equipment/tubing-plug', title: 'Tapón de Tubería' },
+  { href: '/equipment/casing-patch', title: 'Parche de Revestimiento' },
+  { href: '/equipment/landing-nipple', title: 'Niple de Asiento' },
+  { href: '/equipment/on-off-tool', title: 'Herramienta On-Off' },
+  { href: '/equipment/casing-shoe', title: 'Zapata de Revestimiento' },
+  { href: '/equipment/centralizer', title: 'Centralizador de Revestimiento' },
+  { href: '/equipment/mule-shoe', title: 'Zapata Mula' },
+  { href: '/equipment/bull-nose-plug', title: 'Tapón de Nariz de Toro' },
+  { href: '/equipment/jetting-tool', title: 'Herramienta de Chorro' },
+  { href: '/equipment/expandable-sand-screen', title: 'Malla Expandible de Control de Arena' },
+  { href: '/equipment/casing-roller-dressing-tool', title: 'Rodillo de Revestimiento / Dresado' },
+  { href: '/equipment/wash-pipe', title: 'Tubería de Lavado' },
+  { href: '/equipment/well-protector', title: 'Protector de Pozo' },
+  { href: '/equipment/fishing-swivel', title: 'Unión de Pesca' },
+  { href: '/equipment/bumper-sub', title: 'Sub de Golpe' },
+  { href: '/equipment/sabs-dabs', title: 'SABS vs. DABS' },
+  { href: '/equipment/power-swivel', title: 'Power Swivel' },
+  { href: '/equipment/hydraulic-set-retainer-packer', title: 'Empacador de Retención Hidráulico' },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://rigfloorhq.com/es/equipment#webpage",
+  "name": "Referencia de Equipo de Taladro",
+  "description": "Referencia completa del equipo de taladros petroleros: tipos de taladro, la sarta de perforación, preventores de reventones.",
+  "url": "https://rigfloorhq.com/es/equipment",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": equipmentItems.map((item, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "url": `https://rigfloorhq.com/es${item.href}`,
+      "name": item.title,
+    })),
+  },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+};
 ---
 <BaseLayout
   title="Equipo de Taladro — Tipos de Taladro, Sarta de Perforación"
   description="Referencia completa del equipo de taladros petroleros: tipos de taladro, la sarta de perforación, preventores de reventones."
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }]}
+  jsonLd={jsonLd}
   lang="es"
   alternateHref="/equipment"
 >

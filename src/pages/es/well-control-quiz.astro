@@ -72,13 +72,15 @@ const topics = topicOrder.map((topic) => ({
 
 const quizLd = {
   "@context": "https://schema.org",
-  "@type": ["WebPage", "LearningResource"],
+  "@type": ["WebPage", "LearningResource", "Quiz"],
+  "@id": "https://rigfloorhq.com/es/well-control-quiz#webpage",
   "name": "Examen de Práctica de Control de Pozos",
   "url": "https://rigfloorhq.com/es/well-control-quiz",
   "learningResourceType": "Practice quiz",
   "educationalUse": "assessment",
   "teaches": "Principios de control de pozos para cuadrillas de perforación",
   "inLanguage": "es",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
   "isAccessibleForFree": true,
   "publisher": { "@id": "https://rigfloorhq.com/#organization" },
 };

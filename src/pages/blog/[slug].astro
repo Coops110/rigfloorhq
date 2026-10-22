@@ -70,6 +70,10 @@ const resolvedPublishedDate = dates.datePublished || post.data.publishDate;
 const blogPosting = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
+  // Every other Article/TechArticle on the site has its own @id
+  // (src/lib/techarticle.js); this was the one type missing one, which the
+  // audit flagged directly ("BlogPosting has no @id or WebPage node").
+  "@id": `${postUrl}#article`,
   "headline": post.data.title,
   "description": post.data.description,
   "datePublished": resolvedPublishedDate,
@@ -82,10 +86,16 @@ const blogPosting = {
   // not attributed to the listing page it was crawled from. reviewedBy
   // belongs here too, per schema.org — it's a WebPage property, not
   // BlogPosting — so it's folded into this node rather than sitting on the
-  // BlogPosting itself.
+  // BlogPosting itself. A full node (name/isPartOf/mainEntity back to the
+  // article) rather than a bare @id, same fix as every other page type.
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": postUrl,
+    "@id": `${postUrl}#webpage`,
+    "url": postUrl,
+    "name": post.data.title,
+    "inLanguage": "en",
+    "isPartOf": { "@id": `${siteUrl}/#website` },
+    "mainEntity": { "@id": `${postUrl}#article` },
     ...(post.data.reviewedByJabin ? { "reviewedBy": reviewedByJabin(), "lastReviewed": post.data.reviewedDate } : {}),
   },
 };

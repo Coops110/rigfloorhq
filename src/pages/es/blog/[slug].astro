@@ -58,6 +58,7 @@ const resolvedPublishedDate = dates.datePublished || post.data.publishDate;
 const blogPosting = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
+  "@id": `${postUrl}#article`,
   "headline": post.data.title,
   "description": post.data.description,
   "datePublished": resolvedPublishedDate,
@@ -70,7 +71,12 @@ const blogPosting = {
   // English route for the full note. Folded into mainEntityOfPage here.
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": postUrl,
+    "@id": `${postUrl}#webpage`,
+    "url": postUrl,
+    "name": post.data.title,
+    "inLanguage": "es",
+    "isPartOf": { "@id": `${siteUrl}/#website` },
+    "mainEntity": { "@id": `${postUrl}#article` },
     ...(post.data.reviewedByJabin ? { "reviewedBy": reviewedByJabin(), "lastReviewed": post.data.reviewedDate } : {}),
   },
 };

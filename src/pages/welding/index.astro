@@ -2,11 +2,24 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { articleSchema } from '../../lib/techarticle.js';
+
+// This hub carried no schema at all before the 2026-10-22 audit. Article,
+// not CollectionPage — this page is real body content (process table,
+// explanatory text), not a card-grid link hub.
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/welding/index.astro',
+  path: '/welding',
+  headline: 'Oil Rig Welding — SMAW, TIG & FCAW Processes Explained',
+  description: "Rig welding is the trade of joining and repairing steel on a drilling rig — the SMAW, TIG and FCAW processes used, the four jobs it splits into.",
+  lang: 'en',
+});
 ---
 <BaseLayout
   title="Oil Rig Welding — SMAW, TIG & FCAW Processes Explained"
   description="Rig welding is the trade of joining and repairing steel on a drilling rig — the SMAW, TIG and FCAW processes used, the four jobs it splits into."
   breadcrumbs={[{ label: 'Welding', href: '/welding' }]}
+  jsonLd={jsonLd}
   lang="en"
   alternateHref="/es/welding"
 >

@@ -15,11 +15,30 @@ const posts = allPosts.sort((a, b) =>
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
 }
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "@id": "https://rigfloorhq.com/es/blog#webpage",
+  "name": "Notas de Campo del Rig Floor",
+  "description": "El blog de RigFloorHQ cubre control de pozos, operaciones de perforación, progresión profesional, y orientación práctica de campo para la industria.",
+  "url": "https://rigfloorhq.com/es/blog",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "blogPost": posts.map((post) => ({
+    "@type": "BlogPosting",
+    "@id": `https://rigfloorhq.com/es/blog/${post.id}#article`,
+    "headline": post.data.title,
+    "url": `https://rigfloorhq.com/es/blog/${post.id}`,
+  })),
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+};
 ---
 <BaseLayout
   title="Blog — Perspectivas de la Industria Petrolera y de Gas"
   description="El blog de RigFloorHQ cubre control de pozos, operaciones de perforación, progresión profesional, y orientación práctica de campo para la industria."
   breadcrumbs={[{ label: 'Blog', href: '/es/blog' }]}
+  jsonLd={jsonLd}
   lang="es"
   alternateHref="/blog"
 >

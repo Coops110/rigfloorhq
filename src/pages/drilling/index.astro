@@ -2,11 +2,22 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { articleSchema } from '../../lib/techarticle.js';
+
+// This hub carried no schema at all before the 2026-10-22 audit.
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/drilling/index.astro',
+  path: '/drilling',
+  headline: 'How Drilling Works — Oil Well Drilling Process Explained',
+  description: "The complete oil well drilling process from spud to completion: casing programs, mud circulation, pressure control, and every phase explained.",
+  lang: 'en',
+});
 ---
 <BaseLayout
   title="How Drilling Works — Oil Well Drilling Process Explained"
   description="The complete oil well drilling process from spud to completion: casing programs, mud circulation, pressure control, and every phase explained."
   breadcrumbs={[{ label: 'Drilling', href: '/drilling' }]}
+  jsonLd={jsonLd}
   lang="en"
   alternateHref="/es/drilling"
 >

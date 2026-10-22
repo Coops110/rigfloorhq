@@ -2,11 +2,21 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { articleSchema } from '../../../lib/techarticle.js';
+
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/es/welding/index.astro',
+  path: '/es/welding',
+  headline: 'Soldadura en Taladros Petroleros — Procesos, Certificaciones',
+  description: "Guía completa de soldadura en taladros petroleros: procesos SMAW, TIG, FCAW y soldadura submarina, certificaciones requeridas.",
+  lang: 'es',
+});
 ---
 <BaseLayout
   title="Soldadura en Taladros Petroleros — Procesos, Certificaciones"
   description="Guía completa de soldadura en taladros petroleros: procesos SMAW, TIG, FCAW y soldadura submarina, certificaciones requeridas."
   breadcrumbs={[{ label: 'Soldadura', href: '/es/welding' }]}
+  jsonLd={jsonLd}
   lang="es"
   alternateHref="/welding"
 >

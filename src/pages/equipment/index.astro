@@ -2,11 +2,89 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+
+// This hub carried no schema at all before the 2026-10-22 audit. The item
+// list below is extracted from the card grid further down this page — if a
+// card is added or removed there, update this list too; it is not derived
+// dynamically because the cards are hand-written markup, not a content
+// collection.
+const equipmentItems = [
+  { href: '/equipment/rig-types', title: 'Types of Drilling Rigs' },
+  { href: '/equipment/drill-string', title: 'The Drill String' },
+  { href: '/equipment/bop', title: 'Blowout Preventers' },
+  { href: '/equipment/accumulator', title: 'Accumulator Function Test & Drill' },
+  { href: '/equipment/bridge-plug', title: 'Bridge Plug' },
+  { href: '/equipment/casing-cutter', title: 'Casing Cutter' },
+  { href: '/equipment/section-mill', title: 'Section Mill' },
+  { href: '/equipment/window-mill', title: 'Window Mill' },
+  { href: '/equipment/safety-joint', title: 'Safety Joint' },
+  { href: '/equipment/mwd-tool', title: 'MWD Tool' },
+  { href: '/equipment/packer', title: 'Packer' },
+  { href: '/equipment/whipstock', title: 'Whipstock' },
+  { href: '/equipment/liner-hanger', title: 'Liner Hanger' },
+  { href: '/equipment/cement-retainer', title: 'Cement Retainer' },
+  { href: '/equipment/float-sub', title: 'Float Sub' },
+  { href: '/equipment/crossover-sub', title: 'Crossover Sub' },
+  { href: '/equipment/under-reamer', title: 'Under-Reamer' },
+  { href: '/equipment/stabilizer', title: 'Stabilizer' },
+  { href: '/equipment/reversing-tool', title: 'Reversing Tool' },
+  { href: '/equipment/hydraulic-jar', title: 'Hydraulic Jar' },
+  { href: '/equipment/sliding-sleeve', title: 'Sliding Sleeve' },
+  { href: '/equipment/burr-mill', title: 'Burr Mill' },
+  { href: '/equipment/nmdc-pony-nmdc', title: 'NMDC / Pony NMDC' },
+  { href: '/equipment/lifting-sub', title: 'Lifting Sub' },
+  { href: '/equipment/pup-joint', title: 'Pup Joint' },
+  { href: '/equipment/positive-displacement-mud-motor', title: 'Positive Displacement Mud Motor' },
+  { href: '/equipment/scssv', title: 'SCSSV Safety Valve' },
+  { href: '/equipment/gas-lift-mandrel', title: 'Gas Lift Mandrel' },
+  { href: '/equipment/blast-joint', title: 'Blast Joint' },
+  { href: '/equipment/tcp-gun', title: 'TCP Gun' },
+  { href: '/equipment/tubing-plug', title: 'Tubing Plug' },
+  { href: '/equipment/casing-patch', title: 'Casing Patch' },
+  { href: '/equipment/landing-nipple', title: 'Landing Nipple' },
+  { href: '/equipment/on-off-tool', title: 'On-Off Tool' },
+  { href: '/equipment/casing-shoe', title: 'Casing Shoe' },
+  { href: '/equipment/centralizer', title: 'Centralizer' },
+  { href: '/equipment/mule-shoe', title: 'Mule Shoe' },
+  { href: '/equipment/bull-nose-plug', title: 'Bull Nose Plug' },
+  { href: '/equipment/jetting-tool', title: 'Jetting Tool' },
+  { href: '/equipment/expandable-sand-screen', title: 'Expandable Sand Screen' },
+  { href: '/equipment/casing-roller-dressing-tool', title: 'Casing Roller / Dressing Tool' },
+  { href: '/equipment/wash-pipe', title: 'Wash Pipe' },
+  { href: '/equipment/well-protector', title: 'Well Protector' },
+  { href: '/equipment/fishing-swivel', title: 'Fishing Swivel' },
+  { href: '/equipment/bumper-sub', title: 'Bumper Sub' },
+  { href: '/equipment/sabs-dabs', title: 'SABS vs. DABS' },
+  { href: '/equipment/power-swivel', title: 'Power Swivel' },
+  { href: '/equipment/hydraulic-set-retainer-packer', title: 'Hydraulic-Set Retainer Packer' },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://rigfloorhq.com/equipment#webpage",
+  "name": "Rig Equipment Reference",
+  "description": "Complete reference for oil rig equipment: rig types, the drill string, blowout preventers, and every major mechanical system on a rig.",
+  "url": "https://rigfloorhq.com/equipment",
+  "inLanguage": "en",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": equipmentItems.map((item, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "url": `https://rigfloorhq.com${item.href}`,
+      "name": item.title,
+    })),
+  },
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+};
 ---
 <BaseLayout
   title="Rig Equipment — Rig Types, Drill String, BOP Explained"
   description="Complete reference for oil rig equipment: rig types, the drill string, blowout preventers, and every major mechanical system on a rig."
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }]}
+  jsonLd={jsonLd}
   lang="en"
   alternateHref="/es/equipment"
 >

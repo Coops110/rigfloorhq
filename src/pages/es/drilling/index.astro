@@ -2,11 +2,21 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { articleSchema } from '../../../lib/techarticle.js';
+
+const jsonLd = articleSchema({
+  sourcePath: 'src/pages/es/drilling/index.astro',
+  path: '/es/drilling',
+  headline: 'Cómo Funciona la Perforación de Pozos Petroleros',
+  description: "El proceso completo de perforación de pozos petroleros desde el spud hasta la terminación: programas de revestimiento, circulación de lodo.",
+  lang: 'es',
+});
 ---
 <BaseLayout
   title="Cómo Funciona la Perforación de Pozos Petroleros"
   description="El proceso completo de perforación de pozos petroleros desde el spud hasta la terminación: programas de revestimiento, circulación de lodo."
   breadcrumbs={[{ label: 'Perforación', href: '/es/drilling' }]}
+  jsonLd={jsonLd}
   lang="es"
   alternateHref="/drilling"
 >

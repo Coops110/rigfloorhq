@@ -72,13 +72,19 @@ const topics = topicOrder.map((topic) => ({
 
 const quizLd = {
   "@context": "https://schema.org",
-  "@type": ["WebPage", "LearningResource"],
+  // Quiz added alongside the existing types — the audit's direct finding
+  // ("the quiz has no Quiz type"). WebPage and LearningResource both stay:
+  // this is still the page itself (WebPage) and still a practice resource
+  // (LearningResource), Quiz just names the specific kind of resource it is.
+  "@type": ["WebPage", "LearningResource", "Quiz"],
+  "@id": "https://rigfloorhq.com/well-control-quiz#webpage",
   "name": "Well Control Practice Test",
   "url": "https://rigfloorhq.com/well-control-quiz",
   "learningResourceType": "Practice quiz",
   "educationalUse": "assessment",
   "teaches": "Well control principles for drilling crews",
   "inLanguage": "en",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
   "isAccessibleForFree": true,
   "publisher": { "@id": "https://rigfloorhq.com/#organization" },
 };
