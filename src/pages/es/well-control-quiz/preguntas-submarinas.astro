@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import QuizTopicInteractive from '../../../components/QuizTopicInteractive.astro';
+import quizData from '../../../lib/data/well-control-quiz-es.json';
+
+type Question = {
+  id: number;
+  question: string;
+  choices: Record<string, string>;
+  correctAnswer: string;
+  explanation: string;
+  topic: string;
+};
+
+const allQuestions = quizData as Question[];
+const TOPIC = 'Preguntas Submarinas';
+const questions = allQuestions.filter((q) => q.topic === TOPIC);
+const samples = questions.slice(0, 3);
+
+const faq = [
+  {
+    q: '¿Este quiz está afiliado oficialmente a IWCF o IADC?',
+    a: 'No. Las preguntas cubren el mismo terreno que se evalúa en los exámenes de certificación de control de pozos IWCF e IADC WellSharp, pero este quiz no está producido, avalado ni afiliado a ninguno de los dos organismos, y aprobarlo no sustituye una certificación acreditada.',
+  },
+  {
+    q: '¿Por qué retirar el riser cambia la presión de fondo?',
+    a: 'El riser lleva lodo desde el piso de perforación hasta el lecho marino, agregando una columna larga de presión hidrostática al peso del lodo arriba del BOP. Sin él, esa misma distancia vertical se llena de agua de mar en su lugar, que tiene un gradiente más bajo y fijo que la mayoría de los lodos de perforación — así que la BHP baja por la diferencia entre los dos gradientes en ese intervalo.',
+  },
+  {
+    q: '¿Qué es diferente en el panorama de presión de un pozo submarino comparado con un pozo terrestre?',
+    a: 'Un pozo submarino tiene una columna de fluido extra — agua de mar, desde el piso de perforación hasta el lecho marino — encima de la columna de lodo desde el lecho marino hasta el TVD, más un espacio de aire entre el piso de perforación y el nivel del mar. Los pozos terrestres y de aguas someras se saltan por completo los cálculos de gradiente de agua de mar y margen de riser que evalúa este tema.',
+  },
+];
+
+const breadcrumbs = [
+  { label: 'Cuestionario de Control de Pozos', href: '/es/well-control-quiz' },
+  { label: 'Preguntas Submarinas', href: '/es/well-control-quiz/preguntas-submarinas' },
+];
+
+const questionLd = samples.map((q) => ({
+  "@type": "Question",
+  "name": q.question,
+  "suggestedAnswer": Object.entries(q.choices).filter(([, t]) => t).map(([letter, text]) => ({
+    "@type": "Answer",
+    "text": `${letter}. ${text}`,
+  })),
+}));
+
+const quizLd = {
+  "@context": "https://schema.org",
+  "@type": ["WebPage", "LearningResource", "Quiz"],
+  "@id": "https://rigfloorhq.com/es/well-control-quiz/preguntas-submarinas#webpage",
+  "name": "Preguntas Submarinas — Cuestionario de Control de Pozos",
+  "url": "https://rigfloorhq.com/es/well-control-quiz/preguntas-submarinas",
+  "learningResourceType": "Practice quiz",
+  "educationalUse": "assessment",
+  "teaches": "Margen de riser y efectos de presión de fondo específicos de pozos submarinos y de aguas profundas",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "isAccessibleForFree": true,
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+  "hasPart": questionLd,
+};
+---
+<BaseLayout
+  title="Cuestionario de Preguntas Submarinas de Control de Pozos — 25 Preguntas"
+  description="25 preguntas de práctica de pozos submarinos y aguas profundas: profundidad de agua de mar, espacio de aire, y efectos de presión al desconectar el riser. Gratis."
+  breadcrumbs={breadcrumbs}
+  jsonLd={quizLd}
+  lang="es"
+  alternateHref="/well-control-quiz/subsea-questions"
+>
+  <Nav slot="nav" lang="es" alternateHref="/well-control-quiz/subsea-questions" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Cuestionario — Preguntas Submarinas</div>
+    <h1>Cuestionario de <span>Preguntas Submarinas</span></h1>
+    <p class="page-hero-sub">25 preguntas de práctica específicas de pozos submarinos y de aguas profundas — profundidad y gradiente de agua de mar, espacio de aire, y qué pasa realmente con la presión de fondo si el riser se desconecta.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="que-cubre-este-tema">Qué Cubre Este Tema</h2>
+        <p>El panorama de presión de un pozo submarino tiene una columna de fluido extra que los pozos terrestres y de aguas someras no tienen: agua de mar, desde el piso de perforación hasta el lecho marino, a su propio gradiente más bajo y fijo. Estas preguntas trabajan esa columna extra — profundidad y gradiente de agua de mar, espacio de aire, y la consecuencia real de presión si el riser se desprende del BOP a mitad de una operación, lo que remueve toda esa columna llena de lodo y la reemplaza con agua de mar de una sola vez. Ver la <a href="/es/calculators/riser-margin">calculadora de margen de riser</a> en vivo para las matemáticas exactas que evalúan estas preguntas.</p>
+
+        <h2 id="preguntas-de-muestra">Preguntas de Muestra</h2>
+        <p>Tres preguntas reales del banco de 25, para que veas en qué te estás metiendo antes de empezar. Las respuestas no se muestran aquí — toma el cuestionario en vivo abajo para la calificación y las explicaciones.</p>
+        {samples.map((q, i) => (
+          <div style="margin-bottom:18px;">
+            <p style="color:var(--white);font-weight:600;margin-bottom:6px;">{i + 1}. {q.question}</p>
+            <ul style="margin:0;padding-left:20px;color:var(--fog);font-size:13px;line-height:1.7;">
+              {Object.entries(q.choices).filter(([, text]) => text).map(([letter, text]) => (
+                <li>{letter}. {text}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+
+        <h2 id="realiza-el-cuestionario">Realiza el Cuestionario</h2>
+        <QuizTopicInteractive
+          topicSlug="preguntas-submarinas"
+          topicName={TOPIC}
+          topicIcon="🌊"
+          questions={questions}
+          startLabel="Comenzar →"
+          noteText="Nada de lo que ingreses se guarda, se envía a ningún lugar ni se almacena — recargar la página lo borra todo."
+          scriptSrc="/scripts/well-control-quiz-es.js"
+        />
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#que-cubre-este-tema">Qué Cubre</a>
+          <a href="#preguntas-de-muestra">Preguntas de Muestra</a>
+          <a href="#realiza-el-cuestionario">Realiza el Cuestionario</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Resuelve las Matemáticas Tú Mismo</h3>
+          <p style="margin-bottom:12px;">Corre números reales de profundidad, gradiente, y espacio de aire por la calculadora en vivo.</p>
+          <a href="/es/calculators/riser-margin" class="card-link">Calculadora de Margen de Riser →</a>
+        </div>
+
+        <div class="card" style="margin-top:1px;border:1px solid var(--iron);border-radius:0 0 4px 4px;">
+          <h3>Más Temas del Cuestionario</h3>
+          <a href="/es/well-control-quiz" class="card-link">→ Los 8 Temas</a><br><br>
+          <a href="/es/well-control-quiz/preguntas-dificiles" class="card-link">→ Preguntas Difíciles</a><br><br>
+          <a href="/es/careers/toolpusher" class="card-link">→ Cómo Convertirte en Toolpusher</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -19,9 +19,19 @@ export interface Props {
     topic: string;
   }>;
   startLabel?: string;
+  noteText?: string;
+  scriptSrc?: string;
 }
 
-const { topicSlug, topicName, topicIcon, questions, startLabel = 'Start Quiz →' } = Astro.props;
+const {
+  topicSlug,
+  topicName,
+  topicIcon,
+  questions,
+  startLabel = 'Start Quiz →',
+  noteText = "Nothing you enter is saved, sent anywhere, or stored — reloading the page clears it.",
+  scriptSrc = '/scripts/well-control-quiz.js',
+} = Astro.props;
 ---
 <div class="card quiz-pick-btn" data-topic-slug={topicSlug} role="button" tabindex="0" style="max-width:420px;">
   <span class="card-icon">{topicIcon}</span>
@@ -33,7 +43,7 @@ const { topicSlug, topicName, topicIcon, questions, startLabel = 'Start Quiz →
 <div class="quiz-interactive-main hidden" id="quiz-interactive-main"></div>
 
 <div class="note-box mt-24">
-  <strong>Practice only, not a certified exam.</strong> Nothing you enter is saved, sent anywhere, or stored — reloading the page clears it.
+  <strong>Practice only, not a certified exam.</strong> {noteText}
 </div>
 
 {/* Question data only, nothing visible or readable as page content. */}
@@ -90,4 +100,4 @@ const { topicSlug, topicName, topicIcon, questions, startLabel = 'Start Quiz →
   .qi-review-explain { font-size: 13px; color: var(--fog); }
 </style>
 
-<script is:inline src="/scripts/well-control-quiz.js" defer></script>
+<script is:inline src={scriptSrc} defer></script>

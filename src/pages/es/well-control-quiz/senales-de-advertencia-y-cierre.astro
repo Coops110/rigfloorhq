@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import QuizTopicInteractive from '../../../components/QuizTopicInteractive.astro';
+import quizData from '../../../lib/data/well-control-quiz-es.json';
+
+type Question = {
+  id: number;
+  question: string;
+  choices: Record<string, string>;
+  correctAnswer: string;
+  explanation: string;
+  topic: string;
+};
+
+const allQuestions = quizData as Question[];
+const TOPIC = 'Señales de Advertencia y Cierre';
+const questions = allQuestions.filter((q) => q.topic === TOPIC);
+const samples = questions.slice(0, 3);
+
+const faq = [
+  {
+    q: '¿Este quiz está afiliado oficialmente a IWCF o IADC?',
+    a: 'No. Las preguntas cubren el mismo terreno que se evalúa en los exámenes de certificación de control de pozos IWCF e IADC WellSharp, pero este quiz no está producido, avalado ni afiliado a ninguno de los dos organismos, y aprobarlo no sustituye una certificación acreditada.',
+  },
+  {
+    q: '¿Cuál es la señal de advertencia más confiable de que un pozo está surgiendo?',
+    a: 'Una ganancia de pileta inexplicada — lodo saliendo del pozo más rápido de lo que se está bombeando hacia adentro, sin ningún cambio en superficie que lo explique. Los cambios de tasa de flujo y ROP también pueden sugerir una surgencia, pero la ganancia de pileta es la señal más difícil de explicar con algo que no sea un influjo.',
+  },
+  {
+    q: '¿Qué asume este tema que ya sé?',
+    a: 'Lo básico del tema Conocimientos Básicos — qué miden SIDPP y SICP, y cómo se comporta la ganancia de pileta. Este tema construye sobre eso para evaluar si reconoces las señales de advertencia mismas y conoces la respuesta correcta de revisión de flujo y cierre una vez que aparece una.',
+  },
+];
+
+const breadcrumbs = [
+  { label: 'Cuestionario de Control de Pozos', href: '/es/well-control-quiz' },
+  { label: 'Señales de Advertencia y Cierre', href: '/es/well-control-quiz/senales-de-advertencia-y-cierre' },
+];
+
+const questionLd = samples.map((q) => ({
+  "@type": "Question",
+  "name": q.question,
+  "suggestedAnswer": Object.entries(q.choices).filter(([, t]) => t).map(([letter, text]) => ({
+    "@type": "Answer",
+    "text": `${letter}. ${text}`,
+  })),
+}));
+
+const quizLd = {
+  "@context": "https://schema.org",
+  "@type": ["WebPage", "LearningResource", "Quiz"],
+  "@id": "https://rigfloorhq.com/es/well-control-quiz/senales-de-advertencia-y-cierre#webpage",
+  "name": "Señales de Advertencia y Cierre — Cuestionario de Control de Pozos",
+  "url": "https://rigfloorhq.com/es/well-control-quiz/senales-de-advertencia-y-cierre",
+  "learningResourceType": "Practice quiz",
+  "educationalUse": "assessment",
+  "teaches": "Señales de advertencia de surgencia y la respuesta correcta de revisión de flujo y cierre",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "isAccessibleForFree": true,
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+  "hasPart": questionLd,
+};
+---
+<BaseLayout
+  title="Cuestionario de Señales de Advertencia y Cierre — 25 Preguntas"
+  description="25 preguntas de práctica sobre señales de advertencia de surgencia, revisiones de flujo, y cuándo y cómo cerrar el pozo. Gratis, en vivo."
+  breadcrumbs={breadcrumbs}
+  jsonLd={quizLd}
+  lang="es"
+  alternateHref="/well-control-quiz/warning-signs-and-shut-in"
+>
+  <Nav slot="nav" lang="es" alternateHref="/well-control-quiz/warning-signs-and-shut-in" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Cuestionario — Señales de Advertencia</div>
+    <h1>Cuestionario de <span>Señales de Advertencia y Cierre</span></h1>
+    <p class="page-hero-sub">25 preguntas de práctica sobre reconocer una surgencia real en progreso — ganancia de pileta, cambios de tasa de flujo, y discrepancias del tanque de viaje — y la respuesta correcta de revisión de flujo y cierre una vez que aparece una.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="que-cubre-este-tema">Qué Cubre Este Tema</h2>
+        <p>Detectar una surgencia temprano se trata sobre todo de no explicar una señal real con otra cosa. Estas preguntas cubren las señales de advertencia mismas — ganancia de pileta, una tasa de flujo que no coincide con la tasa de bomba, torque de perforación reducido, y el caso específico de un desajuste de tanque de viaje al sacar la tubería del pozo — más cuál es la respuesta correcta una vez que aparece una: revisión de flujo primero, cierre si el pozo confirma que está fluyendo. Ver el desglose completo de <a href="/es/blog/five-warning-signs-of-a-kick">cinco señales de advertencia de una surgencia (inglés)</a> y la <a href="/es/drilling/well-control">página de referencia de control de pozos</a> para los procedimientos que evalúan estas preguntas.</p>
+
+        <h2 id="preguntas-de-muestra">Preguntas de Muestra</h2>
+        <p>Tres preguntas reales del banco de 25, para que veas en qué te estás metiendo antes de empezar. Las respuestas no se muestran aquí — toma el cuestionario en vivo abajo para la calificación y las explicaciones.</p>
+        {samples.map((q, i) => (
+          <div style="margin-bottom:18px;">
+            <p style="color:var(--white);font-weight:600;margin-bottom:6px;">{i + 1}. {q.question}</p>
+            <ul style="margin:0;padding-left:20px;color:var(--fog);font-size:13px;line-height:1.7;">
+              {Object.entries(q.choices).filter(([, text]) => text).map(([letter, text]) => (
+                <li>{letter}. {text}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+
+        <h2 id="realiza-el-cuestionario">Realiza el Cuestionario</h2>
+        <QuizTopicInteractive
+          topicSlug="senales-de-advertencia-y-cierre"
+          topicName={TOPIC}
+          topicIcon="🚨"
+          questions={questions}
+          startLabel="Comenzar →"
+          noteText="Nada de lo que ingreses se guarda, se envía a ningún lugar ni se almacena — recargar la página lo borra todo."
+          scriptSrc="/scripts/well-control-quiz-es.js"
+        />
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#que-cubre-este-tema">Qué Cubre</a>
+          <a href="#preguntas-de-muestra">Preguntas de Muestra</a>
+          <a href="#realiza-el-cuestionario">Realiza el Cuestionario</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Profundiza Más</h3>
+          <p style="margin-bottom:12px;">El procedimiento completo sobre el que se construyen estas preguntas, paso a paso.</p>
+          <a href="/es/drilling/well-control" class="card-link">Referencia de Control de Pozos →</a>
+        </div>
+
+        <div class="card" style="margin-top:1px;border:1px solid var(--iron);border-radius:0 0 4px 4px;">
+          <h3>Más Temas del Cuestionario</h3>
+          <a href="/es/well-control-quiz" class="card-link">→ Los 8 Temas</a><br><br>
+          <a href="/es/well-control-quiz/conocimientos-basicos" class="card-link">→ Conocimientos Básicos</a><br><br>
+          <a href="/es/well-control-quiz/condiciones-de-cierre" class="card-link">→ Condiciones de Cierre</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -83,6 +83,12 @@ const quizLd = {
   "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
   "isAccessibleForFree": true,
   "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+  "hasPart": topics.map((t) => ({
+    "@type": "Quiz",
+    "@id": `https://rigfloorhq.com/es/well-control-quiz/${t.slug}#webpage`,
+    "name": `${t.name} — Cuestionario de Control de Pozos`,
+    "url": `https://rigfloorhq.com/es/well-control-quiz/${t.slug}`,
+  })),
 };
 ---
 <BaseLayout
@@ -105,18 +111,17 @@ const quizLd = {
   <section class="block">
     <div class="section-eyebrow">Ponte a Prueba</div>
     <h2 class="section-title">Realiza el <span>Cuestionario</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:20px;">Cada tema ahora tiene su propia página dedicada con el cuestionario interactivo en vivo, un resumen corto de lo que cubre, y preguntas de muestra por adelantado — elige un tema abajo.</p>
     <div class="card-grid" id="quiz-picker">
       {topics.map((t) => (
-        <div class="card quiz-pick-btn" data-topic-slug={t.slug} role="button" tabindex="0">
+        <a href={`/es/well-control-quiz/${t.slug}`} class="card">
           <span class="card-icon">{t.icon}</span>
           <h3>{t.name}</h3>
           <p>{t.questions.length} preguntas, mezcladas cada vez.</p>
-          <span class="card-link">Comenzar →</span>
-        </div>
+          <span class="card-link">Realiza el Cuestionario →</span>
+        </a>
       ))}
     </div>
-
-    <div class="quiz-interactive-main hidden" id="quiz-interactive-main"></div>
 
     <div class="note-box mt-24">
       <strong>Solo práctica, no es un examen certificado.</strong> Estas preguntas cubren el mismo terreno que los exámenes de control de pozos IWCF e IADC pero no están afiliadas a ninguno de los dos organismos y no sustituyen una certificación acreditada. Nada de lo que ingreses se guarda, se envía a ningún lugar ni se almacena — recargar la página lo borra todo.
@@ -147,12 +152,6 @@ const quizLd = {
       ))}
     </div>
   </section>
-
-  {/* Solo datos de preguntas, nada visible como contenido de la página — el
-      cuestionario perdería sentido si las respuestas estuvieran a la vista. */}
-  {topics.map((t) => (
-    <script type="application/json" class="quiz-data" data-topic-slug={t.slug} set:html={JSON.stringify(t.questions)} />
-  ))}
 
   <section class="block">
     <div class="prose">
@@ -191,59 +190,3 @@ const quizLd = {
     </div>
   </section>
 </BaseLayout>
-
-<style is:global>
-  /* Global, no scoped: la UI interactiva del cuestionario (.qi-*) la crea JS
-     del lado del cliente después de cargar la página, así que el scoping de
-     estilos de Astro en build-time nunca la alcanza. */
-  .quiz-pick-btn { cursor: pointer; text-align: left; }
-  .quiz-pick-btn:hover { border-color: var(--amber); }
-  .quiz-pick-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
-
-  .quiz-interactive-main.active {
-    background: var(--steel);
-    border: 1px solid var(--amber);
-    border-radius: 8px;
-    padding: 28px;
-    margin-top: 28px;
-  }
-
-  .hidden { display: none !important; }
-
-  .qi-progress { font-family: var(--mono); font-size: 11px; color: var(--fog); margin-bottom: 12px; }
-  .qi-text { font-weight: 600; color: var(--white); margin-bottom: 16px; font-size: 18px; }
-  .qi-choice {
-    display: block;
-    width: 100%;
-    text-align: left;
-    background: var(--ink);
-    border: 1px solid var(--iron);
-    color: var(--mist);
-    padding: 12px 16px;
-    margin-bottom: 8px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  .qi-choice:hover:not(:disabled) { border-color: var(--amber); }
-  .qi-choice:disabled { cursor: default; }
-  .qi-choice.right { border-color: #4ade80; background: rgba(74, 222, 128, 0.12); color: var(--white); }
-  .qi-choice.wrong { border-color: var(--danger); background: rgba(239, 68, 68, 0.12); color: var(--white); }
-  .qi-explain { font-size: 13px; color: var(--fog); margin: 14px 0; padding-top: 14px; border-top: 1px solid var(--iron); }
-  .qi-score-big { font-size: 2.4em; font-weight: 700; text-align: center; color: var(--white); margin: 10px 0; }
-  .qi-score-sub { text-align: center; color: var(--fog); margin-bottom: 20px; }
-  .qi-topic-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); margin-bottom: 8px; }
-
-  .qi-review { margin: 24px 0; border-top: 1px solid var(--iron); padding-top: 20px; }
-  .qi-review-title { font-weight: 600; color: var(--white); margin-bottom: 14px; }
-  .qi-review-item { background: var(--ink); border: 1px solid var(--iron); border-radius: 6px; padding: 16px 18px; margin-bottom: 10px; }
-  .qi-review-item.wrong { border-color: rgba(239, 68, 68, 0.4); }
-  .qi-review-q { font-weight: 600; color: var(--white); margin-bottom: 8px; font-size: 14px; }
-  .qi-review-your { font-size: 13px; margin-bottom: 4px; }
-  .qi-review-your.wrong { color: var(--danger); }
-  .qi-review-your.right { color: #4ade80; }
-  .qi-review-correct { font-size: 13px; color: #4ade80; margin-bottom: 8px; }
-  .qi-review-explain { font-size: 13px; color: var(--fog); }
-</style>
-
-<script is:inline src="/scripts/well-control-quiz-es.js" defer></script>

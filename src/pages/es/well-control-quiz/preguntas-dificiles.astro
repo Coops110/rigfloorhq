@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import QuizTopicInteractive from '../../../components/QuizTopicInteractive.astro';
+import quizData from '../../../lib/data/well-control-quiz-es.json';
+
+type Question = {
+  id: number;
+  question: string;
+  choices: Record<string, string>;
+  correctAnswer: string;
+  explanation: string;
+  topic: string;
+};
+
+const allQuestions = quizData as Question[];
+const TOPIC = 'Preguntas Difíciles';
+const questions = allQuestions.filter((q) => q.topic === TOPIC);
+const samples = questions.slice(0, 3);
+
+const faq = [
+  {
+    q: '¿Este quiz está afiliado oficialmente a IWCF o IADC?',
+    a: 'No. Las preguntas cubren el mismo terreno que se evalúa en los exámenes de certificación de control de pozos IWCF e IADC WellSharp, pero este quiz no está producido, avalado ni afiliado a ninguno de los dos organismos, y aprobarlo no sustituye una certificación acreditada.',
+  },
+  {
+    q: '¿Qué hace que estas preguntas sean "difíciles" comparadas con los temas anteriores?',
+    a: 'Combinan dos o tres conceptos de temas anteriores en un solo problema en lugar de evaluar una fórmula aislada — ECD junto con presión hidrostática, o cómo el tamaño del anular cambia qué tan significativa es realmente una surgencia idéntica. Las matemáticas son las mismas; reconocer qué combinación aplica es la verdadera prueba.',
+  },
+  {
+    q: '¿Por qué importa más el mismo volumen de surgencia en un anular más pequeño?',
+    a: 'Un volumen fijo de influjo se distribuye en un área transversal más pequeña en un anular angosto, así que ocupa una columna vertical más alta — y una columna de influjo más alta significa un efecto de presión mayor con el mismo volumen. La misma surgencia de 20 bbl es un problema mayor en un anular de hoyo angosto que en uno ancho.',
+  },
+];
+
+const breadcrumbs = [
+  { label: 'Cuestionario de Control de Pozos', href: '/es/well-control-quiz' },
+  { label: 'Preguntas Difíciles', href: '/es/well-control-quiz/preguntas-dificiles' },
+];
+
+const questionLd = samples.map((q) => ({
+  "@type": "Question",
+  "name": q.question,
+  "suggestedAnswer": Object.entries(q.choices).filter(([, t]) => t).map(([letter, text]) => ({
+    "@type": "Answer",
+    "text": `${letter}. ${text}`,
+  })),
+}));
+
+const quizLd = {
+  "@context": "https://schema.org",
+  "@type": ["WebPage", "LearningResource", "Quiz"],
+  "@id": "https://rigfloorhq.com/es/well-control-quiz/preguntas-dificiles#webpage",
+  "name": "Preguntas Difíciles — Cuestionario de Control de Pozos",
+  "url": "https://rigfloorhq.com/es/well-control-quiz/preguntas-dificiles",
+  "learningResourceType": "Practice quiz",
+  "educationalUse": "assessment",
+  "teaches": "Problemas combinados de control de pozos: ECD, geometría anular, y efectos de tamaño de surgencia juntos",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "isAccessibleForFree": true,
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+  "hasPart": questionLd,
+};
+---
+<BaseLayout
+  title="Cuestionario de Preguntas Difíciles de Control de Pozos — 25 Preguntas"
+  description="25 preguntas combinadas de control de pozos: ECD, geometría anular, y efectos de tamaño de surgencia juntos. Gratis, en vivo, calificación instantánea."
+  breadcrumbs={breadcrumbs}
+  jsonLd={quizLd}
+  lang="es"
+  alternateHref="/well-control-quiz/some-tricky-stuff"
+>
+  <Nav slot="nav" lang="es" alternateHref="/well-control-quiz/some-tricky-stuff" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Cuestionario — Preguntas Difíciles</div>
+    <h1>Cuestionario de <span>Preguntas Difíciles</span></h1>
+    <p class="page-hero-sub">25 preguntas de práctica que combinan dos o tres conceptos de los temas anteriores en un solo problema — ECD, geometría anular, y por qué volúmenes de surgencia idénticos no son problemas idénticos en cada tamaño de hoyo.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="que-cubre-este-tema">Qué Cubre Este Tema</h2>
+        <p>Los problemas reales de control de pozos rara vez llegan como una fórmula limpia — combinan presión hidrostática con fricción de circulación, o un volumen de surgencia con la geometría anular específica en la que está. Este tema es donde se evalúan juntas las fórmulas individuales de los temas anteriores: densidad de circulación equivalente sobre la presión hidrostática estática, y por qué la misma cifra de ganancia de pileta significa algo distinto en un anular pequeño que en uno grande. Ver la <a href="/es/calculators/ecd">calculadora de ECD</a> para la versión en vivo del lado de presión de circulación de estas matemáticas, y <a href="/es/blog/pit-volumes-maasp-math-mistakes">errores de matemáticas de volúmenes de pileta y MAASP (inglés)</a> para los errores reales que este tema está construido para detectar.</p>
+
+        <h2 id="preguntas-de-muestra">Preguntas de Muestra</h2>
+        <p>Tres preguntas reales del banco de 25, para que veas en qué te estás metiendo antes de empezar. Las respuestas no se muestran aquí — toma el cuestionario en vivo abajo para la calificación y las explicaciones.</p>
+        {samples.map((q, i) => (
+          <div style="margin-bottom:18px;">
+            <p style="color:var(--white);font-weight:600;margin-bottom:6px;">{i + 1}. {q.question}</p>
+            <ul style="margin:0;padding-left:20px;color:var(--fog);font-size:13px;line-height:1.7;">
+              {Object.entries(q.choices).filter(([, text]) => text).map(([letter, text]) => (
+                <li>{letter}. {text}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+
+        <h2 id="realiza-el-cuestionario">Realiza el Cuestionario</h2>
+        <QuizTopicInteractive
+          topicSlug="preguntas-dificiles"
+          topicName={TOPIC}
+          topicIcon="🧠"
+          questions={questions}
+          startLabel="Comenzar →"
+          noteText="Nada de lo que ingreses se guarda, se envía a ningún lugar ni se almacena — recargar la página lo borra todo."
+          scriptSrc="/scripts/well-control-quiz-es.js"
+        />
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#que-cubre-este-tema">Qué Cubre</a>
+          <a href="#preguntas-de-muestra">Preguntas de Muestra</a>
+          <a href="#realiza-el-cuestionario">Realiza el Cuestionario</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Resuelve las Matemáticas Tú Mismo</h3>
+          <p style="margin-bottom:12px;">Corre números reales de presión de circulación por la calculadora en vivo.</p>
+          <a href="/es/calculators/ecd" class="card-link">Calculadora de ECD →</a>
+        </div>
+
+        <div class="card" style="margin-top:1px;border:1px solid var(--iron);border-radius:0 0 4px 4px;">
+          <h3>Más Temas del Cuestionario</h3>
+          <a href="/es/well-control-quiz" class="card-link">→ Los 8 Temas</a><br><br>
+          <a href="/es/well-control-quiz/metodos-de-matanza" class="card-link">→ Métodos de Matanza</a><br><br>
+          <a href="/es/well-control-quiz/preguntas-submarinas" class="card-link">→ Preguntas Submarinas</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

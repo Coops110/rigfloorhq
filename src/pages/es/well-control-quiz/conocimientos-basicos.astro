@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import QuizTopicInteractive from '../../../components/QuizTopicInteractive.astro';
+import quizData from '../../../lib/data/well-control-quiz-es.json';
+
+type Question = {
+  id: number;
+  question: string;
+  choices: Record<string, string>;
+  correctAnswer: string;
+  explanation: string;
+  topic: string;
+};
+
+const allQuestions = quizData as Question[];
+const TOPIC = 'Conocimientos Básicos';
+const questions = allQuestions.filter((q) => q.topic === TOPIC);
+const samples = questions.slice(0, 3);
+
+const faq = [
+  {
+    q: '¿Este quiz está afiliado oficialmente a IWCF o IADC?',
+    a: 'No. Las preguntas cubren el mismo terreno que se evalúa en los exámenes de certificación de control de pozos IWCF e IADC WellSharp, pero este quiz no está producido, avalado ni afiliado a ninguno de los dos organismos, y aprobarlo no sustituye una certificación acreditada.',
+  },
+  {
+    q: '¿Qué nivel de conocimiento de control de pozos asume este tema?',
+    a: 'Ninguno más allá de aritmética básica. Este es el punto de entrada del cuestionario completo — términos fundamentales (SIDPP, SICP, ganancia de pileta), la conversión de gradiente de presión, y la lógica básica de causa y efecto que sigue una surgencia, antes de que los temas posteriores construyan sobre esto con matemáticas de cierre reales.',
+  },
+  {
+    q: '¿Puedo repetir este tema, y me saldrán las mismas preguntas?',
+    a: 'Sí, las veces que quieras. Las preguntas se mezclan cada vez que empiezas, así que el orden cambia, aunque el banco de preguntas en sí sigue siendo el mismo.',
+  },
+];
+
+const breadcrumbs = [
+  { label: 'Cuestionario de Control de Pozos', href: '/es/well-control-quiz' },
+  { label: 'Conocimientos Básicos', href: '/es/well-control-quiz/conocimientos-basicos' },
+];
+
+const questionLd = samples.map((q) => ({
+  "@type": "Question",
+  "name": q.question,
+  "suggestedAnswer": Object.entries(q.choices).filter(([, t]) => t).map(([letter, text]) => ({
+    "@type": "Answer",
+    "text": `${letter}. ${text}`,
+  })),
+}));
+
+const quizLd = {
+  "@context": "https://schema.org",
+  "@type": ["WebPage", "LearningResource", "Quiz"],
+  "@id": "https://rigfloorhq.com/es/well-control-quiz/conocimientos-basicos#webpage",
+  "name": "Conocimientos Básicos — Cuestionario de Control de Pozos",
+  "url": "https://rigfloorhq.com/es/well-control-quiz/conocimientos-basicos",
+  "learningResourceType": "Practice quiz",
+  "educationalUse": "assessment",
+  "teaches": "Términos fundamentales de control de pozos y conversión de gradiente de presión",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "isAccessibleForFree": true,
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+  "hasPart": questionLd,
+};
+---
+<BaseLayout
+  title="Cuestionario de Conocimientos Básicos de Control de Pozos — 25 Preguntas"
+  description="25 preguntas de práctica fundamentales de control de pozos: conversión de gradiente de presión, básicos de SIDPP/SICP, y causa-efecto de una surgencia. Gratis."
+  breadcrumbs={breadcrumbs}
+  jsonLd={quizLd}
+  lang="es"
+  alternateHref="/well-control-quiz/basic-knowledge"
+>
+  <Nav slot="nav" lang="es" alternateHref="/well-control-quiz/basic-knowledge" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Cuestionario — Conocimientos Básicos</div>
+    <h1>Cuestionario de <span>Conocimientos Básicos</span></h1>
+    <p class="page-hero-sub">25 preguntas de práctica sobre los términos y la lógica fundamental que todos los demás temas de este cuestionario asumen que ya conoces — la conversión de gradiente de presión, qué miden realmente SIDPP y SICP, y cómo se comporta la ganancia de pileta durante una surgencia.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="que-cubre-este-tema">Qué Cubre Este Tema</h2>
+        <p>Cada otro tema de este cuestionario se apoya en un puñado de bases: convertir peso de lodo en ppg a un gradiente de presión en psi/ft usando la constante 0.052, distinguir SIDPP (presión de tubería con pozo cerrado) de SICP (presión de revestimiento con pozo cerrado) y saber cuál se mueve con el tamaño de la surgencia y cuál no, y leer qué te está diciendo un cambio de volumen de pileta durante un viaje antes incluso de llegar a las matemáticas de la hoja de control. Este tema es donde eso se evalúa por separado, antes de que <a href="/es/well-control-quiz/condiciones-de-cierre">Condiciones de Cierre</a> y <a href="/es/well-control-quiz/volumenes-y-maasp">Volúmenes y MAASP</a> empiecen a combinarlos en cálculos reales de peso de matanza.</p>
+
+        <h2 id="preguntas-de-muestra">Preguntas de Muestra</h2>
+        <p>Tres preguntas reales del banco de 25, para que veas en qué te estás metiendo antes de empezar. Las respuestas no se muestran aquí — toma el cuestionario en vivo abajo para la calificación y las explicaciones.</p>
+        {samples.map((q, i) => (
+          <div style="margin-bottom:18px;">
+            <p style="color:var(--white);font-weight:600;margin-bottom:6px;">{i + 1}. {q.question}</p>
+            <ul style="margin:0;padding-left:20px;color:var(--fog);font-size:13px;line-height:1.7;">
+              {Object.entries(q.choices).filter(([, text]) => text).map(([letter, text]) => (
+                <li>{letter}. {text}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+
+        <h2 id="realiza-el-cuestionario">Realiza el Cuestionario</h2>
+        <QuizTopicInteractive
+          topicSlug="conocimientos-basicos"
+          topicName={TOPIC}
+          topicIcon="📘"
+          questions={questions}
+          startLabel="Comenzar →"
+          noteText="Nada de lo que ingreses se guarda, se envía a ningún lugar ni se almacena — recargar la página lo borra todo."
+          scriptSrc="/scripts/well-control-quiz-es.js"
+        />
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#que-cubre-este-tema">Qué Cubre</a>
+          <a href="#preguntas-de-muestra">Preguntas de Muestra</a>
+          <a href="#realiza-el-cuestionario">Realiza el Cuestionario</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Resuelve las Matemáticas Tú Mismo</h3>
+          <p style="margin-bottom:12px;">La conversión de gradiente de presión que estas preguntas evalúan es la misma fórmula que corre en vivo la <a href="/es/calculators/hydrostatic">calculadora de presión hidrostática</a>.</p>
+          <a href="/es/calculators/hydrostatic" class="card-link">Calculadora de Presión Hidrostática →</a>
+        </div>
+
+        <div class="card" style="margin-top:1px;border:1px solid var(--iron);border-radius:0 0 4px 4px;">
+          <h3>Más Temas del Cuestionario</h3>
+          <a href="/es/well-control-quiz" class="card-link">→ Los 8 Temas</a><br><br>
+          <a href="/es/well-control-quiz/presion-basica" class="card-link">→ Presión Básica</a><br><br>
+          <a href="/es/well-control-quiz/condiciones-de-cierre" class="card-link">→ Condiciones de Cierre</a><br><br>
+          <a href="/es/drilling/well-control" class="card-link">→ Referencia de Control de Pozos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

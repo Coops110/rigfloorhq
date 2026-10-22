@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import QuizTopicInteractive from '../../../components/QuizTopicInteractive.astro';
+import quizData from '../../../lib/data/well-control-quiz-es.json';
+
+type Question = {
+  id: number;
+  question: string;
+  choices: Record<string, string>;
+  correctAnswer: string;
+  explanation: string;
+  topic: string;
+};
+
+const allQuestions = quizData as Question[];
+const TOPIC = 'Volúmenes y MAASP';
+const questions = allQuestions.filter((q) => q.topic === TOPIC);
+const samples = questions.slice(0, 3);
+
+const faq = [
+  {
+    q: '¿Este quiz está afiliado oficialmente a IWCF o IADC?',
+    a: 'No. Las preguntas cubren el mismo terreno que se evalúa en los exámenes de certificación de control de pozos IWCF e IADC WellSharp, pero este quiz no está producido, avalado ni afiliado a ninguno de los dos organismos, y aprobarlo no sustituye una certificación acreditada.',
+  },
+  {
+    q: '¿Qué representa realmente el MAASP?',
+    a: 'La presión superficial máxima que la zapata de revestimiento puede soportar antes de romperse o empezar a tomar pérdidas, al peso de lodo actual en el pozo. Se deriva de una prueba real de goteo o integridad de formación, y se recalcula cada vez que cambia el peso de lodo — no es un número fijo para el pozo.',
+  },
+  {
+    q: '¿Por qué se reduce el MAASP conforme sube el peso de lodo?',
+    a: 'Una columna de lodo más pesada ya provee más de la presión hidrostática que la zapata está conteniendo, lo que deja menos margen de presión superficial antes de alcanzar el límite probado de la zapata. MAASP y peso de lodo se mueven en direcciones opuestas por diseño.',
+  },
+];
+
+const breadcrumbs = [
+  { label: 'Cuestionario de Control de Pozos', href: '/es/well-control-quiz' },
+  { label: 'Volúmenes y MAASP', href: '/es/well-control-quiz/volumenes-y-maasp' },
+];
+
+const questionLd = samples.map((q) => ({
+  "@type": "Question",
+  "name": q.question,
+  "suggestedAnswer": Object.entries(q.choices).filter(([, t]) => t).map(([letter, text]) => ({
+    "@type": "Answer",
+    "text": `${letter}. ${text}`,
+  })),
+}));
+
+const quizLd = {
+  "@context": "https://schema.org",
+  "@type": ["WebPage", "LearningResource", "Quiz"],
+  "@id": "https://rigfloorhq.com/es/well-control-quiz/volumenes-y-maasp#webpage",
+  "name": "Volúmenes y MAASP — Cuestionario de Control de Pozos",
+  "url": "https://rigfloorhq.com/es/well-control-quiz/volumenes-y-maasp",
+  "learningResourceType": "Practice quiz",
+  "educationalUse": "assessment",
+  "teaches": "Cálculo de MAASP desde MAMW, peso de lodo actual, y TVD de la zapata",
+  "inLanguage": "es",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "isAccessibleForFree": true,
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+  "hasPart": questionLd,
+};
+---
+<BaseLayout
+  title="Cuestionario de Volúmenes y MAASP — 25 Preguntas"
+  description="25 preguntas de práctica de MAASP con datos reales de MAMW, peso de lodo, y TVD de zapata. Gratis, en vivo, calificación instantánea."
+  breadcrumbs={breadcrumbs}
+  jsonLd={quizLd}
+  lang="es"
+  alternateHref="/well-control-quiz/volumes-and-maasp"
+>
+  <Nav slot="nav" lang="es" alternateHref="/well-control-quiz/volumes-and-maasp" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Cuestionario — Volúmenes y MAASP</div>
+    <h1>Cuestionario de <span>Volúmenes y MAASP</span></h1>
+    <p class="page-hero-sub">25 preguntas de práctica convirtiendo el peso de lodo máximo permisible, el peso de lodo actual, y el TVD de la zapata en el límite real de presión superficial que la zapata de revestimiento puede soportar.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="que-cubre-este-tema">Qué Cubre Este Tema</h2>
+        <p>El MAASP es el número que le dice a una cuadrilla cuánta presión superficial queda antes de que la zapata tome pérdidas — y se recalcula, no se busca una sola vez. Estas preguntas trabajan todas la misma relación: MAASP = (MAMW − peso de lodo actual) × 0.052 × TVD de zapata, repetida con diferentes profundidades y diferencias de peso de lodo hasta que la fórmula deje de requerir pensamiento consciente. La <a href="/es/calculators/maasp">calculadora de MAASP</a> en vivo corre esta misma matemática, y la <a href="/es/calculators/mamw">calculadora de MAMW</a> cubre la conversión relacionada en la otra dirección.</p>
+
+        <h2 id="preguntas-de-muestra">Preguntas de Muestra</h2>
+        <p>Tres preguntas reales del banco de 25, para que veas en qué te estás metiendo antes de empezar. Las respuestas no se muestran aquí — toma el cuestionario en vivo abajo para la calificación y las explicaciones.</p>
+        {samples.map((q, i) => (
+          <div style="margin-bottom:18px;">
+            <p style="color:var(--white);font-weight:600;margin-bottom:6px;">{i + 1}. {q.question}</p>
+            <ul style="margin:0;padding-left:20px;color:var(--fog);font-size:13px;line-height:1.7;">
+              {Object.entries(q.choices).filter(([, text]) => text).map(([letter, text]) => (
+                <li>{letter}. {text}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+
+        <h2 id="realiza-el-cuestionario">Realiza el Cuestionario</h2>
+        <QuizTopicInteractive
+          topicSlug="volumenes-y-maasp"
+          topicName={TOPIC}
+          topicIcon="📊"
+          questions={questions}
+          startLabel="Comenzar →"
+          noteText="Nada de lo que ingreses se guarda, se envía a ningún lugar ni se almacena — recargar la página lo borra todo."
+          scriptSrc="/scripts/well-control-quiz-es.js"
+        />
+
+        <h2 id="faq">Preguntas Frecuentes</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">En Esta Página</div>
+          <a href="#que-cubre-este-tema">Qué Cubre</a>
+          <a href="#preguntas-de-muestra">Preguntas de Muestra</a>
+          <a href="#realiza-el-cuestionario">Realiza el Cuestionario</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Resuelve las Matemáticas Tú Mismo</h3>
+          <p style="margin-bottom:12px;">Corre números reales de MAMW, peso de lodo, y TVD de zapata por la calculadora en vivo.</p>
+          <a href="/es/calculators/maasp" class="card-link">Calculadora de MAASP →</a>
+        </div>
+
+        <div class="card" style="margin-top:1px;border:1px solid var(--iron);border-radius:0 0 4px 4px;">
+          <h3>Más Temas del Cuestionario</h3>
+          <a href="/es/well-control-quiz" class="card-link">→ Los 8 Temas</a><br><br>
+          <a href="/es/well-control-quiz/condiciones-de-cierre" class="card-link">→ Condiciones de Cierre</a><br><br>
+          <a href="/es/well-control-quiz/metodos-de-matanza" class="card-link">→ Métodos de Matanza</a><br><br>
+          <a href="/es/calculators/mamw" class="card-link">→ Calculadora de MAMW</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
