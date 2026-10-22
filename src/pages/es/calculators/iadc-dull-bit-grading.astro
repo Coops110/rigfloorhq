@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import CalculatorDisclaimer from '../../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const DULL_CHAR_CODES: [string, string][] = [
@@ -248,9 +249,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
           </div>
         </div>
 
-        <div class="note-box mt-24" style="max-width:700px;">
-          <strong>Solo referencia.</strong> Esta es la tabla estándar de ocho posiciones de IADC usada en toda la industria, no una versión específica de fabricante u operador. Siempre confirma contra la tabla IADC vigente o un ingeniero de campo de la compañía de barrenas para una calificación con consecuencias comerciales o de ingeniería.
-        </div>
+        <CalculatorDisclaimer lang="es" context="Esta es la tabla estándar de ocho posiciones de IADC usada en toda la industria, no una versión específica de fabricante u operador. Siempre confirma contra la tabla IADC vigente o un ingeniero de campo de la compañía de barrenas para una calificación con consecuencias comerciales o de ingeniería." />
       </div>
 
       <div class="prose">

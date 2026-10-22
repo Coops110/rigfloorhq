@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import CalculatorDisclaimer from '../../../components/CalculatorDisclaimer.astro';
 import VideoEmbed from '../../../components/VideoEmbed.astro';
 import { calculatorWebPage } from '../../../lib/techarticle.js';
 
@@ -107,9 +108,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
           </div>
         </div>
 
-        <div class="note-box mt-24" style="max-width:700px;">
-          <strong>Solo referencia.</strong> Un tally real se mide y registra junta por junta mientras la tubería entra al pozo — usa esto para planificar y verificar, no para reemplazar el tally físico.
-        </div>
+        <CalculatorDisclaimer lang="es" context="Un tally real se mide y registra junta por junta mientras la tubería entra al pozo — usa esto para planificar y verificar, no para reemplazar el tally físico." />
 
         <h2 style="margin-top:32px;font-size:18px;">Tally Continuo</h2>
         <p style="color:var(--fog);font-size:13px;max-width:700px;margin-bottom:12px;" id="tally-note">Profundidad acumulada, capacidad, y desplazamiento en cada junta, asumiendo que cada junta es igual a la longitud promedio de arriba.</p>

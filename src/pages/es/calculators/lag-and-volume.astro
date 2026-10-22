@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import CalculatorDisclaimer from '../../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const faq = [
@@ -162,9 +163,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
           </div>
         </div>
 
-        <div class="note-box mt-24" style="max-width:700px;">
-          <strong>Solo referencia.</strong> Mide el rendimiento de bomba y la eficiencia volumétrica contra tu equipo real en lugar de confiar en cifras de placa — una bomba desgastada distorsiona silenciosamente cada número debajo de ella.
-        </div>
+        <CalculatorDisclaimer lang="es" context="Mide el rendimiento de bomba y la eficiencia volumétrica contra tu equipo real en lugar de confiar en cifras de placa — una bomba desgastada distorsiona silenciosamente cada número debajo de ella." />
       </div>
 
       <div class="prose">

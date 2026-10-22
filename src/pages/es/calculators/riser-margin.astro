@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import CalculatorDisclaimer from '../../../components/CalculatorDisclaimer.astro';
 import VideoEmbed from '../../../components/VideoEmbed.astro';
 import { calculatorWebPage } from '../../../lib/techarticle.js';
 
@@ -94,9 +95,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
           </div>
         </div>
 
-        <div class="note-box mt-24">
-          <strong>Solo referencia.</strong> El margen de riser es una entrada a la tolerancia de surgencia y al procedimiento de cierre de un pozo submarino, decidido por el propio programa de perforación del pozo — esto revisa la matemática subyacente, no sustituye ese programa.
-        </div>
+        <CalculatorDisclaimer lang="es" context="El margen de riser es una entrada a la tolerancia de surgencia y al procedimiento de cierre de un pozo submarino, decidido por el propio programa de perforación del pozo — esto revisa la matemática subyacente, no sustituye ese programa." />
       </div>
 
       <div class="prose">

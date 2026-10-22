@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import CalculatorDisclaimer from '../../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const faq = [
@@ -93,9 +94,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
           </div>
         </div>
 
-        <div class="note-box mt-24">
-          <strong>Solo referencia.</strong> El margen real de suabeo depende del margen de presión de formación, la velocidad de viaje, y efectos de resistencia de gel más allá de este cálculo estático — usa la hoja de viaje aprobada por tu compañía para un trabajo real.
-        </div>
+        <CalculatorDisclaimer lang="es" context="El margen real de suabeo depende del margen de presión de formación, la velocidad de viaje, y efectos de resistencia de gel más allá de este cálculo estático — usa la hoja de viaje aprobada por tu compañía para un trabajo real." />
       </div>
 
       <div class="prose">

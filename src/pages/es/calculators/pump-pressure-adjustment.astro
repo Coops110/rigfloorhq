@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import CalculatorDisclaimer from '../../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const faq = [
@@ -105,9 +106,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
           </div>
         </div>
 
-        <div class="note-box mt-24" style="max-width:700px;">
-          <strong>Solo de referencia.</strong> Confirma una lectura real de SCR a la tasa de control planeada antes de confiar en una cifra escalada para un evento real de control de pozo — esta calculadora revisa las matemáticas de proporcionalidad, no sustituye una medición de presión fresca.
-        </div>
+        <CalculatorDisclaimer lang="es" context="Confirma una lectura real de SCR a la tasa de control planeada antes de confiar en una cifra escalada para un evento real de control de pozo — esta calculadora revisa las matemáticas de proporcionalidad, no sustituye una medición de presión fresca." />
       </div>
 
       <div class="prose">

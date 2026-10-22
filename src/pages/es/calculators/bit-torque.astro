@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import CalculatorDisclaimer from '../../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 // Referencia de rosca de barrena y torque de apriete publicada por Reed
@@ -151,9 +152,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
           </div>
         </div>
 
-        <div class="note-box mt-24" style="max-width:700px;">
-          <strong>Solo referencia.</strong> Siempre revisa la hoja de especificaciones de la barrena específica antes de apretar. La condición de la rosca, el compuesto y la tolerancia del fabricante desplazan la cifra correcta respecto a esta referencia general.
-        </div>
+        <CalculatorDisclaimer lang="es" context="Siempre revisa la hoja de especificaciones de la barrena específica antes de apretar. La condición de la rosca, el compuesto y la tolerancia del fabricante desplazan la cifra correcta respecto a esta referencia general." />
       </div>
 
       <div class="prose">

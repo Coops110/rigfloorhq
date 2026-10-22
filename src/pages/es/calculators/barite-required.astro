@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import CalculatorDisclaimer from '../../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const faq = [
@@ -78,9 +79,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
           </div>
         </div>
 
-        <div class="note-box mt-24" style="max-width:700px;">
-          <strong>Solo de referencia.</strong> Confirma el volumen real del sistema de lodo y la gravedad específica medida de la barita antes de ordenar material para una carga real — el ensayo de barita de campo varía alrededor de la cifra nominal API de 35.5 ppg, y tratar un lote real más ligero como si fuera nominal sub-ordena material.
-        </div>
+        <CalculatorDisclaimer lang="es" context="Confirma el volumen real del sistema de lodo y la gravedad específica medida de la barita antes de ordenar material para una carga real — el ensayo de barita de campo varía alrededor de la cifra nominal API de 35.5 ppg, y tratar un lote real más ligero como si fuera nominal sub-ordena material." />
       </div>
 
       <div class="prose">

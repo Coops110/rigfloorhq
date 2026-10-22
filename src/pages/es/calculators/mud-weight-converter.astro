@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import CalculatorDisclaimer from '../../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 // CONVERSION FACTORS — DERIVED, NOT REMEMBERED
@@ -166,6 +167,8 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
         <div class="note-box mt-24" style="max-width:700px;">
           <strong>Puntos de referencia que vale la pena saber de memoria.</strong> Agua dulce <span class="highlight">8.33 ppg</span> = 0.433 psi/ft = sg 1.00. Agua de mar <span class="highlight">8.55 ppg</span> = 0.445 psi/ft = sg 1.03. Si una conversión no sale cerca de esto para algo que sabes que es agua, fue en el sentido equivocado.
         </div>
+
+        <CalculatorDisclaimer lang="es" context="Esto es solo una conversión de unidades — siempre usa el peso de lodo medido en laboratorio como la cifra real de origen para decisiones operativas, no una estimación convertida." />
       </div>
 
       <div class="prose">

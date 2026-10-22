@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import CalculatorDisclaimer from '../../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const faq = [
@@ -76,9 +77,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
           </div>
         </div>
 
-        <div class="note-box mt-24" style="max-width:700px;">
-          <strong>Solo de referencia.</strong> La velocidad anular mínima necesaria para una limpieza adecuada del pozo depende del tamaño de los recortes, la reología del lodo y el ángulo del pozo — confirma el objetivo real para este pozo contra el programa de hidráulica de tu compañía, no una regla general genérica.
-        </div>
+        <CalculatorDisclaimer lang="es" context="La velocidad anular mínima necesaria para una limpieza adecuada del pozo depende del tamaño de los recortes, la reología del lodo y el ángulo del pozo — confirma el objetivo real para este pozo contra el programa de hidráulica de tu compañía, no una regla general genérica." />
       </div>
 
       <div class="prose">

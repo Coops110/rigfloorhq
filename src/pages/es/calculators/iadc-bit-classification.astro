@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import CalculatorDisclaimer from '../../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const RC_SERIES: [string, string, string][] = [
@@ -247,9 +248,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
           </div>
         </div>
 
-        <div class="note-box mt-24" style="max-width:700px;">
-          <strong>Solo referencia.</strong> Este es el significado universal de la clasificación IADC. Los fabricantes individuales graban sus propios códigos de línea de producto junto con, o en lugar de, el código IADC — siempre revisa la hoja de especificaciones de la barrena específica cuando importe para selección o pedido.
-        </div>
+        <CalculatorDisclaimer lang="es" context="Este es el significado universal de la clasificación IADC. Los fabricantes individuales graban sus propios códigos de línea de producto junto con, o en lugar de, el código IADC — siempre revisa la hoja de especificaciones de la barrena específica cuando importe para selección o pedido." />
       </div>
 
       <div class="prose">

@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import CalculatorDisclaimer from '../../../components/CalculatorDisclaimer.astro';
 import VideoEmbed from '../../../components/VideoEmbed.astro';
 import { calculatorWebPage } from '../../../lib/techarticle.js';
 
@@ -97,9 +98,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
           </div>
         </div>
 
-        <div class="note-box mt-24">
-          <strong>Solo referencia.</strong> Usa el OD/ID real de tubería del libro de conteo y pesos de fluido confirmados para un cálculo real de peso de sarta, no valores nominales de catálogo.
-        </div>
+        <CalculatorDisclaimer lang="es" context="Usa el OD/ID real de tubería del libro de conteo y pesos de fluido confirmados para un cálculo real de peso de sarta, no valores nominales de catálogo." />
       </div>
 
       <div class="prose">

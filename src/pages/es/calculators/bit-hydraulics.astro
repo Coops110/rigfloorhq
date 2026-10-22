@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import CalculatorDisclaimer from '../../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const faq = [
@@ -154,6 +155,8 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
         <div class="note-box mt-24">
           <strong>Lo que deliberadamente no se deriva aquí:</strong> la caída de presión de la barrena misma no se calcula a partir de peso de lodo, tasa de flujo, y TFA — la constante exacta de esa fórmula varía entre referencias dependiendo del coeficiente de descarga de boquilla asumido, y no pudo confirmarse con confianza contra un ejemplo real resuelto al construir esta página. La caída de presión de la barrena entra como un valor conocido (leído de la diferencia de presión de standpipe con/sin la barrena en el fondo) en lugar de arriesgar una fórmula que esté equivocada por un margen significativo en un trabajo real.
         </div>
+
+        <CalculatorDisclaimer lang="es" context="Las decisiones reales de hidráulica de barrena corresponden a tu ingeniero de perforación, confirmadas contra la configuración real de boquillas y la capacidad de bombeo de este taladro, no este cálculo de referencia." />
 
         <h3>Dónde Encaja Esto</h3>
         <p>Estas cuatro cifras se encadenan en el orden en que realmente corre una revisión hidráulica real: elige tamaños de boquilla, obtén TFA; revisa la velocidad de chorro contra el objetivo de tipo de lodo de arriba; confirma por separado que la caída de presión de la barrena está entregando suficiente <a href="/es/calculators/pump-pressure-adjustment">caballaje de bomba</a> a la cara de la barrena vía HHP y HSI. La <a href="/es/calculators/lag-and-volume">producción de bomba y velocidad anular</a> cubren el resto de la hidráulica del sistema circulante — esta página es específicamente lo que está pasando justo en la barrena.</p>

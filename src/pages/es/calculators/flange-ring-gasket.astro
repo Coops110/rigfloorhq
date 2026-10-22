@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import CalculatorDisclaimer from '../../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 // Dimensiones de brida API 6A/6BX, cifras publicadas por Cameron. Especificación
@@ -172,9 +173,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
           </div>
         </div>
 
-        <div class="note-box mt-24" style="max-width:700px;">
-          <strong>Solo referencia.</strong> Confirma el diámetro y la clasificación de presión contra la placa de datos de la brida antes de pedir espárragos o empaques. Esta es una herramienta de consulta, no un sustituto de la documentación certificada del equipo.
-        </div>
+        <CalculatorDisclaimer lang="es" context="Confirma el diámetro y la clasificación de presión contra la placa de datos de la brida antes de pedir espárragos o empaques. Esta es una herramienta de consulta, no un sustituto de la documentación certificada del equipo." />
       </div>
 
       <div class="prose">
