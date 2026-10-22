@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import QuizTopicInteractive from '../../components/QuizTopicInteractive.astro';
+import quizData from '../../lib/data/well-control-quiz.json';
+
+type Question = {
+  id: number;
+  question: string;
+  choices: Record<string, string>;
+  correctAnswer: string;
+  explanation: string;
+  topic: string;
+};
+
+const allQuestions = quizData as Question[];
+const TOPIC = 'Basic Pressure';
+const questions = allQuestions.filter((q) => q.topic === TOPIC);
+const samples = questions.slice(0, 3);
+
+const faq = [
+  {
+    q: 'Is this quiz officially affiliated with IWCF or IADC?',
+    a: "No. The questions cover the same ground tested in IWCF and IADC WellSharp well control certification exams, but this quiz isn't produced, endorsed, or affiliated with either body, and passing it doesn't substitute for accredited certification.",
+  },
+  {
+    q: 'What formula do these questions actually test?',
+    a: "Hydrostatic pressure = mud weight (ppg) × 0.052 × true vertical depth (ft). Every question in this topic is a variation on plugging real numbers into that one formula, including a few that ask you to solve for depth or mud weight instead of pressure.",
+  },
+  {
+    q: 'Why does TVD matter instead of measured depth?',
+    a: "Hydrostatic pressure comes from the vertical height of the fluid column, not how much pipe or hole exists along a directional path. On a vertical well TVD and measured depth are the same number; on a deviated or horizontal well they diverge, and using measured depth in this formula overstates the real pressure.",
+  },
+];
+
+const breadcrumbs = [
+  { label: 'Well Control Quiz', href: '/well-control-quiz' },
+  { label: 'Basic Pressure', href: '/well-control-quiz/basic-pressure' },
+];
+
+const questionLd = samples.map((q) => ({
+  "@type": "Question",
+  "name": q.question,
+  "suggestedAnswer": Object.entries(q.choices).filter(([, t]) => t).map(([letter, text]) => ({
+    "@type": "Answer",
+    "text": `${letter}. ${text}`,
+  })),
+}));
+
+const quizLd = {
+  "@context": "https://schema.org",
+  "@type": ["WebPage", "LearningResource", "Quiz"],
+  "@id": "https://rigfloorhq.com/well-control-quiz/basic-pressure#webpage",
+  "name": "Basic Pressure — Well Control Quiz",
+  "url": "https://rigfloorhq.com/well-control-quiz/basic-pressure",
+  "learningResourceType": "Practice quiz",
+  "educationalUse": "assessment",
+  "teaches": "Hydrostatic pressure calculation from mud weight and true vertical depth",
+  "inLanguage": "en",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "isAccessibleForFree": true,
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+  "hasPart": questionLd,
+};
+---
+<BaseLayout
+  title="Basic Pressure Well Control Quiz — 25 Practice Questions"
+  description="25 hydrostatic pressure practice questions: mud weight, TVD, and the 0.052 constant. Free, take it live, instant scoring and explanations."
+  breadcrumbs={breadcrumbs}
+  jsonLd={quizLd}
+  lang="en"
+  alternateHref="/es/well-control-quiz/basic-pressure"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/well-control-quiz/basic-pressure" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Well Control Quiz — Basic Pressure</div>
+    <h1>Basic Pressure <span>Quiz</span></h1>
+    <p class="page-hero-sub">25 practice questions on hydrostatic pressure — converting mud weight and true vertical depth into a real psi figure, and working the same formula backward to solve for depth or mud weight instead.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="what-this-covers">What This Topic Covers</h2>
+        <p>Hydrostatic pressure is the number everything else in well control is checked against — formation pressure, MAASP, kill mud weight, all of it starts from mud weight × 0.052 × TVD. This topic drills that one formula from every angle: straightforward pressure-at-depth problems, a few that give you the pressure and ask for the missing mud weight or depth instead, and enough repetition that the constant and the units stop being something you have to think about. See the full <a href="/calculators/hydrostatic">hydrostatic pressure calculator</a> for the live version of this exact math.</p>
+
+        <h2 id="sample-questions">Sample Questions</h2>
+        <p>Three real questions from the 25-question pool, so you know what you're getting into before starting. Answers aren't shown here — take the live quiz below for scoring and explanations.</p>
+        {samples.map((q, i) => (
+          <div style="margin-bottom:18px;">
+            <p style="color:var(--white);font-weight:600;margin-bottom:6px;">{i + 1}. {q.question}</p>
+            <ul style="margin:0;padding-left:20px;color:var(--fog);font-size:13px;line-height:1.7;">
+              {Object.entries(q.choices).filter(([, text]) => text).map(([letter, text]) => (
+                <li>{letter}. {text}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+
+        <h2 id="take-the-quiz">Take the Quiz</h2>
+        <QuizTopicInteractive topicSlug="basic-pressure" topicName={TOPIC} topicIcon="⚙" questions={questions} />
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-this-covers">What This Covers</a>
+          <a href="#sample-questions">Sample Questions</a>
+          <a href="#take-the-quiz">Take the Quiz</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Work the Math Yourself</h3>
+          <p style="margin-bottom:12px;">Run the exact formula these questions test with your own numbers.</p>
+          <a href="/calculators/hydrostatic" class="card-link">Hydrostatic Pressure Calculator →</a>
+        </div>
+
+        <div class="card" style="margin-top:1px;border:1px solid var(--iron);border-radius:0 0 4px 4px;">
+          <h3>More Quiz Topics</h3>
+          <a href="/well-control-quiz" class="card-link">→ All 8 Topics</a><br><br>
+          <a href="/well-control-quiz/basic-knowledge" class="card-link">→ Basic Knowledge</a><br><br>
+          <a href="/well-control-quiz/volumes-and-maasp" class="card-link">→ Volumes and MAASP</a><br><br>
+          <a href="/pillars/hydrostatic-pressure" class="card-link">→ Hydrostatic Pressure Pillar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

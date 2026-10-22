@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import QuizTopicInteractive from '../../components/QuizTopicInteractive.astro';
+import quizData from '../../lib/data/well-control-quiz.json';
+
+type Question = {
+  id: number;
+  question: string;
+  choices: Record<string, string>;
+  correctAnswer: string;
+  explanation: string;
+  topic: string;
+};
+
+const allQuestions = quizData as Question[];
+const TOPIC = 'Kill Methods';
+const questions = allQuestions.filter((q) => q.topic === TOPIC);
+const samples = questions.slice(0, 3);
+
+const faq = [
+  {
+    q: 'Is this quiz officially affiliated with IWCF or IADC?',
+    a: "No. The questions cover the same ground tested in IWCF and IADC WellSharp well control certification exams, but this quiz isn't produced, endorsed, or affiliated with either body, and passing it doesn't substitute for accredited certification.",
+  },
+  {
+    q: "What's the core difference between the Driller's Method and Wait and Weight?",
+    a: "The Driller's Method circulates the kick out first, at the original mud weight, then circulates a second time with the heavier kill mud weight — two full circulations. Wait and Weight waits for the kill mud weight to be ready first, then circulates it in while simultaneously removing the kick — one circulation, but a wait before it starts.",
+  },
+  {
+    q: 'Why does pit volume behave differently once gas reaches the choke?',
+    a: "Gas expands sharply as it nears surface and lower pressure, so pit gain accelerates even though nothing new is entering the well — the same kick volume just occupies far more space near surface than it did downhole. Choke operators have to anticipate this, not react to it after the fact.",
+  },
+];
+
+const breadcrumbs = [
+  { label: 'Well Control Quiz', href: '/well-control-quiz' },
+  { label: 'Kill Methods', href: '/well-control-quiz/kill-methods' },
+];
+
+const questionLd = samples.map((q) => ({
+  "@type": "Question",
+  "name": q.question,
+  "suggestedAnswer": Object.entries(q.choices).filter(([, t]) => t).map(([letter, text]) => ({
+    "@type": "Answer",
+    "text": `${letter}. ${text}`,
+  })),
+}));
+
+const quizLd = {
+  "@context": "https://schema.org",
+  "@type": ["WebPage", "LearningResource", "Quiz"],
+  "@id": "https://rigfloorhq.com/well-control-quiz/kill-methods#webpage",
+  "name": "Kill Methods — Well Control Quiz",
+  "url": "https://rigfloorhq.com/well-control-quiz/kill-methods",
+  "learningResourceType": "Practice quiz",
+  "educationalUse": "assessment",
+  "teaches": "Driller's Method and Wait and Weight kill procedures, and how pit volume behaves during each",
+  "inLanguage": "en",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "isAccessibleForFree": true,
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+  "hasPart": questionLd,
+};
+---
+<BaseLayout
+  title="Kill Methods Well Control Quiz — 25 Practice Questions"
+  description="25 practice questions on the Driller's Method, Wait and Weight, and how pit volume actually behaves during each. Free, take it live."
+  breadcrumbs={breadcrumbs}
+  jsonLd={quizLd}
+  lang="en"
+  alternateHref="/es/well-control-quiz/kill-methods"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/well-control-quiz/kill-methods" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Well Control Quiz — Kill Methods</div>
+    <h1>Kill Methods <span>Quiz</span></h1>
+    <p class="page-hero-sub">25 practice questions on the Driller's Method and Wait and Weight kill procedures — what actually happens to pit volume, pump pressure, and choke position at each stage of each method.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="what-this-covers">What This Topic Covers</h2>
+        <p>Knowing the kill mud weight is only half the job — a crew also has to know what's supposed to be happening at the choke and the pits at every stage of the circulation, so a real deviation gets caught instead of assumed normal. These questions walk through the Driller's Method and Wait and Weight stage by stage: what pit volume does as gas nears the choke, how pump pressure is supposed to track between ICP and FCP, and where each method's distinct steps diverge from the other. See the full <a href="/pillars/well-kill-methods">Well Kill Methods guide</a> for the complete procedures these questions test.</p>
+
+        <h2 id="sample-questions">Sample Questions</h2>
+        <p>Three real questions from the 25-question pool, so you know what you're getting into before starting. Answers aren't shown here — take the live quiz below for scoring and explanations.</p>
+        {samples.map((q, i) => (
+          <div style="margin-bottom:18px;">
+            <p style="color:var(--white);font-weight:600;margin-bottom:6px;">{i + 1}. {q.question}</p>
+            <ul style="margin:0;padding-left:20px;color:var(--fog);font-size:13px;line-height:1.7;">
+              {Object.entries(q.choices).filter(([, text]) => text).map(([letter, text]) => (
+                <li>{letter}. {text}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+
+        <h2 id="take-the-quiz">Take the Quiz</h2>
+        <QuizTopicInteractive topicSlug="kill-methods" topicName={TOPIC} topicIcon="🛑" questions={questions} />
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-this-covers">What This Covers</a>
+          <a href="#sample-questions">Sample Questions</a>
+          <a href="#take-the-quiz">Take the Quiz</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Go Deeper</h3>
+          <p style="margin-bottom:12px;">The full step-by-step procedures these questions are built around.</p>
+          <a href="/pillars/well-kill-methods" class="card-link">Well Kill Methods Guide →</a>
+        </div>
+
+        <div class="card" style="margin-top:1px;border:1px solid var(--iron);border-radius:0 0 4px 4px;">
+          <h3>More Quiz Topics</h3>
+          <a href="/well-control-quiz" class="card-link">→ All 8 Topics</a><br><br>
+          <a href="/well-control-quiz/volumes-and-maasp" class="card-link">→ Volumes and MAASP</a><br><br>
+          <a href="/well-control-quiz/some-tricky-stuff" class="card-link">→ Some Tricky Stuff</a><br><br>
+          <a href="/calculators/kill-sheet" class="card-link">→ Kill Sheet Calculator</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

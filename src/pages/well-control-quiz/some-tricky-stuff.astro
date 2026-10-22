@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import QuizTopicInteractive from '../../components/QuizTopicInteractive.astro';
+import quizData from '../../lib/data/well-control-quiz.json';
+
+type Question = {
+  id: number;
+  question: string;
+  choices: Record<string, string>;
+  correctAnswer: string;
+  explanation: string;
+  topic: string;
+};
+
+const allQuestions = quizData as Question[];
+const TOPIC = 'Some Tricky Stuff';
+const questions = allQuestions.filter((q) => q.topic === TOPIC);
+const samples = questions.slice(0, 3);
+
+const faq = [
+  {
+    q: 'Is this quiz officially affiliated with IWCF or IADC?',
+    a: "No. The questions cover the same ground tested in IWCF and IADC WellSharp well control certification exams, but this quiz isn't produced, endorsed, or affiliated with either body, and passing it doesn't substitute for accredited certification.",
+  },
+  {
+    q: 'What makes these questions "tricky" compared to the earlier topics?',
+    a: "They combine two or three concepts from earlier topics into one problem instead of testing a single formula in isolation — ECD alongside hydrostatic pressure, or annulus size changing how significant an identical kick volume actually is. The math is the same; recognizing which combination applies is the real test.",
+  },
+  {
+    q: 'Why does the same kick volume matter more in a smaller annulus?',
+    a: "A fixed volume of influx spreads across a smaller cross-sectional area in a small annulus, so it occupies a taller vertical column — and a taller influx column means a bigger pressure effect at the same volume. The same 20 bbl kick is a bigger problem in a slim-hole annulus than a wide one.",
+  },
+];
+
+const breadcrumbs = [
+  { label: 'Well Control Quiz', href: '/well-control-quiz' },
+  { label: 'Some Tricky Stuff', href: '/well-control-quiz/some-tricky-stuff' },
+];
+
+const questionLd = samples.map((q) => ({
+  "@type": "Question",
+  "name": q.question,
+  "suggestedAnswer": Object.entries(q.choices).filter(([, t]) => t).map(([letter, text]) => ({
+    "@type": "Answer",
+    "text": `${letter}. ${text}`,
+  })),
+}));
+
+const quizLd = {
+  "@context": "https://schema.org",
+  "@type": ["WebPage", "LearningResource", "Quiz"],
+  "@id": "https://rigfloorhq.com/well-control-quiz/some-tricky-stuff#webpage",
+  "name": "Some Tricky Stuff — Well Control Quiz",
+  "url": "https://rigfloorhq.com/well-control-quiz/some-tricky-stuff",
+  "learningResourceType": "Practice quiz",
+  "educationalUse": "assessment",
+  "teaches": "Combined well control problems: ECD, annulus geometry, and kick-size effects together",
+  "inLanguage": "en",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "isAccessibleForFree": true,
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+  "hasPart": questionLd,
+};
+---
+<BaseLayout
+  title="Some Tricky Stuff Well Control Quiz — 25 Practice Questions"
+  description="25 combined well control practice questions: ECD, annulus geometry, and kick-size effects together. Free, take it live, instant scoring."
+  breadcrumbs={breadcrumbs}
+  jsonLd={quizLd}
+  lang="en"
+  alternateHref="/es/well-control-quiz/some-tricky-stuff"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/well-control-quiz/some-tricky-stuff" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Well Control Quiz — Some Tricky Stuff</div>
+    <h1>Some Tricky <span>Stuff</span> Quiz</h1>
+    <p class="page-hero-sub">25 practice questions that combine two or three concepts from the earlier topics into one problem — ECD, annulus geometry, and why identical kick volumes aren't identical problems in every hole size.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="what-this-covers">What This Topic Covers</h2>
+        <p>Real well control problems rarely arrive as one clean formula — they combine hydrostatic pressure with circulating friction, or a kick volume with the specific annulus geometry it's sitting in. This topic is where the earlier topics' individual formulas get tested together: equivalent circulating density on top of static hydrostatic pressure, and why the same pit-gain figure means something different in a small annulus than a large one. See the <a href="/calculators/ecd">ECD calculator</a> for the live version of the circulating-pressure side of this math, and <a href="/blog/pit-volumes-maasp-math-mistakes">pit volumes and MAASP math mistakes</a> for the real errors this topic is built to catch.</p>
+
+        <h2 id="sample-questions">Sample Questions</h2>
+        <p>Three real questions from the 25-question pool, so you know what you're getting into before starting. Answers aren't shown here — take the live quiz below for scoring and explanations.</p>
+        {samples.map((q, i) => (
+          <div style="margin-bottom:18px;">
+            <p style="color:var(--white);font-weight:600;margin-bottom:6px;">{i + 1}. {q.question}</p>
+            <ul style="margin:0;padding-left:20px;color:var(--fog);font-size:13px;line-height:1.7;">
+              {Object.entries(q.choices).filter(([, text]) => text).map(([letter, text]) => (
+                <li>{letter}. {text}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+
+        <h2 id="take-the-quiz">Take the Quiz</h2>
+        <QuizTopicInteractive topicSlug="some-tricky-stuff" topicName={TOPIC} topicIcon="🧠" questions={questions} />
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-this-covers">What This Covers</a>
+          <a href="#sample-questions">Sample Questions</a>
+          <a href="#take-the-quiz">Take the Quiz</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Work the Math Yourself</h3>
+          <p style="margin-bottom:12px;">Run real circulating-pressure numbers through the live calculator.</p>
+          <a href="/calculators/ecd" class="card-link">ECD Calculator →</a>
+        </div>
+
+        <div class="card" style="margin-top:1px;border:1px solid var(--iron);border-radius:0 0 4px 4px;">
+          <h3>More Quiz Topics</h3>
+          <a href="/well-control-quiz" class="card-link">→ All 8 Topics</a><br><br>
+          <a href="/well-control-quiz/kill-methods" class="card-link">→ Kill Methods</a><br><br>
+          <a href="/well-control-quiz/subsea-questions" class="card-link">→ Subsea Questions</a><br><br>
+          <a href="/blog/pit-volumes-maasp-math-mistakes" class="card-link">→ Pit Volumes and MAASP Mistakes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

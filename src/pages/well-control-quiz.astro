@@ -87,6 +87,16 @@ const quizLd = {
   "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
   "isAccessibleForFree": true,
   "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+  // Each topic now lives on its own indexable page (2026-10-22 audit:
+  // "the 200-question quiz has one indexable page") -- linking them here
+  // models this hub as a real index of 8 separate Quiz resources, not a
+  // single 200-question blob.
+  "hasPart": topics.map((t) => ({
+    "@type": "Quiz",
+    "@id": `https://rigfloorhq.com/well-control-quiz/${t.slug}#webpage`,
+    "name": `${t.name} — Well Control Quiz`,
+    "url": `https://rigfloorhq.com/well-control-quiz/${t.slug}`,
+  })),
 };
 ---
 <BaseLayout
@@ -109,18 +119,17 @@ const quizLd = {
   <section class="block">
     <div class="section-eyebrow">Test Yourself</div>
     <h2 class="section-title">Take the <span>Quiz</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:20px;">Each topic now has its own dedicated page with the live interactive quiz, a short breakdown of what it covers, and sample questions up front — pick a topic below.</p>
     <div class="card-grid" id="quiz-picker">
       {topics.map((t) => (
-        <div class="card quiz-pick-btn" data-topic-slug={t.slug} role="button" tabindex="0">
+        <a href={`/well-control-quiz/${t.slug}`} class="card">
           <span class="card-icon">{t.icon}</span>
           <h3>{t.name}</h3>
           <p>{t.questions.length} questions, shuffled each time.</p>
-          <span class="card-link">Start Quiz →</span>
-        </div>
+          <span class="card-link">Take the Quiz →</span>
+        </a>
       ))}
     </div>
-
-    <div class="quiz-interactive-main hidden" id="quiz-interactive-main"></div>
 
     <div class="note-box mt-24">
       <strong>Practice only, not a certified exam.</strong> These questions cover the same ground as IWCF and IADC well control exams but are not affiliated with either body and do not substitute for accredited certification. Nothing you enter is saved, sent anywhere, or stored — reloading the page clears it.
@@ -151,14 +160,6 @@ const quizLd = {
       ))}
     </div>
   </section>
-
-  {/* Question data only, nothing visible or readable as page content — the
-      quiz would be pointless if the answers sat in plain view on the page
-      itself. Rendered per-topic so the picker above can load one topic at a
-      time without shipping all 200 questions into a single blob. */}
-  {topics.map((t) => (
-    <script type="application/json" class="quiz-data" data-topic-slug={t.slug} set:html={JSON.stringify(t.questions)} />
-  ))}
 
   <section class="block">
     <div class="prose">
@@ -197,60 +198,3 @@ const quizLd = {
     </div>
   </section>
 </BaseLayout>
-
-<style is:global>
-  /* Global, not scoped: the interactive quiz UI (.qi-*) is built by
-     client-side JS after the page loads, so Astro's build-time style
-     scoping never reaches it. Scoped rules here would silently no-op on
-     every dynamically created element and ship as unstyled default HTML. */
-  .quiz-pick-btn { cursor: pointer; text-align: left; }
-  .quiz-pick-btn:hover { border-color: var(--amber); }
-  .quiz-pick-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
-
-  .quiz-interactive-main.active {
-    background: var(--steel);
-    border: 1px solid var(--amber);
-    border-radius: 8px;
-    padding: 28px;
-    margin-top: 28px;
-  }
-
-  .hidden { display: none !important; }
-
-  .qi-progress { font-family: var(--mono); font-size: 11px; color: var(--fog); margin-bottom: 12px; }
-  .qi-text { font-weight: 600; color: var(--white); margin-bottom: 16px; font-size: 18px; }
-  .qi-choice {
-    display: block;
-    width: 100%;
-    text-align: left;
-    background: var(--ink);
-    border: 1px solid var(--iron);
-    color: var(--mist);
-    padding: 12px 16px;
-    margin-bottom: 8px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  .qi-choice:hover:not(:disabled) { border-color: var(--amber); }
-  .qi-choice:disabled { cursor: default; }
-  .qi-choice.right { border-color: #4ade80; background: rgba(74, 222, 128, 0.12); color: var(--white); }
-  .qi-choice.wrong { border-color: var(--danger); background: rgba(239, 68, 68, 0.12); color: var(--white); }
-  .qi-explain { font-size: 13px; color: var(--fog); margin: 14px 0; padding-top: 14px; border-top: 1px solid var(--iron); }
-  .qi-score-big { font-size: 2.4em; font-weight: 700; text-align: center; color: var(--white); margin: 10px 0; }
-  .qi-score-sub { text-align: center; color: var(--fog); margin-bottom: 20px; }
-  .qi-topic-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); margin-bottom: 8px; }
-
-  .qi-review { margin: 24px 0; border-top: 1px solid var(--iron); padding-top: 20px; }
-  .qi-review-title { font-weight: 600; color: var(--white); margin-bottom: 14px; }
-  .qi-review-item { background: var(--ink); border: 1px solid var(--iron); border-radius: 6px; padding: 16px 18px; margin-bottom: 10px; }
-  .qi-review-item.wrong { border-color: rgba(239, 68, 68, 0.4); }
-  .qi-review-q { font-weight: 600; color: var(--white); margin-bottom: 8px; font-size: 14px; }
-  .qi-review-your { font-size: 13px; margin-bottom: 4px; }
-  .qi-review-your.wrong { color: var(--danger); }
-  .qi-review-your.right { color: #4ade80; }
-  .qi-review-correct { font-size: 13px; color: #4ade80; margin-bottom: 8px; }
-  .qi-review-explain { font-size: 13px; color: var(--fog); }
-</style>
-
-<script is:inline src="/scripts/well-control-quiz.js" defer></script>

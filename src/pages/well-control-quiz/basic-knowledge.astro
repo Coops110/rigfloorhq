@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import QuizTopicInteractive from '../../components/QuizTopicInteractive.astro';
+import quizData from '../../lib/data/well-control-quiz.json';
+
+type Question = {
+  id: number;
+  question: string;
+  choices: Record<string, string>;
+  correctAnswer: string;
+  explanation: string;
+  topic: string;
+};
+
+const allQuestions = quizData as Question[];
+const TOPIC = 'Basic Knowledge';
+const questions = allQuestions.filter((q) => q.topic === TOPIC);
+const samples = questions.slice(0, 3);
+
+const faq = [
+  {
+    q: 'Is this quiz officially affiliated with IWCF or IADC?',
+    a: "No. The questions cover the same ground tested in IWCF and IADC WellSharp well control certification exams, but this quiz isn't produced, endorsed, or affiliated with either body, and passing it doesn't substitute for accredited certification.",
+  },
+  {
+    q: 'What level of well control knowledge does this topic assume?',
+    a: "None beyond basic arithmetic. This is the entry point of the full quiz — foundational terms (SIDPP, SICP, pit gain), the pressure-gradient conversion, and the basic cause-and-effect logic a kick follows, before the later topics build on it with real shut-in math.",
+  },
+  {
+    q: 'Can I retake this topic, and will I get the same questions?',
+    a: 'Yes, as many times as you want. Questions shuffle each time you start, so the order changes, though the question pool itself stays the same.',
+  },
+];
+
+const breadcrumbs = [
+  { label: 'Well Control Quiz', href: '/well-control-quiz' },
+  { label: 'Basic Knowledge', href: '/well-control-quiz/basic-knowledge' },
+];
+
+const questionLd = samples.map((q) => ({
+  "@type": "Question",
+  "name": q.question,
+  "suggestedAnswer": Object.entries(q.choices).filter(([, t]) => t).map(([letter, text]) => ({
+    "@type": "Answer",
+    "text": `${letter}. ${text}`,
+  })),
+}));
+
+const quizLd = {
+  "@context": "https://schema.org",
+  "@type": ["WebPage", "LearningResource", "Quiz"],
+  "@id": "https://rigfloorhq.com/well-control-quiz/basic-knowledge#webpage",
+  "name": "Basic Knowledge — Well Control Quiz",
+  "url": "https://rigfloorhq.com/well-control-quiz/basic-knowledge",
+  "learningResourceType": "Practice quiz",
+  "educationalUse": "assessment",
+  "teaches": "Foundational well control terms and pressure-gradient conversion",
+  "inLanguage": "en",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "isAccessibleForFree": true,
+  "publisher": { "@id": "https://rigfloorhq.com/#organization" },
+  "hasPart": questionLd,
+};
+---
+<BaseLayout
+  title="Basic Knowledge Well Control Quiz — 25 Practice Questions"
+  description="25 foundational well control practice questions: pressure-gradient conversion, SIDPP/SICP basics, and kick cause-and-effect. Free, take it live."
+  breadcrumbs={breadcrumbs}
+  jsonLd={quizLd}
+  lang="en"
+  alternateHref="/es/well-control-quiz/basic-knowledge"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/well-control-quiz/basic-knowledge" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Well Control Quiz — Basic Knowledge</div>
+    <h1>Basic Knowledge <span>Quiz</span></h1>
+    <p class="page-hero-sub">25 practice questions on the foundational terms and logic every well control topic after this one assumes you already know — the pressure-gradient conversion, what SIDPP and SICP actually measure, and how pit gain behaves during a kick.</p>
+  </div>
+
+  <section class="block">
+    <div class="two-col">
+      <div class="prose">
+        <h2 id="what-this-covers">What This Topic Covers</h2>
+        <p>Every other topic in this quiz leans on a handful of basics: converting mud weight in ppg into a pressure gradient in psi/ft using the 0.052 constant, telling SIDPP (shut-in drillpipe pressure) apart from SICP (shut-in casing pressure) and knowing which one moves with kick size and which doesn't, and reading what a pit-volume change during tripping is actually telling you before you even reach for the kill sheet math. This topic is where those get tested on their own, before <a href="/well-control-quiz/shut-in-conditions">Shut-In Conditions</a> and <a href="/well-control-quiz/volumes-and-maasp">Volumes and MAASP</a> start combining them into real kill-weight calculations.</p>
+
+        <h2 id="sample-questions">Sample Questions</h2>
+        <p>Three real questions from the 25-question pool, so you know what you're getting into before starting. Answers aren't shown here — take the live quiz below for scoring and explanations.</p>
+        {samples.map((q, i) => (
+          <div style="margin-bottom:18px;">
+            <p style="color:var(--white);font-weight:600;margin-bottom:6px;">{i + 1}. {q.question}</p>
+            <ul style="margin:0;padding-left:20px;color:var(--fog);font-size:13px;line-height:1.7;">
+              {Object.entries(q.choices).filter(([, text]) => text).map(([letter, text]) => (
+                <li>{letter}. {text}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+
+        <h2 id="take-the-quiz">Take the Quiz</h2>
+        <QuizTopicInteractive topicSlug="basic-knowledge" topicName={TOPIC} topicIcon="📘" questions={questions} />
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div class="toc">
+          <div class="toc-title">On This Page</div>
+          <a href="#what-this-covers">What This Covers</a>
+          <a href="#sample-questions">Sample Questions</a>
+          <a href="#take-the-quiz">Take the Quiz</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+          <h3>Work the Math Yourself</h3>
+          <p style="margin-bottom:12px;">The pressure-gradient conversion these questions test is the same formula the <a href="/calculators/formulas-cheat-sheet">drilling formulas cheat sheet</a> and <a href="/calculators/hydrostatic">hydrostatic pressure calculator</a> run live.</p>
+          <a href="/calculators/hydrostatic" class="card-link">Hydrostatic Pressure Calculator →</a>
+        </div>
+
+        <div class="card" style="margin-top:1px;border:1px solid var(--iron);border-radius:0 0 4px 4px;">
+          <h3>More Quiz Topics</h3>
+          <a href="/well-control-quiz" class="card-link">→ All 8 Topics</a><br><br>
+          <a href="/well-control-quiz/basic-pressure" class="card-link">→ Basic Pressure</a><br><br>
+          <a href="/well-control-quiz/shut-in-conditions" class="card-link">→ Shut-In Conditions</a><br><br>
+          <a href="/well-control-quiz/kill-sheet-practice" class="card-link">→ Kill Sheet Word Problems</a><br><br>
+          <a href="/drilling/well-control" class="card-link">→ Well Control Reference</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
