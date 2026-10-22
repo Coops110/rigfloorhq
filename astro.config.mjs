@@ -14,6 +14,27 @@ const NOINDEX_SLUGS = ['welcome-to-rigfloorhq'];
 // /links is the social bio landing page: a navigation utility, not content.
 const NOINDEX_PATHS = ['/links'];
 
+// The 8 well-control-quiz topic pages are the one place on the site where
+// the ES slug is a real translation rather than the same string as the EN
+// one (every other page keeps an identical slug across languages). Needed
+// here because counterpartPathname() below assumes identical slugs; without
+// this map it builds a /es/well-control-quiz/<english-slug> URL that 404s.
+// kill-sheet-practice and the quiz hub itself use the same slug both
+// languages, so they're deliberately not in this map.
+const QUIZ_SLUG_EN_TO_ES = {
+  'basic-knowledge': 'conocimientos-basicos',
+  'basic-pressure': 'presion-basica',
+  'kill-methods': 'metodos-de-matanza',
+  'shut-in-conditions': 'condiciones-de-cierre',
+  'some-tricky-stuff': 'preguntas-dificiles',
+  'subsea-questions': 'preguntas-submarinas',
+  'volumes-and-maasp': 'volumenes-y-maasp',
+  'warning-signs-and-shut-in': 'senales-de-advertencia-y-cierre',
+};
+const QUIZ_SLUG_ES_TO_EN = Object.fromEntries(
+  Object.entries(QUIZ_SLUG_EN_TO_ES).map(([en, es]) => [es, en])
+);
+
 // Read git history once at config load rather than per URL.
 const lastmodMap = buildGitLastmodMap();
 
@@ -23,6 +44,17 @@ const lastmodMap = buildGitLastmodMap();
 // xhtml:link hreflang alternates agree with what's actually in <head>.
 function counterpartPathname(pathname) {
   const p = pathname.replace(/^\/+|\/+$/g, '');
+
+  // Quiz topic pages: translate the slug itself, not just the /es/ prefix.
+  const quizEnMatch = p.match(/^well-control-quiz\/([^/]+)$/);
+  if (quizEnMatch && QUIZ_SLUG_EN_TO_ES[quizEnMatch[1]]) {
+    return `/es/well-control-quiz/${QUIZ_SLUG_EN_TO_ES[quizEnMatch[1]]}`;
+  }
+  const quizEsMatch = p.match(/^es\/well-control-quiz\/([^/]+)$/);
+  if (quizEsMatch && QUIZ_SLUG_ES_TO_EN[quizEsMatch[1]]) {
+    return `/well-control-quiz/${QUIZ_SLUG_ES_TO_EN[quizEsMatch[1]]}`;
+  }
+
   const counterpart = p === 'es' || p.startsWith('es/')
     ? p === 'es' ? '' : p.slice(3)
     : p === ''
