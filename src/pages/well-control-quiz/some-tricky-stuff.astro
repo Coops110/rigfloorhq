@@ -100,6 +100,22 @@ const quizLd = {
           </div>
         ))}
 
+        <details class="acc-item mt-24">
+          <summary class="acc-header">See all {questions.length} questions in this topic<span class="acc-arrow">▼</span></summary>
+          <div class="acc-body">
+            {questions.map((q, i) => (
+              <div style="margin-bottom:18px;">
+                <p style="color:var(--white);font-weight:600;margin-bottom:6px;">{i + 1}. {q.question}</p>
+                <ul style="margin:0;padding-left:20px;color:var(--fog);font-size:13px;line-height:1.7;">
+                  {Object.entries(q.choices).filter(([, text]) => text).map(([letter, text]) => (
+                    <li>{letter}. {text}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </details>
+
         <h2 id="take-the-quiz">Take the Quiz</h2>
         <QuizTopicInteractive topicSlug="some-tricky-stuff" topicName={TOPIC} topicIcon="🧠" questions={questions} />
 

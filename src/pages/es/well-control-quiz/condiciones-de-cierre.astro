@@ -100,6 +100,22 @@ const quizLd = {
           </div>
         ))}
 
+        <details class="acc-item mt-24">
+          <summary class="acc-header">Ver las {questions.length} preguntas de este tema<span class="acc-arrow">▼</span></summary>
+          <div class="acc-body">
+            {questions.map((q, i) => (
+              <div style="margin-bottom:18px;">
+                <p style="color:var(--white);font-weight:600;margin-bottom:6px;">{i + 1}. {q.question}</p>
+                <ul style="margin:0;padding-left:20px;color:var(--fog);font-size:13px;line-height:1.7;">
+                  {Object.entries(q.choices).filter(([, text]) => text).map(([letter, text]) => (
+                    <li>{letter}. {text}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </details>
+
         <h2 id="realiza-el-cuestionario">Realiza el Cuestionario</h2>
         <QuizTopicInteractive
           topicSlug="condiciones-de-cierre"
