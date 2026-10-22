@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
@@ -154,6 +155,8 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
         <div class="note-box mt-24">
           <strong>What's deliberately not derived here:</strong> bit pressure drop itself isn't calculated from mud weight, flow rate, and TFA — that formula's exact constant varies between references depending on assumed nozzle discharge coefficient, and it couldn't be confirmed with confidence against a real worked example while building this page. Bit pressure drop goes in as a known value (read from the standpipe pressure difference on/off bottom) rather than risk a formula that's wrong by a meaningful margin on a real job.
         </div>
+
+        <CalculatorDisclaimer lang="en" context="Real bit hydraulics decisions belong to your drilling engineer, confirmed against the actual nozzle configuration and pump capability on this rig, not this reference calculation." />
 
         <h3>Where This Fits</h3>
         <p>These four numbers chain together in the order a real hydraulics check actually runs: pick nozzle sizes, get TFA; check jet velocity against the mud-type target above; separately confirm bit pressure drop is delivering enough <a href="/calculators/pump-pressure-adjustment">pump horsepower</a> to the bit face via HHP and HSI. <a href="/calculators/lag-and-volume">Pump output and annular velocity</a> cover the rest of the circulating system's hydraulics — this page is specifically what's happening right at the bit.</p>

@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
@@ -76,9 +77,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
           </div>
         </div>
 
-        <div class="note-box mt-24" style="max-width:700px;">
-          <strong>Reference only.</strong> Confirm the mud system's actual volume and the barite's own measured specific gravity before ordering material for a real weight-up — field barite assay varies around the nominal 35.5 ppg API figure, and treating a lighter actual batch as if it were nominal under-orders material.
-        </div>
+        <CalculatorDisclaimer lang="en" context="Confirm the mud system's actual volume and the barite's own measured specific gravity before ordering material for a real weight-up — field barite assay varies around the nominal 35.5 ppg API figure, and treating a lighter actual batch as if it were nominal under-orders material." />
       </div>
 
       <div class="prose">

@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
@@ -78,9 +79,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
           </div>
         </div>
 
-        <div class="note-box mt-24" style="max-width:700px;">
-          <strong>Reference only.</strong> The minimum annular velocity needed for adequate hole cleaning depends on cuttings size, mud rheology, and hole angle — confirm the actual target for this well against your company's hydraulics program rather than a generic rule of thumb.
-        </div>
+        <CalculatorDisclaimer lang="en" context="The minimum annular velocity needed for adequate hole cleaning depends on cuttings size, mud rheology, and hole angle — confirm the actual target for this well against your company's hydraulics program rather than a generic rule of thumb." />
       </div>
 
       <div class="prose">

@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
 
 // CONVERSION FACTORS — DERIVED, NOT REMEMBERED
@@ -172,6 +173,8 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
         <div class="note-box mt-24" style="max-width:700px;">
           <strong>Reference points worth knowing by heart.</strong> Fresh water <span class="highlight">8.33 ppg</span> = 0.433 psi/ft = sg 1.00. Sea water <span class="highlight">8.55 ppg</span> = 0.445 psi/ft = sg 1.03. If a conversion lands nowhere near these for something you know is water, it went the wrong way.
         </div>
+
+        <CalculatorDisclaimer lang="en" context="This is a unit conversion only — always use your lab-measured mud weight as the real source figure for operational decisions, not a converted estimate." />
       </div>
 
       <div class="prose">

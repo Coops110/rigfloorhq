@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
 
 // IADC bit classification — generic public standard covering both roller
@@ -252,9 +253,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
           </div>
         </div>
 
-        <div class="note-box mt-24" style="max-width:700px;">
-          <strong>Reference only.</strong> This is the universal IADC classification meaning. Individual manufacturers stamp their own product-line codes alongside or instead of the IADC code — always check the specific bit's own spec sheet when it matters for selection or ordering.
-        </div>
+        <CalculatorDisclaimer lang="en" context="This is the universal IADC classification meaning. Individual manufacturers stamp their own product-line codes alongside or instead of the IADC code — always check the specific bit's own spec sheet when it matters for selection or ordering." />
       </div>
 
       <div class="prose">

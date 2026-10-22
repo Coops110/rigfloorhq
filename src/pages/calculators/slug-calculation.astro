@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
@@ -111,9 +112,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
           </div>
         </div>
 
-        <div class="note-box mt-24" style="max-width:700px;">
-          <strong>Reference only.</strong> This assumes a clean, fully displaced slug. Real surface equipment lag, trapped air, and mixing losses mean an actual gain should be read as a sanity check against this figure, not an exact substitute for watching the pits during the job.
-        </div>
+        <CalculatorDisclaimer lang="en" context="This assumes a clean, fully displaced slug. Real surface equipment lag, trapped air, and mixing losses mean an actual gain should be read as a sanity check against this figure, not an exact substitute for watching the pits during the job." />
       </div>
 
       <div class="prose">

@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
 
 // Brine weight-loss chart is the WellSharp formula sheet's own example table,
@@ -152,9 +153,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
           </div>
         </div>
 
-        <div class="note-box mt-24">
-          <strong>Reference only.</strong> A real bullhead job runs under your company's approved well-kill procedure with engineering sign-off — this page checks the underlying math, not a substitute for that approval.
-        </div>
+        <CalculatorDisclaimer lang="en" context="A real bullhead job runs under your company's approved well-kill procedure with engineering sign-off — this page checks the underlying math, not a substitute for that approval." />
       </div>
 
       <div class="prose">

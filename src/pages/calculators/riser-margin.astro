@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import VideoEmbed from '../../components/VideoEmbed.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
 
@@ -94,9 +95,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
           </div>
         </div>
 
-        <div class="note-box mt-24">
-          <strong>Reference only.</strong> Riser margin is one input to a subsea well's kick tolerance and shut-in procedure, decided by the well's own drilling program — this checks the underlying math, not a substitute for that program.
-        </div>
+        <CalculatorDisclaimer lang="en" context="Riser margin is one input to a subsea well's kick tolerance and shut-in procedure, decided by the well's own drilling program — this checks the underlying math, not a substitute for that program." />
       </div>
 
       <div class="prose">

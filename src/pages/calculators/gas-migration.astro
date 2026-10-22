@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import VideoEmbed from '../../components/VideoEmbed.astro';
 import { reviewedByJabin } from '../../lib/person.js';
 import { calculatorWebPage } from '../../lib/techarticle.js';
@@ -100,9 +101,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en', reviewedBy: reviewed
           </div>
         </div>
 
-        <div class="note-box mt-24">
-          <strong>Reference only.</strong> Run the volumetric method under your company's approved well-control procedure — this checks the underlying math for a single step, not a full shut-in program.
-        </div>
+        <CalculatorDisclaimer lang="en" context="Run the volumetric method under your company's approved well-control procedure — this checks the underlying math for a single step, not a full shut-in program." />
       </div>
 
       <div class="prose">

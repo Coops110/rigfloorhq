@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
 
 // API 6A/6BX flange dimensions, Cameron's published figures. Public equipment
@@ -176,9 +177,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
           </div>
         </div>
 
-        <div class="note-box mt-24" style="max-width:700px;">
-          <strong>Reference only.</strong> Confirm bore size and pressure rating against the flange's own data plate before ordering studs or gaskets. This is a lookup tool, not a substitute for the equipment's certified documentation.
-        </div>
+        <CalculatorDisclaimer lang="en" context="Confirm bore size and pressure rating against the flange's own data plate before ordering studs or gaskets. This is a lookup tool, not a substitute for the equipment's certified documentation." />
       </div>
 
       <div class="prose">

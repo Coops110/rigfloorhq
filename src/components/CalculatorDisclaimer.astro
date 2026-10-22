@@ -1,0 +1,20 @@
+---
+// Shared disclaimer for calculator pages — the audit's CQ-8 finding was
+// that only 11 of 35 calculators carried the standard "reference tool, not
+// an operational authority" block, and the ones that did had it typed out
+// by hand with no shared source. This component is that shared source:
+// the lead sentence is always identical, `context` supplies only the
+// calculator-specific second sentence (who the real authority is and what
+// real data they'd use instead).
+export interface Props {
+  lang?: 'en' | 'es';
+  context: string;
+}
+const { lang = 'en', context } = Astro.props;
+const lead = lang === 'es'
+  ? 'Esta es una herramienta de referencia, no una autoridad operativa.'
+  : 'This is a reference tool, not an operational authority.';
+---
+<div class="danger-box mt-24" style="max-width:700px;">
+  <strong>{lead}</strong> {context}
+</div>

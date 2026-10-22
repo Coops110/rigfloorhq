@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import VideoEmbed from '../../components/VideoEmbed.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
 
@@ -138,9 +139,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
           </div>
         </div>
 
-        <div class="note-box mt-24" style="max-width:700px;">
-          <strong>Reference only.</strong> Track cumulative ton-miles against your drilling line's actual service-life rating and cut-and-slip programme, not a one-off figure from this page.
-        </div>
+        <CalculatorDisclaimer lang="en" context="Track cumulative ton-miles against your drilling line's actual service-life rating and cut-and-slip programme, not a one-off figure from this page." />
       </div>
 
       <div class="prose">

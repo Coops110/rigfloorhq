@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
@@ -93,9 +94,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
           </div>
         </div>
 
-        <div class="note-box mt-24">
-          <strong>Reference only.</strong> Actual swab margin depends on formation pressure margin, trip speed, and gel strength effects beyond this static calculation — use your company's approved trip sheet for a live job.
-        </div>
+        <CalculatorDisclaimer lang="en" context="Actual swab margin depends on formation pressure margin, trip speed, and gel strength effects beyond this static calculation — use your company's approved trip sheet for a live job." />
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
           <h2 style="font-family:var(--cond);font-weight:700;font-size:17px;text-transform:uppercase;color:var(--white);letter-spacing:0.03em;margin-bottom:8px;">Related Reading</h2>
           <a href="/calculators/trip-margin" class="card-link">→ Trip Margin / Safety Factor</a><br><br>

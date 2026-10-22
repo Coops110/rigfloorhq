@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
 
 // IADC's 8-position dull grading system, standardized industry-wide since a
@@ -253,9 +254,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
           </div>
         </div>
 
-        <div class="note-box mt-24" style="max-width:700px;">
-          <strong>Reference only.</strong> This is the standard IADC eight-position chart used industry-wide, not a manufacturer-specific or operator-specific version. Always confirm against the current IADC chart or a bit company field engineer for a grading that has commercial or engineering consequences.
-        </div>
+        <CalculatorDisclaimer lang="en" context="This is the standard IADC eight-position chart used industry-wide, not a manufacturer-specific or operator-specific version. Always confirm against the current IADC chart or a bit company field engineer for a grading that has commercial or engineering consequences." />
       </div>
 
       <div class="prose">

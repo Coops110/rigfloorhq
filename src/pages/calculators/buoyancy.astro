@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import VideoEmbed from '../../components/VideoEmbed.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
 
@@ -97,9 +98,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
           </div>
         </div>
 
-        <div class="note-box mt-24">
-          <strong>Reference only.</strong> Use actual pipe OD/ID from the tally book and confirmed fluid weights for a real string-weight calculation, not catalog nominal values.
-        </div>
+        <CalculatorDisclaimer lang="en" context="Use actual pipe OD/ID from the tally book and confirmed fluid weights for a real string-weight calculation, not catalog nominal values." />
       </div>
 
       <div class="prose">

@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
@@ -97,9 +98,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
           </div>
         </div>
 
-        <div class="note-box mt-24" style="max-width:700px;">
-          <strong>Reference only.</strong> Confirm both elevations against the actual rig documentation before applying a correction to a live well's depth records.
-        </div>
+        <CalculatorDisclaimer lang="en" context="Confirm both elevations against the actual rig documentation before applying a correction to a live well's depth records." />
       </div>
 
       <div class="prose">
