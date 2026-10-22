@@ -190,6 +190,26 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
           <dd class="formula-note">Down uses drill string capacity. Up (bottoms-up) uses annular volume.</dd>
         </dl>
 
+        <h3>Worked Example</h3>
+        <p>Triplex pump, 6 in liner, 11 in stroke, 97% efficiency, 50 SPM; 9,500 ft of 5 in/4.276 in drill pipe plus 500 ft of 6.5 in/2.813 in BHA, in an 8.5 in hole throughout:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Pump Output</dt>
+          <dd class="formula-eq"><code>0.000243 × 6² × 11 × 0.97 = 0.0933 bbl/stk</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">String Capacity (Drill Pipe + BHA)</dt>
+          <dd class="formula-eq"><code>(4.276² ÷ 1029.4 × 9,500) + (2.813² ÷ 1029.4 × 500) = 172.58 bbl</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Total Annular Volume</dt>
+          <dd class="formula-eq"><code>[(8.5² − 5²) ÷ 1029.4 × 9,500] + [(8.5² − 6.5²) ÷ 1029.4 × 500] = 450.63 bbl</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Lag Strokes and Time</dt>
+          <dd class="formula-eq"><code>Down: 172.58 ÷ 0.0933 = 1,849 strokes = 37.0 min<br />Up: 450.63 ÷ 0.0933 = 4,828 strokes = 96.6 min</code></dd>
+          <dd class="formula-note">A gas show logged at surface now reflects a kick that entered the annulus roughly 96.6 minutes and 4,828 strokes ago — that's the depth correlation lag time actually exists to make possible.</dd>
+        </dl>
+
         <p>These are the same capacity and displacement formulas behind the <a href="/calculators/kill-sheet">kill sheet calculator</a>'s strokes-to-bit and bottoms-up figures — this page just runs them for routine lag correlation rather than a kill. If you need a running joint-by-joint depth tally rather than a one-shot volume, see the <a href="/calculators/drill-pipe-tally">drill pipe tally calculator</a>. For the constants written out with worked numbers, see the <a href="/calculators/formulas-cheat-sheet">drilling formulas cheat sheet</a>.</p>
 
         <h2 id="faq">Frequently Asked Questions</h2>

@@ -129,6 +129,22 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
           <strong>Un error real detectado al construir esta página:</strong> la hoja de cálculo de referencia contra la que se revisó esto calculaba la altura vertical de influjo alimentando un valor en grados a una función coseno que esperaba radianes — un error clásico de unidad en hoja de cálculo. Eso produce una altura vertical físicamente incorrecta, demasiado pequeña. Esta calculadora usa la trigonometría correcta (grados convertidos a radianes internamente), lo cual da una altura vertical notablemente mayor y correcta para las mismas entradas.
         </div>
 
+        <h3>Ejemplo Resuelto</h3>
+        <p>Surgencia de 20 bbl, capacidad anular de 0.0836 bbl/ft, inclinación de 45°:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Longitud de la Surgencia a lo Largo del Pozo</dt>
+          <dd class="formula-eq"><code>20 ÷ 0.0836 = 239.23 ft</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Altura Vertical de la Surgencia</dt>
+          <dd class="formula-eq"><code>239.23 × cos(45°) = 169.16 ft</code></dd>
+        </dl>
+        <p>Metiendo esa altura vertical (redondeada a 150 ft para esta verificación) en la caja de SICP con lodo de 12 ppg, SIDPP de 450 psi, y un gradiente de surgencia de 0.11 psi/ft:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Presión de Revestimiento Cerrado</dt>
+          <dd class="formula-eq"><code>450 + [150 × (12 × 0.052 − 0.11)] = 527.1 psi</code></dd>
+        </dl>
+
         <h3>Dónde Encaja Esto</h3>
         <p>Estas tres fórmulas se encadenan en una surgencia real: el volumen de surgencia en bbl es una lectura de ganancia de pileta, pero ni la acción de <a href="/es/drilling/well-control">control de pozos</a> ni una revisión de presión pueden usar bbl directamente — primero tiene que convertirse en una longitud de pozo, luego en una altura vertical verdadera, antes de que signifique algo en un manómetro. Una vez que se conoce la altura vertical de influjo, pásala a la segunda caja junto con el gradiente de presión propio del influjo (un <a href="/es/calculators/gas-migration">gradiente de gas estimado</a> si es una surgencia de gas) para revisar la presión de revestimiento con pozo cerrado resultante contra lo que realmente se está leyendo en superficie — un desajuste real ahí vale la pena investigarlo antes de asumir que cualquiera de los números es correcto.</p>
 

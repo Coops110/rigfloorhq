@@ -139,6 +139,25 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
           <dd class="formula-eq"><code>Cumulative Capacity = Capacity/ft × Depth<br />Cumulative Displacement = Displacement/ft × Depth</code></dd>
         </dl>
 
+        <h3>Worked Example</h3>
+        <p>5 in OD, 4.276 in ID, 20 joints averaging 31.2 ft each:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Capacity and Displacement per Foot</dt>
+          <dd class="formula-eq"><code>Capacity = 4.276² ÷ 1029.4 = 0.01776 bbl/ft<br />Displacement = (5² − 4.276²) ÷ 1029.4 = 0.00652 bbl/ft</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Total String Length</dt>
+          <dd class="formula-eq"><code>20 × 31.2 = 624 ft</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Total Capacity and Displacement</dt>
+          <dd class="formula-eq"><code>0.01776 × 624 = 11.08 bbl capacity<br />0.00652 × 624 = 4.07 bbl displacement</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Approx. Stands (93.5 ft average)</dt>
+          <dd class="formula-eq"><code>624 ÷ 93.5 = 6.7 stands</code></dd>
+        </dl>
+
         <p>This calculator handles one uniform section of pipe — a single OD/ID/weight run the length of the string. A real drill string usually pairs drill pipe with a shorter, heavier BHA or drill collars near the bit, which have their own OD and ID and need their own pass through the same formulas. The <a href="/calculators/lag-and-volume">lag &amp; volume calculator</a> already handles a two-section string (drill pipe plus BHA) if that split matters for what you're working out.</p>
         <p>Capacity and displacement here both come from a full circular cross-section. A horizontal tank on its side works from a related but different shape — a circular segment that changes with fill height rather than a constant bore — see the <a href="/calculators/horizontal-tank-capacity">horizontal tank capacity calculator</a> for that geometry.</p>
         <p>For the constants written out with worked numbers, see the <a href="/calculators/formulas-cheat-sheet">drilling formulas cheat sheet</a>.</p>

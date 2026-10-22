@@ -156,6 +156,19 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
       </div>
 
       <div class="prose">
+        <h3>Worked Example</h3>
+        <p>An 8 1/2 in PDC bit needs a connection and a make-up torque figure before it goes to the floor:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Step 1 — Bit Size to Thread</dt>
+          <dd class="formula-eq"><code>8 1/2 in falls in the 7 1/2 – 9 3/8 range → 4 1/2 REG</code></dd>
+          <dd class="formula-note">Read straight off the first table — bit diameter decides the connection, not the other way around.</dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Step 2 — Thread to Make-Up Torque (PDC)</dt>
+          <dd class="formula-eq"><code>4 1/2 REG, PDC → 18,000–20,000 ft-lb (23,500 ft-lb Max. Severe)</code></dd>
+          <dd class="formula-note">Normal vertical drilling: make up inside the 18,000–20,000 ft-lb range. A high-WOB or aggressive directional run on the same connection is the case where 23,500 ft-lb Max. Severe applies — not the default target.</dd>
+        </dl>
+
         <h2>Why the Range Matters</h2>
         <p>Make-up torque is not a single number to hit — it is a range with a reason behind each end. Below the minimum, the connection is not fully engaged and can work loose under the vibration and cyclic loading of normal drilling. Above the maximum, the pin and box are stressed harder than the connection was designed for, and repeated over-torquing is a direct path to galled threads.</p>
         <p><strong>Maximum Severe</strong> exists for a specific reason: directional and high-WOB drilling put more working load on a bit connection than a straightforward vertical run, and a connection made up to ordinary maximum can still back off under that extra load. It is not a target to aim for by default — it is the ceiling for when conditions actually call for it.</p>

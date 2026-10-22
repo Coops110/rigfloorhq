@@ -164,6 +164,22 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
           <dd class="formula-note">Wp = buoyed casing weight/ft · D = casing depth · Lj = length of one joint · Wb = block weight.</dd>
         </dl>
 
+        <h3>Worked Example</h3>
+        <p>9.6 ppg mud, 13.3 lb/ft drill pipe, 90 ft stands, 15,000 lb block, 600 ft of 83 lb/ft collars, round trip from 8,000 ft to 8,500 ft:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Buoyancy Factor</dt>
+          <dd class="formula-eq"><code>(65.5 − 9.6) ÷ 65.5 = 0.8534</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Round Trip Ton-Miles at Each Depth</dt>
+          <dd class="formula-eq"><code>RTTM at 8,000 ft = 169.10<br />RTTM at 8,500 ft = 184.23</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Drilling Ton-Miles for This 500 ft Interval</dt>
+          <dd class="formula-eq"><code>3 × (184.23 − 169.10) = 45.4 ton-miles</code></dd>
+          <dd class="formula-note">A single 500 ft round trip at this depth costs the drilling line about 45 ton-miles of its service-life rating — the same figure the video above walks through.</dd>
+        </dl>
+
         <p>Buoyancy factor here uses the same 65.5 constant as the <a href="/calculators/formulas-cheat-sheet">drilling formulas cheat sheet</a>'s buoyancy section — see that page if a figure needs reconciling to more decimal places.</p>
 
         <h2>Watch: One Trip, 45 Ton-Miles of Wear</h2>

@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import SourcesStandards from '../../components/SourcesStandards.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
@@ -140,6 +141,25 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
           <dd class="formula-eq"><code>Drop = Length Pulled × Steel Disp ÷ Capacity</code></dd>
         </dl>
 
+        <h3>Worked Example</h3>
+        <p>11 ppg mud, 0.00653 bbl/ft steel displacement, 0.1481 bbl/ft hole capacity:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Pressure Drop/ft — Dry Pipe</dt>
+          <dd class="formula-eq"><code>11 × 0.052 × [0.00653 ÷ (0.1481 − 0.00653)] = 0.0264 psi/ft</code></dd>
+        </dl>
+        <p>Same mud weight, 0.01776 bbl/ft drill pipe capacity, 0.12381 bbl/ft annular capacity:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Pressure Drop/ft — Wet Pipe</dt>
+          <dd class="formula-eq"><code>11 × 0.052 × [(0.00653 + 0.01776) ÷ 0.12381] = 0.1122 psi/ft</code></dd>
+          <dd class="formula-note">Wet pipe loses pressure more than 4× faster per foot than dry pipe here — the internal fluid coming out with the pipe is the difference.</dd>
+        </dl>
+        <p>Pulling 200 ft of dry pipe at the same steel displacement and hole capacity:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Mud Level Drop</dt>
+          <dd class="formula-eq"><code>200 × 0.00653 ÷ 0.1481 = 8.82 ft</code></dd>
+          <dd class="formula-note">That's how much the mud level falls in the hole for every 200 ft of dry pipe pulled without topping up — the volume the crew actually has to pump back in to keep hydrostatic pressure from sagging.</dd>
+        </dl>
+
         <h3>Where This Fits</h3>
         <p>These three calculations are the mechanics behind the same swab risk the <a href="/calculators/trip-margin">trip margin calculator</a> and the <a href="/calculators/pipe-pull-margin">wet and dry pipe pull margin calculator</a> both plan around — trip margin sets how much extra mud weight to carry, pull margin says how far pipe can safely come out, and this page works out the actual pressure and mud-level consequence of a specific length pulled dry or wet. On a real trip, mud level drop is what tells the crew exactly how much to top up the annulus after every stand or connection to keep hydrostatic pressure from sagging as pipe comes out. For the broader static-vs-dynamic pressure picture these numbers sit inside, see the <a href="/pillars/hydrostatic-pressure">hydrostatic pressure pillar</a>.</p>
 
@@ -153,6 +173,8 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
       </div>
     </div>
   </section>
+
+  <SourcesStandards lang="en" ids={['api53', 'iwcf', 'iadcWellsharp']} />
 </BaseLayout>
 
 <style>

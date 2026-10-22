@@ -118,6 +118,22 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
           <dd class="formula-note">La corrección total a aplicar a la tally de tubería de perforación para obtener la profundidad verdadera contra la nueva referencia.</dd>
         </dl>
 
+        <h3>Ejemplo Resuelto</h3>
+        <p>La elevación del piso de perforación cambió de 45 ft a 35 ft, y una corrida de cable después marca 10,245 ft contra un tally de tubería de 10,250 ft:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">1ra Corrección</dt>
+          <dd class="formula-eq"><code>45 − 35 = +10 ft</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">2da Corrección</dt>
+          <dd class="formula-eq"><code>10,250 − 10,245 = +5 ft</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Corrección Final</dt>
+          <dd class="formula-eq"><code>10 + 5 = +15 ft</code></dd>
+          <dd class="formula-note">Positivo significa que el tally de tubería lee por debajo de la profundidad real contra la nueva referencia — suma 15 ft al tally para reconciliarlo.</dd>
+        </dl>
+
         <p>Esto es una reconciliación de datum, no un cálculo de estiramiento — no considera por sí solo el estiramiento de la tubería o del cable con la profundidad. Para la matemática de capacidad y volumen en la que se alimenta esa profundidad, ver la <a href="/es/calculators/formulas-cheat-sheet">hoja de referencia de fórmulas de perforación</a>.</p>
 
         <h2 id="faq">Preguntas Frecuentes</h2>

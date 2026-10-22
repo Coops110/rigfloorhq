@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import SourcesStandards from '../../../components/SourcesStandards.astro';
 import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const faq = [
@@ -142,6 +143,25 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
           <dd class="formula-eq"><code>Caída = Longitud Sacada × Desp. de Acero ÷ Capacidad</code></dd>
         </dl>
 
+        <h3>Ejemplo Resuelto</h3>
+        <p>Lodo de 11 ppg, desplazamiento de acero de 0.00653 bbl/ft, capacidad de pozo de 0.1481 bbl/ft:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Caída de Presión/ft — Tubería Seca</dt>
+          <dd class="formula-eq"><code>11 × 0.052 × [0.00653 ÷ (0.1481 − 0.00653)] = 0.0264 psi/ft</code></dd>
+        </dl>
+        <p>Mismo peso de lodo, capacidad interna de tubería de 0.01776 bbl/ft, capacidad anular de 0.12381 bbl/ft:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Caída de Presión/ft — Tubería Mojada</dt>
+          <dd class="formula-eq"><code>11 × 0.052 × [(0.00653 + 0.01776) ÷ 0.12381] = 0.1122 psi/ft</code></dd>
+          <dd class="formula-note">La tubería mojada pierde presión más de 4 veces más rápido por pie aquí que la seca — el fluido interno que sale con la tubería es la diferencia.</dd>
+        </dl>
+        <p>Sacando 200 ft de tubería seca con el mismo desplazamiento de acero y capacidad de pozo:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Caída de Nivel de Lodo</dt>
+          <dd class="formula-eq"><code>200 × 0.00653 ÷ 0.1481 = 8.82 ft</code></dd>
+          <dd class="formula-note">Eso es cuánto cae el nivel de lodo en el pozo por cada 200 ft de tubería seca sacada sin reponer — el volumen que la cuadrilla realmente tiene que bombear de vuelta para evitar que la presión hidrostática caiga.</dd>
+        </dl>
+
         <h3>Dónde Encaja Esto</h3>
         <p>Estos tres cálculos son la mecánica detrás del mismo riesgo de swab contra el que planean tanto la <a href="/es/calculators/trip-margin">calculadora de margen de viaje</a> como la <a href="/es/calculators/pipe-pull-margin">calculadora de margen de extracción de tubería seca y mojada</a> — el margen de viaje establece cuánto peso de lodo extra cargar, el margen de extracción dice qué tan lejos puede salir la tubería con seguridad, y esta página calcula la consecuencia real de presión y nivel de lodo de una longitud específica sacada seca o mojada. En un viaje real, la caída de nivel de lodo es lo que le dice a la cuadrilla exactamente cuánto rellenar el anular después de cada parada o conexión para que la presión hidrostática no se desplome conforme sale la tubería. Para el panorama completo de presión estática contra dinámica en el que viven estos números, ver la <a href="/es/pillars/hydrostatic-pressure">guía de presión hidrostática</a>.</p>
 
@@ -155,6 +175,8 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
       </div>
     </div>
   </section>
+
+  <SourcesStandards lang="es" ids={['api53', 'iwcf', 'iadcWellsharp']} />
 </BaseLayout>
 
 <style>

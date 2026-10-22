@@ -141,6 +141,18 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
         <h2 id="why-not-linear">Por Qué la Tabla No Es una Línea Recta</h2>
         <p>Un tanque vertical tiene la misma sección transversal a cualquier altura, así que su relación altura-a-volumen es lineal — duplica la altura, duplica el volumen. Un tanque horizontal no, porque la sección transversal mojada es un segmento circular que empieza con ancho cero en el fondo, se ensancha hacia la mitad, y se angosta de nuevo hasta cero en la parte superior. Por eso las primeras pulgadas desde el fondo de un tanque horizontal representan mucho menos volumen que las mismas pulgadas cerca de la mitad, y es exactamente lo que la tabla de la izquierda está construida para mostrar en lugar de aproximar.</p>
 
+        <h3>Ejemplo Resuelto</h3>
+        <p>Un tanque de 48 in de diámetro, 120 in de largo (r = 24 in), medido a 36 in — 75% del diámetro:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Área del Segmento Circular</dt>
+          <dd class="formula-eq"><code>A(36) = 24² × cos⁻¹((24−36)÷24) − (24−36) × √(2×24×36 − 36²) = 1,455.79 in²</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Volumen</dt>
+          <dd class="formula-eq"><code>1,455.79 × 120 = 174,695 in³ = 756.25 gal</code></dd>
+          <dd class="formula-note">Eso es 80.45% de la capacidad total del tanque (940.03 gal) a partir del 75% del diámetro — no 75%. Medido al 25% (12 in), el mismo tanque marca solo 19.55% lleno (183.78 gal); los dos porcentajes suman exactamente 100%, la verificación de simetría que confirma la fórmula.</dd>
+        </dl>
+
         <h2 id="where-this-fits">Dónde Encaja Esto</h2>
         <p>Esta es la misma familia de matemática de geometría a volumen que las cifras de capacidad y desplazamiento de la <a href="/es/calculators/drill-pipe-tally">calculadora de tally de tubería</a>, solo aplicada a una forma distinta — un segmento circular aquí en lugar de una sección transversal circular completa. Si el número que realmente necesitas es rendimiento de bomba o emboladas en lugar de un volumen de tanque estático, la <a href="/es/calculators/lag-and-volume">calculadora de retraso y volumen</a> cubre ese lado del sistema circulante.</p>
         <p>Para dónde encaja un tanque portátil de combustible, agua, o químicos como este en relación con el propio equipo de procesamiento de fluidos del equipo, ver la <a href="/es/equipment/mud-pit-system">página del sistema de piletas de lodo / control de sólidos</a> — una clase de tanque distinta, rectangular, haciendo un trabajo distinto.</p>

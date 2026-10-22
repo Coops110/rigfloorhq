@@ -183,6 +183,14 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
         <p><strong>El número de empaque</strong> es lo que se pide: un número "R" es un empaque plano asentado en una ranura plana, usado hasta 5M. Un número "BX" está energizado por presión — la presión del pozo ayuda a mantenerlo sellado en lugar de trabajar en su contra — y es estándar en 10M y superiores, incluyendo prácticamente todas las conexiones del stack de BOP.</p>
         <p><strong>Espárragos, longitud y diámetro de espárrago</strong> son el apriete físico. <strong>Tuerca A/F</strong> es el ancho a través de caras de la tuerca hexagonal pesada correspondiente, según ASME B18.2.2 — el número que te dice qué dado llevar, no solo qué pedir.</p>
 
+        <h3>Ejemplo Resuelto</h3>
+        <p>Una conexión de stack de BOP marcada con 7 1/16" de diámetro, clasificación 10M:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Búsqueda</dt>
+          <dd class="formula-eq"><code>7 1/16", 10M → BX-156, 12 espárragos, espárragos de 11 3/4", diámetro 1 1/2", tuerca A/F 2 3/8", OD de brida 18 7/8"</code></dd>
+          <dd class="formula-note">BX, no R, porque 10M cruza el umbral presurizado — pedir un empaque serie R para esta conexión sería la pieza equivocada aunque el tamaño de diámetro solo no te lo diría.</dd>
+        </dl>
+
         <h2 id="why-it-matters">Por Qué Importa en el Piso de Perforación</h2>
         <p>Armar o desarmar un stack de BOP, cambiar un carrete, o reconectar una brida de cabezal se reducen a la misma pregunta: ¿el empaque, los espárragos y las tuercas realmente corresponden al diámetro y clasificación marcados en la brida? Equivocarse en el número de empaque no siempre falla de forma obvia — un número BX cercano pero incorrecto puede parecer bien asentado y aun así no sostener la presión de prueba, que es exactamente por qué la prueba de presión existe como verificación separada de la visual.</p>
         <p>Para el stack donde esto aplica más seguido, ver <a href="/es/equipment/bop">cómo se arma un stack de BOP</a>. Las conexiones de barrena y sarta de perforación usan un sistema roscado completamente distinto — ver la <a href="/es/calculators/bit-torque">tabla de roscas de barrena y torque de apriete</a> para ese lado del equipo.</p>

@@ -120,6 +120,22 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
           <dd class="formula-note">The total correction to apply to the drill pipe tally to get true depth against the new reference.</dd>
         </dl>
 
+        <h3>Worked Example</h3>
+        <p>Rig floor elevation changed from 45 ft to 35 ft, and a wireline run later reads 10,245 ft against a drill pipe tally of 10,250 ft:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">1st Correction</dt>
+          <dd class="formula-eq"><code>45 − 35 = +10 ft</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">2nd Correction</dt>
+          <dd class="formula-eq"><code>10,250 − 10,245 = +5 ft</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Final Correction</dt>
+          <dd class="formula-eq"><code>10 + 5 = +15 ft</code></dd>
+          <dd class="formula-note">Positive means the drill pipe tally under-reads true depth against the new reference — add 15 ft to the tally depth to reconcile it.</dd>
+        </dl>
+
         <p>This is a datum reconciliation, not a stretch calculation — it doesn't account for drill pipe or wireline stretch over depth on its own. For the capacity and volume math that depth feeds into elsewhere, see the <a href="/calculators/formulas-cheat-sheet">drilling formulas cheat sheet</a>.</p>
 
         <h2 id="faq">Frequently Asked Questions</h2>

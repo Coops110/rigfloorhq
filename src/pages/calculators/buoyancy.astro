@@ -125,6 +125,27 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
 
         <p>For the simple open-ended case applied to a full drill string's ton-mile figure, see the <a href="/calculators/ton-mile">ton-mile calculator</a>. Neutral point and where to keep drill collars in compression are on the <a href="/calculators/formulas-cheat-sheet#buoyancy">drilling formulas cheat sheet</a>.</p>
 
+        <h3>Worked Example</h3>
+        <p>19.5 lb/ft pipe, 5.0 in OD, 4.276 in ID, 10 ppg in the annulus:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Buoyancy Factor</dt>
+          <dd class="formula-eq"><code>1 − (10 ÷ 65.5) = 0.8473</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Open-Ended Buoyed Weight</dt>
+          <dd class="formula-eq"><code>19.5 × 0.8473 = 16.52 lb/ft</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Closed-Ended, No Fluid Inside</dt>
+          <dd class="formula-eq"><code>19.5 − [(5.0² × 10) ÷ 24.5] = 9.30 lb/ft</code></dd>
+          <dd class="formula-note">Nearly 7 lb/ft lighter than the open-ended case — a closed end displaces its full OD with nothing pushing back from inside.</dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Different Fluid In/Out — 9.0 ppg Packer Fluid Inside, 10 ppg Annulus</dt>
+          <dd class="formula-eq"><code>19.5 + [(4.276² × 9.0) ÷ 24.5] − [(5.0² × 10) ÷ 24.5] = 16.01 lb/ft</code></dd>
+          <dd class="formula-note">Close to the open-ended figure here because the two fluid weights are similar — the gap widens as the inside/annulus fluid weights diverge further.</dd>
+        </dl>
+
         <h2>Watch: Why the Same Pipe Weighs Two Different Amounts</h2>
         <VideoEmbed
           videoId="DbnH4G8ZZow"

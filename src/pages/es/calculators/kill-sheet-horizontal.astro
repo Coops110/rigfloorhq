@@ -138,6 +138,23 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
         </dl>
         <p><strong>En unidades métricas:</strong> ninguna de estas dos fórmulas tiene constante, así que funcionan igual con profundidades en metros, capacidad en m³/m, rendimiento en m³ por embolada y presiones en bar, siempre que no se mezclen sistemas. La calculadora espera unidades de campo; para convertir, 1 m = 3.281 ft, 1 m³/m = 1.917 bbl/ft, 1 bar (100 kPa) = 14.504 psi y 1 m³ = 6.290 bbl. Los valores por defecto de ICP (750 psi / 51.7 bar), FCP (476 psi / 32.8 bar) y emboladas a la barrena (1,731) salen del ejemplo resuelto de la <a href="/es/calculators/kill-sheet#metrico">hoja de control de pozo con equivalencias métricas</a>; el KOP a 3,000 ft (914 m) y el EOB a 4,500 ft MD (1,372 m) / 3,800 ft TVD (1,158 m) son una trayectoria de ejemplo.</p>
 
+        <h3>Ejemplo Resuelto</h3>
+        <p>ICP 750 psi, FCP 476 psi, 1,731 emboladas a la barrena, capacidad de tubería de perforación 0.01776 bbl/ft, salida de bomba 0.1 bbl/embolada — KOP a 3,000 ft MD:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Volumen de Sarta y Emboladas a KOP</dt>
+          <dd class="formula-eq"><code>3,000 × 0.01776 = 53.28 bbl → 53.28 ÷ 0.1 = 533 emboladas</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Presión de Tubería de Perforación en KOP</dt>
+          <dd class="formula-eq"><code>750 − (750 − 476) × (533 ÷ 1,731) = 665.7 psi</code></dd>
+        </dl>
+        <p>EOB a 4,500 ft MD, mismo ICP/FCP/emboladas a la barrena:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Volumen, Emboladas y Presión en EOB</dt>
+          <dd class="formula-eq"><code>4,500 × 0.01776 = 79.92 bbl → 799 emboladas → 750 − (750 − 476) × (799 ÷ 1,731) = 623.5 psi</code></dd>
+          <dd class="formula-note">El operador de choke debería ver la presión de tubería de perforación pasar aproximadamente 665.7 psi en KOP y 623.5 psi en EOB en el camino de 750 a 476 — una lectura notablemente diferente en cualquier punto de control vale la pena detenerse a revisar antes de seguir bombeando.</dd>
+        </dl>
+
         <p>Esta página solo cubre los dos puntos de control extra — para peso de fluido de matar, ICP, FCP, emboladas a la barrena, y el programa completo de presión de 10 pasos, usa la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a>. Para los procedimientos del Método del Perforador y Esperar y Densificar que soporta este programa, ver la <a href="/es/drilling/well-control">página de referencia de control de pozos</a>.</p>
 
         <h2 id="faq">Preguntas Frecuentes</h2>

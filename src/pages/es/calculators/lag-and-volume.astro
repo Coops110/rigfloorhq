@@ -188,6 +188,26 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
           <dd class="formula-note">Bajando usa la capacidad de la sarta. Subiendo (fondo hacia arriba) usa el volumen anular.</dd>
         </dl>
 
+        <h3>Ejemplo Resuelto</h3>
+        <p>Bomba triplex, camisa de 6 in, carrera de 11 in, 97% de eficiencia, 50 SPM; 9,500 ft de tubería de perforación de 5 in/4.276 in más 500 ft de BHA de 6.5 in/2.813 in, en un pozo de 8.5 in en todo el tramo:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Salida de Bomba</dt>
+          <dd class="formula-eq"><code>0.000243 × 6² × 11 × 0.97 = 0.0933 bbl/embolada</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Capacidad de la Sarta (Tubería + BHA)</dt>
+          <dd class="formula-eq"><code>(4.276² ÷ 1029.4 × 9,500) + (2.813² ÷ 1029.4 × 500) = 172.58 bbl</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Volumen Anular Total</dt>
+          <dd class="formula-eq"><code>[(8.5² − 5²) ÷ 1029.4 × 9,500] + [(8.5² − 6.5²) ÷ 1029.4 × 500] = 450.63 bbl</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Emboladas y Tiempo de Retraso</dt>
+          <dd class="formula-eq"><code>Bajada: 172.58 ÷ 0.0933 = 1,849 emboladas = 37.0 min<br />Subida: 450.63 ÷ 0.0933 = 4,828 emboladas = 96.6 min</code></dd>
+          <dd class="formula-note">Un gas show registrado en superficie ahora refleja una surgencia que entró al anular hace aproximadamente 96.6 minutos y 4,828 emboladas — eso es exactamente lo que el tiempo de retraso existe para hacer posible.</dd>
+        </dl>
+
         <p>Estas son las mismas fórmulas de capacidad y desplazamiento detrás de las cifras de emboladas a la barrena y fondo hacia arriba de la <a href="/es/calculators/kill-sheet">calculadora de hoja de control de pozo</a> — esta página solo las ejecuta para correlación de retraso rutinaria en lugar de una matanza. Si necesitas un tally continuo de profundidad junta por junta en lugar de un volumen de una sola vez, ve la <a href="/es/calculators/drill-pipe-tally">calculadora de tally de tubería</a>.</p>
 
         <h2 id="faq">Preguntas Frecuentes</h2>

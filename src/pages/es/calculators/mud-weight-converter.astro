@@ -178,6 +178,18 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
         </dl>
         <p>Este convertidor usa el valor completo en lugar del redondeado. En un pozo de 10,000 ft la diferencia entre 0.052 y 0.0519481 es de unos 5 psi a 10 ppg — insignificante en el piso, pero no hay razón para cargar con el error.</p>
 
+        <h3>Ejemplo Resuelto</h3>
+        <p>Lodo de 12 ppg, convertido a cada una de las demás unidades de esta página:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Gravedad Específica y Gradiente de Presión</dt>
+          <dd class="formula-eq"><code>12 ÷ 8.345404 = 1.4379 sg<br />12 × 0.0519481 = 0.6234 psi/ft</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Densidad</dt>
+          <dd class="formula-eq"><code>12 × 7.480519 = 89.77 lb/ft³<br />12 × 119.826427 = 1,437.9 kg/m³</code></dd>
+          <dd class="formula-note">1,437.9 kg/m³ ÷ 1000 = 1.4379 — el mismo número que la gravedad específica de arriba, ya que sg es solo densidad relativa a 1,000 kg/m³ de agua.</dd>
+        </dl>
+
         <h3>Qué unidad se usa dónde</h3>
         <ul>
           <li><strong>ppg</strong> — la unidad de trabajo en la mayoría de los taladros en EE. UU. e internacionales, y en la que están escritos los reportes de lodo.</li>

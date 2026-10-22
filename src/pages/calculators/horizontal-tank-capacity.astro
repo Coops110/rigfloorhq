@@ -160,6 +160,18 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
         <h2 id="why-not-linear">Why the Table Isn't a Straight Line</h2>
         <p>A vertical tank has the same cross-section at every height, so its fill-height-to-volume relationship is linear — double the height, double the volume. A horizontal tank does not, because the wetted cross-section is a circular segment that starts at zero width at the bottom, widens through the middle, and narrows back to zero at the top. That is why the first few inches off the bottom of a horizontal tank read as much less volume than the same few inches near the middle, and it is exactly what the table on the left is built to show rather than approximate.</p>
 
+        <h3>Worked Example</h3>
+        <p>A 48 in diameter, 120 in long tank (r = 24 in), dipped at 36 in — 75% of diameter:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Circular Segment Area</dt>
+          <dd class="formula-eq"><code>A(36) = 24² × cos⁻¹((24−36)÷24) − (24−36) × √(2×24×36 − 36²) = 1,455.79 in²</code></dd>
+        </dl>
+        <dl class="formula-block mt-24">
+          <dt class="formula-label">Volume</dt>
+          <dd class="formula-eq"><code>1,455.79 × 120 = 174,695 in³ = 756.25 gal</code></dd>
+          <dd class="formula-note">That's 80.45% of the tank's full 940.03 gal capacity from 75% of the diameter — not 75%. Dipped at 25% (12 in), the same tank reads only 19.55% full (183.78 gal); the two percentages sum to exactly 100%, the symmetry check that confirms the formula.</dd>
+        </dl>
+
         <h2 id="where-this-fits">Where This Fits</h2>
         <p>This is the same family of geometry-to-volume math as the <a href="/calculators/drill-pipe-tally">drill pipe tally calculator</a>'s capacity and displacement figures, just applied to a different shape — a circular segment here instead of a full circular cross-section. If the number you actually need is pump output or strokes rather than a static tank volume, the <a href="/calculators/lag-and-volume">lag &amp; volume calculator</a> covers that side of the circulating system.</p>
         <p>For where a portable fuel, water, or chemical tank like this one fits relative to the rig's own fluid processing equipment, see the <a href="/equipment/mud-pit-system">mud pit / solids control system page</a> — a different, rectangular class of tank doing a different job.</p>

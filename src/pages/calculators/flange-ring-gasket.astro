@@ -187,6 +187,14 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
         <p><strong>Ring gasket number</strong> is what you order: an "R" number is a plain gasket seated in a flat groove, used up through 5M. A "BX" number is pressure-energized — wellbore pressure helps hold it sealed rather than working against it — and is standard at 10M and above, including virtually every BOP stack connection.</p>
         <p><strong>Studs, stud length and stud diameter</strong> are the physical bolt-up. <strong>Nut A/F</strong> is the width-across-flats for the matching heavy hex nut per ASME B18.2.2 — the number that tells you what socket to bring, not just what to order.</p>
 
+        <h3>Worked Example</h3>
+        <p>A BOP stack connection stamped 7 1/16" bore, 10M rating:</p>
+        <dl class="formula-block">
+          <dt class="formula-label">Lookup</dt>
+          <dd class="formula-eq"><code>7 1/16", 10M → BX-156, 12 studs, 11 3/4" studs, 1 1/2" dia., 2 3/8" nut A/F, 18 7/8" flange OD</code></dd>
+          <dd class="formula-note">BX, not R, because 10M crosses the pressure-energized threshold — ordering an R-series gasket for this connection would be the wrong part even though the bore size alone wouldn't tell you that.</dd>
+        </dl>
+
         <h2 id="why-it-matters">Why This Matters on the Floor</h2>
         <p>Nippling up or down a BOP stack, changing a spool, or reconnecting a wellhead flange all come down to the same question: does the gasket, stud, and nut set actually match the bore and rating stamped on the flange. Getting a ring gasket number wrong doesn't always fail obviously — a close but incorrect BX number can look seated and still not hold at test pressure, which is exactly why the pressure test exists as a separate check from the visual one.</p>
         <p>For the stack this most often applies to, see <a href="/equipment/bop">how a BOP stack is arranged</a> and where these flanged connections sit in it. Bit and drill string connections use a completely different threaded system — see the <a href="/calculators/bit-torque">bit thread and make-up torque lookup</a> for that side of it.</p>
