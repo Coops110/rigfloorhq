@@ -136,11 +136,11 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
         <h2>Las Fórmulas Usadas</h2>
         <dl class="formula-block">
           <dt class="formula-label">Caída de Presión/ft — Tubería Seca</dt>
-          <dd class="formula-eq"><code>ΔP/ft = Peso de Lodo × 0.052 × (Desp. de Acero ÷ Capacidad)</code></dd>
+          <dd class="formula-eq"><code>ΔP/ft = 0.052 × Peso de Lodo × (Desp. de Acero ÷ Capacidad)</code></dd>
         </dl>
         <dl class="formula-block mt-24">
           <dt class="formula-label">Caída de Presión/ft — Tubería Mojada</dt>
-          <dd class="formula-eq"><code>ΔP/ft = Peso de Lodo × 0.052 × [(Desp. de Acero + Capacidad de Tubería) ÷ Capacidad Anular]</code></dd>
+          <dd class="formula-eq"><code>ΔP/ft = 0.052 × Peso de Lodo × [(Desp. de Acero + Capacidad de Tubería) ÷ Capacidad Anular]</code></dd>
         </dl>
         <dl class="formula-block mt-24">
           <dt class="formula-label">Caída de Nivel de Lodo (Seca)</dt>
@@ -151,12 +151,12 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
         <p>Lodo de 11 ppg, desplazamiento de acero de 0.00653 bbl/ft, capacidad de pozo de 0.1481 bbl/ft:</p>
         <dl class="formula-block">
           <dt class="formula-label">Caída de Presión/ft — Tubería Seca</dt>
-          <dd class="formula-eq"><code>11 × 0.052 × (0.00653 ÷ 0.1481) = 0.0252 psi/ft</code></dd>
+          <dd class="formula-eq"><code>0.052 × 11 × (0.00653 ÷ 0.1481) = 0.0252 psi/ft</code></dd>
         </dl>
         <p>Mismo peso de lodo, capacidad interna de tubería de 0.01776 bbl/ft, capacidad anular de 0.12381 bbl/ft:</p>
         <dl class="formula-block">
           <dt class="formula-label">Caída de Presión/ft — Tubería Mojada</dt>
-          <dd class="formula-eq"><code>11 × 0.052 × [(0.00653 + 0.01776) ÷ 0.12381] = 0.1122 psi/ft</code></dd>
+          <dd class="formula-eq"><code>0.052 × 11 × [(0.00653 + 0.01776) ÷ 0.12381] = 0.1122 psi/ft</code></dd>
           <dd class="formula-note">La tubería mojada pierde presión más de 4 veces más rápido por pie aquí que la seca — el fluido interno que sale con la tubería es la diferencia.</dd>
         </dl>
         <p>Sacando 200 ft de tubería seca con el mismo desplazamiento de acero y capacidad de pozo:</p>

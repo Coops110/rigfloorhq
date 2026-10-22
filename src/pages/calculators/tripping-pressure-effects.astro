@@ -134,11 +134,11 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
         <h2>The Formulas Used</h2>
         <dl class="formula-block">
           <dt class="formula-label">Pressure Drop/ft — Dry Pipe</dt>
-          <dd class="formula-eq"><code>ΔP/ft = MW × 0.052 × (Steel Disp ÷ Capacity)</code></dd>
+          <dd class="formula-eq"><code>ΔP/ft = 0.052 × MW × (Steel Disp ÷ Capacity)</code></dd>
         </dl>
         <dl class="formula-block mt-24">
           <dt class="formula-label">Pressure Drop/ft — Wet Pipe</dt>
-          <dd class="formula-eq"><code>ΔP/ft = MW × 0.052 × [(Steel Disp + Pipe Capacity) ÷ Annular Capacity]</code></dd>
+          <dd class="formula-eq"><code>ΔP/ft = 0.052 × MW × [(Steel Disp + Pipe Capacity) ÷ Annular Capacity]</code></dd>
         </dl>
         <dl class="formula-block mt-24">
           <dt class="formula-label">Drop in Mud Level (Dry)</dt>
@@ -149,12 +149,12 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
         <p>11 ppg mud, 0.00653 bbl/ft steel displacement, 0.1481 bbl/ft hole capacity:</p>
         <dl class="formula-block">
           <dt class="formula-label">Pressure Drop/ft — Dry Pipe</dt>
-          <dd class="formula-eq"><code>11 × 0.052 × (0.00653 ÷ 0.1481) = 0.0252 psi/ft</code></dd>
+          <dd class="formula-eq"><code>0.052 × 11 × (0.00653 ÷ 0.1481) = 0.0252 psi/ft</code></dd>
         </dl>
         <p>Same mud weight, 0.01776 bbl/ft drill pipe capacity, 0.12381 bbl/ft annular capacity:</p>
         <dl class="formula-block">
           <dt class="formula-label">Pressure Drop/ft — Wet Pipe</dt>
-          <dd class="formula-eq"><code>11 × 0.052 × [(0.00653 + 0.01776) ÷ 0.12381] = 0.1122 psi/ft</code></dd>
+          <dd class="formula-eq"><code>0.052 × 11 × [(0.00653 + 0.01776) ÷ 0.12381] = 0.1122 psi/ft</code></dd>
           <dd class="formula-note">Wet pipe loses pressure more than 4× faster per foot than dry pipe here — the internal fluid coming out with the pipe is the difference.</dd>
         </dl>
         <p>Pulling 200 ft of dry pipe at the same steel displacement and hole capacity:</p>
