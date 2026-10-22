@@ -406,6 +406,42 @@ export const CITATIONS = {
       note: "Equipo de protección personal — Calzado de seguridad — la norma EN/ISO (S3 es el requisito habitual en taladros) usada en el Reino Unido, Europa, Medio Oriente y gran parte de África en lugar de ASTM F2413.",
     },
   },
+  oshaOilGasHazards: {
+    en: {
+      href: 'https://www.osha.gov/oil-and-gas-extraction/hazards',
+      label: 'OSHA — Oil and Gas Extraction Hazards',
+      note: "OSHA's own hazard-by-hazard breakdown for the oil and gas extraction industry, covering vehicle/struck-by/caught-in incidents, falls, fires and explosions, confined spaces, and chemical exposure.",
+    },
+    es: {
+      href: 'https://www.osha.gov/oil-and-gas-extraction/hazards',
+      label: 'OSHA — Peligros de la Extracción de Petróleo y Gas',
+      note: 'El desglose propio de OSHA de peligros para la industria de extracción de petróleo y gas, incluyendo incidentes de vehículos/golpeado por/atrapado en, caídas, incendios y explosiones, espacios confinados y exposición química.',
+    },
+  },
+  blsCfoi: {
+    en: {
+      href: 'https://www.bls.gov/iif/fatal-injuries-tables.htm',
+      label: 'BLS — Census of Fatal Occupational Injuries',
+      note: "The U.S. Bureau of Labor Statistics' count of every fatal workplace injury by industry and event type — the federal government's primary source for which hazards actually kill the most workers, oil and gas extraction included.",
+    },
+    es: {
+      href: 'https://www.bls.gov/iif/fatal-injuries-tables.htm',
+      label: 'BLS — Censo de Lesiones Ocupacionales Fatales',
+      note: 'El conteo de la Oficina de Estadísticas Laborales de EE. UU. de cada lesión laboral fatal por industria y tipo de evento — la fuente federal principal sobre qué peligros matan realmente a más trabajadores, incluida la extracción de petróleo y gas.',
+    },
+  },
+  iogpSpi: {
+    en: {
+      href: 'https://www.iogp.org/bookstore/portfolio-item/safety-performance-indicators/',
+      label: 'IOGP — Safety Performance Indicators',
+      note: "IOGP's annual global safety performance report, built from its member companies' incident data — the source for offshore/global E&P fatality-cause breakdowns like dropped objects and process safety events, as distinct from the US-only BLS figures above.",
+    },
+    es: {
+      href: 'https://www.iogp.org/bookstore/portfolio-item/safety-performance-indicators/',
+      label: 'IOGP — Indicadores de Desempeño en Seguridad',
+      note: 'El reporte anual global de desempeño en seguridad de IOGP, construido con datos de incidentes de sus empresas miembro — la fuente de los desgloses de causas de fatalidad en E&P costa afuera/global como objetos caídos y eventos de seguridad de procesos, distinta de las cifras de BLS (solo EE. UU.) anteriores.',
+    },
+  },
   hseHsg250: {
     en: {
       href: "https://www.hse.gov.uk/pubns/books/hsg250.htm",

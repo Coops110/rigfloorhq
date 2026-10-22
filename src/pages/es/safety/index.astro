@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import SourcesStandards from '../../../components/SourcesStandards.astro';
 import { articleSchema, gitDates } from '../../../lib/techarticle.js';
 
 const safetyEsSourcePath = 'src/pages/es/safety/index.astro';
@@ -33,10 +34,21 @@ const { dateModified: safetyEsDateModified } = gitDates(safetyEsSourcePath);
   </div>
 
   <section class="block">
-    <div class="two-col">
+    <div class="prose" style="max-width:900px;">
+      <h2 id="que-causa-realmente" class="section-title" style="font-size:28px;">Qué Causa Realmente Lesiones y Muertes</h2>
+      <p>El mayor asesino de trabajadores petroleros en EE. UU. no es nada de la lista de abajo — es el viaje de ida y vuelta a la locación. Los incidentes de transporte representan aproximadamente 4 de cada 10 muertes en toda la industria, más que cualquier categoría de peligro en el sitio por sí sola, según los <a href="https://www.osha.gov/oil-and-gas-extraction/hazards" style="color:var(--amber);">datos de peligros de extracción de petróleo y gas de OSHA</a> y el <a href="https://www.bls.gov/iif/fatal-injuries-tables.htm" style="color:var(--amber);">Censo de Lesiones Ocupacionales Fatales de BLS</a>. Vale la pena saberlo antes de los peligros del piso de perforación de abajo, ya que es el único riesgo que no tiene nada que ver con cuán cuidadoso seas una vez que ya estás en la locación.</p>
+      <p>De las muertes que sí ocurren en el sitio, las propias cifras de OSHA ponen aproximadamente 3 de cada 5 en la categoría de golpeado por, atrapado en y atrapado entre — una categoría más amplia que cualquier peligro individual de abajo, que cubre vehículos en movimiento en la locación, equipo que se balancea o cae, y fallas de líneas de alta presión juntas, no solo objetos caídos. Globalmente, los <a href="https://www.iogp.org/bookstore/portfolio-item/safety-performance-indicators/" style="color:var(--amber);">datos propios de desempeño en seguridad de IOGP</a> muestran explosión, incendio y quemaduras como la principal causa de muerte en toda la industria en los años recientes de reporte, siendo los objetos caídos específicamente la principal causa costa afuera — dos afirmaciones distintas y más precisas que "los objetos caídos causan la mayoría de lesiones y muertes en taladros," que exagera lo que cualquiera de los dos conjuntos de datos realmente muestra.</p>
+    </div>
+
+    <div class="two-col" style="margin-top:28px;">
       <div>
         <h2 class="section-title" style="font-size:28px;">Principales <span>Categorías de Peligro</span></h2>
         <div class="card-grid" style="grid-template-columns:1fr;">
+          <div class="card">
+            <span class="card-icon">🚚</span>
+            <h3>Transporte</h3>
+            <p>La principal causa de muerte en toda la fuerza laboral petrolera de EE. UU. — conducir entre locaciones, no un peligro del piso de perforación específicamente. El manejo de la fatiga y el estado del vehículo importan tanto como cualquier cosa cubierta abajo.</p>
+          </div>
           <div class="card">
             <span class="card-icon">💨</span>
             <h3>H₂S (Sulfuro de Hidrógeno)</h3>
@@ -46,12 +58,12 @@ const { dateModified: safetyEsDateModified } = gitDates(safetyEsSourcePath);
           <div class="card">
             <span class="card-icon">🔥</span>
             <h3>Incendio y Explosión</h3>
-            <p>Los hidrocarburos del pozo, tanques de combustible, y equipo de proceso crean un riesgo constante de incendio. El trabajo en caliente requiere un permiso y prueba de gas inmediatamente antes de comenzar.</p>
+            <p>Los hidrocarburos del pozo, tanques de combustible, y equipo de proceso crean un riesgo constante de incendio. Los datos globales de IOGP nombran esta como la principal causa de muerte en toda la industria en los años recientes de reporte. El trabajo en caliente requiere un permiso y prueba de gas inmediatamente antes de comenzar.</p>
           </div>
           <div class="card">
             <span class="card-icon">⬇️</span>
-            <h3>Objetos Caídos</h3>
-            <p>La principal causa de lesiones y muertes en taladros. Las herramientas y el equipo pueden caer desde la altura del mástil. Todas las herramientas deben estar amarradas en trabajo en altura.</p>
+            <h3>Golpeado Por, Atrapado En y Objetos Caídos</h3>
+            <p>Juntos, la mayor categoría de muertes en el sitio en datos de EE. UU. Los objetos caídos específicamente son la principal causa de muerte costa afuera. Las herramientas y el equipo pueden caer desde la altura del mástil — todas las herramientas deben estar amarradas en trabajo en altura.</p>
           </div>
           <div class="card">
             <span class="card-icon">🔧</span>
@@ -74,9 +86,21 @@ const { dateModified: safetyEsDateModified } = gitDates(safetyEsSourcePath);
           <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--steel);border-radius:3px;"><span style="font-size:13px;color:var(--mist);">Careta de Soldar (Sombra 10+)</span><span class="status-badge status-warn">Solo Trabajo en Caliente</span></div>
         </div>
 
-        <h3 style="font-family:var(--cond);font-weight:700;font-size:16px;text-transform:uppercase;color:var(--white);letter-spacing:0.04em;margin-bottom:12px;">Sistemas Clave de Seguridad</h3>
+        <p style="color:var(--fog);font-size:13px;line-height:1.7;margin-top:14px;">La selección de EPP en un taladro no es política genérica de lugar de trabajo — <a href="https://www.api.org/products-and-services/standards/important-standards-announcements/recommended-practice-54" style="color:var(--amber);">API RP 54</a> vincula equipo específico a peligros específicos de control de pozo y del piso de perforación, además de las <a href="https://www.osha.gov/personal-protective-equipment/standards" style="color:var(--amber);">normas de EPP base de OSHA</a> (1910.132 requisitos generales, más protección de ojos/cara, cabeza y pies) que aplican en cualquier sitio industrial. Una evaluación de riesgos, no una lista copiada de otro taladro, es lo que se supone decide cuáles de los artículos arriba son realmente requeridos para un trabajo dado.</p>
+
+        <h3 style="font-family:var(--cond);font-weight:700;font-size:16px;text-transform:uppercase;color:var(--white);letter-spacing:0.04em;margin-bottom:12px;margin-top:22px;">Sistemas Clave de Seguridad</h3>
         <p style="color:var(--fog);font-size:13px;line-height:1.7;">Toda instalación costa afuera tiene un Plan de Respuesta a Emergencias documentado que incluye asignación de puntos de reunión, estaciones de botes/balsas salvavidas, rutas de evacuación, detección de fuego y gas con apagado automático, y procedimientos de emergencia con helicóptero. Conoce el tuyo antes de tu primer turno.</p>
       </div>
+    </div>
+
+    <div class="prose" style="max-width:900px;margin-top:28px;">
+      <h2 id="permiso-y-aislamiento" class="section-title" style="font-size:28px;">Permiso de Trabajo y Aislamiento de Energía</h2>
+      <p>La mayoría de los peligros de arriba no lastiman a nadie por sí solos — lastiman a alguien cuando dos trabajos colisionan sin que nadie se dé cuenta: la soldadura empieza mientras una línea todavía está presurizada, o alguien abre una válvula en la que una cuadrilla está trabajando del otro lado. El sistema de permiso de trabajo es el control que se supone previene exactamente esa colisión, haciendo que una persona confirme formalmente que un trabajo es seguro para empezar antes de que empiece. Ver el <a href="/es/blog/permit-to-work-system" style="color:var(--amber);">desglose completo del permiso de trabajo</a> para quién firma qué y dónde el sistema realmente falla en la práctica.</p>
+      <p>El Bloqueo/Etiquetado para energía hidráulica, neumática, eléctrica y mecánica almacenada suele ser el control específico que un permiso de trabajo en caliente o mantenimiento requiere antes de empezar, no un sistema separado corriendo en paralelo. El Health and Safety Executive del Reino Unido ha publicado investigación encontrando que las fallas del sistema de permisos — no el peligro subyacente en sí — fueron la causa individual más grande de incidentes relacionados con mantenimiento en las industrias que estudió, lo cual es el argumento real para tomar el papeleo tan en serio como el aislamiento físico que autoriza.</p>
+
+      <h2 id="reporte-y-cultura" class="section-title" style="font-size:28px;margin-top:8px;">Reportar Casi-Accidentes, No Solo Lesiones</h2>
+      <p>Los peligros de arriba solo se corrigen en un taladro dado si alguien realmente reporta el casi-accidente antes de que se convierta en una lesión — una conexión floja, una herramienta dejada sin amarrar, un permiso firmado sin realmente verificar que la línea estaba despresurizada. La mayoría de las contratistas de perforación corren alguna versión de un programa de tarjetas de observación de seguridad para exactamente esto, construido sobre la misma idea subyacente sin importar si el formulario específico se llama tarjeta STOP o algo distinto: un trabajador que ve un peligro lo escribe, en el momento, sin esperar a que un incidente fuerce la conversación. Ver el <a href="/es/blog/stop-card-system" style="color:var(--amber);">desglose completo de tarjetas STOP</a> para de dónde viene la metodología y qué hace que valga la pena escribir una tarjeta en lugar de solo marcar una casilla.</p>
+      <p>Ninguno de los sistemas de esta página — EPP, permisos, LOTO, tarjetas de observación — funciona aislado de los demás. Un permiso firmado correctamente pero que ignora un reporte de casi-accidente del mismo trabajo, o EPP usado correctamente pero emitido sin la evaluación de riesgos que se suponía lo justificaba, es un sistema con un hueco real aunque cada pieza individual se vea conforme en el papel.</p>
     </div>
   </section>
 
@@ -110,4 +134,6 @@ const { dateModified: safetyEsDateModified } = gitDates(safetyEsSourcePath);
       </div>
     </div>
   </section>
+
+  <SourcesStandards lang="es" ids={['oshaOilGasHazards', 'blsCfoi', 'iogpSpi', 'apiRp54', 'oshaPpe', 'hseHsg250']} />
 </BaseLayout>

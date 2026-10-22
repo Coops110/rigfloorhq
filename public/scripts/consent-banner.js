@@ -235,12 +235,24 @@
   // never hit that branch (their UTC offset is outside the checked band),
   // but a lab runner whose own system clock happens to sit inside that
   // band (e.g. a UTC test host) hits it on every single audit, showing up
-  // as one long task alongside the listener setup above. Deferred to its
-  // own macrotask so it can't extend whatever task is already running,
-  // and so the accept/reject/settings buttons above are clickable
-  // immediately rather than waiting on a timezone-database lookup first.
-  setTimeout(function () {
+  // as one long task alongside the listener setup above.
+  //
+  // 2026-10-22 audit still measured ~550ms here on mobile despite the
+  // setTimeout(0) macrotask split below -- a plain setTimeout runs as soon
+  // as the task queue is next free, which can still land inside the
+  // browser's busy window right after load. requestIdleCallback actually
+  // waits for a genuinely idle frame (same pattern scheduleInit() above
+  // already uses), so this expensive branch only ever runs with nothing
+  // else competing for the main thread. The accept/reject/settings
+  // buttons above are already clickable the instant this point is
+  // reached, regardless of when the check below finally fires.
+  function showBannerIfNeeded() {
     if (!read() && probablyNeedsBanner()) show('main', false);
-  }, 0);
+  }
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(showBannerIfNeeded, { timeout: 2000 });
+  } else {
+    setTimeout(showBannerIfNeeded, 0);
+  }
   } // end runConsentBanner
 })();
