@@ -3,15 +3,17 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
-import { techArticleSchema } from '../../../lib/techarticle.js';
+import { techArticleSchema, gitDates } from '../../../lib/techarticle.js';
 
+const wellControlEsSourcePath = 'src/pages/es/drilling/well-control.astro';
 const techArticleJsonLd = techArticleSchema({
-  sourcePath: 'src/pages/es/drilling/well-control.astro',
+  sourcePath: wellControlEsSourcePath,
   path: '/es/drilling/well-control',
   headline: 'Control de Pozos y Surgencias — Reconocimiento, Cierre',
   description: 'Control de pozos: causas de surgencias, detección al perforar y en viajes, cierre, barreras, los cuatro métodos de matanza y la hoja de matar.',
   lang: 'es',
 });
+const { dateModified: wellControlEsDateModified } = gitDates(wellControlEsSourcePath);
 ---
 <BaseLayout
   title="Control de Pozos y Surgencias — Reconocimiento, Cierre"
@@ -28,6 +30,7 @@ const techArticleJsonLd = techArticleSchema({
     <div class="page-hero-eyebrow">Perforación — Procedimientos de Emergencia</div>
     <h1>Control de <span>Pozos</span></h1>
     <p class="page-hero-sub">El control de pozos evita que el fluido de formación entre al pozo sin control, en tres niveles: el control primario es la <a href="/es/pillars/hydrostatic-pressure" style="color:var(--amber);">presión hidrostática</a> de la columna de lodo; el control secundario es cerrar y matar una surgencia una vez que falla el primario; el control terciario son los pozos de alivio y otras respuestas de último recurso si ambos fallan. Todo miembro de la cuadrilla debe conocer las señales de advertencia tempranas de abajo — mientras más pequeña la entrada, más fácil el control.</p>
+    <p style="font-size:13px;color:var(--fog);margin-top:8px;">Por <a href="/es/about/chris-cooper" style="color:var(--amber);">Chris Cooper</a>{wellControlEsDateModified && <> · Actualizado {new Date(wellControlEsDateModified).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</>}</p>
   </div>
 
   <section class="block">

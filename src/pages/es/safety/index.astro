@@ -2,11 +2,23 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { articleSchema, gitDates } from '../../../lib/techarticle.js';
+
+const safetyEsSourcePath = 'src/pages/es/safety/index.astro';
+const jsonLd = articleSchema({
+  sourcePath: safetyEsSourcePath,
+  path: '/es/safety',
+  headline: 'Seguridad en Taladros Petroleros — Peligros, EPP',
+  description: "Referencia completa de seguridad en taladros petroleros: categorías de peligros, EPP requerido, seguridad de H2S.",
+  lang: 'es',
+});
+const { dateModified: safetyEsDateModified } = gitDates(safetyEsSourcePath);
 ---
 <BaseLayout
   title="Seguridad en Taladros Petroleros — Peligros, EPP"
   description="Referencia completa de seguridad en taladros petroleros: categorías de peligros, EPP requerido, seguridad de H2S."
   breadcrumbs={[{ label: 'Seguridad', href: '/es/safety' }]}
+  jsonLd={jsonLd}
   lang="es"
   alternateHref="/safety"
 >
@@ -17,6 +29,7 @@ import Footer from '../../../components/Footer.astro';
     <div class="page-hero-eyebrow">10 — HSE</div>
     <h1>Seguridad en el <span>Taladro</span></h1>
     <p class="page-hero-sub">Los peligros, el equipo, y los sistemas que mantienen a las personas con vida en uno de los sitios de trabajo industriales más exigentes del mundo. Si estás empezando como <a href="/es/careers/roustabout" style="color:var(--amber);">roustabout</a> o <a href="/es/careers/roughneck" style="color:var(--amber);">roughneck</a>, esta página — no la guía de carrera — es donde se explican los riesgos reales de tu primer turno.</p>
+    <p style="font-size:13px;color:var(--fog);margin-top:8px;">Por <a href="/es/about/chris-cooper" style="color:var(--amber);">Chris Cooper</a>{safetyEsDateModified && <> · Actualizado {new Date(safetyEsDateModified).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</>}</p>
   </div>
 
   <section class="block">

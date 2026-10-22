@@ -3,16 +3,18 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
-import { techArticleSchema } from '../../../lib/techarticle.js';
+import { techArticleSchema, gitDates } from '../../../lib/techarticle.js';
 
+const h2sEsSourcePath = 'src/pages/es/safety/h2s.astro';
 const jsonLd = techArticleSchema({
-  sourcePath: 'src/pages/es/safety/h2s.astro',
+  sourcePath: h2sEsSourcePath,
   path: '/es/safety/h2s',
   headline: "Seguridad de H2S en Taladros Petroleros — Límites",
   description: "Guía de seguridad de sulfuro de hidrógeno (H2S) para trabajadores de taladros petroleros: niveles de exposición, límites de OSHA y ACGIH, detección, monitores personales, uso de SCBA y procedimientos de escape.",
   lang: 'es',
   extra: { about: "Seguridad laboral del sulfuro de hidrógeno (H2S)" },
 });
+const { dateModified: h2sEsDateModified } = gitDates(h2sEsSourcePath);
 ---
 <BaseLayout
   title="Seguridad de H2S en Taladros Petroleros — Límites"
@@ -29,6 +31,7 @@ const jsonLd = techArticleSchema({
     <div class="page-hero-eyebrow">Seguridad — Gas Amargo</div>
     <h1>Seguridad de <span>H₂S</span></h1>
     <p class="page-hero-sub">El sulfuro de hidrógeno es uno de los peligros más letales en petróleo y gas — incoloro, más pesado que el aire, y capaz de incapacitar a una persona en un solo respiro a alta concentración.</p>
+    <p style="font-size:13px;color:var(--fog);margin-top:8px;">Por <a href="/es/about/chris-cooper" style="color:var(--amber);">Chris Cooper</a>{h2sEsDateModified && <> · Actualizado {new Date(h2sEsDateModified).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</>}</p>
   </div>
 
   <section class="block">

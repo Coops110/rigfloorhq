@@ -2,7 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
-import { articleSchema } from '../../../lib/techarticle.js';
+import { articleSchema, gitDates } from '../../../lib/techarticle.js';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
 
 const faq = [
@@ -24,14 +24,16 @@ const faq = [
   },
 ];
 
+const shutInEsSourcePath = 'src/pages/es/drilling/shut-in-procedures.astro';
 const jsonLd = articleSchema({
-  sourcePath: 'src/pages/es/drilling/shut-in-procedures.astro',
+  sourcePath: shutInEsSourcePath,
   path: '/es/drilling/shut-in-procedures',
   headline: "Cierre Duro vs Cierre Suave: Procedimientos Paso a Paso",
   description: "La secuencia real de pasos para el cierre duro y el cierre suave, qué preventor cierra primero en cada uno, y por qué una empresa elige uno sobre el otro para un pozo dado.",
   lang: 'es',
   extra: { mainEntityOfPage: { "@id": "https://rigfloorhq.com/es/drilling/shut-in-procedures#webpage" } },
 });
+const { dateModified: shutInEsDateModified } = gitDates(shutInEsSourcePath);
 
 const webPageLd = {
   "@context": "https://schema.org",
@@ -60,6 +62,7 @@ const webPageLd = {
     <div class="page-hero-eyebrow">Control de Pozos</div>
     <h1>Cierre Duro vs <span>Cierre Suave</span></h1>
     <p class="page-hero-sub">Ambos ponen el mismo stack de BOP entre la cuadrilla y la surgencia. La diferencia es el orden en que se cierran las cosas, y qué tan rápido se permite que suba la presión mientras lo haces.</p>
+    <p style="font-size:13px;color:var(--fog);margin-top:8px;">Por <a href="/es/about/chris-cooper" style="color:var(--amber);">Chris Cooper</a>{shutInEsDateModified && <> · Actualizado {new Date(shutInEsDateModified).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</>}</p>
   </div>
 
   <section class="block">

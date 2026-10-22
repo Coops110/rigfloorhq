@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { gitDates } from '../../../lib/techarticle.js';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 
@@ -261,6 +262,7 @@ const isEnglishOnly = (href?: string) => !!href && !href.startsWith('/es/');
 const sortedTerms = [...terms].sort((a, b) => a.term.localeCompare(b.term, 'es', { sensitivity: 'base', numeric: true }));
 const letters = Array.from(new Set(sortedTerms.map((t) => t.term[0].toUpperCase()))).sort();
 
+const { dateModified: glossaryEsDateModified } = gitDates('src/pages/es/glossary/index.astro');
 const glossaryLd = {
   "@context": "https://schema.org",
   "@type": "DefinedTermSet",
@@ -268,6 +270,8 @@ const glossaryLd = {
   "name": "Glosario de Petróleo y Gas de RigFloorHQ",
   "url": "https://rigfloorhq.com/es/glossary",
   "inLanguage": "es",
+  ...(glossaryEsDateModified ? { "dateModified": glossaryEsDateModified } : {}),
+  "author": { "@id": "https://rigfloorhq.com/about/chris-cooper#person" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" },
   "hasDefinedTerm": terms.map((t) => ({
     "@type": "DefinedTerm",
@@ -302,6 +306,8 @@ const glossaryLd = {
     <p class="page-hero-sub">Cada término usado en el taladro, en un solo lugar. De BHA a WOB — aprende estos y sonarás como si ya hubieras estado ahí.</p>
     <div class="page-meta">
       <span class="page-meta-item"><strong>{terms.length}</strong> términos y contando</span>
+      <span class="page-meta-item">Por <a href="/es/about/chris-cooper" style="color:var(--amber);">Chris Cooper</a></span>
+      {glossaryEsDateModified && <span class="page-meta-item">Actualizado {new Date(glossaryEsDateModified).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</span>}
     </div>
   </div>
 
