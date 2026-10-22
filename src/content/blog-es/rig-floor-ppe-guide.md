@@ -108,11 +108,11 @@ Los encuelladores trabajando el monkeyboard dependen de un lanyard de posicionam
 
 ## Peligros de Línea de Fuego y Brechas en el EPP
 
-Los incidentes de "línea de fuego" — donde un trabajador está posicionado en la trayectoria de equipo en movimiento, tubería oscilante, o energía liberada — representan más de la mitad de todas las lesiones con tiempo perdido en entornos costa afuera. Ninguna pieza individual de EPP resuelve un problema de línea de fuego; es primero un problema de posicionamiento y conciencia, respaldado por guantes resistentes a impacto, cascos, y botas con punta de acero como la última línea de defensa si algo sale mal.
+Los incidentes de "línea de fuego" — donde un trabajador está posicionado en la trayectoria de equipo en movimiento, tubería oscilante, o energía liberada — son la mayor causa individual de lesiones con tiempo perdido en operaciones de contratistas costa afuera, según las [propias estadísticas anuales de seguridad de la International Marine Contractors Association](https://www.imca-int.com/): 52% de los LTI en su reporte de 2024, bajando a 41% en el reporte de 2025. Ninguna pieza individual de EPP resuelve un problema de línea de fuego; es primero un problema de posicionamiento y conciencia, respaldado por guantes resistentes a impacto, cascos, y botas con punta de acero como la última línea de defensa si algo sale mal.
 
 Los incidentes de resbalones y tropiezos ocupan el segundo lugar entre los LTI de taladros y embarcaciones, por lo cual la tracción apropiada del calzado y el orden constante alrededor de la subestructura importan tanto como las botas mismas.
 
-> **¿Sabías que?** Los incidentes de "línea de fuego" siguen siendo la principal causa de Lesiones con Tiempo Perdido en entornos costa afuera, representando más del 52% de todos esos casos.
+> **¿Sabías que?** Los incidentes de "línea de fuego" siguen siendo la principal causa de Lesiones con Tiempo Perdido en operaciones de contratistas costa afuera, incluso después de que su participación cayó de 52% (2024) a 41% (2025) en los reportes propios de IMCA.
 
 ## EPP de Servicio Amargo: Equipo Específico para H₂S
 

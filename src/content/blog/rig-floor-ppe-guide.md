@@ -108,11 +108,11 @@ Derrickmen working the monkeyboard rely on a positioning lanyard in addition to 
 
 ## Line of Fire Hazards and PPE Gaps
 
-"Line of fire" incidents — where a worker is positioned in the path of moving equipment, swinging pipe, or released energy — represent over half of all lost time injuries in offshore environments. No single piece of PPE solves a line of fire problem; it's a positioning and awareness issue first, backed up by impact-resistant gloves, hard hats, and steel toe boots as the last line of defense if something goes wrong.
+"Line of fire" incidents — where a worker is positioned in the path of moving equipment, swinging pipe, or released energy — are the single largest cause of lost time injuries in offshore contractor operations, per the [International Marine Contractors Association's own annual safety statistics](https://www.imca-int.com/): 52% of LTIs in its 2024 report, easing to 41% in the 2025 report. No single piece of PPE solves a line of fire problem; it's a positioning and awareness issue first, backed up by impact-resistant gloves, hard hats, and steel toe boots as the last line of defense if something goes wrong.
 
 Slip and trip incidents rank second among rig and vessel LTIs, which is why proper footwear traction and consistent housekeeping around the substructure matter as much as the boots themselves.
 
-> **Did you know?** "Line of fire" incidents remain the leading cause of Lost Time Injuries in offshore environments, representing over 52% of all such cases.
+> **Did you know?** "Line of fire" incidents are still the leading cause of Lost Time Injuries in offshore contractor operations, even after the share attributed to them fell from 52% (2024) to 41% (2025) in IMCA's own reporting.
 
 ## Sour Service PPE: H₂S-Specific Equipment
 
