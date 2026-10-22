@@ -31,7 +31,7 @@ const faq = [
   },
   {
     q: '¿Por qué dos personas en el mismo puesto ganan diferente?',
-    a: 'La región y la actividad de la cuenca, el trabajo por contrato de tarifa diaria frente al empleo de planta con beneficios, y en qué punto del ciclo de materias primas se está, mueven la cifra más que el título del puesto — ver Leyendo las Cifras abajo para el desglose completo.',
+    a: 'La región y la actividad de la cuenca, el trabajo por contrato de tarifa diaria frente al empleo de planta con beneficios, y en qué punto del ciclo de materias primas se está, mueven la cifra más que el título del puesto — ver <a href="#leyendo-las-cifras" style="color:var(--amber);">Leyendo las Cifras</a> abajo para el desglose completo.',
   },
 ];
 
@@ -95,6 +95,7 @@ const lastUpdatedLabel = lastUpdated
 
     <div class="note-box">
       <strong>Nota sobre las cifras:</strong> Esta tabla es una estimación editorial propia de RigFloorHQ, compilada de ofertas de empleo, listados de reclutadores, y discusión salarial de la industria durante 2025-2026, no una sola encuesta con nombre. No tiene una fuente independiente, a diferencia de la tabla gubernamental de abajo, que existe exactamente para eso: úsala como la verificación cruzada real y citable frente a esta. El pago real varía significativamente según la región, el empleador, el tipo de taladro, y las condiciones del mercado. Las tarifas en el Golfo de México, Mar del Norte, y Medio Oriente tienden a estar en el extremo más alto; las tarifas de taladros terrestres en cuencas más lentas son más bajas.
+      {lastUpdatedLabel && <span style="display:block;margin-top:10px;font-size:12px;color:var(--fog);">Esta tabla fue revisada y editada por última vez el {lastUpdatedLabel}.</span>}
     </div>
   </section>
 
@@ -137,7 +138,7 @@ const lastUpdatedLabel = lastUpdated
         </tbody>
       </table>
     </div>
-    <p style="color:var(--fog);font-size:13px;max-width:760px;margin-top:10px;">Fuente: <a href="https://www.bls.gov/oes/2023/may/oes475011.htm" style="color:var(--amber);">BLS OEWS, mayo de 2023</a>, el último año en que el BLS publicó el desglose estatal de esta ocupación en su formato de resumen individual. Las publicaciones estatales más recientes del BLS (hasta mayo de 2025) existen solo como hojas de cálculo completas que no hemos verificado línea por línea contra esta tabla, así que este sigue siendo el desglose estatal más reciente que podemos verificar y citar directamente. Son promedios estatales en todos los empleadores del estado, así que un operador o taladro específico será diferente; esto es una muestra de la dispersión real detrás del promedio nacional de $58,330, no un piso y techo literal (otros estados caen tanto arriba como abajo de este rango). Los estados con más taladros activos no son los mismos que pagan más: Texas ($57,400) y Oklahoma ($55,310) quedan por debajo de cada estado en la tabla de arriba a pesar de tener muchos más taladros activos, ya que sus totales incluyen una mezcla mucho mayor de operaciones pequeñas de baja actividad junto a sus cuencas de mayor intensidad.</p>
+    <p style="color:var(--fog);font-size:13px;max-width:760px;margin-top:10px;">Fuente: <a href="https://www.bls.gov/oes/2023/may/oes475011.htm" style="color:var(--amber);">BLS OEWS, mayo de 2023</a>, el último año en que el BLS publicó el desglose estatal de esta ocupación en su formato de resumen individual. Las publicaciones estatales más recientes del BLS (hasta mayo de 2025) existen solo como hojas de cálculo completas que no hemos verificado línea por línea contra esta tabla, así que este sigue siendo el desglose estatal más reciente que podemos verificar y citar directamente. Son promedios estatales en todos los empleadores del estado, así que un operador o taladro específico será diferente; esto es una muestra de la dispersión real detrás del promedio nacional de $58,330 de mayo de 2023 para esta ocupación (revisado a $74,890 en la publicación de mayo de 2024 citada arriba — son dos años distintos, no una contradicción), no un piso y techo literal (otros estados caen tanto arriba como abajo de este rango). Los estados con más taladros activos no son los mismos que pagan más: Texas ($57,400) y Oklahoma ($55,310) quedan por debajo de cada estado en la tabla de arriba a pesar de tener muchos más taladros activos, ya que sus totales incluyen una mezcla mucho mayor de operaciones pequeñas de baja actividad junto a sus cuencas de mayor intensidad.</p>
 
     <div class="note-box mt-24">
       <strong>Metodología — por qué aparecen dos publicaciones distintas del BLS en esta página.</strong> La tabla salarial nacional de arriba cita el artículo de la Monthly Labor Review del BLS de mayo de 2024, la publicación más actual que reporta este dato. El desglose estatal justo debajo cita en cambio la publicación OEWS más antigua de mayo de 2023, porque es el último año en que el BLS publicó los salarios estatales de esta ocupación en el formato de resumen individual del que parte esta tabla — los datos estatales más recientes existen solo como hojas de cálculo completas que aún no hemos verificado línea por línea contra esta tabla. Misma ocupación, dos publicaciones distintas del BLS, cada una citada a la versión más actual que realmente cubre lo que esa tabla específica afirma. La tabla editorial de rangos salariales al inicio de esta página es independiente: es la propia estimación de RigFloorHQ a partir de anuncios de empleo y listados de reclutadores, no datos del BLS, que es exactamente por qué existen las dos tablas del BLS como verificación independiente contra ella.
@@ -161,7 +162,7 @@ const lastUpdatedLabel = lastUpdated
       </div>
 
       <div>
-        <h3 style="font-family:var(--cond);font-weight:700;font-size:18px;text-transform:uppercase;color:var(--white);letter-spacing:0.04em;margin-bottom:16px;">Ejemplo: Comparación de Salario de Roughneck</h3>
+        <h3 id="comparacion-de-salario-de-roughneck" style="font-family:var(--cond);font-weight:700;font-size:18px;text-transform:uppercase;color:var(--white);letter-spacing:0.04em;margin-bottom:16px;">Ejemplo: Comparación de Salario de Roughneck</h3>
         <div style="display:flex;flex-direction:column;gap:1px;background:var(--iron);border:1px solid var(--iron);">
           <div style="background:var(--steel);padding:18px 20px;display:flex;justify-content:space-between;">
             <span style="font-size:13px;color:var(--fog);">Roughneck en Tierra</span>
@@ -204,7 +205,7 @@ const lastUpdatedLabel = lastUpdated
     <p style="color:var(--fog);max-width:760px;margin-top:16px;">Muchos contratistas terrestres también pagan un <strong>per diem</strong> — una asignación diaria fija, típicamente en el rango de $75–$150, que cubre comida y alojamiento mientras se está lejos de casa — además del salario, separado de la tarifa por hora y usualmente no gravable. Los roles costa afuera generalmente no llevan per diem, porque el alojamiento y comida en la instalación ya se proporciona gratis durante todo el turno, lo cual es parte de por qué la prima de pago costa afuera arriba subestima la brecha real en ingreso disponible.</p>
   </section>
 
-  <section class="block">
+  <section class="block" id="leyendo-las-cifras">
     <div class="section-eyebrow">Leyendo las Cifras</div>
     <h2 class="section-title">Por Qué Dos Trabajadores en el Mismo Rol <span>Ganan Diferente</span></h2>
     <p style="color:var(--fog);max-width:740px;margin-bottom:24px;">Los rangos publicados ocultan la mayor parte de lo que determina un recibo de pago real. Cuatro factores mueven la cifra más que el título del puesto.</p>
