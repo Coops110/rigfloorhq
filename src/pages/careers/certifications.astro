@@ -42,17 +42,17 @@ const { dateModified: certsDateModified } = gitDates(certsSourcePath);
     <div class="card-grid">
       <div class="card">
         <h3>BOSIET / FOET</h3>
-        <p><strong>Basic Offshore Safety Induction & Emergency Training.</strong> Mandatory for anyone going offshore. Covers helicopter underwater escape (HUET), sea survival, firefighting, and first aid. Valid for 4 years; FOET (Further Offshore Emergency Training) is the renewal course.</p>
-        <span class="card-tag">Required — All Offshore Roles</span>
+        <p><strong>Basic Offshore Safety Induction & Emergency Training.</strong> Mandatory for anyone going offshore under an OPITO-accredited scheme (common outside North America). Covers helicopter underwater escape (HUET), sea survival, firefighting, and first aid. Valid for 4 years; FOET (Further Offshore Emergency Training) is the renewal course. Where a role only needs the helicopter-escape element — not the full multi-day course — some training centers also offer HUET as a standalone certificate, typically valid around 4 years.</p>
+        <span class="card-tag">Required — Most Offshore Roles Outside North America</span>
       </div>
       <div class="card">
         <h3>IWCF Well Control</h3>
-        <p><strong>International Well Control Forum certification.</strong> Level 2 for rig floor crews, Level 3 for drillers, Level 4 for <a href="/pillars/rig-floor-leadership">supervisors and OIMs</a>. Covers kick recognition, shut-in procedures, and well kill methods. Renewed every 2 years via exam. Practice with real exam-style questions on the <a href="/well-control-quiz">well control quiz</a> before sitting it.</p>
+        <p><strong><a href="https://www.iwcf.org/" style="color:inherit;text-decoration:underline;">International Well Control Forum</a> certification.</strong> Level 2 for rig floor crews, Level 3 for drillers, Level 4 for <a href="/pillars/rig-floor-leadership">supervisors and OIMs</a>. Covers kick recognition, shut-in procedures, and well kill methods. Validity is tiered, not a flat number: Level 2 runs 5 years, Levels 3 and 4 run 2 years each, all renewed by sitting the exam again. Practice with real exam-style questions on the <a href="/well-control-quiz">well control quiz</a> before sitting it.</p>
         <span class="card-tag">Required — Driller & Above</span>
       </div>
       <div class="card">
         <h3>IADC WellSharp</h3>
-        <p>The other globally recognized well control certification body, functionally equivalent to IWCF. Most operators accept either. Same tiered structure from drill floor through supervisor level. See <a href="/careers/iwcf-vs-iadc-wellsharp">IWCF vs IADC WellSharp</a> for how the levels map onto each other.</p>
+        <p>The other globally recognized well control certification body, <a href="https://iadc.org/accreditation/wellsharp/" style="color:inherit;text-decoration:underline;">accredited by IADC</a>, functionally equivalent to IWCF. Most operators accept either. Same tiered structure from drill floor through supervisor level. See <a href="/careers/iwcf-vs-iadc-wellsharp">IWCF vs IADC WellSharp</a> for how the levels map onto each other.</p>
         <span class="card-tag">Alternative to IWCF</span>
       </div>
       <div class="card">
@@ -72,8 +72,18 @@ const { dateModified: certsDateModified } = gitDates(certsSourcePath);
       </div>
       <div class="card">
         <h3>OPITO IMIST</h3>
-        <p><strong>International Minimum Industry Safety Training.</strong> A baseline safety awareness qualification required by most major operators for all rig personnel, regardless of role.</p>
-        <span class="card-tag">Required — Most Operators</span>
+        <p><strong><a href="https://opito.com/standards-and-qualifications/industry-standards-library/international-minimum-industry-safety-training-imist-standard" style="color:inherit;text-decoration:underline;">International Minimum Industry Safety Training</a>,</strong> OPITO's own new-starter safety-awareness standard — risk assessment, permit to work, manual handling, working at height and lifting, at an introductory level. It's the OPITO-accredited baseline used across the schemes that require it (common in the North Sea and other OPITO-aligned regions), not a universal requirement at every operator worldwide — North American Gulf operators generally use SafeLand/SafeGulf instead (below). Renewed every 4 years via the IMIST-Further course.</p>
+        <span class="card-tag">Required — OPITO-Aligned Operators</span>
+      </div>
+      <div class="card">
+        <h3>SafeLand / SafeGulf</h3>
+        <p>The US onshore and Gulf of Mexico equivalent to OPITO IMIST — a new-starter safety orientation now delivered as <a href="https://veriforce.com/course/basic-orientation" style="color:inherit;text-decoration:underline;">Veriforce's Basic Orientation course</a> (the program formerly run under the PEC Safety brand), accredited to both the SafeLandUSA and SafeGulf standards when the offshore module is included. Typically a one-day, roughly $150–300 course; how long it stays valid is set by the individual operator rather than a single fixed industry number, so confirm with whoever you're contracting to.</p>
+        <span class="card-tag">Required — US Onshore & Gulf</span>
+      </div>
+      <div class="card">
+        <h3>TWIC</h3>
+        <p><strong><a href="https://www.tsa.gov/twic" style="color:inherit;text-decoration:underline;">Transportation Worker Identification Credential</a>,</strong> issued by TSA. Not safety training — it's a background-checked ID card required to access secure maritime facilities, including Gulf of Mexico platforms and the ports and vessels that service them. $125.25 standard fee ($93 with a valid HazMat-endorsed CDL or FAST card), valid 5 years.</p>
+        <span class="card-tag">Required — US Gulf Offshore & Port Access</span>
       </div>
       <div class="card">
         <h3>Offshore Medical</h3>
@@ -91,12 +101,12 @@ const { dateModified: certsDateModified } = gitDates(certsSourcePath);
       <table>
         <thead><tr><th>Role</th><th>Required Certifications</th></tr></thead>
         <tbody>
-          <tr><td><a href="/careers/roustabout" style="color:inherit;">Roustabout</a></td><td>BOSIET (offshore only), basic safety orientation</td></tr>
-          <tr><td><a href="/careers/roughneck" style="color:inherit;">Roughneck</a></td><td>BOSIET (offshore), H₂S awareness recommended</td></tr>
-          <tr><td><a href="/careers/derrickhand" style="color:inherit;">Derrickhand</a></td><td>BOSIET, IWCF Level 2 (or working toward it)</td></tr>
-          <tr><td>Assistant Driller</td><td>BOSIET, IWCF Level 2, offshore medical</td></tr>
-          <tr><td>Driller</td><td>BOSIET, IWCF Level 3 (Driller), offshore medical</td></tr>
-          <tr><td><a href="/careers/toolpusher" style="color:inherit;">Toolpusher</a></td><td>BOSIET, IWCF Level 4 (Supervisor), offshore medical</td></tr>
+          <tr><td><a href="/careers/roustabout" style="color:inherit;">Roustabout</a></td><td>Offshore outside North America: BOSIET, basic safety orientation. US Gulf: SafeLand/SafeGulf, TWIC if accessing a platform or port facility.</td></tr>
+          <tr><td><a href="/careers/roughneck" style="color:inherit;">Roughneck</a></td><td>Offshore outside North America: BOSIET, H₂S awareness recommended. US Gulf: SafeLand/SafeGulf, TWIC, H₂S awareness recommended.</td></tr>
+          <tr><td><a href="/careers/derrickhand" style="color:inherit;">Derrickhand</a></td><td>BOSIET or SafeLand/SafeGulf depending on region, IWCF Level 2 (or working toward it)</td></tr>
+          <tr><td>Assistant Driller</td><td>BOSIET or SafeLand/SafeGulf depending on region, IWCF Level 2, offshore medical</td></tr>
+          <tr><td>Driller</td><td>BOSIET or SafeLand/SafeGulf depending on region, IWCF Level 3 (Driller), offshore medical</td></tr>
+          <tr><td><a href="/careers/toolpusher" style="color:inherit;">Toolpusher</a></td><td>BOSIET or SafeLand/SafeGulf depending on region, IWCF Level 4 (Supervisor), offshore medical</td></tr>
           <tr><td>HSE Officer</td><td>NEBOSH IGC or OSHA 30, BOSIET if offshore</td></tr>
           <tr><td>Rig Welder</td><td>AWS CW, API 1104 and/or AWS D1.1, BOSIET if offshore</td></tr>
           <tr><td>Underwater Welder</td><td>AWS D3.6M, ADCI commercial diving certification</td></tr>
