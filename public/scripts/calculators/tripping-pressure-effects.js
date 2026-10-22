@@ -12,7 +12,7 @@ function set(id, text) {
 }
 function calc() {
   const mw = num("tpe-mw"), sd = num("tpe-sd"), cc = num("tpe-cc");
-  const dry = cc - sd > 0 ? mw * 0.052 * (sd / (cc - sd)) : 0;
+  const dry = cc > 0 ? mw * 0.052 * (sd / cc) : 0;
   set("out-dry", fmt(dry, 4) + " psi/ft");
   const mw2 = num("tpe-mw2"), dpc = num("tpe-dpc"), ac = num("tpe-ac");
   const wet = ac > 0 ? mw2 * 0.052 * ((sd + dpc) / ac) : 0;

@@ -124,13 +124,17 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
             <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Mud Level Drop</span><span class="output-value" id="out-drop">—</span></div>
           </div>
         </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>Reference only.</strong> Real trip margin and top-up volumes during an actual trip come from your company's approved trip sheet and well control procedure, using measured steel displacement and capacity figures for the exact string and hole in use — not the general values here.
+        </div>
       </div>
 
       <div class="prose">
         <h2>The Formulas Used</h2>
         <dl class="formula-block">
           <dt class="formula-label">Pressure Drop/ft — Dry Pipe</dt>
-          <dd class="formula-eq"><code>ΔP/ft = MW × 0.052 × [Steel Disp ÷ (Capacity − Steel Disp)]</code></dd>
+          <dd class="formula-eq"><code>ΔP/ft = MW × 0.052 × (Steel Disp ÷ Capacity)</code></dd>
         </dl>
         <dl class="formula-block mt-24">
           <dt class="formula-label">Pressure Drop/ft — Wet Pipe</dt>
@@ -145,7 +149,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
         <p>11 ppg mud, 0.00653 bbl/ft steel displacement, 0.1481 bbl/ft hole capacity:</p>
         <dl class="formula-block">
           <dt class="formula-label">Pressure Drop/ft — Dry Pipe</dt>
-          <dd class="formula-eq"><code>11 × 0.052 × [0.00653 ÷ (0.1481 − 0.00653)] = 0.0264 psi/ft</code></dd>
+          <dd class="formula-eq"><code>11 × 0.052 × (0.00653 ÷ 0.1481) = 0.0252 psi/ft</code></dd>
         </dl>
         <p>Same mud weight, 0.01776 bbl/ft drill pipe capacity, 0.12381 bbl/ft annular capacity:</p>
         <dl class="formula-block">

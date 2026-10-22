@@ -126,13 +126,17 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
             <div class="output-line headline" style="border-bottom:none;"><span class="output-label">Caída de Nivel de Lodo</span><span class="output-value" id="out-drop">—</span></div>
           </div>
         </div>
+
+        <div class="danger-box mt-24" style="max-width:700px;">
+          <strong>Solo referencia.</strong> El margen de viaje real y los volúmenes de relleno durante un viaje real provienen del programa de viaje aprobado por tu empresa y del procedimiento de control de pozo, usando cifras medidas de desplazamiento de acero y capacidad para la sarta y el pozo exactos en uso — no los valores generales aquí presentados.
+        </div>
       </div>
 
       <div class="prose">
         <h2>Las Fórmulas Usadas</h2>
         <dl class="formula-block">
           <dt class="formula-label">Caída de Presión/ft — Tubería Seca</dt>
-          <dd class="formula-eq"><code>ΔP/ft = Peso de Lodo × 0.052 × [Desp. de Acero ÷ (Capacidad − Desp. de Acero)]</code></dd>
+          <dd class="formula-eq"><code>ΔP/ft = Peso de Lodo × 0.052 × (Desp. de Acero ÷ Capacidad)</code></dd>
         </dl>
         <dl class="formula-block mt-24">
           <dt class="formula-label">Caída de Presión/ft — Tubería Mojada</dt>
@@ -147,7 +151,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
         <p>Lodo de 11 ppg, desplazamiento de acero de 0.00653 bbl/ft, capacidad de pozo de 0.1481 bbl/ft:</p>
         <dl class="formula-block">
           <dt class="formula-label">Caída de Presión/ft — Tubería Seca</dt>
-          <dd class="formula-eq"><code>11 × 0.052 × [0.00653 ÷ (0.1481 − 0.00653)] = 0.0264 psi/ft</code></dd>
+          <dd class="formula-eq"><code>11 × 0.052 × (0.00653 ÷ 0.1481) = 0.0252 psi/ft</code></dd>
         </dl>
         <p>Mismo peso de lodo, capacidad interna de tubería de 0.01776 bbl/ft, capacidad anular de 0.12381 bbl/ft:</p>
         <dl class="formula-block">

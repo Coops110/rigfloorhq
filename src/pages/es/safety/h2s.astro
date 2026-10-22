@@ -48,7 +48,7 @@ const { dateModified: h2sEsDateModified } = gitDates(h2sEsSourcePath);
               <tr><td>0.5–5 ppm</td><td>Olor perceptible a huevo podrido</td></tr>
               <tr><td>10–20 ppm</td><td>Irritación ocular y respiratoria; 10 ppm es el límite de exposición recomendado por NIOSH y un punto de alarma común en monitores personales. El límite regulado de OSHA es un techo (ceiling) de 20 ppm (29 CFR 1910.1000, Tabla Z-2), no un "nivel de acción" — ver la respuesta a la alarma y la Tabla Z-2 completa abajo.</td></tr>
               <tr><td>50–100 ppm</td><td>Pérdida del olfato (fatiga olfativa) en minutos; riesgo serio de daño ocular</td></tr>
-              <tr><td>100–150 ppm</td><td>Tos, pérdida total del olfato; inmediatamente peligroso para la vida y la salud (IDLH)</td></tr>
+              <tr><td>100+ ppm</td><td>Tos, pérdida total del olfato; 100 ppm es el umbral IDLH (Inmediatamente Peligroso para la Vida o la Salud) de NIOSH</td></tr>
               <tr><td>500–700 ppm</td><td>Pérdida de consciencia en minutos; riesgo de falla respiratoria</td></tr>
               <tr><td>700+ ppm</td><td>Inconsciencia rápida y muerte, potencialmente dentro de un solo respiro</td></tr>
             </tbody>
@@ -56,7 +56,7 @@ const { dateModified: h2sEsDateModified } = gitDates(h2sEsSourcePath);
         </div>
 
         <div class="note-box">
-          <strong id="ejemplo-resuelto">Ejemplo resuelto:</strong> Un monitor personal de H₂S en el piso de perforación marca 18 ppm. Revisando la tabla anterior, eso cae en el rango de 10–20 ppm mostrado arriba — irritación ocular y respiratoria. También está por encima del punto de alarma baja de 10 ppm que usan la mayoría de los monitores personales, así que aunque el efecto a 18 ppm sea leve, una lectura de alarma en este nivel es real, no una falsa alarma — detenga la tarea y siga la respuesta a la alarma abajo, no espere a que aparezcan síntomas para confirmarlo. Si el mismo monitor sube después a 120 ppm cerca de un tanque de retorno, eso está dentro del rango de 100–150 ppm de IDLH de la tabla: el olfato ya desapareció por completo, y la respuesta correcta es SCBA inmediato y evacuación al punto de reunión, no un segundo intento de oler para confirmar.
+          <strong id="ejemplo-resuelto">Ejemplo resuelto:</strong> Un monitor personal de H₂S en el piso de perforación marca 18 ppm. Revisando la tabla anterior, eso cae en el rango de 10–20 ppm mostrado arriba — irritación ocular y respiratoria. También está por encima del punto de alarma baja de 10 ppm que usan la mayoría de los monitores personales, así que aunque el efecto a 18 ppm sea leve, una lectura de alarma en este nivel es real, no una falsa alarma — detenga la tarea y siga la respuesta a la alarma abajo, no espere a que aparezcan síntomas para confirmarlo. Si el mismo monitor sube después a 120 ppm cerca de un tanque de retorno, eso está por encima del umbral IDLH de 100 ppm de la tabla: el olfato ya desapareció por completo, y la respuesta correcta es SCBA inmediato y evacuación al punto de reunión, no un segundo intento de oler para confirmar.
         </div>
 
         <div class="danger-box">
