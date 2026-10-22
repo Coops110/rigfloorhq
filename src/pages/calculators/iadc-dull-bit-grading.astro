@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { calculatorWebPage } from '../../lib/techarticle.js';
 
 // IADC's 8-position dull grading system, standardized industry-wide since a
 // 1987 revision. Generic public standard, not tied to any manufacturer or
@@ -130,11 +131,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
+
 ---
 <BaseLayout
   title="IADC Dull Bit Grading Chart & Code Reference"
   description="Free IADC dull bit grading reference: the 8-position code for grading a dull drill bit — cutting structure wear, dull characteristics, location."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'IADC Dull Bit Grading', href: '/calculators/iadc-dull-bit-grading' }]}
   lang="en"
   alternateHref="/es/calculators/iadc-dull-bit-grading"

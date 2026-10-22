@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -36,11 +37,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
+
 ---
 <BaseLayout
   title="Calculadora de Barita Requerida: Cargando el Lodo"
   description="Calculadora gratuita de cuánta barita, en libras por barril, se necesita para subir el lodo de perforación de un peso a un peso objetivo más pesado."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Barita Requerida', href: '/es/calculators/barite-required' }]}
   lang="es"
   alternateHref="/calculators/barite-required"

@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const RC_SERIES: [string, string, string][] = [
   ['1', 'Diente fresado', 'Formaciones blandas, baja resistencia a la compresión — desde lutita muy blanda hasta caliza/lutita media'],
@@ -113,11 +114,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
+
 ---
 <BaseLayout
   title="Tabla de Clasificación IADC: Barrenas de Conos y PDC"
   description="Referencia gratuita de clasificación IADC: códigos de serie, sub-serie y rodamiento para barrenas de conos, más códigos de cuerpo, formación."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Clasificación IADC', href: '/es/calculators/iadc-bit-classification' }]}
   lang="es"
   alternateHref="/calculators/iadc-bit-classification"

@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -40,11 +41,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
+
 ---
 <BaseLayout
   title="Rig Floor (ODF) Depth Correction Calculator"
   description="Free ODF depth correction calculator: reconcile drill pipe tally depth against wireline depth after a rig floor elevation change."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'ODF Depth Correction', href: '/calculators/odf-depth-correction' }]}
   lang="en"
   alternateHref="/es/calculators/odf-depth-correction"

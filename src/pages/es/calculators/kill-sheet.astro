@@ -6,6 +6,7 @@ import NewsletterSignup from '../../../components/NewsletterSignup.astro';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
 import { reviewedByJabin } from '../../../lib/person.js';
 import WellProfileDiagram from '../../../components/WellProfileDiagram.astro';
+import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -43,16 +44,9 @@ const webAppLd = {
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
 
-// reviewedBy belongs on WebPage per schema.org, not on WebApplication -- see
-// src/lib/person.js. Mirrors the EN page's real review and date.
-const webPageLd = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "@id": "https://rigfloorhq.com/es/calculators/kill-sheet#webpage",
-  "url": "https://rigfloorhq.com/es/calculators/kill-sheet",
-  "reviewedBy": reviewedByJabin(),
-  "lastReviewed": "2026-10-15"
-};
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'es', reviewedBy: reviewedByJabin(), lastReviewed: '2026-10-15' });
+
 ---
 <BaseLayout
   title="Calculadora de Hoja de Control: KMW, ICP, FCP y Programa"

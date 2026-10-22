@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -42,11 +43,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
+
 ---
 <BaseLayout
   title="Calculadora de Capacidad de Tanque Horizontal"
   description="Calculadora gratuita de capacidad de tanque cilíndrico horizontal: ingresa diámetro y longitud y obtén una tabla de altura de llenado a volumen."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Capacidad de Tanque Horizontal', href: '/es/calculators/horizontal-tank-capacity' }]}
   lang="es"
   alternateHref="/calculators/horizontal-tank-capacity"

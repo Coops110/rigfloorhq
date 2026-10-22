@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const brineRows = [
   { range: '8.4 – 9.0 ppg', loss: '0.0017 ppg/°F' },
@@ -46,11 +47,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
+
 ---
 <BaseLayout
   title="Calculadora de Bombeo a Matar: Límites de Presión"
   description="Calculadora de bombeo a matar (bullheading): peso de fluido de matar, presión de fractura de formación, presión máxima inicial y final de superficie."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Bombeo a Matar', href: '/es/calculators/bullheading' }]}
   lang="es"
   alternateHref="/calculators/bullheading"

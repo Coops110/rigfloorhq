@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { calculatorWebPage } from '../../lib/techarticle.js';
 
 // Source readings match the original drill-off test worksheet exactly — the
 // footage/time pairs below reproduce its ROP column to the decimal when run
@@ -64,11 +65,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
+
 ---
 <BaseLayout
   title="Drill-Off Test Worksheet: WOB & RPM Optimization"
   description="Free drill-off test calculator: log weight-on-bit and rotary test readings and get rate of penetration (ROP) for every step, live."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Drill-Off Test', href: '/calculators/drill-off-test' }]}
   lang="en"
   alternateHref="/es/calculators/drill-off-test"

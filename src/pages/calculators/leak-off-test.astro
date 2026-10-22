@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
+import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -35,11 +36,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
+
 ---
 <BaseLayout
   title="Leak-Off Test (LOT) & FIT Calculator"
   description="Convert a leak-off test pressure into equivalent mud weight and fracture gradient, or find the stop pressure for a target EMW on a FIT."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Leak-Off Test', href: '/calculators/leak-off-test' }]}
   lang="en"
   alternateHref="/es/calculators/leak-off-test"
@@ -51,6 +55,7 @@ const webAppLd = {
     <div class="page-hero-eyebrow">Calculator</div>
     <h1>Leak-Off Test <span>&amp; FIT Calculator</span></h1>
     <p class="page-hero-sub">Convert a completed LOT into equivalent mud weight and fracture gradient, or work backward from a target EMW to find the surface pressure to stop a formation integrity test at.</p>
+    <p style="font-size:13px;color:var(--fog);margin-top:8px;">By <a href="/about/chris-cooper" style="color:var(--amber);">Chris Cooper</a></p>
   </div>
 
   <section class="block">

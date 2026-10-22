@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
+import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -31,11 +32,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
+
 ---
 <BaseLayout
   title="Kick Influx Geometry Calculator: Length, Height, Gradient"
   description="Free calculator for influx length along hole, true vertical height, influx gradient, and shut-in casing pressure from a kick's kick volume and inclination."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Kick Influx Geometry', href: '/calculators/kick-influx-geometry' }]}
   lang="en"
   alternateHref="/es/calculators/kick-influx-geometry"

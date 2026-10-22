@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { calculatorWebPage } from '../../lib/techarticle.js';
 
 // API 6A/6BX flange dimensions, Cameron's published figures. Public equipment
 // spec, not tied to any rig, well or company — safe to publish as-is.
@@ -117,11 +118,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
+
 ---
 <BaseLayout
   title="Flange & Ring Gasket Lookup Chart"
   description="API 6A/6BX flange bore and pressure rating to ring gasket number, stud count, stud size and flange OD — Cameron's published dimensions, filterable."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Flange & Ring Gasket', href: '/calculators/flange-ring-gasket' }]}
   lang="en"
   alternateHref="/es/calculators/flange-ring-gasket"

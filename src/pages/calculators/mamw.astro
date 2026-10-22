@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
+import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -31,11 +32,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
+
 ---
 <BaseLayout
   title="MAMW Calculator: Maximum Allowable Mud Weight & New MAASP"
   description="Free MAMW calculator: maximum allowable mud weight from your LOT/FIT test and shoe TVD, plus new MAASP once a kill mud weight is set."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'MAMW', href: '/calculators/mamw' }]}
   lang="en"
   alternateHref="/es/calculators/mamw"

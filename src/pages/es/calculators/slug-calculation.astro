@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -36,11 +37,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
+
 ---
 <BaseLayout
   title="Calculadora de Volumen de Slug y Ganancia de Pileta"
   description="Calculadora gratuita para el volumen de slug necesario para una longitud deseada de tubería seca, y la ganancia de pileta esperada al bombear ese slug."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Cálculo de Slug', href: '/es/calculators/slug-calculation' }]}
   lang="es"
   alternateHref="/calculators/slug-calculation"

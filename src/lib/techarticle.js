@@ -16,9 +16,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { buildGitDatesMap } from '../../scripts/git-lastmod.mjs';
+import { authorChrisCooper } from './person.js';
 
 const siteUrl = 'https://rigfloorhq.com';
 const ORG_ID = `${siteUrl}/#organization`;
+const WEBSITE_ID = `${siteUrl}/#website`;
 
 // Computed once per build process (cached inside git-lastmod.mjs), so
 // `git log` runs once for the whole build rather than once per page.
@@ -76,11 +78,25 @@ export function articleSchema({ sourcePath, path: urlPath, headline, description
     headline,
     description,
     url,
-    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    // A full WebPage node, not a bare @id string — the audit's "equipment
+    // mainEntityOfPage is a bare URL" finding. isPartOf/inLanguage/name let
+    // this resolve as a real node in the page's own JSON-LD rather than a
+    // dangling reference to one defined only elsewhere.
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${url}#webpage`,
+      url,
+      name: headline,
+      inLanguage: lang,
+      isPartOf: { '@id': WEBSITE_ID },
+    },
     ...gitDates(sourcePath),
     inLanguage: lang,
     image: ogImageFor(urlPath),
-    author: { '@id': ORG_ID },
+    // Chris Cooper, not the Organization — he's RigFloorHQ's named author
+    // (src/lib/person.js), and crediting the org itself as "author" on ~130
+    // pages was the single largest driver of the audit's authorship finding.
+    author: authorChrisCooper(),
     publisher: { '@id': ORG_ID },
     ...extra,
   };
@@ -89,4 +105,32 @@ export function articleSchema({ sourcePath, path: urlPath, headline, description
 /** TechArticle for equipment / reference pages. Same shape as articleSchema. */
 export function techArticleSchema(opts) {
   return articleSchema({ ...opts, type: 'TechArticle' });
+}
+
+/**
+ * The WebPage node for a calculator page, derived from its own WebApplication
+ * object rather than re-typing the URL/name. Fixes two audit findings at
+ * once: calculator WebPage nodes were thin (no name/isPartOf/inLanguage) and
+ * not linked to their WebApplication — `mainEntity` here is that link.
+ * `reviewedBy`/`lastReviewed` are only included when truly reviewed; most
+ * calculators have neither and should not fabricate one.
+ * @param {Object} webAppLd the page's own WebApplication object (must have
+ *   @id ending in "#app", url, and name)
+ * @param {Object} [opts]
+ * @param {'en'|'es'} [opts.lang]
+ * @param {Object} [opts.reviewedBy] from reviewedByJabin(), only if genuinely reviewed
+ * @param {string} [opts.lastReviewed] ISO date, required alongside reviewedBy
+ */
+export function calculatorWebPage(webAppLd, { lang = 'en', reviewedBy, lastReviewed } = {}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': webAppLd['@id'].replace(/#app$/, '#webpage'),
+    url: webAppLd.url,
+    name: webAppLd.name,
+    inLanguage: lang,
+    isPartOf: { '@id': WEBSITE_ID },
+    mainEntity: { '@id': webAppLd['@id'] },
+    ...(reviewedBy ? { reviewedBy, lastReviewed } : {}),
+  };
 }

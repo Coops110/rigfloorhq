@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -32,11 +33,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
+
 ---
 <BaseLayout
   title="Calculadora de Efectos de Presión al Viajar"
   description="Calculadora gratuita de caída de presión por pie al sacar tubería seca o mojada, y qué tanto baja el nivel de lodo al sacar del pozo sin rellenar."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Efectos de Presión al Viajar', href: '/es/calculators/tripping-pressure-effects' }]}
   lang="es"
   alternateHref="/calculators/tripping-pressure-effects"

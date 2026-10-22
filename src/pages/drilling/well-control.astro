@@ -3,15 +3,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
-import { techArticleSchema } from '../../lib/techarticle.js';
+import { techArticleSchema, gitDates } from '../../lib/techarticle.js';
 
+const sourcePath = 'src/pages/drilling/well-control.astro';
 const techArticleJsonLd = techArticleSchema({
-  sourcePath: 'src/pages/drilling/well-control.astro',
+  sourcePath,
   path: '/drilling/well-control',
   headline: 'Well Control & Kicks — Recognition, Shut-In, Kill Procedures',
   description: "Well control reference: kick causes, detection while drilling and tripping, shut-in, well barriers, the four kill methods and kill sheet calculations.",
   lang: 'en',
 });
+const { dateModified } = gitDates(sourcePath);
 ---
 <BaseLayout
   title="Well Control & Kicks — Recognition, Shut-In, Kill Procedures"
@@ -28,6 +30,7 @@ const techArticleJsonLd = techArticleSchema({
     <div class="page-hero-eyebrow">Drilling — Emergency Procedures</div>
     <h1>Well <span>Control</span></h1>
     <p class="page-hero-sub">Well control keeps formation fluid from flowing into the wellbore uncontrolled, in three tiers: primary control is <a href="/pillars/hydrostatic-pressure" style="color:var(--amber);">hydrostatic pressure</a> from the mud column; secondary control is shutting in and killing a kick once primary fails; tertiary control is relief wells and other last-resort response if both fail. Every crew member must know the early warning signs below — the smaller the influx, the easier the kill.</p>
+    <p style="font-size:13px;color:var(--fog);margin-top:8px;">By <a href="/about/chris-cooper" style="color:var(--amber);">Chris Cooper</a>{dateModified && <> · Updated {new Date(dateModified).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</>}</p>
   </div>
 
   <section class="block">

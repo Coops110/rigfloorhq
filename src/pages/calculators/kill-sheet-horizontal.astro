@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
+import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -35,11 +36,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
+
 ---
 <BaseLayout
   title="Horizontal & Extended-Reach Kill Sheet Additions"
   description="Extra drillpipe pressure checkpoints for a directional or horizontal well kill: string volume and strokes to kick-off point (KOP) and end of build (EOB)."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Horizontal Kill Sheet', href: '/calculators/kill-sheet-horizontal' }]}
   lang="en"
   alternateHref="/es/calculators/kill-sheet-horizontal"

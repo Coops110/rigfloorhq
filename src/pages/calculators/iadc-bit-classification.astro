@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { calculatorWebPage } from '../../lib/techarticle.js';
 
 // IADC bit classification — generic public standard covering both roller
 // cone (rock bit) and fixed cutter (PDC) systems. Cross-checked against
@@ -118,11 +119,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
+
 ---
 <BaseLayout
   title="IADC Rock Bit & PDC Bit Classification Chart"
   description="Free IADC bit classification reference: roller cone (rock bit) series, sub-series and bearing codes, plus PDC body, formation, cutter."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'IADC Bit Classification', href: '/calculators/iadc-bit-classification' }]}
   lang="en"
   alternateHref="/es/calculators/iadc-bit-classification"

@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import VideoEmbed from '../../components/VideoEmbed.astro';
+import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -41,11 +42,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
+
 ---
 <BaseLayout
   title="Ton-Mile Calculator: Drilling Line Service Life"
   description="Free ton-mile calculator for drilling line service life: round trip, drilling, coring, short trip, and setting-casing ton-miles per API RP 9B / Lapeyrouse."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Ton-Mile', href: '/calculators/ton-mile' }]}
   lang="en"
   alternateHref="/es/calculators/ton-mile"

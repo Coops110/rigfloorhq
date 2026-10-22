@@ -4,6 +4,7 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import NewsletterSignup from '../../../components/NewsletterSignup.astro';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
+import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -40,11 +41,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
+
 ---
 <BaseLayout
   title="Calculadora de Tolerancia a la Surgencia (ppg)"
   description="Calculadora de tolerancia a la surgencia gratis: la surgencia equivalente en ppg que tu MAASP actual puede absorber en la zapata, con gradiente cero."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Tolerancia a la Surgencia', href: '/es/calculators/kick-tolerance' }]}
   lang="es"
   alternateHref="/calculators/kick-tolerance"

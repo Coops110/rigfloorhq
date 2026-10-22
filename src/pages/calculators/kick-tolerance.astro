@@ -4,6 +4,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import NewsletterSignup from '../../components/NewsletterSignup.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
+import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -40,11 +41,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
+
 ---
 <BaseLayout
   title="Kick Tolerance Calculator (ppg)"
   description="Free kick tolerance calculator: the ppg-equivalent gas kick your current MAASP can absorb at the casing shoe, using the standard zero-gradient worst case."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Kick Tolerance', href: '/calculators/kick-tolerance' }]}
   lang="en"
   alternateHref="/es/calculators/kick-tolerance"

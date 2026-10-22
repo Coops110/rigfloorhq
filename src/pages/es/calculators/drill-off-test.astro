@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 // Mismos valores de referencia que la versión en inglés — verificados contra
 // ROP = Pies Perforados / Tiempo x 3600 antes de publicar esta página.
@@ -62,11 +63,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
+
 ---
 <BaseLayout
   title="Hoja de Trabajo de Prueba Drill-Off: Optimización de WOB"
   description="Calculadora gratuita de prueba drill-off: registra lecturas de peso sobre la barrena y de rotación, y obtén la tasa de penetración (ROP) para cada paso."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Prueba Drill-Off', href: '/es/calculators/drill-off-test' }]}
   lang="es"
   alternateHref="/calculators/drill-off-test"

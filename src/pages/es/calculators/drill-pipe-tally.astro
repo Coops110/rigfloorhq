@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import VideoEmbed from '../../../components/VideoEmbed.astro';
+import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -39,11 +40,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
+
 ---
 <BaseLayout
   title="Calculadora de Tally de Tubería: Capacidad, Desplazamiento"
   description="Calculadora gratuita de tally de tubería de perforación: ingresa DE, DI, longitud de junta y número de juntas para obtener capacidad del pozo."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Tally de Tubería', href: '/es/calculators/drill-pipe-tally' }]}
   lang="es"
   alternateHref="/calculators/drill-pipe-tally"

@@ -2,11 +2,25 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { articleSchema, gitDates } from '../../lib/techarticle.js';
+
+// This hub carried no schema or named author at all before the 2026-10-22
+// audit — one of the 8 core YMYL pages the audit named specifically.
+const safetySourcePath = 'src/pages/safety/index.astro';
+const jsonLd = articleSchema({
+  sourcePath: safetySourcePath,
+  path: '/safety',
+  headline: 'Oil Rig Safety — Hazards, PPE, and Emergency Systems',
+  description: "Complete oil rig safety reference: major hazard categories, required PPE, H2S safety, and emergency response systems.",
+  lang: 'en',
+});
+const { dateModified: safetyDateModified } = gitDates(safetySourcePath);
 ---
 <BaseLayout
   title="Oil Rig Safety — Hazards, PPE, and Emergency Systems"
   description="Complete oil rig safety reference: major hazard categories, required PPE, H2S safety, and emergency response systems."
   breadcrumbs={[{ label: 'Safety', href: '/safety' }]}
+  jsonLd={jsonLd}
   lang="en"
   alternateHref="/es/safety"
 >
@@ -17,6 +31,7 @@ import Footer from '../../components/Footer.astro';
     <div class="page-hero-eyebrow">10 — HSE</div>
     <h1>Safety <span>on the Rig</span></h1>
     <p class="page-hero-sub">The hazards, the equipment, and the systems that keep people alive on one of the most demanding industrial worksites in the world. If you're starting out as a <a href="/careers/roustabout" style="color:var(--amber);">roustabout</a> or <a href="/careers/roughneck" style="color:var(--amber);">roughneck</a>, this page — not the career guide — is where the real risks on your first hitch are actually explained.</p>
+    <p style="font-size:13px;color:var(--fog);margin-top:8px;">By <a href="/about/chris-cooper" style="color:var(--amber);">Chris Cooper</a>{safetyDateModified && <> · Updated {new Date(safetyDateModified).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</>}</p>
   </div>
 
   <section class="block">

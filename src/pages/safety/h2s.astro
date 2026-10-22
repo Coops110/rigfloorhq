@@ -3,16 +3,18 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
-import { techArticleSchema } from '../../lib/techarticle.js';
+import { techArticleSchema, gitDates } from '../../lib/techarticle.js';
 
+const sourcePath = 'src/pages/safety/h2s.astro';
 const jsonLd = techArticleSchema({
-  sourcePath: 'src/pages/safety/h2s.astro',
+  sourcePath,
   path: '/safety/h2s',
   headline: "H2S Safety on Oil Rigs — Exposure Limits & Escape Procedures",
   description: "Hydrogen sulfide (H2S) safety guide for oil rig workers: exposure levels, OSHA and ACGIH limits, detection, personal monitors, SCBA use, and emergency escape procedures.",
   lang: 'en',
   extra: { about: "Hydrogen sulfide (H2S) workplace safety" },
 });
+const { dateModified } = gitDates(sourcePath);
 ---
 <BaseLayout
   title="H2S Safety on Oil Rigs — Exposure Limits & Escape Procedures"
@@ -29,6 +31,7 @@ const jsonLd = techArticleSchema({
     <div class="page-hero-eyebrow">Safety — Sour Gas</div>
     <h1>H₂S <span>Safety</span></h1>
     <p class="page-hero-sub">Hydrogen sulfide is one of the deadliest hazards in oil and gas — colorless, heavier than air, and capable of incapacitating a person in a single breath at high concentration.</p>
+    <p style="font-size:13px;color:var(--fog);margin-top:8px;">By <a href="/about/chris-cooper" style="color:var(--amber);">Chris Cooper</a>{dateModified && <> · Updated {new Date(dateModified).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</>}</p>
   </div>
 
   <section class="block">

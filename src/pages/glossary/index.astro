@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { gitDates } from '../../lib/techarticle.js';
 
 const terms = [
   { term: "Accumulator", def: "A hydraulic fluid reservoir precharged with nitrogen gas that stores enough energy to close BOP elements within seconds, even with rig power and pumps dead.", href: "/equipment/accumulator" },
@@ -244,6 +245,7 @@ const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').repla
 const sortedTerms = [...terms].sort((a, b) => a.term.localeCompare(b.term, 'en', { sensitivity: 'base', numeric: true }));
 const letters = Array.from(new Set(sortedTerms.map((t) => t.term[0].toUpperCase()))).sort();
 
+const { dateModified: glossaryDateModified } = gitDates('src/pages/glossary/index.astro');
 const glossaryLd = {
   "@context": "https://schema.org",
   "@type": "DefinedTermSet",
@@ -251,6 +253,8 @@ const glossaryLd = {
   "name": "RigFloorHQ Oil & Gas Glossary",
   "url": "https://rigfloorhq.com/glossary",
   "inLanguage": "en",
+  ...(glossaryDateModified ? { "dateModified": glossaryDateModified } : {}),
+  "author": { "@id": "https://rigfloorhq.com/about/chris-cooper#person" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" },
   "hasDefinedTerm": terms.map((t) => ({
     "@type": "DefinedTerm",
@@ -286,6 +290,8 @@ const glossaryLd = {
     <p class="page-hero-sub">Every term used on the rig, in one place. From BHA to WOB — learn these and you'll sound like you've been there.</p>
     <div class="page-meta">
       <span class="page-meta-item"><strong>{terms.length}</strong> terms and counting</span>
+      <span class="page-meta-item">By <a href="/about/chris-cooper" style="color:var(--amber);">Chris Cooper</a></span>
+      {glossaryDateModified && <span class="page-meta-item">Updated {new Date(glossaryDateModified).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>}
     </div>
   </div>
 

@@ -4,6 +4,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import NewsletterSignup from '../../components/NewsletterSignup.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
+import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -40,11 +41,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
+
 ---
 <BaseLayout
   title="MAASP Calculator: Maximum Allowable Annular Surface Pressure"
   description="Free MAASP calculator: maximum allowable annular surface pressure at the casing shoe from your LOT/FIT test, current mud weight, and shoe TVD."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'MAASP', href: '/calculators/maasp' }]}
   lang="en"
   alternateHref="/es/calculators/maasp"
@@ -56,6 +60,7 @@ const webAppLd = {
     <div class="page-hero-eyebrow">Calculator</div>
     <h1>MAASP <span>Calculator</span></h1>
     <p class="page-hero-sub">Maximum Allowable Annular Surface Pressure converts your leak-off or formation integrity test into a live surface-pressure limit at the current mud weight — the number that says how much shut-in casing pressure the shoe can actually take before it starts taking losses.</p>
+    <p style="font-size:13px;color:var(--fog);margin-top:8px;">By <a href="/about/chris-cooper" style="color:var(--amber);">Chris Cooper</a></p>
   </div>
 
   <section class="block">

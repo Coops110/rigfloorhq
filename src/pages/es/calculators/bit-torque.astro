@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 // Referencia de rosca de barrena y torque de apriete publicada por Reed
 // Hycalog. Especificación pública de equipo, no ligada a ningún taladro,
@@ -84,11 +85,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
+
 ---
 <BaseLayout
   title="Tabla de Rosca y Torque de Apriete de Barrena"
   description="Tamaño de barrena a conexión roscada, más torque de apriete para barrenas PDC y de conos — cifras Mínimo, Máximo y Máximo Severo de Reed Hycalog."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Rosca y Torque de Barrena', href: '/es/calculators/bit-torque' }]}
   lang="es"
   alternateHref="/calculators/bit-torque"

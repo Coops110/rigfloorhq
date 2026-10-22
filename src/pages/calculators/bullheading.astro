@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { calculatorWebPage } from '../../lib/techarticle.js';
 
 // Brine weight-loss chart is the WellSharp formula sheet's own example table,
 // used as-is — real, generic numbers, no source-specific brand attached.
@@ -48,11 +49,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
+
 ---
 <BaseLayout
   title="Bullheading Calculator: Surface Pressure Limits & Kill Fluid"
   description="Bullheading calculator: kill fluid weight, formation fracture pressure, initial and final max surface pressure, volume to bullhead."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Bullheading', href: '/calculators/bullheading' }]}
   lang="en"
   alternateHref="/es/calculators/bullheading"

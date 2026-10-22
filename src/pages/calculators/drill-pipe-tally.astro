@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import VideoEmbed from '../../components/VideoEmbed.astro';
+import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -39,11 +40,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
+
 ---
 <BaseLayout
   title="Drill Pipe Tally Calculator: Capacity, Displacement & Depth"
   description="Free drill pipe tally calculator: enter OD, ID, joint length and joint count to get hole capacity, steel displacement, and a running depth tally table."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Drill Pipe Tally', href: '/calculators/drill-pipe-tally' }]}
   lang="en"
   alternateHref="/es/calculators/drill-pipe-tally"

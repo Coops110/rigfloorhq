@@ -2,19 +2,21 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import { articleSchema } from '../../lib/techarticle.js';
+import { articleSchema, gitDates } from '../../lib/techarticle.js';
 import CertMatrixDiagram from '../../components/CertMatrixDiagram.astro';
 
 // Article for this career guide. Dates come from git via the same map the
 // sitemap uses, so dateModified always equals this URL's sitemap lastmod;
-// author and publisher are the Organization @id (see src/lib/techarticle.js).
+// author is Chris Cooper (see src/lib/techarticle.js).
+const certsSourcePath = 'src/pages/careers/certifications.astro';
 const jsonLd = articleSchema({
-  sourcePath: 'src/pages/careers/certifications.astro',
+  sourcePath: certsSourcePath,
   path: '/careers/certifications',
   headline: "Oil Rig Certifications Explained — BOSIET, IWCF, H2S, NEBOSH",
   description: "Every certification required to work on an oil rig, explained: BOSIET, HUET, IWCF well control levels, H2S safety, NEBOSH, and which roles need which certs.",
   lang: 'en',
 });
+const { dateModified: certsDateModified } = gitDates(certsSourcePath);
 
 ---
 <BaseLayout
@@ -32,6 +34,7 @@ const jsonLd = articleSchema({
     <div class="page-hero-eyebrow">Careers — Requirements</div>
     <h1>Rig <span>Certifications</span> Explained</h1>
     <p class="page-hero-sub">What each certification actually covers, how long it takes, and which roles require it. Certifications are the fastest way to accelerate your career progression.</p>
+    <p style="font-size:13px;color:var(--fog);margin-top:8px;">By <a href="/about/chris-cooper" style="color:var(--amber);">Chris Cooper</a>{certsDateModified && <> · Updated {new Date(certsDateModified).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</>}</p>
   </div>
 
   <section class="block">

@@ -4,6 +4,7 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import VideoEmbed from '../../../components/VideoEmbed.astro';
 import { reviewedByJabin } from '../../../lib/person.js';
+import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -41,14 +42,7 @@ const webAppLd = {
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
 
-const webPageLd = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "@id": "https://rigfloorhq.com/es/calculators/gas-migration#webpage",
-  "url": "https://rigfloorhq.com/es/calculators/gas-migration",
-  "reviewedBy": reviewedByJabin(),
-  "lastReviewed": "2026-10-15"
-};
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'es', reviewedBy: reviewedByJabin(), lastReviewed: '2026-10-15' });
 ---
 <BaseLayout
   title="Calculadora de Migración de Gas: Ritmo y Volumen de Purga"

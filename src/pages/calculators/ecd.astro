@@ -4,6 +4,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import VideoEmbed from '../../components/VideoEmbed.astro';
 import NewsletterSignup from '../../components/NewsletterSignup.astro';
+import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -42,11 +43,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
+
 ---
 <BaseLayout
   title="ECD Calculator: Equivalent Circulating Density"
   description="Free ECD calculator: annular velocity, annular friction pressure loss, and equivalent circulating density from mud weight, flow rate and annulus geometry."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'ECD', href: '/calculators/ecd' }]}
   lang="en"
   alternateHref="/es/calculators/ecd"

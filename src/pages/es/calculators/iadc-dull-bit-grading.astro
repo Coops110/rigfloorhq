@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const DULL_CHAR_CODES: [string, string][] = [
   ['BC', 'Cono roto'],
@@ -125,11 +126,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
+
 ---
 <BaseLayout
   title="Tabla de Calificación de Desgaste IADC (Dull Grading)"
   description="Referencia gratuita de calificación de desgaste IADC: el código de 8 posiciones para calificar una barrena desgastada — estructura de corte."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Calificación de Desgaste IADC', href: '/es/calculators/iadc-dull-bit-grading' }]}
   lang="es"
   alternateHref="/calculators/iadc-dull-bit-grading"

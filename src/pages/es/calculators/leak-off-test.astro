@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
+import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -35,11 +36,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
+
 ---
 <BaseLayout
   title="Calculadora de Prueba de Goteo (LOT) y FIT"
   description="Convierte una presión de prueba de goteo en peso de lodo equivalente y gradiente de fractura, o encuentra la presión de parada para un EMW objetivo."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Prueba de Goteo', href: '/es/calculators/leak-off-test' }]}
   lang="es"
   alternateHref="/calculators/leak-off-test"

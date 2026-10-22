@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
+import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 // Dimensiones de brida API 6A/6BX, cifras publicadas por Cameron. Especificación
 // pública de equipo, no ligada a ningún taladro, pozo o empresa.
@@ -113,11 +114,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
+
 ---
 <BaseLayout
   title="Tabla de Bridas y Empaques Tipo Anillo"
   description="Diámetro y clasificación de presión API 6A/6BX a número de empaque, cantidad de espárragos, tamaño de espárrago y DE de brida — dimensiones de Cameron."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Bridas y Empaques', href: '/es/calculators/flange-ring-gasket' }]}
   lang="es"
   alternateHref="/calculators/flange-ring-gasket"

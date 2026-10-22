@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -38,11 +39,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
+
 ---
 <BaseLayout
   title="Bit Hydraulics Calculator: TFA, Jet Velocity, HHP, HSI"
   description="Free bit hydraulics calculator: total flow area from nozzle sizes, jet velocity, bit hydraulic horsepower, and hydraulic horsepower per square inch (HSI)."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Bit Hydraulics', href: '/calculators/bit-hydraulics' }]}
   lang="en"
   alternateHref="/es/calculators/bit-hydraulics"

@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import { reviewedByJabin } from '../../lib/person.js';
+import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -36,17 +37,7 @@ const webAppLd = {
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
 
-// reviewedBy belongs on WebPage per schema.org, not on WebApplication — see
-// src/lib/person.js. A separate WebPage node carries it instead of
-// WebApplication itself.
-const webPageLd = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "@id": "https://rigfloorhq.com/calculators/mud-weight-window#webpage",
-  "url": "https://rigfloorhq.com/calculators/mud-weight-window",
-  "reviewedBy": reviewedByJabin(),
-  "lastReviewed": "2026-10-15"
-};
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'en', reviewedBy: reviewedByJabin(), lastReviewed: '2026-10-15' });
 ---
 <BaseLayout
   title="Mud Weight Window Calculator: Pore to Frac"

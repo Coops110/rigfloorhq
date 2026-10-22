@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { calculatorWebPage } from '../../lib/techarticle.js';
 
 // Reed Hycalog's published bit thread and make-up torque reference. Public
 // equipment spec, not tied to any rig, well or company.
@@ -83,11 +84,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
+
 ---
 <BaseLayout
   title="Bit Thread & Make-Up Torque Chart"
   description="Bit size to thread connection, plus make-up torque for PDC and roller cone bits — Reed Hycalog's published Minimum, Maximum and Maximum Severe figures."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Bit Thread & Torque', href: '/calculators/bit-torque' }]}
   lang="en"
   alternateHref="/es/calculators/bit-torque"

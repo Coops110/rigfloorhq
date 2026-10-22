@@ -3,6 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import NewsletterSignup from '../../../components/NewsletterSignup.astro';
+import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -31,11 +32,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
+
 ---
 <BaseLayout
   title="Calculadora de Margen de Viaje / Factor de Seguridad"
   description="Calculadora gratuita de margen de viaje (factor de seguridad): el peso de lodo extra sobre el balance de formación para evitar una surgencia por swabbing."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'Margen de Viaje', href: '/es/calculators/trip-margin' }]}
   lang="es"
   alternateHref="/calculators/trip-margin"

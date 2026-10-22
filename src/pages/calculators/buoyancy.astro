@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import VideoEmbed from '../../components/VideoEmbed.astro';
+import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
   {
@@ -37,11 +38,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
+
 ---
 <BaseLayout
   title="Buoyancy & Tubular Weight Calculator"
   description="Buoyancy factor and buoyed pipe weight for open-ended pipe, closed-ended pipe, and pipe with different fluid inside versus in the annulus."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Buoyancy', href: '/calculators/buoyancy' }]}
   lang="en"
   alternateHref="/es/calculators/buoyancy"

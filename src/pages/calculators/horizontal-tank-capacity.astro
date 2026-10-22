@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { calculatorWebPage } from '../../lib/techarticle.js';
 
 // HORIZONTAL CYLINDRICAL TANK VOLUME — DERIVED, NOT REMEMBERED
 //
@@ -61,11 +62,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
+
 ---
 <BaseLayout
   title="Horizontal Tank Capacity Calculator: Fill Height to Volume"
   description="Free horizontal cylindrical tank capacity calculator: enter diameter and length and get a fill-height-to-volume table plus an instant lookup."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculators', href: '/calculators' }, { label: 'Horizontal Tank Capacity', href: '/calculators/horizontal-tank-capacity' }]}
   lang="en"
   alternateHref="/es/calculators/horizontal-tank-capacity"

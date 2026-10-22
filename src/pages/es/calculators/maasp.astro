@@ -4,6 +4,7 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import NewsletterSignup from '../../../components/NewsletterSignup.astro';
 import SourcesStandards from '../../../components/SourcesStandards.astro';
+import { calculatorWebPage } from '../../../lib/techarticle.js';
 
 const faq = [
   {
@@ -40,11 +41,14 @@ const webAppLd = {
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@id": "https://rigfloorhq.com/#organization" }
 };
+
+const webPageLd = calculatorWebPage(webAppLd, { lang: 'es' });
+
 ---
 <BaseLayout
   title="Calculadora de MAASP: Presión Máxima Permisible"
   description="Calculadora de MAASP gratis: presión máxima permisible en superficie del anular en la zapata a partir de tu prueba LOT/FIT, peso de lodo actual."
-  extraJsonLd={[webAppLd]}
+  extraJsonLd={[webAppLd, webPageLd]}
   breadcrumbs={[{ label: 'Calculadoras', href: '/es/calculators' }, { label: 'MAASP', href: '/es/calculators/maasp' }]}
   lang="es"
   alternateHref="/calculators/maasp"

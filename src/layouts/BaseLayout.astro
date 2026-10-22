@@ -104,7 +104,11 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
   {/* follow is kept on noindexed pages: they should stay out of the index but
       still pass their links on, so anything they point at is not orphaned. */}
   <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
-  <meta name="author" content="RigFloorHQ" />
+  {/* Chris Cooper, not the org name: a real named person reading as the
+      author is a trust signal "RigFloorHQ" cannot carry on its own, and
+      this now matches the Person @id every page's JSON-LD author resolves
+      to (src/lib/techarticle.js, src/lib/person.js). */}
+  <meta name="author" content="Chris Cooper" />
 
   <!-- Open Graph -->
   <meta property="og:type" content={articleTag ? 'article' : 'website'} />
@@ -294,7 +298,16 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
     </>
   )}
 
-  <!-- Structured Data: Organization -->
+  <!-- Structured Data: Organization + WebSite -->
+  {/* WebSite used to be defined only on the homepage (src/pages/index.astro),
+      which left every other page's `isPartOf: {"@id": ".../#website"}`
+      references (ProfilePage nodes, equipment/blog WebPage nodes) pointing at
+      an @id with no matching node in that document — each page's JSON-LD is
+      parsed on its own, so a node defined only on a different URL never
+      resolves there. Emitting it globally, next to Organization, fixes every
+      one of those dangling references in one place. The homepage's own
+      duplicate block was removed (see index.astro) rather than left to emit
+      two WebSite nodes on one page. */}
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -323,6 +336,18 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
       "https://www.youtube.com/@RigFloorHQ",
       "https://www.linkedin.com/company/rigfloorhq"
     ]
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${siteUrl}/#website`,
+    "name": "RigFloorHQ",
+    "url": siteUrl,
+    "description": lang === 'es'
+      ? "La referencia completa del rig floor para operaciones de campo petrolero: perforación, soldadura, control de pozos y carreras."
+      : "The complete rig floor reference for oil and gas field operations — drilling, welding, well control, and careers.",
+    "inLanguage": ["en", "es"],
+    "publisher": { "@id": `${siteUrl}/#organization` }
   })} />
 
   {breadcrumbJsonLd && (
