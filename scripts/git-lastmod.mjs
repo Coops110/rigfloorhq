@@ -147,8 +147,15 @@ export function buildGitDatesMap() {
 
   const out = new Map();
   for (const [file, entry] of map) {
+    // The creation commit always reads as "significant" by insertion count
+    // (it adds the whole file), but it is the file's datePublished, never a
+    // modification. Without this guard, a file whose every post-publish edit
+    // stayed under the threshold would have newestSignificant silently fall
+    // all the way back to the creation commit, wrongly reporting
+    // modified === published even when newestAny shows a real later commit.
+    const newestSignificant = entry.newestSignificant !== entry.oldestAny ? entry.newestSignificant : null;
     out.set(file, {
-      modified: entry.newestSignificant || entry.newestAny,
+      modified: newestSignificant || entry.newestAny,
       published: entry.oldestAny,
     });
   }
