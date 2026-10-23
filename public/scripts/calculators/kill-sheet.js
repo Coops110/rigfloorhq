@@ -47,3 +47,5 @@ function calc() {
 }
 document.querySelectorAll(".calc-box input").forEach((el) => el.addEventListener("input", calc));
 calc();
+const printBtn = document.getElementById("print-kill-sheet");
+if (printBtn) printBtn.addEventListener("click", () => window.print());

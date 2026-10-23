@@ -91,6 +91,15 @@ export function scanDist(distDir = DIST_DIR) {
   }
 
   const scriptTagRe = /<script\b([^>]*)>([\s\S]*?)<\/script>/gi;
+  // Inline event-handler attributes (onclick=, onsubmit=, etc.) are just as
+  // much "inline executable script" as a <script> body with no src — CSP's
+  // script-src blocks both the same way — but the loop above never looks at
+  // ordinary tags, so onclick="window.print()" on a <button> slipped past
+  // this check entirely until a live CSP console error caught it (2026-10-23:
+  // the Footer cookie-settings button, the kill-sheet print button, and the
+  // newsletter form's onsubmit all had this and had been silently broken in
+  // production). This regex catches any tag carrying an onXxx= attribute.
+  const inlineHandlerRe = /<[a-zA-Z][^>]*\son[a-zA-Z]+\s*=\s*("[^"]*"|'[^']*')[^>]*>/g;
   const violations = [];
   let scannedScriptTags = 0;
 
@@ -114,6 +123,14 @@ export function scanDist(distDir = DIST_DIR) {
         line: lineNumberAt(html, match.index),
         hash,
         preview: body.trim().slice(0, 100).replace(/\s+/g, ' '),
+      });
+    }
+    while ((match = inlineHandlerRe.exec(html)) !== null) {
+      violations.push({
+        file: relative(process.cwd(), file),
+        line: lineNumberAt(html, match.index),
+        hash: null,
+        preview: match[0].trim().slice(0, 100).replace(/\s+/g, ' '),
       });
     }
   }
@@ -143,7 +160,7 @@ function main() {
         `via <script src="...">. See src/pages/calculators/README.md.`
     );
     for (const v of violations) {
-      console.error(`  - ${v.file}:${v.line}  [${v.hash}]`);
+      console.error(`  - ${v.file}:${v.line}${v.hash ? `  [${v.hash}]` : ''}`);
       console.error(`      ${v.preview}`);
     }
     process.exit(1);

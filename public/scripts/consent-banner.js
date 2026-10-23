@@ -225,10 +225,13 @@
     if (e.key === 'Escape') { apply('declined'); hide(); }
   });
 
-  // Right to withdraw consent — the footer link calls this. Reopening is
+  // Right to withdraw consent — the footer button calls this. Reopening is
   // a deliberate action, so here we do move focus into the dialog,
-  // straight into settings since that's what the footer link is for.
+  // straight into settings since that's what the footer button is for.
   window.rigFloorHQOpenConsent = function () { show('settings', true); };
+  document.querySelectorAll('.footer-legal-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () { show('settings', true); });
+  });
 
   // probablyNeedsBanner()'s Intl.DateTimeFormat() branch alone costs
   // 100-200ms on a throttled CPU (see its own comment) -- real US visitors
