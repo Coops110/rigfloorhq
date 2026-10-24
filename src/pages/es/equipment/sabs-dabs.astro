@@ -8,7 +8,7 @@ import { techArticleSchema } from '../../../lib/techarticle.js';
 const faq = [
   {
     q: '¿Qué significan SABS y DABS?',
-    a: 'SABS es un Sub de Golpe de Acción Simple (Single-Acting Bumper Sub); DABS es un Sub de Golpe de Acción Doble (Double-Acting Bumper Sub). Ambas son variantes de la misma herramienta telescópica de sub de golpe, y se diferencian solo en si el hombro interno que transmite el impacto se activa en una dirección de recorrido o en ambas.',
+    a: 'SABS es un Sub Amortiguador de Acción Simple (Single-Acting Bumper Sub); DABS es un Sub Amortiguador de Acción Doble (Double-Acting Bumper Sub). Ambas son variantes de la misma herramienta telescópica de sub amortiguador, y se diferencian solo en si el hombro interno que transmite el impacto se activa en una dirección de recorrido o en ambas.',
   },
   {
     q: '¿Cuándo elegiría una cuadrilla un SABS en lugar de un DABS, o viceversa?',
@@ -28,14 +28,14 @@ const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/sabs-dabs.astro',
   path: '/es/equipment/sabs-dabs',
   headline: "SABS vs. DABS: Acción Simple vs. Doble Explicados",
-  description: "La diferencia entre un Sub de Golpe de Acción Simple (SABS) y uno de Acción Doble (DABS), cuándo se elige cada uno para un trabajo de pesca.",
+  description: "La diferencia entre un Sub Amortiguador de Acción Simple (SABS) y uno de Acción Doble (DABS), cuándo se elige cada uno para un trabajo de pesca.",
   lang: 'es',
 });
 ---
 <BaseLayout
   extraJsonLd={[techArticleJsonLd]}
   title="SABS vs. DABS: Acción Simple vs. Doble Explicados"
-  description="La diferencia entre un Sub de Golpe de Acción Simple (SABS) y uno de Acción Doble (DABS), cuándo se elige cada uno para un trabajo de pesca."
+  description="La diferencia entre un Sub Amortiguador de Acción Simple (SABS) y uno de Acción Doble (DABS), cuándo se elige cada uno para un trabajo de pesca."
   breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'SABS vs. DABS', href: '/es/equipment/sabs-dabs' }]}
   lang="es"
   alternateHref="/equipment/sabs-dabs"
@@ -54,9 +54,9 @@ const techArticleJsonLd = techArticleSchema({
       <ToolGallery image1="/images/equipment/sabs-dabs-1.jpg" image2="/images/equipment/sabs-dabs-2.jpg" alt="un par genérico de subs de golpe de acción simple y doble" />
       <div class="prose">
         <h2 id="what-it-is">Qué Son SABS y DABS</h2>
-        <p>SABS y DABS no son tanto dos herramientas distintas sino dos configuraciones de la misma herramienta — el <a href="/es/equipment/bumper-sub">sub de golpe</a>. Ambas usan el mismo mandril telescópico estriado que permite que una sección interna y una externa se deslicen una distancia limitada entre sí mientras aún transmiten torque y circulación. La diferencia está en la geometría del hombro interno que realmente entrega el impacto de golpeo al final de ese recorrido.</p>
-        <p>Un <strong>Sub de Golpe de Acción Simple (SABS)</strong> tiene un hombro que hace contacto y transmite impacto en solo una dirección de recorrido — casi siempre la carrera hacia arriba, ya que la mayoría de los trabajos de pesca buscan jalar algo libre. Moverse en la dirección opuesta no produce ningún impacto; el mandril simplemente se desliza libre.</p>
-        <p>Un <strong>Sub de Golpe de Acción Doble (DABS)</strong> tiene hombros posicionados para transmitir impacto en ambas direcciones, así que el golpeo está disponible ya sea que la sarta se mueva hacia arriba o hacia abajo.</p>
+        <p>SABS y DABS no son tanto dos herramientas distintas sino dos configuraciones de la misma herramienta — el <a href="/es/equipment/bumper-sub">sub amortiguador</a>. Ambas usan el mismo mandril telescópico estriado que permite que una sección interna y una externa se deslicen una distancia limitada entre sí mientras aún transmiten torque y circulación. La diferencia está en la geometría del hombro interno que realmente entrega el impacto de golpeo al final de ese recorrido.</p>
+        <p>Un <strong>Sub Amortiguador de Acción Simple (SABS)</strong> tiene un hombro que hace contacto y transmite impacto en solo una dirección de recorrido — casi siempre la carrera hacia arriba, ya que la mayoría de los trabajos de pesca buscan jalar algo libre. Moverse en la dirección opuesta no produce ningún impacto; el mandril simplemente se desliza libre.</p>
+        <p>Un <strong>Sub Amortiguador de Acción Doble (DABS)</strong> tiene hombros posicionados para transmitir impacto en ambas direcciones, así que el golpeo está disponible ya sea que la sarta se mueva hacia arriba o hacia abajo.</p>
 
         <h2 id="choosing">Eligiendo Entre Ellos</h2>
         <ul>
@@ -68,8 +68,8 @@ const techArticleJsonLd = techArticleSchema({
         <h2 id="wear-inspection">Desgaste e Inspección</h2>
         <p>Debido a que un DABS recibe carga de impacto en cada carrera en ambas direcciones, sus hombros y estrías acumulan desgaste más rápido en un programa de golpeo equivalente que un SABS, que solo carga un lado del mecanismo. En un trabajo de pesca que ha pasado por golpeo extendido, inspeccionar la condición de los hombros y el ajuste de las estrías en un DABS merece atención particular antes de confiar en él para otra corrida.</p>
 
-        <h2 id="vs-plain-bumper-sub">SABS/DABS vs. un Sub de Golpe Genérico de Referencia</h2>
-        <p>Cada vez que un programa de pesca simplemente requiere "un sub de golpe" sin especificar el tipo de acción, la decisión real que se está posponiendo es exactamente esta elección entre SABS y DABS. Ver la página principal de <a href="/es/equipment/bumper-sub">sub de golpe</a> para cómo la herramienta se integra con el resto de la sarta junto a un <a href="/es/equipment/hydraulic-jar">martillo hidráulico</a> — esta página cubre solo la distinción entre acción simple y doble.</p>
+        <h2 id="vs-plain-bumper-sub">SABS/DABS vs. un Sub Amortiguador Genérico de Referencia</h2>
+        <p>Cada vez que un programa de pesca simplemente requiere "un sub amortiguador" sin especificar el tipo de acción, la decisión real que se está posponiendo es exactamente esta elección entre SABS y DABS. Ver la página principal de <a href="/es/equipment/bumper-sub">sub amortiguador</a> para cómo la herramienta se integra con el resto de la sarta junto a un <a href="/es/equipment/hydraulic-jar">martillo hidráulico</a> — esta página cubre solo la distinción entre acción simple y doble.</p>
 
         <h2 id="faq">Preguntas Frecuentes</h2>
         {faq.map((item) => (
@@ -86,7 +86,7 @@ const techArticleJsonLd = techArticleSchema({
           <a href="#what-it-is">Qué Son</a>
           <a href="#choosing">Eligiendo Entre Ellos</a>
           <a href="#wear-inspection">Desgaste e Inspección</a>
-          <a href="#vs-plain-bumper-sub">vs. Sub de Golpe Genérico</a>
+          <a href="#vs-plain-bumper-sub">vs. Sub Amortiguador Genérico</a>
           <a href="#faq">FAQ</a>
         </div>
         <div class="note-box mt-24">
@@ -94,7 +94,7 @@ const techArticleJsonLd = techArticleSchema({
         </div>
         <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
           <h3>Lectura Relacionada</h3>
-          <a href="/es/equipment/bumper-sub" class="card-link">→ Sub de Golpe</a><br><br>
+          <a href="/es/equipment/bumper-sub" class="card-link">→ Sub Amortiguador</a><br><br>
           <a href="/es/equipment/hydraulic-jar" class="card-link">→ Martillo Hidráulico</a><br><br>
           <a href="/es/equipment/safety-joint" class="card-link">→ Junta de Seguridad</a><br><br>
           <a href="/es/pillars/stuck-pipe-and-fishing-operations" class="card-link">→ Pesca y Tubería Pegada</a>

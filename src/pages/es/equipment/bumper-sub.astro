@@ -7,19 +7,19 @@ import { techArticleSchema } from '../../../lib/techarticle.js';
 
 const faq = [
   {
-    q: '¿Qué hace un sub de golpe en una sarta de pesca?',
-    a: 'Un sub de golpe es una herramienta telescópica hecha de dos secciones de mandril estriadas que pueden deslizarse una distancia limitada entre sí mientras aún transmiten torque y circulación. Ese recorrido libre es lo que permite que el impacto de un martillo golpee limpiamente en lugar de absorberse como estiramiento en la tubería, y lo que permite que una sarta de trabajo absorba el movimiento de un taladro flotante sin cargar y descargar constantemente el pescado.',
+    q: '¿Qué hace un sub amortiguador en una sarta de pesca?',
+    a: 'Un sub amortiguador es una herramienta telescópica hecha de dos secciones de mandril estriadas que pueden deslizarse una distancia limitada entre sí mientras aún transmiten torque y circulación. Ese recorrido libre es lo que permite que el impacto de un martillo golpee limpiamente en lugar de absorberse como estiramiento en la tubería, y lo que permite que una sarta de trabajo absorba el movimiento de un taladro flotante sin cargar y descargar constantemente el pescado.',
   },
   {
-    q: '¿Dónde se coloca un sub de golpe en la sarta?',
-    a: 'Se coloca justo arriba de la herramienta de pesca, debajo de los martillos y los lastrabarrenas que proveen el peso de golpeo. Esa posición permite que el recorrido libre del sub de golpe aísle la herramienta de pesca enganchada del movimiento de la sarta arriba de ella, mientras sigue lo suficientemente cerca del martillo para que el impacto se entregue eficientemente en lugar de amortiguarse a lo largo de un intervalo largo de tubería.',
+    q: '¿Dónde se coloca un sub amortiguador en la sarta?',
+    a: 'Se coloca justo arriba de la herramienta de pesca, debajo de los martillos y los lastrabarrenas que proveen el peso de golpeo. Esa posición permite que el recorrido libre del sub amortiguador aísle la herramienta de pesca enganchada del movimiento de la sarta arriba de ella, mientras sigue lo suficientemente cerca del martillo para que el impacto se entregue eficientemente en lugar de amortiguarse a lo largo de un intervalo largo de tubería.',
   },
   {
-    q: '¿Un sub de golpe reemplaza a un martillo?',
-    a: 'No. Un martillo es la herramienta que almacena y libera energía para entregar un impacto certero; un sub de golpe simplemente permite el recorrido para que ese impacto (o el oleaje en superficie, o recoger holgura) pueda ocurrir sin atascar la sarta. Los dos casi siempre se corren juntos — el sub de golpe no libera nada por sí solo, solo permite que el resto de la sarta funcione correctamente.',
+    q: '¿Un sub amortiguador reemplaza a un martillo?',
+    a: 'No. Un martillo es la herramienta que almacena y libera energía para entregar un impacto certero; un sub amortiguador simplemente permite el recorrido para que ese impacto (o el oleaje en superficie, o recoger holgura) pueda ocurrir sin atascar la sarta. Los dos casi siempre se corren juntos — el sub amortiguador no libera nada por sí solo, solo permite que el resto de la sarta funcione correctamente.',
   },
   {
-    q: '¿Qué causa que un sub de golpe falle o se atasque?',
+    q: '¿Qué causa que un sub amortiguador falle o se atasque?',
     a: 'La falla más común es que las estrías del mandril se agarroten o atasquen bajo carga lateral, calor, o ingreso de escombros, lo cual bloquea la acción telescópica y anula todo el propósito de la herramienta. El desgaste de los sellos internos del mandril también puede dejar que el fluido de perforación se desvíe internamente, y un recorrido excesivo más allá del rango calificado de la herramienta bajo golpeo pesado puede dañar la estría o el hombro.',
   },
 ];
@@ -27,16 +27,16 @@ const faq = [
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/es/equipment/bumper-sub.astro',
   path: '/es/equipment/bumper-sub',
-  headline: "Sub de Golpe: Cómo Funcionan las Herramientas Telescópicas",
-  description: "Qué es un sub de golpe, cómo funciona su mandril telescópico estriado con un martillo, dónde se ubica en una sarta de pesca.",
+  headline: "Sub Amortiguador: Cómo Funcionan las Herramientas Telescópicas",
+  description: "Qué es un sub amortiguador, cómo funciona su mandril telescópico estriado con un martillo, dónde se ubica en una sarta de pesca.",
   lang: 'es',
 });
 ---
 <BaseLayout
   extraJsonLd={[techArticleJsonLd]}
-  title="Sub de Golpe: Cómo Funcionan las Herramientas Telescópicas"
-  description="Qué es un sub de golpe, cómo funciona su mandril telescópico estriado con un martillo, dónde se ubica en una sarta de pesca."
-  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Sub de Golpe', href: '/es/equipment/bumper-sub' }]}
+  title="Sub Amortiguador: Cómo Funcionan las Herramientas Telescópicas"
+  description="Qué es un sub amortiguador, cómo funciona su mandril telescópico estriado con un martillo, dónde se ubica en una sarta de pesca."
+  breadcrumbs={[{ label: 'Equipo', href: '/es/equipment' }, { label: 'Sub Amortiguador', href: '/es/equipment/bumper-sub' }]}
   lang="es"
   alternateHref="/equipment/bumper-sub"
 >
@@ -51,16 +51,16 @@ const techArticleJsonLd = techArticleSchema({
 
   <section class="block">
     <div class="two-col">
-      <ToolGallery image1="/images/equipment/bumper-sub-1.jpg" image2="/images/equipment/bumper-sub-2.jpg" alt="un sub de golpe genérico" />
+      <ToolGallery image1="/images/equipment/bumper-sub-1.jpg" image2="/images/equipment/bumper-sub-2.jpg" alt="un sub amortiguador genérico" />
       <div class="prose">
-        <h2 id="what-it-is">Qué Es un Sub de Golpe</h2>
-        <p>Un sub de golpe está construido con dos secciones de mandril — una interna y una externa — conectadas por una interfaz estriada que les permite deslizarse una distancia limitada entre sí mientras aún transmiten torque completo y permiten que el fluido circule por el centro. Esa ventana corta de recorrido libre, usualmente de unos pocos pies, es toda la función de la herramienta: desacopla el movimiento de la sarta de arriba de la herramienta enganchada en el pescado abajo, dentro de ese rango de recorrido.</p>
-        <p>Por sí solo, un sub de golpe no libera nada. Es una adaptación mecánica que permite que el resto de la sarta de pesca — particularmente un <a href="/es/equipment/hydraulic-jar">martillo hidráulico</a> — realmente haga su trabajo.</p>
+        <h2 id="what-it-is">Qué Es un Sub Amortiguador</h2>
+        <p>Un sub amortiguador está construido con dos secciones de mandril — una interna y una externa — conectadas por una interfaz estriada que les permite deslizarse una distancia limitada entre sí mientras aún transmiten torque completo y permiten que el fluido circule por el centro. Esa ventana corta de recorrido libre, usualmente de unos pocos pies, es toda la función de la herramienta: desacopla el movimiento de la sarta de arriba de la herramienta enganchada en el pescado abajo, dentro de ese rango de recorrido.</p>
+        <p>Por sí solo, un sub amortiguador no libera nada. Es una adaptación mecánica que permite que el resto de la sarta de pesca — particularmente un <a href="/es/equipment/hydraulic-jar">martillo hidráulico</a> — realmente haga su trabajo.</p>
 
-        <h2 id="when-used">Cuándo y Por Qué Se Corre un Sub de Golpe</h2>
+        <h2 id="when-used">Cuándo y Por Qué Se Corre un Sub Amortiguador</h2>
         <ul>
-          <li><strong>Trabajando con un martillo.</strong> Un martillo almacena energía y la libera como un impacto certero. Si la sarta arriba del martillo es rígida hasta superficie, buena parte de ese impacto se absorbe como estiramiento elástico en miles de pies de tubería en lugar de llegar al pescado. Un sub de golpe colocado cerca del martillo permite que el martillo y el yunque realmente se separen y golpeen.</li>
-          <li><strong>Taladros flotantes y oleaje.</strong> En un semisumergible o buque de perforación sin compensación de oleaje completa, el taladro mismo se mueve verticalmente con el estado del mar. Un sub de golpe absorbe ese movimiento en su recorrido libre en lugar de transmitirlo directamente a una herramienta agarrada al pescado, lo cual de otra forma lo cargaría y descargaría con cada ola.</li>
+          <li><strong>Trabajando con un martillo.</strong> Un martillo almacena energía y la libera como un impacto certero. Si la sarta arriba del martillo es rígida hasta superficie, buena parte de ese impacto se absorbe como estiramiento elástico en miles de pies de tubería en lugar de llegar al pescado. Un sub amortiguador colocado cerca del martillo permite que el martillo y el yunque realmente se separen y golpeen.</li>
+          <li><strong>Taladros flotantes y oleaje.</strong> En un semisumergible o buque de perforación sin compensación de oleaje completa, el taladro mismo se mueve verticalmente con el estado del mar. Un sub amortiguador absorbe ese movimiento en su recorrido libre en lugar de transmitirlo directamente a una herramienta agarrada al pescado, lo cual de otra forma lo cargaría y descargaría con cada ola.</li>
           <li><strong>Recoger holgura antes de golpear.</strong> Le da al perforador espacio para levantar la sarta y dejarla caer a través de un recorrido controlado, que es exactamente cómo se accionan los martillos mecánicos.</li>
         </ul>
 
@@ -75,8 +75,8 @@ const techArticleJsonLd = techArticleSchema({
           <li><strong>Acumulación de escombros</strong> alrededor del mandril expuesto en fluido de pozo sucio o arenoso, acelerando el desgaste en la interfaz deslizante.</li>
         </ul>
 
-        <h2 id="vs-jar">Sub de Golpe vs. Martillo Hidráulico</h2>
-        <p>Un <a href="/es/equipment/hydraulic-jar">martillo hidráulico</a> genera el impacto — almacena energía bajo tensión o compresión y la libera repentinamente como un golpe de martillo transmitido por la sarta. Un sub de golpe no genera ninguna fuerza propia; simplemente provee la holgura mecánica que permite que ese impacto, o el oleaje en superficie, ocurra sin atascar la sarta por completo. Casi siempre se corren juntos en un BHA de pesca, con el sub de golpe típicamente posicionado entre el martillo y la herramienta de pesca enganchada en el pescado. Planear un BHA de pesca correctamente es criterio de nivel <a href="/es/careers/driller">perforador</a>, trabajado junto con el toolpusher — la <a href="/es/careers/driller">guía de carrera de perforador</a> cubre el salario y el trabajo real día a día.</p>
+        <h2 id="vs-jar">Sub Amortiguador vs. Martillo Hidráulico</h2>
+        <p>Un <a href="/es/equipment/hydraulic-jar">martillo hidráulico</a> genera el impacto — almacena energía bajo tensión o compresión y la libera repentinamente como un golpe de martillo transmitido por la sarta. Un sub amortiguador no genera ninguna fuerza propia; simplemente provee la holgura mecánica que permite que ese impacto, o el oleaje en superficie, ocurra sin atascar la sarta por completo. Casi siempre se corren juntos en un BHA de pesca, con el sub amortiguador típicamente posicionado entre el martillo y la herramienta de pesca enganchada en el pescado. Planear un BHA de pesca correctamente es criterio de nivel <a href="/es/careers/driller">perforador</a>, trabajado junto con el toolpusher — la <a href="/es/careers/driller">guía de carrera de perforador</a> cubre el salario y el trabajo real día a día.</p>
 
         <h2 id="faq">Preguntas Frecuentes</h2>
         {faq.map((item) => (
