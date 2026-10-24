@@ -75,7 +75,7 @@ const blogPosting = {
     "url": postUrl,
     "name": post.data.title,
     "inLanguage": "es",
-    "isPartOf": { "@id": `${siteUrl}/#website` },
+    "isPartOf": { "@id": `${siteUrl}/es#website` },
     "mainEntity": { "@id": `${postUrl}#article` },
     ...(post.data.reviewedByJabin ? { "reviewedBy": reviewedByJabin(), "lastReviewed": post.data.reviewedDate } : {}),
   },

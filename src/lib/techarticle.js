@@ -20,7 +20,7 @@ import { authorChrisCooper } from './person.js';
 
 const siteUrl = 'https://rigfloorhq.com';
 const ORG_ID = `${siteUrl}/#organization`;
-const WEBSITE_ID = `${siteUrl}/#website`;
+const websiteId = (lang) => lang === 'es' ? `${siteUrl}/es#website` : `${siteUrl}/#website`;
 
 // Computed once per build process (cached inside git-lastmod.mjs), so
 // `git log` runs once for the whole build rather than once per page.
@@ -88,7 +88,7 @@ export function articleSchema({ sourcePath, path: urlPath, headline, description
       url,
       name: headline,
       inLanguage: lang,
-      isPartOf: { '@id': WEBSITE_ID },
+      isPartOf: { '@id': websiteId(lang) },
     },
     ...gitDates(sourcePath),
     inLanguage: lang,
@@ -129,7 +129,7 @@ export function calculatorWebPage(webAppLd, { lang = 'en', reviewedBy, lastRevie
     url: webAppLd.url,
     name: webAppLd.name,
     inLanguage: lang,
-    isPartOf: { '@id': WEBSITE_ID },
+    isPartOf: { '@id': websiteId(lang) },
     mainEntity: { '@id': webAppLd['@id'] },
     ...(reviewedBy ? { reviewedBy, lastReviewed } : {}),
   };

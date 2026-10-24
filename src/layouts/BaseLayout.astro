@@ -337,17 +337,32 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
       "https://www.linkedin.com/company/rigfloorhq"
     ]
   })} />
-  <script type="application/ld+json" set:html={JSON.stringify({
+  {/* One WebSite node per language, each with its own @id and inLanguage,
+      linked to its counterpart via schema.org's workTranslation/
+      translationOfWork pair — added per the 2026-10-22 audit. Previously
+      a single bilingual node (inLanguage: ["en","es"]) covered both
+      languages; that collapsed the ES site into an addendum of the EN one
+      rather than a real translated work in its own right. */}
+  <script type="application/ld+json" set:html={JSON.stringify(lang === 'es' ? {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${siteUrl}/es#website`,
+    "name": "RigFloorHQ",
+    "url": `${siteUrl}/es`,
+    "description": "La referencia completa del rig floor para operaciones de campo petrolero: perforación, soldadura, control de pozos y carreras.",
+    "inLanguage": "es",
+    "publisher": { "@id": `${siteUrl}/#organization` },
+    "translationOfWork": { "@id": `${siteUrl}/#website` }
+  } : {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${siteUrl}/#website`,
     "name": "RigFloorHQ",
     "url": siteUrl,
-    "description": lang === 'es'
-      ? "La referencia completa del rig floor para operaciones de campo petrolero: perforación, soldadura, control de pozos y carreras."
-      : "The complete rig floor reference for oil and gas field operations — drilling, welding, well control, and careers.",
-    "inLanguage": ["en", "es"],
-    "publisher": { "@id": `${siteUrl}/#organization` }
+    "description": "The complete rig floor reference for oil and gas field operations — drilling, welding, well control, and careers.",
+    "inLanguage": "en",
+    "publisher": { "@id": `${siteUrl}/#organization` },
+    "workTranslation": { "@id": `${siteUrl}/es#website` }
   })} />
 
   {breadcrumbJsonLd && (
