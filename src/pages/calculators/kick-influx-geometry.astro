@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
+import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
@@ -164,6 +165,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
   </section>
 
   <SourcesStandards lang="en" ids={['api53', 'cfr250g', 'iwcf', 'iadcWellsharp']} />
+  <CalculatorDisclaimer lang="en" context="A real kick response runs under your company's approved well-control procedure with the driller's and mud logger's own live readings — this page checks the underlying math, not a substitute for that procedure." />
 </BaseLayout>
 
 <style>

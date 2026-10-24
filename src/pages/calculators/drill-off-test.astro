@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
 
 // Source readings match the original drill-off test worksheet exactly — the
@@ -171,6 +172,8 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
       </div>
     </div>
   </section>
+
+  <CalculatorDisclaimer lang="en" context="A real drill-off test runs under your company's own drilling program and the driller's judgment on the rig floor — this page checks the underlying math, not a substitute for that program." />
 </BaseLayout>
 
 <style>

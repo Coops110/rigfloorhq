@@ -46,6 +46,10 @@ const questionLd = samples.map((q) => ({
     "@type": "Answer",
     "text": `${letter}. ${text}`,
   })),
+  "acceptedAnswer": {
+    "@type": "Answer",
+    "text": `${q.correctAnswer}. ${q.choices[q.correctAnswer]}`,
+  },
 }));
 
 const quizLd = {

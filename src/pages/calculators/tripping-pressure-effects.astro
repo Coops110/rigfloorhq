@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
+import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
 
 const faq = [
@@ -179,6 +180,7 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
   </section>
 
   <SourcesStandards lang="en" ids={['api53', 'iwcf', 'iadcWellsharp']} />
+  <CalculatorDisclaimer lang="en" context="A real trip relies on your rig's own tested tripping schedule and the mud engineer's live numbers — this page checks the underlying math, not a substitute for that program." />
 </BaseLayout>
 
 <style>

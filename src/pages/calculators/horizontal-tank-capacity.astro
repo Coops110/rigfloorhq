@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
 
 // HORIZONTAL CYLINDRICAL TANK VOLUME — DERIVED, NOT REMEMBERED
@@ -190,6 +191,8 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
       </div>
     </div>
   </section>
+
+  <CalculatorDisclaimer lang="en" context="Real tank capacity depends on the specific vessel's as-built dimensions and its own calibration chart — this page checks the underlying math, not a substitute for your tank's certified strapping table." />
 </BaseLayout>
 
 <style>

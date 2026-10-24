@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
 import NewsletterSignup from '../../components/NewsletterSignup.astro';
 import { reviewedByJabin } from '../../lib/person.js';
+import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import { techArticleSchema } from '../../lib/techarticle.js';
 
 const faq = [
@@ -249,5 +250,6 @@ const webPageLd = {
   </section>
 
   <SourcesStandards lang="en" ids={['iwcf', 'iadcWellsharp']} />
+  <CalculatorDisclaimer lang="en" context="These are reference formulas for orientation, not a substitute for your company's own approved drilling program or a qualified engineer's sign-off on a specific well." />
 </BaseLayout>
 
