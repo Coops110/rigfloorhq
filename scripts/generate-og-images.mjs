@@ -307,7 +307,42 @@ async function main() {
       'well-control-quiz-kill-sheet-practice',
       'es-well-control-quiz-kill-sheet-practice',
     )));
+    // The other 8 quiz topics — only the quiz index and kill-sheet-practice
+    // were ever added above, so these 8 (x2 languages) fell back to
+    // og-default.png. EN/ES slugs genuinely differ per topic (see the real
+    // page filenames under src/pages/well-control-quiz/ and es/well-control-quiz/),
+    // not a simple es- prefix swap.
+    for (const [enSlug, esSlug] of [
+      ['basic-knowledge', 'conocimientos-basicos'],
+      ['basic-pressure', 'presion-basica'],
+      ['kill-methods', 'metodos-de-matanza'],
+      ['shut-in-conditions', 'condiciones-de-cierre'],
+      ['some-tricky-stuff', 'preguntas-dificiles'],
+      ['subsea-questions', 'preguntas-submarinas'],
+      ['volumes-and-maasp', 'volumenes-y-maasp'],
+      ['warning-signs-and-shut-in', 'senales-de-advertencia-y-cierre'],
+    ]) {
+      // Filenames genuinely differ EN vs ES here (unlike kill-sheet-practice/
+      // about), so pick the right source file per language directly rather
+      // than relying on processSinglePage's automatic 'es/' prefix.
+      const fileRel = path.join('well-control-quiz', `${lang === 'es' ? esSlug : enSlug}.astro`);
+      all.push(...(await processSinglePage(
+        fileRel,
+        'quiz',
+        lang,
+        `well-control-quiz-${enSlug}`,
+        `es-well-control-quiz-${esSlug}`,
+      )));
+    }
     all.push(...(await processSinglePage('about.astro', 'about', lang, 'about', 'es-about')));
+    // The two reviewer/author profile pages, missed by the generic
+    // about.astro entry above (they're their own sub-pages, not /about).
+    all.push(...(await processSinglePage(
+      path.join('about', 'chris-cooper.astro'), 'about', lang, 'about-chris-cooper', 'es-about-chris-cooper',
+    )));
+    all.push(...(await processSinglePage(
+      path.join('about', 'jabin-travis.astro'), 'about', lang, 'about-jabin-travis', 'es-about-jabin-travis',
+    )));
     all.push(...(await processSinglePage('privacy.astro', 'legal', lang, 'privacy', 'es-privacy')));
     all.push(...(await processSinglePage('terms.astro', 'legal', lang, 'terms', 'es-terms')));
     all.push(...(await processSinglePage('cookies.astro', 'legal', lang, 'cookies', 'es-cookies')));
