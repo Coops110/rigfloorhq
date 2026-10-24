@@ -2,4 +2,21 @@ User-agent: *
 Allow: /
 Content-Signal: search=yes, ai-input=yes, ai-train=no
 
+# Training-only crawlers blocked to match the ai-train=no signal above.
+# Search/retrieval bots (OAI-SearchBot, PerplexityBot, Claude-SearchBot,
+# Googlebot, etc.) are untouched by this and stay fully allowed via the
+# wildcard rule -- this only stops the page being used to train future
+# models, not AI engines finding and citing it live.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
 Sitemap: https://rigfloorhq.com/sitemap-index.xml
