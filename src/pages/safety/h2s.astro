@@ -4,6 +4,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
 import { techArticleSchema, gitDates } from '../../lib/techarticle.js';
+import { reviewedByJabin } from '../../lib/person.js';
 
 const sourcePath = 'src/pages/safety/h2s.astro';
 const jsonLd = techArticleSchema({
@@ -15,12 +16,28 @@ const jsonLd = techArticleSchema({
   extra: { about: "Hydrogen sulfide (H2S) workplace safety" },
 });
 const { dateModified } = gitDates(sourcePath);
+
+// reviewedBy is a WebPage property in schema.org, not TechArticle, so it sits
+// on this page's own WebPage node — same pattern as pillars/rig-floor-leadership.astro.
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/safety/h2s#webpage",
+  "url": "https://rigfloorhq.com/safety/h2s",
+  "name": "H2S Safety on Oil Rigs — Exposure Limits & Escape Procedures",
+  "inLanguage": "en",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/safety/h2s#article" },
+  "reviewedBy": reviewedByJabin(),
+  "lastReviewed": "2026-10-24",
+};
 ---
 <BaseLayout
   title="H2S Safety on Oil Rigs — Exposure Limits & Escape Procedures"
   description="Hydrogen sulfide (H2S) safety guide for oil rig workers: exposure levels, detection, personal monitors, SCBA use, and emergency escape procedures."
   breadcrumbs={[{ label: 'Safety', href: '/safety' }, { label: 'H2S Safety', href: '/safety/h2s' }]}
   jsonLd={jsonLd}
+  extraJsonLd={[webPageLd]}
   lang="en"
   alternateHref="/es/safety/h2s"
 >
@@ -32,6 +49,7 @@ const { dateModified } = gitDates(sourcePath);
     <h1>H₂S <span>Safety</span></h1>
     <p class="page-hero-sub">Hydrogen sulfide is one of the deadliest hazards in oil and gas — colorless, heavier than air, and capable of incapacitating a person in a single breath at high concentration.</p>
     <p style="font-size:13px;color:var(--fog);margin-top:8px;">By <a href="/about/chris-cooper" style="color:var(--amber);">Chris Cooper</a>{dateModified && <> · Updated {new Date(dateModified).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</>}</p>
+    <p style="font-size:13px;color:var(--fog);margin-top:8px;">Reviewed for accuracy by <a href="/about/jabin-travis" style="color:var(--amber);">Jabin Travis</a>, IADC WellSharp-certified driller.</p>
   </div>
 
   <section class="block">

@@ -4,6 +4,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import { articleSchema, gitDates } from '../../lib/techarticle.js';
 import SourcesStandards from '../../components/SourcesStandards.astro';
+import { reviewedByJabin } from '../../lib/person.js';
 
 const faq = [
   {
@@ -44,6 +45,8 @@ const webPageLd = {
   "inLanguage": "en",
   "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
   "mainEntity": { "@id": "https://rigfloorhq.com/drilling/shut-in-procedures#article" },
+  "reviewedBy": reviewedByJabin(),
+  "lastReviewed": "2026-10-24",
 };
 ---
 <BaseLayout
@@ -63,6 +66,7 @@ const webPageLd = {
     <h1>Hard Shut-In vs <span>Soft Shut-In</span></h1>
     <p class="page-hero-sub">Both put the same BOP stack between the crew and the kick. The difference is the order you close things in, and how fast pressure is allowed to build while you do it.</p>
     <p style="font-size:13px;color:var(--fog);margin-top:8px;">By <a href="/about/chris-cooper" style="color:var(--amber);">Chris Cooper</a>{shutInDateModified && <> · Updated {new Date(shutInDateModified).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</>}</p>
+    <p style="font-size:13px;color:var(--fog);margin-top:8px;">Reviewed for accuracy by <a href="/about/jabin-travis" style="color:var(--amber);">Jabin Travis</a>, IADC WellSharp-certified driller.</p>
   </div>
 
   <section class="block">

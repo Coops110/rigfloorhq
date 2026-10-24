@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import { techArticleSchema } from '../../lib/techarticle.js';
 import KeyFacts from '../../components/KeyFacts.astro';
 import DrillStringDiagram from '../../components/DrillStringDiagram.astro';
+import { reviewedByJabin } from '../../lib/person.js';
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/drill-string.astro',
@@ -13,9 +14,24 @@ const techArticleJsonLd = techArticleSchema({
   description: "Every component of the drill string from top drive to drill bit: drill pipe, heavy weight drill pipe, drill collars, BHA, and bit types explained.",
   lang: 'en',
 });
+
+// reviewedBy is a WebPage property in schema.org, not TechArticle, so it sits
+// on this page's own WebPage node — same pattern as pillars/rig-floor-leadership.astro.
+const webPageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://rigfloorhq.com/equipment/drill-string#webpage",
+  "url": "https://rigfloorhq.com/equipment/drill-string",
+  "name": "The Drill String Explained — Drill Pipe, Collars, BHA, Bits",
+  "inLanguage": "en",
+  "isPartOf": { "@id": "https://rigfloorhq.com/#website" },
+  "mainEntity": { "@id": "https://rigfloorhq.com/equipment/drill-string#article" },
+  "reviewedBy": reviewedByJabin(),
+  "lastReviewed": "2026-10-24",
+};
 ---
 <BaseLayout
-  extraJsonLd={[techArticleJsonLd]}
+  extraJsonLd={[techArticleJsonLd, webPageLd]}
   title="The Drill String Explained — Drill Pipe, Collars, BHA, Bits"
   description="Every component of the drill string from top drive to drill bit: drill pipe, heavy weight drill pipe, drill collars, BHA, and bit types explained."
   breadcrumbs={[{ label: 'Equipment', href: '/equipment' }, { label: 'Drill String', href: '/equipment/drill-string' }]}
@@ -29,6 +45,7 @@ const techArticleJsonLd = techArticleSchema({
     <div class="page-hero-eyebrow">Equipment — Downhole</div>
     <h1>The <span>Drill String</span></h1>
     <p class="page-hero-sub">A single connected system running from the rig floor to the bit, sometimes miles below — transmitting rotation, weight, and drilling fluid the entire way.</p>
+    <p style="font-size:13px;color:var(--fog);margin-top:8px;">Reviewed for accuracy by <a href="/about/jabin-travis" style="color:var(--amber);">Jabin Travis</a>, IADC WellSharp-certified driller.</p>
   </div>
 
   <section class="block">
