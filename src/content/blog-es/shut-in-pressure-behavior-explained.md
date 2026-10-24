@@ -95,7 +95,7 @@ Si el influjo tomado por swabbing está debajo de la barrena, la SIDPP leerá **
 
 ---
 
-Para las matemáticas detrás de la ICP, la FCP, y los programas de presión, la [calculadora de hoja de control de pozo](/es/calculators/kill-sheet) y la [calculadora de hoja de control horizontal](/es/calculators/kill-sheet-horizontal) ejecutan esto en vivo. La teoría de fondo está en la [página de referencia de control de pozos](/es/drilling/well-control) y en los [procedimientos de cierre duro vs suave](/es/drilling/shut-in-procedures). Una vez que una matanza realmente está en curso, mantener constante la presión correcta es donde más ocurren los [errores del Método del Perforador y Wait and Weight](/es/blog/drillers-method-wait-and-weight-mixups).
+Para las matemáticas detrás de la ICP, la FCP, y los programas de presión, la [calculadora de hoja de control de pozo](/es/calculators/kill-sheet) y la [calculadora de hoja de control horizontal](/es/calculators/kill-sheet-horizontal) ejecutan esto en vivo. La teoría de fondo está en la [página de referencia de control de pozos](/es/drilling/well-control) y en los [procedimientos de cierre duro vs suave](/es/drilling/shut-in-procedures). Una vez que una matanza realmente está en curso, mantener constante la presión correcta es donde más ocurren los [errores del Método del Perforador y Esperar y Densificar](/es/blog/drillers-method-wait-and-weight-mixups).
 
 ## Conceptos de Presión y Definiciones que se Malinterpretan
 

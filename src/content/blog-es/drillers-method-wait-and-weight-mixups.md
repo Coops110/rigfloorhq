@@ -1,17 +1,17 @@
 ---
-title: "Método del Perforador vs Wait and Weight: 20 Preguntas"
-description: "20 preguntas resueltas sobre dónde el Método del Perforador, Wait and Weight y el Método Volumétrico se confunden — qué presión mantener constante."
+title: "Método del Perforador vs Esperar y Densificar: 20 Preguntas"
+description: "20 preguntas resueltas sobre dónde el Método del Perforador, Esperar y Densificar y el Método Volumétrico se confunden — qué presión mantener constante."
 publishDate: "2026-09-21"
 author: "Chris Cooper"
 category: "Control de Pozos"
-tags: ["control de pozos", "hoja de control de pozo", "método del perforador", "wait and weight", "entrenamiento"]
+tags: ["control de pozos", "hoja de control de pozo", "método del perforador", "esperar y densificar", "entrenamiento"]
 sources: ["iwcf", "iadcWellsharp"]
 faq:
   - q: "¿Son estas preguntas oficiales de examen IWCF o IADC?"
     a: "El tema sigue la teoría estándar de control de pozos de IWCF/IADC, pero esta publicación no está afiliada a ninguno de los dos organismos y no sustituye una certificación acreditada. Trátala como material de estudio, no como material de examen."
 ---
 
-El Método del Perforador y el Método Wait and Weight comparten mucha lógica subyacente, que es exactamente por qué es tan fácil aplicar la regla de uno al otro por error — mantener constante la presión equivocada, o leer un punto de control al revés. Aquí es donde eso sucede más.
+El Método del Perforador y el Método Esperar y Densificar comparten mucha lógica subyacente, que es exactamente por qué es tan fácil aplicar la regla de uno al otro por error — mantener constante la presión equivocada, o leer un punto de control al revés. Aquí es donde eso sucede más.
 
 ## 1. Qué significa realmente que la SIDPP y la SICP difieran
 
@@ -23,7 +23,7 @@ Durante la segunda circulación del Método del Perforador, una vez que el lodo 
 
 ## 3. Qué hacer cuando el suministro de barita se tapona a mitad de la circulación
 
-Durante la primera circulación del Método Wait and Weight, si el suministro de barita se tapona, la decisión correcta es **informar al supervisor y recomendar cerrar el pozo mientras se repara el bloqueo** — no seguir circulando mientras la cuadrilla lo arregla. Continuar circulando con un sistema de aumento de peso poco confiable arriesga meter el peso de lodo equivocado al fondo a mitad de la matanza.
+Durante la primera circulación del Método Esperar y Densificar, si el suministro de barita se tapona, la decisión correcta es **informar al supervisor y recomendar cerrar el pozo mientras se repara el bloqueo** — no seguir circulando mientras la cuadrilla lo arregla. Continuar circulando con un sistema de aumento de peso poco confiable arriesga meter el peso de lodo equivocado al fondo a mitad de la matanza.
 
 ## 4. Presión de fondo cuando la presión de revestimiento corre alta durante el arranque
 
@@ -51,7 +51,7 @@ Después de una circulación completa con el peso de lodo disminuido, la presió
 
 ## 10. Usando una hoja de control vertical en un pozo horizontal
 
-Matando un pozo con una sección horizontal usando el método Wait and Weight, usar una hoja de control vertical por error significa **aplicar demasiada presión al pozo** — no muy poca. Un programa vertical asume una relación hidrostática basada en TVD que no se mantiene de la misma forma una vez que el pozo se vuelve horizontal, y el desajuste corre en dirección de sobrepresionar, no subpresionar.
+Matando un pozo con una sección horizontal usando el método Esperar y Densificar, usar una hoja de control vertical por error significa **aplicar demasiada presión al pozo** — no muy poca. Un programa vertical asume una relación hidrostática basada en TVD que no se mantiene de la misma forma una vez que el pozo se vuelve horizontal, y el desajuste corre en dirección de sobrepresionar, no subpresionar.
 
 ## 11. Presión máxima en la zapata de revestimiento con el Método Volumétrico
 
@@ -59,7 +59,7 @@ Usando el Método Volumétrico en un pozo vertical, la presión máxima en la za
 
 ## 12. Presión que todavía se muestra en el manómetro de tubería sin presión atrapada
 
-KWM bombeado hasta la barrena al inicio de una matanza Wait and Weight, bombas detenidas, presión verificada. El manómetro de tubería todavía muestra presión y se ha descartado presión atrapada. La situación es que la **tubería de perforación todavía está subbalanceada, o el conteo de carreras usado no fue correcto** — no que un efecto U-tube del KWM simplemente esté agregando presión sin nada sobre qué actuar. Asumir que "es solo efecto U-tube" cuando los números no cuadran es cómo un subbalance real se pasa por alto.
+KWM bombeado hasta la barrena al inicio de una matanza Esperar y Densificar, bombas detenidas, presión verificada. El manómetro de tubería todavía muestra presión y se ha descartado presión atrapada. La situación es que la **tubería de perforación todavía está subbalanceada, o el conteo de carreras usado no fue correcto** — no que un efecto U-tube del KWM simplemente esté agregando presión sin nada sobre qué actuar. Asumir que "es solo efecto U-tube" cuando los números no cuadran es cómo un subbalance real se pasa por alto.
 
 ## 13. Presión en la zapata de revestimiento mientras pasa una burbuja de gas
 
@@ -81,9 +81,9 @@ Un pozo cerrado en una surgencia de 25 bbl marca 300 psi de SIDPP / 650 psi de S
 
 Manteniendo constante la Presión de Circulación Final mientras el lodo de matanza circula por el anular hacia arriba, la presión de fondo **se mantiene igual** — no aumenta. La FCP se calcula específicamente para que mantenerla constante en el camino hacia arriba mantenga la BHP, la misma lógica de "mantener un manómetro estable para proteger al otro" en todos los métodos de matanza.
 
-## 18. Cuándo Wait and Weight supera al Método del Perforador en presión de zapata
+## 18. Cuándo Esperar y Densificar supera al Método del Perforador en presión de zapata
 
-Wait and Weight da una presión de zapata de revestimiento más baja que el Método del Perforador específicamente cuando **la capacidad del anular en hoyo abierto es mayor que la capacidad de la sarta de perforación** — no al revés. Las capacidades relativas de los dos lados determinan qué método ejerce menos tensión sobre la zapata, y es fácil asumir que la comparación va al revés.
+Esperar y Densificar da una presión de zapata de revestimiento más baja que el Método del Perforador específicamente cuando **la capacidad del anular en hoyo abierto es mayor que la capacidad de la sarta de perforación** — no al revés. Las capacidades relativas de los dos lados determinan qué método ejerce menos tensión sobre la zapata, y es fácil asumir que la comparación va al revés.
 
 ## 19. Presión de revestimiento a medida que un influjo se mueve de horizontal a vertical
 

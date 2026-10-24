@@ -31,7 +31,7 @@ Una herramienta de Presión Mientras se Perfora mostrando una reducción en la E
 
 ## 5. Eligiendo un método de matanza cuando el volumen barrena-zapata excede el volumen de la sarta
 
-En un pozo donde el volumen barrena-zapata es mayor que el volumen de la sarta de perforación, el método de matanza que minimiza el riesgo de pérdidas es el **Método Wait and Weight** — no el Método Volumétrico, que ni siquiera es un método general de matanza por circulación para empezar y no atiende esta relación de volumen en particular.
+En un pozo donde el volumen barrena-zapata es mayor que el volumen de la sarta de perforación, el método de matanza que minimiza el riesgo de pérdidas es el **Método Esperar y Densificar** — no el Método Volumétrico, que ni siquiera es un método general de matanza por circulación para empezar y no atiende esta relación de volumen en particular.
 
 ## 6. Por qué las válvulas de salida lateral permanecen abiertas durante una prueba de tapón de prueba del BOP
 

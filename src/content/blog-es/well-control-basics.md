@@ -17,7 +17,7 @@ Los fundamentos de control de pozos comienzan con una verdad contundente: mientr
 | ¿Qué es una surgencia? | Una entrada de fluido de formación al pozo cuando la presión de formación excede la presión hidrostática. Ver la [referencia completa de control de pozos y surgencias](/es/drilling/well-control). |
 | ¿Cuál es la primera respuesta ante señales sospechosas de surgencia? | Detente y realiza un chequeo de flujo inmediatamente — no esperes confirmación solo de las piletas en superficie. |
 | ¿Cierre duro o cierre suave? | La política de la empresa dicta esto, pero ambos siguen la misma secuencia central de BOP. Ver [tipos de BOP, función, y clasificaciones de presión](/es/equipment/bop). |
-| ¿Método del Perforador vs. Wait and Weight? | El Método del Perforador circula la surgencia hacia afuera primero con el lodo original, luego mata el pozo en una segunda circulación. Wait and Weight mata en una circulación con lodo ya pesado. |
+| ¿Método del Perforador vs. Esperar y Densificar? | El Método del Perforador circula la surgencia hacia afuera primero con el lodo original, luego mata el pozo en una segunda circulación. Esperar y Densificar mata en una circulación con lodo ya pesado. |
 | ¿Qué presión de acumulador debe mantener un BOP? | Típicamente 3,000 psi en el acumulador, con presión de manifold alrededor de 1,500 psi. |
 | ¿Dónde calculo el peso de lodo de matanza? | Usa la [calculadora de hoja de control de pozo](/es/calculators/kill-sheet) una vez que el SIDPP esté registrado y el pozo esté cerrado. |
 | ¿Con qué frecuencia deben probarse los BOP? | Pruebas funcionales semanales como mínimo, más pruebas de presión según los requisitos regulatorios y del operador. |
@@ -103,13 +103,13 @@ Los BOP solo son confiables si se mantienen y prueban según especificación, co
 
 Más allá de las verificaciones diarias, los BOP se someten a pruebas funcionales semanales como mínimo, más pruebas de presión completas en un cronograma establecido por el operador y el organismo regulatorio. Un stack que no se prueba según estos intervalos no es un stack en el que puedas confiar en un escenario real de surgencia, punto final.
 
-## Método del Perforador vs. Wait and Weight: Eligiendo un Método de Matanza
+## Método del Perforador vs. Esperar y Densificar: Eligiendo un Método de Matanza
 
 Una vez que el pozo está cerrado y se registran el SIDPP, SICP, y la ganancia de pileta, la cuadrilla y el supervisor de control de pozos deciden entre dos métodos de matanza.
 
 **El Método del Perforador** circula la entrada fuera del pozo primero, usando el peso de lodo original, luego circula una segunda vez con lodo de matanza pesado una vez que la surgencia está fuera. Es más simple en procedimiento pero requiere dos circulaciones completas, lo que significa más tiempo con el pozo en un estado crítico.
 
-**El Método Wait and Weight** aumenta el peso del lodo hasta el peso de matanza antes de comenzar la circulación, matando el pozo en una sola circulación. Requiere más cálculo previo y tiempo de mezcla, pero reduce el tiempo total que el pozo pasa bajo condiciones de surgencia.
+**El Método Esperar y Densificar** aumenta el peso del lodo hasta el peso de matanza antes de comenzar la circulación, matando el pozo en una sola circulación. Requiere más cálculo previo y tiempo de mezcla, pero reduce el tiempo total que el pozo pasa bajo condiciones de surgencia.
 
 Ningún método es universalmente mejor. La elección depende de la capacidad del taladro, la capacidad de la planta de lodo, la sensibilidad de la formación, y la política de la empresa — exactamente por qué un supervisor certificado de control de pozos toma esta decisión, no una lista de verificación genérica.
 
@@ -234,9 +234,9 @@ Las señales más tempranas de una surgencia incluyen aumento del caudal de sali
 
 El cierre duro cierra el BOP contra un choke cerrado y luego abre la válvula HCR de la línea de choke para leer la presión con el choke todavía cerrado. Atrapa la presión más rápido pero crea un pico de presión más agudo. El cierre suave abre la válvula HCR con el choke abierto, cierra el BOP y luego cierra el choke, suavizando la acumulación de presión más gradualmente para formaciones sensibles.
 
-### ¿Es mejor el Método del Perforador o el Método Wait and Weight para control de pozos?
+### ¿Es mejor el Método del Perforador o el Método Esperar y Densificar para control de pozos?
 
-Ninguno es universalmente mejor — depende de la capacidad del taladro, la capacidad de mezcla de lodo, y la sensibilidad de la formación. Ver la [comparación completa entre el Método del Perforador y Wait and Weight](/es/pillars/well-kill-methods#como-elegir), con un ejemplo resuelto por ambos métodos.
+Ninguno es universalmente mejor — depende de la capacidad del taladro, la capacidad de mezcla de lodo, y la sensibilidad de la formación. Ver la [comparación completa entre el Método del Perforador y Esperar y Densificar](/es/pillars/well-kill-methods#como-elegir), con un ejemplo resuelto por ambos métodos.
 
 ### ¿Con qué frecuencia debe probarse el equipo de BOP?
 
