@@ -75,6 +75,60 @@ const lastUpdatedLabel = lastUpdated
   </section>
 
   <section class="block">
+    <div class="section-eyebrow">Your Number</div>
+    <h2 class="section-title">Salary <span>Estimator</span></h2>
+    <p style="color:var(--fog);max-width:760px;margin-bottom:20px;">Pick your role, experience level, and onshore or offshore — this pulls straight from the same editorial pay table below, it just does the lookup and the offshore premium math for you.</p>
+
+    <div class="calc-box" style="max-width:600px;">
+      <div class="calc-title">💰 Estimate Your Pay</div>
+      <div class="input-row">
+        <div class="input-group">
+          <label for="se-role">Role</label>
+          <select id="se-role">
+            <option value="roustabout">Roustabout</option>
+            <option value="roughneck">Roughneck / Floorhand</option>
+            <option value="derrickhand">Derrickhand</option>
+            <option value="assistant-driller">Assistant Driller</option>
+            <option value="driller">Driller</option>
+            <option value="toolpusher">Toolpusher</option>
+            <option value="oim">OIM / Rig Manager</option>
+            <option value="mud-engineer">Mud Engineer</option>
+            <option value="directional-driller">Directional Driller</option>
+            <option value="wellsite-geologist">Wellsite Geologist</option>
+            <option value="hse-officer">HSE / Safety Officer</option>
+            <option value="welder-junior">Rig Welder (Junior)</option>
+            <option value="welder-senior">Rig Welder (Senior)</option>
+            <option value="underwater-welder">Underwater Welder</option>
+            <option value="company-man">Company Man</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="se-experience">Experience Level</label>
+          <select id="se-experience">
+            <option value="entry">Entry / Low</option>
+            <option value="typical" selected>Typical</option>
+            <option value="senior">Senior / High</option>
+          </select>
+        </div>
+      </div>
+      <div class="input-row">
+        <div class="input-group">
+          <label for="se-location">Location</label>
+          <select id="se-location">
+            <option value="onshore">Onshore</option>
+            <option value="offshore">Offshore</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="calc-output visible" aria-live="polite" style="margin-top:20px;">
+        <div class="output-line headline"><span class="output-label">Estimated Annual Pay</span><span class="output-value" id="se-out">—</span></div>
+      </div>
+      <p id="se-note" style="font-size:12px;color:var(--fog);margin-top:10px;"></p>
+    </div>
+  </section>
+
+  <section class="block">
     <div class="section-eyebrow">By Position</div>
     <h2 class="section-title">2026 Pay <span>Ranges</span></h2>
 
@@ -259,3 +313,5 @@ const lastUpdatedLabel = lastUpdated
     </div>
   </section>
 </BaseLayout>
+
+<script is:inline src="/scripts/calculators/salary-estimator.js" defer></script>
