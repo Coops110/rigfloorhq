@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
 import { reviewedByJabin } from '../../lib/person.js';
 import { calculatorWebPage } from '../../lib/techarticle.js';
@@ -144,6 +145,17 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en', reviewedBy: reviewed
           <dd class="formula-note">Current mud weight sits inside a healthy 5.5 ppg window, slightly closer to the pore-pressure boundary (2.5 ppg margin) than the fracture boundary (3.0 ppg) — comfortable, but worth re-checking as TVD increases.</dd>
         </dl>
         <p>Watching where the current mud weight sits inside this window, and calling for an adjustment before it drifts toward either boundary, is a <a href="/careers/driller">driller's</a> real-time responsibility at the console — see the full driller career guide for what else the role involves and pays.</p>
+
+        <h2>Watch: One Mud Weight Change, Half Your MAASP Margin Gone</h2>
+        <VideoEmbed
+          videoId="qo5VSDTZFjM"
+          title="One mud weight change, half your MAASP margin gone"
+          description="A single mud weight adjustment can cut your MAASP margin in half without anyone noticing until it's tight. Free calculator tracks the real window. rigfloorhq.com/calculators/mud-weight-window"
+          uploadDate="2026-10-22T06:03:42-07:00"
+          duration="PT0M39S"
+          thumbnailUrl="https://i.ytimg.com/vi/qo5VSDTZFjM/hqdefault.jpg"
+          lang="en"
+        />
 
         <h2 id="faq">Frequently Asked Questions</h2>
         {faq.map((item) => (

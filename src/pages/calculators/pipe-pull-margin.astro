@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
 import SourcesStandards from '../../components/SourcesStandards.astro';
 import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
@@ -120,6 +121,17 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
         </dl>
 
         <p>For hole capacity, displacement, and a joint-by-joint depth tally from pipe OD/ID, see the <a href="/calculators/drill-pipe-tally">drill pipe tally calculator</a>. For the hydrostatic pressure this margin is measured against, see the <a href="/calculators/hydrostatic">hydrostatic pressure calculator</a>. Watching how far pipe can actually come out before hydrostatic drops too far is exactly the judgment a <a href="/careers/derrickhand">derrickhand</a> builds on the monkey board — see the <a href="/careers/derrickhand">derrickhand career guide</a> for pay and what the role actually involves.</p>
+
+        <h2>Watch: Wet Pipe vs Dry Pipe — the Real Pull Margin</h2>
+        <VideoEmbed
+          videoId="4-USrFyi0I4"
+          title="Wet pipe vs dry pipe: the real pull margin"
+          description="Wet pipe and dry pipe pull margins aren't the same calculation, and treating them as one is how a trip gets dangerous. Free calculator keeps them separate. rigfloorhq.com/calculators/pipe-pull-margin"
+          uploadDate="2026-10-21T06:03:47-07:00"
+          duration="PT0M36S"
+          thumbnailUrl="https://i.ytimg.com/vi/4-USrFyi0I4/hqdefault.jpg"
+          lang="en"
+        />
 
         <h2 id="faq">Frequently Asked Questions</h2>
         {faq.map((item) => (

@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import VideoEmbed from '../../components/VideoEmbed.astro';
 import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
 
@@ -197,6 +198,17 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
         <h2 id="why-it-matters">Why This Matters on the Floor</h2>
         <p>Nippling up or down a BOP stack, changing a spool, or reconnecting a wellhead flange all come down to the same question: does the gasket, stud, and nut set actually match the bore and rating stamped on the flange. Getting a ring gasket number wrong doesn't always fail obviously — a close but incorrect BX number can look seated and still not hold at test pressure, which is exactly why the pressure test exists as a separate check from the visual one.</p>
         <p>For the stack this most often applies to, see <a href="/equipment/bop">how a BOP stack is arranged</a> and where these flanged connections sit in it. Bit and drill string connections use a completely different threaded system — see the <a href="/calculators/bit-torque">bit thread and make-up torque lookup</a> for that side of it. Getting flange make-up right before a pressure test is exactly the kind of equipment-integrity check a <a href="/careers/toolpusher">toolpusher</a> is accountable for rig-wide — for pay and the complete job breakdown, see the <a href="/careers/toolpusher">toolpusher career guide</a>.</p>
+
+        <h2>Watch: Wrong Ring Gasket, Right Look</h2>
+        <VideoEmbed
+          videoId="eFAt_oa0EYQ"
+          title="Wrong ring gasket, right look"
+          description="A ring gasket that looks right can still be the wrong rating. Free lookup checks flange class, ring number, and material in one place. rigfloorhq.com/calculators/flange-ring-gasket"
+          uploadDate="2026-10-23T06:03:54-07:00"
+          duration="PT0M43S"
+          thumbnailUrl="https://i.ytimg.com/vi/eFAt_oa0EYQ/hqdefault.jpg"
+          lang="en"
+        />
 
         <h2 id="faq">Frequently Asked Questions</h2>
         {faq.map((item) => (
