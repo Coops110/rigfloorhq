@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import SourcesStandards from '../../components/SourcesStandards.astro';
 import NewsletterSignup from '../../components/NewsletterSignup.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
 
@@ -116,6 +117,8 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
     </div>
     <NewsletterSignup lang="en" />
   </section>
+
+  <SourcesStandards lang="en" ids={['api53', 'iwcf', 'api7g']} />
 </BaseLayout>
 
 <style>

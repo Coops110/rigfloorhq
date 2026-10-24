@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import SourcesStandards from '../../components/SourcesStandards.astro';
 import CalculatorDisclaimer from '../../components/CalculatorDisclaimer.astro';
 import VideoEmbed from '../../components/VideoEmbed.astro';
 import { calculatorWebPage } from '../../lib/techarticle.js';
@@ -204,6 +205,8 @@ const webPageLd = calculatorWebPage(webAppLd, { lang: 'en' });
       </div>
     </div>
   </section>
+
+  <SourcesStandards lang="en" ids={['api9b', 'api9a']} />
 </BaseLayout>
 
 <style>
