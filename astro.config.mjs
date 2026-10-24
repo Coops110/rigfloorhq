@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { buildGitLastmodMap, sourceCandidates } from './scripts/git-lastmod.mjs';
-import { generateLlmsTxt } from './scripts/generate-llms-txt.mjs';
+import { generateLlmsTxt, generateLlmsFullTxt } from './scripts/generate-llms-txt.mjs';
 import { fingerprintScripts } from './scripts/fingerprint-scripts.mjs';
 
 // Blog slugs carrying `noindex: true` in their frontmatter. Must be kept in
@@ -191,6 +191,7 @@ export default defineConfig({
         'astro:build:done': ({ dir, logger }) => {
           const outDir = fileURLToPath(dir);
           generateLlmsTxt(outDir, logger);
+          generateLlmsFullTxt(outDir, logger);
         },
       },
     },

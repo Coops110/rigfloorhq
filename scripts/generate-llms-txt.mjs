@@ -165,3 +165,70 @@ export function generateLlmsTxt(outDir, logger) {
   if (logger) logger.info(`llms.txt generated: ${pages.length} pages (${en.length} EN, ${es.length} ES)`);
   else console.log(`[llms.txt] generated: ${pages.length} pages (${en.length} EN, ${es.length} ES)`);
 }
+
+// ── llms-full.txt + per-page .md alternates ──────────────────────────────
+// Flagged missing by the 2026-10-24 audit's AI Search Readiness section.
+// Both are generated from the same real build output llms.txt already reads
+// (real <main> content, not a re-typed summary), so neither can drift from
+// the actual published page the way a hand-maintained version would.
+
+// Strips the <main>...</main> HTML down to clean, structured plain text:
+// headings become Markdown '#'-style lines, block-level tags become
+// paragraph breaks, everything else (nav chrome inside main, if any, scripts,
+// styles, SVGs) is dropped. Not a full HTML-to-Markdown renderer, but real
+// extracted content, not a placeholder.
+function extractMainText(html) {
+  const mainM = html.match(/<main[^>]*>([\s\S]*?)<\/main>/);
+  if (!mainM) return '';
+  let m = mainM[1];
+  m = m.replace(/<(script|style|svg)[\s\S]*?<\/\1>/gi, ' ');
+  m = m.replace(/<h1[^>]*>([\s\S]*?)<\/h1>/gi, (_, t) => `\n\n# ${stripTags(t)}\n\n`);
+  m = m.replace(/<h2[^>]*>([\s\S]*?)<\/h2>/gi, (_, t) => `\n\n## ${stripTags(t)}\n\n`);
+  m = m.replace(/<h3[^>]*>([\s\S]*?)<\/h3>/gi, (_, t) => `\n\n### ${stripTags(t)}\n\n`);
+  m = m.replace(/<li[^>]*>([\s\S]*?)<\/li>/gi, (_, t) => `\n- ${stripTags(t)}`);
+  m = m.replace(/<\/(p|div|section|tr|details)>/gi, '\n\n');
+  m = m.replace(/<br\s*\/?>/gi, '\n');
+  m = stripTags(m);
+  m = decodeEntities(m);
+  m = m.replace(/[ \t]+/g, ' ').replace(/\n{3,}/g, '\n\n').trim();
+  return m;
+}
+
+function stripTags(s) {
+  return s.replace(/<[^>]+>/g, ' ');
+}
+
+export function generateLlmsFullTxt(outDir, logger) {
+  const files = walkHtml(outDir).filter((f) => !f.endsWith('404.html'));
+  const entries = [];
+  for (const f of files) {
+    const html = readFileSync(f, 'utf8');
+    const page = extractPage(f);
+    if (!page) continue;
+    const body = extractMainText(html);
+    if (!body) continue;
+    entries.push({ ...page, body });
+
+    // Per-page Markdown alternate at the same path with a .md extension
+    // (e.g. /equipment/bop/ -> /equipment/bop.md), linked from nowhere yet
+    // but discoverable the same way *.md crawling conventions expect.
+    const mdPath = page.path.replace(/\/$/, '') || '/index';
+    const mdFile = join(outDir, `${mdPath}.md`);
+    const mdContent = `# ${page.title}\n\n${page.description}\n\n${body}\n`;
+    try {
+      writeFileSync(mdFile, mdContent, 'utf8');
+    } catch {
+      // Directory for this path doesn't exist in dist/ (shouldn't happen for
+      // a real page) -- skip rather than fail the whole build over one page.
+    }
+  }
+
+  entries.sort((a, b) => a.path.localeCompare(b.path));
+  const out = entries
+    .map((e) => `---\n\nURL: ${e.url}\nTitle: ${e.title}\n\n${e.body}\n`)
+    .join('\n');
+  const header = `# RigFloorHQ — Full Content\n\nComplete text content of every indexable page on rigfloorhq.com, generated at build time from the real rendered output (not a hand-maintained summary). See /llms.txt for a shorter, linked index instead.\n\n`;
+  writeFileSync(join(outDir, 'llms-full.txt'), header + out, 'utf8');
+  if (logger) logger.info(`llms-full.txt generated: ${entries.length} pages`);
+  else console.log(`[llms-full.txt] generated: ${entries.length} pages`);
+}

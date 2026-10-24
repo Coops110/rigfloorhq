@@ -5,6 +5,7 @@ import Footer from '../../../components/Footer.astro';
 import DiagramEmbed from '../../../components/DiagramEmbed.astro';
 import { techArticleSchema } from '../../../lib/techarticle.js';
 import KeyFacts from '../../../components/KeyFacts.astro';
+import SourcesStandards from '../../../components/SourcesStandards.astro';
 
 const stackAlt = "Stack de BOP de arriba hacia abajo: preventor anular, arietes de tubería, arietes ciegos, y arietes de corte, con líneas de choke y matanza que corren hacia el cabezal del pozo. El anular va más arriba porque sella sobre cualquier diámetro de tubería o sobre hoyo abierto; los arietes debajo sellan con más fuerza pero cada uno solo en lo que está cortado para sellar, y los arietes de corte en la parte inferior cortan la tubería misma como último recurso.";
 
@@ -214,4 +215,6 @@ const techArticleJsonLd = techArticleSchema({
       </div>
     </div>
   </section>
+
+  <SourcesStandards lang="es" ids={['api53', 'cfr250g']} />
 </BaseLayout>

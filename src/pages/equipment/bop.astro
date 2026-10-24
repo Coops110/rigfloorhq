@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import DiagramEmbed from '../../components/DiagramEmbed.astro';
 import { techArticleSchema } from '../../lib/techarticle.js';
 import KeyFacts from '../../components/KeyFacts.astro';
+import SourcesStandards from '../../components/SourcesStandards.astro';
 
 const stackAlt = "BOP stack from top to bottom: annular preventer, pipe rams, blind rams, and shear rams, with choke and kill lines running to the wellhead. The annular sits highest because it seals on any pipe size or on open hole; the rams below it seal harder but each only on what it is cut for, and the shear rams at the bottom cut the pipe itself as a last resort.";
 
@@ -20,6 +21,12 @@ const stackAlt = "BOP stack from top to bottom: annular preventer, pipe rams, bl
 // The FAQ section was removed 2026-10-17 (audit CQ-5): all six answers
 // restated body sections nearly word for word. The key facts table and the
 // Standards line replaced it. No FAQPage schema exists to keep in sync.
+// The 2026-10-24 audit asked for an FAQ back, alongside a real Sources
+// section -- only the Sources section was added (genuinely missing, no
+// conflict with anything). Deliberately NOT re-adding an FAQ: the 2026-10-17
+// removal reasoning still holds, nothing about the page has changed since
+// that would give six honestly-new questions instead of the same six
+// answers restated from the body again.
 
 const techArticleJsonLd = techArticleSchema({
   sourcePath: 'src/pages/equipment/bop.astro',
@@ -221,4 +228,6 @@ const techArticleJsonLd = techArticleSchema({
       </div>
     </div>
   </section>
+
+  <SourcesStandards lang="en" ids={['api53', 'cfr250g']} />
 </BaseLayout>
