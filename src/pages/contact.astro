@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, LEGAL } from '../lib/site.js';
+---
+<BaseLayout
+  title="Contact RigFloorHQ"
+  description="How to reach RigFloorHQ — corrections, licensing questions, or anything else."
+  breadcrumbs={[{ label: 'Contact', href: '/contact' }]}
+  lang="en"
+  alternateHref="/es/contact"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/contact" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Contact</div>
+    <h1>Get in <span>touch</span></h1>
+    <p class="page-hero-sub">Corrections, licensing questions, or anything else — one real mailbox, no contact form.</p>
+  </div>
+
+  <section class="block">
+    <div class="prose">
+      <h2>Email</h2>
+      <p>
+        {LEGAL.legalName}<br />
+        {LEGAL.address && <>{LEGAL.address}<br /></>}
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      </p>
+
+      <h2>Corrections</h2>
+      <p>
+        If something on this site is wrong, out of date, or explained in a way that would mislead
+        someone on a rig, tell us and we will fix it. On a site about safety-critical work,
+        accuracy is the only thing that makes it worth publishing at all. Email the page and what
+        is wrong to the address above — corrections from people who do this work for a living are
+        especially welcome.
+      </p>
+
+      <h2>Using our material</h2>
+      <p>
+        Instructors, trainers and writers are welcome to quote us with a credit and a link back.
+        If you want to use something more substantially — in a training pack, an induction, or a
+        course — email and ask; the answer is usually yes.
+      </p>
+
+      <h2>Data requests</h2>
+      <p>
+        To exercise any right under our <a href="/privacy">Privacy Policy</a>, email the address
+        above. We will respond within one month, and it is free.
+      </p>
+
+      <p style="font-size:13px;">
+        See also our <a href="/about">About</a> page, <a href="/privacy">Privacy Policy</a> and
+        <a href="/editorial-policy">Editorial Policy</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

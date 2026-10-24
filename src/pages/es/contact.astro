@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE, LEGAL } from '../../lib/site.js';
+---
+<BaseLayout
+  title="Contacto — RigFloorHQ"
+  description="Cómo contactar con RigFloorHQ — correcciones, preguntas de licencia, o cualquier otra cosa."
+  breadcrumbs={[{ label: 'Contacto', href: '/es/contact' }]}
+  lang="es"
+  alternateHref="/contact"
+>
+  <Nav slot="nav" lang="es" alternateHref="/contact" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Contacto</div>
+    <h1>Ponte en <span>contacto</span></h1>
+    <p class="page-hero-sub">Correcciones, preguntas de licencia, o cualquier otra cosa — un buzón real, sin formulario de contacto.</p>
+  </div>
+
+  <section class="block">
+    <div class="prose">
+      <h2>Correo electrónico</h2>
+      <p>
+        {LEGAL.legalName}<br />
+        {LEGAL.address && <>{LEGAL.address}<br /></>}
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      </p>
+
+      <h2>Correcciones</h2>
+      <p>
+        Si algo en este sitio es incorrecto, está desactualizado o está explicado de forma que
+        pueda inducir a error a alguien en un equipo de perforación, dínoslo y lo corregiremos.
+        En un sitio sobre trabajo crítico para la seguridad, la exactitud es lo único que hace
+        que merezca la pena publicarlo. Escribe a la dirección de arriba indicando la página y
+        qué está mal — las correcciones de quienes se dedican a esto profesionalmente son
+        especialmente bienvenidas.
+      </p>
+
+      <h2>Uso de nuestro material</h2>
+      <p>
+        Instructores, formadores y periodistas pueden citarnos con una atribución y un enlace de
+        vuelta. Si deseas utilizar algo de forma más extensa — en material de formación, en una
+        inducción o en un curso — escríbenos y pregunta; la respuesta suele ser que sí.
+      </p>
+
+      <h2>Solicitudes de datos</h2>
+      <p>
+        Para ejercer cualquier derecho bajo nuestra <a href="/es/privacy">Política de
+        Privacidad</a>, escribe a la dirección de arriba. Responderemos dentro de un mes, y es
+        gratis.
+      </p>
+
+      <p style="font-size:13px;">
+        Consulta también nuestra página <a href="/es/about">Acerca de</a>, la
+        <a href="/es/privacy">Política de Privacidad</a> y la
+        <a href="/es/editorial-policy">Política Editorial</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

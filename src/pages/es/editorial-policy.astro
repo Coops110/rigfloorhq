@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE } from '../../lib/site.js';
+---
+<BaseLayout
+  title="Política Editorial — RigFloorHQ"
+  description="Cómo trata RigFloorHQ el material crítico para la seguridad, la revisión técnica, las normas y las correcciones."
+  breadcrumbs={[{ label: 'Política Editorial', href: '/es/editorial-policy' }]}
+  lang="es"
+  alternateHref="/editorial-policy"
+>
+  <Nav slot="nav" lang="es" alternateHref="/editorial-policy" />
+  <Footer slot="footer" lang="es" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Editorial</div>
+    <h1>Política <span>Editorial</span></h1>
+    <p class="page-hero-sub">Cómo escribimos sobre trabajo crítico para la seguridad, quién lo revisa, y qué hacemos cuando nos equivocamos.</p>
+  </div>
+
+  <section class="block">
+    <div class="prose">
+      <h2>Referencia, nunca instrucción</h2>
+      <p>
+        Explicamos cómo funciona algo y por qué. Nunca te decimos qué hacer en un pozo activo.
+        Eso lo deciden los procedimientos de tu empresa, el programa del pozo, la normativa y tu
+        supervisor certificado: siempre y sin excepción.
+      </p>
+
+      <h2>Las calculadoras son material didáctico</h2>
+      <p>
+        Las de hoja de matar el pozo, presión hidrostática y ventana de peso de lodo existen
+        para que veas el cálculo y compruebes tu comprensión mientras estudias. No están
+        aprobadas para uso operativo, y lo decimos en la propia página en lugar de esconderlo
+        en los términos.
+      </p>
+
+      <h2>Las normas se citan, no se convierten en dogma</h2>
+      <p>
+        Cuando son de aplicación requisitos de API, IADC, IWCF, OSHA u organismos similares, los
+        citamos y te remitimos a ellos. Las normas se revisan; nuestro resumen es un punto de
+        partida, no la autoridad.
+      </p>
+
+      <h2>Decimos cuándo algo varía</h2>
+      <p>
+        La práctica difiere entre operadoras, contratistas, regiones y tipos de equipo. Cuando
+        no hay una única respuesta correcta, lo decimos en lugar de inventarla.
+      </p>
+
+      <h2 id="reviewed-by-a-working-driller">Revisión técnica</h2>
+      <p>
+        Varios de nuestros artículos del blog y calculadoras han sido verificados para precisión
+        técnica por <strong>Jabin Travis</strong>, un profesional de perforación con 30 años de
+        experiencia en pozos convencionales y horizontales, y en operaciones de
+        workover/completions. Ver su <a href="/about/jabin-travis">perfil completo, credenciales
+        y todo lo que ha revisado</a>. Las páginas con su revisión lo indican visiblemente y en
+        los datos estructurados de la página; las que no muestran revisor aún no han sido
+        verificadas por él, lo cual conviene saber en una página crítica para la seguridad.
+      </p>
+
+      <h2>Independencia</h2>
+      <p>
+        {SITE.name} no pertenece a ninguna contratista de perforación, operadora, fabricante de
+        equipos, proveedor de formación ni agencia de selección de personal. No mostramos
+        publicidad y no cobramos por cobertura. Algunos enlaces a productos son enlaces de
+        afiliación, marcados como patrocinados, y nunca deciden qué recomendamos ni cómo se
+        escribe una página.
+      </p>
+
+      <h2>Correcciones</h2>
+      <p>
+        Si algo aquí es incorrecto, está desactualizado o está explicado de forma que pueda
+        inducir a error a alguien en un equipo de perforación, <a href="/es/contact">dínoslo</a>
+        y lo corregiremos. En un sitio sobre trabajo crítico para la seguridad, la exactitud es
+        lo único que hace que merezca la pena publicarlo.
+      </p>
+
+      <p style="font-size:13px;">
+        Consulta también nuestra página <a href="/es/about">Acerca de</a> y
+        <a href="/es/contact">Contacto</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

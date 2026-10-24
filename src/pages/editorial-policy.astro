@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../lib/site.js';
+---
+<BaseLayout
+  title="Editorial Policy"
+  description="How RigFloorHQ handles safety-critical material, technical review, standards, and corrections."
+  breadcrumbs={[{ label: 'Editorial Policy', href: '/editorial-policy' }]}
+  lang="en"
+  alternateHref="/es/editorial-policy"
+>
+  <Nav slot="nav" lang="en" alternateHref="/es/editorial-policy" />
+  <Footer slot="footer" lang="en" />
+
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Editorial</div>
+    <h1>Editorial <span>Policy</span></h1>
+    <p class="page-hero-sub">How we write about safety-critical work, who checks it, and what we do when we get something wrong.</p>
+  </div>
+
+  <section class="block">
+    <div class="prose">
+      <h2>Reference, never instruction</h2>
+      <p>
+        We explain how something works and why. We never tell you what to do on a live well.
+        Your employer's procedures, the well programme, the regulations and your certified
+        supervisor decide that — always, and without exception.
+      </p>
+
+      <h2>Calculators are teaching tools</h2>
+      <p>
+        The kill sheet, hydrostatic and mud weight window calculators exist so you can see the
+        arithmetic and check your understanding while studying. They are not approved for
+        operational use, and we say so on the page rather than burying it in the terms.
+      </p>
+
+      <h2>Standards are named, not paraphrased into fact</h2>
+      <p>
+        Where API, IADC, IWCF, OSHA or similar requirements apply, we name them and point you at
+        them. Standards get revised; our summary of one is a starting point, not the authority.
+      </p>
+
+      <h2>We say when something varies</h2>
+      <p>
+        Practice differs between operators, contractors, regions and rig types. Where there is no
+        single right answer, we say so instead of inventing one.
+      </p>
+
+      <h2 id="reviewed-by-a-working-driller">Technical review</h2>
+      <p>
+        Several of our blog posts and calculators have been checked for technical accuracy by
+        <strong>Jabin Travis</strong>, a drilling professional with 30 years of experience across
+        conventional and horizontal wells and workover/completions work. See his
+        <a href="/about/jabin-travis">full profile, credentials, and everything he's reviewed</a>.
+        Pages carrying his review say so visibly and in the page's structured data; pages that
+        don't show a reviewer have not yet been checked by him, which is itself worth knowing on
+        a safety-critical page.
+      </p>
+
+      <h2>Independence</h2>
+      <p>
+        {SITE.name} is not owned by a drilling contractor, an operator, an equipment manufacturer,
+        a training provider or a recruitment agency. We carry no advertising and take no payment
+        for coverage. A small number of product links are affiliate links, marked as sponsored,
+        and they never decide what we recommend or how a page reads.
+      </p>
+
+      <h2>Corrections</h2>
+      <p>
+        If something here is wrong, out of date, or explained in a way that would mislead someone
+        on a rig, <a href="/contact">tell us</a> and we will fix it. On a site about
+        safety-critical work, accuracy is the only thing that makes it worth publishing at all.
+      </p>
+
+      <p style="font-size:13px;">
+        See also our <a href="/about">About</a> page and <a href="/contact">Contact</a> page.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
