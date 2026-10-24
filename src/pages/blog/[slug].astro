@@ -65,7 +65,12 @@ const authorEntity = isJabin
 // fallback when git history can't resolve the file (shallow clone).
 const dates = gitDates(`src/content/blog/${post.id}.md`);
 const resolvedModifiedDate = post.data.modifiedDate || dates.dateModified || post.data.publishDate;
-const resolvedPublishedDate = dates.datePublished || post.data.publishDate;
+// publishDate frontmatter is now the primary source for the schema, same as what's
+// visibly shown to readers — git's creation-commit date lags the real editorial
+// publish date by a day or two on some posts (content queued ahead, then committed
+// later), which produced real visible-vs-schema date mismatches. Still falls back to
+// git when frontmatter is somehow missing.
+const resolvedPublishedDate = post.data.publishDate || dates.datePublished;
 
 const blogPosting = {
   "@context": "https://schema.org",

@@ -53,7 +53,9 @@ const authorEntity = isJabin
 // See the English route (src/pages/blog/[slug].astro) for the full rationale.
 const dates = gitDates(`src/content/blog-es/${post.id}.md`);
 const resolvedModifiedDate = post.data.modifiedDate || dates.dateModified || post.data.publishDate;
-const resolvedPublishedDate = dates.datePublished || post.data.publishDate;
+// publishDate frontmatter is now the primary source for the schema, same as what's
+// visibly shown to readers — see the EN blog template for the full reasoning.
+const resolvedPublishedDate = post.data.publishDate || dates.datePublished;
 
 const blogPosting = {
   "@context": "https://schema.org",
