@@ -3,6 +3,30 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import { articleSchema } from '../../lib/techarticle.js';
+import SourcesStandards from '../../components/SourcesStandards.astro';
+
+const faq = [
+  {
+    q: "Is 'leasehand' the same job as roustabout, or do I need to apply separately?",
+    a: "Same job. \"Leasehand\" is the term most Canadian and western-U.S. land contractors use for identical entry-level duties — general labor, rigging up and tearing down equipment, site upkeep. Apply to postings under either title rather than assuming one requires more experience than the other.",
+  },
+  {
+    q: "Do I need a CDL to get hired as a roustabout?",
+    a: "No — a Commercial Driver's License is preferred for some positions but not required to get hired. A valid regular driver's license with a clean record is the real baseline, since you'll need to drive between the yard and location and a history of tickets or accidents can cost you the job on insurance grounds alone. A CDL becomes a real advantage later, opening up higher-paying rig-move and vacuum-truck work once you're established.",
+  },
+  {
+    q: "Can I get hired as a roustabout with a felony or DUI on my record?",
+    a: "It depends on the contractor, the offense, and how long ago it happened — there's no single industry-wide rule. Every drilling contractor and staffing agency runs a background check, and most roles also require a clean driving record and a drug screen. A DUI, especially a recent one, is a real obstacle for any position that involves driving company vehicles. Older, non-violent offenses are sometimes workable depending on the contractor's own policy — the honest answer is to apply directly and ask, rather than assume either way, since policies genuinely differ between companies and even between land and offshore divisions of the same company.",
+  },
+  {
+    q: "Is roustabout work seasonal, or is it year-round?",
+    a: "Land drilling runs year-round, but activity levels track oil prices and rig count — a basin running flat out during a price upswing can slow hiring during a downturn. Offshore roustabout positions are typically steadier once you're in, since platforms and rigs operate continuously regardless of season. Winter weather (North Dakota's Bakken especially) makes the work harder, not seasonal in the sense of stopping.",
+  },
+  {
+    q: "How long until a roustabout gets promoted to roughneck?",
+    a: "Roughly 1–2 years for most hands who show up reliably and ask to learn, per the <a href=\"#what-comes-next\">What Comes Next</a> section above — faster for people who volunteer for the jobs nobody else wants, slower for anyone just getting through the shift. There's no fixed timeline or automatic promotion; it's a supervisor's call based on what they've actually watched you do.",
+  },
+];
 
 // Article for this career guide. Dates come from git via the same map the
 // sitemap uses, so dateModified always equals this URL's sitemap lastmod;
@@ -131,6 +155,14 @@ const webPageLd = {
 
         <h2 id="what-comes-next">What Comes Next</h2>
         <p>After roughly 1–2 years as a roustabout, the next step up is <a href="/careers/roughneck"><strong>roughneck</strong></a> — moving onto the drill floor itself to handle pipe connections directly. From there, the path continues through derrickman, assistant driller, and eventually driller. See the full <a href="/careers/roughneck">path to becoming a roughneck</a> for what that promotion actually involves. Beyond the console, the supervisory career ladder (toolpusher, then OIM or rig manager) is laid out in the <a href="/pillars/rig-floor-leadership">rig floor leadership guide</a>.</p>
+
+        <h2 id="faq">Frequently Asked Questions</h2>
+        {faq.map((item) => (
+          <div style="margin-bottom:18px;">
+            <h3>{item.q}</h3>
+            <p set:html={item.a} />
+          </div>
+        ))}
       </div>
 
       <div>
@@ -145,12 +177,21 @@ const webPageLd = {
           <a href="#the-physical-reality">Physical Requirements</a>
           <a href="#what-new-roustabouts-get-wrong">What New Roustabouts Get Wrong</a>
           <a href="#what-comes-next">What Comes Next</a>
+          <a href="#faq">FAQ</a>
         </div>
 
-        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px;">
+        <div class="card" style="margin-top:20px;border:1px solid var(--iron);border-radius:4px 4px 0 0;">
           <h3>Required Certifications</h3>
           <p style="margin-bottom:12px;">✅ High School Diploma / GED<br>✅ BOSIET (offshore) or SafeLand (land)<br>✅ Basic safety orientation (provided by employer)<br>⬜ CDL (preferred, not required)<br>⬜ IWCF Well Control (not required at entry)</p>
           <a href="/careers/certifications" class="card-link">Full Certification Guide →</a>
+        </div>
+
+        <div class="card" style="margin-top:1px;border:1px solid var(--iron);">
+          <h3>Where to Apply</h3>
+          <p style="margin-bottom:8px;font-size:13px;color:var(--fog);">Direct-hire drilling contractors:</p>
+          <p style="margin-bottom:12px;">Nabors · Helmerich &amp; Payne · Transocean · Noble · Patterson-UTI</p>
+          <p style="margin-bottom:8px;font-size:13px;color:var(--fog);">Energy staffing agencies (can fast-track your first placement):</p>
+          <p>Airswift · Brunel · NES Fircroft</p>
         </div>
 
         <div class="card" style="margin-top:1px;border:1px solid var(--iron);border-radius:0 0 4px 4px;">
@@ -165,4 +206,6 @@ const webPageLd = {
       </div>
     </div>
   </section>
+
+  <SourcesStandards lang="en" ids={['bls']} />
 </BaseLayout>
