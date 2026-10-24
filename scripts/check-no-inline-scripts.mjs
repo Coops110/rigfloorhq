@@ -45,7 +45,7 @@ const DIST_DIR = join(__dirname, '..', 'dist');
 const ALLOWED_INLINE_SCRIPT_HASHES = new Set([
   'sha256-vsqpZLGrisMaElu7SUdUsEb5tPqyySOafGzvqcwi90Y=',
   'sha256-zBXAj3xYmIuhWuiClzeJz6vHUg8jVKrYqRwyFVhe+PY=',
-  'sha256-CAy8X8yXpAkXCoBVIuNiRbwuK1h4jVQqlQJ3CH3XO+g=',
+  'sha256-wK+G8jEukJZOw7iFpFKAI4sRxfXvAhB+jWWc01EiHQA=',
 ]);
 
 // Non-executable data blocks — CSP script-src does not apply to these types,

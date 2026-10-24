@@ -453,7 +453,13 @@ const breadcrumbJsonLd = breadcrumbs.length > 0 ? {
       }
 
       function run() {
-        document.querySelectorAll('input[type="number"]').forEach(enhance);
+        // inputmode="decimal" on every number input, wrapped or not — gives
+        // mobile browsers a decimal-friendly keyboard (with a "." key) instead
+        // of the default numeric pad, which on iOS omits the decimal point.
+        document.querySelectorAll('input[type="number"]').forEach(function (input) {
+          input.setAttribute('inputmode', 'decimal');
+          enhance(input);
+        });
       }
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', run);

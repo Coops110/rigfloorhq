@@ -312,8 +312,15 @@ const t = lang === 'es'
       align-items: stretch;
       gap: 10px;
     }
-    .consent-inner { padding: 12px 14px 14px; }
-    .consent-copy p { font-size: 12px; }
+    /* Compact first-layer bar on mobile — capped to ~20% of viewport
+       height per the 2026-10-22 audit; overflow-y is a safety net for
+       unusually small viewports, not the normal path. The settings view
+       is intentionally excluded — it's opened on demand, not the default
+       first-paint bar, and needs room for the category toggles. */
+    .consent-view-main { max-height: 20vh; overflow-y: auto; }
+    .consent-inner { padding: 10px 14px 12px; }
+    .consent-copy p { font-size: 12px; line-height: 1.4; }
+    .consent-title { font-size: 15px; margin: 0 0 2px; }
     .consent-actions { gap: 8px; }
     .consent-btn { flex: 1 1 0; min-width: 0; padding: 10px 8px; min-height: 44px; }
     .consent-link, .consent-category-lock { font-size: 12px; }
